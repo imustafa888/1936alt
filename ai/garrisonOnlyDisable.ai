@@ -1,0 +1,7 @@
+switch = no # [yes/no]
+flags = { }
+
+max_front_ratio = 3.0
+max_front_ratios = { } 
+max_garrison_prop = 0.20
+min_garrison_prop = 0.15

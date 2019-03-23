@@ -1,0 +1,5 @@
+switch = no # [yes/no]
+
+trade = {
+	embargo = { }
+}

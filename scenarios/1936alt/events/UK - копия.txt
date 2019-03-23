@@ -1,0 +1,1257 @@
+### 2001025  ENG  The UK gears up for war
+### 2001026  ENG  Spanish Civil War - Intervention
+### 2001027  ENG  UK Guarantee of Greek independence
+### 2019001  GRE  2019001
+### 2001028  ENG  Guarantee Independence to Poland
+### 2001029  ENG  Guarantee Independence to Poland - Poland Accepts
+### 2001031  ENG  Guarantee Independence to Poland - Poland Declines
+### 2013001  POL  The UK offers an Alliance
+### 2013002  POL  Danzig or War
+### 2013003  POL  The Molotov-Ribbentrop Pact - Eastern Poland to Soviets
+### 2013004  POL  The UK does not stand by us ! We are alone!
+### 2001032  ENG  Poland is under attack
+### 2001033  ENG  US Occupation of Iceland and Greenland
+### 2001034  ENG  Spanish Civil War ends - An important experience (UK)
+### 2001089  ENG  Spanish Civil War ends - An important experience (UK)
+### 2001035  ENG  UK controls Ethiopian army
+### 2001036  ENG  The English no longer controls Ethiopian army
+### 2185001  U02  The British Raj enters the war
+### 2185002  U02  The British Raj enters the war
+### 2185003  U02  The British Raj enters the war
+### 2004001  HOL  The Dutch Capitulation
+### 2001037  ENG  The Dutch Capitulation
+### 2015001  BEL  The Belgian Capitulation
+### 2001038  ENG  The Belgian Capitulation
+### 2003079  GER  The Belgian Capitulation
+### 2004002  HOL  The Cabinet returns to Amsterdam
+### 2015002  BEL  The Cabinet returns to Brussels
+### 2004003  HOL  The Germans have attacked our neighbors
+### 2015003  BEL  The Germans have attacked our neighbors
+### 2078001  LUX  The Germans have attacked our neighbors
+### 2001039  ENG  Churchill becomes Prime Minister
+#### Surrender events - Partition of United Kingdom ####
+### 2003080  GER  Negotiated peace with the United Kingdom
+### 2001040  ENG  British surrender
+### 2001095  ENG  British surrender
+### 2001041  ENG  England surrenders (surrender by nuke)
+### 2001042  ENG  England surrenders (conventional surrender)
+### 2003081  GER  England surrenders (surrender conditions)
+### 2006015  ITA  England surrenders (German demands)
+### 2006016  ITA  England surrenders (surrender conditions)
+### 2003082  GER  England surrenders (Italian demands)
+### 2007057  SOV  England surrenders (surrender conditions)
+### 2011032  JAP  England surrenders (surrender conditions)
+### 2001043  ENG  England surrenders (study demands)
+### 2001044  ENG  England surrenders (reaction to surrender requests)
+### 2003083  GER  England surrenders (reaction to surrender requests)
+### 2001051  ENG  England surrenders (reaction to surrender requests)
+### 2006017  ITA  England surrenders (reaction to surrender requests)
+### 2001047  ENG  England surrenders (reaction to surrender requests)
+### 2007058  SOV  England surrenders (reaction to surrender requests)
+### 2001048  ENG  England surrenders (reaction to surrender requests)
+### 2011033  JAP  England surrenders (reaction to surrender requests)
+### 2001049  ENG  The UK retreat from the Pacific
+### 2001050  ENG  The UK retreat from the Pacific (reaction to Pacific surrender requests)
+### 2011034  JAP  The UK retreat from the Pacific (reaction to Pacific surrender requests)
+### 2003084  ENG  The Empire breaks apart
+### 2045001  CAN  The Empire breaks apart
+### 2001045  ENG  The future of the Empire
+### 2045002  CAN  The future of the Empire
+### 2185004  U02  The future of the Empire
+### 2046001  AST  The future of the Empire
+### 2044001  NZL  The future of the Empire
+### 2001046  ENG  The future of the Empire
+#### 1941 Allied diplomatic offensive ####
+### 2001052  ENG  Allied diplomatic offensive in Europe
+### 2001053  ENG  Align Yugoslavia
+### 2021003  YUG  Align Yugoslavia
+### 2001054  ENG  Align Romania
+### 2023017  ROM  Align Romania
+### 2001055  ENG  Align Turkey
+### 2010002  TUR  Align Turkey
+### 2001056  ENG  Align Greece
+### 2019002  GRE  Align Greece
+### 2001057  ENG  Align Spanish Republic
+### 2052011  SPR  Align Spanish Republic
+### 2001058  ENG  Align Spanish Republic
+### 2007059  SOV  Align Spanish Republic
+#### 1942 Allied diplomatic offensive ####
+### 2001059  ENG  Allied diplomatic offensive in South and Central America
+### 2001060  ENG  Align Mexico
+### 2035001  MEX  Align Mexico
+### 2001061  ENG  Align Brazil
+### 2033001  BRA  Align Brazil
+### 2042001  BOL  Align Bolivia
+### 2043001  CHL  Align Chile
+### 2036001  COL  Align Colombia
+### 2037001  VEN  Align Venezuela
+### 2063001  COS  Costa Rica – alignment with the AlliesCosta Rica – alignment with the Allies
+### 2018001  CUB  Cuba - alignment with the Allies
+### 2065001  DOM  Dominican Republic – alignment with the Allies
+### 2070001  SAL  El Salvador – alignment with the Allies
+### 2062001  GUA  Guatemala – alignment with the Allies
+### 2071001  HAI  Haiti - alignment with the Allies
+### 2072001  HON  Honduras - alignment with the Allies
+### 2064001  NIC  Nicaragua - alignment with the Allies
+### 2082001  PAN  Panama alignment with the Allies
+### 2019003  GRE  Crete next?
+### 2001062  ENG  Greece transfers Crete to the British
+#### EVENTS FOR EGYPT (1936 SCENARIO) ####
+### 2069001  EGY  King Fuad I passes away
+### 2069002  EGY  Anglo-Egyptian treaty
+### 2001063  ENG  Egyptians want to negotiate
+### 2069003  EGY  UK signs the Anglo-Egyptian treaty
+### 2069004  EGY  UK refuses to sign the Anglo-Egyptian treaty
+### 2069005  EGY  Ratification of Anglo-Egyptian treaty
+### 2069006  EGY  Egypt is free
+### 2069007  EGY  Menace of war is growing
+### 2001064  ENG  AI_EVENT (claims on Egypt)
+### 2001065  ENG  Returning of the Egyptian North Coast
+### 2069008  EGY  Unsuccessful warfare against Axis
+### 2003085  GER  Egypt shows interest in joining the Axis
+### 2069009  EGY  Egypt switches sides
+### 2069010  EGY  Germans don't accept our peace offer
+
+
+################################################################
+###BEF PREPARE
+################################################################
+# Note that:
+# 1. free_ic subtracts base IC rather than effective IC, which is almost always higher than the base IC by at least 20%.
+# 2. free_ic assumes equal cost for each division, which is not true for serial builds where cost decreases for every new division
+# As a consequence of the above, BEF events are subtracting substantially less free_ic than might be expected by simply summing up the IC costs of each division
+###################
+
+event = {
+        id = 2000500
+        random = no
+        country = ENG
+		save_date = yes
+        style = 2
+
+        decision = {
+
+        }
+		decision_trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Iberia"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF (small)"
+			trigger = { 
+				ic = 11.6
+				supplies = 200
+				metal = 20
+				energy = 20
+				oil = 10
+				manpower = 26
+			}
+			ai_chance = 0
+			command = { type = supplies value = -200 }
+			command = { type = metalpool value = -20 }
+			command = { type = energypool value = -20 }
+			command = { type = oilpool value = -10 }
+			command = { type = manpowerpool value = -26 }
+			command = { type = free_ic value = -5.8 }
+			command = { type = local_setflag which = Iberia_S }
+        }
+        action = {
+			name = "Prepare the BEF (medium)"
+			trigger = { 
+				ic = 29
+				supplies = 500
+				metal = 50
+				energy = 50
+				oil = 25
+				manpower = 65
+			}
+			ai_chance = 100
+			command = { type = supplies value = -500 }
+			command = { type = metalpool value = -50 }
+			command = { type = energypool value = -50 }
+			command = { type = oilpool value = -25 }
+			command = { type = manpowerpool value = -65 }
+			command = { type = free_ic value = -14.5 }
+			command = { type = local_setflag which = Iberia_M }
+        }
+        action = {
+			name = "Prepare the BEF (large)"
+			trigger = { 
+				ic = 46.4
+				supplies = 800
+				metal = 80
+				energy = 80
+				oil = 40
+				manpower = 104
+			}
+			ai_chance = 0
+			command = { type = supplies value = -800 }
+			command = { type = metalpool value = -80 }
+			command = { type = energypool value = -80 }
+			command = { type = oilpool value = -40 }
+			command = { type = manpowerpool value = -104 }
+			command = { type = free_ic value = -23.2 }
+			command = { type = local_setflag which = Iberia_L }
+        }
+}
+
+event = {
+        id = 2000501
+        random = no
+        country = ENG
+		save_date = yes
+        style = 2
+
+        decision = {
+
+        }
+		decision_trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Benelux"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF (small)"
+			trigger = { 
+				ic = 11.6
+				supplies = 200
+				metal = 20
+				energy = 20
+				oil = 10
+				manpower = 26
+			}
+			ai_chance = 0
+			command = { type = supplies value = -200 }
+			command = { type = metalpool value = -20 }
+			command = { type = energypool value = -20 }
+			command = { type = oilpool value = -10 }
+			command = { type = manpowerpool value = -26 }
+			command = { type = free_ic value = -5.8 }
+			command = { type = local_setflag which = Benelux_S }
+        }
+        action = {
+			name = "Prepare the BEF (medium)"
+			trigger = { 
+				ic = 29
+				supplies = 500
+				metal = 50
+				energy = 50
+				oil = 25
+				manpower = 65
+			}
+			ai_chance = 100
+			command = { type = supplies value = -500 }
+			command = { type = metalpool value = -50 }
+			command = { type = energypool value = -50 }
+			command = { type = oilpool value = -25 }
+			command = { type = manpowerpool value = -65 }
+			command = { type = free_ic value = -14.5 }
+			command = { type = local_setflag which = Benelux_M }
+        }
+        action = {
+			name = "Prepare the BEF (large)"
+			trigger = { 
+				ic = 46.4
+				supplies = 800
+				metal = 80
+				energy = 80
+				oil = 40
+				manpower = 104
+			}
+			ai_chance = 0
+			command = { type = supplies value = -800 }
+			command = { type = metalpool value = -80 }
+			command = { type = energypool value = -80 }
+			command = { type = oilpool value = -40 }
+			command = { type = manpowerpool value = -104 }
+			command = { type = free_ic value = -23.2 }
+			command = { type = local_setflag which = Benelux_L }
+        }
+}
+
+event = {
+        id = 2000502
+        random = no
+        country = ENG
+		save_date = yes
+        style = 2
+
+        decision = {
+
+        }
+		decision_trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Palestine"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF (small)"
+			trigger = { 
+				ic = 11.6
+				supplies = 200
+				metal = 20
+				energy = 20
+				oil = 10
+				manpower = 26
+			}
+			ai_chance = 0
+			command = { type = supplies value = -200 }
+			command = { type = metalpool value = -20 }
+			command = { type = energypool value = -20 }
+			command = { type = oilpool value = -10 }
+			command = { type = manpowerpool value = -26 }
+			command = { type = free_ic value = -5.8 }
+			command = { type = local_setflag which = Israel_S }
+        }
+        action = {
+			name = "Prepare the BEF (medium)"
+			trigger = { 
+				ic = 29
+				supplies = 500
+				metal = 50
+				energy = 50
+				oil = 25
+				manpower = 65
+			}
+			ai_chance = 100
+			command = { type = supplies value = -500 }
+			command = { type = metalpool value = -50 }
+			command = { type = energypool value = -50 }
+			command = { type = oilpool value = -25 }
+			command = { type = manpowerpool value = -65 }
+			command = { type = free_ic value = -14.5 }
+			command = { type = local_setflag which = Israel_M }
+        }
+        action = {
+			name = "Prepare the BEF (large)"
+			trigger = { 
+				ic = 46.4
+				supplies = 800
+				metal = 80
+				energy = 80
+				oil = 40
+				manpower = 104
+			}
+			ai_chance = 0
+			command = { type = supplies value = -800 }
+			command = { type = metalpool value = -80 }
+			command = { type = energypool value = -80 }
+			command = { type = oilpool value = -40 }
+			command = { type = manpowerpool value = -104 }
+			command = { type = free_ic value = -23.2 }
+			command = { type = local_setflag which = Israel_L }
+        }
+}
+
+event = {
+        id = 2000503
+        random = no
+        country = ENG
+		save_date = yes
+        style = 2
+
+        decision = {
+
+        }
+		decision_trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Turkey"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF (small)"
+			trigger = { 
+				ic = 11.6
+				supplies = 200
+				metal = 20
+				energy = 20
+				oil = 10
+				manpower = 26
+			}
+			ai_chance = 0
+			command = { type = supplies value = -200 }
+			command = { type = metalpool value = -20 }
+			command = { type = energypool value = -20 }
+			command = { type = oilpool value = -10 }
+			command = { type = manpowerpool value = -26 }
+			command = { type = free_ic value = -5.8 }
+			command = { type = local_setflag which = Turkey_S }
+        }
+        action = {
+			name = "Prepare the BEF (medium)"
+			trigger = { 
+				ic = 29
+				supplies = 500
+				metal = 50
+				energy = 50
+				oil = 25
+				manpower = 65
+			}
+			ai_chance = 100
+			command = { type = supplies value = -500 }
+			command = { type = metalpool value = -50 }
+			command = { type = energypool value = -50 }
+			command = { type = oilpool value = -25 }
+			command = { type = manpowerpool value = -65 }
+			command = { type = free_ic value = -14.5 }
+			command = { type = local_setflag which = Turkey_M }
+        }
+        action = {
+			name = "Prepare the BEF (large)"
+			trigger = { 
+				ic = 46.4
+				supplies = 800
+				metal = 80
+				energy = 80
+				oil = 40
+				manpower = 104
+			}
+			ai_chance = 0
+			command = { type = supplies value = -800 }
+			command = { type = metalpool value = -80 }
+			command = { type = energypool value = -80 }
+			command = { type = oilpool value = -40 }
+			command = { type = manpowerpool value = -104 }
+			command = { type = free_ic value = -23.2 }
+			command = { type = local_setflag which = Turkey_L }
+        }
+}
+
+event = {
+        id = 2000504
+        random = no
+        country = ENG
+		save_date = yes
+        style = 2
+
+        decision = {
+
+        }
+		decision_trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Mexico"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF (small)"
+			trigger = { 
+				ic = 11.6
+				supplies = 200
+				metal = 20
+				energy = 20
+				oil = 10
+				manpower = 26
+			}
+			ai_chance = 0
+			command = { type = supplies value = -200 }
+			command = { type = metalpool value = -20 }
+			command = { type = energypool value = -20 }
+			command = { type = oilpool value = -10 }
+			command = { type = manpowerpool value = -26 }
+			command = { type = free_ic value = -5.8 }
+			command = { type = local_setflag which = Mexico_S }
+        }
+        action = {
+			name = "Prepare the BEF (medium)"
+			trigger = { 
+				ic = 29
+				supplies = 500
+				metal = 50
+				energy = 50
+				oil = 25
+				manpower = 65
+			}
+			ai_chance = 100
+			command = { type = supplies value = -500 }
+			command = { type = metalpool value = -50 }
+			command = { type = energypool value = -50 }
+			command = { type = oilpool value = -25 }
+			command = { type = manpowerpool value = -65 }
+			command = { type = free_ic value = -14.5 }
+			command = { type = local_setflag which = Mexico_M }
+        }
+        action = {
+			name = "Prepare the BEF (large)"
+			trigger = { 
+				ic = 46.4
+				supplies = 800
+				metal = 80
+				energy = 80
+				oil = 40
+				manpower = 104
+			}
+			ai_chance = 0
+			command = { type = supplies value = -800 }
+			command = { type = metalpool value = -80 }
+			command = { type = energypool value = -80 }
+			command = { type = oilpool value = -40 }
+			command = { type = manpowerpool value = -104 }
+			command = { type = free_ic value = -23.2 }
+			command = { type = local_setflag which = Mexico_L }
+        }
+}
+
+################################################################
+###BEF READY
+################################################################
+
+event = {
+        id = 2000510
+        random = no
+        country = ENG
+        style = 2
+
+        trigger = {
+        	event = { id = 2000500 days = 225 } 
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "British Expeditionary force - Iberia ready"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. These forces are prepared and ready for rapid deployment."
+        picture = "minister_died"
+
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Iberia_S
+			}
+			command = { type = free_ic value = 5.8 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Iberia_M
+			}
+			command = { type = free_ic value = 14.5 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Iberia_L
+			}
+			command = { type = free_ic value = 23.2 }
+        }
+}
+
+event = {
+        id = 2000511
+        random = no
+        country = ENG
+        style = 2
+
+        trigger = {
+        	event = { id = 2000501 days = 225 } 
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "British Expeditionary force - Benelux ready"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. These forces are prepared and ready for rapid deployment."
+        picture = "minister_died"
+
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Benelux_S
+			}
+			command = { type = free_ic value = 5.8 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Benelux_M
+			}
+			command = { type = free_ic value = 14.5 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Benelux_L
+			}
+			command = { type = free_ic value = 23.2 }
+        }
+}
+
+event = {
+        id = 2000512
+        random = no
+        country = ENG
+        style = 2
+
+        trigger = {
+        	event = { id = 2000502 days = 225 } 
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "British Expeditionary force - Palestine ready"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. These forces are prepared and ready for rapid deployment."
+        picture = "minister_died"
+
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Israel_S
+			}
+			command = { type = free_ic value = 5.8 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Israel_M
+			}
+			command = { type = free_ic value = 14.5 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Israel_L
+			}
+			command = { type = free_ic value = 23.2 }
+        }
+}
+
+event = {
+        id = 2000513
+        random = no
+        country = ENG
+        style = 2
+
+        trigger = {
+        	event = { id = 2000503 days = 225 } 
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "British Expeditionary force - Turkey ready"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. These forces are prepared and ready for rapid deployment."
+        picture = "minister_died"
+
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Turkey_S
+			}
+			command = { type = free_ic value = 5.8 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Turkey_M
+			}
+			command = { type = free_ic value = 14.5 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Turkey_L
+			}
+			command = { type = free_ic value = 23.2 }
+        }
+}
+
+event = {
+        id = 2000514
+        random = no
+        country = ENG
+        style = 2
+
+        trigger = {
+        	event = { id = 2000504 days = 225 } 
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "British Expeditionary force - Mexico ready"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. These forces are prepared and ready for rapid deployment."
+        picture = "minister_died"
+
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Mexico_S
+			}
+			command = { type = free_ic value = 5.8 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Mexico_M
+			}
+			command = { type = free_ic value = 14.5 }
+        }
+        action = {
+			name = "Splendid"
+			trigger = { 
+				local_flag = Mexico_L
+			}
+			command = { type = free_ic value = 23.2 }
+        }
+}
+
+################################################################
+###BEF DEPLOYMENT
+################################################################
+
+event = {
+        id = 2000520
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			event = 2000510
+        }
+		decision_trigger = {
+		}
+        trigger = {
+			ai = yes
+			event = 2000510
+			war = { country = POR country = FRA }
+        	alliance = { country = ENG country = POR }
+        }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 3
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Mobilize the British Expeditionary force - Iberia"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to mobilize these forces?"
+        picture = "minister_died"
+
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Iberia_S
+			}
+			command = { type = add_corps which = "BEF-Iberia" value = land where = 476 }
+			command = { type = add_division which = "1. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Iberia" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Iberia_M
+			}
+			command = { type = add_corps which = "BEF-Iberia" value = land where = 476 }
+			command = { type = add_division which = "1. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Iberia" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Iberia_L
+			}
+			command = { type = add_corps which = "BEF-Iberia" value = land where = 476 }
+			command = { type = add_division which = "1. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "6. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "7. BEF-Iberia" value = infantry when = 10 }
+			command = { type = add_division which = "8. BEF-Iberia" value = infantry when = 10 }
+        }
+}
+
+event = {
+        id = 2000521
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			event = 2000511
+        }
+		decision_trigger = {
+		}
+        trigger = {
+			ai = yes
+			event = 2000511
+			war = { country = HOL country = FRA }
+        	alliance = { country = ENG country = HOL }
+        }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 3
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Mobilize the British Expeditionary force - Benelux"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to mobilize these forces?"
+        picture = "minister_died"
+
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Benelux_S
+			}
+			command = { type = add_corps which = "BEF-Benelux" value = land where = 122 }
+			command = { type = add_division which = "1. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Benelux" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Benelux_M
+			}
+			command = { type = add_corps which = "BEF-Benelux" value = land where = 122 }
+			command = { type = add_division which = "1. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Benelux" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Benelux_L
+			}
+			command = { type = add_corps which = "BEF-Benelux" value = land where = 122 }
+			command = { type = add_division which = "1. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "6. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "7. BEF-Benelux" value = infantry when = 10 }
+			command = { type = add_division which = "8. BEF-Benelux" value = infantry when = 10 }
+        }
+}
+
+event = {
+        id = 2000522
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			event = 2000512
+        }
+		decision_trigger = {
+			OR = {
+				control = { province = 1011 data = -3 }
+				control = { province = 1008 data = -3 }
+			}
+		}
+        trigger = {
+			ai = yes
+			event = 2000512
+			war = { country = ENG country = FRA }
+			war = { country = ENG country = EGY }
+			OR = {
+				control = { province = 1011 data = -3 }
+				control = { province = 1008 data = -3 }
+			}
+        }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 3
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Mobilize the British Expeditionary force - Palestine"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to mobilize these forces?"
+        picture = "minister_died"
+
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Israel_S
+			}
+			command = { trigger = { control = { province = 1011 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1011 }
+			command = { trigger = { NOT = { control = { province = 1011 data = -3 } } control = { province = 1008 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1008 }
+			command = { type = add_division which = "1. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Palestine" value = infantry when = 10 }
+			
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Israel_M
+			}
+			command = { trigger = { control = { province = 1011 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1011 }
+			command = { trigger = { NOT = { control = { province = 1011 data = -3 } } control = { province = 1008 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1008 }
+			command = { type = add_division which = "1. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Palestine" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Israel_L
+			}
+			command = { trigger = { control = { province = 1011 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1011 }
+			command = { trigger = { NOT = { control = { province = 1011 data = -3 } } control = { province = 1008 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1008 }
+			command = { type = add_division which = "1. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Palestine" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Palestine" value = infantry when = 10 }
+        }
+}
+
+event = {
+        id = 2000523
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			event = 2000513
+        }
+		decision_trigger = {
+		}
+        trigger = {
+			ai = yes
+			event = 2000513
+			war = { country = TUR country = SOV }
+        	alliance = { country = ENG country = TUR }
+        }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 3
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Mobilize the British Expeditionary force - Turkey"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to mobilize these forces?"
+        picture = "minister_died"
+
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Turkey_S
+			}
+			command = { type = add_corps which = "BEF-Turkey" value = land where = 409 }
+			command = { type = add_division which = "1. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Turkey" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Turkey_M
+			}
+			command = { type = add_corps which = "BEF-Turkey" value = land where = 409 }
+			command = { type = add_division which = "1. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Turkey" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Turkey_L
+			}
+			command = { type = add_corps which = "BEF-Turkey" value = land where = 409 }
+			command = { type = add_division which = "1. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Turkey" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Turkey" value = infantry when = 10 }
+        }
+}
+
+event = {
+        id = 2000524
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			event = 2000514
+        }
+		decision_trigger = {
+		}
+        trigger = {
+			ai = yes
+			event = 2000514
+			war = { country = MEX country = USA }
+        	alliance = { country = ENG country = MEX }
+        }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 3
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Mobilize the British Expeditionary force - Mexico"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to mobilize these forces?"
+        picture = "minister_died"
+
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Mexico_S
+			}
+			command = { type = add_corps which = "BEF-Mexico" value = land where = 2086 }
+			command = { type = add_division which = "1. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Mexico" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Mexico_M
+			}
+			command = { type = add_corps which = "BEF-Mexico" value = land where = 2086 }
+			command = { type = add_division which = "1. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Mexico" value = infantry when = 10 }
+        }
+        action = {
+            name = "Mobilize the BEF"
+			trigger = { 
+				local_flag = Mexico_L
+			}
+			command = { type = add_corps which = "BEF-Mexico" value = land where = 2086 }
+			command = { type = add_division which = "1. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "2. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "3. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "4. BEF-Mexico" value = infantry when = 10 }
+			command = { type = add_division which = "5. BEF-Mexico" value = infantry when = 10 }
+        }
+}
+
+################################################################
+############### EVENTS FOR EGYPT (1936 SCENARIO) ###############
+###############      BY MIIHKALI, 2010-8-25      ###############
+################################################################
+
+    #########################################################################
+    #  King Fuad I passes away
+    #########################################################################
+
+    event = {
+        id = 2069001
+        random = no
+        country = EGY
+        style = 2
+       
+        trigger = {
+            headofstate = 340001
+            }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 2
+        deathdate = { day = 1 month = january year = 2000 }
+
+        name = 463name
+        desc = 463desc
+        picture = "minister_died"
+
+        action_a = {
+            name = 463a # OK
+            command = { type = headofstate which = 340011 }
+            command = { type = sleepminister which = 340001 }
+            }
+        }

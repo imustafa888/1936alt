@@ -1,0 +1,798 @@
+event = { 
+	id = 3122055
+	random = no
+	country = JAP
+	persistent = yes
+
+	name = "Renewal of the non-aggression pact"
+	desc = "Five years ago we have signed a document guaranteeing non-aggression between Japan and the Soviet Union. Is this pact still in our interest?"
+	style = 2
+
+	action = { 
+		name = "Yes"
+		ai_chance = 100
+		trigger = { NOT = { war = { country = JAP country = SOV } } }
+		command = { type = trigger which = 3122056 }
+	} 
+	action = { 
+		name = "No"
+		ai_chance = 0
+		trigger = { NOT = { war = { country = JAP country = SOV } } }
+		command = { type = trigger which = 3122057 }
+	} 
+	action = { 
+		name = "Yes"
+		ai_chance = 0
+		trigger = { war = { country = JAP country = SOV } }
+		command = { type = trigger which = 3122056 }
+	} 
+	action = { 
+		name = "No"
+		ai_chance = 100
+		trigger = { war = { country = JAP country = SOV } }
+		command = { type = trigger which = 3122057 }
+	} 
+}
+
+event = { 
+	id = 3122056
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Renewal of the non-aggression pact"
+	desc = "Five years ago we have signed a document guaranteeing non-aggression between Japan and the Soviet Union. Is this pact still in our interest?"
+	style = 2
+
+	action = { 
+		name = "Yes"
+		ai_chance = 100
+		trigger = { NOT = { war = { country = JAP country = SOV } } }
+		
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = SOV where = JAP }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		
+		command = { type = event which = 3122064 where = MAN when = 1 }
+		
+		command = { type = event which = 3122055 where = JAP when = 1825 } #renewal in 5 years
+	} 
+	action = { 
+		name = "No"
+		ai_chance = 0
+		trigger = { NOT = { war = { country = JAP country = SOV } } }
+		command = { type = trigger which = 3122058 }
+	} 
+	action = { 
+		name = "Yes"
+		ai_chance = 0
+		trigger = { war = { country = JAP country = SOV } }
+
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = SOV where = JAP }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		
+		command = { type = event which = 3122064 where = MAN when = 1 }
+		
+		command = { type = event which = 3122055 where = JAP when = 1825 } #renewal in 5 years
+	} 
+	action = { 
+		name = "No"
+		ai_chance = 100
+		trigger = { war = { country = JAP country = SOV } }
+		command = { type = trigger which = 3122058 }
+	} 
+}
+
+event = { 
+	id = 3122057
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Renewal failure"
+	desc = "Japan decided not to renew the non-aggression pact signed by our countries five years prior. Our countries are now ready for full scale conflict."
+	style = 2
+
+	action = { 
+		name = "Ok"
+		command = { type = clrflag which = nonAggressionSOVJAP }
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = SOV where = JAP }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		command = { }
+	}
+}
+
+event = { 
+	id = 3122058
+	random = no
+	country = JAP
+	persistent = yes
+
+	name = "Renewal failure"
+	desc = "The Soviet Union decided not to renew the non-aggression pact signed by our countries five years prior. Our countries are now ready for full scale conflict."
+	style = 2
+
+	action = { 
+		name = "Ok"
+		command = { type = clrflag which = nonAggressionSOVJAP }
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = JAP where = SOV }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		command = { }
+	}
+}
+
+event = { 
+	id = 3122060
+	random = no
+	country = JAP
+	persistent = yes
+	
+	trigger = {
+		flag = nonAggressionSOVJAP
+		OR = {
+			war = { country = JAP country = MAN }
+			war = { country = SOV country = MAN }
+			war = { country = SOV country = JAP }
+			NOT = { non_aggression = { country = SOV country = JAP } }
+			#NOT = { non_aggression = { country = JAP country = MAN } }
+			#NOT = { non_aggression = { country = SOV country = MAN } }
+		}
+	}
+	
+	name = "Hosilities on the border"
+	desc = "Despite the non-aggression pact which is still in force between our countries, the growth of clashes and hostilities on the border is bringing our countries ever closer to war. We must now decide whether to stick to the pact or to break it ahead of schedule, but should we chose to break it, it will cost us."
+	style = 2
+	
+	date = { day = 2 month = january year = 1938 }
+	offset = 10
+	deathdate = { day = 29 month = august year = 1955 }
+
+	action = { 
+		name = "Stick to the pact"
+		ai_chance = 100
+		command = { type = trigger which = 3122061 }
+	}
+	action = { 
+		name = "Break the pact"
+		ai_chance = 0
+		command = { type = trigger which = 3122063 }
+		
+		command = { type = belligerence value = 4 }
+		command = { type = dissent value = 4 }
+	}
+}
+
+event = { 
+	id = 3122061
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Hosilities on the border"
+	desc = "Despite the non-aggression pact which is still in force between our countries, the growth of clashes and hostilities on the border is bringing our countries ever closer to war. We must now decide whether to stick to the pact or to break it ahead of schedule, but should we chose to break it, it will cost us."
+	style = 2
+
+	action = { 
+		name = "Stick to the pact"
+		ai_chance = 100
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = SOV where = JAP }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		
+		command = { type = peace which = JAP value = 1 }
+		
+		command = { type = event which = 3122064 where = MAN when = 1 }
+	}
+	action = { 
+		name = "Break the pact"
+		ai_chance = 0
+		command = { type = trigger which = 3122062 }
+		
+		command = { type = belligerence value = 4 }
+		command = { type = dissent value = 4 }
+	}
+}
+
+event = { 
+	id = 3122062
+	random = no
+	country = JAP
+	persistent = yes
+
+	name = "Soviet treachery!"
+	desc = "The Soviet Union decided to formally break the non-aggression pact which existed up till now between our countries. We will never trust them again!"
+	style = 2
+
+	action = { 
+		name = "Ok"
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = -2 }
+		
+		command = { type = clrflag which = nonAggressionSOVJAP }
+		command = { trigger = { non_aggression = { country = SOV country = JAP } } type = local_setflag which = breakDiss }
+		
+		command = { type = end_non_aggression which = JAP where = SOV }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		
+		command = { trigger = { local_flag = breakDiss } type = dissent value = -5 }
+		command = { trigger = { local_flag = breakDiss } type = local_clrflag which = breakDiss }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		command = { }
+	}
+}
+
+event = { 
+	id = 3122063
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Japanese treachery!"
+	desc = "The Japanese decided to formally break the non-aggression pact which existed up till now between our countries. We will never trust them again!"
+	style = 2
+
+	action = { 
+		name = "Ok"
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = -2 }
+		
+		command = { type = clrflag which = nonAggressionSOVJAP }
+		command = { type = end_non_aggression which = SOV where = JAP }
+		#command = { type = end_non_aggression which = SOV where = MAN }
+		#command = { type = end_non_aggression which = JAP where = MAN }
+		command = { }
+	}
+}
+
+event = { 
+	id = 3122064
+	random = no
+	country = MAN
+	persistent = yes
+
+	name = "Manchurian neutrality"
+	desc = "With the non-aggression pact between USSR and Japan still in force, we can rest assured that our independence and neutrality is secure."
+	style = 2
+
+	action = { 
+		name = "Ok"
+		command = { type = non_aggression which = SOV where = JAP when = 1840 } #5 years + 15 days
+		#command = { type = non_aggression which = SOV where = MAN when = 1840 } #5 years + 15 days
+		#command = { type = non_aggression which = JAP where = MAN when = 1840 } #5 years + 15 days
+		
+		command = { type = peace which = AFG value = 1 }
+		command = { type = peace which = ALB value = 1 }
+		command = { type = peace which = ALG value = 1 }
+		command = { type = peace which = ANG value = 1 }
+		command = { type = peace which = ARA value = 1 }
+		command = { type = peace which = ARG value = 1 }
+		command = { type = peace which = ARM value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = AUS value = 1 }
+		command = { type = peace which = AZB value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = BEN value = 1 }
+		command = { type = peace which = BHU value = 1 }
+		command = { type = peace which = BLR value = 1 }
+		command = { type = peace which = BOL value = 1 }
+		command = { type = peace which = BOS value = 1 }
+		command = { type = peace which = BRA value = 1 }
+		command = { type = peace which = BRU value = 1 }
+		command = { type = peace which = BUL value = 1 }
+		command = { type = peace which = BUR value = 1 }
+		command = { type = peace which = CAL value = 1 }
+		command = { type = peace which = CAM value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHL value = 1 }
+		command = { type = peace which = CMB value = 1 }
+		command = { type = peace which = COL value = 1 }
+		command = { type = peace which = CON value = 1 }
+		command = { type = peace which = COS value = 1 }
+		command = { type = peace which = CRO value = 1 }
+		command = { type = peace which = CSA value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CUB value = 1 }
+		command = { type = peace which = CXB value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CYP value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = peace which = DDR value = 1 }
+		command = { type = peace which = DEN value = 1 }
+		command = { type = peace which = DFR value = 1 }
+		command = { type = peace which = DOM value = 1 }
+		command = { type = peace which = EAF value = 1 }
+		command = { type = peace which = ECU value = 1 }
+		command = { type = peace which = EGY value = 1 }
+		command = { type = peace which = ENG value = 1 }
+		command = { type = peace which = EQA value = 1 }
+		command = { type = peace which = EST value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = peace which = EUS value = 1 }
+		command = { type = peace which = FIN value = 1 }
+		command = { type = peace which = FLA value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = GAB value = 1 }
+		command = { type = peace which = GEO value = 1 }
+		command = { type = peace which = GER value = 1 }
+		command = { type = peace which = GLD value = 1 }
+		command = { type = peace which = GRE value = 1 }
+		command = { type = peace which = GUA value = 1 }
+		command = { type = peace which = GUI value = 1 }
+		command = { type = peace which = GUY value = 1 }
+		command = { type = peace which = HAI value = 1 }
+		command = { type = peace which = HOL value = 1 }
+		command = { type = peace which = HON value = 1 }
+		command = { type = peace which = HUN value = 1 }
+		command = { type = peace which = ICL value = 1 }
+		command = { type = peace which = IDC value = 1 }
+		command = { type = peace which = IND value = 1 }
+		command = { type = peace which = INO value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = IRQ value = 1 }
+		command = { type = peace which = ISR value = 1 }
+		command = { type = peace which = ITA value = 1 }
+		command = { type = peace which = JAP value = 1 }
+		command = { type = peace which = JOR value = 1 }
+		command = { type = peace which = KAZ value = 1 }
+		command = { type = peace which = KOR value = 1 }
+		command = { type = peace which = KUR value = 1 }
+		command = { type = peace which = KYG value = 1 }
+		command = { type = peace which = LAO value = 1 }
+		command = { type = peace which = LAT value = 1 }
+		command = { type = peace which = LBY value = 1 }
+		command = { type = peace which = LEB value = 1 }
+		command = { type = peace which = LIB value = 1 }
+		command = { type = peace which = LIT value = 1 }
+		command = { type = peace which = LUX value = 1 }
+		command = { type = peace which = MAD value = 1 }
+		command = { type = peace which = MAL value = 1 }
+		command = { type = peace which = MAN value = 1 }
+		command = { type = peace which = MEN value = 1 }
+		command = { type = peace which = MEX value = 1 }
+		command = { type = peace which = MLY value = 1 }
+		command = { type = peace which = MON value = 1 }
+		command = { type = peace which = MOR value = 1 }
+		command = { type = peace which = MOZ value = 1 }
+		command = { type = peace which = MTN value = 1 }
+		command = { type = peace which = NAM value = 1 }
+		command = { type = peace which = NEP value = 1 }
+		command = { type = peace which = NIC value = 1 }
+		command = { type = peace which = NIG value = 1 }
+		command = { type = peace which = NOR value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = OMN value = 1 }
+		command = { type = peace which = OTT value = 1 }
+		command = { type = peace which = PAK value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = PAN value = 1 }
+		command = { type = peace which = PAR value = 1 }
+		command = { type = peace which = PER value = 1 }
+		command = { type = peace which = PHI value = 1 }
+		command = { type = peace which = POL value = 1 }
+		command = { type = peace which = POR value = 1 }
+		command = { type = peace which = PRI value = 1 }
+		command = { type = peace which = PRK value = 1 }
+		command = { type = peace which = PRU value = 1 }
+		command = { type = peace which = QUE value = 1 }
+		command = { type = peace which = RHO value = 1 }
+		command = { type = peace which = ROM value = 1 }
+		command = { type = peace which = RSI value = 1 }
+		command = { type = peace which = RUS value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = SAL value = 1 }
+		command = { type = peace which = SAR value = 1 }
+		command = { type = peace which = SAU value = 1 }
+		command = { type = peace which = SCA value = 1 }
+		command = { type = peace which = SCH value = 1 }
+		command = { type = peace which = SCO value = 1 }
+		command = { type = peace which = SER value = 1 }
+		command = { type = peace which = SIA value = 1 }
+		command = { type = peace which = SIB value = 1 }
+		command = { type = peace which = SIE value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = SLO value = 1 }
+		command = { type = peace which = SLV value = 1 }
+		command = { type = peace which = SOM value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = SPA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SUD value = 1 }
+		command = { type = peace which = SWE value = 1 }
+		command = { type = peace which = SYR value = 1 }
+		command = { type = peace which = TAJ value = 1 }
+		command = { type = peace which = TAN value = 1 }
+		command = { type = peace which = TEX value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = peace which = TRA value = 1 }
+		command = { type = peace which = TRK value = 1 }
+		command = { type = peace which = TUN value = 1 }
+		command = { type = peace which = TUR value = 1 }
+		command = { type = peace which = UKR value = 1 }
+		command = { type = peace which = URU value = 1 }
+		command = { type = peace which = USA value = 1 }
+		command = { type = peace which = UZB value = 1 }
+		command = { type = peace which = VEN value = 1 }
+		command = { type = peace which = VIE value = 1 }
+		command = { type = peace which = WLL value = 1 }
+		command = { type = peace which = YEM value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = U01 value = 1 }
+		command = { type = peace which = U02 value = 1 }
+		command = { type = peace which = U03 value = 1 }
+		command = { type = peace which = U04 value = 1 }
+		command = { type = peace which = U05 value = 1 }
+		command = { type = peace which = U06 value = 1 }
+		command = { type = peace which = U08 value = 1 }
+		command = { type = peace which = U09 value = 1 }
+		command = { type = peace which = U10 value = 1 }
+		command = { type = peace which = U11 value = 1 }
+		command = { type = peace which = U12 value = 1 }
+		command = { type = peace which = U13 value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U15 value = 1 }
+		command = { type = peace which = U16 value = 1 }
+		command = { type = peace which = U17 value = 1 }
+		command = { type = peace which = U18 value = 1 }
+		command = { type = peace which = U19 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = U21 value = 1 }
+		command = { type = peace which = U22 value = 1 }
+		command = { type = peace which = U23 value = 1 }
+		command = { type = peace which = U24 value = 1 }
+		command = { type = peace which = U25 value = 1 }
+		command = { type = peace which = U26 value = 1 }
+		command = { type = peace which = U27 value = 1 }
+		command = { type = peace which = U28 value = 1 }
+		command = { type = peace which = U29 value = 1 }
+		command = { type = peace which = U30 value = 1 }
+		command = { type = peace which = U31 value = 1 }
+		command = { type = peace which = U32 value = 1 }
+		command = { type = peace which = U33 value = 1 }
+		command = { type = peace which = U34 value = 1 }
+		command = { type = peace which = U35 value = 1 }
+		command = { type = peace which = U36 value = 1 }
+		command = { type = peace which = U37 value = 1 }
+		command = { type = peace which = U39 value = 1 }
+		command = { type = peace which = U40 value = 1 }
+		command = { type = peace which = U41 value = 1 }
+		command = { type = peace which = U42 value = 1 }
+		command = { type = peace which = U43 value = 1 }
+		command = { type = peace which = U44 value = 1 }
+		command = { type = peace which = U45 value = 1 }
+		command = { type = peace which = U46 value = 1 }
+		command = { type = peace which = U47 value = 1 }
+		command = { type = peace which = U48 value = 1 }
+		command = { type = peace which = U49 value = 1 }
+		command = { type = peace which = U50 value = 1 }
+		command = { type = peace which = U51 value = 1 }
+		command = { type = peace which = U52 value = 1 }
+		command = { type = peace which = U57 value = 1 }
+		command = { type = peace which = U58 value = 1 }
+		command = { type = peace which = U59 value = 1 }
+		command = { type = peace which = U60 value = 1 }
+		command = { type = peace which = U62 value = 1 }
+		command = { type = peace which = U67 value = 1 }
+		command = { type = peace which = U70 value = 1 }
+		command = { type = peace which = U71 value = 1 }
+		command = { type = peace which = U72 value = 1 }
+		command = { type = peace which = U73 value = 1 }
+		command = { type = peace which = U74 value = 1 }
+		command = { type = peace which = U75 value = 1 }
+		command = { type = peace which = U76 value = 1 }
+		command = { type = peace which = U77 value = 1 }
+		command = { type = peace which = U78 value = 1 }
+		command = { type = peace which = U79 value = 1 }
+		command = { type = peace which = U80 value = 1 }
+		command = { type = peace which = U81 value = 1 }
+		command = { type = peace which = U82 value = 1 }
+		command = { type = peace which = U83 value = 1 }
+		command = { type = peace which = U84 value = 1 }
+		command = { type = peace which = U85 value = 1 }
+		command = { type = peace which = U86 value = 1 }
+		command = { type = peace which = U87 value = 1 }
+		command = { type = peace which = U88 value = 1 }
+		command = { type = peace which = U89 value = 1 }
+		command = { type = peace which = U90 value = 1 }
+		command = { type = peace which = U91 value = 1 }
+		command = { type = peace which = U92 value = 1 }
+		command = { type = peace which = U93 value = 1 }
+		command = { type = peace which = U94 value = 1 }
+		command = { type = peace which = U95 value = 1 }
+		command = { type = peace which = U96 value = 1 }
+		command = { type = peace which = U97 value = 1 }
+		command = { type = peace which = U98 value = 1 }
+		command = { type = peace which = U99 value = 1 }
+		command = { type = peace which = UCH value = 1 }
+		command = { type = peace which = UER value = 1 }
+		command = { type = peace which = UGS value = 1 }
+		command = { type = peace which = UPE value = 1 }
+		command = { type = peace which = UTC value = 1 }
+		command = { type = end_access which = AFG }
+		command = { type = end_access which = ALB }
+		command = { type = end_access which = ALG }
+		command = { type = end_access which = ANG }
+		command = { type = end_access which = ARA }
+		command = { type = end_access which = ARG }
+		command = { type = end_access which = ARM }
+		command = { type = end_access which = AST }
+		command = { type = end_access which = AUS }
+		command = { type = end_access which = AZB }
+		command = { type = end_access which = BEL }
+		command = { type = end_access which = BEN }
+		command = { type = end_access which = BHU }
+		command = { type = end_access which = BLR }
+		command = { type = end_access which = BOL }
+		command = { type = end_access which = BOS }
+		command = { type = end_access which = BRA }
+		command = { type = end_access which = BRU }
+		command = { type = end_access which = BUL }
+		command = { type = end_access which = BUR }
+		command = { type = end_access which = CAL }
+		command = { type = end_access which = CAM }
+		command = { type = end_access which = CAN }
+		command = { type = end_access which = CGX }
+		command = { type = end_access which = CHC }
+		command = { type = end_access which = CHI }
+		command = { type = end_access which = CHL }
+		command = { type = end_access which = CMB }
+		command = { type = end_access which = COL }
+		command = { type = end_access which = CON }
+		command = { type = end_access which = COS }
+		command = { type = end_access which = CRO }
+		command = { type = end_access which = CSA }
+		command = { type = end_access which = CSX }
+		command = { type = end_access which = CUB }
+		command = { type = end_access which = CXB }
+		command = { type = end_access which = CYN }
+		command = { type = end_access which = CYP }
+		command = { type = end_access which = CZE }
+		command = { type = end_access which = DDR }
+		command = { type = end_access which = DEN }
+		command = { type = end_access which = DFR }
+		command = { type = end_access which = DOM }
+		command = { type = end_access which = EAF }
+		command = { type = end_access which = ECU }
+		command = { type = end_access which = EGY }
+		command = { type = end_access which = ENG }
+		command = { type = end_access which = EQA }
+		command = { type = end_access which = EST }
+		command = { type = end_access which = ETH }
+		command = { type = end_access which = EUS }
+		command = { type = end_access which = FIN }
+		command = { type = end_access which = FLA }
+		command = { type = end_access which = FRA }
+		command = { type = end_access which = GAB }
+		command = { type = end_access which = GEO }
+		command = { type = end_access which = GER }
+		command = { type = end_access which = GLD }
+		command = { type = end_access which = GRE }
+		command = { type = end_access which = GUA }
+		command = { type = end_access which = GUI }
+		command = { type = end_access which = GUY }
+		command = { type = end_access which = HAI }
+		command = { type = end_access which = HOL }
+		command = { type = end_access which = HON }
+		command = { type = end_access which = HUN }
+		command = { type = end_access which = ICL }
+		command = { type = end_access which = IDC }
+		command = { type = end_access which = IND }
+		command = { type = end_access which = INO }
+		command = { type = end_access which = IRE }
+		command = { type = end_access which = IRQ }
+		command = { type = end_access which = ISR }
+		command = { type = end_access which = ITA }
+		command = { type = end_access which = JAP }
+		command = { type = end_access which = JOR }
+		command = { type = end_access which = KAZ }
+		command = { type = end_access which = KOR }
+		command = { type = end_access which = KUR }
+		command = { type = end_access which = KYG }
+		command = { type = end_access which = LAO }
+		command = { type = end_access which = LAT }
+		command = { type = end_access which = LBY }
+		command = { type = end_access which = LEB }
+		command = { type = end_access which = LIB }
+		command = { type = end_access which = LIT }
+		command = { type = end_access which = LUX }
+		command = { type = end_access which = MAD }
+		command = { type = end_access which = MAL }
+		command = { type = end_access which = MAN }
+		command = { type = end_access which = MEN }
+		command = { type = end_access which = MEX }
+		command = { type = end_access which = MLY }
+		command = { type = end_access which = MON }
+		command = { type = end_access which = MOR }
+		command = { type = end_access which = MOZ }
+		command = { type = end_access which = MTN }
+		command = { type = end_access which = NAM }
+		command = { type = end_access which = NEP }
+		command = { type = end_access which = NIC }
+		command = { type = end_access which = NIG }
+		command = { type = end_access which = NOR }
+		command = { type = end_access which = NZL }
+		command = { type = end_access which = OMN }
+		command = { type = end_access which = OTT }
+		command = { type = end_access which = PAK }
+		command = { type = end_access which = PAL }
+		command = { type = end_access which = PAN }
+		command = { type = end_access which = PAR }
+		command = { type = end_access which = PER }
+		command = { type = end_access which = PHI }
+		command = { type = end_access which = POL }
+		command = { type = end_access which = POR }
+		command = { type = end_access which = PRI }
+		command = { type = end_access which = PRK }
+		command = { type = end_access which = PRU }
+		command = { type = end_access which = QUE }
+		command = { type = end_access which = RHO }
+		command = { type = end_access which = ROM }
+		command = { type = end_access which = RSI }
+		command = { type = end_access which = RUS }
+		command = { type = end_access which = SAF }
+		command = { type = end_access which = SAL }
+		command = { type = end_access which = SAR }
+		command = { type = end_access which = SAU }
+		command = { type = end_access which = SCA }
+		command = { type = end_access which = SCH }
+		command = { type = end_access which = SCO }
+		command = { type = end_access which = SER }
+		command = { type = end_access which = SIA }
+		command = { type = end_access which = SIB }
+		command = { type = end_access which = SIE }
+		command = { type = end_access which = SIK }
+		command = { type = end_access which = SLO }
+		command = { type = end_access which = SLV }
+		command = { type = end_access which = SOM }
+		command = { type = end_access which = SOV }
+		command = { type = end_access which = SPA }
+		command = { type = end_access which = SPR }
+		command = { type = end_access which = SUD }
+		command = { type = end_access which = SWE }
+		command = { type = end_access which = SYR }
+		command = { type = end_access which = TAJ }
+		command = { type = end_access which = TAN }
+		command = { type = end_access which = TEX }
+		command = { type = end_access which = TIB }
+		command = { type = end_access which = TRA }
+		command = { type = end_access which = TRK }
+		command = { type = end_access which = TUN }
+		command = { type = end_access which = TUR }
+		command = { type = end_access which = UKR }
+		command = { type = end_access which = URU }
+		command = { type = end_access which = USA }
+		command = { type = end_access which = UZB }
+		command = { type = end_access which = VEN }
+		command = { type = end_access which = VIE }
+		command = { type = end_access which = WLL }
+		command = { type = end_access which = YEM }
+		command = { type = end_access which = YUG }
+		command = { type = end_access which = U01 }
+		command = { type = end_access which = U02 }
+		command = { type = end_access which = U03 }
+		command = { type = end_access which = U04 }
+		command = { type = end_access which = U05 }
+		command = { type = end_access which = U06 }
+		command = { type = end_access which = U08 }
+		command = { type = end_access which = U09 }
+		command = { type = end_access which = U10 }
+		command = { type = end_access which = U11 }
+		command = { type = end_access which = U12 }
+		command = { type = end_access which = U13 }
+		command = { type = end_access which = U14 }
+		command = { type = end_access which = U15 }
+		command = { type = end_access which = U16 }
+		command = { type = end_access which = U17 }
+		command = { type = end_access which = U18 }
+		command = { type = end_access which = U19 }
+		command = { type = end_access which = U20 }
+		command = { type = end_access which = U21 }
+		command = { type = end_access which = U22 }
+		command = { type = end_access which = U23 }
+		command = { type = end_access which = U24 }
+		command = { type = end_access which = U25 }
+		command = { type = end_access which = U26 }
+		command = { type = end_access which = U27 }
+		command = { type = end_access which = U28 }
+		command = { type = end_access which = U29 }
+		command = { type = end_access which = U30 }
+		command = { type = end_access which = U31 }
+		command = { type = end_access which = U32 }
+		command = { type = end_access which = U33 }
+		command = { type = end_access which = U34 }
+		command = { type = end_access which = U35 }
+		command = { type = end_access which = U36 }
+		command = { type = end_access which = U37 }
+		command = { type = end_access which = U39 }
+		command = { type = end_access which = U40 }
+		command = { type = end_access which = U41 }
+		command = { type = end_access which = U42 }
+		command = { type = end_access which = U43 }
+		command = { type = end_access which = U44 }
+		command = { type = end_access which = U45 }
+		command = { type = end_access which = U46 }
+		command = { type = end_access which = U47 }
+		command = { type = end_access which = U48 }
+		command = { type = end_access which = U49 }
+		command = { type = end_access which = U50 }
+		command = { type = end_access which = U51 }
+		command = { type = end_access which = U52 }
+		command = { type = end_access which = U57 }
+		command = { type = end_access which = U58 }
+		command = { type = end_access which = U59 }
+		command = { type = end_access which = U60 }
+		command = { type = end_access which = U62 }
+		command = { type = end_access which = U67 }
+		command = { type = end_access which = U70 }
+		command = { type = end_access which = U71 }
+		command = { type = end_access which = U72 }
+		command = { type = end_access which = U73 }
+		command = { type = end_access which = U74 }
+		command = { type = end_access which = U75 }
+		command = { type = end_access which = U76 }
+		command = { type = end_access which = U77 }
+		command = { type = end_access which = U78 }
+		command = { type = end_access which = U79 }
+		command = { type = end_access which = U80 }
+		command = { type = end_access which = U81 }
+		command = { type = end_access which = U82 }
+		command = { type = end_access which = U83 }
+		command = { type = end_access which = U84 }
+		command = { type = end_access which = U85 }
+		command = { type = end_access which = U86 }
+		command = { type = end_access which = U87 }
+		command = { type = end_access which = U88 }
+		command = { type = end_access which = U89 }
+		command = { type = end_access which = U90 }
+		command = { type = end_access which = U91 }
+		command = { type = end_access which = U92 }
+		command = { type = end_access which = U93 }
+		command = { type = end_access which = U94 }
+		command = { type = end_access which = U95 }
+		command = { type = end_access which = U96 }
+		command = { type = end_access which = U97 }
+		command = { type = end_access which = U98 }
+		command = { type = end_access which = U99 }
+		command = { type = end_access which = UCH }
+		command = { type = end_access which = UER }
+		command = { type = end_access which = UGS }
+		command = { type = end_access which = UPE }
+		command = { type = end_access which = UTC }
+	}
+}

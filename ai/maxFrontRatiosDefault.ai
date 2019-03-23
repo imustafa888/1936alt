@@ -1,0 +1,7 @@
+switch = no # [yes/no]
+
+max_front_ratio = 3.0 
+max_front_ratios = { 
+	IRE = 45.0
+	CAN = 45.0
+} 

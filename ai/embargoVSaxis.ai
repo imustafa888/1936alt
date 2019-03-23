@@ -1,0 +1,5 @@
+switch = no # [yes/no]
+
+trade = {
+	embargo = { GER ENG JAP FLA SPA ITA FIN CRO SLV SCA HOL }
+}

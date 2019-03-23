@@ -1,0 +1,92 @@
+event = { 
+	id = 1000000
+	random = no
+	country = ENG
+
+	trigger = {
+		ai = no
+		NOT = { local_flag = noStoryMessages }
+		alliance = { country = ENG country = GER }
+	}
+	
+	name = EVT1000000_NAME
+	desc = EVT1000000_DESC
+	#style = 0
+
+	date = { day = 10 month = january year = 1936 }
+	
+	action = {
+		name = "Present the terms"
+		command = { type = trigger which = 1000001 }
+	}
+	action = {
+		name = "Don't show me the story messages again"
+		command = { type = local_setflag which = noStoryMessages }
+	}
+}
+
+event = { 
+	id = 1000001
+	random = no
+	country = ENG
+	
+	name = EVT1000001_NAME
+	desc = EVT1000001_DESC
+	#style = 0
+	
+	action = {
+		name = "We will abide by these terms"
+		command = { }
+	}
+	action = {
+		name = "Don't show me the story messages again"
+		command = { type = local_setflag which = noStoryMessages }
+	}
+}
+
+event = { 
+	id = 1000002
+	random = no
+	country = GER
+
+	trigger = {
+		ai = no
+		NOT = { local_flag = noStoryMessages }
+		alliance = { country = ENG country = GER }
+	}
+	
+	name = EVT1000000_NAME
+	desc = EVT1000000_DESC
+	style = 0
+
+	date = { day = 10 month = january year = 1936 }
+	
+	action = {
+		name = "Present the terms"
+		command = { type = trigger which = 1000003 }
+	}
+	action = {
+		name = "Don't show me the story messages again"
+		command = { type = local_setflag which = noStoryMessages }
+	}
+}
+
+event = { 
+	id = 1000003
+	random = no
+	country = GER
+	
+	name = EVT1000000_NAME
+	desc = EVT1000000_DESC
+	style = 0
+
+	action = {
+		name = "We will abide by these terms"
+		command = { }
+	}
+	action = {
+		name = "Don't show me the story messages again"
+		command = { type = local_setflag which = noStoryMessages }
+	}
+}
+

@@ -1,0 +1,5 @@
+switch = no
+
+construction = { 
+	nuclear_reactor_prov = 6
+}

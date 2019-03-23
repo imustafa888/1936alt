@@ -1,0 +1,1299 @@
+event = {
+	id = 220000
+	random = no
+	country = CZE
+	
+	trigger = {
+		event = 3135002
+		OR = {
+			NOT = { exists = AUS }
+			AND = {
+			war = { country = GER country = CZE }
+			NOT = { alliance = { country = FRA country = CZE } }
+			}
+		}
+	}
+
+	name = "From Little to Grand Entente"
+	desc = "Following the German takeover of Austria and the collapse of Yugoslavia, it became obvious that Czechoslovakia would be Germany's next target. The Czechoslovak leadership thus quickly proceeded to petition France and USSR to sign a legally binding mutual defense pact."
+  	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Petition for alliance"
+		ai_chance = 100
+		command = { type = trigger which = 220001 }
+	}
+	action = {
+		name = "We must appease Germany"
+		ai_chance = 0
+		command = { type = trigger which = 2003011 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = dissent value = 10 }
+		command = { type = relation which = SOV value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = set_domestic which = political_left value = -2 }
+	}
+}
+
+event = {
+	id = 220001
+	random = no
+	country = SOV
+
+	name = "From Little to Grand Entente"
+	desc = "Following the German takeover of Austria and the collapse of Yugoslavia, it became obvious that Czechoslovakia would be Germany's next target. The Czechoslovak leadership thus quickly proceeded to petition France and USSR to sign a legally binding mutual defense pact."
+  	style = 2
+
+	action = {
+		name = "Sign the pact"
+		ai_chance = 100
+		command = { type = trigger which = 220002 }
+	}
+	action = {
+		name = "We cannot protect them at this time"
+		ai_chance = 0
+		command = { type = trigger which = 220003 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+
+event = {
+	id = 220002
+	random = no
+	country = CZE
+	save_date = yes
+
+	name = "Success in negotiations"
+	desc = "With the successful conclusion of negotiations, France and the USSR officially pledge to defend Czechoslovakia against any aggression."
+  	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = setflag which = AlliedCZE }
+		command = { type = relation which = SOV value = 100 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = alliance which = SOV }
+		command = { type = ai which = "neutralityLow.ai" }
+		command = { type = domestic which = interventionism value = 3 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = dissent value = -1 }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = domestic which = political_left value = 2 }
+	}
+}
+
+event = {
+	id = 220003
+	random = no
+	country = CZE
+
+	name = "Failure of negotiations"
+	desc = "Despite our best wishes, the negotiations with the Soviets and the French had failed and no alliance will result."
+  	style = 2
+
+	action = {
+		name = "Terrible!"
+		command = { type = relation which = SOV value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = domestic which = political_left value = -2 }
+	}
+}
+
+event = {
+	id = 220004
+	random = no
+	country = SOV
+	
+	decision = {
+		event = 220002
+	}
+
+	decision_trigger = {
+		event = { id = 220002 days = 15 }
+	}
+
+	trigger = {
+		event = { id = 220002 days = 15 }
+	}
+
+	name = "Arming Czechoslovakia"
+	desc = "After signing the pact of alliance with Czechoslovakia, the USSR began clandenscine shipments of goods and arms to Czech government through Romania."
+  	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 5
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Arm Czechoslovakia"
+		command = { type = free_ic value = -2 }
+		command = { type = free_supplies value = -2 }
+		command = { type = manpowerpool value = -50 }
+		command = { type = oilpool value = -5000 }
+		command = { type = supplies value = -5000 }
+		command = { type = metalpool value = -5000 }
+		command = { type = energypool value = -5000 }
+		command = { type = belligerence which = SOV value = 1 }
+		command = { type = trigger which = 220005 }
+	}
+}
+
+
+event = { 
+	id = 220005
+	random = no
+	country = CZE
+	
+	
+	name = "Soviet help arrives in Czechoslovakia"
+	desc = "Large amount of Soviet aid arrived across the Romanian territory to defend Czechoslovakia from potential aggression."
+	style = 0
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = ACTIONNAME3174001A
+		command = { type = free_ic value = 2 }
+		command = { type = free_supplies value = 2 }
+		command = { type = oilpool value = 5000 }
+		command = { type = supplies value = 5000 }
+		command = { type = metalpool value = 5000 }
+		command = { type = energypool value = 5000 }
+		command = { type = manpowerpool value = 50 }
+		command = { type = add_division which = "Soviet volunteers" value = infantry when = 9 where = artillery }
+		command = { type = add_division which = "Soviet volunteers" value = infantry when = 9 where = artillery }
+		
+		command = { type = event which = 220006 where = -1 when = 365 }
+		command = { type = event which = 220007 where = -1 when = 365 }
+	}
+}
+
+event = { 
+	id = 220006
+	random = no
+	country = CZE
+	
+	
+	name = "End of Soviet credit to Czechoslovakia"
+	desc = "Large amount of Soviet aid arrived across the Romanian territory to defend Czechoslovakia from potential aggression."
+	style = 0
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = ACTIONNAME3174001A
+		command = { type = free_ic value = -2 }
+		command = { type = free_supplies value = -2 }
+	}
+}
+
+event = { 
+	id = 220007
+	random = no
+	country = SOV
+	
+	
+	name = "End of Soviet credit to Czechoslovakia"
+	desc = "Large amount of Soviet aid arrived across the Romanian territory to defend Czechoslovakia from potential aggression."
+	style = 0
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = ACTIONNAME3174001A
+		command = { type = free_ic value = 2 }
+		command = { type = free_supplies value = 2 }
+	}
+}
+
+event = {
+	id = 220010
+	random = no
+	country = ROM
+	
+	trigger = {
+		alliance = { country = CZE country = FRA }
+		#war = { country = GER country = CZE }
+		event = 3135002
+		OR = {
+			NOT = { exists = AUS }
+			war = { country = GER country = CZE }
+		}
+	}
+
+	name = "From Little to Grand Entente"
+	desc = "With the German invasion of Czechoslovakia, Romania's neutrality came into question. As an old ally of Czechoslovakia and enemy of the Magyars, and as a country interested in the status quo, Romania decided to join the Allies. However, the negotiations were to prove more difficult due to the Soviet claim on the Romanian province of Besarrabia. Romania insisted on the Soviet recognition of the Romanian ownership of Besarrabia to be included in the final agreement."
+  	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 3
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Petition for alliance"
+		ai_chance = 100
+		command = { type = trigger which = 220011 }
+	}
+	action = {
+		name = "We must appease Germany"
+		ai_chance = 0
+		command = { type = trigger which = 2003011 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = dissent value = 10 }
+		command = { type = relation which = SOV value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = set_domestic which = political_left value = -2 }
+	}
+}
+
+event = {
+	id = 220011
+	random = no
+	country = SOV
+
+	name = "From Little to Grand Entente"
+	desc = "With the German invasion of Czechoslovakia, Romania's neutrality came into question. As an old ally of Czechoslovakia and enemy of the Magyars, Romania could be convinced to join the Allies. However, the negotiations were to prove more difficult due to the Soviet claim on the Romanian province of Besarrabia. Romania insisted on the Soviet recognition of the Romanian ownership of Besarrabia to be included in the final agreement. If we sign the agreement, we won't be able to completely back out of it later."
+  	style = 2
+
+	action = {
+		name = "We need Romania, sign the pact"
+		ai_chance = 100
+		command = { type = trigger which = 220012 }
+	}
+	action = {
+		name = "We need Bessarabia, not Romania"
+		ai_chance = 0
+		command = { type = trigger which = 220013 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+
+event = {
+	id = 220012
+	random = no
+	country = ROM
+
+	name = "Success in negotiations"
+	desc = "With the successful conclusion of negotiations, France and the USSR officially pledge to defend Romania against any aggression."
+  	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = setflag which = AlliedROM }
+		command = { type = relation which = SOV value = 100 }
+		command = { type = relation which = FRA value = 100 }
+		#command = { type = alliance which = SOV }
+		command = { type = domestic which = interventionism value = 3 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = dissent value = -1 }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = set_domestic which = political_left value = 2 }
+	}
+}
+
+event = {
+	id = 220013
+	random = no
+	country = ROM
+
+	name = "Failure of negotiations"
+	desc = "Despite our best wishes, the negotiations with the Soviets and the French had failed and no alliance will result."
+  	style = 2
+
+	action = {
+		name = "Terrible!"
+		command = { type = relation which = SOV value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = set_domestic which = political_left value = -2 }
+	}
+}
+
+#########################################################################
+# Canadian war widens - invasion of the United States
+#########################################################################
+
+event = { 
+	id = 3131055
+	random = no
+	country = ENG
+
+	decision = {
+		war = { country = CAN country = ENG }
+		NOT = { war = { country = USA country = ENG } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		day = 3
+		OR = {
+			war = { country = CAN country = ENG }
+			NOT = { exists = CAN }
+		}
+		NOT = { war = { country = USA country = ENG } }
+		month = 2
+		NOT = { month = 9 }
+		OR = {
+			event = { id = 3131024 days = 60 }
+			AND = {
+				control = { province = 2108 data = -3 }
+				control = { province = 2118 data = -3 }
+				year = 1939
+				month = 5
+			}
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1947 }
+
+	name = "Invasion of the United States"
+	desc = "After overwhelming the Canadian rebel defenders with superior firepower, forcing them to retreat across the border to the US, the British forces were now well in position to launch the final attack on the United States and resolve the North American problem once and for all."
+	style = 0
+	
+	action_a = { 
+		name = "War!"
+		command = { type = war which = USA }
+	} 
+}
+
+
+
+
+event = { #fall grün
+	id = 2003107
+	random = no
+	country = GER
+
+	decision = {
+		flag = Munich
+		#atwar = no
+		exists = CZE
+		OR = {
+			control = { province = 197 data = CZE }
+			control = { province = 205 data = CZE }
+			control = { province = 200 data = CZE }
+			control = { province = 206 data = CZE }
+		}
+		NOT = {
+			OR = {
+				war = { country = CZE country = GER }
+				alliance = { country = CZE country = GER }
+				ispuppet = GER
+				puppet = { country = CZE country = GER }
+			}
+		}
+	}
+
+	decision_trigger = { 
+		OR = {
+			#AND = {
+			#	year = 1939
+			#	event = { id = 2003014 days = 60 }
+			#	event = { id = 2003010 days = 150 }
+			#}
+			war = { country = GER country = FRA }
+		}
+	}
+
+	trigger = {
+		month = 4
+		NOT = { month = 9 }
+		OR = {
+			#AND = {
+			#	year = 1939
+			#	event = { id = 2003014 days = 60 }
+			#	event = { id = 2003010 days = 150 }
+			#}
+			war = { country = GER country = FRA }
+		}
+		flag = Munich
+		#atwar = no
+		exists = CZE
+		OR = {
+			control = { province = 197 data = CZE }
+			control = { province = 205 data = CZE }
+			control = { province = 200 data = CZE }
+			control = { province = 206 data = CZE }
+		}
+		NOT = {
+			OR = {
+				war = { country = CZE country = GER }
+				alliance = { country = CZE country = GER }
+				ispuppet = GER
+				puppet = { country = CZE country = GER }
+			}
+		}
+	}
+		
+	name = "EVT_2003107_NAME"
+	desc = "EVT_2003107_DESC"
+	style = 2
+	picture = "news_paper"
+	decision_picture = "decision_Rhineland"
+
+	date = { day = 1 month = june year = 1938 }
+	offset = 30
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = { 
+		name = "ACTIONNAME2003107"  
+		command = { type = war which = CZE } 
+	}
+}
+
+
+
+event = {
+	id = 2003036
+	random = no
+	save_date = yes
+	country = GER
+
+	decision = {
+		exists = POL
+		government = fascist		
+		OR = {
+			region = { region = Austria country = GER value = 50 }
+			alliance = { country = GER country = AUS }
+		}
+		OR = {
+			NOT = { exists = CZE }
+			event = 2003107 #fall grün
+			war = { country = GER country = CZE }
+		}
+		event = 2003005 # Germany re-occupies Rhineland
+	}
+	
+	decision_trigger = {
+		NOT = { alliance = { country = GER country = POL } }
+		NOT = { war = { country = GER country = POL } }
+		NOT = { puppet = { country = POL country = GER } }
+		NOT = { ispuppet = GER }
+	}
+	
+	trigger = {
+		government = fascist
+		#month = 2
+		exists = POL
+		#atwar = no
+		OR = {
+			NOT = { exists = CZE }
+			region = { region = Austria country = GER value = 50 }
+			alliance = { country = GER country = AUS }
+		}
+		OR = {
+			event = 2003107 #fall grün
+			war = { country = GER country = CZE }
+		}
+		event = 2003005 # Germany re-occupies Rhineland
+		NOT = { alliance = { country = GER country = POL } }
+		NOT = { war = { country = GER country = POL } }
+		NOT = { puppet = { country = POL country = GER } }
+		NOT = { ispuppet = GER }
+	}
+
+	name = "EVT_2027_NAME"
+	desc = "EVT_2027_DESC"
+	style = 2
+	picture = "Poland_Invasion"
+	decision_picture = "decision_danzig_or_war"
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "ACTIONNAME2027A" # Final Ultimatum - Danzig or War
+		command = { type = relation which = ENG value = -30 }
+		command = { type = relation which = FRA value = -30 }   
+		command = { type = end_non_aggression which = POL where = GER }        
+		command = { type = trigger which = 2013002 } # POL
+	}
+}
+
+#########################################################################
+#  Danzig or War
+#########################################################################
+event = { 
+	id = 2013002
+	random = no
+	country = POL
+	
+	# Triggered by GER 2003036
+	
+	name = "EVT_3601_NAME"
+	desc = "EVT_3601_DESC"
+	style = 2
+	picture = "Poland_Invasion"
+	
+	action = {
+		name = "ACTIONNAME3601A" # Then it is War
+		ai_chance = 100
+		command = { type = relation which = SOV value = 5 }
+		command = { type = relation which = ENG value = 10 }
+		command = { type = relation which = FRA value = 10 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 2003037 }
+		command = { type = dissent value = -5 }
+	}
+	action = { 
+		name = "ACTIONNAME3601B" # Fold
+		ai_chance = 0
+		command = { type = relation which = GER value = 10 }
+		command = { type = relation which = SOV value = -5 }
+		command = { type = relation which = ENG value = -5 }
+		command = { type = relation which = FRA value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = interventionism value = -1 }
+		#command = { type = secedeprovince which = GER value = 181 } # Danzig - Germany
+		command = { type = trigger which = 2003038 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+
+
+event = {
+	id = 220030
+	random = no
+	country = POL
+	
+	trigger = {
+		atwar = no
+		NOT = { ispuppet = yes }
+		NOT = { alliance = { country = POL country = SOV } }
+		NOT = { alliance = { country = POL country = GER } }
+		war = { country = SOV country = GER }
+		control = { province = 55 data = FRA }
+		random = 10
+	}
+
+	name = "From Little to Grand Entente"
+	desc = "With the fortunes of Germany declining day by day, it is in our fundamental interest to be on the winning side and rush Germany while we have the chance."
+  	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Petition for alliance"
+		ai_chance = 100
+		command = { type = trigger which = 220031 }
+	}
+	action = {
+		name = "We must remain neutral"
+		ai_chance = 0
+		command = { type = trigger which = 2003021 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = dissent value = 1 }
+	}
+}
+
+event = {
+	id = 220031
+	random = no
+	country = SOV
+
+	name = "From Little to Grand Entente"
+	desc = "With the fortunes of Germany declining day by day, it is in Poland's fundamental interest to be on the winning side and rush Germany while they have the chance."
+  	style = 2
+
+	action = {
+		name = "Sign the pact"
+		ai_chance = 100
+		command = { type = trigger which = 220032 }
+	}
+	action = {
+		name = "We dont need them"
+		ai_chance = 0
+		command = { type = trigger which = 220033 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+
+event = {
+	id = 220032
+	random = no
+	country = POL
+
+	name = "Success in negotiations"
+	desc = "With the successful conclusion of negotiations, France and the USSR officially pledge to defend Poland against any aggression."
+  	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = relation which = SOV value = 100 }
+		command = { type = relation which = FRA value = 100 }
+		#command = { type = alliance which = SOV }
+		command = { type = domestic which = interventionism value = 3 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = dissent value = -1 }
+		command = { type = set_domestic which = political_left value = 2 }
+	}
+}
+
+event = {
+	id = 220033
+	random = no
+	country = POL
+
+	name = "Failure of negotiations"
+	desc = "Despite our best wishes, the negotiations with the Soviets and the French had failed and no alliance will result."
+  	style = 2
+
+	action = {
+		name = "Terrible!"
+		command = { type = relation which = SOV value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = interventionism value = -3 }
+		command = { type = domestic which = defense_lobby value = -3 }
+		command = { type = set_domestic which = political_left value = -2 }
+	}
+}
+
+###########################################################################################
+# Soviet war on the Baltic States (In case these still exists when war with Germany begins)
+###########################################################################################
+event = { 
+	id = 220035
+	random = no
+	country = SOV
+
+	decision = {
+		war = { country = SOV country = GER }
+		war = { country = GER country = FRA }
+		OR = {
+			atwar = POL
+			NOT = { exists = POL }
+		}
+		OR = {
+			exists = EST
+			exists = LIT
+			exists = LAT	
+		}
+		NOT = { 
+			OR = {
+				alliance = { country = EST country = FRA }
+				alliance = { country = EST country = USA }
+				alliance = { country = LIT country = FRA }
+				alliance = { country = LIT country = USA }
+				alliance = { country = LAT country = FRA }
+				alliance = { country = LAT country = USA }
+			}
+		}
+		NOT = {
+			alliance = { country = SOV country = EST }
+			alliance = { country = SOV country = LIT }
+			alliance = { country = SOV country = LAT }
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = GER }
+		war = { country = GER country = FRA }
+		OR = {
+			atwar = POL
+			NOT = { exists = POL }
+		}
+		OR = {
+			exists = EST
+			exists = LIT
+			exists = LAT	
+		}
+		NOT = { 
+			OR = {
+				alliance = { country = EST country = FRA }
+				alliance = { country = EST country = USA }
+				alliance = { country = LIT country = FRA }
+				alliance = { country = LIT country = USA }
+				alliance = { country = LAT country = FRA }
+				alliance = { country = LAT country = USA }
+			}
+		}
+		NOT = {
+			alliance = { country = SOV country = EST }
+			alliance = { country = SOV country = LIT }
+			alliance = { country = SOV country = LAT }
+		}
+		garrison = { province = 550 type = land size = 2 } 
+		garrison = { province = 552 type = land size = 2 } 
+		garrison = { province = 566 type = land size = 2 } 
+		garrison = { province = 564 type = land size = 2 } 
+		garrison = { province = 593 type = land size = 2 } 
+	}
+
+	name = "Soviet war on the Baltic States"
+	desc = EVT_3283005_DESC
+	style = 0
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		name = "Declare war!"
+		command = { type = war which = EST }
+		command = { type = war which = LIT }
+		command = { type = war which = LAT }
+	}
+}
+
+event = { 
+	id = 220036
+	random = no
+	country = GER
+
+	decision = {
+		OR = {
+			alliance = { country = LAT }
+			alliance = { country = LIT }
+			alliance = { country = EST }
+		}
+	}
+	decision_trigger = {
+		event = 2003022
+		war = { country = GER country = SOV }
+	}
+	trigger = {
+		OR = {
+			alliance = { country = LAT }
+			alliance = { country = LIT }
+			alliance = { country = EST }
+		}
+		war = { country = GER country = SOV }
+	}
+
+	name = "Soviet war on the Baltic States"
+	desc = "With Soviet troops moving in to the Baltic states, the protection of these small countries from Communist menace falls squarely on German shoulders."
+	style = 0
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		name = "Take control!"
+		command = { type = addclaim which = 259 }
+		command = { type = make_puppet which = EST }
+		command = { type = make_puppet which = LIT }
+		command = { type = make_puppet which = LAT }
+		
+		command = { type = event which = 220037 where = -1 when = 0 }
+	}
+}
+
+event = { 
+	id = 220037
+	random = no
+	country = GER
+
+	name = "Soviet war on the Baltic States"
+	desc = "Provinces back to our allies"
+	style = 0
+
+	action = {
+		name = "Ok"
+		command = { type = secedearea which = EST value = "Estonia" }
+		#command = { type = secedearea which = LIT value = "Lithuania" }
+		#command = { type = secedearea which = LAT value = "Latvia" }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = EST value = 1 }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = LIT value = 1 }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = LAT value = 1 }
+	}
+}
+
+#########################################################################
+# Invasion of Manchuria
+#########################################################################
+
+event = { 
+	id = 220040
+	random = no
+	country = SOV
+
+	decision = {
+		war = { country = SOV country = JAP }
+		exists = MAN
+		NOT = { war = { country = MAN } }
+		NOT = { alliance = { country = MAN } }
+	}
+	decision_trigger = {
+		NOT = { non_aggression = { country = SOV country = JAP } }
+		NOT = { non_aggression = { country = SOV country = MAN } }
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = JAP }
+		exists = MAN
+		NOT = { war = { country = MAN } }
+		NOT = { alliance = { country = MAN } }
+		NOT = { non_aggression = { country = SOV country = JAP } }
+		NOT = { non_aggression = { country = SOV country = MAN } }
+		control = { province = 163 data = -3 } # Berlin
+		OR = {
+			lost_national = { country = GER value = 90 }
+			NOT = { exists = GER }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Manchuria"
+	desc = "Manchuria was established to act as a neutral buffer between the Soviet and the Japanese forces who wished to avoid direct confrontation with one another and leave the governance to the local Chinese. However, Manchuria's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = MAN }
+	} 
+}
+
+event = { 
+	id = 220041
+	random = no
+	country = JAP
+
+	decision = {
+		war = { country = SOV country = JAP }
+		exists = MAN
+		NOT = { war = { country = MAN } }
+		NOT = { alliance = { country = MAN } }
+	}
+	decision_trigger = {
+		NOT = { non_aggression = { country = SOV country = JAP } }
+		NOT = { non_aggression = { country = JAP country = MAN } }
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = JAP }
+		exists = MAN
+		NOT = { war = { country = MAN } }
+		NOT = { alliance = { country = MAN } }
+		NOT = { non_aggression = { country = SOV country = JAP } }
+		NOT = { non_aggression = { country = JAP country = MAN } }
+		control = { province = 1889 data = -3 } # San Francisco
+		OR = {
+			lost_national = { country = USA value = 80 }
+			NOT = { exists = USA }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Manchuria"
+	desc = "Manchuria was established to act as a neutral buffer between the Soviet and the Japanese forces who wished to avoid direct confrontation with one another and leave the governance to the local Chinese. However, Manchuria's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = MAN }
+	} 
+}
+
+#########################################################################
+# Invasion of Iran
+#########################################################################
+
+event = { 
+	id = 220042
+	random = no
+	country = SOV
+
+	decision = {
+		war = { country = SOV country = ENG }
+		exists = PER
+		NOT = { war = { country = PER } }
+		NOT = { alliance = { country = PER } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = ENG }
+		exists = PER
+		NOT = { war = { country = PER } }
+		NOT = { alliance = { country = PER } }
+		OR = {
+			lost_national = { country = IND value = 50 } #India is losing
+			lost_national = { country = GER value = 90 }
+			NOT = { exists = GER }
+			AND = {
+				NOT = { lost_national = { country = SOV value = 3 } }
+				year = 1940
+				control = { province = 1034 data = -3 } # Baghdad
+				control = { province = 1032 data = -3 } # Basra
+				OR = {
+					lost_national = { country = TUR value = 30 }
+					NOT = { exists = TUR }
+				}
+			}
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Iran"
+	desc = "Iran exists as a neutral buffer between the Soviet and the British forces who wished to avoid direct confrontation with one another and leave the governance to the local forces. However, Iran's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies. It has great strategic and economic value, and we should bring it under our direct control."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = PER }
+	} 
+}
+
+event = { 
+	id = 220043
+	random = no
+	country = ENG
+
+	decision = {
+		war = { country = SOV country = ENG }
+		exists = AFG
+		NOT = { war = { country = AFG } }
+		NOT = { alliance = { country = AFG } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = ENG }
+		exists = AFG
+		NOT = { war = { country = AFG } }
+		NOT = { alliance = { country = AFG } }
+		control = { province = 1534 data = -3 } # Rawalpindi
+		control = { province = 1537 data = -3 } # Peshawar
+		control = { province = 1538 data = -3 } # Gwadar
+		OR = {
+			lost_national = { country = IND value = 90 }
+			NOT = { exists = IND }
+		}
+		OR = {
+			lost_national = { country = USA value = 80 }
+			NOT = { exists = USA }
+		}
+	}
+
+	#date = { day = 1 month = april year = 1937 }
+	#offset = 30
+	#deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Iran"
+	desc = "Iran exists as a neutral buffer between the Soviet and the British forces who wished to avoid direct confrontation with one another and leave the governance to the local forces. However, Iran's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies. It has great strategic and economic value, and we should bring it under our direct control."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = PER }
+	} 
+}
+
+
+#########################################################################
+# Invasion of Turkey
+#########################################################################
+
+event = { 
+	id = 220044
+	random = no
+	country = SOV
+
+	decision = {
+		war = { country = SOV country = ENG }
+		exists = TUR
+		NOT = { war = { country = TUR } }
+		NOT = { alliance = { country = TUR } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = ENG }
+		exists = TUR
+		NOT = { war = { country = TUR } }
+		NOT = { alliance = { country = TUR } }
+		control = { province = 163 data = -3 } # Berlin
+		OR = {
+			lost_national = { country = GER value = 90 }
+			NOT = { exists = GER }
+		}
+		OR = {
+			control = { province = 1172 data = -2 }
+			control = { province = 1008 data = -2 }
+			control = { province = 1009 data = -2 }
+			control = { province = 1010 data = -2 }
+			control = { province = 1011 data = -2 }
+			control = { province = 1013 data = -2 }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Turkey"
+	desc = "Turkey exists as a neutral buffer between the Soviet and the British forces who wished to avoid direct confrontation with one another and leave the governance to the local Arabs. However, Turkey's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = TUR }
+	} 
+}
+
+event = { 
+	id = 220045
+	random = no
+	country = GER
+
+	decision = {
+		war = { country = SOV country = GER }
+		exists = TUR
+		NOT = { war = { country = TUR } }
+		NOT = { alliance = { country = TUR } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		war = { country = SOV country = GER }
+		exists = TUR
+		NOT = { war = { country = TUR } }
+		NOT = { alliance = { country = TUR } }
+		control = { province = 55 data = -3 } # Paris
+		control = { province = 708 data = -3 } # Batumi
+		control = { province = 572 data = -3 } # Moscow
+		OR = {
+			lost_national = { country = SOV value = 30 }
+			NOT = { exists = SOV }
+		}
+		OR = {
+			control = { province = 1172 data = -2 }
+			control = { province = 1008 data = -2 }
+			control = { province = 1009 data = -2 }
+			control = { province = 1010 data = -2 }
+			control = { province = 1011 data = -2 }
+			control = { province = 1013 data = -2 }
+			control = { province = 1016 data = -2 }
+			control = { province = 1034 data = -2 }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	name = "Invasion of Turkey"
+	desc = "Turkey exists as a neutral buffer between the Soviet and the British forces who wished to avoid direct confrontation with one another and leave the governance to the local Arabs. However, Turkey's usefulness to us had been outlived by the fact that it is now standing in the way of defeating our enemies."
+	style = 0
+	
+	action = { 
+		name = "War!"
+		command = { type = war which = TUR }
+	} 
+}
+
+#################################################
+# Early war reactions
+#################################################
+
+event = {
+	id = 220100
+	random = no
+	country = GER
+	
+	trigger = {
+		OR = {
+			war = { country = TUR country = FRA }
+			war = { country = TUR country = SOV }
+		}
+		NOT = { alliance = { country = TUR country = GER } }
+	}
+
+	name = "Defending our interests (world war)"
+	desc = "Our vital interests are at stake in the newly developing conflict involving world's great powers. If we don't intervene, the political landscape of the world may turn decisively in our enemy's favor."
+  	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Intervene"
+		ai_chance = 100
+		command = { type = alliance which = TUR }
+	}
+	action = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = 3 }
+	}
+}
+
+event = {
+	id = 220101
+	random = no
+	country = SOV
+	
+	trigger = {
+		OR = {
+			war = { country = TUR country = GER }
+			war = { country = TUR country = ENG }
+		}
+		NOT = { alliance = { country = TUR country = SOV } }
+	}
+
+	name = "Defending our interests (world war)"
+	desc = "Our vital interests are at stake in the newly developing conflict involving world's great powers. If we don't intervene, the political landscape of the world may turn decisively in our enemy's favor."
+  	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Intervene"
+		ai_chance = 100
+		command = { type = alliance which = SOV }
+	}
+	action = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = 3 }
+	}
+}
+
+#################################################
+# Early war trigger
+#################################################
+
+event = {
+	id = 220200
+	random = no
+	country = SOV
+	
+	decision = {
+		OR = {
+			alliance = { country = EST country = GER }
+			alliance = { country = LAT country = GER }
+			alliance = { country = LIT country = GER }
+			alliance = { country = FIN country = GER }
+			alliance = { country = POL country = GER }
+			alliance = { country = POL country = GER }
+		}
+		NOT = { war = { country = GER country = SOV } }
+		NOT = { war = { country = ENG country = SOV } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			alliance = { country = EST country = GER }
+			alliance = { country = LAT country = GER }
+			alliance = { country = LIT country = GER }
+			alliance = { country = FIN country = GER }
+			alliance = { country = POL country = GER }
+			alliance = { country = POL country = GER }
+		}
+		NOT = { war = { country = GER country = SOV } }
+		NOT = { war = { country = ENG country = SOV } }
+	}
+
+	name = "Defending our interests (world war)"
+	desc = "Our vital interests are at stake in the newly developing conflict involving world's great powers. If we don't intervene, the political landscape of the world may turn decisively in our enemy's favor."
+  	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Intervene"
+		ai_chance = 100
+		command = { type = war which = GER }
+	}
+	action = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = 3 }
+	}
+}
+
+event = {
+	id = 220201
+	random = no
+	country = GER
+	
+	decision = {
+		OR = {
+			alliance = { country = NOR country = SOV }
+			alliance = { country = POL country = SOV }
+			alliance = { country = ROM country = SOV }
+			alliance = { country = FIN country = SOV }
+		}
+		NOT = { war = { country = SOV country = GER } }
+		NOT = { war = { country = FRA country = GER } }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			alliance = { country = NOR country = SOV }
+			alliance = { country = POL country = SOV }
+			alliance = { country = ROM country = SOV }
+			alliance = { country = FIN country = SOV }
+		}
+		NOT = { war = { country = SOV country = GER } }
+		NOT = { war = { country = FRA country = GER } }
+	}
+
+	name = "Defending our interests (world war)"
+	desc = "Our vital interests are at stake in the newly developing conflict involving world's great powers. If we don't intervene, the political landscape of the world may turn decisively in our enemy's favor."
+  	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Intervene"
+		ai_chance = 100
+		command = { type = war which = SOV }
+	}
+	action = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = 3 }
+	}
+}

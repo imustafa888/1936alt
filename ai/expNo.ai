@@ -1,0 +1,4 @@
+switch = no # [yes/no]
+
+exp_force_ratio = 0
+exp_force_ratios = { } 

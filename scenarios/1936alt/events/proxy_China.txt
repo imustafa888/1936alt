@@ -1,0 +1,2857 @@
+#########################################################################
+# China
+#########################################################################
+
+#########################################################################
+# China - Outbreak
+#########################################################################
+
+event = {
+	id = 3122040
+	country = CSX
+	random = no
+
+	decision = { 
+		NOT = { war = { country = CGX country = CHI } } 
+		NOT = { war = { country = CGX country = CHC } } 
+	}
+
+	decision_trigger = { }
+
+	trigger = {
+		NOT = { war = { country = CGX country = CHI } } 
+		NOT = { war = { country = CGX country = CHC } } 
+	}
+
+	name = EVT3122040_NAME
+	desc = EVT3122040_DESC
+	style = 2
+
+	date = { day = 1 month = march year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1942 }
+
+	action = {
+		name = "Initiate the secret negotiations"
+		ai_chance = 100
+		command = { type = trigger which = 3122041 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+event = {
+	id = 3122041
+	country = JAP
+	save_date = yes
+	random = no
+
+	name = EVT3122041_NAME
+	desc = EVT3122041_DESC
+	style = 2
+
+	action = {
+		name = "Understood"
+		command = { }
+	}
+}
+
+event = { 
+	id = 3122050
+	random = no
+	country = JAP
+	
+
+	decision = { 
+		NOT = { war = { country = JAP country = SOV } }
+		NOT = { war = { country = CGX country = CHI } } 
+		NOT = { war = { country = CGX country = CHC } } 
+		event = { id = 3122041 days = 50 }
+	}
+
+	decision_trigger = { }
+
+	trigger = {
+		NOT = { war = { country = JAP country = SOV } }
+	}
+	
+	name = EVT3122050_NAME
+	desc = EVT3122050_DESC
+	style = 2
+	picture = "Nanking"
+	
+	date = { day = 2 month = january year = 1938 }
+	offset = 30
+	deathdate = { day = 29 month = august year = 1955 }
+	
+	action = {
+		name = "Launch the attack!"
+		ai_chance = 100
+		command = { type = relation which = SOV value = -30 }
+		command = { type = belligerence which = JAP value = 5 }
+		command = { type = trigger which = 3122051 }
+	}
+}
+
+event = { 
+	id = 3122051
+	random = no
+	country = SOV
+	
+	name = EVT3122051_NAME
+	desc = EVT3122051_DESC
+	style = 2
+	picture = "Nanking"
+
+	action = {
+		name = "Offer the terms"
+		ai_chance = 100
+		command = { type = dissent value = -3 }
+		command = { type = manpowerpool value = -40 }
+		command = { type = supplies value = -1000 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = trigger which = 3122052 }
+	}
+	action = {
+		name = "The Japanese must be beaten"
+		ai_chance = 0
+		command = { type = war which = JAP }
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = belligerence which = SOV value = 5 }
+		command = { type = supplies value = -1000 }
+		command = { type = manpowerpool value = -40 }
+	}
+}
+
+event = { 
+	id = 3122052
+	random = no
+	country = JAP
+	
+	name = EVT3122052_NAME
+	desc = EVT3122052_DESC
+	style = 2
+	picture = "Nanking"
+
+	action = {
+		name = "Agree to these terms"
+		ai_chance = 100
+		command = { type = dissent value = 5 }
+		command = { type = manpowerpool value = -20 }
+		command = { type = supplies value = -200 }
+		command = { type = belligerence which = JAP value = -1 }
+		command = { type = secedearea which = SOV value = "Jilin" }
+		command = { type = secedearea which = SOV value = "Liaoning" }
+		command = { type = secedearea which = SOV value = "Hebei" }
+		command = { type = secedearea which = SOV value = "Chahar" }
+		command = { type = secedearea which = SOV value = "Rehe" }
+		command = { type = trigger which = 3122053 }
+	}
+	action = {
+		name = "The Soviets must be beaten"
+		ai_chance = 0
+		command = { type = war which = SOV }
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = domestic which = professional_army value = 1 }
+		command = { type = belligerence which = JAP value = 5 }
+		command = { type = supplies value = -200 }
+		command = { type = manpowerpool value = -20 }
+	}
+}
+
+event = { 
+	id = 3122053
+	random = no
+	country = SOV
+	save_date = yes
+	
+	name = "Soviet-Japanese border conflict - Japanese agree to terms"
+	desc = "The Japanese have wisely agreed to our terms. Our eastern flank is secure for now."
+	style = 2
+	picture = "Nanking"
+
+	action = {
+		name = "Great!"
+		command = { type = belligerence value = -1 }
+		command = { type = independence which = MAN value = 1 }
+		command = { type = event which = 2400535 where = MAN when = 0 } #independence flag
+		command = { type = secedearea which = MAN value = "Jilin" }
+		command = { type = secedearea which = MAN value = "Liaoning" }
+		command = { type = secedearea which = MAN value = "Hebei" }
+		command = { type = secedearea which = MAN value = "Chahar" }
+		command = { type = secedearea which = MAN value = "Rehe" }
+		
+		#command = { type = non_aggression which = SOV where = JAP when = 1840 } #5 years + 15 days
+		#command = { type = non_aggression which = SOV where = MAN when = 1840 } #5 years + 15 days
+		#command = { type = non_aggression which = JAP where = MAN when = 1840 } #5 years + 15 days
+		#command = { type = setflag which = nonAggressionSOVJAP }
+		#command = { type = event which = 3122055 where = JAP when = 1825 } #renewal in 5 years
+	}
+}
+
+event = { 
+	id = 3122054
+	random = no
+	country = MAN
+
+	name = "Independence of Manchuia"
+	desc = "The document stating the Manchurian independence and neutrality is signed in Harbin as the Soviet and Japanese troops withdraw from the occupied territory."
+	style = 2
+
+	trigger = {
+		event = 3122053
+	} 
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1950 } 
+
+	action = { 
+		name = "Okay"
+		command = { type = set_domestic which = defense_lobby value = 3 }
+		command = { type = set_domestic which = interventionism value = 2 }
+		command = { type = set_domestic which = democratic value = 6 }
+		command = { type = set_domestic which = political_left value = 6 }
+		command = { type = set_domestic which = freedom value = 6 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+	} 
+}
+
+
+
+event = {
+	id = 3123000
+	country = CGX
+	save_date = yes
+	random = no
+
+	decision = { 
+		NOT = { war = { country = CGX country = CHI } } 
+		NOT = { war = { country = CGX country = CHC } } 
+	}
+
+	decision_trigger = {
+	}
+
+	trigger = {
+		ai = yes
+		event = 3122041
+		NOT = { war = { country = CGX country = CHI } } 
+		NOT = { war = { country = CGX country = CHC } } 
+		OR = {
+			AND = {
+				event = { id = 3122053 days = 75 }
+				NOT = { control = { province = 1199 data = -2 } } #Mukden
+			}
+			lost_national = { country = SOV value = 30 }
+		}
+		OR = {
+			NOT = { exists = PHI }
+			puppet = { country = PHI country = JAP }
+			lost_national = { country = USA value = 30 }
+		}
+	}
+
+
+	name = "Second northern expedition"
+	desc = "With the Soviet troops gone from Manchuria and the Americans gone from Phillippines, we are now in position to declare officially that the Chinese government has had enough of Communist infiltration, indoctrination, and subversion, and declare our support for the second northern expedition, just like we supported the first."
+	style = 2
+
+	date = { day = 1 month = march year = 1938 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1947 }
+
+
+	action = {
+		name = "For the unity of China"
+		command = { type = belligerence value = 1 }
+		command = { type = war which = CHC }
+		command = { type = dissent value = -5 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CGX value = 20 }
+	}
+}
+
+
+event = {
+	id = 3123001
+	country = CYN
+	random = no
+
+	decision = { 
+		war = { country = CGX country = CHC }
+		NOT = { alliance = { country = CGX country = CYN } }
+	}
+
+	decision_trigger = {
+		war = { country = CGX country = CHC }
+	}
+
+	trigger = {
+		war = { country = CGX country = CHC }
+		NOT = { alliance = { country = CGX country = CYN } }
+	}
+	
+	date = { day = 1 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1947 }
+
+	name = "Second northern expedition"
+	desc = "Li Zongren, the leader of Gungxi, had offcially declared that the Chinese government has had enough of Communist infiltration, indoctrination, and subversion, and initiated the second northern expedition. Should we support it, just like we supported the first?"
+	style = 2
+
+	action = {
+		name = "Support our brothers!"
+		ai_chance = 100
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = -5 }
+		command = { type = alliance which = CGX }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CYN value = 20 }
+	}
+	action = {
+		name = "Stay out of this brotherly war!"
+		ai_chance = 0
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = relation which = CGX value = -100 }
+		command = { type = relation which = CHC value = 50 }
+	}
+}
+
+event = {
+	id = 3123002
+	country = CHI
+	random = no
+
+	name = "Second northern expedition"
+	desc = "The traitorous warlords of southern China led by Li Zongren have attacked our forces and are trying to march on Nanjing. We have called upon the President Yan Xishan to speak out against this treachery, but he is being indecisive and weak. Is it up to us to defend China from these foreign-sponsored agents?"
+	style = 2
+	
+	decision = { 
+		war = { country = CGX country = CHC }
+		NOT = { alliance = { country = CHC country = CHI } }
+		under_attack = CHC
+	}
+
+	decision_trigger = {
+		war = { country = CGX country = CHC }
+	}
+
+	trigger = {
+		war = { country = CGX country = CHC }
+		NOT = { alliance = { country = CHC country = CHI } }
+		under_attack = CHC
+	}
+	
+	date = { day = 1 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		name = "Support our brothers!"
+		ai_chance = 100
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = -5 }
+		command = { type = alliance which = CHC }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CHI value = 20 }
+	}
+	action = {
+		name = "Stay out of this brotherly war!"
+		ai_chance = 0
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = relation which = CHC value = -100 }
+		command = { type = relation which = CGX value = 50 }
+	}
+}
+
+event = {
+	id = 3123003
+	country = CHC
+	random = no
+	
+	decision = { 
+		war = { country = CGX country = CHI }
+		NOT = { alliance = { country = CHC country = CHI } }
+		under_attack = CHI
+	}
+
+	decision_trigger = {
+		war = { country = CGX country = CHI }
+	}
+
+	trigger = {
+		NOT = { alliance = { country = CHC country = CHI } }
+		war = { country = CGX country = CHI }
+		under_attack = CHI
+	}
+	
+	date = { day = 1 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1947 }
+
+	name = "Second northern expedition"
+	desc = "The traitorous warlords of southern China led by Li Zongren have attacked our forces and are trying to march on Beijing. We have called upon the President Yan Xishan to speak out against this treachery, but he is being indecisive and weak. Is it up to us to defend China from these foreign-sponsored agents?"
+	style = 2
+
+	action = {
+		name = "Support our brothers!"
+		ai_chance = 100
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = -5 }
+		command = { type = alliance which = CHI }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CHC value = 20 }
+	}
+	action = {
+		name = "Stay out of this brotherly war!"
+		ai_chance = 0
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = relation which = CHI value = -100 }
+		command = { type = relation which = CGX value = 50 }
+	}
+}
+
+event = {
+	id = 3123004
+	country = CSX
+	random = no
+	
+	decision = { 
+		OR = {
+			war = { country = CGX country = CHI }
+			war = { country = CGX country = CHC }
+		}
+		#NOT = { alliance = { country = CHC country = CSX } }
+		#NOT = { alliance = { country = CHI country = CSX } }
+		#NOT = { alliance = { country = CGX country = CSX } }
+		#atwar = no	
+	}
+
+	decision_trigger = {
+
+	}
+
+	trigger = {
+		OR = {
+			war = { country = CGX country = CHI }
+			war = { country = CGX country = CHC }
+		}
+		#NOT = { alliance = { country = CHC country = CSX } }
+		#NOT = { alliance = { country = CHI country = CSX } }
+		#NOT = { alliance = { country = CGX country = CSX } }
+		#atwar = no	
+	}
+	
+	date = { day = 1 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1947 }
+
+	name = "Second northern expedition - President Yan Xishan's decision"
+	desc = "Li Zongren, the leader of Gungxi, had offcially declared that the Chinese government has had enough of Communist infiltration, indoctrination, and subversion, and initiated the second northern expedition. Should we support it, just like we supported the first?"
+	style = 2
+
+	action = {
+		name = "Support our anti-Communist brothers!"
+		ai_chance = 100
+		trigger = {
+			event = 3122041
+			OR = {
+				event = 3122053
+				lost_national = { country = SOV value = 30 }
+			}
+			OR = {
+				NOT = { exists = PHI }
+				puppet = { country = PHI country = JAP }
+				lost_national = { country = USA value = 30 }
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = 1 }
+		command = { type = event which = 3123006 where = -1 when = 1 }
+		command = { type = domestic which = political_left value = -1 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CGX value = 20 }
+	}
+	action = {
+		name = "Support our anti-Fascist brothers!"
+		ai_chance = 0
+		trigger = {
+			event = 3122041
+			OR = {
+				event = 3122053
+				lost_national = { country = SOV value = 30 }
+			}
+			OR = {
+				NOT = { exists = PHI }
+				puppet = { country = PHI country = JAP }
+				lost_national = { country = USA value = 30 }
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = 1 }
+		command = { type = event which = 3123005 where = -1 when = 1 }
+		command = { type = domestic which = political_left value = 1 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CGX value = 20 }
+	}
+	action = {
+		name = "Stay out of this brotherly war!"
+		ai_chance = 0
+		trigger = {
+			event = 3122041
+			OR = {
+				event = 3122053
+				lost_national = { country = SOV value = 30 }
+			}
+			OR = {
+				NOT = { exists = PHI }
+				puppet = { country = PHI country = JAP }
+				lost_national = { country = USA value = 30 }
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = CHC value = -50 }
+		command = { type = relation which = CGX value = -50 }
+	}
+	action = {
+		name = "Support our anti-Communist brothers!"
+		ai_chance = 0
+		trigger = {
+			NOT = {
+				AND = {
+					event = 3122041
+					OR = {
+						event = 3122053
+						lost_national = { country = SOV value = 30 }
+					}
+					OR = {
+						NOT = { exists = PHI }
+						puppet = { country = PHI country = JAP }
+						lost_national = { country = USA value = 30 }
+					}
+				}
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = 1 }
+		command = { type = event which = 3123006 where = -1 when = 1 }
+		command = { type = domestic which = political_left value = -1 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CGX value = 20 }
+	}
+	action = {
+		name = "Support our anti-Fascist brothers!"
+		ai_chance = 100
+		trigger = {
+			NOT = {
+				AND = {
+					event = 3122041
+					OR = {
+						event = 3122053
+						lost_national = { country = SOV value = 30 }
+					}
+					OR = {
+						NOT = { exists = PHI }
+						puppet = { country = PHI country = JAP }
+						lost_national = { country = USA value = 30 }
+					}
+				}
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = dissent value = 1 }
+		command = { type = event which = 3123005 where = -1 when = 1 }
+		command = { type = domestic which = political_left value = 1 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+	    #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = transport_pool which = CGX value = 20 }
+	}
+	action = {
+		name = "Stay out of this brotherly war!"
+		ai_chance = 0
+		trigger = {
+			NOT = {
+				AND = {
+					event = 3122041
+					event = 3122053
+					OR = {
+						event = 3122053
+						lost_national = { country = SOV value = 30 }
+					}
+					OR = {
+						NOT = { exists = PHI }
+						puppet = { country = PHI country = JAP }
+						lost_national = { country = USA value = 30 }
+					}
+				}
+			}
+		}
+		command = { type = ai which = "expNo.ai" }
+		command = { type = leave_alliance }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = CHC value = -50 }
+		command = { type = relation which = CGX value = -50 }
+	}
+}
+
+event = {
+	id = 3123005
+	country = CSX
+	random = no
+
+	name = "Second northern expedition - the President had made up his mind"
+	desc = "President Yan Xishan will support the communists in their effort to stop the pro-Japanese right-wing forces from taking control of the country."
+	style = 2
+
+	action = {
+		name = "Ok!"
+		command = { type = ai which = "expYes.ai" }
+		command = { type = alliance which = CHC }
+	}
+}
+
+event = {
+	id = 3123006
+	country = CSX
+	random = no
+
+	name = "Second northern expedition - the President had made up his mind"
+	desc = "President Yan Xishan will support the fascists in their effort to stop the pro-Soviet communist forces from taking control of the country."
+	style = 2
+
+	action = {
+		name = "Ok!"
+		command = { type = ai which = "expYes.ai" }
+		command = { type = alliance which = CGX }
+	}
+}
+
+#########################################################################
+# Wang Jingwei defects
+#########################################################################
+
+event = {
+	id = 3123010
+	country = CSX
+	random = no
+
+	trigger = {
+		OR = {
+			war = { country = CSX country = CHI }
+			war = { country = CSX country = CHC }
+		}
+	}
+	
+	date = { day = 1 month = march year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1957 }
+
+	name = "Second northern expedition - Wang Jingwei defects"
+	desc = "Wang Jingwei, the leader of the left-wing faction of the KMT had defected to Feng Yuxiang and will fight on his side together with his followers."
+	style = 2
+
+	action = {
+		name = "Crap!"
+		command = { type = dissent value = 10 }
+		command = { type = money value = -500 }
+		command = { type = domestic which = political_left value = -2 }
+		command = { type = headofgovernment which = 6005002 } # Yan
+		command = { type = switch_allegiance which = -1 where = CHI }
+		command = { type = damage_division which = -1 where = 50 }
+		
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		
+		command = { type = trigger which = 3123011 }
+	}
+}
+
+event = {
+	id = 3123011
+	country = CHI
+	random = no
+	
+	name = "Second northern expedition - Wang Jingwei defects"
+	desc = "Wang Jingwei, the leader of the left-wing faction of the KMT had defected to Feng Yuxiang and will fight on his side together with his followers."
+	style = 2
+
+	action = {
+		name = "Nice!"
+		command = { type = dissent value = -5 }
+		command = { type = money value = 500 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = headofgovernment which = 55401 } # Wang
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+	}
+}
+
+
+#########################################################################
+# China - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3114110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		war = { country = CHC country = CGX }
+		NOT = { flag = SOV_to_CHC_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_CHC_delay }
+		#Need permission from Mongolians
+		event = 802091
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = CHC country = CGX }
+		NOT = { flag = SOV_to_CHC_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_CHC_delay }
+		#Need permission from Mongolians
+		event = 802091
+		
+		#ai will do if:
+		NOT = { war = { country = JAP } }
+		OR = {
+			NOT = { flag = SOV_to_CHC_1 }
+			AND = {
+				NOT = { flag = SOV_to_CHC_2 }
+				OR = { 
+					flag = JAP_to_CGX_1
+					flag = ENG_to_CGX_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_CHC_3 }
+				OR = { 
+					flag = JAP_to_CGX_2
+					flag = ENG_to_CGX_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_CHC_4 }
+				OR = { 
+					flag = JAP_to_CGX_3
+					flag = ENG_to_CGX_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_CHC_5 }
+				OR = { 
+					flag = JAP_to_CGX_4
+					flag = ENG_to_CGX_4
+				}
+			}
+		}
+	}
+	
+	name = "Chinese Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in China presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_CHC_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = CHC supplies = -10 value = 1 }
+		
+		#0.16*7.3*261=305
+		#Volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*14.3*252=576
+		#interceptors
+		command = { type = money value = -576 }
+		command = { type = manpowerpool value = -0.8 }
+		
+		#0.16*0.8*576=74
+		#Destroyer
+		command = { type = money value = -74 }
+		command = { type = manpowerpool value = -0.6 }
+		
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_CHC_1 }
+		command = { type = event which = 3114111 where = CHC when = 15 }
+		command = { type = setflag which = SOV_to_CHC_delay }
+		command = { type = access which = CHC }
+		command = { type = access which = CHI }
+		
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = event which = 3123150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = local_setflag which = CCWExp }
+		
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = event which = 3123200 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = local_setflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_CHC_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = CHC supplies = -10 value = 1 }
+		
+		#0.16*7.3*261=305
+		#Volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*16*262=670
+		#Tactical bomber
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = money value = -670 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = manpowerpool value = -2.2 }
+		
+		#0.16*14.1*414=933
+		#tanks
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = money value = -933 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = manpowerpool value = -8 }
+		
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_CHC_4 NOT = { flag = SOV_to_CHC_5 } } type = setflag which = SOV_to_CHC_5 }
+		command = { trigger = { flag = SOV_to_CHC_3 NOT = { flag = SOV_to_CHC_4 } } type = setflag which = SOV_to_CHC_4 }
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = setflag which = SOV_to_CHC_3 }
+		command = { trigger = { flag = SOV_to_CHC_1 NOT = { flag = SOV_to_CHC_2 } } type = setflag which = SOV_to_CHC_2 }
+		command = { type = event which = 3114111 where = CHC when = 15 }
+		command = { type = setflag which = SOV_to_CHC_delay }
+	}
+}
+
+event = { 
+	id = 3114111
+	random = no
+	country = CHC
+	persistent = yes
+	
+	name = "Soviet help arrives in China"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the Mongolian border to China."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = non_aggression which = SOV where = CHC }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = wakeleader which = 55375 } #Khryukin
+	   	command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = gain_tech which = 6310 }	#Large Front Doctrine
+	   	command = { trigger = { NOT = { flag = SOV_to_CHC_2 } NOT = { technology = 5820 } } type = gain_tech which = 5820 }	#Mass Production
+	   	command = { trigger = { NOT = { flag = SOV_to_CHC_2 } technology = 5820 NOT = { technology = 5050 } } type = gain_tech which = 5050 }	#Basic Machine Tools
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = construct which = air_base where = 1337 value = 2 }
+		
+		command = { type = relation which = SOV value = 50 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 1122 }
+		command = { trigger = { flag = SOV_to_CHC_5 }								type = add_division which = "Soviet volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_4 NOT = { flag = SOV_to_CHC_5 } } type = add_division which = "Soviet volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_3 NOT = { flag = SOV_to_CHC_4 } } type = add_division which = "Soviet volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = add_division which = "Soviet volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_1 NOT = { flag = SOV_to_CHC_2 } } type = add_division which = "Soviet volunteers in China 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = add_division which = "Soviet Armor Division loan" value = light_armor when = 1 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = add_corps which = "Soviet Naval Force in China" value = naval where = 1338 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = add_division which = "Soviet Destroyer loan" value = destroyer when = 6 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = add_corps which = "Op Zet Exp. Force 1" value = air where = 1337 }
+		command = { trigger = { NOT = { flag = SOV_to_CHC_2 } } type = add_division which = "Interceptor Force" value = interceptor when = 7 }
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = add_corps which = "Op Zet Exp. Force 2" value = air where = 1337 }
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = add_division which = "Bomber Force" value = tactical_bomber when = 6 }
+		
+		command = { type = clrflag which = SOV_to_CHC_delay }
+	}
+}
+
+event = { 
+	id = 3114112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_CHC_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_CHC_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_CHC_1
+		OR = {
+			NOT = { war = { country = CHC country = CGX } }
+			#war = { country = JAP }
+		}
+	}
+	
+	name = "End of intervention in China"
+	desc = "With the civil war in China at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_CHC_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CHC }
+		command = { type = end_access which = CHI }
+		command = { trigger = { NOT = { alliance = { country = CHC } } } type = military_control which = SOV where = CHC value = 0 }
+		command = { type = end_trades which = CHC where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in China 5" value = CHC }
+		command = { type = remove_division which = "Soviet volunteers in China 4" value = CHC }
+		command = { type = remove_division which = "Soviet volunteers in China 3" value = CHC }
+		command = { type = remove_division which = "Soviet volunteers in China 2" value = CHC }
+		command = { type = remove_division which = "Soviet volunteers in China 1" value = CHC }
+		command = { type = remove_division which = "Soviet Armor Division loan" value = light_armor when = 1 }
+		command = { type = remove_division which = "Soviet Destroyer loan" value = destroyer when = 6 }
+		command = { type = remove_division which = "Interceptor Force" value = interceptor when = 7 }
+		command = { type = remove_division which = "Bomber Force" value = tactical_bomber when = 6 }
+		
+		command = { type = add_corps value = land where = 1122 }
+		command = { trigger = { flag = SOV_to_CHC_5 exists = CHC } type = add_division which = "Soviet volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_4 exists = CHC } type = add_division which = "Soviet volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_3 exists = CHC } type = add_division which = "Soviet volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_2 exists = CHC } type = add_division which = "Soviet volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_1 exists = CHC } type = add_division which = "Soviet volunteers in China 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_CHC_2 exists = CHC } type = add_division which = "Soviet Armor Division loan" value = light_armor when = 1 }
+		command = { trigger = { exists = CHC } type = add_corps which = "Soviet Naval Force in China" value = naval where = 1338 }
+		command = { trigger = { exists = CHC } type = add_division which = "Soviet Destroyer loan" value = destroyer when = 6 }
+		command = { trigger = { exists = CHC } type = add_corps which = "Op Zet Exp. Force 1" value = air where = 1337 }
+		command = { trigger = { exists = CHC } type = add_division which = "Interceptor Force" value = interceptor when = 7 }
+		command = { trigger = { flag = SOV_to_CHC_2 exists = CHC } type = add_corps which = "Op Zet Exp. Force 2" value = air where = 1337 }
+		command = { trigger = { flag = SOV_to_CHC_2 exists = CHC } type = add_division which = "Bomber Force" value = tactical_bomber when = 6 }
+		
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = SOV_to_CHC_5 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = SOV_to_CHC_4 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = SOV_to_CHC_3 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = SOV_to_CHC_2 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = SOV_to_CHC_1 }
+		
+		command = { type = trigger which = 3114113 }
+	}
+}
+
+event = { 
+	id = 3114113
+	random = no
+	country = CHC
+	persistent = yes
+
+	name = "End of intervention in China"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_CHC_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_CHC_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_CHC_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_CHC_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_CHC_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_CHC_5 }
+		command = { type = clrflag which = SOV_to_CHC_4 }
+		command = { type = clrflag which = SOV_to_CHC_3 }
+		command = { type = clrflag which = SOV_to_CHC_2 }
+		command = { type = clrflag which = SOV_to_CHC_1 }
+	}
+}
+
+event = { 
+	id = 3114114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_CHC_1
+		NOT = { military_control = { country = CHC } }
+	}
+
+	decision_trigger = {
+		exists = CHC
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Chinese Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in China"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = CHC value = 1 }
+	}
+}
+
+#United States
+
+event = { 
+	id = 3114130
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = {
+		war = { country = CHC country = CGX }
+		NOT = { flag = USA_to_CHC_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = USA_to_CHC_delay }
+		#Need permission from Mongolians
+		event = 802091
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = CHC country = CGX }
+		NOT = { flag = USA_to_CHC_5 }
+		manpower = 16
+		NOT = { flag = USA_to_CHC_delay }
+		event = 802091
+		
+		#ai will do if:
+		NOT = { war = { country = JAP } }
+		OR = {
+			NOT = { flag = USA_to_CHC_1 }
+			AND = {
+				NOT = { flag = USA_to_CHC_2 }
+				OR = { 
+					flag = JAP_to_CGX_1
+					flag = ENG_to_CGX_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = USA_to_CHC_3 }
+				OR = { 
+					flag = JAP_to_CGX_2
+					flag = ENG_to_CGX_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = USA_to_CHC_4 }
+				OR = { 
+					flag = JAP_to_CGX_3
+					flag = ENG_to_CGX_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = USA_to_CHC_5 }
+				OR = { 
+					flag = JAP_to_CGX_4
+					flag = ENG_to_CGX_4
+				}
+			}
+		}
+	}
+	
+	name = "Chinese Civil War - American Intervention"
+	desc = "The outbreak of civil war in China presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = USA_to_CHC_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = CHI supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = USA_to_CHC_1 }
+		command = { type = event which = 3114131 where = CHI when = 15 }
+		command = { type = setflag which = USA_to_CHC_delay }
+		command = { type = access which = CHC }
+		command = { type = access which = CHI }
+		
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = event which = 3123150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = local_setflag which = CCWExp }
+		
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = event which = 3123201 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = local_setflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = USA_to_CHC_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = CHI supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = USA_to_CHC_4 NOT = { flag = USA_to_CHC_5 } } type = setflag which = USA_to_CHC_5 }
+		command = { trigger = { flag = USA_to_CHC_3 NOT = { flag = USA_to_CHC_4 } } type = setflag which = USA_to_CHC_4 }
+		command = { trigger = { flag = USA_to_CHC_2 NOT = { flag = USA_to_CHC_3 } } type = setflag which = USA_to_CHC_3 }
+		command = { trigger = { flag = USA_to_CHC_1 NOT = { flag = USA_to_CHC_2 } } type = setflag which = USA_to_CHC_2 }
+		command = { type = event which = 3114131 where = CHI when = 15 }
+		command = { type = setflag which = USA_to_CHC_delay }
+	}
+}
+
+event = { 
+	id = 3114131
+	random = no
+	country = CHI
+	persistent = yes
+	
+	name = "American help arrives in China"
+	desc = "Despite its official claims of neutrality, large amount of American aid arrived across the Mongolian border to China."
+	style = 2
+	picture = "SCW_American Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = USA }
+		command = { type = steal_tech which = USA }
+		command = { type = relation which = USA value = 50 }
+		command = { type = access which = USA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 1122 }
+		command = { trigger = { flag = USA_to_CHC_5 }								type = add_division which = "American volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_4 NOT = { flag = USA_to_CHC_5 } } type = add_division which = "American volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_3 NOT = { flag = USA_to_CHC_4 } } type = add_division which = "American volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_2 NOT = { flag = USA_to_CHC_3 } } type = add_division which = "American volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_1 NOT = { flag = USA_to_CHC_2 } } type = add_division which = "American volunteers in China 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = USA_to_CHC_delay }
+	}
+}
+
+event = { 
+	id = 3114132
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		flag = USA_to_CHC_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = USA_to_CHC_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = USA_to_CHC_1
+		OR = {
+			NOT = { war = { country = CHC country = CGX } }
+			war = { country = JAP }
+		}
+	}
+	
+	name = "End of intervention in China"
+	desc = "With the civil war in China at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = USA_to_CHC_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_CHC_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_CHC_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_CHC_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_CHC_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CHC }
+		command = { type = end_access which = CHI }
+		command = { trigger = { NOT = { alliance = { country = CHI } } } type = military_control which = USA where = CHI value = 0 }
+		command = { type = end_trades which = CHI where = USA }
+		command = { type = remove_division which = "American volunteers in China 5" value = CHC }
+		command = { type = remove_division which = "American volunteers in China 4" value = CHC }
+		command = { type = remove_division which = "American volunteers in China 3" value = CHC }
+		command = { type = remove_division which = "American volunteers in China 2" value = CHC }
+		command = { type = remove_division which = "American volunteers in China 1" value = CHC }
+		
+		command = { type = add_corps value = land where = 1122 }
+		command = { trigger = { flag = USA_to_CHC_5 exists = CHC } type = add_division which = "American volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_4 exists = CHC } type = add_division which = "American volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_3 exists = CHC } type = add_division which = "American volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_2 exists = CHC } type = add_division which = "American volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_CHC_1 exists = CHC } type = add_division which = "American volunteers in China 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = USA_to_CHC_5 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = USA_to_CHC_4 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = USA_to_CHC_3 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = USA_to_CHC_2 }
+		command = { trigger = { NOT = { exists = CHC } } type = clrflag which = USA_to_CHC_1 }
+		
+		command = { type = trigger which = 3114133 }
+	}
+}
+
+event = { 
+	id = 3114133
+	random = no
+	country = CHC
+	persistent = yes
+
+	name = "End of intervention in China"
+	desc = "The American aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = USA }
+		command = { trigger = { flag = USA_to_CHC_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_CHC_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_CHC_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_CHC_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_CHC_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = USA_to_CHC_5 }
+		command = { type = clrflag which = USA_to_CHC_4 }
+		command = { type = clrflag which = USA_to_CHC_3 }
+		command = { type = clrflag which = USA_to_CHC_2 }
+		command = { type = clrflag which = USA_to_CHC_1 }
+	}
+}
+
+event = { 
+	id = 3114134
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = USA_to_CHC_1
+		NOT = { military_control = { country = CHI } }
+	}
+
+	decision_trigger = {
+		exists = CHI
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Chinese Civil War - American command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in China"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = USA where = CHI value = 1 }
+	}
+}
+
+#English
+
+event = { 
+	id = 3114140
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		war = { country = CHC country = CGX }
+		NOT = { flag = ENG_to_CGX_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = ENG_to_CGX_delay }
+		#Need permission from the Dutch
+		flag = HOL_to_CGX_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = CHC country = CGX }
+		NOT = { flag = ENG_to_CGX_5 }
+		manpower = 16
+		NOT = { flag = ENG_to_CGX_delay }
+		flag = HOL_to_CGX_1
+		
+		#ai will do if:
+		NOT = { war = { country = SOV } }
+		OR = {
+			NOT = { flag = ENG_to_CGX_1 }
+			AND = {
+				NOT = { flag = ENG_to_CGX_2 }
+				OR = { 
+					flag = SOV_to_CHC_3
+					flag = USA_to_CHC_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = ENG_to_CGX_3 }
+				OR = { 
+					flag = SOV_to_CHC_4
+					flag = USA_to_CHC_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = ENG_to_CGX_4 }
+				OR = { 
+					flag = SOV_to_CHC_5
+					flag = USA_to_CHC_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = ENG_to_CGX_5 }
+			#}
+		}
+	}
+	
+	name = "Chinese Civil War - British Intervention"
+	desc = "The outbreak of civil war in China presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = ENG_to_CGX_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = CGX supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = ENG_to_CGX_1 }
+		command = { type = event which = 3114141 where = CGX when = 15 }
+		command = { type = access which = CGX }
+		command = { type = access which = CSX }
+		command = { type = access which = CYN }
+		command = { type = setflag which = ENG_to_CGX_delay }
+		
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = event which = 3123150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = local_setflag which = CCWExp }
+		
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = event which = 3123205 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = local_setflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = ENG_to_CGX_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = CGX supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = ENG_to_CGX_4 NOT = { flag = ENG_to_CGX_5 } } type = setflag which = ENG_to_CGX_5 }
+		command = { trigger = { flag = ENG_to_CGX_3 NOT = { flag = ENG_to_CGX_4 } } type = setflag which = ENG_to_CGX_4 }
+		command = { trigger = { flag = ENG_to_CGX_2 NOT = { flag = ENG_to_CGX_3 } } type = setflag which = ENG_to_CGX_3 }
+		command = { trigger = { flag = ENG_to_CGX_1 NOT = { flag = ENG_to_CGX_2 } } type = setflag which = ENG_to_CGX_2 }
+		command = { type = event which = 3114141 where = CGX when = 15 }
+		command = { type = setflag which = ENG_to_CGX_delay }
+	}
+}
+
+event = { 
+	id = 3114141
+	random = no
+	country = CGX
+	persistent = yes
+	
+	name = "British help arrives in China"
+	desc = "Despite its official claims of neutrality, large amount of British aid arrived across the Hong Kong border to China."
+	style = 2
+	picture = "SCW_British Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = ENG }
+		command = { type = steal_tech which = ENG }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = access which = ENG }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 1371 }
+		command = { trigger = { flag = ENG_to_CGX_5 }								type = add_division which = "British volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_4 NOT = { flag = ENG_to_CGX_5 } } type = add_division which = "British volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_3 NOT = { flag = ENG_to_CGX_4 } } type = add_division which = "British volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_2 NOT = { flag = ENG_to_CGX_3 } } type = add_division which = "British volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_1 NOT = { flag = ENG_to_CGX_2 } } type = add_division which = "British volunteers in China 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = ENG_to_CGX_delay }
+	}
+}
+
+event = { 
+	id = 3114142
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		flag = ENG_to_CGX_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = ENG_to_CGX_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = ENG_to_CGX_1
+		OR = {
+			NOT = { war = { country = CHC country = CGX } }
+			war = { country = SOV }
+		}
+	}
+	
+	name = "End of intervention in China"
+	desc = "With the civil war in China at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = ENG_to_CGX_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CGX }
+		command = { type = end_access which = CSX }
+		command = { type = end_access which = CYN }
+		command = { trigger = { NOT = { alliance = { country = CGX } } } type = military_control which = ENG where = CGX value = 0 }
+		command = { type = end_trades which = CGX where = ENG }
+		command = { type = remove_division which = "British volunteers in China 5" value = CGX }
+		command = { type = remove_division which = "British volunteers in China 4" value = CGX }
+		command = { type = remove_division which = "British volunteers in China 3" value = CGX }
+		command = { type = remove_division which = "British volunteers in China 2" value = CGX }
+		command = { type = remove_division which = "British volunteers in China 1" value = CGX }
+		
+		command = { type = add_corps value = land where = 1371 }
+		command = { trigger = { flag = ENG_to_CGX_5 exists = CGX } type = add_division which = "British volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_4 exists = CGX } type = add_division which = "British volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_3 exists = CGX } type = add_division which = "British volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_2 exists = CGX } type = add_division which = "British volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_CGX_1 exists = CGX } type = add_division which = "British volunteers in China 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = ENG_to_CGX_5 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = ENG_to_CGX_4 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = ENG_to_CGX_3 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = ENG_to_CGX_2 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = ENG_to_CGX_1 }
+		
+		command = { type = trigger which = 3114143 }
+	}
+}
+
+event = { 
+	id = 3114143
+	random = no
+	country = CGX
+	persistent = yes
+
+	name = "End of intervention in China"
+	desc = "The British aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = ENG }
+		command = { trigger = { flag = ENG_to_CGX_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_CGX_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_CGX_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_CGX_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_CGX_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = ENG_to_CGX_5 }
+		command = { type = clrflag which = ENG_to_CGX_4 }
+		command = { type = clrflag which = ENG_to_CGX_3 }
+		command = { type = clrflag which = ENG_to_CGX_2 }
+		command = { type = clrflag which = ENG_to_CGX_1 }
+	}
+}
+
+event = { 
+	id = 3114144
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = ENG_to_CGX_1
+		NOT = { military_control = { country = CGX } }
+	}
+
+	decision_trigger = {
+		exists = CGX
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Chinese Civil War - British command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in China"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = ENG where = CGX value = 1 }
+	}
+}
+
+#Japanese
+
+event = { 
+	id = 3114150
+	random = no
+	country = JAP
+	persistent = yes
+
+	decision = {
+		war = { country = CHC country = CGX }
+		NOT = { flag = JAP_to_CGX_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = JAP_to_CGX_delay }
+		#Need permission from the Dutch
+		flag = HOL_to_CGX_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = CHC country = CGX }
+		NOT = { flag = JAP_to_CGX_5 }
+		manpower = 16
+		NOT = { flag = JAP_to_CGX_delay }
+		flag = HOL_to_CGX_1
+		
+		#ai will do if:
+		NOT = { war = { country = SOV } }
+		OR = {
+			NOT = { flag = JAP_to_CGX_1 }
+			AND = {
+				NOT = { flag = JAP_to_CGX_2 }
+				OR = { 
+					flag = SOV_to_CHC_3
+					flag = USA_to_CHC_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = JAP_to_CGX_3 }
+				OR = { 
+					flag = SOV_to_CHC_4
+					flag = USA_to_CHC_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = JAP_to_CGX_4 }
+				OR = { 
+					flag = SOV_to_CHC_5
+					flag = USA_to_CHC_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = JAP_to_CGX_5 }
+			#}
+		}
+	}
+	
+	name = "Chinese Civil War - Japanese Intervention"
+	desc = "The outbreak of civil war in China presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Japanese_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = JAP_to_CGX_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = JAP where = CGX supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = JAP_to_CGX_1 }
+		command = { type = event which = 3114151 where = CGX when = 15 }
+		command = { type = access which = CGX }
+		command = { type = access which = CSX }
+		command = { type = access which = CYN }
+		command = { type = setflag which = JAP_to_CGX_delay }
+		
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = event which = 3123150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWExp } } type = local_setflag which = CCWExp }
+		
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = event which = 3123206 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = CCWVolunteers } } type = local_setflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = JAP_to_CGX_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = JAP where = CGX supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = JAP_to_CGX_4 NOT = { flag = JAP_to_CGX_5 } } type = setflag which = JAP_to_CGX_5 }
+		command = { trigger = { flag = JAP_to_CGX_3 NOT = { flag = JAP_to_CGX_4 } } type = setflag which = JAP_to_CGX_4 }
+		command = { trigger = { flag = JAP_to_CGX_2 NOT = { flag = JAP_to_CGX_3 } } type = setflag which = JAP_to_CGX_3 }
+		command = { trigger = { flag = JAP_to_CGX_1 NOT = { flag = JAP_to_CGX_2 } } type = setflag which = JAP_to_CGX_2 }
+		command = { type = event which = 3114151 where = CGX when = 15 }
+		command = { type = setflag which = JAP_to_CGX_delay }
+	}
+}
+
+event = { 
+	id = 3114151
+	random = no
+	country = CGX
+	persistent = yes
+	
+	name = "Japanese help arrives in China"
+	desc = "Despite its official claims of neutrality, large amount of Japanese aid arrived across the Qingdao border to China."
+	style = 2
+	picture = "SCW_Japanese Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = JAP }
+		command = { type = steal_tech which = JAP }
+		command = { type = relation which = JAP value = 50 }
+		command = { type = access which = JAP }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 1328 }
+		command = { trigger = { flag = JAP_to_CGX_5 }								type = add_division which = "Japanese volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_4 NOT = { flag = JAP_to_CGX_5 } } type = add_division which = "Japanese volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_3 NOT = { flag = JAP_to_CGX_4 } } type = add_division which = "Japanese volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_2 NOT = { flag = JAP_to_CGX_3 } } type = add_division which = "Japanese volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_1 NOT = { flag = JAP_to_CGX_2 } } type = add_division which = "Japanese volunteers in China 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = JAP_to_CGX_delay }
+	}
+}
+
+event = { 
+	id = 3114152
+	random = no
+	country = JAP
+	persistent = yes
+
+	decision = { 
+		flag = JAP_to_CGX_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = JAP_to_CGX_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = JAP_to_CGX_1
+		OR = {
+			NOT = { war = { country = CHC country = CGX } }
+			war = { country = SOV }
+		}
+	}
+	
+	name = "End of intervention in China"
+	desc = "With the civil war in China at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Japanese_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = JAP_to_CGX_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CGX }
+		command = { type = end_access which = CSX }
+		command = { type = end_access which = CYN }
+		command = { trigger = { NOT = { alliance = { country = CGX } } } type = military_control which = JAP where = CGX value = 0 }
+		command = { type = end_trades which = CGX where = JAP }
+		command = { type = remove_division which = "Japanese volunteers in China 5" value = CGX }
+		command = { type = remove_division which = "Japanese volunteers in China 4" value = CGX }
+		command = { type = remove_division which = "Japanese volunteers in China 3" value = CGX }
+		command = { type = remove_division which = "Japanese volunteers in China 2" value = CGX }
+		command = { type = remove_division which = "Japanese volunteers in China 1" value = CGX }
+		
+		command = { type = add_corps value = land where = 1328 }
+		command = { trigger = { flag = JAP_to_CGX_5 exists = CGX } type = add_division which = "Japanese volunteers in China 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_4 exists = CGX } type = add_division which = "Japanese volunteers in China 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_3 exists = CGX } type = add_division which = "Japanese volunteers in China 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_2 exists = CGX } type = add_division which = "Japanese volunteers in China 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = JAP_to_CGX_1 exists = CGX } type = add_division which = "Japanese volunteers in China 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = JAP_to_CGX_5 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = JAP_to_CGX_4 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = JAP_to_CGX_3 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = JAP_to_CGX_2 }
+		command = { trigger = { NOT = { exists = CGX } } type = clrflag which = JAP_to_CGX_1 }
+		
+		command = { type = trigger which = 3114153 }
+	}
+}
+
+event = { 
+	id = 3114153
+	random = no
+	country = CGX
+	persistent = yes
+
+	name = "End of intervention in China"
+	desc = "The Japanese aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = JAP }
+		command = { trigger = { flag = JAP_to_CGX_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = JAP_to_CGX_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = JAP_to_CGX_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = JAP_to_CGX_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = JAP_to_CGX_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = JAP_to_CGX_5 }
+		command = { type = clrflag which = JAP_to_CGX_4 }
+		command = { type = clrflag which = JAP_to_CGX_3 }
+		command = { type = clrflag which = JAP_to_CGX_2 }
+		command = { type = clrflag which = JAP_to_CGX_1 }
+	}
+}
+
+event = { 
+	id = 3114154
+	random = no
+	country = JAP
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = JAP_to_CGX_1
+		NOT = { military_control = { country = CGX } }
+	}
+
+	decision_trigger = {
+		exists = CGX
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Chinese Civil War - Japanese command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in China"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = JAP where = CGX value = 1 }
+	}
+}
+
+
+
+event = {
+	id = 3114200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to China"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to China to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = CCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCHC when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CGX country = CHC }
+						flag = SOV_to_CHC_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCHC when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = CCWVolunteers
+			war = { country = CGX country = CHC }
+			flag = SOV_to_CHC_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3114210 where = CHC when = 15 }
+		command = { type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_CHC_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_CHC_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_CHC_2 } type = event which = 3114210 where = CHC when = 15 }
+		command = { trigger = { flag = SOV_to_CHC_2 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_CHC_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_CHC_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_CHC_3 } type = event which = 3114210 where = CHC when = 20 }
+		command = { trigger = { flag = SOV_to_CHC_3 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_CHC_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_CHC_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_CHC_4 } type = event which = 3114210 where = CHC when = 25 }
+		command = { trigger = { flag = SOV_to_CHC_4 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_CHC_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_CHC_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_CHC_5 } type = event which = 3114210 where = CHC when = 30 }
+		command = { trigger = { flag = SOV_to_CHC_5 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_CHC_1 NOT = { flag = SOV_to_CHC_2 } } type = trade which = SOV where = CHC supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_2 NOT = { flag = SOV_to_CHC_3 } } type = trade which = SOV where = CHC supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_3 NOT = { flag = SOV_to_CHC_4 } } type = trade which = SOV where = CHC supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_4 NOT = { flag = SOV_to_CHC_5 } } type = trade which = SOV where = CHC supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_CHC_5 } type = trade which = SOV where = CHC supplies = -5 value = 1 }
+		
+		command = { type = event which = 3114200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3114201
+	random = no
+	country = USA
+	persistent = yes
+
+	name = "Volunteers heading to China"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to China to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = CCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCHC when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CGX country = CHC }
+						flag = USA_to_CHC_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCHC when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = CCWVolunteers
+			war = { country = CGX country = CHC }
+			flag = USA_to_CHC_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3114210 where = CHC when = 15 }
+		command = { type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_CHC_2 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_CHC_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_CHC_2 } type = event which = 3114210 where = CHC when = 15 }
+		command = { trigger = { flag = USA_to_CHC_2 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_CHC_3 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_CHC_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_CHC_3 } type = event which = 3114210 where = CHC when = 20 }
+		command = { trigger = { flag = USA_to_CHC_3 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_CHC_4 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_CHC_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_CHC_4 } type = event which = 3114210 where = CHC when = 25 }
+		command = { trigger = { flag = USA_to_CHC_4 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_CHC_5 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_CHC_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_CHC_5 } type = event which = 3114210 where = CHC when = 30 }
+		command = { trigger = { flag = USA_to_CHC_5 } type = setflag which = VolunteersCountCHC when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_CHC_1 NOT = { flag = USA_to_CHC_2 } } type = trade which = USA where = CHC supplies = -1 value = 1 }
+		command = { trigger = { flag = USA_to_CHC_2 NOT = { flag = USA_to_CHC_3 } } type = trade which = USA where = CHC supplies = -2 value = 1 }
+		command = { trigger = { flag = USA_to_CHC_3 NOT = { flag = USA_to_CHC_4 } } type = trade which = USA where = CHC supplies = -3 value = 1 }
+		command = { trigger = { flag = USA_to_CHC_4 NOT = { flag = USA_to_CHC_5 } } type = trade which = USA where = CHC supplies = -4 value = 1 }
+		command = { trigger = { flag = USA_to_CHC_5 } type = trade which = USA where = CHC supplies = -5 value = 1 }
+		
+		command = { type = event which = 3114201 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3114205
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Volunteers heading to China"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to China to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Volunteers - Intervention ends"
+		trigger = {
+			local_flag = CCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCGX when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CGX country = CHC }
+						flag = ENG_to_CGX_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCGX when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = CCWVolunteers
+			war = { country = CGX country = CHC }
+			flag = ENG_to_CGX_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3114210 where = CGX when = 15 }
+		command = { type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_CGX_2 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_CGX_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_CGX_2 } type = event which = 3114210 where = CGX when = 15 }
+		command = { trigger = { flag = ENG_to_CGX_2 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_CGX_3 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_CGX_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_CGX_3 } type = event which = 3114210 where = CGX when = 20 }
+		command = { trigger = { flag = ENG_to_CGX_3 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_CGX_4 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_CGX_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_CGX_4 } type = event which = 3114210 where = CGX when = 25 }
+		command = { trigger = { flag = ENG_to_CGX_4 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_CGX_5 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_CGX_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_CGX_5 } type = event which = 3114210 where = CGX when = 30 }
+		command = { trigger = { flag = ENG_to_CGX_5 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_CGX_1 NOT = { flag = ENG_to_CGX_2 } } type = trade which = ENG where = CGX supplies = -1 value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_2 NOT = { flag = ENG_to_CGX_3 } } type = trade which = ENG where = CGX supplies = -2 value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_3 NOT = { flag = ENG_to_CGX_4 } } type = trade which = ENG where = CGX supplies = -3 value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_4 NOT = { flag = ENG_to_CGX_5 } } type = trade which = ENG where = CGX supplies = -4 value = 1 }
+		command = { trigger = { flag = ENG_to_CGX_5 } type = trade which = ENG where = CGX supplies = -5 value = 1 }
+		
+		command = { type = event which = 3114205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3114206
+	random = no
+	country = JAP
+	persistent = yes
+
+	name = "Volunteers heading to China"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to China to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = CCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCGX when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CGX country = CHC }
+						flag = JAP_to_CGX_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = CCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCGX when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = CCWVolunteers
+			war = { country = CGX country = CHC }
+			flag = JAP_to_CGX_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3114210 where = CGX when = 15 }
+		command = { type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = JAP_to_CGX_2 } type = money value = -200 }
+		command = { trigger = { flag = JAP_to_CGX_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = JAP_to_CGX_2 } type = event which = 3114210 where = CGX when = 15 }
+		command = { trigger = { flag = JAP_to_CGX_2 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = JAP_to_CGX_3 } type = money value = -200 }
+		command = { trigger = { flag = JAP_to_CGX_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = JAP_to_CGX_3 } type = event which = 3114210 where = CGX when = 20 }
+		command = { trigger = { flag = JAP_to_CGX_3 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = JAP_to_CGX_4 } type = money value = -200 }
+		command = { trigger = { flag = JAP_to_CGX_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = JAP_to_CGX_4 } type = event which = 3114210 where = CGX when = 25 }
+		command = { trigger = { flag = JAP_to_CGX_4 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = JAP_to_CGX_5 } type = money value = -200 }
+		command = { trigger = { flag = JAP_to_CGX_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = JAP_to_CGX_5 } type = event which = 3114210 where = CGX when = 30 }
+		command = { trigger = { flag = JAP_to_CGX_5 } type = setflag which = VolunteersCountCGX when = 1 value = 1 }
+		
+		command = { trigger = { flag = JAP_to_CGX_1 NOT = { flag = JAP_to_CGX_2 } } type = trade which = JAP where = CGX supplies = -1 value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_2 NOT = { flag = JAP_to_CGX_3 } } type = trade which = JAP where = CGX supplies = -2 value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_3 NOT = { flag = JAP_to_CGX_4 } } type = trade which = JAP where = CGX supplies = -3 value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_4 NOT = { flag = JAP_to_CGX_5 } } type = trade which = JAP where = CGX supplies = -4 value = 1 }
+		command = { trigger = { flag = JAP_to_CGX_5 } type = trade which = JAP where = CGX supplies = -5 value = 1 }
+		
+		command = { type = event which = 3114206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3114210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to China"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to China to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = CHC } type = add_corps value = land where = 1122 }
+		command = { trigger = { country = CGX } type = add_corps value = land where = 1371 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+##
+#
+##
+
+
+
+# Sinkiang - unity
+
+event = { 
+	id = 5000000 
+	random = no
+	country = SIK
+	
+	trigger = {
+		OR = {
+		war = { country = CHC country = CGX }
+		war = { country = CHC country = JAP }
+		}
+	}
+
+	name = EVT_5000000_NAME
+	desc = EVT_5000000_DESC
+	style = 2
+
+        date = { day = 10 month = february year = 1937 }
+        offset = 10
+	deathdate = { day = 25 month = october year = 1944 }
+
+	action_a = {
+		name = ACTIONNAME5000000A 
+		command = { type = trigger which = 522024 }		# Historical
+		command = { type = dissent value = -2 } 		# a popular decision
+		command = { type = manpowerpool value = -20 } 
+		
+		#Volunteers
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+	}
+}
+
+event = { 
+	id = 522024
+	random = no
+	country = CHC
+	
+	# triggered by 5000000
+
+	name = EVT_522024_NAME
+	desc = EVT_522024_DESC
+	style = 2
+
+	action_a = {
+		name = ACTIONNAME522024A  # Accept help from Sinkiang
+		command = { type = manpowerpool value = 20 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = interceptor when = 8 } # historically I-15 or I-16
+	}
+}
+
+# German assistance
+
+event = { 
+	id = 3136115
+	random = no
+	country = GER
+	
+	trigger = {
+		exists = CGX
+	}
+	
+	name = EVT_3136115_NAME # Sino-German cooperation
+	desc = EVT_3136115_DESC
+	style = 2
+
+	date = { day = 15 month = april year = 1936 }
+	offset = 60
+	deathdate = { day = 29 month = august year = 1936 }
+
+	action_a = {
+		name = ACTIONNAME3136115A # Send
+		ai_chance = 100
+		command = { type = sleepleader which = 293 } # von Falkenhausen
+		command = { type = supplies value = -200 }
+		command = { type = rarematerialspool value = 1500 }
+		command = { type = money value = 75 }
+		command = { type = trigger which = 522003 } # CGX
+		command = { type = relation which = CGX value = 20 }
+		command = { type = relation which = JAP value = -20 }
+	}
+}
+
+event = { 
+	id = 3136116
+	random = no
+	country = GER
+	
+	trigger = {
+		event = 522003
+		exists = CGX
+	}
+	
+	name = EVT_3136115_NAME # The German military mission in China
+	desc = EVT_3136116_DESC
+	style = 2
+
+	date = { day = 15 month = april year = 1937 }
+	offset = 60
+	deathdate = { day = 29 month = august year = 1937 }
+
+	action_a = {
+		name = ACTIONNAME3136116A # continue
+		command = { type = supplies value = -300 }
+		command = { type = rarematerialspool value = 1500 }
+		command = { type = money value = 53 }
+		command = { type = trigger which = 522005 }
+	}
+}
+
+event = { 
+	id = 3136119
+	random = no
+	country = GER
+	
+	trigger = {
+		event = 522005
+		exists = CGX
+	}
+
+	name = EVT_3136115_NAME
+ 	desc = EVT_172041_DESC
+	style = 2
+
+	date = { day = 15 month = april year = 1938 }
+	offset = 60
+	deathdate = { day = 29 month = august year = 1938 }
+
+	action_a = {
+		name = ACTIONNAME3136116A
+		command = { type = supplies value = -300 }
+		command = { type = rarematerialspool value = 1500 }
+		command = { type = money value = 43 }
+		command = { type = trigger which = 522007 }
+	}
+	action_b = {
+		name = ACTIONNAME3136116B
+		command = { type = money value = -50 }
+		command = { type = trigger which = 522008 }
+	}
+}
+
+event = { 
+	id = 522003
+	random = no
+	country = CGX
+	
+	# Triggered by 3136115
+	
+	name = EVT_522003_NAME # German military mission in China
+	desc = EVT_522003_DESC
+	style = 2
+
+	action_a = {
+		name = ACTIONNAME522003A # Accept the German offer, this will benefit us greatly.
+		command = { type = wakeleader which = 50304 } # von Falkenhausen
+		command = { type = supplies value = 200 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = manpowerpool value = -16 }
+	}
+}
+
+event = { 
+	id = 522005
+	random = no
+	country = CGX
+	
+	# Triggered by 3136116
+	
+	name = EVT_522005_NAME # German military mission in China
+	desc = EVT_522005_DESC
+	style = 2
+
+	action_a = {
+		name = ACTIONNAME522005A # China will prosper.
+		command = { type = supplies value = 200 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = manpowerpool value = -16 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+	}
+}
+
+event = { 
+	id = 522007
+	random = no
+	country = CGX
+	
+	# Triggered by 5
+	
+	name = EVT_522007_NAME # German assistance in China
+	desc = EVT_522007_DESC
+	style = 2
+
+	action_a = {
+		name = ACTIONNAME522007A # China will prosper.
+		command = { type = supplies value = 200 } # Uniforms, ammunition and weapons from Germany (minus req for new division)
+		command = { type = add_division value = infantry when = 9 }
+# 		command = { type = build_division which = infantry when = 9 }
+# 		command = { type = build_division which = infantry when = 9 }
+		command = { type = manpowerpool value = -40 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+	}
+}
+
+##############################################
+# China - end of civil war
+##############################################
+
+##############################################
+# China - War widens
+##############################################
+
+event = { 
+	id = 3123050
+	random = no
+	country = CHC
+
+	trigger = {
+		atwar = CHC
+		NOT = { alliance = { country = CHC country = SOV } }
+		OR = {
+			#lost_national = { country = CHC value = 100 }
+			#lost_national = { country = CHC value = 100 }
+			#lost_national = { country = CHI value = 100 }
+			#lost_national = { country = CHI value = 100 }
+			alliance = { country = CGX country = JAP }
+			alliance = { country = CGX country = ENG }
+			alliance = { country = CYN country = JAP }
+			alliance = { country = CYN country = ENG }
+			#war = { country = JAP country = SOV }
+			#war = { country = ENG country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1942 }
+
+	name = "China requests assitance"
+	desc = "China requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = event which = 3123051 where = SOV when = 5 }
+	} 
+}
+	
+	
+event = { 
+	id = 3123051
+	random = no
+	country = SOV
+
+	name = "China requests assitance"
+	desc = "China requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = CHC NOT = { ai = SOV } } type = military_control which = SOV where = CHC value = 1 }
+		command = { trigger = { ai = CHI NOT = { ai = SOV } } type = military_control which = SOV where = CHI value = 1 }
+		command = { trigger = { ai = CSX NOT = { ai = SOV } } type = military_control which = SOV where = CSX value = 1 }
+		command = { trigger = { ai = SIK NOT = { ai = SOV } } type = military_control which = SOV where = SIK value = 1 }
+		command = { type = alliance which = CHC }
+		command = { type = alliance which = CHI }
+		command = { type = alliance which = CSX }
+		command = { type = alliance which = SIK }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 3123052
+	random = no
+	country = CGX
+
+	trigger = {
+		atwar = CGX
+		NOT = { alliance = { country = CGX country = JAP } }
+		OR = {
+			#lost_national = { country = CGX value = 100 }
+			#lost_national = { country = CGX value = 100 }
+			#lost_national = { country = CYN value = 100 }
+			#lost_national = { country = CYN value = 100 }
+			alliance = { country = CHC country = SOV }
+			alliance = { country = CHI country = SOV }
+			#war = { country = JAP country = SOV }
+			#war = { country = ENG country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1942 }
+
+	name = "China requests assitance"
+	desc = "China requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = event which = 3123053 where = JAP when = 5 }
+	} 
+}
+	
+	
+event = { 
+	id = 3123053
+	random = no
+	country = JAP
+
+	name = "China requests assitance"
+	desc = "China requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = CGX NOT = { ai = JAP } } type = military_control which = JAP where = CGX value = 1 }
+		command = { trigger = { ai = CYN NOT = { ai = JAP } } type = military_control which = JAP where = CYN value = 1 }
+		command = { trigger = { ai = TIB NOT = { ai = JAP } } type = military_control which = JAP where = TIB value = 1 }
+		command = { type = alliance which = CGX }
+		command = { type = alliance which = CYN }
+		command = { type = alliance which = TIB }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# China - Inheritance
+##############################################
+
+##############################################
+# China - Experience gained
+##############################################
+
+event = {
+	id = 3123150
+	random = no
+	tag = { SOV USA JAP ENG }
+	persistent = yes
+
+	name = "Chinese Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_CHC_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_CHC_1 
+				}
+				AND = {
+					country = JAP
+					flag = JAP_to_CGX_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_CGX_1 
+				}
+			}
+			local_flag = CCWExp
+		}
+		command = { type = local_clrflag which = CCWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great!
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_CHC_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_CHC_1 
+				}
+				AND = {
+					country = JAP
+					flag = JAP_to_CGX_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_CGX_1 
+				}
+			}
+		}
+		
+		command = { trigger = { OR = { country = SOV country = USA } } type = relation which = CHC value = 5 }
+		command = { trigger = { OR = { country = SOV country = USA } } type = relation which = CHI value = 5 }
+		command = { trigger = { OR = { country = JAP country = ENG } } type = relation which = CGX value = 5 }
+		command = { trigger = { OR = { country = JAP country = ENG } } type = relation which = CYN value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_1 }
+										AND = { country = USA flag = USA_to_CHC_1 }
+										AND = { country = JAP flag = JAP_to_CGX_1 }
+										AND = { country = ENG flag = ENG_to_CGX_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_2 }
+										AND = { country = USA flag = USA_to_CHC_2 }
+										AND = { country = JAP flag = JAP_to_CGX_2 }
+										AND = { country = ENG flag = ENG_to_CGX_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_3 }
+										AND = { country = USA flag = USA_to_CHC_3 }
+										AND = { country = JAP flag = JAP_to_CGX_3 }
+										AND = { country = ENG flag = ENG_to_CGX_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_4 }
+										AND = { country = USA flag = USA_to_CHC_4 }
+										AND = { country = JAP flag = JAP_to_CGX_4 }
+										AND = { country = ENG flag = ENG_to_CGX_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_5 }
+										AND = { country = USA flag = USA_to_CHC_5 }
+										AND = { country = JAP flag = JAP_to_CGX_5 }
+										AND = { country = ENG flag = ENG_to_CGX_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_1 }
+										AND = { country = USA flag = USA_to_CHC_1 }
+										AND = { country = JAP flag = JAP_to_CGX_1 }
+										AND = { country = ENG flag = ENG_to_CGX_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_2 }
+										AND = { country = USA flag = USA_to_CHC_2 }
+										AND = { country = JAP flag = JAP_to_CGX_2 }
+										AND = { country = ENG flag = ENG_to_CGX_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_3 }
+										AND = { country = USA flag = USA_to_CHC_3 }
+										AND = { country = JAP flag = JAP_to_CGX_3 }
+										AND = { country = ENG flag = ENG_to_CGX_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_4 }
+										AND = { country = USA flag = USA_to_CHC_4 }
+										AND = { country = JAP flag = JAP_to_CGX_4 }
+										AND = { country = ENG flag = ENG_to_CGX_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_5 }
+										AND = { country = USA flag = USA_to_CHC_5 }
+										AND = { country = JAP flag = JAP_to_CGX_5 }
+										AND = { country = ENG flag = ENG_to_CGX_5 }
+								} }
+								type = money value = -5 }
+
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_1 }
+										AND = { country = USA flag = USA_to_CHC_1 }
+										AND = { country = JAP flag = JAP_to_CGX_1 }
+										AND = { country = ENG flag = ENG_to_CGX_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_2 }
+										AND = { country = USA flag = USA_to_CHC_2 }
+										AND = { country = JAP flag = JAP_to_CGX_2 }
+										AND = { country = ENG flag = ENG_to_CGX_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_3 }
+										AND = { country = USA flag = USA_to_CHC_3 }
+										AND = { country = JAP flag = JAP_to_CGX_3 }
+										AND = { country = ENG flag = ENG_to_CGX_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_4 }
+										AND = { country = USA flag = USA_to_CHC_4 }
+										AND = { country = JAP flag = JAP_to_CGX_4 }
+										AND = { country = ENG flag = ENG_to_CGX_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_5 }
+										AND = { country = USA flag = USA_to_CHC_5 }
+										AND = { country = JAP flag = JAP_to_CGX_5 }
+										AND = { country = ENG flag = ENG_to_CGX_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_1 }
+										AND = { country = USA flag = USA_to_CHC_1 }
+										AND = { country = JAP flag = JAP_to_CGX_1 }
+										AND = { country = ENG flag = ENG_to_CGX_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_2 }
+										AND = { country = USA flag = USA_to_CHC_2 }
+										AND = { country = JAP flag = JAP_to_CGX_2 }
+										AND = { country = ENG flag = ENG_to_CGX_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_3 }
+										AND = { country = USA flag = USA_to_CHC_3 }
+										AND = { country = JAP flag = JAP_to_CGX_3 }
+										AND = { country = ENG flag = ENG_to_CGX_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_4 }
+										AND = { country = USA flag = USA_to_CHC_4 }
+										AND = { country = JAP flag = JAP_to_CGX_4 }
+										AND = { country = ENG flag = ENG_to_CGX_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_CHC_5 }
+										AND = { country = USA flag = USA_to_CHC_5 }
+										AND = { country = JAP flag = JAP_to_CGX_5 }
+										AND = { country = ENG flag = ENG_to_CGX_5 }
+								} }
+								type = gain_tech which = -1 }
+
+		command = { type = event which = 3123150 where = -1 when = 180 }
+	}
+}

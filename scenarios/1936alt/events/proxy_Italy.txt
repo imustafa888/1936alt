@@ -1,0 +1,3668 @@
+
+#########################################################################
+# Italy
+#########################################################################
+
+#########################################################################
+# Italy - Outbreak
+#########################################################################
+
+# Italo-Ethiopian war, Soviet intervention
+
+event = { 
+	id = 3187000
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = SOV_to_ETH }
+		war = { country = ITA country = ETH }
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_ETH_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = SOV_to_ETH }
+		NOT = { flag = SOV_to_ETH_delay }
+		war = { country = ITA country = ETH }
+		NOT = { war = { country = ENG country = SOV } }
+		NOT = { lost_national = { country = SOV value = 5 } }
+	}
+	
+	name = "Italo-Ethiopian war - Soviet intervention"
+	desc = "The Italians under the bloodthirsty Fascist dictator Mussolini had once again invaded Ethiopia, an african country friendly to us. Although they made no progress thus far, if we stay out, it is likely that Ethiopia will be wiped out. We should help Ethiopia now, just as we helped it 40 years prior."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = access which = ETH }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = SOV where = ETH supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.6*312=380
+		#hq
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = money value = -380 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = manpowerpool value = -5 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = SOV value = 1 }
+		command = { type = event which = 3187001 where = ETH when = 15 }
+		command = { type = setflag which = SOV_to_ETH }
+		command = { type = setflag which = SOV_to_ETH_delay }
+	}
+}
+
+event = { 
+	id = 3187001
+	random = no
+	country = ETH
+	persistent = yes
+	
+	name = "Soviet help arrives in Ethiopia"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived through the French-Djiboutian border to Ethiopia."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = flag_ext where = ETH which = "_14" }
+		command = { type = access which = SOV }
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = add_corps value = land where = 833 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = add_division which = "Soviet advisors in Ethiopia" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = add_division which = "Soviet volunteers in Ethiopia 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = add_division which = "Soviet volunteers in Ethiopia 2" value = infantry when = 9 where = artillery }
+
+
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = yes } type = add_corps value = land where = 821 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = yes } type = add_division which = "Soviet volunteers in Ethiopia 3" value = infantry when = 9 where = artillery }		
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = yes } type = add_division which = "Soviet volunteers in Ethiopia 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = SOV_to_ETH_delay }
+	}
+}
+
+event = { 
+	id = 3187002
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { flag = SOV_to_ETH }
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_ETH_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_ETH
+		NOT = { flag = SOV_to_ETH_delay }
+		OR = {
+			NOT = { atwar = ETH }
+			war = { country = ENG country = SOV }
+			NOT = { exists = GER }
+			NOT = { exists = ETH }
+			ispuppet = ETH
+			lost_national = { country = SOV value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Ethiopia"
+	desc = "With the Italian-Ethiopian war at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = ETH }
+		command = { trigger = { NOT = { alliance = { country = ETH } } } type = military_control which = SOV where = ETH value = 0 }
+		command = { type = end_trades which = ETH where = SOV }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = remove_division which = "Soviet advisors in Ethiopia" value = ETH }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = remove_division which = "Soviet volunteers in Ethiopia 4" value = ETH }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = remove_division which = "Soviet volunteers in Ethiopia 3" value = ETH }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = remove_division which = "Soviet volunteers in Ethiopia 2" value = ETH }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = remove_division which = "Soviet volunteers in Ethiopia 1" value = ETH }
+		
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } } type = add_corps value = land where = 833 }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } exists = ETH } type = add_division which = "Soviet advisors in Ethiopia" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } exists = ETH } type = add_division which = "Soviet volunteers in Ethiopia 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } exists = ETH } type = add_division which = "Soviet volunteers in Ethiopia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH exists = ETH } type = add_division which = "Soviet volunteers in Ethiopia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_ETH_happened } ai = ETH exists = ETH } type = add_division which = "Soviet volunteers in Ethiopia 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = SOV_to_ETH_happened }
+		
+		command = { type = clrflag which = SOV_to_ETH }
+		command = { type = trigger which = 3187003 }
+	}
+}
+
+event = { 
+	id = 3187003 
+	random = no
+	country = ETH
+	persistent = yes
+
+	name = "End of intervention in Ethiopia"
+	desc = "With the Italian-Ethiopian war at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = SOV }
+	}
+}
+
+
+# Italo-Ethiopian war, French intervention
+
+event = { 
+	id = 3187010
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = FRA_to_ETH }
+		war = { country = ITA country = ETH }
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_ETH_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = FRA_to_ETH }
+		NOT = { flag = FRA_to_ETH_delay }
+		war = { country = ITA country = ETH }
+		NOT = { war = { country = ENG country = SOV } }
+		NOT = { lost_national = { country = FRA value = 5 } }
+	}
+	
+	name = "Italo-Ethiopian war - French intervention"
+	desc = "The Italians under the bloodthirsty Fascist dictator Mussolini had once again invaded Ethiopia, an african country friendly to us. Although they made no progress thus far, if we stay out, it is likely that Ethiopia will be wiped out. We should help Ethiopia now, just as we helped it 40 years prior."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = access which = ETH }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = FRA where = ETH supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.6*312=380
+		#hq
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = money value = -380 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = manpowerpool value = -5 }
+		
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = FRA value = 1 }
+		command = { type = event which = 3187011 where = ETH when = 15 }
+		command = { type = setflag which = FRA_to_ETH }
+		command = { type = setflag which = FRA_to_ETH_delay }
+	}
+}
+
+event = { 
+	id = 3187011
+	random = no
+	country = ETH
+	persistent = yes
+	
+	name = "French help arrives in Ethiopia"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived through the French-Djiboutian border to Ethiopia."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = FRA }
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = add_corps value = land where = 833 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = add_division which = "French advisors in Ethiopia" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = add_division which = "French volunteers in Ethiopia 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = add_division which = "French volunteers in Ethiopia 2" value = infantry when = 9 where = artillery }
+
+
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = yes } type = add_corps value = land where = 821 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = yes } type = add_division which = "French volunteers in Ethiopia 3" value = infantry when = 9 where = artillery }		
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = yes } type = add_division which = "French volunteers in Ethiopia 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = FRA_to_ETH_delay }
+	}
+}
+
+event = { 
+	id = 3187012
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { flag = FRA_to_ETH }
+
+	decision_trigger = { 
+		NOT = { flag = FRA_to_ETH_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_ETH
+		NOT = { flag = FRA_to_ETH_delay }
+		OR = {
+			NOT = { atwar = ETH }
+			war = { country = ENG country = SOV }
+			NOT = { exists = GER }
+			NOT = { exists = ETH }
+			ispuppet = ETH
+			lost_national = { country = FRA value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Ethiopia"
+	desc = "With the Italian-Ethiopian war at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = ETH }
+		command = { trigger = { NOT = { alliance = { country = ETH } } } type = military_control which = FRA where = ETH value = 0 }
+		command = { type = end_trades which = ETH where = FRA }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = remove_division which = "French advisors in Ethiopia" value = ETH }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = remove_division which = "French volunteers in Ethiopia 4" value = ETH }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = remove_division which = "French volunteers in Ethiopia 3" value = ETH }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = remove_division which = "French volunteers in Ethiopia 2" value = ETH }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = remove_division which = "French volunteers in Ethiopia 1" value = ETH }
+		
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } } type = add_corps value = land where = 833 }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } exists = ETH } type = add_division which = "French advisors in Ethiopia" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } exists = ETH } type = add_division which = "French volunteers in Ethiopia 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } exists = ETH } type = add_division which = "French volunteers in Ethiopia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH exists = ETH } type = add_division which = "French volunteers in Ethiopia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_ETH_happened } ai = ETH exists = ETH } type = add_division which = "French volunteers in Ethiopia 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = FRA_to_ETH_happened }
+		
+		command = { type = clrflag which = FRA_to_ETH }
+		command = { type = trigger which = 3187013 }
+	}
+}
+
+event = { 
+	id = 3187013 
+	random = no
+	country = ETH
+	persistent = yes
+
+	name = "End of intervention in Ethiopia"
+	desc = "With the Italian-Ethiopian war at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = FRA }
+	}
+}
+
+event = {
+	id = 3187019
+	country = ITA
+	random = no
+
+	name = "War in Ethiopia requires additional funding"
+	desc = "The initial steps for the war in Ethiopia have proven to be insufficient if not disastarous, and the expectations of quick victory quickly ran against the reality that this might be a long war, for which the Italian military is not prepared. In order to continue the war to its victorious conclusion, we must allocate additional funds to the military now."
+	style = 2
+
+	trigger = { 
+		exists = ETH
+		war = { country = ETH country = ITA }
+	}
+
+	date = { day = 17 month = september year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		name = "Give them whatever they need!"
+		ai_chance = 100
+		command = { type = money value = -1500 }
+		command = { type = free_money value = -1.5 }
+		command = { type = local_setflag which = ITAMoney1 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = infantry when = 8 }
+	}
+	action = {
+		name = "Let's find a compromise!"
+		ai_chance = 0
+		command = { type = money value = -500 }
+		command = { type = free_money value = -0.5 }
+		command = { type = local_setflag which = ITAMoney2 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = dissent value = 2 }
+		command = { type = morale which = land value = -2 }
+	}
+	action = {
+		name = "That's a lot of money!"
+		ai_chance = 0
+		command = { type = money value = -5 }
+		command = { type = dissent value = 15 }
+		command = { type = morale which = land value = -10 }
+	}
+}
+
+event = {
+	id = 3187020
+	country = ITA
+	save_date = yes
+	random = no
+
+	name = EVT3187020_NAME
+	desc = EVT3187020_DESC
+	style = 2
+
+	trigger = { 
+		OR = {
+			AND = {
+				exists = ETH
+				NOT = { lost_national = { country = ETH value = 50 } }
+				control = { province = 825 data = ETH }
+				year = 1937
+			}
+			control = { province = 816 data = ETH } # Assab
+			control = { province = 817 data = ETH } # Asmara
+			control = { province = 836 data = ETH } # Mogadishu
+		}
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Damn"
+		command = { type = dissent value = 10 }
+	}
+}
+
+event = {
+	id = 3187021
+	country = ITA
+	random = no
+
+	name = EVT3187021_NAME
+	desc = EVT3187021_DESC
+	style = 2
+	
+	trigger = { 
+		NOT = { money = 250 }
+	}
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Re-evaluate the lira to 100 per pound"
+		ai_chance = 100
+	    command = { type = local_setflag which = pound100 }
+		command = { type = money value = 500 }
+		command = { type = dissent value = 5 }
+		command = { trigger = { local_flag = ITAMoney1 } type = free_money value = 1.3 }
+		command = { trigger = { local_flag = ITAMoney2 } type = free_money value = 0.3 }
+		command = { type = industrial_modifier which = total value = -3 }
+	}
+	action_b = {
+		name = "Re-evaluate the lira to 125 per pound"
+		ai_chance = 0
+	    command = { type = local_setflag which = pound125 }
+		command = { type = money value = 1000 }
+		command = { type = dissent value = 15 }
+		command = { trigger = { local_flag = ITAMoney1 } type = free_money value = 1.4 }
+		command = { trigger = { local_flag = ITAMoney2 } type = free_money value = 0.4 }
+		command = { type = industrial_modifier which = total value = -2 }
+	}
+	action_c = {
+		name = "Re-evaluate the lira to 150 per pound"
+		ai_chance = 0
+	    command = { type = local_setflag which = pound150 }
+		command = { type = money value = 1500 }
+		command = { type = dissent value = 30 }
+		command = { trigger = { local_flag = ITAMoney1 } type = free_money value = 1.5 }
+		command = { trigger = { local_flag = ITAMoney2 } type = free_money value = 0.5 }
+		command = { type = industrial_modifier which = total value = -1 }
+	}
+	action_d = {
+		name = "Continue the current rate"
+		ai_chance = 0
+	    command = { type = local_setflag which = pound90 }
+		command = { type = industrial_modifier which = total value = -10 }
+	}
+}
+
+event = {
+	id = 3187022
+	country = ITA
+	random = no
+	
+	trigger = {
+		NOT = { money = 250 }
+		local_flag = pound100
+	}
+
+	name = "Currency crisis worsens"
+	desc = "The re-evaluation of the lira to 100 lira per pound has proven insufficient to stop the capital and currency flight. The corporations are finding it difficult to pay wages to the workers, many paychecks are delayed. The labor unrest is growing. The only way to avoid total meltdown is to re-evalute the currency further."
+	style = 2
+
+	date = { day = 1 month = march year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Re-evaluate the lira to 125 per pound"
+		ai_chance = 100
+	    command = { type = local_clrflag which = pound100 }
+	    command = { type = local_setflag which = pound125 }
+		command = { type = money value = 500 }
+		command = { type = dissent value = 15 }
+		command = { trigger = { local_flag = ITAMoney1 } type = free_money value = 0.1 } #net = -0.1
+		command = { trigger = { local_flag = ITAMoney2 } type = free_money value = 0.1 }
+		command = { type = industrial_modifier which = total value = 2 } #net = -1
+	}
+	action_b = {
+		name = "Re-evaluate the lira to 150 per pound"
+		ai_chance = 0
+	    command = { type = local_clrflag which = pound100 }
+	    command = { type = local_setflag which = pound150 }
+		command = { type = money value = 1000 }
+		command = { type = dissent value = 30 }
+		command = { trigger = { local_flag = ITAMoney1 } type = free_money value = 0.2 } #net = 0
+		command = { trigger = { local_flag = ITAMoney2 } type = free_money value = 0.2 }
+		command = { type = industrial_modifier which = total value = 3 } #net = 0
+	}
+	action_c = {
+		name = "Continue the current rate"
+		ai_chance = 0
+		command = { type = industrial_modifier which = total value = -5 } #net = -8
+	}
+}
+
+event = {
+	id = 3187023
+	country = ITA
+	save_date = yes
+	random = no
+	
+	trigger = {
+		event = 3187021
+	}
+
+	name = "Hyperinflation, labor unrest"
+	desc = "As hyperinflation returns to Italy and enterprises start closing, the government finds itself unable to rescue them due to the lack of financial strength in the budget. After 10 yeas of relative calm, violence erupts again in many cities particularly in the north, where the workers find their purchasing power decline substantially as the government does nothing to help them."
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Declare a state of emergency"
+		command = { type = dissent value = 10 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = domestic which = freedom value = -1 }
+	}
+}
+
+event = {
+	id = 3187024
+	country = ITA
+	random = no
+	
+	trigger = {
+		war = { country = ITA country = ETH }
+		event = { id = 3187020 days = 30 }
+		OR = {	
+			event = { id = 3187023 days = 10 }
+			control = { province = 816 data = ETH } # Assab
+			control = { province = 817 data = ETH } # Asmara
+			control = { province = 836 data = ETH } # Mogadishu
+		}
+	}
+	
+	name = "Peace with Ethiopia"
+	desc = "The Royal Italian Army has proven unable to dislodge the entrenched Ethiopians from their positions, despite the overwhelming force thrown against them. The current economic and social situation in Italy makes a long war of attrition against Ethiopia impossible. Humiliated again, the Italian army must be brought home. We must propose white peace to Ethiopia."
+	style = 2
+
+	date = { day = 15 month = january year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1939 }
+
+	action_a = {
+		name = "Peace is our only option"
+		ai_chance = 100
+		command = { trigger = { NOT = { 
+			OR = { 
+				control = { province = 816 data = ETH } # Assab
+				control = { province = 817 data = ETH } # Asmara
+				control = { province = 836 data = ETH }
+			} } } type = trigger which = 3187025 }
+		command = { trigger = {
+			OR = { 
+				control = { province = 816 data = ETH } # Assab
+				control = { province = 817 data = ETH } # Asmara
+				control = { province = 836 data = ETH }
+			} } type = trigger which = 3187026 }
+	}
+	action_b = {
+		name = "Peace is suicide"
+		ai_chance = 0
+		command = { type = ground_def_eff value = -0.55 when = 1 }
+	}
+}
+
+event = {
+	id = 3187025
+	country = ETH
+	random = no
+	
+	name = "Italy offers peace"
+	desc = "Amid spreading unrest and economic crisis, Italy offers to negotiate peace on pre-war borders. However, should we refuse, it is far from certain whether the Italian army will even have the strength to defend its colonies amid a likely civil war in the homeland. The cabinet proposes to demand Eritrea from Italy in return for peace."
+	style = 2
+
+	action_a = {
+		name = "Demand Eritrea"
+		ai_chance = 100
+		command = { type = trigger which = 3187027 }
+		command = { type = belligerence value = 1 }
+	}
+	action_b = {
+		name = "Demand Eritrea and Somalia"
+		ai_chance = 0
+		command = { type = trigger which = 3187028 }
+		command = { type = belligerence value = 2 }
+	}
+	action_c = {
+		name = "Don't take unnecessary risks, agree to white peace"
+		ai_chance = 0
+		command = { type = trigger which = 3187029 }
+	}
+}
+
+event = {
+	id = 3187026
+	country = ETH
+	random = no
+	
+	name = "Italy offers peace"
+	desc = "Amid spreading unrest and economic crisis, Italy offers to negotiate peace on pre-war borders. However, should we refuse, it is far from certain whether the Italian army will even have the strength to defend its colonies amid a likely civil war in the homeland. As we already hold Asmara, the cabinet proposes to demand Eritrea and Somalia from Italy in return for peace."
+	style = 2
+
+	action_b = {
+		name = "Demand Eritrea and Somalia"
+		ai_chance = 100
+		command = { type = trigger which = 3187028 }
+		command = { type = belligerence value = 2 }
+	}
+	action_a = {
+		name = "Demand Eritrea"
+		ai_chance = 0
+		command = { type = trigger which = 3187027 }
+		command = { type = belligerence value = 1 }
+	}
+	action_c = {
+		name = "Don't take unnecessary risks, agree to white peace"
+		ai_chance = 0
+		command = { type = trigger which = 3187029 }
+	}
+}
+
+event = {
+	id = 3187027
+	country = ITA
+	random = no
+	
+	name = "Ethiopia rejects our offer"
+	desc = "Confident in their strength and our weakness, the Ethiopian leadership rejected our offer of white peace and counter-proposed peace in exchange for Eritrea, one of our colonies in East Africa."
+	style = 2
+
+	action_a = {
+		name = "Peace is our only option"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+		command = { type = belligerence value = -2 }
+		command = { type = sleepevent which = 3187050 }
+	}
+	action_b = {
+		name = "Peace is suicide"
+		ai_chance = 0
+		command = { type = dissent value = 30 }
+		command = { type = ground_def_eff value = 0.55 }
+	}
+}
+
+event = {
+	id = 3187028
+	country = ITA
+	random = no
+	
+	name = "Ethiopia rejects our offer"
+	desc = "Confident in their strength and our weakness, the Ethiopian leadership rejected our offer of white peace and counter-proposed peace in exchange for Eritrea and Somalia, both of our colonies in East Africa."
+	style = 2
+
+	action = {
+		name = "Peace is our only option"
+		trigger = { NOT = {
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} } }
+		ai_chance = 100
+		command = { type = dissent value = 20 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = secedeprovince which = ETH value = 834 }
+		command = { type = secedeprovince which = ETH value = 835 }
+		command = { type = secedeprovince which = ETH value = 836 }
+		command = { type = secedeprovince which = ETH value = 837 }
+		command = { type = secedeprovince which = ETH value = 838 }
+
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+		command = { type = belligerence value = -5 }
+		command = { type = sleepevent which = 3187050 }
+	}
+	action = {
+		name = "Peace is suicide"
+		trigger = { NOT = {
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} } }
+		ai_chance = 0
+		command = { type = dissent value = 30 }
+		command = { type = ground_def_eff value = 0.55 }
+	}
+	action = {
+		name = "Peace is our only option"
+		trigger = {
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} }
+		ai_chance = 100
+		command = { type = dissent value = 20 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = secedeprovince which = ETH value = 834 }
+		command = { type = secedeprovince which = ETH value = 835 }
+		command = { type = secedeprovince which = ETH value = 836 }
+		command = { type = secedeprovince which = ETH value = 837 }
+		command = { type = secedeprovince which = ETH value = 838 }
+
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+		command = { type = belligerence value = -5 }
+		command = { type = sleepevent which = 3187050 }
+	}
+	action = {
+		name = "Peace is suicide"
+		trigger = { 
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} }
+		ai_chance = 0
+		command = { type = dissent value = 30 }
+		command = { type = ground_def_eff value = 0.55 }
+	}
+}
+
+event = {
+	id = 3187029
+	country = ITA
+	random = no
+	
+	name = "Ethiopia accpets our offer"
+	desc = "Unable to forecast the events in Europe with sufficient accuracy, the Ethiopian leadership decided not to take unnecessary risks and accept our generous offer."
+	style = 2
+
+	action_a = {
+		name = "Peace is our only option"
+		ai_chance = 0
+		command = { type = dissent value = 5 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = belligerence value = -1 }
+		command = { type = sleepevent which = 3187050 }
+	}
+}
+
+event = {
+	id = 3187049
+	country = ITA
+	random = no
+
+	name = "Victory!"
+	desc = "Despite heavy casualties, determined resistance, and foreign support, the Ethiopians still failed to stop our advance. Our forces are victorious!"
+	style = 2
+
+	trigger = { 
+		control = { province = 825 data = -3 } # Addis Adeba
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Hurray!"
+		command = { type = dissent value = -10 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = setflag which = AlliedETH }
+	}
+}
+
+event = {
+	id = 3187050
+	country = ITA
+	random = no
+	
+	#unilateral peace
+	trigger = {
+		NOT = { event = 3187027 }
+		NOT = { event = 3187028 }
+		NOT = { control = { province = 816 data = -3 } }
+		NOT = { war = { country = ITA country = ETH } }
+	}
+
+	name = "Unilateral peace with Ethiopia"
+	desc = "After a grinding unsuccessful war against Ethiopia and countless dead Italians, peace was declared on very unfavorable terms to Italy."
+	style = 2
+
+	date = { day = 1 month = june year = 1935 }
+	offset = 6
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action = {
+		name = "Peace was our only option"
+		trigger = { NOT = {
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} } }
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+		command = { type = belligerence value = -2 }
+	}
+	action = {
+		name = "Peace was our only option"
+		trigger = {
+			OR = { 
+				control = { province = 816 data = ETH } 
+				control = { province = 836 data = ETH }
+			} }
+		ai_chance = 100
+		command = { type = dissent value = 20 }
+		command = { type = money value = 100 }
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = secedeprovince which = ETH value = 834 }
+		command = { type = secedeprovince which = ETH value = 835 }
+		command = { type = secedeprovince which = ETH value = 836 }
+		command = { type = secedeprovince which = ETH value = 837 }
+		command = { type = secedeprovince which = ETH value = 838 }
+
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+		command = { type = belligerence value = -5 }
+	}
+}
+
+event = {
+	id = 3187030
+	country = ITA
+	random = no
+	
+	trigger = {
+		dissent = 10
+		event = { id = 3187023 days = 90 }
+		OR = {	
+			random = 5
+			AND = {
+				event = 3187025
+				random = 25
+			}
+			AND = {
+				event = 3187026
+				random = 50
+			}
+		}
+	}
+
+	name = "Italian Civil War"
+	desc = "As the police tries to crack down on popular demonstrations, the mobs turn violent and the rebels start recieving arms from across the border with Switzerland and especially France. With the majority of the Italian army still coming back from Ethiopia demoralized, the popular uprising spreads through Italy, centered in the north-west. Mussolini, howerver, survives and vows to put down the rebellion at all costs."
+	style = 2
+
+	date = { day = 1 month = june year = 1937 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "For a new Italy"
+		command = { type = civil_war which = U14 }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = end_mastery which = ALB }
+		command = { type = dissent value = -50 }
+		#stay in rome
+		#command = { type = capital which = 400 } 
+		command = { type = industrial_modifier which = total value = 1 }
+		command = { type = money value = 1000 }
+		command = { trigger = { NOT = { money = 50 } } type = money value = 500 }
+		command = { trigger = { NOT = { money = 50 } } type = money value = 500 }
+		command = { trigger = { NOT = { money = 50 } } type = money value = 500 }
+
+		command = { type = end_guarantee which = ITA where = AUS }
+
+		command = { type = event which = 3187031 where = ITA when = 1 }
+	}
+}
+
+event = {
+	id = 3187031
+	country = ITA
+	random = no
+
+	name = "Italian Civil War"
+	desc = "As the police tries to crack down on popular demonstrations, the mobs turn violent and the rebels start recieving arms from across the border with Switzerland and especially France. With the majority of the Italian army still coming back from Ethiopia demoralized, the popular uprising spreads through Italy, centered in the north-west. Mussolini, howerver, survives and vows to put down the rebellion at all costs."
+	style = 2
+
+	action_a = {
+		name = "For a new Italy"
+		command = { type = belligerence value = 1 }
+		command = { type = transport_pool which = ITA value = 200 }
+
+		command = { type = construct which = land_fort where = 393 value = 4 }
+		command = { type = construct which = land_fort where = 400 value = 2 }
+		command = { type = construct which = land_fort where = 419 value = 4 }
+		
+		command = { type = add_division value = transport when = 1 }
+		command = { type = add_division value = transport when = 1 }
+		command = { type = add_division value = transport when = 1 }
+		
+		#Frontline venice
+		command = { type = add_corps value = land where = 400 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 400 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 393 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 393 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		#command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 395 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 395 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+
+
+		#Internal venice
+		command = { type = add_corps value = land where = 394 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 394 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 405 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 405 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 404 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 403 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 403 }
+        command = { type = add_division value = garrison when = 4 }
+        command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 406 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 406 }
+        command = { type = add_division value = garrison when = 4 }
+        command = { type = add_division value = garrison when = 4 }
+
+		
+		#Frontline rome
+		command = { type = add_corps value = land where = 419 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 419 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 414 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 412 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		
+		#Internal rome
+		command = { type = add_corps value = land where = 420 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 423 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 416 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 418 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		command = { type = add_corps value = land where = 417 }
+		command = { type = add_division value = garrison when = 4 }
+		
+		command = { type = add_corps value = land where = 415 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 421 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = infantry when = 7 }
+
+		command = { type = add_corps value = land where = 427 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 424 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 426 }
+		command = { type = add_division value = garrison when = 4 }
+
+		command = { type = add_corps value = land where = 422 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = infantry when = 7 }
+
+		command = { type = add_corps value = land where = 401 }
+		command = { type = add_division value = garrison when = 4 }
+		
+		#rome - sicily connection
+		command = { type = add_corps value = land where = 428 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		command = { type = add_corps value = land where = 425 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		#Frontline Sicily
+		command = { type = add_corps value = land where = 431 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 431 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		command = { type = add_corps value = land where = 432 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+
+		command = { type = trigger which = 3187032 }
+		
+		command = { type = addcore which = 2764 }
+		command = { type = secedeprovince which = ITA value = 2764 when = 2 }
+		
+		
+		
+		#command = { type = secedeprovince which = ETH value = 834 }
+		#command = { type = secedeprovince which = ETH value = 835 }
+		#command = { type = secedeprovince which = ETH value = 836 }
+		#command = { type = secedeprovince which = ETH value = 837 }
+		#command = { type = secedeprovince which = ETH value = 838 }
+
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+
+ 		command = { type = secedeprovince which = U14 value = 750 }
+ 		command = { type = secedeprovince which = U14 value = 751 }
+ 		command = { type = secedeprovince which = U14 value = 752 }
+ 		command = { type = secedeprovince which = U14 value = 753 }
+ 		command = { type = secedeprovince which = U14 value = 757 }
+		
+ 		command = { type = secedeprovince which = U14 value = 396 }
+ 		command = { type = secedeprovince which = U14 value = 398 }
+ 		command = { type = secedeprovince which = U14 value = 399 }
+ 		command = { type = secedeprovince which = U14 value = 407 }
+		command = { type = secedeprovince which = U14 value = 408 }
+ 		command = { type = secedeprovince which = U14 value = 410 }
+ 		command = { type = secedeprovince which = U14 value = 411 }
+ 		command = { type = secedeprovince which = U14 value = 413 }
+		#command = { type = secedeprovince which = U14 value = 412 }
+ 		#command = { type = secedeprovince which = U14 value = 414 }
+ 		command = { type = secedeprovince which = U14 value = 430 }
+ 		command = { type = secedeprovince which = U14 value = 433 }
+ 		command = { type = secedeprovince which = U14 value = 434 }
+ 		command = { type = secedeprovince which = U14 value = 435 }
+		
+ 		command = { type = control which = U14 value = 750 }
+ 		command = { type = control which = U14 value = 751 }
+ 		command = { type = control which = U14 value = 752 }
+ 		command = { type = control which = U14 value = 753 }
+ 		command = { type = control which = U14 value = 757 }
+		
+ 		command = { type = control which = U14 value = 396 }
+ 		command = { type = control which = U14 value = 398 }
+ 		command = { type = control which = U14 value = 399 }
+ 		command = { type = control which = U14 value = 407 }
+		command = { type = control which = U14 value = 408 }
+ 		command = { type = control which = U14 value = 410 }
+ 		command = { type = control which = U14 value = 411 }
+ 		#command = { type = control which = U14 value = 412 }
+		#command = { type = control which = U14 value = 414 }
+ 		command = { type = control which = U14 value = 413 }
+ 		command = { type = control which = U14 value = 430 }
+ 		command = { type = control which = U14 value = 433 }
+ 		command = { type = control which = U14 value = 434 }
+ 		command = { type = control which = U14 value = 435 }
+	}
+}
+
+event = {
+	id = 3187032
+	country = U14
+	random = no
+
+	name = "Italian Civil War"
+	desc = "As the police tries to crack down on popular demonstrations, the demonstrations turn violent and the rebels start recieving arms from across the border with Switzerland and especially France. With the majority of the Italian army still coming back from Ethiopia demoralized, the popular uprising spreads through Italy, centered in the north-west. Mussolini, howerver, survives and vows to put down the rebellion at all costs."
+	style = 2
+
+	action_a = {
+		name = "For a new Italy"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = belligerence value = 1 }
+		command = { type = construct which = land_fort where = 410 value = 4 }
+		command = { type = construct which = land_fort where = 408 value = 4 }
+		command = { type = construct which = land_fort where = 411 value = 2 }
+		command = { type = add_corps value = land where = 408 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 411 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+		
+		command = { type = add_corps value = land where = 396 }
+        command = { type = add_division value = garrison when = 4 }
+        command = { type = add_division value = garrison when = 4 }
+		
+		command = { type = add_corps value = land where = 398 }
+        command = { type = add_division value = garrison when = 4 }
+        command = { type = add_division value = garrison when = 4 }
+
+		command = { type = transport_pool which = U14 value = 200 }
+		command = { type = dissent value = -50 }
+		command = { type = money value = 1000 }
+		command = { type = set_domestic which = political_left value = 9 }
+		command = { type = set_domestic which = democratic value = 4 }
+		command = { type = set_domestic which = freedom value = 3 }
+
+		command = { type = add_division value = transport when = 1 }
+		command = { type = add_division value = transport when = 1 }
+		command = { type = add_division value = transport when = 1 }
+		
+		#Front line
+		command = { type = add_corps value = land where = 411 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		
+		command = { type = add_corps value = land where = 410 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		
+		#command = { type = add_corps value = land where = 413 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+
+		command = { type = add_corps value = land where = 407 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = garrison when = 4 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		command = { type = add_corps value = land where = 408 }
+        command = { type = add_division value = infantry when = 7 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		#Sicily
+		command = { type = add_corps value = land where = 433 }
+		command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 433 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_corps value = land where = 430 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 430 }
+		command = { type = add_division value = garrison when = 4 }
+
+		#Libya
+		command = { type = add_corps value = land where = 750 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 752 }
+		command = { type = add_division value = infantry when = 7 }
+
+		#Inland
+		command = { type = add_corps value = land where = 396 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = infantry when = 7 }
+
+		command = { type = add_corps value = land where = 398 }
+		command = { type = add_division value = garrison when = 4 }
+		command = { type = add_division value = infantry when = 7 }
+
+		command = { type = add_corps value = land where = 399 }
+		command = { type = add_division value = garrison when = 4 }
+		
+		command = { type = addcore which = 2763 }
+		command = { type = secedeprovince which = U14 value = 2763 when = 2 }
+		
+		command = { type = switch_allegiance which = -2 where = ITA }
+		
+		#command = { type = event which = 3187033 where = ITA when = 1 }
+		#command = { type = event which = 3187034 where = U14 when = 1 }
+		
+		command = { type = event which = 3187200 where = U14 when = 1 } # Libya independence
+		
+		#command = { type = secedeprovince which = ETH value = 834 }
+		#command = { type = secedeprovince which = ETH value = 835 }
+		#command = { type = secedeprovince which = ETH value = 836 }
+		#command = { type = secedeprovince which = ETH value = 837 }
+		#command = { type = secedeprovince which = ETH value = 838 }
+
+		command = { type = secedeprovince which = ETH value = 815 }
+		command = { type = secedeprovince which = ETH value = 816 }
+		command = { type = secedeprovince which = ETH value = 817 }
+
+
+ 		command = { type = secedeprovince which = ITA value = 393 }
+ 		command = { type = secedeprovince which = ITA value = 394 }
+ 		command = { type = secedeprovince which = ITA value = 395 }
+ 		command = { type = secedeprovince which = ITA value = 400 }
+ 		command = { type = secedeprovince which = ITA value = 401 }
+ 		command = { type = secedeprovince which = ITA value = 402 }
+ 		command = { type = secedeprovince which = ITA value = 403 }
+ 		command = { type = secedeprovince which = ITA value = 404 }
+ 		command = { type = secedeprovince which = ITA value = 405 }
+ 		command = { type = secedeprovince which = ITA value = 406 }
+ 		#command = { type = secedeprovince which = ITA value = 408 }
+		command = { type = secedeprovince which = ITA value = 412 }
+		command = { type = secedeprovince which = ITA value = 414 }
+		command = { type = secedeprovince which = ITA value = 415 }
+		command = { type = secedeprovince which = ITA value = 416 }
+		command = { type = secedeprovince which = ITA value = 417 }
+		command = { type = secedeprovince which = ITA value = 418 }
+		command = { type = secedeprovince which = ITA value = 419 }
+ 		command = { type = secedeprovince which = ITA value = 420 }
+ 		command = { type = secedeprovince which = ITA value = 421 }
+ 		command = { type = secedeprovince which = ITA value = 422 }
+ 		command = { type = secedeprovince which = ITA value = 423 }
+ 		command = { type = secedeprovince which = ITA value = 424 }
+ 		command = { type = secedeprovince which = ITA value = 425 }
+ 		command = { type = secedeprovince which = ITA value = 426 }
+ 		command = { type = secedeprovince which = ITA value = 427 }
+ 		command = { type = secedeprovince which = ITA value = 428 }
+ 		command = { type = secedeprovince which = ITA value = 431 }
+ 		command = { type = secedeprovince which = ITA value = 432 }
+		
+ 		command = { type = control which = ITA value = 393 }
+ 		command = { type = control which = ITA value = 394 }
+ 		command = { type = control which = ITA value = 395 }
+ 		command = { type = control which = ITA value = 400 }
+ 		command = { type = control which = ITA value = 401 }
+ 		command = { type = control which = ITA value = 402 }
+ 		command = { type = control which = ITA value = 403 }
+ 		command = { type = control which = ITA value = 404 }
+ 		command = { type = control which = ITA value = 405 }
+ 		command = { type = control which = ITA value = 406 }
+ 		#command = { type = control which = ITA value = 408 }
+		command = { type = control which = ITA value = 412 }
+		command = { type = control which = ITA value = 414 }
+		command = { type = control which = ITA value = 415 }
+		command = { type = control which = ITA value = 416 }
+		command = { type = control which = ITA value = 417 }
+		command = { type = control which = ITA value = 418 }
+		command = { type = control which = ITA value = 419 }
+ 		command = { type = control which = ITA value = 420 }
+ 		command = { type = control which = ITA value = 421 }
+ 		command = { type = control which = ITA value = 422 }
+ 		command = { type = control which = ITA value = 423 }
+ 		command = { type = control which = ITA value = 424 }
+ 		command = { type = control which = ITA value = 425 }
+ 		command = { type = control which = ITA value = 426 }
+ 		command = { type = control which = ITA value = 427 }
+ 		command = { type = control which = ITA value = 428 }
+ 		command = { type = control which = ITA value = 431 }
+ 		command = { type = control which = ITA value = 432 }
+	}
+}
+
+#########################################################################
+# Italy - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3117110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		war = { country = U14 country = ITA }
+		NOT = { flag = SOV_to_U14_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_U14_delay }
+		#Need permission from France
+		flag = FRA_to_U14_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U14 country = ITA }
+		NOT = { flag = SOV_to_U14_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_U14_delay }
+		flag = FRA_to_U14_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = U14 } }
+		OR = {
+			NOT = { flag = SOV_to_U14_1 }
+			AND = {
+				NOT = { flag = SOV_to_U14_2 }
+				OR = { 
+					flag = GER_to_ITA_1
+					flag = ENG_to_ITA_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_U14_3 }
+				OR = { 
+					flag = GER_to_ITA_2
+					flag = ENG_to_ITA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_U14_4 }
+				OR = { 
+					flag = GER_to_ITA_3
+					flag = ENG_to_ITA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_U14_5 }
+				OR = { 
+					flag = GER_to_ITA_4
+					flag = ENG_to_ITA_4
+				}
+			}
+		}
+	}
+	
+	name = "Italian Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in Italy presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_U14_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = U14 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_U14_1 }
+		command = { type = event which = 3117111 where = U14 when = 15 }
+		command = { type = setflag which = SOV_to_U14_delay }
+		command = { type = access which = U14 }
+		
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = event which = 3187250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = local_setflag which = ICWExp }
+		
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = event which = 3117200 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = local_setflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_U14_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = U14 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_U14_4 NOT = { flag = SOV_to_U14_5 } } type = setflag which = SOV_to_U14_5 }
+		command = { trigger = { flag = SOV_to_U14_3 NOT = { flag = SOV_to_U14_4 } } type = setflag which = SOV_to_U14_4 }
+		command = { trigger = { flag = SOV_to_U14_2 NOT = { flag = SOV_to_U14_3 } } type = setflag which = SOV_to_U14_3 }
+		command = { trigger = { flag = SOV_to_U14_1 NOT = { flag = SOV_to_U14_2 } } type = setflag which = SOV_to_U14_2 }
+		command = { type = event which = 3117111 where = U14 when = 15 }
+		command = { type = setflag which = SOV_to_U14_delay }
+	}
+}
+
+event = { 
+	id = 3117111
+	random = no
+	country = U14
+	persistent = yes
+	
+	name = "Soviet help arrives in Italy"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the French border to Italy."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 87 }
+		command = { trigger = { flag = SOV_to_U14_5 }								type = add_division which = "Soviet volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_4 NOT = { flag = SOV_to_U14_5 } } type = add_division which = "Soviet volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_3 NOT = { flag = SOV_to_U14_4 } } type = add_division which = "Soviet volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_2 NOT = { flag = SOV_to_U14_3 } } type = add_division which = "Soviet volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_1 NOT = { flag = SOV_to_U14_2 } } type = add_division which = "Soviet volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = SOV_to_U14_delay }
+	}
+}
+
+event = { 
+	id = 3117112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_U14_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_U14_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_U14_1
+		OR = {
+			NOT = { war = { country = U14 country = ITA } }
+			alliance = { country = U14 }
+		}
+	}
+	
+	name = "End of intervention in Italy"
+	desc = "With the civil war in Italy at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_U14_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U14_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U14_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U14_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U14_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = U14 }
+		command = { trigger = { NOT = { alliance = { country = U14 } } } type = military_control which = SOV where = U14 value = 0 }
+		command = { type = end_trades which = U14 where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in Italy 5" value = U14 }
+		command = { type = remove_division which = "Soviet volunteers in Italy 4" value = U14 }
+		command = { type = remove_division which = "Soviet volunteers in Italy 3" value = U14 }
+		command = { type = remove_division which = "Soviet volunteers in Italy 2" value = U14 }
+		command = { type = remove_division which = "Soviet volunteers in Italy 1" value = U14 }
+		
+		command = { type = add_corps value = land where = 87 }
+		command = { trigger = { flag = SOV_to_U14_5 exists = U14 } type = add_division which = "Soviet volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_4 exists = U14 } type = add_division which = "Soviet volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_3 exists = U14 } type = add_division which = "Soviet volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_2 exists = U14 } type = add_division which = "Soviet volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U14_1 exists = U14 } type = add_division which = "Soviet volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = SOV_to_U14_5 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = SOV_to_U14_4 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = SOV_to_U14_3 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = SOV_to_U14_2 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = SOV_to_U14_1 }
+		
+		command = { type = trigger which = 3117113 }
+	}
+}
+
+event = { 
+	id = 3117113
+	random = no
+	country = U14
+	persistent = yes
+
+	name = "End of intervention in Italy"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_U14_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U14_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U14_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U14_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U14_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_U14_5 }
+		command = { type = clrflag which = SOV_to_U14_4 }
+		command = { type = clrflag which = SOV_to_U14_3 }
+		command = { type = clrflag which = SOV_to_U14_2 }
+		command = { type = clrflag which = SOV_to_U14_1 }
+	}
+}
+
+event = { 
+	id = 3117114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_U14_1
+		NOT = { military_control = { country = U14 } }
+	}
+
+	decision_trigger = {
+		exists = U14
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Italian Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Italy"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = U14 value = 1 }
+	}
+}
+
+#French
+
+event = { 
+	id = 3117120
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = {
+		war = { country = U14 country = ITA }
+		NOT = { flag = FRA_to_U14_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = FRA_to_U14_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U14 country = ITA }
+		NOT = { flag = FRA_to_U14_5 }
+		manpower = 16
+		NOT = { flag = FRA_to_U14_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = U14 } }
+		OR = {
+			NOT = { flag = FRA_to_U14_1 }
+			AND = {
+				NOT = { flag = FRA_to_U14_2 }
+				OR = { 
+					flag = GER_to_ITA_1
+					flag = ENG_to_ITA_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = FRA_to_U14_3 }
+				OR = { 
+					flag = GER_to_ITA_2
+					flag = ENG_to_ITA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = FRA_to_U14_4 }
+				OR = { 
+					flag = GER_to_ITA_3
+					flag = ENG_to_ITA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = FRA_to_U14_5 }
+				OR = { 
+					flag = GER_to_ITA_4
+					flag = ENG_to_ITA_4
+				}
+			}
+		}
+	}
+	
+	name = "Italian Civil War - French Intervention"
+	desc = "The outbreak of civil war in Italy presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = FRA_to_U14_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = U14 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = FRA_to_U14_1 }
+		command = { type = event which = 3117121 where = U14 when = 15 }
+		command = { type = setflag which = FRA_to_U14_delay }
+		command = { type = access which = U14 }
+		
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = event which = 3187250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = local_setflag which = ICWExp }
+		
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = event which = 3117201 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = local_setflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = FRA_to_U14_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = U14 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = FRA_to_U14_4 NOT = { flag = FRA_to_U14_5 } } type = setflag which = FRA_to_U14_5 }
+		command = { trigger = { flag = FRA_to_U14_3 NOT = { flag = FRA_to_U14_4 } } type = setflag which = FRA_to_U14_4 }
+		command = { trigger = { flag = FRA_to_U14_2 NOT = { flag = FRA_to_U14_3 } } type = setflag which = FRA_to_U14_3 }
+		command = { trigger = { flag = FRA_to_U14_1 NOT = { flag = FRA_to_U14_2 } } type = setflag which = FRA_to_U14_2 }
+		command = { type = event which = 3117121 where = U14 when = 15 }
+		command = { type = setflag which = FRA_to_U14_delay }
+	}
+}
+
+event = { 
+	id = 3117121
+	random = no
+	country = U14
+	persistent = yes
+	
+	name = "French help arrives in Italy"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived across the French border to Italy."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = FRA }
+		command = { type = steal_tech which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = access which = FRA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 87 }
+		command = { trigger = { flag = FRA_to_U14_5 }								type = add_division which = "French volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_4 NOT = { flag = FRA_to_U14_5 } } type = add_division which = "French volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_3 NOT = { flag = FRA_to_U14_4 } } type = add_division which = "French volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_2 NOT = { flag = FRA_to_U14_3 } } type = add_division which = "French volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_1 NOT = { flag = FRA_to_U14_2 } } type = add_division which = "French volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = FRA_to_U14_delay }
+	}
+}
+
+event = { 
+	id = 3117122
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		flag = FRA_to_U14_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_U14_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_U14_1
+		OR = {
+			NOT = { war = { country = U14 country = ITA } }
+			alliance = { country = U14 }
+		}
+	}
+	
+	name = "End of intervention in Italy"
+	desc = "With the civil war in Italy at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = FRA_to_U14_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_U14_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_U14_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_U14_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_U14_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = U14 }
+		command = { trigger = { NOT = { alliance = { country = U14 } } } type = military_control which = FRA where = U14 value = 0 }
+		command = { type = end_trades which = U14 where = FRA }
+		command = { type = remove_division which = "French volunteers in Italy 5" value = U14 }
+		command = { type = remove_division which = "French volunteers in Italy 4" value = U14 }
+		command = { type = remove_division which = "French volunteers in Italy 3" value = U14 }
+		command = { type = remove_division which = "French volunteers in Italy 2" value = U14 }
+		command = { type = remove_division which = "French volunteers in Italy 1" value = U14 }
+		
+		command = { type = add_corps value = land where = 87 }
+		command = { trigger = { flag = FRA_to_U14_5 exists = U14 } type = add_division which = "French volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_4 exists = U14 } type = add_division which = "French volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_3 exists = U14 } type = add_division which = "French volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_2 exists = U14 } type = add_division which = "French volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_U14_1 exists = U14 } type = add_division which = "French volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = FRA_to_U14_5 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = FRA_to_U14_4 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = FRA_to_U14_3 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = FRA_to_U14_2 }
+		command = { trigger = { NOT = { exists = U14 } } type = clrflag which = FRA_to_U14_1 }
+		
+		command = { type = trigger which = 3117123 }
+	}
+}
+
+event = { 
+	id = 3117123
+	random = no
+	country = U14
+	persistent = yes
+
+	name = "End of intervention in Italy"
+	desc = "The French aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = FRA }
+		command = { trigger = { flag = FRA_to_U14_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_U14_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_U14_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_U14_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_U14_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = FRA_to_U14_5 }
+		command = { type = clrflag which = FRA_to_U14_4 }
+		command = { type = clrflag which = FRA_to_U14_3 }
+		command = { type = clrflag which = FRA_to_U14_2 }
+		command = { type = clrflag which = FRA_to_U14_1 }
+	}
+}
+
+event = { 
+	id = 3117124
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = FRA_to_U14_1
+		NOT = { military_control = { country = U14 } }
+	}
+
+	decision_trigger = {
+		exists = U14
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Italian Civil War - French command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Italy"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = FRA where = U14 value = 1 }
+	}
+}
+
+#English
+
+event = { 
+	id = 3117140
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		war = { country = U14 country = ITA }
+		NOT = { flag = ENG_to_ITA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = ENG_to_ITA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U14 country = ITA }
+		NOT = { flag = ENG_to_ITA_5 }
+		manpower = 16
+		NOT = { flag = ENG_to_ITA_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = ITA } }
+		OR = {
+			NOT = { flag = ENG_to_ITA_1 }
+			AND = {
+				NOT = { flag = ENG_to_ITA_2 }
+				OR = { 
+					flag = SOV_to_U14_3
+					flag = FRA_to_U14_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = ENG_to_ITA_3 }
+				OR = { 
+					flag = SOV_to_U14_4
+					flag = FRA_to_U14_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = ENG_to_ITA_4 }
+				OR = { 
+					flag = SOV_to_U14_5
+					flag = FRA_to_U14_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = ENG_to_ITA_5 }
+			#}
+		}
+	}
+	
+	name = "Italian Civil War - British Intervention"
+	desc = "The outbreak of civil war in Italy presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = ENG_to_ITA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = ITA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = ENG_to_ITA_1 }
+		command = { type = event which = 3117141 where = ITA when = 15 }
+		command = { type = access which = ITA }
+		command = { type = setflag which = ENG_to_ITA_delay }
+		
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = event which = 3187250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = local_setflag which = ICWExp }
+		
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = event which = 3117206 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = local_setflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = ENG_to_ITA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = ITA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = ENG_to_ITA_4 NOT = { flag = ENG_to_ITA_5 } } type = setflag which = ENG_to_ITA_5 }
+		command = { trigger = { flag = ENG_to_ITA_3 NOT = { flag = ENG_to_ITA_4 } } type = setflag which = ENG_to_ITA_4 }
+		command = { trigger = { flag = ENG_to_ITA_2 NOT = { flag = ENG_to_ITA_3 } } type = setflag which = ENG_to_ITA_3 }
+		command = { trigger = { flag = ENG_to_ITA_1 NOT = { flag = ENG_to_ITA_2 } } type = setflag which = ENG_to_ITA_2 }
+		command = { type = event which = 3117141 where = ITA when = 15 }
+		command = { type = setflag which = ENG_to_ITA_delay }
+	}
+}
+
+event = { 
+	id = 3117141
+	random = no
+	country = ITA
+	persistent = yes
+	
+	name = "British help arrives in Italy"
+	desc = "Despite its official claims of neutrality, large amount of British aid arrived across the Dutch border to Italy."
+	style = 2
+	picture = "SCW_British Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = ENG }
+		command = { type = steal_tech which = ENG }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = access which = ENG }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { trigger = { control = { province = 422 data = -3 } } type = add_corps value = land where = 422 }
+		command = { trigger = { flag = ENG_to_ITA_5 }								type = add_division which = "British volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_4 NOT = { flag = ENG_to_ITA_5 } } type = add_division which = "British volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_3 NOT = { flag = ENG_to_ITA_4 } } type = add_division which = "British volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_2 NOT = { flag = ENG_to_ITA_3 } } type = add_division which = "British volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_1 NOT = { flag = ENG_to_ITA_2 } } type = add_division which = "British volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = ENG_to_ITA_delay }
+	}
+}
+
+event = { 
+	id = 3117142
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		flag = ENG_to_ITA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = ENG_to_ITA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = ENG_to_ITA_1
+		OR = {
+			NOT = { war = { country = U14 country = ITA } }
+			alliance = { country = ITA }
+		}
+	}
+	
+	name = "End of intervention in Italy"
+	desc = "With the civil war in Italy at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = ENG_to_ITA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = ITA }
+		command = { trigger = { NOT = { alliance = { country = ITA } } } type = military_control which = ENG where = ITA value = 0 }
+		command = { type = end_trades which = ITA where = ENG }
+		command = { type = remove_division which = "British volunteers in Italy 5" value = ITA }
+		command = { type = remove_division which = "British volunteers in Italy 4" value = ITA }
+		command = { type = remove_division which = "British volunteers in Italy 3" value = ITA }
+		command = { type = remove_division which = "British volunteers in Italy 2" value = ITA }
+		command = { type = remove_division which = "British volunteers in Italy 1" value = ITA }
+		
+		command = { trigger = { control = { province = 422 data = -3 } } type = add_corps value = land where = 422 }
+		command = { trigger = { flag = ENG_to_ITA_5 exists = ITA } type = add_division which = "British volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_4 exists = ITA } type = add_division which = "British volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_3 exists = ITA } type = add_division which = "British volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_2 exists = ITA } type = add_division which = "British volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_ITA_1 exists = ITA } type = add_division which = "British volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = ENG_to_ITA_5 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = ENG_to_ITA_4 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = ENG_to_ITA_3 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = ENG_to_ITA_2 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = ENG_to_ITA_1 }
+		
+		command = { type = trigger which = 3117143 }
+	}
+}
+
+event = { 
+	id = 3117143
+	random = no
+	country = ITA
+	persistent = yes
+
+	name = "End of intervention in Italy"
+	desc = "The British aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = ENG }
+		command = { trigger = { flag = ENG_to_ITA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_ITA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_ITA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_ITA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_ITA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = ENG_to_ITA_5 }
+		command = { type = clrflag which = ENG_to_ITA_4 }
+		command = { type = clrflag which = ENG_to_ITA_3 }
+		command = { type = clrflag which = ENG_to_ITA_2 }
+		command = { type = clrflag which = ENG_to_ITA_1 }
+	}
+}
+
+event = { 
+	id = 3117144
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = ENG_to_ITA_1
+		NOT = { military_control = { country = ITA } }
+	}
+
+	decision_trigger = {
+		exists = ITA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Italian Civil War - British command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Italy"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = ENG where = ITA value = 1 }
+	}
+}
+
+#German
+
+event = { 
+	id = 3117150
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = {
+		war = { country = U14 country = ITA }
+		NOT = { flag = GER_to_ITA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = GER_to_ITA_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U14 country = ITA }
+		NOT = { flag = GER_to_ITA_5 }
+		manpower = 16
+		NOT = { flag = GER_to_ITA_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+		
+		#ai will do if:
+		NOT = { alliance = { country = ITA } }
+		OR = {
+			NOT = { flag = GER_to_ITA_1 }
+			AND = {
+				NOT = { flag = GER_to_ITA_2 }
+				OR = { 
+					flag = SOV_to_U14_3
+					flag = FRA_to_U14_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = GER_to_ITA_3 }
+				OR = { 
+					flag = SOV_to_U14_4
+					flag = FRA_to_U14_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = GER_to_ITA_4 }
+				OR = { 
+					flag = SOV_to_U14_5
+					flag = FRA_to_U14_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = GER_to_ITA_5 }
+			#}
+		}
+	}
+	
+	name = "Italian Civil War - German Intervention"
+	desc = "The outbreak of civil war in Italy presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = GER_to_ITA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = ITA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = GER_to_ITA_1 }
+		command = { type = event which = 3117151 where = ITA when = 15 }
+		command = { type = access which = ITA }
+		command = { type = setflag which = GER_to_ITA_delay }
+		
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = event which = 3187250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = ICWExp } } type = local_setflag which = ICWExp }
+		
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = event which = 3117205 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = ICWVolunteers } } type = local_setflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = GER_to_ITA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = ITA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = GER_to_ITA_4 NOT = { flag = GER_to_ITA_5 } } type = setflag which = GER_to_ITA_5 }
+		command = { trigger = { flag = GER_to_ITA_3 NOT = { flag = GER_to_ITA_4 } } type = setflag which = GER_to_ITA_4 }
+		command = { trigger = { flag = GER_to_ITA_2 NOT = { flag = GER_to_ITA_3 } } type = setflag which = GER_to_ITA_3 }
+		command = { trigger = { flag = GER_to_ITA_1 NOT = { flag = GER_to_ITA_2 } } type = setflag which = GER_to_ITA_2 }
+		command = { type = event which = 3117151 where = ITA when = 15 }
+		command = { type = setflag which = GER_to_ITA_delay }
+	}
+}
+
+event = { 
+	id = 3117151
+	random = no
+	country = ITA
+	persistent = yes
+	
+	name = "German help arrives in Italy"
+	desc = "Despite its official claims of neutrality, large amount of German aid arrived across the Dutch border to Italy."
+	style = 2
+	picture = "SCW_German Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = GER }
+		command = { type = steal_tech which = GER }
+		command = { type = relation which = GER value = 50 }
+		command = { trigger = { NOT = { ai = GER } } type = access which = GER } #German transport ai gets retarded when he has access to mediterranean
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = GER_to_ITA_5 }								type = add_division which = "German volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_4 NOT = { flag = GER_to_ITA_5 } } type = add_division which = "German volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_3 NOT = { flag = GER_to_ITA_4 } } type = add_division which = "German volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_2 NOT = { flag = GER_to_ITA_3 } } type = add_division which = "German volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_1 NOT = { flag = GER_to_ITA_2 } } type = add_division which = "German volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = GER_to_ITA_delay }
+	}
+}
+
+event = { 
+	id = 3117152
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		flag = GER_to_ITA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = GER_to_ITA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = GER_to_ITA_1
+		OR = {
+			NOT = { war = { country = U14 country = ITA } }
+			alliance = { country = ITA }
+		}
+	}
+	
+	name = "End of intervention in Italy"
+	desc = "With the civil war in Italy at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = GER_to_ITA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_ITA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_ITA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_ITA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_ITA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = ITA }
+		command = { trigger = { NOT = { alliance = { country = ITA } } } type = military_control which = GER where = ITA value = 0 }
+		command = { type = end_trades which = ITA where = GER }
+		command = { type = remove_division which = "German volunteers in Italy 5" value = ITA }
+		command = { type = remove_division which = "German volunteers in Italy 4" value = ITA }
+		command = { type = remove_division which = "German volunteers in Italy 3" value = ITA }
+		command = { type = remove_division which = "German volunteers in Italy 2" value = ITA }
+		command = { type = remove_division which = "German volunteers in Italy 1" value = ITA }
+		
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = GER_to_ITA_5 exists = ITA } type = add_division which = "German volunteers in Italy 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_4 exists = ITA } type = add_division which = "German volunteers in Italy 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_3 exists = ITA } type = add_division which = "German volunteers in Italy 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_2 exists = ITA } type = add_division which = "German volunteers in Italy 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_ITA_1 exists = ITA } type = add_division which = "German volunteers in Italy 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = GER_to_ITA_5 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = GER_to_ITA_4 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = GER_to_ITA_3 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = GER_to_ITA_2 }
+		command = { trigger = { NOT = { exists = ITA } } type = clrflag which = GER_to_ITA_1 }
+		
+		command = { type = trigger which = 3117153 }
+	}
+}
+
+event = { 
+	id = 3117153
+	random = no
+	country = ITA
+	persistent = yes
+
+	name = "End of intervention in Italy"
+	desc = "The German aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = GER }
+		command = { trigger = { flag = GER_to_ITA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_ITA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_ITA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_ITA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_ITA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = GER_to_ITA_5 }
+		command = { type = clrflag which = GER_to_ITA_4 }
+		command = { type = clrflag which = GER_to_ITA_3 }
+		command = { type = clrflag which = GER_to_ITA_2 }
+		command = { type = clrflag which = GER_to_ITA_1 }
+	}
+}
+
+event = { 
+	id = 3117154
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = GER_to_ITA_1
+		NOT = { military_control = { country = ITA } }
+	}
+
+	decision_trigger = {
+		exists = ITA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Italian Civil War - German command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Italy"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = GER where = ITA value = 1 }
+	}
+}
+
+
+########################
+# Volunteers
+########################
+
+#1 div per month when total support = 9 (for example, 3 interventionists, each one at intervention level 3)
+
+event = {
+	id = 3117200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to Italy"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Italy to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = ICWVolunteers
+			OR = {
+				flag = { which = VolunteersCountU14 when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = ITA country = U14 }
+						flag = SOV_to_U14_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountU14 when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = ICWVolunteers
+			war = { country = ITA country = U14 }
+			flag = SOV_to_U14_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3117210 where = U14 when = 15 }
+		command = { type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U14_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U14_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U14_2 } type = event which = 3117210 where = U14 when = 15 }
+		command = { trigger = { flag = SOV_to_U14_2 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U14_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U14_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U14_3 } type = event which = 3117210 where = U14 when = 20 }
+		command = { trigger = { flag = SOV_to_U14_3 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U14_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U14_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U14_4 } type = event which = 3117210 where = U14 when = 25 }
+		command = { trigger = { flag = SOV_to_U14_4 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U14_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U14_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U14_5 } type = event which = 3117210 where = U14 when = 30 }
+		command = { trigger = { flag = SOV_to_U14_5 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U14_1 NOT = { flag = SOV_to_U14_2 } } type = trade which = SOV where = U14 supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_U14_2 NOT = { flag = SOV_to_U14_3 } } type = trade which = SOV where = U14 supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_U14_3 NOT = { flag = SOV_to_U14_4 } } type = trade which = SOV where = U14 supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_U14_4 NOT = { flag = SOV_to_U14_5 } } type = trade which = SOV where = U14 supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_U14_5 } type = trade which = SOV where = U14 supplies = -5 value = 1 }
+		
+		command = { type = event which = 3117200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3117201
+	random = no
+	country = FRA
+	persistent = yes
+
+	name = "Volunteers heading to Italy"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Italy to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = ICWVolunteers
+			OR = {
+				flag = { which = VolunteersCountU14 when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = ITA country = U14 }
+						flag = FRA_to_U14_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountU14 when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = ICWVolunteers
+			war = { country = ITA country = U14 }
+			flag = FRA_to_U14_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3117210 where = U14 when = 15 }
+		command = { type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_U14_2 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_U14_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_U14_2 } type = event which = 3117210 where = U14 when = 15 }
+		command = { trigger = { flag = FRA_to_U14_2 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_U14_3 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_U14_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_U14_3 } type = event which = 3117210 where = U14 when = 20 }
+		command = { trigger = { flag = FRA_to_U14_3 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_U14_4 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_U14_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_U14_4 } type = event which = 3117210 where = U14 when = 25 }
+		command = { trigger = { flag = FRA_to_U14_4 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_U14_5 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_U14_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_U14_5 } type = event which = 3117210 where = U14 when = 30 }
+		command = { trigger = { flag = FRA_to_U14_5 } type = setflag which = VolunteersCountU14 when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_U14_1 NOT = { flag = FRA_to_U14_2 } } type = trade which = FRA where = U14 supplies = -1 value = 1 }
+		command = { trigger = { flag = FRA_to_U14_2 NOT = { flag = FRA_to_U14_3 } } type = trade which = FRA where = U14 supplies = -2 value = 1 }
+		command = { trigger = { flag = FRA_to_U14_3 NOT = { flag = FRA_to_U14_4 } } type = trade which = FRA where = U14 supplies = -3 value = 1 }
+		command = { trigger = { flag = FRA_to_U14_4 NOT = { flag = FRA_to_U14_5 } } type = trade which = FRA where = U14 supplies = -4 value = 1 }
+		command = { trigger = { flag = FRA_to_U14_5 } type = trade which = FRA where = U14 supplies = -5 value = 1 }
+		
+		command = { type = event which = 3117201 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3117205
+	random = no
+	country = GER
+	persistent = yes
+
+	name = "Volunteers heading to Italy"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Italy to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = ICWVolunteers
+			OR = {
+				flag = { which = VolunteersCountITA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = ITA country = U14 }
+						flag = GER_to_ITA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountITA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = ICWVolunteers
+			war = { country = ITA country = U14 }
+			flag = GER_to_ITA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3117210 where = ITA when = 15 }
+		command = { type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_ITA_2 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_ITA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_ITA_2 } type = event which = 3117210 where = ITA when = 15 }
+		command = { trigger = { flag = GER_to_ITA_2 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_ITA_3 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_ITA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_ITA_3 } type = event which = 3117210 where = ITA when = 20 }
+		command = { trigger = { flag = GER_to_ITA_3 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_ITA_4 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_ITA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_ITA_4 } type = event which = 3117210 where = ITA when = 25 }
+		command = { trigger = { flag = GER_to_ITA_4 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_ITA_5 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_ITA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_ITA_5 } type = event which = 3117210 where = ITA when = 30 }
+		command = { trigger = { flag = GER_to_ITA_5 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_ITA_1 NOT = { flag = GER_to_ITA_2 } } type = trade which = GER where = ITA supplies = -1 value = 1 }
+		command = { trigger = { flag = GER_to_ITA_2 NOT = { flag = GER_to_ITA_3 } } type = trade which = GER where = ITA supplies = -2 value = 1 }
+		command = { trigger = { flag = GER_to_ITA_3 NOT = { flag = GER_to_ITA_4 } } type = trade which = GER where = ITA supplies = -3 value = 1 }
+		command = { trigger = { flag = GER_to_ITA_4 NOT = { flag = GER_to_ITA_5 } } type = trade which = GER where = ITA supplies = -4 value = 1 }
+		command = { trigger = { flag = GER_to_ITA_5 } type = trade which = GER where = ITA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3117205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3117206
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Volunteers heading to Italy"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Italy to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Volunteers - Intervention ends"
+		trigger = {
+			local_flag = ICWVolunteers
+			OR = {
+				flag = { which = VolunteersCountITA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = ITA country = U14 }
+						flag = ENG_to_ITA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = ICWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountITA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = ICWVolunteers
+			war = { country = ITA country = U14 }
+			flag = ENG_to_ITA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3117210 where = ITA when = 15 }
+		command = { type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_ITA_2 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_ITA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_ITA_2 } type = event which = 3117210 where = ITA when = 15 }
+		command = { trigger = { flag = ENG_to_ITA_2 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_ITA_3 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_ITA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_ITA_3 } type = event which = 3117210 where = ITA when = 20 }
+		command = { trigger = { flag = ENG_to_ITA_3 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_ITA_4 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_ITA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_ITA_4 } type = event which = 3117210 where = ITA when = 25 }
+		command = { trigger = { flag = ENG_to_ITA_4 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_ITA_5 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_ITA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_ITA_5 } type = event which = 3117210 where = ITA when = 30 }
+		command = { trigger = { flag = ENG_to_ITA_5 } type = setflag which = VolunteersCountITA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_ITA_1 NOT = { flag = ENG_to_ITA_2 } } type = trade which = ENG where = ITA supplies = -1 value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_2 NOT = { flag = ENG_to_ITA_3 } } type = trade which = ENG where = ITA supplies = -2 value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_3 NOT = { flag = ENG_to_ITA_4 } } type = trade which = ENG where = ITA supplies = -3 value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_4 NOT = { flag = ENG_to_ITA_5 } } type = trade which = ENG where = ITA supplies = -4 value = 1 }
+		command = { trigger = { flag = ENG_to_ITA_5 } type = trade which = ENG where = ITA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3117206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3117210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to Italy"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to Italy to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = U14 } type = add_corps value = land where = 87 }
+		command = { trigger = { country = ITA } type = add_corps value = land where = 191 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+
+##############################################
+# Italy - end of civil war
+##############################################
+
+event = { 
+	id = 3187230
+	random = no
+	country = U14
+	persistent = yes
+
+	trigger = {
+		NOT = { capital = { province = 419 } }
+		control = { province = 410 data = -1 }
+		control = { province = 411 data = -1 }
+		control = { province = 412 data = -1 }
+		control = { province = 413 data = -1 }
+		control = { province = 414 data = -1 }
+		control = { province = 415 data = -1 }
+		control = { province = 416 data = -1 }
+		control = { province = 417 data = -1 }
+		control = { province = 418 data = -1 }
+		control = { province = 419 data = -1 }
+	} 
+
+	name = "Capital to Rome"
+	desc = "Having firmly secured our control of the capital region, we can now move our administration to its rightful place in Rome."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Great!" 
+		command = { type = capital which = 419 }
+	} 
+}
+
+event = { 
+	id = 3187231
+	random = no
+	country = ITA
+	persistent = yes
+
+	trigger = {
+		NOT = { capital = { province = 419 } }
+		control = { province = 410 data = -1 }
+		control = { province = 411 data = -1 }
+		control = { province = 412 data = -1 }
+		control = { province = 413 data = -1 }
+		control = { province = 414 data = -1 }
+		control = { province = 415 data = -1 }
+		control = { province = 416 data = -1 }
+		control = { province = 417 data = -1 }
+		control = { province = 418 data = -1 }
+		control = { province = 419 data = -1 }
+	} 
+
+	name = "Capital to Rome"
+	desc = "Having firmly secured our control of the capital region, we can now move our administration to its rightful place in Rome."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Great!" 
+		command = { type = capital which = 419 } 
+	} 
+}
+
+##############################################
+# Italy - War widens
+##############################################
+
+event = { 
+	id = 3187180
+	random = no
+	country = U14
+
+	trigger = {
+		atwar = U14
+		NOT = { alliance = { country = U14 country = FRA } }
+		OR = {
+			lost_national = { country = U14 value = 100 }
+			alliance = { country = ITA country = GER }
+			war = { country = GER country = FRA }
+			war = { country = ENG country = FRA }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Italy requests assitance"
+	desc = "Italy requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3187181 }
+	} 
+}
+	
+	
+event = { 
+	id = 3187181 
+	random = no
+	country = FRA 
+
+	name = "Italy requests assitance"
+	desc = "Italy requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = U14 NOT = { ai = FRA } } type = military_control which = FRA where = U14 value = 1 }
+		command = { trigger = { ai = LBY puppet = { country = LBY country = U14 } NOT = { ai = FRA } } type = military_control which = FRA where = LBY value = 1 }
+		command = { type = alliance which = U14 }
+		command = { trigger = { ai = LBY puppet = { country = LBY country = U14 } } type = alliance which = LBY }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 3187182 
+	random = no
+	country = ITA
+
+	trigger = {
+		atwar = ITA
+		NOT = { alliance = { country = ITA country = GER } }
+		OR = {
+			lost_national = { country = ITA value = 100 }
+			alliance = { country = U14 country = SOV }
+			alliance = { country = U14 country = FRA }
+			war = { country = GER country = SOV }
+			war = { country = ENG country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Italy requests assitance"
+	desc = "Italy requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3187183 }
+	} 
+}
+	
+	
+event = { 
+	id = 3187183 
+	random = no
+	country = GER
+
+	name = "Italy requests assitance"
+	desc = "Italy requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = ITA NOT = { ai = GER } } type = military_control which = GER where = ITA value = 1 }
+		command = { type = alliance which = ITA }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Italy - Inheritance/Puppet
+##############################################
+
+event = { 
+	id = 3187190
+	random = no
+	country = FRA
+
+	decision = {
+		alliance = { country = U14 country = FRA }
+		atwar = U14
+	}
+
+	decision_trigger = {
+	}
+
+	trigger = {
+		atwar = U14 
+		alliance = { country = U14 country = FRA }
+		#lost_national = { country = U14 value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Italian army"
+	desc = "We are well in position to take direct control of the Italian army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = FRA where = U14 value = 0 }
+		command = { type = secederegion which = -1 value = "Italy" when = 2 }
+		command = { type = event which = 3187191 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3187191
+	random = no
+	country = FRA
+
+	name = "The invasion of Italy"
+ 	desc = "Our forces enter Italy and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = make_puppet which = U14 }
+		command = { type = event which = 2400538 where = U14 when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = U14 when = 0 } #stayInWar flag
+		command = { trigger = { NOT = { ai = FRA } } type = military_control which = FRA where = U14 value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3187192 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3187192
+	random = no
+	country = FRA
+
+	name = "Provinces back to Italy"
+ 	desc = "Having established a friendly government in Rome, we will now transfer the territorial control back to Italy."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = U14 value = "Italy" }
+		command = { trigger = { NOT = { ai = FRA } } type = military_control which = FRA where = U14 value = 1 }
+		#command = { type = coup_nation which = U14 }
+	}
+}
+
+event = { 
+	id = 3187193
+	random = no
+	country = GER
+
+	decision = {
+		alliance = { country = ITA country = GER }
+		atwar = ITA
+	}
+
+	decision_trigger = { 
+	}
+
+	trigger = {
+		atwar = ITA 
+		alliance = { country = ITA country = GER }
+		#lost_national = { country = ITA value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Italian army"
+	desc = "We are well in position to take direct control of the Italian army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = GER where = ITA value = 0 }
+		command = { type = secederegion which = -1 value = "Italy" when = 2 }
+		command = { type = event which = 3187194 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3187194
+	random = no
+	country = GER
+
+	name = "The invasion of Italy"
+ 	desc = "Our forces enter Italy and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = make_puppet which = ITA }
+		command = { type = event which = 2400538 where = ITA when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = ITA when = 0 } #stayInWar flag
+		command = { type = belligerence value = 1 }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = ITA value = 1 }
+		command = { type = event which = 3187195 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3187195
+	random = no
+	country = GER
+
+	name = "Provinces back to Italy"
+ 	desc = "Having established a friendly government in Rome, we will now transfer the territorial control back to Italy."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = ITA value = "Italy" }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = ITA value = 1 }
+		#command = { type = coup_nation which = ITA }
+	}
+}
+
+event = {
+	id = 3187196
+	random = no
+	country = U14
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = FRA } }
+	#	military_control = { country = FRA country = U14 }
+	#}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to France"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = FRA where = U14 value = 0 }
+	}
+}
+
+event = {
+	id = 3187197
+	random = no
+	country = ITA
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = GER } }
+	#	military_control = { country = GER country = ITA }
+	#}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to Germany"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = GER where = ITA value = 0 }
+	}
+}
+
+
+
+
+################
+# Libya events
+################
+
+event = { 
+	id = 3187200
+	random = no
+	country = U14 
+
+	name = "Declare independence of Libya"
+	desc = "With the civil war breaking out in our country, the left leaning forces declare their intention to free the people of Libya from the fascists, with a fully independent Libyan state planned in 5 years from now."
+	style = 2
+
+	action = { 
+		name = "It's our only option"
+		command = { type = removeclaim which = 761 }
+		command = { type = removeclaim which = 753 }
+		command = { type = removeclaim which = 769 }
+		command = { type = removeclaim which = 770 }
+		command = { type = removeclaim which = 771 }
+		command = { type = removeclaim which = 765 }
+		command = { type = removeclaim which = 766 }
+		command = { type = removeclaim which = 760 }
+		command = { type = removeclaim which = 768 }
+		command = { type = removeclaim which = 762 }
+		command = { type = removeclaim which = 773 }
+		command = { type = removeclaim which = 754 }
+		command = { type = removeclaim which = 755 }
+		command = { type = removeclaim which = 756 }
+		command = { type = removeclaim which = 757 }
+		command = { type = removeclaim which = 751 }
+		command = { type = removeclaim which = 750 }
+		command = { type = removeclaim which = 752 }
+		command = { type = removeclaim which = 774 }
+		command = { type = removeclaim which = 758 }
+		command = { type = removeclaim which = 759 }
+		command = { type = removeclaim which = 763 }
+		command = { type = removeclaim which = 764 }
+		command = { type = removeclaim which = 775 }
+		command = { type = removeclaim which = 767 }
+		command = { type = removeclaim which = 772 }
+		command = { type = removeclaim which = 776 }
+		command = { type = removeclaim which = 777 }
+		command = { type = belligerence value = -1 }
+		command = { type = dissent value = 1 }
+		command = { type = independence which = LBY value = 1 }
+		command = { type = event which = 2400538 where = LBY when = 1 } #strong puppet flag
+		command = { type = event which = 2400535 where = LBY when = 1825 } #independence flag
+		command = { type = secedeprovince which = LBY value = 761 }
+		command = { type = secedeprovince which = LBY value = 753 }
+		command = { type = secedeprovince which = LBY value = 769 }
+		command = { type = secedeprovince which = LBY value = 770 }
+		command = { type = secedeprovince which = LBY value = 771 }
+		command = { type = secedeprovince which = LBY value = 765 }
+		command = { type = secedeprovince which = LBY value = 766 }
+		command = { type = secedeprovince which = LBY value = 760 }
+		command = { type = secedeprovince which = LBY value = 768 }
+		command = { type = secedeprovince which = LBY value = 762 }
+		command = { type = secedeprovince which = LBY value = 773 }
+		command = { type = secedeprovince which = LBY value = 754 }
+		command = { type = secedeprovince which = LBY value = 755 }
+		command = { type = secedeprovince which = LBY value = 756 }
+		command = { type = secedeprovince which = LBY value = 757 }
+		command = { type = secedeprovince which = LBY value = 751 }
+		command = { type = secedeprovince which = LBY value = 750 }
+		command = { type = secedeprovince which = LBY value = 752 }
+		command = { type = secedeprovince which = LBY value = 774 }
+		command = { type = secedeprovince which = LBY value = 758 }
+		command = { type = secedeprovince which = LBY value = 759 }
+		command = { type = secedeprovince which = LBY value = 763 }
+		command = { type = secedeprovince which = LBY value = 764 }
+		command = { type = secedeprovince which = LBY value = 775 }
+		command = { type = secedeprovince which = LBY value = 767 }
+		command = { type = secedeprovince which = LBY value = 772 }
+		command = { type = secedeprovince which = LBY value = 776 }
+		command = { type = secedeprovince which = LBY value = 777 }
+		command = { type = trigger which = 3187201 }
+	} 
+}
+
+event = { 
+	id = 3187201
+	random = no
+	country = LBY 
+
+	name = "Independence of Libya"
+	desc = "With the civil war breaking out in our country, the left leaning forces declare their intention to free the people of Libya from the fascists."
+	style = 2
+
+	action = { 
+		name = "Okay"
+		command = { type = access which = U14 }
+		command = { type = access which = ITA }
+		command = { type = access which = FRA }
+		command = { type = flag_ext where = LBY which = "_uar" }
+		#command = { type = alliance which = U14 }
+		#command = { type = war which = ITA }
+		command = { type = dissent value = -20 }
+		command = { type = transport_pool which = LBY value = 20 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = trigger which = 3187202 }
+		command = { type = event which = 3187204 where = U14 when = 3 } #Alliance delay
+		
+		command = { type = add_corps value = land where = 750 }
+		command = { type = add_division value = garrison when = 3 }
+		command = { type = add_division value = garrison when = 3 }
+		command = { type = add_corps value = land where = 750 }
+		command = { type = add_division value = infantry when = 6 }
+		command = { type = add_corps value = land where = 761 }
+		command = { type = add_division value = garrison when = 3 }
+		command = { type = add_division value = garrison when = 3 }
+		command = { type = add_corps value = land where = 761 }
+		command = { type = add_division value = infantry when = 6 }
+	}
+}
+
+
+event = { 
+	id = 3187202
+	random = no
+	country = ITA
+
+	name = "Libyan independence proclaimed"
+	desc = "With the civil war breaking out in our country, the traitorous communists have allied themselves with the Libyan nationalists who are aiming to undo decades of Italian work in establishing our presense in Africa. Should we fight for Libya?"
+	style = 2
+
+	action = { 
+		name = "Defend every inch of the Italian land!"
+		ai_chance = 0
+		#command = { type = independence which = LBY value = 1 }
+		command = { }
+	} 
+	action = { 
+		name = "It's a lost cause - we must defend Rome above all!"
+		ai_chance = 100
+		command = { type = belligerence value = -1 }
+		command = { type = independence which = LBY value = 1 }
+		command = { type = event which = 2400538 where = LBY when = 1 } #strong puppet flag
+		command = { type = event which = 2400535 where = LBY when = 1825 } #independence flag
+		command = { type = secedeprovince which = LBY value = 761 }
+		command = { type = secedeprovince which = LBY value = 753 }
+		command = { type = secedeprovince which = LBY value = 769 }
+		command = { type = secedeprovince which = LBY value = 770 }
+		command = { type = secedeprovince which = LBY value = 771 }
+		command = { type = secedeprovince which = LBY value = 765 }
+		command = { type = secedeprovince which = LBY value = 766 }
+		command = { type = secedeprovince which = LBY value = 760 }
+		command = { type = secedeprovince which = LBY value = 768 }
+		command = { type = secedeprovince which = LBY value = 762 }
+		command = { type = secedeprovince which = LBY value = 773 }
+		command = { type = secedeprovince which = LBY value = 754 }
+		command = { type = secedeprovince which = LBY value = 755 }
+		command = { type = secedeprovince which = LBY value = 756 }
+		command = { type = secedeprovince which = LBY value = 757 }
+		command = { type = secedeprovince which = LBY value = 751 }
+		command = { type = secedeprovince which = LBY value = 750 }
+		command = { type = secedeprovince which = LBY value = 752 }
+		command = { type = secedeprovince which = LBY value = 774 }
+		command = { type = secedeprovince which = LBY value = 758 }
+		command = { type = secedeprovince which = LBY value = 759 }
+		command = { type = secedeprovince which = LBY value = 763 }
+		command = { type = secedeprovince which = LBY value = 764 }
+		command = { type = secedeprovince which = LBY value = 775 }
+		command = { type = secedeprovince which = LBY value = 767 }
+		command = { type = secedeprovince which = LBY value = 772 }
+		command = { type = secedeprovince which = LBY value = 776 }
+		command = { type = secedeprovince which = LBY value = 777 }
+		command = { type = trigger which = 3187203 }
+	} 
+}
+
+event = { 
+	id = 3187203
+	random = no
+	country = LBY 
+
+	name = "Independence of Libya"
+	desc = "With the civil war breaking out in our country, the left leaning forces declare their intention to free the people of Libya from the fascists."
+	style = 2
+
+	action = { 
+		name = "Okay"
+		command = { type = end_access which = ITA }
+	}
+}
+
+event = { 
+	id = 3187204
+	random = no
+	country = U14
+
+	name = "Independence of Libya - alliance"
+	desc = "The Libyan nationalists promise to help us in defeating the fascists as a gratitude to our acceptance of their independence (we have promised to grant them full indpendence within 5 years)."
+	style = 2
+
+	action = { 
+		name = "Great!"
+		command = { type = make_puppet which = LBY }
+		command = { type = secedeprovince which = LBY value = 761 }
+		command = { type = secedeprovince which = LBY value = 753 }
+		command = { type = secedeprovince which = LBY value = 769 }
+		command = { type = secedeprovince which = LBY value = 770 }
+		command = { type = secedeprovince which = LBY value = 771 }
+		command = { type = secedeprovince which = LBY value = 765 }
+		command = { type = secedeprovince which = LBY value = 766 }
+		command = { type = secedeprovince which = LBY value = 760 }
+		command = { type = secedeprovince which = LBY value = 768 }
+		command = { type = secedeprovince which = LBY value = 762 }
+		command = { type = secedeprovince which = LBY value = 773 }
+		command = { type = secedeprovince which = LBY value = 754 }
+		command = { type = secedeprovince which = LBY value = 755 }
+		command = { type = secedeprovince which = LBY value = 756 }
+		command = { type = secedeprovince which = LBY value = 757 }
+		command = { type = secedeprovince which = LBY value = 751 }
+		command = { type = secedeprovince which = LBY value = 750 }
+		command = { type = secedeprovince which = LBY value = 752 }
+		command = { type = secedeprovince which = LBY value = 774 }
+		command = { type = secedeprovince which = LBY value = 758 }
+		command = { type = secedeprovince which = LBY value = 759 }
+		command = { type = secedeprovince which = LBY value = 763 }
+		command = { type = secedeprovince which = LBY value = 764 }
+		command = { type = secedeprovince which = LBY value = 775 }
+		command = { type = secedeprovince which = LBY value = 767 }
+		command = { type = secedeprovince which = LBY value = 772 }
+		command = { type = secedeprovince which = LBY value = 776 }
+		command = { type = secedeprovince which = LBY value = 777 }
+	}
+}
+
+
+##############################################
+# Italy - Experience gained
+##############################################
+
+event = {
+	id = 3187250
+	random = no
+	tag = { SOV FRA GER ENG }
+	persistent = yes
+
+	name = "Italian Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_U14_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_U14_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_ITA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_ITA_1 
+				}
+			}
+			local_flag = ICWExp
+		}
+		command = { type = local_clrflag which = ICWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_U14_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_U14_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_ITA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_ITA_1 
+				}
+			}
+		}
+	
+		command = { trigger = { OR = { country = SOV country = FRA } } type = relation which = U14 value = 5 }
+		command = { trigger = { OR = { country = GER country = ENG } } type = relation which = ITA value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_1 }
+										AND = { country = FRA flag = FRA_to_U14_1 }
+										AND = { country = GER flag = GER_to_ITA_1 }
+										AND = { country = ENG flag = ENG_to_ITA_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_2 }
+										AND = { country = FRA flag = FRA_to_U14_2 }
+										AND = { country = GER flag = GER_to_ITA_2 }
+										AND = { country = ENG flag = ENG_to_ITA_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_3 }
+										AND = { country = FRA flag = FRA_to_U14_3 }
+										AND = { country = GER flag = GER_to_ITA_3 }
+										AND = { country = ENG flag = ENG_to_ITA_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_4 }
+										AND = { country = FRA flag = FRA_to_U14_4 }
+										AND = { country = GER flag = GER_to_ITA_4 }
+										AND = { country = ENG flag = ENG_to_ITA_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_5 }
+										AND = { country = FRA flag = FRA_to_U14_5 }
+										AND = { country = GER flag = GER_to_ITA_5 }
+										AND = { country = ENG flag = ENG_to_ITA_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_1 }
+										AND = { country = FRA flag = FRA_to_U14_1 }
+										AND = { country = GER flag = GER_to_ITA_1 }
+										AND = { country = ENG flag = ENG_to_ITA_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_2 }
+										AND = { country = FRA flag = FRA_to_U14_2 }
+										AND = { country = GER flag = GER_to_ITA_2 }
+										AND = { country = ENG flag = ENG_to_ITA_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_3 }
+										AND = { country = FRA flag = FRA_to_U14_3 }
+										AND = { country = GER flag = GER_to_ITA_3 }
+										AND = { country = ENG flag = ENG_to_ITA_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_4 }
+										AND = { country = FRA flag = FRA_to_U14_4 }
+										AND = { country = GER flag = GER_to_ITA_4 }
+										AND = { country = ENG flag = ENG_to_ITA_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_5 }
+										AND = { country = FRA flag = FRA_to_U14_5 }
+										AND = { country = GER flag = GER_to_ITA_5 }
+										AND = { country = ENG flag = ENG_to_ITA_5 }
+								} }
+								type = money value = -5 }
+
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_1 }
+										AND = { country = FRA flag = FRA_to_U14_1 }
+										AND = { country = GER flag = GER_to_ITA_1 }
+										AND = { country = ENG flag = ENG_to_ITA_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_2 }
+										AND = { country = FRA flag = FRA_to_U14_2 }
+										AND = { country = GER flag = GER_to_ITA_2 }
+										AND = { country = ENG flag = ENG_to_ITA_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_3 }
+										AND = { country = FRA flag = FRA_to_U14_3 }
+										AND = { country = GER flag = GER_to_ITA_3 }
+										AND = { country = ENG flag = ENG_to_ITA_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_4 }
+										AND = { country = FRA flag = FRA_to_U14_4 }
+										AND = { country = GER flag = GER_to_ITA_4 }
+										AND = { country = ENG flag = ENG_to_ITA_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_5 }
+										AND = { country = FRA flag = FRA_to_U14_5 }
+										AND = { country = GER flag = GER_to_ITA_5 }
+										AND = { country = ENG flag = ENG_to_ITA_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_1 }
+										AND = { country = FRA flag = FRA_to_U14_1 }
+										AND = { country = GER flag = GER_to_ITA_1 }
+										AND = { country = ENG flag = ENG_to_ITA_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_2 }
+										AND = { country = FRA flag = FRA_to_U14_2 }
+										AND = { country = GER flag = GER_to_ITA_2 }
+										AND = { country = ENG flag = ENG_to_ITA_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_3 }
+										AND = { country = FRA flag = FRA_to_U14_3 }
+										AND = { country = GER flag = GER_to_ITA_3 }
+										AND = { country = ENG flag = ENG_to_ITA_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_4 }
+										AND = { country = FRA flag = FRA_to_U14_4 }
+										AND = { country = GER flag = GER_to_ITA_4 }
+										AND = { country = ENG flag = ENG_to_ITA_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U14_5 }
+										AND = { country = FRA flag = FRA_to_U14_5 }
+										AND = { country = GER flag = GER_to_ITA_5 }
+										AND = { country = ENG flag = ENG_to_ITA_5 }
+								} }
+								type = gain_tech which = -1 }
+
+		command = { type = event which = 3187250 where = -1 when = 180 }
+	}
+}

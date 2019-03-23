@@ -1,0 +1,311 @@
+
+event = {
+	id = 2149084
+	random = no
+	persistent = yes
+	
+	trigger = {
+		NOT = { local_flag = AllBoost }
+		#NOT = { country = USA }
+	}
+	
+	name = "Productivity base"
+	desc = "Our ability to smuggle goods and our informal economy provide us with a power to wage defensive war far above what our heavy industry might suggest"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1933 }
+	offset = 3
+	deathdate = { day = 30 month = march year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { type = local_setflag which = AllBoost }
+		command = { type = free_supplies value = 2 }
+		command = { type = free_metal value = 2 }
+		command = { type = free_energy value = 2 }
+		command = { type = free_rare_materials value = 2 }
+		command = { type = free_oil value = 10 }
+		command = { type = free_ic value = 2 }
+		command = { type = free_manpower value = 0.0005 }
+		command = { type = extra_tc value = 7 }
+		command = { type = free_transport value = 0.2 }
+		#command = { type = free_convoys value = 0.2 }
+		command = { type = manpowerpool value = 30 }
+		command = { type = oilpool value = 1000 }
+		command = { type = supplies value = 1000 }
+		command = { type = metalpool value = 1000 }
+		command = { type = energypool value = 1000 }
+	}
+}
+
+event = {
+	id = 2149085
+	random = no
+	persistent = yes
+	
+	trigger = {
+		local_flag = AllBoost
+		NOT = { local_flag = AllDefense }
+	}
+	
+	name = "Defense base"
+	desc = "Our defensible area and patriotic people allow us to defend ourselves well in excess of what our economic strength might suggest"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1933 }
+	offset = 3
+	deathdate = { day = 30 month = march year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { type = local_setflag which = AllDefense }
+		#command = { type = ground_def_eff value = 0.35 when = 1 }
+		command = { type = defensiveness which = land value = -10 }
+		#command = { type = toughness which = land value = -10 }
+		#command = { type = defensiveness which = land value = 80 }
+		#command = { type = toughness which = land value = 80 }
+		#command = { type = morale which = land value = -100 }
+		command = { type = plain_defense which = land value = 50 }
+		command = { type = desert_defense which = land value = 50 }
+		#command = { type = mountain_defense which = land value = 150 }
+		command = { type = mountain_defense which = land value = 250 }
+		command = { type = urban_defense which = land value = 150 }
+		command = { type = hill_defense which = land value = 50 }
+		command = { type = forest_defense which = land value = 50 }
+		command = { type = jungle_defense which = land value = 50 }
+		command = { type = swamp_defense which = land value = 50 }
+		command = { trigger = { } type = add_division value = infantry when = 8 }
+		command = { trigger = { } type = add_division value = garrison when = 4 }
+		command = { trigger = { } type = add_division value = garrison when = 4 }
+		command = { trigger = { } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 1 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 1 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 2 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 2 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 3 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 3 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 4 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 4 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 5 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 5 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 6 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 6 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 7 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 7 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 8 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 8 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 9 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 9 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 10 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 10 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 11 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 11 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 12 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 12 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 13 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 13 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 14 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 14 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 15 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 15 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 16 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 16 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 17 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 17 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 18 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 18 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 19 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 19 } type = add_division value = garrison when = 4 }
+		command = { trigger = { vp = 20 } type = add_division value = infantry when = 8 }
+		command = { trigger = { vp = 20 } type = add_division value = garrison when = 4 }
+	}
+}
+
+event = {
+	id = 21490888
+	random = no
+	country = SOV
+	
+	trigger = {
+	}
+	
+	name = "Defense base"
+	desc = "Our defensible area and patriotic people allow us to defend ourselves well in excess of what our economic strength might suggest"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1933 }
+	offset = 1
+	deathdate = { day = 30 month = march year = 1960 }
+
+	action = {
+		name = "Great!"
+		command = { type = add_corps value = land where = 316 }
+		command = { type = add_division value = armor when = 3 }
+		command = { type = add_division value = armor when = 3 }
+		command = { type = add_division value = armor when = 3 }
+		command = { type = add_division value = armor when = 3 }
+		command = { type = add_division value = armor when = 3 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = add_division value = infantry when = 13 }
+		command = { type = ai which = "SOV_1942.ai" }
+	}
+}
+
+event = {
+	id = 21490885
+	random = no
+	country = CHC
+	persistent = yes
+
+	name = "Chinese reinforcements"
+	desc = "Chinese reinforcements"
+	style = 2
+	picture = "news_paper"
+
+	trigger = {
+		NOT = { land_percentage = { country = JAP value = 3 } }
+		supplies = 300
+		manpower = 30
+		OR = {
+			AND = {
+				day = 1
+				NOT = { day = 2 }
+			}
+			AND = {
+				day = 8
+				NOT = { day = 9 }
+			}
+			AND = {
+				day = 16
+				NOT = { day = 17 }
+			}
+			AND = {
+				day = 22
+				NOT = { day = 23 }
+			}
+		}
+	}
+
+	date = { day = 1 month = january year = 1941 }
+	offset = 1
+	deathdate = { day = 30 month = december year = 1960 }
+
+	action = {
+		name = "Ok!"
+		command = { type = supplies value = -100 }
+		command = { type = manpowerpool value = -10 }
+		command = { type = add_division value = infantry when = 13 }
+	}
+}
+
+event = {
+	id = 21490886
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Soviet reinforcements"
+	desc = "Soviet reinforcements"
+	style = 2
+	picture = "news_paper"
+
+	trigger = {
+		NOT = { land_percentage = { country = GER value = 3 } }
+		supplies = 300
+		manpower = 30
+		OR = {
+			AND = {
+				day = 1
+				NOT = { day = 2 }
+			}
+			AND = {
+				day = 8
+				NOT = { day = 9 }
+			}
+			AND = {
+				day = 16
+				NOT = { day = 17 }
+			}
+			AND = {
+				day = 22
+				NOT = { day = 23 }
+			}
+		}
+	}
+
+	date = { day = 1 month = january year = 1941 }
+	offset = 1
+	deathdate = { day = 30 month = december year = 1960 }
+
+	action = {
+		name = "Ok!"
+		command = { type = supplies value = -100 }
+		command = { type = manpowerpool value = -10 }
+		command = { type = add_division value = infantry when = 13 }
+	}
+}
+
+
+event = {
+	id = 21490889
+	random = no
+	country = JAP
+	
+	trigger = {
+	}
+	
+	name = "Defense base"
+	desc = "Our defensible area and patriotic people allow us to defend ourselves well in excess of what our economic strength might suggest"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1933 }
+	offset = 3
+	deathdate = { day = 30 month = march year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { type = inherit which = U87 value = 1 }
+	}
+}

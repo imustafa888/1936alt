@@ -1,0 +1,49 @@
+
+
+event = {
+	id = 2012091 # Referenced in AI files
+	country = CHI
+	random = no
+
+	name = "The Republic of China"
+	desc = "In 1936, the Republic of China exists in name only. In reality, ever since the death of Chiang Kaishek in 1930, the power is exercized by rival warlords and political factions. The CCP rules Manchuria and the Shanghai area, the pro-Soviet KMT warlords of Shanxi and Guominjun rule vast areas in Central and Western China (and hold the nominal presidency of the republic), while in the south and south-west, under the leadership of Li Zongren, seeks protection from Japan and the UK."
+	style = 0
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1942 }
+
+	action_a = {
+		name = "Okay"
+		command = { type = dissent value = -5 }
+		command = { type = alliance which = CHC }
+		command = { type = alliance which = CSX }
+		command = { type = alliance which = SIK }
+	}
+}
+
+
+#########################################################################
+#  The Nanking Massacre
+#########################################################################
+event = {
+	id = 2012001
+	random = no
+	country = CHC
+	
+	# Triggered by JAP 2011007
+	
+	name = "EVT_4100_NAME"
+	desc = "EVT_4100_DESC"
+	style = 2
+	picture = "news_paper"
+	
+	action_a = {
+		name = ACTION_NAME_OK # Tragedy!
+		command = { trigger = { exists = CGX } type = relation which = CGX value = 15 }
+		command = { trigger = { exists = CSX } type = relation which = CSX value = 20 }
+		command = { type = province_manpower which = 1337 value = -30 } #Nanjing
+		command = { type = dissent value = -30 } # National cementation
+		command = { type = capital which = 1299 } # Chongqing
+	}
+}

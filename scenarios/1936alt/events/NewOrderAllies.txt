@@ -1,0 +1,2332 @@
+####################################
+# Axis surrender
+####################################
+
+
+event = {
+	id = 602500
+	random = no
+	country = ENG
+
+	decision = {
+		dissent = 15
+		nuked = -1
+		lost_national = { country = ENG value = 20 }
+		OR = {
+			NOT = { exists = GER }
+			lost_national = { country = GER value = 50 }
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				dissent = 30
+				nuked = -1
+			}
+			AND = {
+				dissent = 25
+				nuked = -2
+			}
+			AND = {
+				dissent = 20
+				nuked = -3
+			}
+			AND = {
+				dissent = 15
+				nuked = -4
+			}
+			AND = {
+				dissent = 10
+				nuked = -5
+			}
+			AND = {
+				dissent = 5
+				nuked = -6
+			}
+			nuked = -7
+			lost_national = { country = ENG value = 50 }
+		}
+		OR = {
+			NOT = { exists = GER }
+			lost_national = { country = GER value = 80 }
+		}
+	 }
+
+	name = "Surrender"
+ 	desc = "We have been clearly beaten and exhausted. Is it time for unconditional surrender?"
+	style = 0
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1970 }
+
+	action_a = {
+		name = "Yes"
+		command = { }
+		command = { type = event which = 602501 where = USA when = 10 }
+		command = { type = setflag which = global_surrender_Axis }
+	}
+}
+
+event = {
+	id = 602501
+	random = no
+	country = USA
+
+	name = "Axis Surrender"
+ 	desc = "They have agreed to surrender"
+	style = 0
+
+	action = {
+		name = "Yes!"
+		command = { type = inherit which = ENG value = 0 }
+		command = { type = clrflag which = global_surrender_Axis }
+	}
+}
+
+event = {
+	id = 602503
+	random = no
+	persistent = yes
+
+	trigger = {
+		event = 602500
+		NOT = { country = ENG }
+		alliance = { country = ENG }
+		atwar = yes
+		flag = global_surrender_Axis
+		NOT = { local_flag = surrender_Axis }
+	 }
+
+	name = "Surrender"
+ 	desc = "We have been beaten. Is it time to surrender?"
+	style = 0
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 5
+	deathdate = { day = 1 month = august year = 1970 }
+
+	action = {
+		name = "We surrender!"
+		ai_chance = 100
+		command = { type = local_setflag which = surrender_Axis }
+		command = { type = secederegion value = "Afghanistan" which = ENG when = 1 }
+		command = { type = secederegion value = "Alaska" which = ENG when = 1 }
+		command = { type = secederegion value = "Algeria" which = ENG when = 1 }
+		command = { type = secederegion value = "Amazonas" which = ENG when = 1 }
+		command = { type = secederegion value = "American Pacific" which = ENG when = 1 }
+		command = { type = secederegion value = "Anatolia" which = ENG when = 1 }
+		command = { type = secederegion value = "Andes" which = ENG when = 1 }
+		command = { type = secederegion value = "Asian Pacific" which = ENG when = 1 }
+		command = { type = secederegion value = "Australia" which = ENG when = 1 }
+		command = { type = secederegion value = "Austria" which = ENG when = 1 }
+		command = { type = secederegion value = "Balkan" which = ENG when = 1 }
+		command = { type = secederegion value = "Baltic States" which = ENG when = 1 }
+		command = { type = secederegion value = "Belarus" which = ENG when = 1 }
+		command = { type = secederegion value = "Benelux" which = ENG when = 1 }
+		command = { type = secederegion value = "Bismarck Archipelago" which = ENG when = 1 }
+		command = { type = secederegion value = "Brazil" which = ENG when = 1 }
+		command = { type = secederegion value = "Brazilian Highlands" which = ENG when = 1 }
+		command = { type = secederegion value = "Canada" which = ENG when = 1 }
+		command = { type = secederegion value = "Caribbean" which = ENG when = 1 }
+		command = { type = secederegion value = "Central Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "Central America" which = ENG when = 1 }
+		command = { type = secederegion value = "Central Asia" which = ENG when = 1 }
+		command = { type = secederegion value = "China" which = ENG when = 1 }
+		command = { type = secederegion value = "Czechoslovakia" which = ENG when = 1 }
+		command = { type = secederegion value = "Denmark" which = ENG when = 1 }
+		command = { type = secederegion value = "Diego Garcia Island" which = ENG when = 1 }
+		command = { type = secederegion value = "East Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "Eastern Canada" which = ENG when = 1 }
+		command = { type = secederegion value = "Eastern Russia" which = ENG when = 1 }
+		command = { type = secederegion value = "Egypt" which = ENG when = 1 }
+		command = { type = secederegion value = "England" which = ENG when = 1 }
+		command = { type = secederegion value = "Ethiopia" which = ENG when = 1 }
+		command = { type = secederegion value = "Far East Siberia" which = ENG when = 1 }
+		command = { type = secederegion value = "Finland" which = ENG when = 1 }
+		command = { type = secederegion value = "France" which = ENG when = 1 }
+		command = { type = secederegion value = "Germany" which = ENG when = 1 }
+		command = { type = secederegion value = "Gran Chaco" which = ENG when = 1 }
+		command = { type = secederegion value = "Grand Colombia" which = ENG when = 1 }
+		command = { type = secederegion value = "Greenland" which = ENG when = 1 }
+		command = { type = secederegion value = "Horn of Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "Hungary" which = ENG when = 1 }
+		command = { type = secederegion value = "Iceland" which = ENG when = 1 }
+		command = { type = secederegion value = "India" which = ENG when = 1 }
+		command = { type = secederegion value = "Indochine" which = ENG when = 1 }
+		command = { type = secederegion value = "Indonesia" which = ENG when = 1 }
+		command = { type = secederegion value = "Ireland" which = ENG when = 1 }
+		command = { type = secederegion value = "Irkutsk" which = ENG when = 1 }
+		command = { type = secederegion value = "Italy" which = ENG when = 1 }
+		command = { type = secederegion value = "Japan" which = ENG when = 1 }
+		command = { type = secederegion value = "Kaukasus" which = ENG when = 1 }
+		command = { type = secederegion value = "Kazakstan" which = ENG when = 1 }
+		command = { type = secederegion value = "Korea" which = ENG when = 1 }
+		command = { type = secederegion value = "Krasnoyarsk" which = ENG when = 1 }
+		command = { type = secederegion value = "Libya" which = ENG when = 1 }
+		command = { type = secederegion value = "Madagascar" which = ENG when = 1 }
+		command = { type = secederegion value = "Mexico" which = ENG when = 1 }
+		command = { type = secederegion value = "Middle East" which = ENG when = 1 }
+		command = { type = secederegion value = "Midwest US" which = ENG when = 1 }
+		command = { type = secederegion value = "Morocco" which = ENG when = 1 }
+		command = { type = secederegion value = "New Guinea" which = ENG when = 1 }
+		command = { type = secederegion value = "North Solomon Islands" which = ENG when = 1 }
+		command = { type = secederegion value = "Northeast US" which = ENG when = 1 }
+		command = { type = secederegion value = "Northern Canada" which = ENG when = 1 }
+		command = { type = secederegion value = "Northern Permafrost" which = ENG when = 1 }
+		command = { type = secederegion value = "Northern Russia" which = ENG when = 1 }
+		command = { type = secederegion value = "Northwest US" which = ENG when = 1 }
+		command = { type = secederegion value = "Norway" which = ENG when = 1 }
+		command = { type = secederegion value = "Novosibirsk" which = ENG when = 1 }
+		command = { type = secederegion value = "Patagonia" which = ENG when = 1 }
+		command = { type = secederegion value = "Persia" which = ENG when = 1 }
+		command = { type = secederegion value = "Philippines" which = ENG when = 1 }
+		command = { type = secederegion value = "Poland" which = ENG when = 1 }
+		command = { type = secederegion value = "Portugal" which = ENG when = 1 }
+		command = { type = secederegion value = "Rio de la Plata" which = ENG when = 1 }
+		command = { type = secederegion value = "Romania" which = ENG when = 1 }
+		command = { type = secederegion value = "Russia" which = ENG when = 1 }
+		command = { type = secederegion value = "Sahara" which = ENG when = 1 }
+		command = { type = secederegion value = "Scotland" which = ENG when = 1 }
+		command = { type = secederegion value = "South Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "South Solomon Islands" which = ENG when = 1 }
+		command = { type = secederegion value = "Southcentral US" which = ENG when = 1 }
+		command = { type = secederegion value = "Southeast US" which = ENG when = 1 }
+		command = { type = secederegion value = "Southern Russia" which = ENG when = 1 }
+		command = { type = secederegion value = "Southwest Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "Southwest US" which = ENG when = 1 }
+		command = { type = secederegion value = "Spain" which = ENG when = 1 }
+		command = { type = secederegion value = "Sudan" which = ENG when = 1 }
+		command = { type = secederegion value = "Sweden" which = ENG when = 1 }
+		command = { type = secederegion value = "Switzerland" which = ENG when = 1 }
+		command = { type = secederegion value = "Tomsk" which = ENG when = 1 }
+		command = { type = secederegion value = "Tunisia" which = ENG when = 1 }
+		command = { type = secederegion value = "Ukraine" which = ENG when = 1 }
+		command = { type = secederegion value = "Urals" which = ENG when = 1 }
+		command = { type = secederegion value = "West Africa" which = ENG when = 1 }
+		command = { type = secederegion value = "Western Canada" which = ENG when = 1 }
+		command = { type = secederegion value = "Western Russia" which = ENG when = 1 }
+		command = { type = secederegion value = "White Sea Tundra" which = ENG when = 1 }
+		
+	}
+	action = {
+		name = "No surrender!"
+		ai_chance = 0
+		command = { }
+		command = { type = local_setflag which = surrender_Axis }
+	}
+}
+
+
+
+#############################################################
+# Post-war events
+#############################################################
+
+event = {
+	id = 602540
+	random = no
+	country = SOV
+	save_date = yes
+
+	#decision = {
+	#	OR = {
+	#		NOT = { exists = GER }
+	#		owned = { province = 163 data = -3 } #Berlin
+	#	}
+	#}
+	#decision_trigger = {
+	#	atwar = no
+	#}
+	trigger = {
+		OR = {
+			NOT = { war = { country = ENG } }
+			owned = { province = 29 data = -3 } #London
+		}
+		OR = {
+			NOT = { exists = GER }
+			owned = { province = 163 data = -3 } #Berlin
+		}
+	 }
+
+	name = "New World Order - Europe"
+ 	desc = "Having decisively beaten Germany, we must now partition it among the victorious allies"
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Equitable division"
+		command = { type = secederegion which = FRA value = "Benelux" }
+		command = { type = secederegion which = FRA value = "France" }
+		command = { type = secederegion which = FRA value = "Italy" }
+		command = { type = secederegion which = FRA value = "Spain" }
+		command = { type = secederegion which = FRA value = "Portugal" }
+		command = { type = secederegion which = FRA value = "Switzerland" }
+		command = { type = secederegion which = FRA value = "Libya" }
+		command = { type = secederegion which = FRA value = "Egypt" }
+		
+		command = { type = secederegion which = USA value = "Ireland" }
+		command = { type = secederegion which = USA value = "England" }
+		command = { type = secederegion which = USA value = "Scotland" }
+		command = { type = secederegion which = USA value = "Iceland" }
+		
+		command = { trigger = { NOT = { exists = DDR } } type = secedeprovince which = SOV value = 163 when = 2 }
+		command = { trigger = { NOT = { exists = DDR } } type = independence which = DDR value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = DDR } } } type = make_puppet which = DDR }
+		command = { type = event which = 2400538 where = DDR when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = U16 } } type = secedeprovince which = SOV value = 195 when = 2 }
+		command = { trigger = { NOT = { exists = U16 } } type = independence which = U16 value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = U16 } } } type = make_puppet which = U16 }
+		command = { type = event which = 2400538 where = U16 when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = CZE exists = U31 } } type = secedeprovince which = SOV value = 207 when = 2 }
+		command = { trigger = { NOT = { exists = CZE exists = U31 } } type = independence which = U31 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = POL exists = U32 } } type = secedeprovince which = SOV value = 232 when = 2 }
+		command = { trigger = { NOT = { exists = POL exists = U32 } } type = independence which = U32 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = HUN exists = U13 } } type = secedeprovince which = SOV value = 284 when = 2 }
+		command = { trigger = { NOT = { exists = HUN exists = U13 } } type = independence which = U13 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = secedeprovince which = SOV value = 338 when = 2 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = independence which = U27 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = ROM exists = U30 } } type = secedeprovince which = SOV value = 316 when = 2 }
+		command = { trigger = { NOT = { exists = ROM exists = U30 } } type = independence which = U30 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = GRE exists = U33 } } type = secedeprovince which = SOV value = 377 when = 2 }
+		command = { trigger = { NOT = { exists = GRE exists = U33 } } type = independence which = U33 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = BUL exists = U29 } } type = secedeprovince which = SOV value = 321 when = 2 }
+		command = { trigger = { NOT = { exists = BUL exists = U29 } } type = independence which = U29 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = ALB exists = U28 } } type = secedeprovince which = SOV value = 359 when = 2 }
+		command = { trigger = { NOT = { exists = ALB exists = U28 } } type = independence which = U28 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = NOR exists = U19 } } type = secedeprovince which = SOV value = 483 when = 2 }
+		command = { trigger = { NOT = { exists = NOR exists = U19 } } type = independence which = U19 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = SWE exists = U21 } } type = secedeprovince which = SOV value = 2159 when = 2 }
+		command = { trigger = { NOT = { exists = SWE exists = U21 } } type = independence which = U21 value = 1 when = 1 }
+		
+		command = { trigger = { NOT = { exists = DEN exists = U22 } } type = secedeprovince which = SOV value = 294 when = 2 }
+		command = { trigger = { NOT = { exists = DEN exists = U22 } } type = independence which = U22 value = 1 when = 1 }
+		
+		
+		command = { trigger = { ispuppet = HUN NOT = { puppet = { country = HUN } } } type = make_puppet which = HUN }
+		command = { trigger = { ispuppet = NOR NOT = { puppet = { country = NOR } } } type = make_puppet which = NOR }
+		command = { trigger = { ispuppet = SWE NOT = { puppet = { country = SWE } } } type = make_puppet which = SWE }
+		command = { trigger = { ispuppet = DEN NOT = { puppet = { country = DEN } } } type = make_puppet which = DEN }
+		command = { trigger = { ispuppet = YUG NOT = { puppet = { country = YUG } } } type = make_puppet which = YUG }
+		command = { trigger = { ispuppet = ALB NOT = { puppet = { country = ALB } } } type = make_puppet which = ALB }
+		command = { trigger = { ispuppet = BUL NOT = { puppet = { country = BUL } } } type = make_puppet which = BUL }
+		command = { trigger = { ispuppet = ROM NOT = { puppet = { country = ROM } } } type = make_puppet which = ROM }
+		command = { trigger = { ispuppet = CZE NOT = { puppet = { country = CZE } } } type = make_puppet which = CZE }
+		command = { trigger = { ispuppet = POL NOT = { puppet = { country = POL } } } type = make_puppet which = POL }
+		command = { trigger = { ispuppet = GRE NOT = { puppet = { country = GRE } } } type = make_puppet which = GRE }
+		command = { trigger = { ispuppet = TUR NOT = { puppet = { country = TUR } } } type = make_puppet which = TUR }
+		
+		command = { trigger = { ispuppet = HUN } type = coup_nation which = HUN }
+		command = { trigger = { ispuppet = NOR } type = coup_nation which = NOR }
+		command = { trigger = { ispuppet = SWE } type = coup_nation which = SWE }
+		command = { trigger = { ispuppet = DEN } type = coup_nation which = DEN }
+		command = { trigger = { ispuppet = YUG } type = coup_nation which = YUG }
+		command = { trigger = { ispuppet = ALB } type = coup_nation which = ALB }
+		command = { trigger = { ispuppet = BUL } type = coup_nation which = BUL }
+		command = { trigger = { ispuppet = ROM } type = coup_nation which = ROM }
+		command = { trigger = { ispuppet = CZE } type = coup_nation which = CZE }
+		command = { trigger = { ispuppet = POL } type = coup_nation which = POL }
+		command = { trigger = { ispuppet = GRE } type = coup_nation which = GRE }
+		command = { trigger = { ispuppet = TUR } type = coup_nation which = TUR }
+		
+		#command = { trigger = { exists = U12 NOT = { puppet = { country = U12 } } } type = make_puppet which = U12 }
+		command = { trigger = { exists = U13 NOT = { puppet = { country = U13 } } } type = make_puppet which = U13 }
+		#command = { trigger = { exists = U14 NOT = { puppet = { country = U14 } } } type = make_puppet which = U14 }
+		#command = { trigger = { exists = U15 NOT = { puppet = { country = U15 } } } type = make_puppet which = U15 }
+		command = { trigger = { exists = U19 NOT = { puppet = { country = U19 } } } type = make_puppet which = U19 }
+		command = { trigger = { exists = U21 NOT = { puppet = { country = U21 } } } type = make_puppet which = U21 }
+		command = { trigger = { exists = U22 NOT = { puppet = { country = U22 } } } type = make_puppet which = U22 }
+		#command = { trigger = { exists = U26 NOT = { puppet = { country = U26 } } } type = make_puppet which = U26 }
+		command = { trigger = { exists = U27 NOT = { puppet = { country = U27 } } } type = make_puppet which = U27 }
+		command = { trigger = { exists = U28 NOT = { puppet = { country = U28 } } } type = make_puppet which = U28 }
+		command = { trigger = { exists = U29 NOT = { puppet = { country = U29 } } } type = make_puppet which = U29 }
+		command = { trigger = { exists = U30 NOT = { puppet = { country = U30 } } } type = make_puppet which = U30 }
+		command = { trigger = { exists = U31 NOT = { puppet = { country = U31 } } } type = make_puppet which = U31 }
+		command = { trigger = { exists = U32 NOT = { puppet = { country = U32 } } } type = make_puppet which = U32 }
+		command = { trigger = { exists = U33 NOT = { puppet = { country = U33 } } } type = make_puppet which = U33 }
+		command = { trigger = { exists = U34 NOT = { puppet = { country = U34 } } } type = make_puppet which = U34 }
+		#command = { trigger = { exists = U35 NOT = { puppet = { country = U35 } } } type = make_puppet which = U35 }
+		
+		command = { type = event which = 602541 where = FRA when = 0 }
+		command = { type = trigger which = 602543 } #upgrade all existing puppets
+	}
+}
+
+event = {
+	id = 602541
+	random = no
+	country = FRA
+
+	name = "New World Order - Europe"
+ 	desc = "Having decisively beaten Germany, we must now partition it among the victorious allies"
+	style = 2
+
+	action = {
+		name = "Equitable division"
+		command = { type = secederegion which = SOV value = "Sweden" }
+		command = { type = secederegion which = SOV value = "Norway" }
+		command = { type = secederegion which = SOV value = "Baltic States" }
+		command = { type = secederegion which = SOV value = "Poland" }
+		command = { type = secederegion which = SOV value = "Czechoslovakia" }
+		command = { type = secederegion which = SOV value = "Hungary" }
+		command = { type = secederegion which = SOV value = "Romania" }
+		command = { type = secederegion which = SOV value = "Balkan" }
+		command = { type = secederegion which = SOV value = "Anatolia" }
+		command = { type = secederegion which = SOV value = "Finland" }
+
+		command = { type = secederegion which = USA value = "Ireland" }
+		command = { type = secederegion which = USA value = "England" }
+		command = { type = secederegion which = USA value = "Scotland" }
+		command = { type = secederegion which = USA value = "Iceland" }
+		
+		command = { trigger = { NOT = { exists = DFR } } type = secedeprovince which = FRA value = 138 when = 2 }
+		command = { trigger = { NOT = { exists = DFR } } type = independence which = DFR value = 1 when = 1 }		
+		command = { trigger = { NOT = { puppet = { country = DFR } } } type = make_puppet which = DFR }
+		command = { type = event which = 2400538 where = DFR when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = AUS } } type = secedeprovince which = FRA value = 190 when = 2 }
+		command = { trigger = { NOT = { exists = AUS } } type = independence which = AUS value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = AUS } } } type = make_puppet which = AUS }
+		command = { type = event which = 2400538 where = AUS when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = POR exists = U15 } } type = local_setflag which = 602541indFlag }
+		command = { trigger = { local_flag = 602541indFlag } type = secedeprovince which = FRA value = 476 when = 2 }
+		command = { trigger = { local_flag = 602541indFlag } type = independence which = POR value = 1 when = 1 }
+		command = { trigger = { local_flag = 602541indFlag } type = make_puppet which = POR }
+		command = { type = local_clrflag which = 602541indFlag }
+		
+		command = { trigger = { NOT = { exists = SPR exists = U35 } } type = local_setflag which = 602541indFlag }
+		command = { trigger = { local_flag = 602541indFlag } type = secedeprovince which = FRA value = 460 when = 2 }
+		command = { trigger = { local_flag = 602541indFlag } type = independence which = SPR value = 1 when = 1 }
+		command = { trigger = { local_flag = 602541indFlag } type = make_puppet which = SPR }
+		command = { type = local_clrflag which = 602541indFlag }
+		
+		command = { trigger = { NOT = { exists = HOL exists = U10 } } type = local_setflag which = 602541indFlag }
+		command = { trigger = { local_flag = 602541indFlag } type = secedeprovince which = FRA value = 122 when = 2 }
+		command = { trigger = { local_flag = 602541indFlag } type = independence which = HOL value = 1 when = 1 }
+		command = { trigger = { local_flag = 602541indFlag } type = make_puppet which = HOL }
+		command = { type = local_clrflag which = 602541indFlag }
+		
+		command = { trigger = { ispuppet = SPR NOT = { puppet = { country = SPR } } } type = make_puppet which = SPR }
+		command = { trigger = { ispuppet = U14 NOT = { puppet = { country = U14 } } } type = make_puppet which = U14 }
+		command = { trigger = { ispuppet = POR NOT = { puppet = { country = POR } } } type = make_puppet which = POR }
+		command = { trigger = { ispuppet = BEL NOT = { puppet = { country = BEL } } } type = make_puppet which = BEL }
+		command = { trigger = { ispuppet = HOL NOT = { puppet = { country = HOL } } } type = make_puppet which = HOL }
+		command = { trigger = { ispuppet = SCH NOT = { puppet = { country = SCH } } } type = make_puppet which = SCH }
+		
+		command = { type = event which = 602542 where = USA when = 1 }
+	}
+}
+
+event = {
+	id = 602542
+	random = no
+	country = USA
+	persistent = yes
+
+	name = "New World Order - Europe"
+ 	desc = "Having decisively beaten Germany, we must now partition it among the victorious allies"
+	style = 2
+
+	action = {
+		name = "Equitable division"
+		command = { type = secederegion which = FRA value = "Benelux" }
+		command = { type = secederegion which = FRA value = "France" }
+		command = { type = secederegion which = FRA value = "Italy" }
+		command = { type = secederegion which = FRA value = "Spain" }
+		command = { type = secederegion which = FRA value = "Portugal" }
+		command = { type = secederegion which = FRA value = "Switzerland" }
+		command = { type = secederegion which = FRA value = "Libya" }
+		command = { type = secederegion which = FRA value = "Egypt" }
+		
+		command = { type = secederegion which = SOV value = "Sweden" }
+		command = { type = secederegion which = SOV value = "Norway" }
+		command = { type = secederegion which = SOV value = "Baltic States" }
+		command = { type = secederegion which = SOV value = "Poland" }
+		command = { type = secederegion which = SOV value = "Czechoslovakia" }
+		command = { type = secederegion which = SOV value = "Hungary" }
+		command = { type = secederegion which = SOV value = "Romania" }
+		command = { type = secederegion which = SOV value = "Balkan" }
+		command = { type = secederegion which = SOV value = "Anatolia" }
+		command = { type = secederegion which = SOV value = "Finland" }
+		
+		command = { trigger = { NOT = { exists = U76 } } type = secedeprovince which = USA value = 22 when = 2 }
+		command = { trigger = { NOT = { exists = U76 } } type = independence which = U76 value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = U76 } } } type = make_puppet which = U76 }
+		command = { type = event which = 2400538 where = U76 when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = SCO } } type = secedeprovince which = USA value = 11 when = 2 }
+		command = { trigger = { NOT = { exists = SCO } } type = independence which = SCO value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = SCO } } } type = make_puppet which = SCO }
+		command = { type = event which = 2400538 where = SCO when = 0 } #strong puppet
+		
+		command = { trigger = { NOT = { exists = U73 } } type = secedeprovince which = USA value = 29 when = 2 }
+		command = { trigger = { NOT = { exists = U73 } } type = independence which = U73 value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = U73 } } } type = make_puppet which = U73 }
+		command = { type = event which = 2400538 where = U73 when = 0 } #strong puppet
+		
+		command = { type = secedeprovince which = U76 value = 21 when = 2 }
+		command = { type = secedeprovince which = U76 value = 22 when = 2 }
+		
+		command = { type = secederegion which = SCO value = "Scotland" when = 2 }
+		
+		command = { type = secedearea which = U73 value = "East England" when = 2 }
+		command = { type = secedearea which = U73 value = "North England" when = 2 }
+		command = { type = secedeprovince which = U73 value = 19 when = 2 }
+		command = { type = secedeprovince which = U73 value = 20 when = 2 }
+		command = { type = secedeprovince which = U73 value = 23 when = 2 }
+		command = { type = secedeprovince which = U73 value = 24 when = 2 }
+		
+		command = { type = addcore which = 35 where = IRE }
+		command = { type = addcore which = 36 where = IRE }
+		
+		command = { type = secedearea which = DDR value = "East Prussia" when = 2 }
+		command = { type = secedearea which = DDR value = "Brandenburg" when = 2 }
+		command = { type = secedearea which = DDR value = "Silesia" when = 2 }
+		command = { type = secedearea which = DDR value = "Sachsen" when = 2 }
+		command = { type = secedearea which = DDR value = "Holstein_Mecklemburg" when = 2 }
+		
+		command = { type = secedeprovince which = DDR value = 261 when = 2 }
+		
+		#command = { type = secedearea which = DFR value = "Hannover_Magdeburg" when = 2 }
+		command = { type = secedearea which = DFR value = "Westphalen" when = 2 }
+		command = { type = secedearea which = DFR value = "Rhineland" when = 2 }
+		command = { type = secedearea which = DFR value = "Hessen" when = 2 }
+		command = { type = secedearea which = DFR value = "Bavaria" when = 2 }
+		command = { type = secedearea which = DFR value = "Baden_Wurttemberg" when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 221 when = 2 }
+		command = { type = secedeprovince which = U32 value = 221 when = 2 }
+		
+		command = { type = secedeprovince which = DDR value = 146 when = 2 }
+		command = { type = secedeprovince which = DDR value = 149 when = 2 }
+		
+		command = { type = secedeprovince which = DFR value = 147 when = 2 }
+		command = { type = secedeprovince which = DFR value = 148 when = 2 }
+		
+		command = { type = secedeprovince which = U16 value = 186 when = 2 }
+		command = { type = secedeprovince which = U16 value = 188 when = 2 }
+		command = { type = secedeprovince which = U16 value = 193 when = 2 }
+		command = { type = secedeprovince which = U16 value = 194 when = 2 }
+		command = { type = secedeprovince which = U16 value = 195 when = 2 }
+		
+		command = { type = secedeprovince which = AUS value = 187 when = 2 }
+		command = { type = secedeprovince which = AUS value = 189 when = 2 }
+		command = { type = secedeprovince which = AUS value = 190 when = 2 }
+		command = { type = secedeprovince which = AUS value = 191 when = 2 }
+		command = { type = secedeprovince which = AUS value = 192 when = 2 }
+		
+		command = { trigger = { exists = SCO } type = secederegion which = SCO value = "Scotland" when = 2 }
+		command = { trigger = { exists = IRE } type = secederegion which = IRE value = "Ireland" when = 2 }
+		command = { trigger = { exists = ENG NOT = { exists = U12 } } type = secederegion which = ENG value = "England" when = 2 }
+		command = { trigger = { exists = HUN NOT = { exists = U13 } } type = secederegion which = HUN value = "Hungary" when = 2 }
+		command = { trigger = { exists = ITA NOT = { exists = U14 } } type = secederegion which = ITA value = "Italy" when = 2 }
+		command = { trigger = { exists = POR NOT = { exists = U15 } } type = secederegion which = POR value = "Portugal" when = 2 }
+		command = { trigger = { exists = HOL NOT = { exists = U10 } } type = secedearea which = HOL value = "Netherlands" when = 2 }
+		command = { trigger = { exists = NOR NOT = { exists = U19 } } type = secederegion which = NOR value = "Norway" when = 2 }
+		command = { trigger = { exists = SWE NOT = { exists = U21 } } type = secederegion which = SWE value = "Sweden" when = 2 }
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secederegion which = DEN value = "Denmark" when = 2 }
+		command = { trigger = { exists = SCH NOT = { exists = U26 } } type = secederegion which = SCH value = "Switzerland" when = 2 }
+		command = { trigger = { exists = YUG NOT = { exists = U27 } } type = secedearea which = YUG value = "Croatia" when = 2 }
+		command = { trigger = { exists = YUG NOT = { exists = U27 } } type = secedearea which = YUG value = "Bosnia" when = 2 }
+		command = { trigger = { exists = YUG NOT = { exists = U27 } } type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { trigger = { exists = YUG NOT = { exists = U27 } } type = secedearea which = YUG value = "East Serbia" when = 2 }
+		command = { trigger = { exists = ALB NOT = { exists = U28 } } type = secedearea which = ALB value = "Albania" when = 2 }
+		command = { trigger = { exists = BUL NOT = { exists = U29 } } type = secedearea which = BUL value = "Bulgaria" when = 2 }
+		command = { trigger = { exists = ROM NOT = { exists = U30 } } type = secederegion which = ROM value = "Romania" when = 2 }
+		command = { trigger = { exists = CZE NOT = { exists = U31 } } type = secederegion which = CZE value = "Czechoslovakia" when = 2 }
+		command = { trigger = { exists = POL NOT = { exists = U32 } } type = secederegion which = POL value = "Poland" when = 2 }
+		command = { trigger = { exists = GRE NOT = { exists = U33 } } type = secedearea which = GRE value = "Thrace" when = 2 }
+		command = { trigger = { exists = GRE NOT = { exists = U33 } } type = secedearea which = GRE value = "Attica" when = 2 }
+		command = { trigger = { exists = TUR NOT = { exists = U34 } } type = secederegion which = TUR value = "Anatolia" when = 2 }
+		command = { trigger = { exists = SPR NOT = { exists = U35 } } type = secederegion which = SPR value = "Spain" when = 2 }
+		
+		command = { trigger = { exists = U12 NOT = { exists = ENG } } type = secederegion which = U12 value = "England" when = 2 }
+		command = { trigger = { exists = U13 NOT = { exists = HUN } } type = secederegion which = U13 value = "Hungary" when = 2 }
+		command = { trigger = { exists = U14 NOT = { exists = ITA } } type = secederegion which = U14 value = "Italy" when = 2 }
+		command = { trigger = { exists = U15 NOT = { exists = POR } } type = secederegion which = U15 value = "Portugal" when = 2 }
+		command = { trigger = { exists = U19 NOT = { exists = NOR } } type = secederegion which = U19 value = "Norway" when = 2 }
+		command = { trigger = { exists = U21 NOT = { exists = SWE } } type = secederegion which = U21 value = "Sweden" when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secederegion which = U22 value = "Denmark" when = 2 }
+		command = { trigger = { exists = U26 NOT = { exists = SCH } } type = secederegion which = U26 value = "Switzerland" when = 2 }
+		command = { trigger = { exists = U27 NOT = { exists = YUG } } type = secedearea which = U27 value = "Croatia" when = 2 }
+		command = { trigger = { exists = U27 NOT = { exists = YUG } } type = secedearea which = U27 value = "Bosnia" when = 2 }
+		command = { trigger = { exists = U27 NOT = { exists = YUG } } type = secedearea which = U27 value = "Central Serbia" when = 2 }
+		command = { trigger = { exists = U27 NOT = { exists = YUG } } type = secedearea which = U27 value = "East Serbia" when = 2 }
+		command = { trigger = { exists = U28 NOT = { exists = ALB } } type = secedearea which = U28 value = "Albania" when = 2 }
+		command = { trigger = { exists = U29 NOT = { exists = BUL } } type = secedearea which = U29 value = "Bulgaria" when = 2 }
+		command = { trigger = { exists = U30 NOT = { exists = ROM } } type = secederegion which = U30 value = "Romania" when = 2 }
+		command = { trigger = { exists = U31 NOT = { exists = CZE } } type = secederegion which = U31 value = "Czechoslovakia" when = 2 }
+		command = { trigger = { exists = U32 NOT = { exists = POL } } type = secederegion which = U32 value = "Poland" when = 2 }
+		command = { trigger = { exists = U33 NOT = { exists = GRE } } type = secedearea which = U33 value = "Thrace" when = 2 }
+		command = { trigger = { exists = U33 NOT = { exists = GRE } } type = secedearea which = U33 value = "Attica" when = 2 }
+		command = { trigger = { exists = U34 NOT = { exists = TUR } } type = secederegion which = U34 value = "Anatolia" when = 2 }
+		command = { trigger = { exists = U35 NOT = { exists = SPR } } type = secederegion which = U35 value = "Spain" when = 2 }
+		
+		command = { trigger = { exists = GRE NOT = { exists = U33 } } type = secedeprovince which = GRE value = 387 when = 2 }
+		command = { trigger = { exists = GRE NOT = { exists = U33 } } type = secedeprovince which = GRE value = 388 when = 2 }
+		command = { trigger = { exists = U33 NOT = { exists = GRE } } type = secedeprovince which = U33 value = 387 when = 2 }
+		command = { trigger = { exists = U33 NOT = { exists = GRE } } type = secedeprovince which = U33 value = 388 when = 2 }
+		
+		command = { trigger = { exists = SYR NOT = { exists = ARA } } type = secedeprovince which = SYR value = 1054 when = 2 }
+		command = { trigger = { exists = ARA NOT = { exists = SYR } } type = secedeprovince which = ARA value = 1054 when = 2 }
+	}
+}
+
+event = {
+	id = 602543
+	random = no
+	persistent = yes
+	all = yes
+
+	name = "New World Order - Europe"
+ 	desc = "Germany and its allies have been decisively defeated. The post-war order in Europe is being created"
+	style = 2
+
+	action = {
+		name = "Let the victors be merciful"
+		
+		#Will upgrade only weak puppets to medium puppets. Will not upgrade medium puppets to strong
+		#command = { trigger = { local_flag = puppetLevel2made } type = local_setflag which = puppetLevel3 }
+		#command = { trigger = { local_flag = puppetLevel2made } type = local_clrflag which = puppetLevel2 }
+		
+		command = { trigger = { local_flag = puppetLevel1made } type = local_setflag which = puppetLevel2 }
+		command = { trigger = { local_flag = puppetLevel1made } type = local_clrflag which = puppetLevel1 }
+	}
+}
+
+event = {
+	id = 602550
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+	}
+
+	name = "Post war German border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the eastern border of Germany to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Oder-EastNeisse (Mild)"
+		ai_chance = 0
+		command = { type = secedeprovince which = U32 value = 181 when = 2 }
+		command = { type = secedeprovince which = U32 value = 183 when = 2 }
+		command = { type = secedeprovince which = U32 value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = U32 value = 155 when = 2 }
+		command = { type = secedeprovince which = U32 value = 158 when = 2 }
+		command = { type = secedeprovince which = U32 value = 159 when = 2 }
+		command = { type = secedeprovince which = U32 value = 161 when = 2 }
+		command = { type = secedeprovince which = U32 value = 164 when = 2 }
+		command = { type = secedeprovince which = U32 value = 168 when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 181 when = 2 }
+		command = { type = secedeprovince which = POL value = 183 when = 2 }
+		command = { type = secedeprovince which = POL value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 155 when = 2 }
+		command = { type = secedeprovince which = POL value = 158 when = 2 }
+		command = { type = secedeprovince which = POL value = 159 when = 2 }
+		command = { type = secedeprovince which = POL value = 161 when = 2 }
+		command = { type = secedeprovince which = POL value = 164 when = 2 }
+		command = { type = secedeprovince which = POL value = 168 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 182 when = 2 }
+		command = { type = secedeprovince which = SOV value = 184 when = 2 }
+		command = { type = secedeprovince which = SOV value = 261 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 238 when = 2 }
+		command = { type = secedeprovince which = SOV value = 240 when = 2 }
+		command = { type = secedeprovince which = SOV value = 241 when = 2 }
+		command = { type = secedeprovince which = SOV value = 244 when = 2 }
+		command = { type = secedeprovince which = SOV value = 245 when = 2 }
+		command = { type = secedeprovince which = SOV value = 247 when = 2 }
+		command = { type = secedeprovince which = SOV value = 248 when = 2 }
+		command = { type = secedeprovince which = SOV value = 249 when = 2 }
+		command = { type = secedeprovince which = SOV value = 251 when = 2 }
+		command = { type = secedeprovince which = SOV value = 255 when = 2 }
+		command = { type = secedeprovince which = SOV value = 256 when = 2 }
+		command = { type = secedeprovince which = SOV value = 257 when = 2 }
+		command = { type = secedeprovince which = SOV value = 258 when = 2 }
+		
+		command = { type = secederegion which = SOV value = "Baltic States" when = 2 }
+		
+		command = { type = addcore which = 181 where = U32 }
+		command = { type = addcore which = 183 where = U32 }
+		command = { type = addcore which = 185 where = U32 }
+		
+		command = { type = addcore which = 155 where = U32 }
+		command = { type = addcore which = 158 where = U32 }
+		command = { type = addcore which = 159 where = U32 }
+		command = { type = addcore which = 161 where = U32 }
+		command = { type = addcore which = 164 where = U32 }
+		command = { type = addcore which = 168 where = U32 }
+		
+		command = { type = addcore which = 181 where = POL }
+		command = { type = addcore which = 183 where = POL }
+		command = { type = addcore which = 185 where = POL }
+		
+		command = { type = addcore which = 155 where = POL }
+		command = { type = addcore which = 158 where = POL }
+		command = { type = addcore which = 159 where = POL }
+		command = { type = addcore which = 161 where = POL }
+		command = { type = addcore which = 164 where = POL }
+		command = { type = addcore which = 168 where = POL }
+		
+		command = { type = addclaim which = 261 where = SOV }
+		command = { type = addcore which = 182 where = SOV }
+		command = { type = addcore which = 184 where = SOV }
+		
+		command = { type = addcore which = 264 where = SOV }
+		command = { type = addcore which = 270 where = SOV }
+		
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 150 when = 2 }
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 216 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 150 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 216 when = 2 }
+		
+		command = { type = addcore which = 150 where = DEN }
+		command = { type = addcore which = 216 where = DEN }
+		command = { type = addcore which = 150 where = U22 }
+		command = { type = addcore which = 216 where = U22 }
+	}
+	action = {
+		name = "Oder-WestNeisse (Historical)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = POL }
+				puppet = { country = U32 }
+			}
+		}
+		command = { type = secedeprovince which = U32 value = 181 when = 2 }
+		command = { type = secedeprovince which = U32 value = 183 when = 2 }
+		command = { type = secedeprovince which = U32 value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = U32 value = 155 when = 2 }
+		command = { type = secedeprovince which = U32 value = 158 when = 2 }
+		command = { type = secedeprovince which = U32 value = 159 when = 2 }
+		command = { type = secedeprovince which = U32 value = 161 when = 2 }
+		command = { type = secedeprovince which = U32 value = 168 when = 2 }
+		
+		command = { type = secedearea which = U32 value = "Silesia" when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 181 when = 2 }
+		command = { type = secedeprovince which = POL value = 183 when = 2 }
+		command = { type = secedeprovince which = POL value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 155 when = 2 }
+		command = { type = secedeprovince which = POL value = 158 when = 2 }
+		command = { type = secedeprovince which = POL value = 159 when = 2 }
+		command = { type = secedeprovince which = POL value = 161 when = 2 }
+		command = { type = secedeprovince which = POL value = 168 when = 2 }
+		
+		command = { type = secedearea which = POL value = "Silesia" when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 182 when = 2 }
+		command = { type = secedeprovince which = SOV value = 184 when = 2 }
+		command = { type = secedeprovince which = SOV value = 261 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 238 when = 2 }
+		command = { type = secedeprovince which = SOV value = 240 when = 2 }
+		command = { type = secedeprovince which = SOV value = 241 when = 2 }
+		command = { type = secedeprovince which = SOV value = 242 when = 2 }
+		command = { type = secedeprovince which = SOV value = 244 when = 2 }
+		command = { type = secedeprovince which = SOV value = 245 when = 2 }
+		command = { type = secedeprovince which = SOV value = 247 when = 2 }
+		command = { type = secedeprovince which = SOV value = 248 when = 2 }
+		command = { type = secedeprovince which = SOV value = 249 when = 2 }
+		command = { type = secedeprovince which = SOV value = 251 when = 2 }
+		command = { type = secedeprovince which = SOV value = 253 when = 2 }
+		command = { type = secedeprovince which = SOV value = 255 when = 2 }
+		command = { type = secedeprovince which = SOV value = 256 when = 2 }
+		command = { type = secedeprovince which = SOV value = 257 when = 2 }
+		command = { type = secedeprovince which = SOV value = 258 when = 2 }
+		
+		command = { type = secederegion which = SOV value = "Baltic States" when = 2 }
+		
+		command = { type = addcore which = 181 where = U32 }
+		command = { type = addcore which = 183 where = U32 }
+		command = { type = addcore which = 185 where = U32 }
+		
+		command = { type = addcore which = 155 where = U32 }
+		command = { type = addcore which = 158 where = U32 }
+		command = { type = addcore which = 159 where = U32 }
+		command = { type = addcore which = 161 where = U32 }
+		command = { type = addcore which = 164 where = U32 }
+		command = { type = addcore which = 165 where = U32 }
+		command = { type = addcore which = 166 where = U32 }
+		command = { type = addcore which = 167 where = U32 }
+		command = { type = addcore which = 168 where = U32 }
+		
+		command = { type = addcore which = 181 where = POL }
+		command = { type = addcore which = 183 where = POL }
+		command = { type = addcore which = 185 where = POL }
+		
+		command = { type = addcore which = 155 where = POL }
+		command = { type = addcore which = 158 where = POL }
+		command = { type = addcore which = 159 where = POL }
+		command = { type = addcore which = 161 where = POL }
+		command = { type = addcore which = 164 where = POL }
+		command = { type = addcore which = 165 where = POL }
+		command = { type = addcore which = 166 where = POL }
+		command = { type = addcore which = 167 where = POL }
+		command = { type = addcore which = 168 where = POL }
+		
+		command = { type = addclaim which = 261 where = SOV }
+		command = { type = addcore which = 182 where = SOV }
+		command = { type = addcore which = 184 where = SOV }
+		
+		command = { type = addcore which = 264 where = SOV }
+		command = { type = addcore which = 270 where = SOV }
+		
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 150 when = 2 }
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 216 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 150 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 216 when = 2 }
+		
+		command = { type = addcore which = 150 where = DEN }
+		command = { type = addcore which = 216 where = DEN }
+		command = { type = addcore which = 150 where = U22 }
+		command = { type = addcore which = 216 where = U22 }
+	}
+	
+	action = {
+		name = "Oder-Cottbus (Extreme)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = POL }
+				puppet = { country = U32 }
+			}
+		}
+		command = { type = secedeprovince which = U32 value = 181 when = 2 }
+		command = { type = secedeprovince which = U32 value = 183 when = 2 }
+		command = { type = secedeprovince which = U32 value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = U32 value = 155 when = 2 }
+		command = { type = secedeprovince which = U32 value = 158 when = 2 }
+		command = { type = secedeprovince which = U32 value = 159 when = 2 }
+		command = { type = secedeprovince which = U32 value = 161 when = 2 }
+		command = { type = secedeprovince which = U32 value = 164 when = 2 }
+		command = { type = secedeprovince which = U32 value = 165 when = 2 }
+		command = { type = secedeprovince which = U32 value = 166 when = 2 }
+		command = { type = secedeprovince which = U32 value = 167 when = 2 }
+		command = { type = secedeprovince which = U32 value = 168 when = 2 }
+		command = { type = secedeprovince which = U32 value = 172 when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 181 when = 2 }
+		command = { type = secedeprovince which = POL value = 183 when = 2 }
+		command = { type = secedeprovince which = POL value = 185 when = 2 }
+		
+		command = { type = secedeprovince which = POL value = 155 when = 2 }
+		command = { type = secedeprovince which = POL value = 158 when = 2 }
+		command = { type = secedeprovince which = POL value = 159 when = 2 }
+		command = { type = secedeprovince which = POL value = 161 when = 2 }
+		command = { type = secedeprovince which = POL value = 164 when = 2 }
+		command = { type = secedeprovince which = POL value = 165 when = 2 }
+		command = { type = secedeprovince which = POL value = 166 when = 2 }
+		command = { type = secedeprovince which = POL value = 167 when = 2 }
+		command = { type = secedeprovince which = POL value = 168 when = 2 }
+		command = { type = secedeprovince which = POL value = 172 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 182 when = 2 }
+		command = { type = secedeprovince which = SOV value = 184 when = 2 }
+		command = { type = secedeprovince which = SOV value = 261 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 238 when = 2 }
+		command = { type = secedeprovince which = SOV value = 239 when = 2 }
+		command = { type = secedeprovince which = SOV value = 240 when = 2 }
+		command = { type = secedeprovince which = SOV value = 241 when = 2 }
+		command = { type = secedeprovince which = SOV value = 242 when = 2 }
+		command = { type = secedeprovince which = SOV value = 244 when = 2 }
+		command = { type = secedeprovince which = SOV value = 245 when = 2 }
+		command = { type = secedeprovince which = SOV value = 247 when = 2 }
+		command = { type = secedeprovince which = SOV value = 248 when = 2 }
+		command = { type = secedeprovince which = SOV value = 249 when = 2 }
+		command = { type = secedeprovince which = SOV value = 250 when = 2 }
+		command = { type = secedeprovince which = SOV value = 251 when = 2 }
+		command = { type = secedeprovince which = SOV value = 252 when = 2 }
+		command = { type = secedeprovince which = SOV value = 253 when = 2 }
+		command = { type = secedeprovince which = SOV value = 254 when = 2 }
+		command = { type = secedeprovince which = SOV value = 255 when = 2 }
+		command = { type = secedeprovince which = SOV value = 256 when = 2 }
+		command = { type = secedeprovince which = SOV value = 257 when = 2 }
+		command = { type = secedeprovince which = SOV value = 258 when = 2 }
+		
+		command = { type = secederegion which = SOV value = "Baltic States" when = 2 }
+		
+		command = { type = addcore which = 181 where = U32 }
+		command = { type = addcore which = 183 where = U32 }
+		command = { type = addcore which = 185 where = U32 }
+		
+		command = { type = addcore which = 155 where = U32 }
+		command = { type = addcore which = 158 where = U32 }
+		command = { type = addcore which = 159 where = U32 }
+		command = { type = addcore which = 161 where = U32 }
+		command = { type = addcore which = 164 where = U32 }
+		command = { type = addcore which = 165 where = U32 }
+		command = { type = addcore which = 166 where = U32 }
+		command = { type = addcore which = 167 where = U32 }
+		command = { type = addcore which = 168 where = U32 }
+		command = { type = addcore which = 172 where = U32 }
+		
+		command = { type = addcore which = 181 where = POL }
+		command = { type = addcore which = 183 where = POL }
+		command = { type = addcore which = 185 where = POL }
+		
+		command = { type = addcore which = 155 where = POL }
+		command = { type = addcore which = 158 where = POL }
+		command = { type = addcore which = 159 where = POL }
+		command = { type = addcore which = 161 where = POL }
+		command = { type = addcore which = 164 where = POL }
+		command = { type = addcore which = 165 where = POL }
+		command = { type = addcore which = 166 where = POL }
+		command = { type = addcore which = 167 where = POL }
+		command = { type = addcore which = 168 where = POL }
+		command = { type = addcore which = 172 where = POL }
+		
+		command = { type = addclaim which = 261 where = SOV }
+		command = { type = addcore which = 182 where = SOV }
+		command = { type = addcore which = 184 where = SOV }
+		
+		command = { type = addcore which = 264 where = SOV }
+		command = { type = addcore which = 270 where = SOV }
+		
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 150 when = 2 }
+		command = { trigger = { exists = DEN NOT = { exists = U22 } } type = secedeprovince which = DEN value = 216 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 150 when = 2 }
+		command = { trigger = { exists = U22 NOT = { exists = DEN } } type = secedeprovince which = U22 value = 216 when = 2 }
+		
+		command = { type = addcore which = 150 where = DEN }
+		command = { type = addcore which = 216 where = DEN }
+		command = { type = addcore which = 150 where = U22 }
+		command = { type = addcore which = 216 where = U22 }
+	}
+}
+
+event = {
+	id = 602551
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+	}
+
+	name = "Post war Czech border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the eastern border of Czechoslovakia to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+	
+	action = {
+		name = "Transcarpathia to USSR (Historical)"
+		ai_chance = 100
+		command = { type = addcore which = 197 where = CZE }
+		command = { type = addcore which = 200 where = CZE }
+		command = { type = addcore which = 203 where = CZE }
+		command = { type = addcore which = 204 where = CZE }
+		command = { type = addcore which = 205 where = CZE }
+		command = { type = addcore which = 206 where = CZE }
+		
+		command = { type = addcore which = 197 where = U31 }
+		command = { type = addcore which = 200 where = U31 }
+		command = { type = addcore which = 203 where = U31 }
+		command = { type = addcore which = 204 where = U31 }
+		command = { type = addcore which = 205 where = U31 }
+		command = { type = addcore which = 206 where = U31 }
+		
+		
+		command = { type = secedeprovince which = SOV value = 213 when = 2 }
+		command = { type = secedeprovince which = SOV value = 215 when = 2 }
+	}
+}
+
+event = {
+	id = 602552
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		OR = {
+			puppet = { country = ROM }
+			puppet = { country = U30 }
+		}
+	}
+
+	name = "Post war Romanian border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the eastern border of Romania to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	
+	action = {
+		name = "Southern Besarrabia and Northern Bukovina to USSR (Mild)"
+		ai_chance = 0
+		trigger = {
+			OR = {
+				puppet = { country = ROM }
+				puppet = { country = U30 }
+			}
+		}
+		command = { type = addcore which = 291 where = ROM }
+		command = { type = addcore which = 291 where = U30 }
+		
+		command = { type = secedeprovince which = SOV value = 300 when = 2 }
+		command = { type = secedeprovince which = SOV value = 302 when = 2 }
+		command = { type = secedeprovince which = SOV value = 306 when = 2 }
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 300 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 302 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 306 where = SOV }
+	}	
+	action = {
+		name = "Entire Besarrabia and Northern Bukovina to USSR (Historical)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = ROM }
+				puppet = { country = U30 }
+			}
+			NOT = { flag = AlliedROM } #promised not to demand Besarrabia
+		}
+		command = { type = addcore which = 291 where = ROM }
+		command = { type = addcore which = 291 where = U30 }
+		
+		command = { type = secedeprovince which = SOV value = 300 when = 2 }
+		command = { type = secedeprovince which = SOV value = 302 when = 2 }
+		command = { type = secedeprovince which = SOV value = 303 when = 2 }
+		command = { type = secedeprovince which = SOV value = 304 when = 2 }
+		command = { type = secedeprovince which = SOV value = 305 when = 2 }
+		command = { type = secedeprovince which = SOV value = 306 when = 2 }
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 300 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 302 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 303 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 304 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 305 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 306 where = SOV }
+	}
+	action = {
+		name = "Entire Moldavia to USSR (Extreme)"
+		ai_chance = 0
+		trigger = {
+			OR = {
+				puppet = { country = ROM }
+				puppet = { country = U30 }
+			}
+			NOT = { flag = AlliedROM } #promised not to demand Besarrabia
+		}
+		command = { type = addcore which = 291 where = ROM }
+		command = { type = addcore which = 293 where = ROM }
+		command = { type = addcore which = 307 where = ROM }
+		
+		command = { type = addcore which = 291 where = U30 }
+		command = { type = addcore which = 293 where = U30 }
+		command = { type = addcore which = 307 where = U30 }
+		
+		command = { type = secedearea which = SOV value = "North Romania" when = 2 }
+		command = { type = secedearea which = SOV value = "Bessarabia" when = 2 }
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 300 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 302 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 303 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 304 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 305 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 306 where = SOV }
+		command = { type = addclaim which = 297 where = SOV }
+		command = { type = addclaim which = 298 where = SOV }
+		command = { type = addclaim which = 299 where = SOV }
+		command = { type = addclaim which = 301 where = SOV }
+	}
+}
+
+event = {
+	id = 602553
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		owned = { province = 409 data = -3 } #Istanbul
+	}
+
+	name = "Post war Turkish border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the eastern border of Turkish to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	
+	action = {
+		name = "Van to USSR, Adrianople to Greece (Mild)"
+		ai_chance = 0
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1067 when = 2 }
+		
+		command = { type = secedeprovince which = GRE value = 384 when = 2 }
+		command = { type = secedeprovince which = GRE value = 385 when = 2 }
+		
+		command = { type = secedeprovince which = U33 value = 384 when = 2 }
+		command = { type = secedeprovince which = U33 value = 385 when = 2 }
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 386 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1063 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1067 where = SOV }
+		
+		command = { type = addcore which = 384 where = GRE }
+		command = { type = addcore which = 385 where = GRE }
+		
+		command = { type = addcore which = 384 where = U33 }
+		command = { type = addcore which = 385 where = U33 }
+		
+		command = { type = secedeprovince which = SOV value = 1060 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1062 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1064 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1056 when = 2 }
+		command = { type = independence which = KUR value = 1 when = 1 }
+		command = { type = make_puppet which = KUR }
+		command = { type = event which = 2400538 where = KUR when = 0 } #strong puppet
+		command = { type = secedearea which = KUR value = "Eastern Anatolia" when = 2 }
+		command = { type = secedeprovince which = KUR value = 1056 when = 2 }
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { trigger = { control = { province = 1015 data = TUR } } type = secedeprovince which = KUR value = 1015 when = 2 }
+		command = { trigger = { control = { province = 1027 data = TUR } } type = secedeprovince which = KUR value = 1027 when = 2 }
+		command = { trigger = { control = { province = 1029 data = TUR } } type = secedeprovince which = KUR value = 1029 when = 2 }
+		command = { trigger = { control = { province = 1036 data = TUR } } type = secedeprovince which = KUR value = 1036 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 1075 when = 2 }
+		command = { type = independence which = U34 value = 1 when = 1 }
+		command = { type = make_puppet which = U34 }
+		command = { type = event which = 2400537 where = U34 when = 0 } #medium puppet
+		
+		command = { type = secedeprovince which = TUR value = 409 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1076 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1077 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1078 when = 2 }
+		command = { type = secedeprovince which = U34 value = 409 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1076 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1077 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1078 when = 2 }
+	}	
+	action = {
+		name = "Van to USSR, Smyrna-Adrianople to Greece (Moderate)"
+		ai_chance = 20
+		trigger = {
+			OR = {
+				alliance = { country = GRE }
+				alliance = { country = U33 }
+			}
+		}
+		
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1067 when = 2 }
+		
+		command = { type = secedeprovince which = GRE value = 384 when = 2 }
+		command = { type = secedeprovince which = GRE value = 385 when = 2 }
+		command = { type = secedeprovince which = GRE value = 1077 when = 2 }
+		
+		command = { type = secedeprovince which = U33 value = 384 when = 2 }
+		command = { type = secedeprovince which = U33 value = 385 when = 2 }
+		command = { type = secedeprovince which = U33 value = 1077 when = 2 }
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 386 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1063 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1067 where = SOV }
+		
+		command = { type = addcore which = 384 where = GRE }
+		command = { type = addcore which = 385 where = GRE }
+		command = { type = addcore which = 1077 where = GRE }
+		
+		command = { type = addcore which = 384 where = U33 }
+		command = { type = addcore which = 385 where = U33 }
+		command = { type = addcore which = 1077 where = U33 }
+		
+		command = { type = secedeprovince which = SOV value = 1056 when = 2 }
+		command = { type = secedearea which = SOV value = "Eastern Anatolia" when = 2 }
+		command = { type = independence which = KUR value = 1 when = 1 }
+		command = { type = make_puppet which = KUR }
+		command = { type = event which = 2400538 where = KUR when = 0 } #strong puppet
+		command = { type = secedearea which = KUR value = "Eastern Anatolia" when = 2 }
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1015 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1027 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1029 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1036 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1056 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 1075 when = 2 }
+		command = { type = independence which = U34 value = 1 when = 1 }
+		command = { type = make_puppet which = U34 }
+		command = { type = event which = 2400537 where = U34 when = 0 } #medium puppet
+		
+		command = { type = secedeprovince which = TUR value = 409 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1076 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1077 when = 2 }
+		command = { type = secedeprovince which = TUR value = 1078 when = 2 }
+		command = { type = secedeprovince which = U34 value = 409 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1076 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1077 when = 2 }
+		command = { type = secedeprovince which = U34 value = 1078 when = 2 }
+	}	
+	action = {
+		name = "Van and Istanbul to USSR, Smyrna-Izmit-Adrianople to Greece (Extreme)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = GRE }
+				puppet = { country = U33 }
+			}
+			OR = {
+				puppet = { country = TUR }
+				puppet = { country = U34 }
+				owned = { province = 1075 data = -3 }
+			}
+		}
+		
+		command = { type = secedeprovince which = SOV value = 1015 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1027 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1029 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1036 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1067 when = 2 }
+		command = { type = secedeprovince which = SOV value = 409 when = 2 }
+		
+		command = { type = secedeprovince which = GRE value = 384 when = 2 }
+		command = { type = secedeprovince which = GRE value = 385 when = 2 }
+		command = { type = secedeprovince which = GRE value = 1076 when = 2 }
+		command = { type = secedeprovince which = GRE value = 1077 when = 2 }
+		command = { type = secedeprovince which = GRE value = 1078 when = 2 } 
+		
+		command = { type = secedeprovince which = U33 value = 384 when = 2 }
+		command = { type = secedeprovince which = U33 value = 385 when = 2 }
+		command = { type = secedeprovince which = U33 value = 1076 when = 2 }
+		command = { type = secedeprovince which = U33 value = 1077 when = 2 }
+		command = { type = secedeprovince which = U33 value = 1078 when = 2 } 
+		
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 386 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1063 where = SOV }
+		command = { trigger = { local_flag = UnionBonds } type = addcore which = 1067 where = SOV }
+		#command = { trigger = { local_flag = UnionBonds } type = addcore which = 409 where = SOV }
+		
+		command = { type = addcore which = 384 where = GRE }
+		command = { type = addcore which = 385 where = GRE }
+		command = { type = addcore which = 1076 where = GRE }
+		command = { type = addcore which = 1077 where = GRE }
+		command = { type = addcore which = 1078 where = GRE }
+		
+		command = { type = addcore which = 384 where = U33 }
+		command = { type = addcore which = 385 where = U33 }
+		command = { type = addcore which = 1076 where = U33 }
+		command = { type = addcore which = 1077 where = U33 }
+		command = { type = addcore which = 1078 where = U33 }
+		
+		command = { type = secedeprovince which = SOV value = 1056 when = 2 }
+		command = { type = secedearea which = SOV value = "Eastern Anatolia" when = 2 }
+		command = { type = independence which = KUR value = 1 when = 1 }
+		command = { type = make_puppet which = KUR }
+		command = { type = event which = 2400538 where = KUR when = 0 } #strong puppet
+		command = { type = secedearea which = KUR value = "Eastern Anatolia" when = 2 }
+		command = { type = secedeprovince which = SOV value = 386 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1063 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1015 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1027 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1029 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1036 when = 2 }
+		command = { type = secedeprovince which = KUR value = 1056 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 1075 when = 2 }
+		command = { type = independence which = U34 value = 1 when = 1 }
+		command = { type = make_puppet which = U34 }
+		command = { type = event which = 2400537 where = U34 when = 0 } #medium puppet
+	}
+}
+
+
+event = {
+	id = 602554
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		owned = { province = 1199 data = -3 } #Harbin
+	}
+
+	name = "Post war Chinese border adjustment"
+ 	desc = "Having decisively beaten Japan, we now have the ability to adjust the northern border of China to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	
+	action = {
+		name = "Part Arthur to USSR (Mild)"
+		ai_chance = 0		
+		command = { type = secederegion which = CHC value = "China" }
+		command = { type = secedeprovince which = CHC value = 1328 when = 2 }
+		command = { type = secedeprovince which = CHC value = 1331 when = 2 }
+		
+		command = { type = secedearea which = CHC value = "Heilongjiang" when = 2 }
+		command = { type = secedearea which = CHC value = "Jilin" when = 2 }
+		command = { type = secedearea which = CHC value = "Liaoning" when = 2 }
+		command = { type = secedearea which = CHC value = "Rehe" when = 2 }
+
+		command = { type = secedeprovince which = CHC value = 1240 when = 2 }
+		command = { type = secedeprovince which = CHC value = 1245 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1219 when = 2 }
+	}	
+	action = {
+		name = "Greater Mongolia and Port Arthur to USSR (Moderate)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = CHC }
+				puppet = { country = CHI }
+			}
+		}
+		
+		command = { type = secederegion which = CHC value = "China" }
+		command = { type = secedeprovince which = CHC value = 1328 when = 2 }
+		command = { type = secedeprovince which = CHC value = 1331 when = 2 }
+		
+		command = { type = secedeprovince which = MON value = 1198 when = 2 }
+		command = { type = secedeprovince which = MON value = 1200 when = 2 }
+		command = { type = secedeprovince which = MON value = 1206 when = 2 }
+		command = { type = secedeprovince which = MON value = 1209 when = 2 }
+		command = { type = secedeprovince which = MON value = 1210 when = 2 }
+		command = { type = secedeprovince which = MON value = 1236 when = 2 }
+		command = { type = secedeprovince which = MON value = 1237 when = 2 }
+		command = { type = secedeprovince which = MON value = 1240 when = 2 }
+		command = { type = secedeprovince which = MON value = 1238 when = 2 }
+		command = { type = secedeprovince which = MON value = 1239 when = 2 }
+		command = { type = secedeprovince which = MON value = 1269 when = 2 }
+		command = { type = secedeprovince which = MON value = 1270 when = 2 }
+		command = { type = secedeprovince which = MON value = 1272 when = 2 }
+		
+		command = { type = secedearea which = CHC value = "Heilongjiang" when = 2 }
+		command = { type = secedearea which = CHC value = "Jilin" when = 2 }
+		command = { type = secedearea which = CHC value = "Liaoning" when = 2 }
+		command = { type = secedearea which = CHC value = "Rehe" when = 2 }
+
+		command = { type = secedeprovince which = CHC value = 1240 when = 2 }
+		command = { type = secedeprovince which = CHC value = 1245 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 1219 when = 2 }
+	}
+	action = {
+		name = "Greater Mongolia, Manchuria, and East Turkestan to USSR (Extreme)"
+		ai_chance = 0
+		trigger = {
+			OR = {
+				puppet = { country = CHC }
+				puppet = { country = CHI }
+			}
+		}
+		command = { type = secederegion which = CHC value = "China" }
+		command = { type = secedeprovince which = CHC value = 1328 when = 2 }
+		command = { type = secedeprovince which = CHC value = 1331 when = 2 }
+		
+		command = { type = secedeprovince which = MON value = 1198 when = 2 }
+		command = { type = secedeprovince which = MON value = 1200 when = 2 }
+		command = { type = secedeprovince which = MON value = 1206 when = 2 }
+		command = { type = secedeprovince which = MON value = 1209 when = 2 }
+		command = { type = secedeprovince which = MON value = 1210 when = 2 }
+		command = { type = secedeprovince which = MON value = 1236 when = 2 }
+		command = { type = secedeprovince which = MON value = 1237 when = 2 }
+		command = { type = secedeprovince which = MON value = 1240 when = 2 }
+		command = { type = secedeprovince which = MON value = 1238 when = 2 }
+		command = { type = secedeprovince which = MON value = 1239 when = 2 }
+		command = { type = secedeprovince which = MON value = 1269 when = 2 }
+		command = { type = secedeprovince which = MON value = 1270 when = 2 }
+		command = { type = secedeprovince which = MON value = 1272 when = 2 }
+		
+		command = { type = addclaim which = 1211 where = SOV }
+		command = { type = addclaim which = 1212 where = SOV }
+		command = { type = addclaim which = 1214 where = SOV }
+		command = { type = addclaim which = 1215 where = SOV }
+		command = { type = addclaim which = 1216 where = SOV }
+		command = { type = addclaim which = 1217 where = SOV }
+		command = { type = addclaim which = 1218 where = SOV }
+		command = { type = addclaim which = 1220 where = SOV }
+		command = { type = addclaim which = 1235 where = SOV }
+		
+		command = { type = secedearea which = SOV value = "Heilongjiang" when = 2 }
+		command = { type = secedearea which = SOV value = "Jilin" when = 2 }
+		command = { type = secedearea which = SOV value = "Liaoning" when = 2 }
+		command = { type = secedearea which = SOV value = "Rehe" when = 2 }
+		command = { type = secedeprovince which = SOV value = 1279 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1273 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1276 when = 2 }
+		command = { type = secedeprovince which = SOV value = 1280 when = 2 }
+		
+		command = { type = secedeprovince which = SOV value = 1219 when = 2 }
+	}
+}
+
+event = {
+	id = 602555
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		OR = {
+			NOT = { exists = JAP }
+			ispuppet = JAP
+		}
+	 }
+
+	name = "Post war Korean border adjustment"
+ 	desc = "Having decisively beaten Japan, we now have the ability to adjust the northern border of Korea to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "38th parallel"
+		ai_chance = 100
+		command = { trigger = { NOT = { exists = PRK } } type = secedeprovince which = SOV value = 1221 when = 2 }
+		command = { trigger = { NOT = { exists = PRK } } type = independence which = PRK value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = PRK } } } type = make_puppet which = PRK }
+		command = { type = event which = 2400538 where = PRK when = 0 } #strong puppet
+		
+		command = { type = event which = 602556 where = USA when = 0 }
+	}
+}
+
+event = {
+	id = 602556
+	random = no
+	country = USA
+
+	name = "Post war Korean border adjustment"
+ 	desc = "Having decisively beaten Japan, we now have the ability to adjust the northern border of Korea to our liking."
+	style = 2
+
+	action = {
+		name = "38th parallel"
+		command = { trigger = { NOT = { exists = KOR } } type = secedeprovince which = USA value = 1228 when = 2 }
+		command = { trigger = { NOT = { exists = KOR } } type = independence which = KOR value = 1 when = 1 }
+		command = { trigger = { NOT = { puppet = { country = KOR } } } type = make_puppet which = KOR }
+		command = { type = event which = 2400538 where = KOR when = 0 } #strong puppet
+		
+		command = { type = secedearea which = PRK value = "Pyongyang" when = 2 }
+		command = { type = secedearea which = KOR value = "Seoul" when = 2 }
+	}	
+}
+
+event = {
+	id = 602557
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		flag = AxisHUN
+	 }
+
+	name = "Post war Hungarian border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the northern border of Hungary to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Just restore pre-war borders (Mild)"
+		ai_chance = 0
+		command = { }
+		command = { type = secederegion which = HUN value = "Hungary" when = 2 }
+		command = { type = secederegion which = U13 value = "Hungary" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "Croatia" when = 2 }
+		command = { type = secedearea which = ROM value = "Transylvania" when = 2 }
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "Croatia" when = 2 }
+		command = { type = secedearea which = U30 value = "Transylvania" when = 2 }
+	}	
+	action = {
+		name = "Expel Hungarian diasporas (Medium)"
+		ai_chance = 100
+		command = { type = secederegion which = HUN value = "Hungary" when = 2 }
+		command = { type = secederegion which = U13 value = "Hungary" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "Croatia" when = 2 }
+		command = { type = secedearea which = ROM value = "Transylvania" when = 2 }
+		command = { type = secedearea which = U27 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = U27 value = "Croatia" when = 2 }
+		command = { type = secedearea which = U30 value = "Transylvania" when = 2 }
+		
+		command = { type = addcore which = 341 where = YUG }
+		command = { type = addcore which = 341 where = YUG }
+		
+		command = { type = addcore which = 293 where = ROM }
+		command = { type = addcore which = 293 where = U30 }
+		
+		command = { type = addcore which = 209 where = CZE }
+		command = { type = addcore which = 209 where = U31 }
+		command = { type = addcore which = 210 where = CZE }
+		command = { type = addcore which = 210 where = U31 }
+		
+		command = { type = addcore which = 215 where = SOV }
+	}
+	action = {
+		name = "Expel Hungarian diasporas and create Czech corridor (Extreme)"
+		ai_chance = 0
+		command = { type = secederegion which = HUN value = "Hungary" when = 2 }
+		command = { type = secederegion which = U13 value = "Hungary" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "Croatia" when = 2 }
+		command = { type = secedearea which = ROM value = "Transylvania" when = 2 }
+		command = { type = secedearea which = U27 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = U27 value = "Croatia" when = 2 }
+		command = { type = secedearea which = U30 value = "Transylvania" when = 2 }
+		
+		command = { type = addcore which = 341 where = YUG }
+		command = { type = addcore which = 341 where = YUG }
+		
+		command = { type = addcore which = 293 where = ROM }
+		command = { type = addcore which = 293 where = U30 }
+		
+		command = { type = addcore which = 209 where = CZE }
+		command = { type = addcore which = 209 where = U31 }
+		command = { type = addcore which = 210 where = CZE }
+		command = { type = addcore which = 210 where = U31 }
+		
+		command = { type = addcore which = 215 where = SOV }
+		
+		command = { type = secedeprovince which = CZE value = 188 when = 2 }
+		command = { type = secedeprovince which = CZE value = 276 when = 2 }
+		command = { type = secedeprovince which = CZE value = 279 when = 2 }
+
+		command = { type = secedeprovince which = U31 value = 188 when = 2 }
+		command = { type = secedeprovince which = U31 value = 276 when = 2 }
+		command = { type = secedeprovince which = U31 value = 279 when = 2 }
+		
+		command = { type = addclaim which = 188 where = CZE }
+		command = { type = addclaim which = 276 where = CZE }
+		command = { type = addclaim which = 279 where = CZE }
+
+		command = { type = addclaim which = 188 where = U31 }
+		command = { type = addclaim which = 276 where = U31 }
+		command = { type = addclaim which = 279 where = U31 }
+	}	
+}
+
+event = {
+	id = 602558
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		flag = AxisBUL
+	 }
+
+	name = "Post war Bulgarian border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the northern border of Bulgaria to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Expel diasporas and restore pre-war borders (Mild)"
+		ai_chance = 0
+		command = { }
+		command = { type = secedearea which = BUL value = "Bulgaria" when = 2 }
+		command = { type = secedearea which = U29 value = "Bulgaria" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "East Serbia" when = 2 }
+		command = { type = secedearea which = GRE value = "Thrace" when = 2 }
+		command = { type = secedearea which = ROM value = "South Romania" when = 2 }
+		
+		command = { type = secedearea which = U27 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = U27 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = U33 value = "Thrace" when = 2 }
+		command = { type = secedearea which = U30 value = "South Romania" when = 2 }
+		
+		command = { type = addcore which = 307 where = ROM }
+	}	
+	action = {
+		name = "Annex Bulgaria to Yugoslavia (Medium)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = YUG }
+				puppet = { country = U27 }
+			}
+		}
+		command = { type = secedearea which = YUG value = "Bulgaria" when = 2 }
+		command = { type = secedearea which = U27 value = "Bulgaria" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = YUG value = "East Serbia" when = 2 }
+		command = { type = secedearea which = GRE value = "Thrace" when = 2 }
+		command = { type = secedearea which = ROM value = "South Romania" when = 2 }
+		
+		command = { type = secedearea which = U27 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = U27 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = U33 value = "Thrace" when = 2 }
+		command = { type = secedearea which = U30 value = "South Romania" when = 2 }
+		
+		command = { type = addcore which = 307 where = ROM }
+		
+		command = { type = addcore which = 317 where = YUG }
+		command = { type = addcore which = 318 where = YUG }
+		command = { type = addcore which = 319 where = YUG }
+		command = { type = addcore which = 320 where = YUG }
+		command = { type = addcore which = 321 where = YUG }
+		command = { type = addcore which = 322 where = YUG }
+		command = { type = addcore which = 323 where = YUG }
+		command = { type = addcore which = 324 where = YUG }
+		command = { type = addcore which = 325 where = YUG }
+		command = { type = addcore which = 326 where = YUG }
+		
+		command = { type = addcore which = 317 where = U27 }
+		command = { type = addcore which = 318 where = U27 }
+		command = { type = addcore which = 319 where = U27 }
+		command = { type = addcore which = 320 where = U27 }
+		command = { type = addcore which = 321 where = U27 }
+		command = { type = addcore which = 322 where = U27 }
+		command = { type = addcore which = 323 where = U27 }
+		command = { type = addcore which = 324 where = U27 }
+		command = { type = addcore which = 325 where = U27 }
+		command = { type = addcore which = 326 where = U27 }
+	}
+}
+
+event = {
+	id = 602559
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		flag = AxisALB
+	 }
+
+	name = "Post war Albanian border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the northern border of Albania to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Expel diasporas and restore pre-war borders (Mild)"
+		ai_chance = 0
+		command = { }
+		command = { type = secedearea which = ALB value = "Albania" when = 2 }
+		command = { type = secedearea which = U28 value = "Albania" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "East Serbia" when = 2 }
+		command = { type = secedearea which = GRE value = "Thrace" when = 2 }
+		
+		command = { type = secedearea which = U27 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = U33 value = "Thrace" when = 2 }
+		
+		command = { type = addcore which = 329 where = YUG }
+		command = { type = addcore which = 334 where = YUG }
+		
+		command = { type = addcore which = 329 where = U27 }
+		command = { type = addcore which = 334 where = U27 }
+	}	
+	action = {
+		name = "Annex Albania to Yugoslavia (Medium)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				puppet = { country = YUG }
+				puppet = { country = U27 }
+			}
+		}
+		command = { type = secedearea which = YUG value = "Albania" when = 2 }
+		command = { type = secedearea which = U27 value = "Albania" when = 2 }
+		
+		command = { type = secedearea which = YUG value = "East Serbia" when = 2 }
+		command = { type = secedearea which = GRE value = "Thrace" when = 2 }
+		
+		command = { type = secedearea which = U27 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = U33 value = "Thrace" when = 2 }
+		
+		command = { type = addcore which = 329 where = YUG }
+		command = { type = addcore which = 334 where = YUG }
+		
+		command = { type = addcore which = 329 where = U27 }
+		command = { type = addcore which = 334 where = U27 }
+		
+		#Not giving cores on Albania
+	}
+}
+
+event = {
+	id = 602560
+	random = no
+	country = FRA
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+	}
+
+	name = "Post war German border adjustment"
+ 	desc = "Having decisively beaten Germany, we now have the ability to adjust the western border of Germany to our liking."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Saarland to France (Mild)"
+		ai_chance = 0
+		command = { type = addcore which = 105 where = FRA }
+		command = { type = addcore which = 107 where = FRA }
+		
+		command = { type = addcore which = 127 where = FRA }
+		
+		command = { trigger = { NOT = { owned = { province = 110 data = BEL } } } type = secedeprovince which = FRA value = 110 when = 2 }
+		command = { trigger = { exists = BEL NOT = { owned = { province = 110 data = BEL } } } type = secedeprovince which = BEL value = 110 when = 2 }
+		
+		command = { type = secedeprovince which = DFR value = 141 when = 2 }
+		command = { type = secedeprovince which = DFR value = 147 when = 2 }
+		command = { type = secedeprovince which = DFR value = 148 when = 2 }
+		#command = { type = secedeprovince which = DDR value = 141 }
+		#command = { type = secedeprovince which = DDR value = 147 }
+		#command = { type = secedeprovince which = DDR value = 148 }
+		
+		command = { type = secedearea which = DFR value = "Rhineland" when = 2 }
+		command = { type = secedearea which = DDR value = "Rhineland" when = 2 }
+		
+		command = { type = secedearea which = HOL value = "Netherlands" when = 2 }
+		command = { type = secedearea which = U10 value = "Netherlands" when = 2 }
+		
+		command = { type = secedearea which = BEL value = "Wallonia" when = 2 }
+		command = { type = secedearea which = U17 value = "Wallonia" when = 2 }
+		command = { type = secedearea which = BEL value = "Flanders" when = 2 }
+		command = { type = secedearea which = U17 value = "Flanders" when = 2 }
+		
+		command = { type = secedeprovince which = FRA value = 127 when = 2 }
+	}
+	action = {
+		name = "Rhineland to France (Medium)"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				owned = { province = 116 data = FRA }
+				puppet = { country = BEL }
+				puppet = { country = U17 }
+			}
+		}
+		
+		command = { type = inherit which = LUX value = 1 }
+		command = { type = inherit which = FLA value = 1 }
+		command = { type = inherit which = BEL value = 1 }
+		command = { type = inherit which = U17 value = 1 }
+		
+		command = { type = addcore which = 105 where = FRA }
+		command = { type = addcore which = 107 where = FRA }
+		
+		command = { type = addcore which = 127 where = FRA }
+		command = { type = addcore which = 109 where = FRA }
+		command = { type = addcore which = 110 where = FRA }
+		command = { type = addcore which = 114 where = FRA }
+		command = { type = addcore which = 115 where = FRA }
+		command = { type = addcore which = 117 where = FRA }
+		command = { type = addcore which = 121 where = FRA }
+		command = { type = addcore which = 126 where = FRA }
+		command = { type = addcore which = 128 where = FRA }
+		command = { type = addcore which = 129 where = FRA }
+		command = { type = addcore which = 130 where = FRA }
+		command = { type = addcore which = 131 where = FRA }
+		
+		command = { trigger = { NOT = { owned = { province = 110 data = BEL } } } type = secedeprovince which = FRA value = 110 when = 2 }
+		command = { type = secedeprovince which = FRA value = 121 when = 2 }
+		command = { type = secedearea which = FRA value = "Rhineland" when = 2 }
+		command = { type = secedearea which = FRA value = "Wallonia" when = 2 }
+		command = { type = secedearea which = FRA value = "Flanders" when = 2 }
+		
+		command = { type = secedeprovince which = DFR value = 141 when = 2 }
+		command = { type = secedeprovince which = DFR value = 147 when = 2 }
+		command = { type = secedeprovince which = DFR value = 148 when = 2 }
+		#command = { type = secedeprovince which = DDR value = 141 when = 2 }
+		#command = { type = secedeprovince which = DDR value = 147 when = 2 }
+		#command = { type = secedeprovince which = DDR value = 148 when = 2 }
+		
+		command = { type = secedearea which = HOL value = "Netherlands" when = 2 }
+		command = { type = secedearea which = U10 value = "Netherlands" when = 2 }
+		
+		command = { type = secedeprovince which = FRA value = 118 when = 2 }
+		command = { type = secedeprovince which = FRA value = 120 when = 2 }
+		command = { type = secedeprovince which = FRA value = 121 when = 2 }
+		command = { type = secedeprovince which = FRA value = 123 when = 2 }
+		command = { type = secedeprovince which = FRA value = 127 when = 2 }
+	}
+	action = {
+		name = "Rhineland and northern coast to France (Extreme)"
+		ai_chance = 0
+		trigger = {
+			owned = { province = 116 data = FRA }
+			OR = {
+				owned = { province = 122 data = FRA }
+				puppet = { country = HOL }
+				puppet = { country = U10 }
+			}
+		}
+		
+		command = { type = inherit which = LUX value = 1 }
+		command = { type = inherit which = FLA value = 1 }
+		command = { type = inherit which = BEL value = 1 }
+		command = { type = inherit which = U17 value = 1 }
+		command = { type = inherit which = HOL value = 1 }
+		command = { type = inherit which = U10 value = 1 }
+		
+		command = { type = addcore which = 105 where = FRA }
+		command = { type = addcore which = 107 where = FRA }
+		
+		command = { type = addcore which = 127 where = FRA }
+		command = { type = addcore which = 109 where = FRA }
+		command = { type = addcore which = 110 where = FRA }
+		command = { type = addcore which = 114 where = FRA }
+		command = { type = addcore which = 115 where = FRA }
+		command = { type = addcore which = 117 where = FRA }
+		command = { type = addcore which = 121 where = FRA }
+		command = { type = addcore which = 126 where = FRA }
+		command = { type = addcore which = 128 where = FRA }
+		command = { type = addcore which = 129 where = FRA }
+		command = { type = addcore which = 130 where = FRA }
+		command = { type = addcore which = 131 where = FRA }
+		
+		command = { type = addcore which = 141 where = FRA }
+		command = { type = addcore which = 147 where = FRA }
+		command = { type = addcore which = 148 where = FRA }
+		
+		command = { type = secederegion which = FRA value = "Benelux" when = 2 }
+		command = { type = secedearea which = FRA value = "Rhineland" when = 2 }
+		command = { type = secedeprovince which = FRA value = 109 when = 2 }
+		command = { type = secedeprovince which = FRA value = 141 when = 2 }
+		command = { type = secedeprovince which = FRA value = 147 when = 2 }
+		command = { type = secedeprovince which = FRA value = 148 when = 2 }
+	}
+}
+
+
+event = {
+	id = 602570
+	random = no
+	country = USA
+
+	trigger = {
+		OR = {
+			NOT = { exists = GER }
+			owned = { province = 2119 data = -3 } #Montreal
+		}
+		owned = { province = 29 data = -3 } #London
+	}
+
+	name = "Post war Canadian settlement"
+ 	desc = "Having decisively beaten the UK, we now have the ability to settle the Canadian question once and for all."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Canada will exists as an associated state (Mild)"
+		ai_chance = 0
+		command = { type = removeclaim which = 2136 where = USA }
+		command = { type = removeclaim which = 2137 where = USA }
+		command = { type = removeclaim which = 2138 where = USA }
+		command = { type = removeclaim which = 2090 where = USA }
+		command = { type = removeclaim which = 2089 where = USA }
+		command = { type = removeclaim which = 2092 where = USA }
+		command = { type = removeclaim which = 2105 where = USA }
+		command = { type = removeclaim which = 2102 where = USA }
+		command = { type = removeclaim which = 2099 where = USA }
+		command = { type = removeclaim which = 2093 where = USA }
+		command = { type = removeclaim which = 2091 where = USA }
+		command = { type = removeclaim which = 2095 where = USA }
+		command = { type = removeclaim which = 2094 where = USA }
+		command = { type = removeclaim which = 2096 where = USA }
+		command = { type = removeclaim which = 2103 where = USA }
+		command = { type = removeclaim which = 2104 where = USA }
+		command = { type = removeclaim which = 2101 where = USA }
+		command = { type = removeclaim which = 2100 where = USA }
+		command = { type = removeclaim which = 2097 where = USA }
+		command = { type = removeclaim which = 2098 where = USA }
+		command = { type = removeclaim which = 2107 where = USA }
+		command = { type = removeclaim which = 2115 where = USA }
+		command = { type = removeclaim which = 2106 where = USA }
+		command = { type = removeclaim which = 2110 where = USA }
+		command = { type = removeclaim which = 2129 where = USA }
+		command = { type = removeclaim which = 2113 where = USA }
+		command = { type = removeclaim which = 2114 where = USA }
+		command = { type = removeclaim which = 2148 where = USA }
+		command = { type = removeclaim which = 2149 where = USA }
+		command = { type = removeclaim which = 2112 where = USA }
+		command = { type = removeclaim which = 2127 where = USA }
+		command = { type = removeclaim which = 2130 where = USA }
+		command = { type = removeclaim which = 2108 where = USA }
+		command = { type = removeclaim which = 2111 where = USA }
+		command = { type = removeclaim which = 2109 where = USA }
+		command = { type = removeclaim which = 2119 where = USA }
+		command = { type = removeclaim which = 2117 where = USA }
+		command = { type = removeclaim which = 2116 where = USA }
+		command = { type = removeclaim which = 2123 where = USA }
+		command = { type = removeclaim which = 2122 where = USA }
+		command = { type = removeclaim which = 2121 where = USA }
+		command = { type = removeclaim which = 2120 where = USA }
+		command = { type = removeclaim which = 2125 where = USA }
+		command = { type = removeclaim which = 2124 where = USA }
+		command = { type = removeclaim which = 2128 where = USA }
+		command = { type = removeclaim which = 2132 where = USA }
+		command = { type = removeclaim which = 2131 where = USA }
+		command = { type = removeclaim which = 2134 where = USA }
+		command = { type = removeclaim which = 2126 where = USA }
+		command = { type = removeclaim which = 2133 where = USA }
+		command = { type = removeclaim which = 2118 where = USA }
+		command = { type = removeclaim which = 2138 where = USA }
+		command = { type = removeclaim which = 2136 where = USA }
+		
+		command = { type = addcore which = 1922 where = USA }
+		command = { type = addcore which = 1923 where = USA }
+		command = { type = addcore which = 1901 where = USA }
+		command = { type = addcore which = 1886 where = USA }
+		command = { type = addcore which = 1981 where = USA }
+		
+		command = { type = addcore which = 2089 where = USA }
+		command = { type = addcore which = 2090 where = USA }
+		command = { type = addcore which = 2091 where = USA }
+		command = { type = addcore which = 2092 where = USA }
+		command = { type = addcore which = 2093 where = USA }
+		command = { type = addcore which = 2094 where = USA }
+		command = { type = addcore which = 2095 where = USA }
+		command = { type = addcore which = 2148 where = USA }
+		command = { type = addcore which = 2149 where = USA }
+		command = { type = addcore which = 2118 where = USA }
+		command = { type = addcore which = 2126 where = USA }
+		command = { type = addcore which = 2124 where = USA }
+		command = { type = addcore which = 2128 where = USA }
+		command = { type = addcore which = 2130 where = USA }
+		command = { type = addcore which = 2131 where = USA }
+		command = { type = addcore which = 2132 where = USA }
+		command = { type = addcore which = 2133 where = USA }
+		command = { type = addcore which = 2134 where = USA }
+		command = { type = addcore which = 2137 where = USA }
+		
+		command = { type = secederegion which = USA value = "Eastern Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Western Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Northern Canada" when = 2 }
+		command = { type = independence which = CAN value = 1 when = 1 }
+		command = { type = make_puppet which = CAN }
+		command = { type = event which = 2400537 where = CAN when = 0 } #medium puppet
+		command = { type = name where = CAN which = CAN }
+		command = { type = flag_ext where = CAN which = "_1965" }
+		command = { type = secederegion which = CAN value = "Eastern Canada" when = 2 }
+		command = { type = secederegion which = CAN value = "Canada" when = 2 }
+		command = { type = secederegion which = CAN value = "Western Canada" when = 2 }
+		command = { type = secederegion which = CAN value = "Northern Canada" when = 2 }
+		command = { type = secedeprovince which = USA value = 1981 when = 2 }
+		command = { type = secedeprovince which = USA value = 2089 when = 2 }
+		command = { type = secedeprovince which = USA value = 2090 when = 2 }
+		command = { type = secedeprovince which = USA value = 2091 when = 2 }
+		command = { type = secedeprovince which = USA value = 2092 when = 2 }
+		command = { type = secedeprovince which = USA value = 2093 when = 2 }
+		command = { type = secedeprovince which = USA value = 2094 when = 2 }
+		command = { type = secedeprovince which = USA value = 2095 when = 2 }
+		command = { type = secedeprovince which = USA value = 2148 when = 2 }
+		command = { type = secedeprovince which = USA value = 2149 when = 2 }
+		command = { type = secedeprovince which = USA value = 2118 when = 2 }
+		command = { type = secedeprovince which = USA value = 2126 when = 2 }
+		command = { type = secedeprovince which = USA value = 2124 when = 2 }
+		command = { type = secedeprovince which = USA value = 2128 when = 2 }
+		command = { type = secedeprovince which = USA value = 2130 when = 2 }
+		command = { type = secedeprovince which = USA value = 2131 when = 2 }
+		command = { type = secedeprovince which = USA value = 2132 when = 2 }
+		command = { type = secedeprovince which = USA value = 2133 when = 2 }
+		command = { type = secedeprovince which = USA value = 2134 when = 2 }
+		command = { type = secedeprovince which = USA value = 2137 when = 2 }
+		
+		command = { type = secedeprovince which = CAN value = 2136 when = 2 }
+		command = { type = secedeprovince which = CAN value = 2138 when = 2 }
+		
+		command = { type = addcore which = 2136 where = CAN }
+		command = { type = addcore which = 2138 where = CAN }
+		command = { type = addcore which = 2108 where = CAN }
+		
+		command = { type = secedeprovince which = FRA value = 2135 when = 2 }
+		
+		command = { type = addclaim which = 1771 where = USA }
+		command = { type = addclaim which = 1772 where = USA }
+		command = { type = addclaim which = 1773 where = USA }
+		command = { type = addclaim which = 1782 where = USA }
+		command = { type = addclaim which = 1766 where = USA }
+		command = { type = addclaim which = 1746 where = USA }
+		command = { type = addclaim which = 1750 where = USA }
+	}
+	action = {
+		name = "Annex Canada (Medium)"
+		ai_chance = 100
+		command = { type = inherit which = CAN value = 1 }
+		
+		command = { type = addcore which = 1922 where = USA }
+		command = { type = addcore which = 1923 where = USA }
+		command = { type = addcore which = 1901 where = USA }
+		command = { type = addcore which = 1886 where = USA }
+		command = { type = addcore which = 1981 where = USA }
+		
+		command = { type = addcore which = 2136 where = USA }
+		command = { type = addcore which = 2137 where = USA }
+		command = { type = addcore which = 2138 where = USA }
+		command = { type = addcore which = 2090 where = USA }
+		command = { type = addcore which = 2089 where = USA }
+		command = { type = addcore which = 2092 where = USA }
+		command = { type = addcore which = 2105 where = USA }
+		command = { type = addcore which = 2102 where = USA }
+		command = { type = addcore which = 2099 where = USA }
+		command = { type = addcore which = 2093 where = USA }
+		command = { type = addcore which = 2091 where = USA }
+		command = { type = addcore which = 2095 where = USA }
+		command = { type = addcore which = 2094 where = USA }
+		command = { type = addcore which = 2096 where = USA }
+		command = { type = addcore which = 2103 where = USA }
+		command = { type = addcore which = 2104 where = USA }
+		command = { type = addcore which = 2101 where = USA }
+		command = { type = addcore which = 2100 where = USA }
+		command = { type = addcore which = 2097 where = USA }
+		command = { type = addcore which = 2098 where = USA }
+		command = { type = addcore which = 2107 where = USA }
+		command = { type = addcore which = 2115 where = USA }
+		command = { type = addcore which = 2106 where = USA }
+		command = { type = addcore which = 2110 where = USA }
+		command = { type = addcore which = 2129 where = USA }
+		command = { type = addcore which = 2113 where = USA }
+		command = { type = addcore which = 2114 where = USA }
+		command = { type = addcore which = 2148 where = USA }
+		command = { type = addcore which = 2149 where = USA }
+		command = { type = addcore which = 2112 where = USA }
+		command = { type = addcore which = 2127 where = USA }
+		command = { type = addcore which = 2130 where = USA }
+		command = { type = addcore which = 2108 where = USA }
+		command = { type = addcore which = 2111 where = USA }
+		command = { type = addcore which = 2109 where = USA }
+		command = { type = addcore which = 2119 where = USA }
+		command = { type = addcore which = 2117 where = USA }
+		command = { type = addcore which = 2116 where = USA }
+		command = { type = addcore which = 2123 where = USA }
+		command = { type = addcore which = 2122 where = USA }
+		command = { type = addcore which = 2121 where = USA }
+		command = { type = addcore which = 2120 where = USA }
+		command = { type = addcore which = 2125 where = USA }
+		command = { type = addcore which = 2124 where = USA }
+		command = { type = addcore which = 2128 where = USA }
+		command = { type = addcore which = 2132 where = USA }
+		command = { type = addcore which = 2131 where = USA }
+		command = { type = addcore which = 2134 where = USA }
+		command = { type = addcore which = 2126 where = USA }
+		command = { type = addcore which = 2133 where = USA }
+		command = { type = addcore which = 2118 where = USA }
+		command = { type = addcore which = 2136 where = USA }
+		command = { type = addcore which = 2137 where = USA }
+		command = { type = addcore which = 2138 where = USA }
+		
+		command = { type = secederegion which = USA value = "Eastern Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Western Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Northern Canada" when = 2 }
+		command = { type = secedeprovince which = USA value = 1981 when = 2 }
+		
+		command = { type = secedeprovince which = FRA value = 2135 when = 2 }
+		
+		command = { type = addclaim which = 1771 where = USA }
+		command = { type = addclaim which = 1772 where = USA }
+		command = { type = addclaim which = 1773 where = USA }
+		command = { type = addclaim which = 1782 where = USA }
+		command = { type = addclaim which = 1766 where = USA }
+		command = { type = addclaim which = 1746 where = USA }
+		command = { type = addclaim which = 1750 where = USA }
+	}
+	action = {
+		name = "Annex Canada and Mexico (Extreme)"
+		ai_chance = 0
+		command = { type = inherit which = CAN value = 1 }
+		
+		command = { type = addcore which = 1922 where = USA }
+		command = { type = addcore which = 1923 where = USA }
+		command = { type = addcore which = 1901 where = USA }
+		command = { type = addcore which = 1886 where = USA }
+		command = { type = addcore which = 1981 where = USA }
+		
+		command = { type = addcore which = 2136 where = USA }
+		command = { type = addcore which = 2137 where = USA }
+		command = { type = addcore which = 2138 where = USA }
+		command = { type = addcore which = 2090 where = USA }
+		command = { type = addcore which = 2089 where = USA }
+		command = { type = addcore which = 2092 where = USA }
+		command = { type = addcore which = 2105 where = USA }
+		command = { type = addcore which = 2102 where = USA }
+		command = { type = addcore which = 2099 where = USA }
+		command = { type = addcore which = 2093 where = USA }
+		command = { type = addcore which = 2091 where = USA }
+		command = { type = addcore which = 2095 where = USA }
+		command = { type = addcore which = 2094 where = USA }
+		command = { type = addcore which = 2096 where = USA }
+		command = { type = addcore which = 2103 where = USA }
+		command = { type = addcore which = 2104 where = USA }
+		command = { type = addcore which = 2101 where = USA }
+		command = { type = addcore which = 2100 where = USA }
+		command = { type = addcore which = 2097 where = USA }
+		command = { type = addcore which = 2098 where = USA }
+		command = { type = addcore which = 2107 where = USA }
+		command = { type = addcore which = 2115 where = USA }
+		command = { type = addcore which = 2106 where = USA }
+		command = { type = addcore which = 2110 where = USA }
+		command = { type = addcore which = 2129 where = USA }
+		command = { type = addcore which = 2113 where = USA }
+		command = { type = addcore which = 2114 where = USA }
+		command = { type = addcore which = 2148 where = USA }
+		command = { type = addcore which = 2149 where = USA }
+		command = { type = addcore which = 2112 where = USA }
+		command = { type = addcore which = 2127 where = USA }
+		command = { type = addcore which = 2130 where = USA }
+		command = { type = addcore which = 2108 where = USA }
+		command = { type = addcore which = 2111 where = USA }
+		command = { type = addcore which = 2109 where = USA }
+		command = { type = addcore which = 2119 where = USA }
+		command = { type = addcore which = 2117 where = USA }
+		command = { type = addcore which = 2116 where = USA }
+		command = { type = addcore which = 2123 where = USA }
+		command = { type = addcore which = 2122 where = USA }
+		command = { type = addcore which = 2121 where = USA }
+		command = { type = addcore which = 2120 where = USA }
+		command = { type = addcore which = 2125 where = USA }
+		command = { type = addcore which = 2124 where = USA }
+		command = { type = addcore which = 2128 where = USA }
+		command = { type = addcore which = 2132 where = USA }
+		command = { type = addcore which = 2131 where = USA }
+		command = { type = addcore which = 2134 where = USA }
+		command = { type = addcore which = 2126 where = USA }
+		command = { type = addcore which = 2133 where = USA }
+		command = { type = addcore which = 2118 where = USA }
+		command = { type = addcore which = 2136 where = USA }
+		command = { type = addcore which = 2137 where = USA }
+		command = { type = addcore which = 2138 where = USA }
+		
+		command = { type = addclaim which = 1966 where = USA }
+		command = { type = addclaim which = 1965 where = USA }
+		command = { type = addclaim which = 1970 where = USA }
+		command = { type = addclaim which = 1968 where = USA }
+		command = { type = addclaim which = 1974 where = USA }
+		command = { type = addclaim which = 1972 where = USA }
+		command = { type = addclaim which = 1971 where = USA }
+		command = { type = addclaim which = 1973 where = USA }
+		command = { type = addclaim which = 1967 where = USA }
+		command = { type = addclaim which = 1975 where = USA }
+		command = { type = addclaim which = 1976 where = USA }
+		command = { type = addclaim which = 1969 where = USA }
+		command = { type = addclaim which = 1978 where = USA }
+		command = { type = addclaim which = 1980 where = USA }
+		command = { type = addclaim which = 1977 where = USA }
+		command = { type = addclaim which = 1979 where = USA }
+		command = { type = addclaim which = 1982 where = USA }
+		
+		command = { type = secederegion which = USA value = "Eastern Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Western Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Northern Canada" when = 2 }
+		command = { type = secederegion which = USA value = "Mexico" when = 2 }
+		
+		command = { type = secedeprovince which = FRA value = 2135 when = 2 }
+		
+		command = { type = addclaim which = 1771 where = USA }
+		command = { type = addclaim which = 1772 where = USA }
+		command = { type = addclaim which = 1773 where = USA }
+		command = { type = addclaim which = 1782 where = USA }
+		command = { type = addclaim which = 1766 where = USA }
+		command = { type = addclaim which = 1746 where = USA }
+		command = { type = addclaim which = 1750 where = USA }
+	}
+}
+
+
+
+###############################################################################
+# Formation of the Comintern & French Axis
+###############################################################################
+
+event = {
+	id = 602600
+	random = no
+	country = SOV
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		OR = {
+			NOT = { exists = GER }
+			owned = { province = 163 data = -3 } #Berlin
+		}
+		OR = {
+			NOT = { war = { country = ENG } }
+			owned = { province = 29 data = -3 } #London
+		}
+	 }
+
+	name = "Formation of the Comintern"
+ 	desc = "Shortly after the conclusion of WW2, the Soviet Union was effectively kicked out of the Allies and forced to form an alliance of its own due to an obvious mismatch of interests"
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Ok"
+		command = { type = leave_alliance when = 1 }
+		command = { type = alliance where = 3 when = 0 }
+		command = { type = alliance_leader where = 3 }
+		command = { type = trigger which = 602601 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = -1 }
+	}
+}
+
+event = {
+	id = 602601
+	random = no
+	persistent = yes
+	all = yes
+
+	name = "Formation of the Comintern"
+ 	desc = "Shortly after the conclusion of WW2, the Soviet Union was effectively kicked out of the Allies and forced to form an alliance of its own due to an obvious mismatch of interests with the United States, which by then became an undisputable leader of the alliance."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { trigger = { puppet = { country = -1 country = SOV }	} type = alliance which = SOV }
+		command = { trigger = { puppet = { country = -1 country = SOV }	} type = domestic which = political_left value = 1 }
+		command = { trigger = { puppet = { country = -1 country = SOV }	} type = domestic which = democratic value = -1 }
+	}
+}
+
+event = {
+	id = 602610
+	random = no
+	country = FRA
+
+	trigger = {
+		event = { id = 602540 days = 10 }
+		OR = {
+			NOT = { exists = GER }
+			owned = { province = 163 data = -3 } #Berlin
+		}
+		OR = {
+			NOT = { war = { country = ENG } }
+			owned = { province = 29 data = -3 } #London
+		}
+	 }
+
+	name = "Formation of the European Union"
+ 	desc = "Shortly after the conclusion of WW2, France was effectively kicked out of the Allies and forced to form an alliance of its own due to an obvious mismatch of interests with the United States, which by then became an undisputable leader of the alliance."
+	style = 2
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1980 }
+
+	action = {
+		name = "Ok"
+		command = { type = leave_alliance when = 1 }
+		command = { type = alliance where = 1 when = 0 }
+		command = { type = alliance_leader where = 1 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { trigger = { puppet = { country = SPR country = FRA } } type = flag_ext where = SPR which = "_G" }
+		command = { trigger = { puppet = { country = U14 country = FRA } } type = event which = 602612 where = -1 when = 1 }
+		command = { trigger = { puppet = { country = U14 country = FRA } NOT = { exists = RSI } NOT = { exists = ITA } NOT = { government = communist } } type = coup_nation which = U14 }
+		command = { type = trigger which = 602611 }
+	}
+}
+
+event = {
+	id = 602611
+	random = no
+	persistent = yes
+	all = yes
+
+	name = "Formation of the European Union"
+ 	desc = "Shortly after the conclusion of WW2, France was effectively kicked out of the Allies and forced to form an alliance of its own due to an obvious mismatch of interests with the United States, which by then became an undisputable leader of the alliance."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { trigger = { puppet = { country = -1 country = FRA }	} type = alliance which = FRA }
+		command = { trigger = { puppet = { country = -1 country = FRA }	} type = domestic which = political_left value = -1 }
+		command = { trigger = { puppet = { country = -1 country = FRA }	} type = domestic which = democratic value = 1 }
+	}
+}
+
+event = {
+	id = 602612
+	random = no
+	country = FRA
+
+	name = "Italian Constitution"
+ 	desc = "Following the end of WW2, a new consitution is passed for the reunified state of Italy with Rome as its capital."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = flag_ext where = ITA which = "_G" }
+	}
+}

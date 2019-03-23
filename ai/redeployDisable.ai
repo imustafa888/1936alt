@@ -1,0 +1,8 @@
+switch = no # [yes/no]
+
+#strat_redeploy_threshold = 1000
+#max_redeploying = 0
+
+max_garrison_prop = 1.00
+min_garrison_prop = 1.00
+

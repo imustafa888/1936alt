@@ -1,0 +1,2385 @@
+### 2003005  GER  Re-occupation of the Rhineland
+### 2003006  GER  Great War Demonstration
+### 2003007  GER  Anti-Comintern Pact
+### 2006001  ITA  Anti-Comintern Pact
+### 2003008  GER  Italy signs the Pact of Steel
+### 2011004  JAP  Anti-Comintern Pact
+### 2024001  AUS  Sudden change of Government
+### 2003009  GER  Coup in Austria - Chancelor Seyss-Inquart requests German intervention
+### 2003010  GER  Anschluss of Austria Proclaimed
+### 2003011  GER  The Treaty of Munich
+### 2025001  CZE  The Treaty of Munich
+### 2003012  GER  The Treaty of Munich - Sudetenland to Germany
+### 2003013  GER  The Treaty of Munich - Czechoslovakia joins the Axis
+### 2003014  GER  The Treaty of Munich - Czechoslovakia refuses claims
+### 2003015  GER  The End of Czechoslovakia
+### 2003016  GER  The End of Czechoslovakia - Czechs annexed
+### 2003017  GER  Puppet Slovakia
+### 2003018  GER  The End of Czechoslovakia - The Czechs want to fight!
+### 2003019  GER  The End of Czechoslovakia - Czecho-Slovakia partitioned
+### 2003020  GER  The End of Czechoslovakia - Czechs fight!
+### 2057001  SLO  The End of Czechoslovakia
+### 2057002  SLO  The Molotov-Ribbentrop Pact - Eastern Poland to Soviets
+### 2025011  CZE  The Molotov-Ribbentrop Pact - Eastern Poland to Soviets
+### 2025002  CZE  The End of Czechoslovakia - Slovakia Independent
+### 2025003  CZE  The End of Czechoslovakia - Partitioning
+### 2003021  GER  Claiming Klaipeda
+### 2029001  LIT  Germany claims Klaipeda
+### 2003022  GER  Claiming Klaipeda - Lithuania Agrees!
+### 2003023  GER  Claiming Klaipeda - Lithuania Refuses!
+### 2003024  GER  The Molotov-Ribbentrop Pact
+### 2003025  GER  The Molotov-Ribbentrop Pact - Historical Outcome
+### 2189001  U06  Nazi coup d'etat in Danzig
+### 2013006  POL  Nazi coup d'etat in Danzig
+### 2003110  GER  Nazi coup d'etat in Danzig
+### 2003026  GER  The Molotov-Ribbentrop Pact - Soviet Refusal to Historical Pact
+### 2003027  GER  The Molotov-Ribbentrop Pact - Limited Pact
+### 2003028  GER  The Molotov-Ribbentrop Pact - Soviet Refusal to Limited Pact
+### 2003029  GER  The Molotov-Ribbentrop Pact - Eastern Poland to Soviets
+### 2003030  GER  The Second Ribbentrop-Molotov Treaty
+### 2007003  SOV  The Second Ribbentrop-Molotov Treaty
+### 2003031  GER  The Vienna Dictate
+### 2003032  GER  Spanish Civil War - Intervention
+### 2003033  GER  Tripartite Pact
+### 2011005  JAP  Tripartite Pact
+### 2006002  ITA  Tripartite Pact
+### 2003034  GER  The Plot to Assassinate Hitler
+### 2003035  GER  Failed Assassination of Hitler
+### 2003036  GER  Danzig or War (Last chance for peace)
+### 2003037  GER  Danzig or War - WAR!
+### 2003038  GER  Danzig or War - The Poles fold
+### 2003119  GER  The Danzig Incident
+### 2003039  GER  The Condor Legion returns home victorious!
+### 2003120  GER  The Condor Legion returns home!
+### 2003040  GER  Abandoning the Maginot Line
+### 2003041  GER  Vlassov Defects
+### 2003042  GER  Germany controls Finnish army
+### 2003043  GER  Germany no longer controls Finnish army
+### 2003044  GER  Germany no longer controls Spanish army
+### 2003045  GER  Fall Gelb
+### 2003046  GER  Unternehmen Barbarossa
+### 2003047  GER  German diplomatic offensive
+### 2003048  GER  The meeting at Montoire
+### 2002016  FRA  The meeting at Montoire
+### 2003049  GER  The French accept our proposition
+### 2003050  GER  The French refuse our proposition
+### 2003051  GER  The meeting at Hendaye
+### 2008014  SPA  The meeting at Hendaye
+### 2008001  SPA  The meeting at Hendaye
+### 2003052  GER  The Spanish accept our proposition
+### 2002017  FRA  Cede Marocco to Spain
+### 2008002  SPA  Spain joins the Axis!
+### 2001007  ENG  Germany calls for a general peace treaty in Europe
+### 2008003  sPA  Germany calls for a general peace treaty in Europe
+### 2006003  ITA  Germany calls for a general peace treaty in Europe
+### 2003053  GER  The Second Versailles Treaty
+### 2002018  FRA  The Second Versailles Treaty
+### 2008004  SPA  The Second Versailles Treaty
+### 2006004  ITA  The Second Versailles Treaty
+### 2003054  GER  The Second Versailles Treaty
+### 2003055  GER  Iraqi coup d'état
+### 2074001  IRQ  Iraqi coup d'état
+### 2187001  U04  Iraqi coup d'état
+### 2003056  GER  Yugoslavia signs the Tripartite Treaty
+### 2021001  YUG  Yugoslavia signs the Tripartite Treaty
+### 2021002  YUG  Coup d'etat in Yugoslavia
+### 2003057  GER  Yugoslavia breaks the Tripartite Treaty
+### 2003058  GER  War with Yugoslavia
+### 2003059  GER  Negotiations with Turkey
+### 2010001  TUR  Negotiations with Turkey
+### 2003060  GER  Turkey earns its dividends
+### 2003061  GER  The first Vienna Dictate
+### 2006005  ITA  The first Vienna Dictate
+### 2022001  HUN  The first Vienna Dictate
+### 2025004  CZE  The first Vienna Dictate
+### 2003062  GER  The first Vienna Dictate
+### 2003063  GER  Vienna Diktat - War with Czechoslovakia
+### 2007004  SOV  Vienna Diktat - Czechoslovakia at War
+### 2001008  ENG  Vienna Diktat - War in Europe
+### 2022002  HUN  Negotiations - Hungarian proposal
+### 2025005  CZE  Negotiations - Czechoslovakian proposal
+### 2025006  CZE  Autonomous but still one
+### 2025007  CZE  Prelude
+### 2022003  HUN  Prelude
+### 2025008  CZE  Prelude
+### 2022004  HUN  Prelude
+### 2006006  ITA  Prelude
+### 2003064  GER  Prelude
+### 2022005  HUN  Tensions rising
+### 2025009  CZE  Tensions rising
+### 2003065  GER  Tensions rising
+### 2023001  ROM  Vienna dictates - Czechoslovakia at War
+### 2023002  ROM  Vienna dictates - Czechoslovakia at War
+### 2001009  ENG  Operation Wilfred
+### 2003066  GER  AI_EVENT
+### 2003067  GER  Operation Weserübung
+### 3001074  ENG  AI_EVENT
+### 2001010  ENG  Start the 'R 4' Plan
+### 2014001  NOR  The British intervention is successful
+### 2001011  ENG  The British intervention is successful
+### 2014002  NOR  Norway joins the Commonwealth
+### 2001012  ENG  Norway joins the Commonwealth
+### 2003068  GER  The iron road is cut off (or the Baltic sea is not free)
+### 2001013  ENG  The iron road is cut off (or the Baltic sea is not free)
+### 2186002  FRA  The iron road is cut off (or the Baltic sea is not free)
+### 2003069  GER  The iron road is opened (or the Baltic sea is free)
+### 2003070  GER  The iron road is cut off (or the Baltic sea is not free)
+### 2003070  SWE  The iron road is cut off (or the Baltic sea is not free)
+### 2003071  SWE  The iron road is opened (or the Baltic sea is free)
+### 2007005  SOV  The iron road is cut off (or the Baltic sea is not free)
+### 2007006  SOV  The Baltic is under soviet control
+### 2007007  SOV  The Baltic sea is no longer under Soviet control
+### 2003107  GER  Case Green
+### 2003108  GER  Operation Tannenbaum
+### 2003109  GER  Forced Swiss trade agreement
+### 2003111  GER  The End of Czechoslovakia - Czechs annexed
+### 2003116  GER  Align Hungary
+### 2003117  HUN  Germany aims at aligning Hungary
+### 2003118  GER  Announce claims on Greece
+### 2003128  SER  AI_EVENT 
+#########################################################################
+#  Re-occupation of the Rhineland
+#########################################################################
+event = {
+	id = 2003005
+	random = no
+	country = GER
+	save_date = yes
+
+	decision = {
+		NOT = {
+			war = { country = GER country = FRA }
+			alliance = { country = GER country = FRA }
+		}
+	}
+
+	decision_trigger = {
+		OR = {
+			garrison = { country = GER province = 126 size = 1 } #aachen
+			garrison = { country = GER province = 131 size = 1 } #kln
+			garrison = { country = GER province = 129 size = 1 } #koblenz
+			garrison = { country = GER province = 128 size = 1 } #Trier
+			garrison = { country = GER province = 127 size = 1 } #Saarbrücken
+			garrison = { country = GER province = 130 size = 1 } #Mainz
+			garrison = { country = GER province = 136 size = 1 } #Karlsruhe
+			garrison = { country = GER province = 132 size = 1 } #Freiburg
+			garrison = { country = GER province = 145 size = 1 } #Essen
+			garrison = { country = GER province = 139 size = 1 } #Darmstadt
+			garrison = { country = GER province = 142 size = 1 } #Duesseldorf
+			garrison = { country = GER province = 143 size = 1 } #Neuwied
+		}
+	}
+
+	trigger = {
+		NOT = {
+			war = { country = GER country = FRA }
+			alliance = { country = GER country = FRA }
+		}
+		OR = {
+			garrison = { country = GER province = 126 size = 1 } #aachen
+			garrison = { country = GER province = 131 size = 1 } #kln
+			garrison = { country = GER province = 129 size = 1 } #koblenz
+			garrison = { country = GER province = 128 size = 1 } #Trier
+			garrison = { country = GER province = 127 size = 1 } #Saarbrücken
+			garrison = { country = GER province = 130 size = 1 } #Mainz
+			garrison = { country = GER province = 136 size = 1 } #Karlsruhe
+			garrison = { country = GER province = 132 size = 1 } #Freiburg
+			garrison = { country = GER province = 145 size = 1 } #Essen
+			garrison = { country = GER province = 139 size = 1 } #Darmstadt
+		}
+	}
+   
+	name = "EVT_2000_NAME"
+	desc = "EVT_2000_DESC" 
+	style = 2
+	picture = "Rhineland"
+	decision_picture = "decision_Rhineland"
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "2003005a"
+		command = { type = relation which = FRA value = -15 }
+		command = { type = relation which = ENG value = -5 }
+		command = { type = relation which = BEL value = -10 }
+		command = { type = relation which = HOL value = -5 }
+		command = { type = belligerence which = GER value = 5 }
+		command = { type = dissent value = -2 }
+		command = { type = money value = 500 }
+		command = { type = peacetime_ic_mod value = 10 }
+		command = { type = trigger which = 2001025 } # UK Gears up for war
+		command = { type = trigger which = 2002001 } # France Gears up for war
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = construct which = IC where = 131 value = 5 }
+		#command = { type = construct which = IC where = 126 value = 5 }
+	}
+}
+
+#########################################################################
+#  Great War Manifestation
+#########################################################################
+event = {
+	id = 2003006
+	country = GER
+	persistent = yes
+	
+	trigger = {
+		ai = no
+		NOT = { dissent = 13 }
+		NOT = { event = 2003005 }
+		NOT = { war = { country = GER country = FRA } }
+		NOT = { alliance = { country = GER country = FRA } }
+	}
+	
+	name = "EVT_1110R_NAME"
+	desc = "URGE_RHINELAND"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 0 month = march year = 1936 }
+	offset = 45
+	deathdate = { day = 29 month = december year = 1963 }
+	
+	action_a = {
+		name = "ACTION_NAME_OK"
+		command = { type = dissent value = 3 }
+	}
+}
+
+#########################################################################
+#  Anti-Comintern Pact
+#########################################################################
+event = {
+	id = 2003007
+	random = no
+	country = GER
+
+	name = EVT_71_NAME
+	desc = EVT_71_DESC
+  	style = 2
+  	picture = "Pact_of_Steel"
+	decision_picture = "decision_anticominternpact"
+
+	decision = {
+		exists = JAP
+		exists = ITA
+		exists = SOV
+		NOT = {
+			war = { country = GER country = ITA }
+			war = { country = GER country = JAP }
+			war = { country = JAP country = ITA }
+			alliance = { country = GER country = SOV }
+			alliance = { country = JAP country = SOV }
+			alliance = { country = ITA country = SOV }
+		}
+	}
+
+	decision_trigger = {
+		OR = {
+			NOT = { war = { country = ITA country = ETH } }
+			war = { country = SPA country = SPR } 
+			year = 1937
+		}
+	}
+
+	trigger = {
+		OR = {
+			NOT = { war = { country = ITA country = ETH } }
+			AND = { war = { country = SPA country = SPR } random = 50 } 
+			year = 1937
+		}
+		NOT = {
+			war = { country = GER country = ITA }
+			war = { country = GER country = JAP }
+			war = { country = JAP country = ITA }
+			alliance = { country = GER country = SOV }
+			alliance = { country = JAP country = SOV }
+			alliance = { country = ITA country = SOV }
+		}
+	}
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = EVT_71_ACTA
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = relation which = SOV value = -50 }
+		command = { type = setflag which = anti_comintern_pact }
+# 		command = { type = removecore which = 401 } # Trento
+# 		command = { type = removecore which = 402 } # Bolzano
+		
+	}
+}
+
+#########################################################################
+#  Italy signs the pact
+#########################################################################
+event = {
+	id = 2006001
+	random = no
+	country = ITA
+
+	decision = {
+		event = 2003007
+		exists = SOV
+		NOT = {
+			war = { country = GER country = ITA }
+			war = { country = GER country = JAP }
+			war = { country = JAP country = ITA }
+			alliance = { country = GER country = SOV }
+			alliance = { country = JAP country = SOV }
+			alliance = { country = ITA country = SOV }
+		}
+	}
+
+	decision_trigger = {
+		OR = {
+			alliance = { country = GER country = ITA }
+			year = 1938
+			event = 3187030
+		}
+	}
+	
+	trigger = {
+		event = 2003007
+		exists = SOV
+		NOT = {
+			war = { country = GER country = ITA }
+			war = { country = GER country = JAP }
+			war = { country = JAP country = ITA }
+			alliance = { country = GER country = SOV }
+			alliance = { country = JAP country = SOV }
+			alliance = { country = ITA country = SOV }
+		}
+		OR = {
+			alliance = { country = GER country = ITA }
+			year = 1938
+			event = 3187030
+		}
+	}
+
+	name = EVT_72_NAME
+	desc = 72desc
+	style = 2
+  	picture = "Pact_of_Steel"
+	decision_picture = "decision_anticominternpact"
+	date = { day = 0 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = 9007text
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = relation which = FRA value = -10 }
+		command = { type = relation which = ENG value = -10 }
+		command = { type = relation which = SOV value = -50 }
+		command = { type = relation which = GER value = 20 }
+		command = { type = end_guarantee which = ITA where = AUS }
+		command = { type = setflag which = ITA_Anti_comintern_pact }
+		command = { type = trigger which = 2003008 }
+	}
+}
+event = {
+	id = 2003008
+	random = no
+	country = GER
+
+	name = 9007name
+	desc = 9007desc
+	style = 2
+  	picture = "Mussolini"
+
+	action = {
+		name = 9007text
+		command = { type = setflag which = Anschluss }
+	}
+}
+
+event = {
+	id = 2011004
+	random = no
+	country = JAP
+
+	name = EVT_73_NAME
+	desc = EVT_73_DESC
+  	style = 2
+  	picture = "news_paper"
+	action_a = {
+		name = EVT_73_ACTA
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = relation which = SOV value = -10 }
+		command = { type = relation which = GER value = 10 }
+		command = { type = setflag which = JAP_Anti_comintern_pact }
+	}
+}
+
+#########################################################################
+#  Anschluss of Austria
+#########################################################################
+event = {
+	id = 2024001
+	random = no
+	country = AUS
+
+	trigger = {
+		OR = {
+			AND = {
+				#non_aggression = { country = AUS country = GER }
+				NOT = { guarantee = { country = ITA country = AUS } }
+				minister = 1
+			}
+			alliance = { country = GER country = ITA }
+		}
+	}
+	
+	name = "EVT_120_NAME"
+	desc = "EVT_120_DESC"
+	style = 2
+	picture = "anschluss"
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = set_domestic which = democratic value = 1 }
+		command = { type = set_domestic which = political_left value = 1 }
+		command = { type = headofstate which = 115013 }
+		command = { type = headofgovernment which = 115020 }
+		command = { type = foreignminister which = 115030 }
+		command = { type = armamentminister which = 115041 }
+		command = { type = ministerofsecurity which = 115055 }
+		command = { type = ministerofintelligence which = 115066 }
+		command = { type = chiefofstaff which = 115075 }
+		command = { type = chiefofarmy which = 115085 }
+		command = { type = chiefofnavy which = 115091 }
+		command = { type = chiefofair which = 115010 }
+		command = { type = dissent value = -1 }
+		command = { type = trigger which = 2003009 }
+		}
+	}
+	
+event = {
+	id = 2003009
+	random = no
+	country = GER
+
+	name = 7name
+	desc = 7desc
+	style = 2
+	picture = "anschluss"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { }
+	}
+}
+	
+#########################################################################
+#  Anschluss of Austria - Annexation
+#########################################################################
+event = {
+	id = 2003010
+	random = no
+	save_date = yes
+	country = GER
+	
+	decision = { year = 1937 }
+	
+	decision_trigger = {
+		event = 2003009
+		OR = {
+			owned = { province = 195 data = GER } 	
+			AND = {
+				control = { province = 195 data = GER } 
+				war = { country = GER country = AUS }
+			}
+			alliance = { country = GER country = AUS }
+			relation = { which = AUS value = 200 }
+			event = 2003008 
+		}
+	}
+	
+	trigger = {
+		year = 1937 
+		event = 2003009
+		OR = {
+			owned = { province = 195 data = GER } 	
+			AND = {
+				control = { province = 195 data = GER } 
+				war = { country = GER country = AUS }
+			}
+			alliance = { country = GER country = AUS }
+			relation = { which = AUS value = 200 }
+			event = 2003008 
+		}
+	}
+	
+	name = "EVT_2001_NAME"
+	desc = "EVT_2001_DESC"
+	style = 2
+	picture = "anschluss"
+	decision_picture = "decision_anschluss"
+	decision_desc = "EVT_2001_DESC_DECISION"
+
+	date = { day = 1 month = march year = 1936 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+	
+	action = { 
+		name = 2001a
+		trigger = { 
+			NOT = { war = { country = GER country = AUS } } 
+			NOT = { alliance = { country = GER country = AUS } } 		
+		}
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = inherit which = AUS value = 1 }
+		command = { type = manpowerpool value = 300 }
+		command = { type = dissent value = -10 }
+		command = { type = domestic which = defense_lobby value = 1 }
+
+		command = { type = wakeleader which = 36 } #Böhme
+		command = { type = wakeleader which = 44 } #de Angelis
+		command = { type = wakeleader which = 54 } #Eibl
+		command = { type = wakeleader which = 66 } #Fox
+		command = { type = wakeleader which = 67 } #Franek
+		command = { type = wakeleader which = 223 } #Reinhardt
+		command = { type = wakeleader which = 226 } #Ringel
+		command = { type = wakeleader which = 352 } #von Wiktori
+		command = { type = wakeleader which = 473 } #Udet
+		command = { type = wakeleader which = 479 } #Waber
+		command = { type = wakeleader which = 526 } #Skorzeny
+		command = { type = wakeleader which = 542 } #Barger
+		command = { type = wakeleader which = 543 } #Beyer  E
+		command = { type = wakeleader which = 544 } #Bornemann
+		command = { type = wakeleader which = 546 } #Eglseer
+		command = { type = wakeleader which = 547 } #Eppich
+		command = { type = wakeleader which = 549 } #Feurstein
+		command = { type = wakeleader which = 550 } #Glaise-Horstenau
+		command = { type = wakeleader which = 551 } #Grassy
+		command = { type = wakeleader which = 553 } #Hammer
+		command = { type = wakeleader which = 558 } #Kubena
+		command = { type = wakeleader which = 559 } #Longin
+		command = { type = wakeleader which = 560 } #Löhr
+		command = { type = wakeleader which = 561 } #Materna
+		command = { type = wakeleader which = 562 } #Martinek
+		command = { type = wakeleader which = 563 } #Mickl
+		command = { type = wakeleader which = 567 } #Schöbel
+		command = { type = wakeleader which = 571 } #Vodepp
+		command = { type = wakeleader which = 572 } #von Eimannsberger
+		command = { type = wakeleader which = 573 } #von Hubicki
+		command = { type = wakeleader which = 574 } #Zaiser
+		command = { type = wakeleader which = 578 } #Aldrian
+		command = { type = wakeleader which = 595 } #Felzmann
+		command = { type = wakeleader which = 686 } #Eberle
+		command = { type = wakeleader which = 712 } #Gerstmann
+		command = { type = wakeleader which = 746 } #Hinghofer
+		command = { type = wakeleader which = 749 } #Hofmann
+		command = { type = wakeleader which = 816 } #von Haydringen
+		command = { type = wakeleader which = 821 } #von Jesser
+		command = { type = wakeleader which = 909 } #Fröhlich
+		command = { type = wakeleader which = 983 } #Adolf-Auffenberg-Komarow
+		command = { type = wakeleader which = 992 } #Scholz von Rerancze
+		command = { type = relation which = ENG value = -15 }
+		command = { type = relation which = FRA value = -15 }
+		command = { type = relation which = ITA value = -10 }
+		command = { type = relation which = CZE value = -10 }
+		command = { type = relation which = HUN value = -5 }
+
+		command = { type = belligerence which = GER value = 5 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = trigger which = 2001025 } # UK Gears up for war
+		command = { type = trigger which = 2002001 } # France Gears up for war
+		command = { type = clrflag which = Anschluss }
+		command = { type = setflag which = Munich }
+		command = { trigger = { ai = yes } type = auto_trade which = oil when = stockpile value = 1 } #Start stockpiling oil for the war
+	}
+	
+	action = { 
+		name = 2001b	
+		trigger = { alliance = { country = GER country = AUS } }
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = add_division value = light_armor when = 1 where = sp_artillery }
+		command = { type = inherit which = AUS value = 1 }
+		command = { type = manpowerpool value = 300 }
+		command = { type = dissent value = -10 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		#command = { type =	addcore which = 402 }
+
+		command = { type = wakeleader which = 36 } #Böhme
+		command = { type = wakeleader which = 44 } #de Angelis
+		command = { type = wakeleader which = 54 } #Eibl
+		command = { type = wakeleader which = 66 } #Fox
+		command = { type = wakeleader which = 67 } #Franek
+		command = { type = wakeleader which = 223 } #Reinhardt
+		command = { type = wakeleader which = 226 } #Ringel
+		command = { type = wakeleader which = 352 } #von Wiktori
+		command = { type = wakeleader which = 473 } #Udet
+		command = { type = wakeleader which = 479 } #Waber
+		command = { type = wakeleader which = 526 } #Skorzeny
+		command = { type = wakeleader which = 542 } #Barger
+		command = { type = wakeleader which = 543 } #Beyer  E
+		command = { type = wakeleader which = 544 } #Bornemann
+		command = { type = wakeleader which = 546 } #Eglseer
+		command = { type = wakeleader which = 547 } #Eppich
+		command = { type = wakeleader which = 549 } #Feurstein
+		command = { type = wakeleader which = 550 } #Glaise-Horstenau
+		command = { type = wakeleader which = 551 } #Grassy
+		command = { type = wakeleader which = 553 } #Hammer
+		command = { type = wakeleader which = 558 } #Kubena
+		command = { type = wakeleader which = 559 } #Longin
+		command = { type = wakeleader which = 560 } #Löhr
+		command = { type = wakeleader which = 561 } #Materna
+		command = { type = wakeleader which = 562 } #Martinek
+		command = { type = wakeleader which = 563 } #Mickl
+		command = { type = wakeleader which = 567 } #Schöbel
+		command = { type = wakeleader which = 571 } #Vodepp
+		command = { type = wakeleader which = 572 } #von Eimannsberger
+		command = { type = wakeleader which = 573 } #von Hubicki
+		command = { type = wakeleader which = 574 } #Zaiser
+		command = { type = wakeleader which = 578 } #Aldrian
+		command = { type = wakeleader which = 595 } #Felzmann
+		command = { type = wakeleader which = 686 } #Eberle
+		command = { type = wakeleader which = 712 } #Gerstmann
+		command = { type = wakeleader which = 746 } #Hinghofer
+		command = { type = wakeleader which = 749 } #Hofmann
+		command = { type = wakeleader which = 816 } #von Haydringen
+		command = { type = wakeleader which = 821 } #von Jesser
+		command = { type = wakeleader which = 909 } #Fröhlich
+		command = { type = wakeleader which = 983 } #Adolf-Auffenberg-Komarow
+		command = { type = wakeleader which = 992 } #Scholz von Rerancze
+
+		command = { type = relation which = ENG value = -15 }
+		command = { type = relation which = FRA value = -15 }
+		command = { type = relation which = ITA value = -10 }
+		command = { type = relation which = CZE value = -10 }
+		command = { type = relation which = HUN value = -5 }
+
+		command = { type = belligerence which = GER value = 5 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = trigger which = 2001025 } # UK Gears up for war
+		command = { type = trigger which = 2002001 } # France Gears up for war
+		command = { type = clrflag which = Anschluss }
+		command = { type = setflag which = Munich }
+	}
+	action = {
+		name = 2001c	
+		trigger = { war = { country = GER country = AUS } }
+		command = { type = domestic which = defense_lobby value = 1 }
+
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = ITA value = -20 }
+		command = { type = relation which = CZE value = -20 }
+		command = { type = relation which = HUN value = -10 }
+
+		command = { type = belligerence which = GER value = 5 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = trigger which = 2001025 } # UK Gears up for war
+		command = { type = trigger which = 2002001 } # France Gears up for war
+		command = { type = clrflag which = Anschluss }
+		command = { type = setflag which = Munich }
+	}
+}
+
+#########################################################################
+#  The Treaty of Munich
+#########################################################################
+event = {
+	id = 2003011
+	random = no
+	country = GER
+
+	decision = {
+		flag = Munich
+		event = 2003010
+		exists = CZE
+		OR = {
+			control = { province = 197 data = CZE }
+			control = { province = 205 data = CZE }
+			control = { province = 200 data = CZE }
+			control = { province = 206 data = CZE }
+		}
+		NOT = {
+			OR = {
+				war = { country = CZE country = GER }
+				alliance = { country = CZE country = GER }
+				ispuppet = GER
+				puppet = { country = CZE country = GER }
+			}
+		}
+	}
+	
+	decision_trigger = { 
+		event = { id = 2003010 days = 150 }
+		NOT = { war = { country = CZE country = GER } }
+		NOT = { alliance = { country = CZE country = GER } }
+		NOT = { ispuppet = GER }
+		NOT = { puppet = { country = CZE country = GER } }
+		garrison = { country = GER province = 188 size = 1 }
+		garrison = { country = GER province = 195 size = 1 }
+		garrison = { country = GER province = 194 size = 1 }
+		garrison = { country = GER province = 186 size = 1 }
+		garrison = { country = GER province = 174 size = 1 }
+		garrison = { country = GER province = 175 size = 1 }
+		garrison = { country = GER province = 172 size = 1 }
+		garrison = { country = GER province = 173 size = 1 }
+		garrison = { country = GER province = 165 size = 1 }
+		garrison = { country = GER province = 166 size = 1 }
+	}
+	
+	trigger = {
+		flag = Munich
+		exists = CZE
+		OR = {
+			control = { province = 197 data = CZE }
+			control = { province = 205 data = CZE }
+			control = { province = 200 data = CZE }
+			control = { province = 206 data = CZE }
+		}	
+		NOT = {
+			OR = {
+			   ispuppet = GER			
+			   war = { country = CZE country = GER }
+			   alliance = { country = CZE country = GER }
+			   puppet = { country = CZE country = GER }
+			}
+		}		
+		OR = { 
+			AND = { 
+				random = 20 
+				event = { id = 2003010 days = 150 } 				
+			} 
+			event = { id = 2003010 days = 200 } 
+		}
+	}
+	
+	name = "EVT_2030_NAME"
+	desc = "EVT_2030_DESC"
+	style = 2
+	picture = "Munich"
+	decision_picture = "decision_Munich"
+
+	date = { day = 1 month = february year = 1938 }
+	offset = 10
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Demand Sudetenland"
+		command = { type = trigger which = 2025001 } # CZE
+	}
+}
+#########################################################################
+#  The Treaty of Munich *fixed*
+#########################################################################
+event = {
+	id = 2025001
+	random = no
+	country = CZE
+
+	# triggered by GER 2003011
+
+	name = "EVT_2200_NAME"
+	desc = "EVT_2200_DESC"
+	style = 2
+	picture = "Munich"
+
+	action = {
+		name = "ACTIONNAME2200A" # Accept the Claims
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = construct which = land_fort where = 205 value = -5 } #Karlovy Vary
+		command = { type = construct which = land_fort where = 197 value = -5 } #Znojmo
+		command = { type = construct which = land_fort where = 200 value = -5 } #Liberec
+		command = { type = construct which = land_fort where = 206 value = -6 } #Opava
+		command = { type = construct which = land_fort where = 203 value = -5 } #Tesin
+		command = { type = construct which = land_fort where = 204 value = -5 } #Prachatice
+		command = { type = secedeprovince which = GER value = 205 } # Karlovy Vary - Czechoslovakia
+		command = { type = secedeprovince which = GER value = 197 } # Znojmo - Czechoslovakia
+		command = { type = secedeprovince which = GER value = 200 } # Liberec - Czechoslovakia
+		command = { type = secedeprovince which = GER value = 206 } # Opava - Czechoslovakia
+		command = { type = secedeprovince which = GER value = 204 } # Prachatice - Czechoslovakia
+		command = { type = secedeprovince which = POL value = 203 } # Tesín - Czechoslovakia
+		command = { type = relation which = GER value = 10 }
+		command = { type = relation which = ENG value = -10 }
+		command = { type = relation which = FRA value = -10 }
+		command = { type = domestic which = democratic value = -2 }
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = dissent value = 25 }
+		command = { type = trigger which = 2003012 } # GER
+	}
+	action = {
+		name = "ACTIONNAME2200B" # Join the Axis
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = alliance which = GER }
+		command = { type = relation which = GER value = 40 }
+		command = { type = relation which = ENG value = -40 }
+		command = { type = relation which = FRA value = -40 }
+		command = { type = relation which = SOV value = -30 }
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = political_left value = 4 }
+		command = { type = dissent value = 25 }
+		command = { type = trigger which = 2003013 } # GER
+		command = { type = headofstate which = 120013 }
+		command = { type = headofgovernment which = 120024 }
+		command = { type = foreignminister which = 120036 }
+		command = { type = armamentminister which = 120047 }
+		command = { type = ministerofsecurity which = 120063 }
+		command = { type = ministerofintelligence which = 120079 }
+		command = { type = chiefofstaff which = 120093 }
+		command = { type = chiefofarmy which = 120104 }
+		command = { type = chiefofnavy which = 120110 }
+		command = { type = chiefofair which = 120114 }
+	}
+	action = { 
+		name = "ACTIONNAME2200C" # No way!
+		ai_chance = 100
+		command = { type = alliance which = FRA }
+		command = { type = domestic which = interventionism value = 4 }
+		command = { type = domestic which = political_left value = 2 }
+		command = { type = relation which = GER value = -20 }
+		command = { type = relation which = SOV value = 30 }
+		command = { type = relation which = ENG value = -10 }
+		command = { type = relation which = FRA value = 30 }
+		command = { type = dissent value = -1 }
+		command = { type = trigger which = 2003014 } # GER
+		#command = { type = add_division value = infantry when = 8 }
+		#command = { type = add_division value = infantry when = 8 }
+		#command = { type = add_division value = infantry when = 8 }
+		#command = { type = add_division value = infantry when = 8 }
+	}
+}
+
+#########################################################################
+#  The Treaty of Munich - Sudetenland to Germany
+#########################################################################
+event = {
+	id = 2003012
+	random = no
+	save_date = yes
+	country = GER
+	
+	# Triggered by CZE 2025001
+	name = "EVT_2003_NAME"
+	desc = "EVT_2003_DESC"
+	style = 2
+	picture = "Munich"
+
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = dissent value = -10 }
+		command = { type = manpowerpool value = 100 }
+		command = { type = domestic which = defense_lobby value = 1 }
+	}
+}
+
+#########################################################################
+#  The Treaty of Munich - Czechoslovakia joins the Axis
+#########################################################################
+event = {
+	id = 2003013
+	random = no
+	save_date = yes
+	country = GER
+	
+	# Triggered by CZE 2025001
+	name = "EVT_2004_NAME"
+	desc = "EVT_2004_DESC"
+	style = 2
+	picture = "Munich"
+
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = set_relation which = CZE value = 100 }
+	}
+}
+#########################################################################
+#  The Treaty of Munich - Czechoslovakia refuses claims
+#########################################################################
+event = {
+	id = 2003014
+	random = no
+	country = GER
+	
+	# Triggered by CZE 2025001
+	name = "EVT_2005_NAME"
+	desc = "EVT_2005_DESC"
+	style = 2
+	picture = "Munich"
+
+	action_a = {
+		name = "Prepare for war"
+		ai_chance = 99
+		#command = { type = dissent value = 0.5 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		#command = { type = ai_prepare_war which = CZE }
+		command = { type = setflag which = CZEresists }
+	}
+	
+	action_b = {
+		name = "ACTIONNAME2005B" # What they will not give, we shall take!
+		ai_chance = 1
+		command = { type = war which = CZE }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+#Sudeten uprising
+
+event = {
+	id = 2003015
+	random = no
+	country = CZE
+
+	trigger = {
+		flag = Munich
+		flag = CZEresists
+		event = 2003014
+		exists = CZE
+		war = { country = CZE country = GER }
+	}
+	
+	name = "Sudeten uprising"
+	desc = "The German population of Sudetenland has secretely been prepared and armed by Germany for action against the Czechoslovak Republic. With the German invasion of the Czech lands imminent, they have risen and attacked the Czech fortifications from behind!"
+	style = 2
+	picture = "Munich"
+	decision_picture = "decision_Munich"
+
+	date = { day = 1 month = february year = 1938 }
+	offset = 3
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "Traitors!"
+		command = { type = trigger which = 2003016 } # GER
+	}
+}
+
+event = {
+	id = 2003016
+	random = no
+	country = GER
+
+	name = "Sudeten uprising"
+	desc = "The German population of Sudetenland has secretely been prepared and armed by Germany for action against the Czechoslovak Republic. With the German invasion of the Czech lands imminent, they have risen and attacked the Czech fortifications from behind!"
+	style = 2
+	picture = "Munich"
+	decision_picture = "decision_Munich"
+
+	action = {
+		name = "Heroes!"
+		command = { type = construct which = land_fort where = 205 value = -1 } #Karlovy Vary
+		command = { type = construct which = land_fort where = 197 value = -1 } #Znojmo
+		command = { type = construct which = land_fort where = 200 value = -1 } #Liberec
+		command = { type = construct which = land_fort where = 206 value = -1 } #Opava
+		command = { type = construct which = land_fort where = 204 value = -1 } #Prachatice
+		command = { type = add_corps value = land where = 205 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { trigger = { ai = GER } type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 197 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { trigger = { ai = GER } type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 200 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { trigger = { ai = GER } type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 206 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { trigger = { ai = GER } type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 204 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { trigger = { ai = GER } type = add_division value = infantry when = 8 }
+	}
+}
+
+#########################################################################
+#  Claiming Klaipedia
+#########################################################################
+event = {
+	id = 2003021
+	random = no
+	country = GER
+	
+	decision = {
+		control = { province = 261 data = LIT } # Klaipedia			
+		OR = { 
+			NOT = { exists = CZE }
+			event = 2003013 
+			war = { country = SOV country = LIT }
+			war = { country = GER country = CZE }
+		}
+		OR = {
+			year = 1938
+			NOT = { exists = CZE }
+			event = { id = 2003013 days = 180 } 
+		}
+	}
+	
+	decision_trigger = {
+		#NOT = { alliance = { country = GER country = LIT } }
+		NOT = { ispuppet = LIT }
+		NOT = { ispuppet = GER }
+	}
+	
+	trigger = {
+		control = { province = 261 data = LIT } # Klaipedia
+		OR = { 
+			NOT = { exists = CZE }
+			event = 2003013 
+			war = { country = SOV country = LIT }
+			war = { country = GER country = CZE }
+		}
+		OR = {
+			year = 1938
+			NOT = { exists = CZE }
+			event = { id = 2003013 days = 180 } 
+		}
+		
+	}
+
+	name = "EVT_2008_NAME"
+	desc = "EVT_2008_DESC"
+  	style = 2
+  	picture = "news_paper"
+	decision_picture = "decision_Memel"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = {
+		name = "ACTIONNAME2008A"
+		ai_chance = 100
+		command = { type = addcore which = 261 } # Klaipeda - Baltic States
+		command = { type = trigger which = 2029001 } # LIT
+		command = { type = relation which = SOV value = -5 }
+		command = { type = relation which = LIT value = -40 }
+	}
+}
+
+event = { 
+	id = 2029001
+	random = no
+	country = LIT
+	
+	# Triggered by GER 2003021
+	
+	name = "EVT_2400_NAME"
+	desc = "EVT_2400_DESC"
+	style = 2
+	picture = "news_paper"	
+	
+	action_a = {
+		name = "ACTIONNAME2400A"
+		ai_chance = 95
+		command = { type = relation which = SOV value = -5 }
+		command = { type = relation which = POL value = -10 }
+		command = { type = secedeprovince which = GER value = 261 } # Klaipeda - Baltic States
+		command = { type = trigger which = 2003022 } # GER
+		command = { type = non_aggression which = GER where = LIT }
+	}
+	
+}
+
+# Lithuania Agrees!
+event = {
+	id = 2003022
+	random = no
+	country = GER
+	
+	# Triggered by LIT 2029001
+	
+	name = "EVT_2009_NAME"
+	desc = "EVT_2009_DESC"
+  	style = 2
+  	picture = "news_paper"
+	
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = dissent value = -1 }
+	}
+}
+
+#########################################################################
+#  Hitler has been assasinated!
+#########################################################################
+event = {
+	id = 2003034
+	random = no
+	country = GER
+
+	trigger = {
+		government = fascist
+		headofstate = 1
+		war = { country = GER country = SOV }
+		war = { country = GER country = FRA } #Two front war a must
+		NOT = {
+			OR = {
+				event = 2007033	#Bitter Peace (w/o Japan)
+				event = 2001040 #UK surrendering
+			}
+		}
+		control = { province = 572 data = SOV } #Moscow
+		control = { province = 553 data = SOV } #Leningrad
+		control = { province = 599 data = SOV } #Minsk
+		control = { province = 617 data = SOV } #Kiev
+		control = { province = 641 data = SOV } #Sevastopol
+		control = { province = 626 data = SOV } #Odessa
+		OR = {
+			AND = {
+				control = { province = 419 data = -2 } #Rome
+				control = { province = 421 data = -2 } #Naples
+				control = { province = 422 data = -2 } #Taranto
+			}
+			AND = {
+				control = { province = 55 data = -2 } #Paris
+				control = { province = 43 data = -2 } #Cherbourg
+				control = { province = 51 data = -2 } #Dunkerque
+			}
+		}
+	}
+
+	name = "EVT_2025_NAME"
+	desc = "EVT_2025_DESC"
+	style = 2
+	picture = "news_paper"
+	date = { day = 2 month = june year = 1944 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+	
+	action = {
+		trigger = { random = 90 }
+		name = "Assasination is a failure" # OK
+		command = { type = ministerofintelligence which = 115 }
+		command = { type = chiefofstaff which = 133 }
+
+		command = { type = sleepevent which = 2003034 }
+		command = { type = sleepminister which = 7 }
+		command = { type = sleepminister which = 15 }
+		command = { type = sleepminister which = 16 }
+		command = { type = sleepminister which = 29 }
+		command = { type = sleepminister which = 48 }
+		command = { type = sleepminister which = 49 }
+		command = { type = sleepminister which = 56 }
+		command = { type = sleepminister which = 6 }
+		command = { type = sleepminister which = 71 }
+		command = { type = sleepminister which = 78 }
+		command = { type = sleepminister which = 80 }
+		command = { type = sleepminister which = 81 }
+		command = { type = sleepminister which = 103 }
+		command = { type = sleepminister which = 104 }
+		command = { type = sleepminister which = 105 }
+		command = { type = sleepminister which = 117 }
+		command = { type = sleepminister which = 123 }
+		command = { type = sleepminister which = 125 }
+		command = { type = sleepminister which = 136 }
+		command = { type = sleepminister which = 137 }
+		command = { type = sleepminister which = 139 }
+		command = { type = sleepminister which = 154 }
+		command = { type = sleepminister which = 155 }
+		command = { type = sleepminister which = 193 }
+		command = { type = sleepminister which = 131 }
+		command = { type = sleepminister which = 12 }
+		command = { type = sleepminister which = 210 }
+		command = { type = sleepleader which = 139 }
+		command = { type = sleepleader which = 211 }
+		command = { type = sleepleader which = 78 }
+		command = { type = sleepleader which = 353 }
+		command = { type = sleepleader which = 229 }
+		command = { type = sleepleader which = 310 }
+		command = { type = sleepleader which = 343 }
+		command = { type = sleepleader which = 418 }
+		command = { type = sleepleader which = 537 }
+		command = { type = sleepleader which = 692 }
+
+		command = { type = dissent value = 2 }
+		command = { type = domestic which = freedom value = -2 }
+	}
+	action = {
+		trigger = { random = 10 }
+		name = "Assasination is successful"
+		command = { type = set_domestic which = democratic value = 6 }
+		command = { type = set_domestic which = political_left value = 2 }
+
+		command = { type = headofstate which = 15 }
+		command = { type = headofgovernment which = 29 }
+		command = { type = foreignminister which = 49 }
+		command = { type = armamentminister which = 80 }
+		command = { type = ministerofsecurity which = 103 }
+		command = { type = ministerofintelligence which = 124 }
+		command = { type = chiefofstaff which = 137 }
+		command = { type = chiefofarmy which = 155 }
+		command = { type = chiefofnavy which = 167 }
+		command = { type = chiefofair which = 173 }
+
+		command = { type = sleepevent which = 2003035 }
+		command = { type = sleepminister which = 1 } #
+		command = { type = sleepminister which = 2 } #
+		command = { type = sleepminister which = 10 } #
+		command = { type = sleepminister which = 13 } #
+		command = { type = sleepminister which = 21 } #
+		command = { type = sleepminister which = 22 } #
+		command = { type = sleepminister which = 23 } #
+		command = { type = sleepminister which = 36 } #
+		command = { type = sleepminister which = 37 } #
+		command = { type = sleepminister which = 38 } #
+		command = { type = sleepminister which = 39 } #
+		command = { type = sleepminister which = 55 } #
+		command = { type = sleepminister which = 56 } #
+		command = { type = sleepminister which = 5 } #
+		command = { type = sleepminister which = 57 } #
+		command = { type = sleepminister which = 58 } #
+		command = { type = sleepminister which = 59 } #
+		command = { type = sleepminister which = 60 } #
+		command = { type = sleepminister which = 61 } #
+		command = { type = sleepminister which = 62 } #
+		command = { type = sleepminister which = 63 } #
+		command = { type = sleepminister which = 64 } #
+		command = { type = sleepminister which = 86 } #
+		command = { type = sleepminister which = 87 } #
+		command = { type = sleepminister which = 88 } #
+		command = { type = sleepminister which = 89 } #
+		command = { type = sleepminister which = 90 } #
+		command = { type = sleepminister which = 91 } #
+		command = { type = sleepminister which = 113 } #
+		command = { type = sleepminister which = 114 } #
+		command = { type = sleepminister which = 115 } #
+		command = { type = sleepminister which = 116 } #
+		command = { type = sleepminister which = 132 } #
+		command = { type = sleepminister which = 135 } #
+		command = { type = sleepminister which = 138 } #
+		command = { type = sleepminister which = 147 } #
+		command = { type = sleepminister which = 148 } #
+		command = { type = sleepminister which = 149 } #
+		command = { type = sleepminister which = 150 } #
+		command = { type = sleepminister which = 161 } #
+		command = { type = sleepminister which = 162 } #
+		command = { type = sleepminister which = 170 } #
+		command = { type = sleepminister which = 171 } #
+		command = { type = sleepminister which = 174 } #
+
+		command = { type = sleepleader which = 153 } #
+		command = { type = sleepleader which = 368 } #
+		command = { type = sleepleader which = 248 } #
+		command = { type = sleepleader which = 21 } #
+		command = { type = sleepleader which = 27 } #
+		command = { type = sleepleader which = 29 } #
+		command = { type = sleepleader which = 44 } #
+		command = { type = sleepleader which = 85 } #
+		command = { type = sleepleader which = 116 } #
+		command = { type = sleepleader which = 156 } #
+		command = { type = sleepleader which = 224 } #
+		command = { type = sleepleader which = 250 } #
+		command = { type = sleepleader which = 259 } #
+		command = { type = sleepleader which = 283 } #
+		command = { type = sleepleader which = 285 } #
+		command = { type = sleepleader which = 314 } #
+		command = { type = sleepleader which = 316 } #
+		command = { type = sleepleader which = 321 } #
+		command = { type = sleepleader which = 333 } #
+		command = { type = sleepleader which = 350 } #
+		command = { type = sleepleader which = 49 } #
+		command = { type = sleepleader which = 388 } #
+		command = { type = sleepleader which = 420 } #
+		command = { type = sleepleader which = 396 } #
+		command = { type = sleepleader which = 397 } #
+		command = { type = sleepleader which = 419 } #
+		command = { type = sleepleader which = 450 } #
+		command = { type = sleepleader which = 469 } #
+		command = { type = sleepleader which = 474 } #
+		command = { type = sleepleader which = 439 } #
+		command = { type = sleepleader which = 427 } #
+		command = { type = sleepleader which = 433 } #
+		command = { type = sleepleader which = 435 } #
+		command = { type = sleepleader which = 436 } #
+		command = { type = sleepleader which = 446 } #
+		command = { type = sleepleader which = 451 } #
+		command = { type = sleepleader which = 462 } #
+		command = { type = sleepleader which = 463 } #
+		command = { type = sleepleader which = 472 } #
+		command = { type = sleepleader which = 478 } #
+		command = { type = sleepleader which = 482 } #
+		command = { type = sleepleader which = 483 } #
+		command = { type = sleepleader which = 503 } #
+		command = { type = sleepleader which = 486 } #
+		command = { type = sleepleader which = 494 } #
+		command = { type = sleepleader which = 495 } #
+		command = { type = sleepleader which = 496 } #
+		command = { type = sleepleader which = 498 } #
+		command = { type = sleepleader which = 509 } #
+		command = { type = sleepleader which = 513 } #
+		command = { type = sleepleader which = 521 } #
+		command = { type = sleepleader which = 528 } #
+		command = { type = sleepleader which = 487 } #
+		command = { type = sleepleader which = 488 } #
+		command = { type = sleepleader which = 492 } #
+		command = { type = sleepleader which = 493 } #
+		command = { type = sleepleader which = 497 } #
+		command = { type = sleepleader which = 505 } #
+		command = { type = sleepleader which = 507 } #
+		command = { type = sleepleader which = 512 } #
+		command = { type = sleepleader which = 514 } #
+		command = { type = sleepleader which = 516 } #
+		command = { type = sleepleader which = 518 } #
+		command = { type = sleepleader which = 519 } #
+		command = { type = sleepleader which = 523 } #
+		command = { type = sleepleader which = 525 } #
+		command = { type = sleepleader which = 526 } #
+		command = { type = sleepleader which = 530 } #
+		command = { type = sleepleader which = 531 } #
+		command = { type = sleepleader which = 533 } #
+		command = { type = sleepleader which = 536 } #
+		command = { type = sleepleader which = 538 } #
+		command = { type = sleepleader which = 539 } #
+		command = { type = sleepleader which = 545 } #
+		command = { type = sleepleader which = 549 } #
+		command = { type = sleepleader which = 550 } #
+		command = { type = sleepleader which = 551 } #
+		command = { type = sleepleader which = 556 } #
+		command = { type = sleepleader which = 558 } #
+		command = { type = sleepleader which = 560 } #
+		command = { type = sleepleader which = 561 } #
+		command = { type = sleepleader which = 565 } #
+		command = { type = sleepleader which = 573 } #
+
+		command = { type = dissent value = 15 }
+	}
+}
+
+#########################################################################
+#   Danzig or War (Last chance for peace)
+#########################################################################
+
+#########################################################################
+#  Danzig or War - WAR!
+#########################################################################
+event = {
+	id = 2003037
+	random = no
+	country = GER
+
+	# Triggered by POL 2013002
+
+	name = "EVT_2028_NAME"
+	desc = "EVT_2028_DESC"
+	style = 2
+	picture = "Poland_Invasion"
+
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = war which = POL }
+		command = { type = inherit which = U06 value = 1 }
+		command = { type = dissent value = -3 }
+	}
+}
+#########################################################################
+#  Danzig or War - The Poles fold
+#########################################################################
+event = {
+	id = 2003038
+	random = no
+	country = GER
+
+	# Triggered by POL 2013002
+
+	name = "EVT_2029_NAME"
+	desc = "EVT_2029_DESC"
+	style = 2
+	picture = "Poland_Invasion"
+
+	action = {
+		name = ACTION_NAME_EXCELLENT
+		command = { type = inherit which = U06 value = 1 }
+		command = { type = make_puppet which = POL }
+		command = { type = dissent value = -10 }
+		command = { type = relation which = POL value = 5 }
+		command = { type = belligerence which = GER value = 1 }
+	}
+}
+
+event = {
+	id = 2003039
+	random = no
+	country = GER
+	persistent = yes
+	
+	decision = {
+		exists = U06
+		OR = {
+			war = { country = GER country = POL }
+			NOT = { exists = POL }
+		}
+	}
+	
+	decision_trigger = { 
+		OR = {
+			war = { country = GER country = POL }
+			NOT = { exists = POL }
+		}
+	}
+
+	trigger = {
+		exists = U06
+		OR = {
+			war = { country = GER country = POL }
+			NOT = { exists = POL }
+		}
+	}
+
+	name = "Annexation of Danzig"
+	desc = "With the outbreak of World War 2, the government of the Free City of Danzig, long in the hands of the local Nazis, quickly voted to join Germany and expel the League of Nations High Commissioner. Local SS and the police cooperated with the Germans with expelling Polish authorities from in and around the city."
+	style = 2
+	picture = "Poland_Invasion"
+	
+	date = { day = 29 month = march year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action = {
+		name = ACTION_NAME_EXCELLENT
+		command = { type = inherit which = U06 value = 1 }
+		command = { type = dissent value = -3 }
+		command = { type = belligerence which = GER value = 1 }
+	}
+}
+
+#########################################################################
+#  Destroying the Maginot Line
+#########################################################################
+event = { 
+	id = 2003040
+	random = no
+	country = GER
+
+	
+	name = "EVT_2792_NAME"
+	desc = "EVT_2792_DESC"
+  	style = 2
+  	picture = "news_paper"
+	trigger = {
+		control = { province = 104 data = GER } # Maginot Line
+		control = { province = 107 data = GER } # 
+		control = { province = 105 data = GER } # 
+		OR = {
+			AND = {
+				control = { province = 89 data = GER } #Marseille
+				control = { province = 67 data = GER } #Bordeaux
+				control = { province = 55 data = GER } #Paris
+			}
+			event = 2002004
+		}
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 30 # Check for trigger conditions day
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action_a = {
+		name = ACTION_NAME_OK  #
+		command = { type = construct which = land_fort where = 104 value = -7 }
+		command = { type = construct which = land_fort where = 107 value = -7 }
+		command = { type = construct which = land_fort where = 105 value = -7 }
+		command = { type = construct which = land_fort where = 96 value = -1 }
+		command = { type = construct which = land_fort where = 90 value = -2 }
+		command = { type = construct which = land_fort where = 91 value = -2 }
+		command = { type = construct which = land_fort where = 87 value = -3 }
+		command = { type = construct which = ic where = 104 value = 1 }
+		command = { type = construct which = ic where = 107 value = 1 }
+		command = { type = construct which = ic where = 105 value = 1 }
+	}
+}
+
+#####################################
+# Vlassov defects
+#####################################
+event = {
+	id = 2003041
+	random = no
+	country = GER
+
+	trigger = {
+		war = { country = GER country = SOV }
+		lost_national = { country = SOV value = 10 }
+	}
+
+	name = "EVT_2036_NAME"
+	desc = "EVT_2036_DESC"
+  	style = 2
+  	picture = "news_paper"
+	date = { day = 1 month = january year = 1938 }
+	offset = 30 
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "ACTION_NAME_ACCEPT"
+		ai_chance = 100
+		command = { type = wakeleader which = 576 }
+		command = { type = trigger which = 2007051 }
+	}
+
+	action = {
+		name = "EVT_2036_ACTB"
+		ai_chance = 0
+		command = { }
+	}
+}
+
+
+# Narvik/Iron route
+event = {
+	id = 2003068
+	random = no
+	country = GER
+	
+	name = 9017name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	trigger = {
+		atwar = yes
+		control = { province = 495 data = -2 } #Narvik
+		OR = { 
+			flag = BaltiqueSOV 	
+			month = 11 
+			AND = { 
+				month = 1 
+				NOT = { month = 4 } 
+			} 
+		} # november, december, january, february, march (frozen Baltic sea)
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1970 }
+
+	action = {
+		name = ACTION_NAME_OK 
+		command = { type = dissent value = 2 }
+		command = { type = supplies value = -50 }
+		command = { type = setflag which = NarvikNO }
+		command = { type = trigger which = 2003070 } # Embargo
+		command = { type = trigger which = 2003071 }
+	}
+}
+
+event = {
+	id = 2003069
+	random = no
+	country = GER
+	persistent = yes
+	
+	name = 9018name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	trigger = {
+		flag = NarvikNO
+		NOT = {
+			AND = {
+				atwar = yes
+				control = { province = 495 data = -2 } #Narvik
+				OR = { 
+					flag = BaltiqueSOV 	
+					month = 11 
+					AND = { 
+						month = 1 
+						NOT = { month = 4 } 
+					} 
+				} # november, december, january, february, march (frozen Baltic sea)
+			}
+		}
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { type = dissent value = -2 }
+		command = { type = supplies value = 50 }
+		command = { type = setflag which = NarvikOK }
+		command = { type = clrflag which = NarvikNO }
+		command = { type = trigger which = 2003072 } # End embargo
+		command = { type = trigger which = 2003073 } # End embargo
+	}
+}
+
+event = {
+	id = 2003070
+	random = no
+	tag = { SWE SCA }
+	persistent = yes
+	
+	name = 9017name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { type = embargo which = SWE where = GER value = 1 }
+		command = { type = embargo which = SCA where = GER value = 1 }
+	}
+}
+
+event = {
+	id = 2003071
+	random = no
+	country = SOV
+	persistent = yes
+	
+	name = 9017name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	action = {
+		name = ACTION_NAME_OK 
+		command = { }
+	}
+}
+
+event = {
+	id = 2003072
+	random = no
+	tag = { SWE SCA }
+	persistent = yes
+	
+	name = 9018name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { type = embargo which = SWE where = GER value = -1 }
+		command = { type = embargo which = SCA where = GER value = -1 }
+		command = { type = trade which = SWE where = GER metal = -80 supplies = 10 value = 1 } 
+		command = { type = trade which = SCA where = GER metal = -80 supplies = 10 value = 1 } 
+	}
+}
+
+event = {
+	id = 2003073
+	random = no
+	country = SOV
+	persistent = yes
+	
+	name = 9018name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { }
+	}
+}
+
+# The Red fleet controls the Baltic sea
+event = {
+	id = 2007006
+	random = no
+	country = SOV
+	persistent = yes
+	
+	name = 9025name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	trigger = { 
+		NOT = { flag = BaltiqueSOV }
+		war = { country = SOV country = GER }
+	    OR = { 
+			garrison = { country = SOV province = 2728   type = naval size = 3 area = no }
+			AND = { 
+				garrison = { country = SOV province = 2727   type = naval size = 3 area = no }
+				garrison = { country = SOV province = 2726   type = naval size = 3 area = no } 
+			}
+			AND = { 
+				garrison = { country = SOV province = 2722   type = naval size = 3 area = no }
+				garrison = { country = SOV province = 2723   type = naval size = 3 area = no } 
+			}
+			AND = { 
+				garrison = { country = SOV province = 2721   type = naval size = 3 area = no }
+				garrison = { country = SOV province = 2720   type = naval size = 3 area = no } 
+			}
+			AND = { 
+				garrison = { country = SOV province = 2719   type = naval size = 3 area = no }
+				garrison = { country = SOV province = 2718   type = naval size = 3 area = no } 
+			} 
+		}
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { type = setflag which = BaltiqueSOV }
+	}
+}
+
+event = {
+	id = 2007007
+	random = no
+	country = SOV
+	persistent = yes
+	
+	name = 9026name
+	desc = 9017desc
+	style = 2
+	picture = "Narvik"
+
+	trigger = { 
+		flag = BaltiqueSOV 
+		OR = { 
+			NOT = { war = { country = SOV country = GER } }
+			NOT = { 
+				OR = {  
+					garrison = { country = SOV province = 2728   type = naval size = 3 area = no }
+					AND = { 
+						garrison = { country = SOV province = 2727   type = naval size = 3 area = no }
+						garrison = { country = SOV province = 2726   type = naval size = 3 area = no } 
+					}
+					AND = { 
+						garrison = { country = SOV province = 2722   type = naval size = 3 area = no }
+						garrison = { country = SOV province = 2723   type = naval size = 3 area = no } 
+					}
+					AND = { 
+						garrison = { country = SOV province = 2721   type = naval size = 3 area = no }
+						garrison = { country = SOV province = 2720   type = naval size = 3 area = no } 
+					}
+					AND = { 
+						garrison = { country = SOV province = 2719   type = naval size = 3 area = no }
+						garrison = { country = SOV province = 2718   type = naval size = 3 area = no } 
+					} 
+				} 
+			} 
+		}                        
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action_a = {
+		name = ACTION_NAME_OK 
+		command = { type = clrflag which = BaltiqueSOV }
+	}
+}
+    
+event = { # operation tannenbaum
+	id = 2003108
+	random = no
+	country = GER
+
+	decision = {
+		year = 1939
+		exists = SCH
+		OR = {
+			event = 2002006
+			AND = {
+				NOT = { exists = FRA }
+				control = { province = 55 data = -3 } # Paris
+			}
+		}
+		NOT = { event = 2003109}
+	}
+
+	decision_trigger = { alliance = { country = ITA } }
+
+	trigger = { ai = no }
+
+	name = "EVT_2003108_NAME"
+	desc = "EVT_2003108_DESC"
+	style = 2
+	picture = "news_paper"
+	decision_picture = "decision_Rhineland"
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 60
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = { 
+		name = "ACTIONNAME2003108"  
+		command = { type = war which = SCH } 
+	}
+}
+
+event = { # swiss forced trade
+	id = 2003109
+	random = no
+	country = GER
+
+	decision = {
+		OR ={
+			trade = { country = GER country = SCH }
+			trade = { country = ITA country = SCH }
+		}
+		year = 1939
+		exists = SCH
+		OR = {
+			event = 2002006
+			AND = {
+				NOT = { exists = FRA }
+				control = { province = 55 data = -3 } # Paris
+			}
+		}
+	}
+
+	decision_trigger = { }
+
+	trigger = { ai = no }
+
+	name = "EVT_2003109_NAME"
+	desc = "EVT_2003109_DESC"
+	style = 2
+	picture = "news_paper"
+	decision_picture = "decision_rapallo_conference"
+
+	date = { day = 1 month = january year = 1939 }
+	offset = 60
+	deathdate = { day = 12 month = march year = 1966 }
+
+	action = { name = "ACTIONNAME2003109"  
+	command = { type = belligerence which = GER value = 5 }
+	command = { type = belligerence which = ITA value = 2 }
+	command = { type = trade which = GER where = SCH  supplies = 8 value = 1 }
+	command = { type = trade which = ITA where = SCH  supplies = 4 value = 1 }	
+	command = { type = embargo which = SCH where = USA value = 3 }
+	command = { type = embargo which = SCH where = ENG value = 3 }
+	command = { type = embargo which = SCH where = CAN value = 3 }
+	command = { type = embargo which = SCH where = NZL value = 3 }
+	command = { type = embargo which = SCH where = AST value = 3 }
+	command = { type = embargo which = SCH where = U01 value = 3 }
+	command = { type = embargo which = SCH where = U02 value = 3 }
+	}
+}
+
+
+##########################################################################
+# Leni Riefenstahl (by SykoNurse & Generalisimo)
+##########################################################################
+event = { 
+	id = 3136130
+	random = no 
+	country = GER 
+
+	trigger = { 
+		random = 70
+	}
+
+	name = EVT_3136130_NAME 
+	desc = EVT_172068_DESC
+	style = 2 
+
+	date = { day = 1 month = july year = 1938 }
+	offset = 10
+	deathdate = { day = 29 month = september year = 1938 } 
+
+	action_a = { 
+		name = ACTIONNAME3136130A
+		command = { type = money value = 25 }
+		command = { type = supplies value = -25 }
+		command = { type = construct which = ic where = 163 value = 1 } # Berlin
+	} 
+}
+##########################################################################
+# Autobahn opened for public (by SykoNurse & Generalisimo)
+##########################################################################
+event = { 
+	id = 3136131
+	random = no 
+	country = GER 
+
+	trigger = { random = 70 }
+
+	name = EVT_3136131_NAME
+	desc = EVT_3136131_DESC
+	style = 2 
+
+	date = { day = 1 month = january year = 1939 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = ACTIONNAME3136131A
+		command = { type = money value = 20 }
+		command = { type = dissent value = -1 }
+		command = { type = construct which = infrastructure where = 182 value = 10 } # Tilsit
+		command = { type = construct which = infrastructure where = 183 value = 10 } # Königsberg 
+		command = { type = construct which = infrastructure where = 184 value = 10 } # 
+		command = { type = construct which = infrastructure where = 185 value = 10 } #  
+	} 
+}
+##########################################################################
+# Transport for the Masses! (by SykoNurse & Generalisimo)
+##########################################################################
+event = { 
+	id = 3136132
+	random = no 
+	country = GER 
+
+	trigger = { 
+		energy = 5000
+		oil = 1000
+		metal = 5000
+	}
+
+	name = EVT_3136132_NAME # Transport for the Masses
+	desc = EVT_172070_DESC
+	style = 2 
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+
+	action_a = { 
+		name = ACTIONNAME3136132A # Issue the coupons to the German workers
+		command = { type = dissent value = -1 }
+		command = { type = construct which = ic where = 146 value = 3 } # Wolfsburg
+		command = { type = oilpool value = -1000 } # going to private sector
+		command = { type = metalpool value = -5000 } # used in production
+		command = { type = energypool value = -5000 } # used in production
+	} 
+}
+##########################################################################
+# Volkswagen delivery (by SykoNurse & Generalisimo)
+##########################################################################
+event = { 
+	id = 3136133
+	random = no 
+	country = GER 
+
+	trigger = { 
+		random = 50
+		event = 3136132
+	}
+
+	name = EVT_3136133_NAME 
+	desc = EVT_3136133_DESC
+	style = 2 
+
+	date = { day = 1 month = january year = 1940 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+
+	action_a = { 
+		name = ACTIONNAME3136133A # Motorize the Wehrmacht too
+		command = { type = money value = -1342 }
+		command = { type = manpowerpool value = -46.5 }
+		command = { type = add_division value = motorized when = 1 }
+		command = { type = add_division value = motorized when = 1 }
+		command = { type = add_division value = motorized when = 1 }
+	} 
+}
+
+############################# 
+# The Four Year Plan
+#############################
+event = { 
+	id = 3136172
+	random = no
+	country = GER
+	
+	trigger = {
+		ai = yes
+	}
+	
+	name = EVT_3136172_NAME # The Four Year Plan
+	desc = EVT_3136172_DESC
+	style = 2
+	
+	date = { day = 17 month = october year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+	
+	action_a = {
+		name = ACTIONNAME3136172A # Approve plans for current year
+		command = { }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+	}
+}
+event = { 
+	id = 3136173
+	random = no
+	country = GER
+	
+	trigger = {
+		ai = yes
+	}
+
+	name = EVT_3136172_NAME # The Four Year Plan
+	desc = EVT_3136172_DESC
+	style = 2
+	
+	date = { day = 1 month = october year = 1937 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+	
+	action_a = {
+		name = ACTIONNAME3136172A # Approve plans for current year
+		command = { }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+	}
+}
+event = { 
+	id = 3136174
+	random = no
+	country = GER
+	
+	trigger = {
+		ai = yes
+	}
+
+	name = EVT_3136172_NAME # The Four Year Plan
+	desc = EVT_3136172_DESC
+	style = 2
+	
+	date = { day = 1 month = october year = 1938 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+	
+	action_a = {
+		name = ACTIONNAME3136172A
+		command = { }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+	}
+}
+event = { 
+	id = 3136175
+	random = no
+	country = GER
+	
+	trigger = {
+		ai = yes
+	}
+
+	name = EVT_3136172_NAME # The Four Year Plan
+	desc = EVT_3136172_DESC
+	style = 2
+	
+	date = { day = 1 month = october year = 1939 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1942 } 
+	
+	action_a = {
+		name = ACTIONNAME3136172A # Approve plans for current year
+		ai_chance = 99
+		command = { }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { type = construct which = ic where = -4 value = 1 }
+	}
+}
+
+event = {
+	id = 2003076 #Help AI for its complete lack of strategy (not to mention horrible tactics).
+	random = no
+	tag = { GER ENG SOV FRA USA JAP }
+	persistent = yes
+
+	trigger = { 
+		ai = yes
+		NOT = { local_flag = AI_boost }
+		OR = {
+			AND = {
+				country = GER
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = ENG
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = JAP
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = SOV
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+			AND = {
+				country = FRA
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+			AND = {
+				country = USA
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	desc = "AI_EVENT"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 0 month = april year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		name = "Ok"
+		command = { type = local_setflag which = AI_boost }
+		command = { type = free_supplies value = 40 }
+		command = { type = free_energy value = 60 }
+		command = { type = free_metal value = 30 }
+		command = { type = free_rare_materials value = 15 }
+		command = { type = free_oil value = 15 }
+		command = { type = free_ic value = 20 }
+
+		command = { type = gain_tech which = 2050 } # Improved Light Tank
+		command = { type = gain_tech which = 1400 } # Motorized Division
+		
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+	}
+}
+
+event = {
+	id = 2003077 #AI Boost removal
+	random = no
+	tag = { GER ENG SOV FRA USA JAP }
+	persistent = yes
+
+	trigger = { 
+		local_flag = AI_boost
+		NOT = {
+			ai = yes
+			AND = {
+				country = GER
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = ENG
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = JAP
+				OR = {
+					NOT = { ai = SOV }
+					NOT = { ai = FRA }
+					NOT = { ai = USA }
+				}
+			}
+			AND = {
+				country = SOV
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+			AND = {
+				country = FRA
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+			AND = {
+				country = USA
+				OR = {
+					NOT = { ai = GER }
+					NOT = { ai = ENG }
+					NOT = { ai = JAP }
+				}
+			}
+		}
+	}
+
+	name = "trigger"
+	desc = "trigger"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 0 month = april year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		name = "Ok"
+		command = { type = local_clrflag which = AI_boost }
+		command = { type = free_supplies value = -40 }
+		command = { type = free_energy value = -60 }
+		command = { type = free_metal value = -30 }
+		command = { type = free_rare_materials value = -15 }
+		command = { type = free_oil value = -15 }
+		command = { type = free_ic value = -20 }
+
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+		command = { type = remove_division which = -1 }
+	}
+}
+
+event = {
+	id = 2003078 #Help AI for its complete lack of strategy (not to mention horrible tactics). The German AI needs the most help of all because Germany without strategy is doomed from the start. Giving AI Germany a temporary GDE boost for 2 months
+	random = no
+	tag = { GER }
+
+	trigger = { 
+		ai = yes
+		war = { country = GER country = SOV }
+	}
+
+	name = "AI_EVENT"
+	desc = "AI_EVENT"
+	style = 2
+
+	date = { day = 0 month = april year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1941 }
+
+	action = {
+		name = "Ok"
+		command = { type = ground_def_eff value = 0.25 when = 1 }
+		command = { type = add_corps value = land where = 127 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_corps value = land where = 168 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = add_division value = infantry when = 10 }
+		command = { type = event which = 2003079 where = GER when = 60 }
+	}
+}
+
+event = {
+	id = 2003079
+	random = no
+	tag = { GER }
+
+	name = "AI_EVENT"
+	desc = "AI_EVENT"
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = ground_def_eff value = -0.25 when = 1 }
+	}
+}
+

@@ -1,0 +1,332 @@
+
+switch = no # [yes/no]
+
+upgrading = 0.1
+
+###################################
+# Construction and Tech Research
+###################################
+construction = { 
+	max_factor = 1.00
+
+   	AA_batteries = no
+	max_AA_level = 3
+	AA_provs = { }
+
+	coastal_fort = no
+	max_coastal_level = 3
+
+	radar_station = no
+	max_radar = 2
+	radar_provs = {	} 
+
+	air_base = no
+	max_air_base = 5
+	air_base_provs = { } 
+
+	naval_base = no
+	max_naval_base = 5 
+	naval_base_provs = { } 
+
+	land_fort = yes
+	max_land_level = 10
+	fort_borders = { }
+	fort_provs	= { 208 197 200 204 205 206 } #Czech
+
+	ic_at_war = no
+	force_ic_until = 1935
+	ic_end_year = 1935
+	
+	nuclear_reactor = yes	
+	max_nuclear = 10
+	rocket_test = yes
+	max_rocket = 10
+}
+
+military = { 
+	relative_build_scheme 	= no
+	max_batch_peace			= 0 #720 
+	max_batch_war			= 0 #360 
+	max_batch_home_front	= 0 #160
+	extra_convoys_war		= 0.0000 
+	extra_convoys_peace		= 0.0000
+
+	#### Divisions etc...
+	infantry			= 72
+	cavalry				= 0
+	motorized			= 12
+	mechanized			= 0
+	light_armor			= 13
+	armor				= 0
+	paratrooper			= 0
+	marine				= 0
+	bergsjaeger			= 1
+	garrison			= 1
+	hq					= 1
+	militia				= 0
+#				98 %
+
+	interceptor			= 0
+	multi_role			= 0
+	cas					= 0
+	strategic_bomber	= 0
+	tactical_bomber		= 0
+	naval_bomber		= 0
+	transport_plane		= 0
+	flying_bomb			= 0
+	flying_rocket		= 0
+#				0 %
+
+	battleship			= 0
+	carrier				= 0
+	escort_carrier		= 0
+	destroyer			= 0
+	light_cruiser		= 0
+	heavy_cruiser		= 0
+	battlecruiser		= 0
+	submarine			= 0
+	nuclear_submarine	= 0
+	transports			= 0
+#				0 %
+
+	#### Brigades
+	artillery			= 30	#30
+	sp_artillery		= 6	#8
+	rocket_artillery	= 2	#0 #Cav Brigade
+	sp_rct_artillery	= 2	#0
+   	anti_tank			= 2	#0 #Med. Tank
+   	tank_destroyer		= 2	#0
+   	light_armor_brigade	= 2	#0
+   	heavy_armor			= 2	#5
+	super_heavy_armor	= 1	#0
+	armored_car			= 2	#0
+   	anti_air			= 5	#0
+   	police				= 8	#1
+	engineer			= 11	#5
+#			75	#49
+
+	cag 					= 100
+	escort 					= 100
+
+	naval_asw				= 10	#20
+	naval_anti_air_s 		= 10	#20 
+	naval_radar_s 			= 10	#20 
+	naval_fire_controll_s 	= 20
+	naval_improved_hull_s 	= 10
+	naval_torpedoes_s 		= 10
+	naval_anti_air_l 		= 5	#0 
+	naval_radar_l 			= 5	#0
+	naval_fire_controll_l 	= 10	#0
+	naval_improved_hull_l 	= 5	#0
+	naval_torpedoes_l 		= 5	#0
+}
+
+garrison = {
+
+	# Borders with specific countries
+	country_priorities = {
+		AFG = 10
+		ALB = 30
+		ALG = 30
+		ANG = 30
+		ARA = 30
+		ARG = 30
+		ARM = 30
+		AST = 30
+		AUS = 30
+		AZB = 30
+		BEL = 30
+		BEN = 30
+		BHU = 30
+		BLR = 30
+		BOL = 30
+		BOS = 30
+		BRA = 30
+		BRU = 30
+		BUL = 30
+		BUR = 30
+		CAL = 30
+		CAM = 30
+		CAN = 30
+		CGX = 30
+		CHC = 30
+		CHL = 30
+		CMB = 30
+		COL = 30
+		CON = 30
+		COS = 30
+		CRO = 30
+		CSA = 30
+		CSX = 30
+		CUB = 30
+		CXB = 30
+		CYN = 30
+		CYP = 30
+		CZE = 30
+		DDR = 30
+		DEN = 30
+		DFR = 30
+		DOM = 30
+		EAF = 30
+		ECU = 30
+		EGY = 30
+		EQA = 30
+		EST = 30
+		ETH = 30
+		EUS = 30
+		FIN = 30
+		FLA = 30
+		GAB = 30
+		GEO = 30
+		GLD = 30
+		GRE = 30
+		GUA = 30
+		GUI = 30
+		GUY = 30
+		HAI = 30
+		HOL = 30
+		HON = 30
+		HUN = 20
+		ICL = 30
+		IDC = 30
+		IND = 30
+		INO = 30
+		IRQ = 30
+		ISR = 30
+		JOR = 30
+		KAZ = 30
+		KOR = 30
+		KUR = 30
+		KYG = 30
+		LAO = 30
+		LAT = 30
+		LBY = 30
+		LEB = 30
+		LIB = 30
+		LIT = 30
+		LUX = 30
+		MAD = 30
+		MAL = 30
+		MAN = 20
+		MEN = 30
+		MEX = 30
+		MLY = 30
+		MON = 30
+		MOR = 30
+		MOZ = 30
+		MTN = 30
+		NAM = 30
+		NEP = 30
+		NIC = 30
+		NIG = 30
+		NOR = 30
+		NZL = 30
+		OMN = 30
+		OTT = 30
+		PAK = 30
+		PAL = 30
+		PAN = 30
+		PAR = 30
+		PER = 10
+		PHI = 30
+		POR = 30
+		PRI = 30
+		PRK = 30
+		PRU = 30
+		QUE = 30
+		RHO = 30
+		ROM = 20
+		RSI = 30
+		RUS = 30
+		SAF = 30
+		SAL = 30
+		SAR = 30
+		SAU = 30
+		SCA = 30
+		SCO = 30
+		SER = 30
+		SIA = 30
+		SIB = 30
+		SIE = 30
+		SIK = 30
+		SLO = 30
+		SOM = 30
+		SPA = 30
+		SPR = 30
+		SUD = 30
+		SWE = 30
+		SYR = 30
+		TAJ = 30
+		TAN = 30
+		TEX = 30
+		TIB = 30
+		TRA = 30
+		TRK = 30
+		TUN = 30
+		TUR = 30
+		UKR = 30
+		URU = 30
+		UZB = 30
+		VEN = 30
+		VIE = 30
+		WLL = 30
+		YEM = 30
+		YUG = 30
+		U70 = 30
+		U71 = 30
+		U72 = 30
+		U73 = 30
+		U74 = 30
+		U75 = 30
+		U76 = 30
+		U77 = 30
+		U78 = 30
+		U79 = 30
+		U80 = 30
+		U81 = 30
+		U82 = 30
+		U83 = 30
+		U84 = 30
+		U85 = 30
+		U86 = 30
+		U87 = 30
+		U88 = 30
+		U89 = 30
+		U90 = 30
+		U91 = 30
+		U92 = 30
+		U93 = 30
+		U94 = 30
+		U95 = 30
+		U96 = 30
+		U97 = 30
+		U98 = 30
+		U99 = 30
+		U50 = 30
+		U51 = 30
+		U52 = 30
+		U53 = 30
+		U54 = 30
+		U55 = 30
+		U56 = 30
+		U67 = 30
+		U39 = 30
+		U23 = 30
+		U24 = 30
+		U25 = 30
+		
+		GER = 100
+		SOV = 30
+		ENG = 30
+		FRA = 30
+		JAP = 30
+		USA = 60
+
+		ITA = 30
+		CHI = 30
+		POL = 20
+		IRE = 20
+
+		SCH = 10
+	}
+}

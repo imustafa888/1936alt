@@ -1,0 +1,2959 @@
+#########################################################################
+# Yugoslavia
+#########################################################################
+
+#########################################################################
+# Yugoslavia - Outbreak
+#########################################################################
+
+event = {
+	id = 3186020
+	tag = { YUG U27 }
+	random = no
+
+	name = "Britain withdraws support from Yugoslavia"
+	desc = "The pro-German government in London reached an informal accord with Berlin, outlining their respective spheres of interest. By this accord, Yugoslavia falls entirely within the German sphere."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Damn"
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = domestic which = freedom value = -1 }
+	}
+}
+
+event = {
+	id = 3186021
+	tag = { YUG U27 }
+	random = no
+
+	name = "Ethnic tensions on the rise"
+	desc = "The Croats and Serbs of Yugoslavia are increasingly at odds with the current status of the territorial administration of Yugoslavia and their lack of autonomy within it. Coupled with the support for Croatian separatists by Rome and Berlin, the situation is growing tense."
+	style = 2
+
+	date = { day = 1 month = march year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Attempt to find a compromise"
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = 1 }
+	}
+}
+
+event = {
+	id = 3186022
+	country = YUG
+	random = no
+	
+	trigger = {
+		event = 3186021
+		NOT = { exists = AUS }
+	}
+
+	name = "Banovina of Croatia"
+	desc = "The German annexation of Austria brought a new incentive for Belgrade to find an ethnic solution quickly. In early 1938, the government agreed to create a new autonomous province in Yugoslavia - Banovina of Croatia. The government also decided to take further steps to appease Germany and Italy, including crackdowns on leftist groups and signing of the anti-Comintern pact."
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Do everything to preserve the brotherhood and unity of the Yugoslav people"
+		ai_chance = 100
+		command = { type = dissent value = 5 }
+		command = { type = belligerence value = -2 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = non_aggression which = YUG where = GER }
+		command = { type = local_setflag which = YUGAPP }
+	}
+	action_b = {
+		name = "There can be no further appeasement"
+		ai_chance = 0
+		command = { type = dissent value = 35 }
+		command = { type = regime_falls }
+		command = { type = belligerence value = 5 }
+		command = { type = domestic which = political_left value = 2 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = delete_unit which = -1 }
+		command = { type = delete_unit which = -1 }
+		command = { type = delete_unit which = -1 }
+		command = { type = delete_unit which = -1 }
+		command = { type = delete_unit which = -1 }
+		command = { type = war which = GER }
+		
+		#overriding regular union mechanics
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = total value = 10 } #percent_additive
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = money value = 20 } #percent_additive
+		command = { type = local_setflag which = OneNation }
+		command = { type = local_clrflag which = UnionBonds }
+		command = { type = local_setflag which = UnionBreak when = 0 value = 2 } #union broken for 10 years
+		command = { type = local_setflag which = AssimilationPolicyDelay }
+		command = { type = event which = 211000 where = -1 when = 1800 }
+		
+		#Montenegro
+		command = { type = removecore which = 343 }
+		command = { type = removecore which = 332 }
+
+		#Croatia-Bosnia
+		command = { type = removecore which = 344 } #Krajina serbs
+
+		command = { type = removecore which = 345 }
+		command = { type = removecore which = 352 }
+		command = { type = removecore which = 350 }
+		command = { type = removecore which = 351 }
+		command = { type = removecore which = 356 }
+		command = { type = removecore which = 357 }
+		command = { type = removecore which = 354 }
+
+		command = { type = removecore which = 403 }
+		command = { type = removecore which = 404 }
+		command = { type = removecore which = 406 }
+
+		#Macedonia
+		command = { type = removecore which = 328 }
+		command = { type = removecore which = 333 }
+		command = { type = removecore which = 365 }
+		command = { type = removecore which = 366 }
+
+		#Slovenia
+		command = { type = removecore which = 346 }
+		command = { type = removecore which = 349 }
+	}
+}
+
+event = {
+	id = 3186023
+	country = YUG
+	random = no
+	
+	trigger = {
+		local_flag = YUGAPP
+		random = 10
+	}
+
+	name = "Shooting and bombing in Sarajevo"
+	desc = "A month ago, a lone Bosnian muslim gunman attacked a Serb wedding procession, killing the groom. Two weeks later, a group of Yugoslav army soldiers opened fire on the pro-indendence Croat demonstrators in Knin. Finally, today, a bomb exploded at a crowded marketplace in Sarajevo, killing 14 people, mostly Serbs, and wouning many more. The situation is rapidly spinning out of control."
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Declare a state of emergency"
+		command = { type = dissent value = 5 }
+		command = { type = domestic which = democratic value = -2 }
+		command = { type = domestic which = freedom value = -2 }
+		
+		#overriding regular union mechanics
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = total value = 10 } #percent_additive
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = money value = 20 } #percent_additive
+		command = { type = local_setflag which = OneNation }
+		command = { type = local_clrflag which = UnionBonds }
+		command = { type = local_setflag which = UnionBreak when = 0 value = 2 } #union broken for 10 years
+		command = { type = local_setflag which = AssimilationPolicyDelay }
+		command = { type = event which = 211000 where = -1 when = 1800 }
+		
+		#Montenegro
+		command = { type = removecore which = 343 }
+		command = { type = removecore which = 332 }
+
+		#Croatia-Bosnia
+		command = { type = removecore which = 344 } #Krajina serbs
+
+		command = { type = removecore which = 345 }
+		command = { type = removecore which = 352 }
+		command = { type = removecore which = 350 }
+		command = { type = removecore which = 351 }
+		command = { type = removecore which = 356 }
+		command = { type = removecore which = 357 }
+		command = { type = removecore which = 354 }
+
+		command = { type = removecore which = 403 }
+		command = { type = removecore which = 404 }
+		command = { type = removecore which = 406 }
+
+		#Macedonia
+		command = { type = removecore which = 328 }
+		command = { type = removecore which = 333 }
+		command = { type = removecore which = 365 }
+		command = { type = removecore which = 366 }
+
+		#Slovenia
+		command = { type = removecore which = 346 }
+		command = { type = removecore which = 349 }
+	}
+}
+
+event = {
+	id = 3186024
+	tag = { YUG }
+	random = no
+	save_date = yes
+	
+	trigger = {
+		local_flag = YUGAPP
+		event = 3186023
+		random = 10
+	}
+	
+	name = "Coup in Belgrade"
+	desc = "The Royal Yugoslav Army has long been at odds with the government over its reforms and concessions. When the government declared a state of emergency, the group of leftist military officers backed by the CPY carried out a coup in Belgrade. Prince Paul, Prime Minister Dragisa Cvetkovic, and most of the cabinet had been quickly captured and executed for treason."
+
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "This is bad"
+		command = { type = belligerence value = -1 }
+		command = { type = independence which = SLV value = 1 }
+		command = { type = end_non_aggression which = GER where = YUG }
+		command = { type = event which = 2400535 where = SLV when = 1 } #independent State
+		command = { type = regime_falls }
+		command = { type = dissent value = 20 }
+		command = { type = leave_alliance }
+		command = { type = domestic which = political_left value = 5 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = domestic which = freedom value = -2 }
+	}
+}
+
+event = {
+	id = 3186025
+	tag = { YUG }
+	random = no
+	save_date = yes
+	
+	trigger = {
+		event = { id = 3186024 days = 10 }
+		exists = SLV
+	}
+	
+	name = "Yugoslav Civil War"
+	desc = "The Royal Yugoslav Army has long been at odds with the government over its reforms and concessions. When the government declared a state of emergency, the group of leftist military officers backed by the CPY carried out a coup in Belgrade. Prince Paul, Prime Minister Dragisa Cvetkovic, and most of the cabinet had been quickly captured and executed for treason."
+
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "This is bad"
+		command = { type = civil_war which = CRO }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = flag_ext where = YUG which = "_communist" }
+		command = { type = name where = YUG which = YUG36 }
+		command = { type = dissent value = -75 }
+		
+		command = { type = event which = 3186026 where = YUG when = 1 }
+	}
+}
+
+event = {
+	id = 3186026
+	tag = { YUG }
+	save_date = yes
+	random = no
+	all = yes
+
+	name = "Yugoslav Civil War"
+	desc = "Fearful of the consequences of the military takeover and taking advantage of the chaos in Belgrade, the Western portions of Yugoslavia declared their seccession. As soon as the chaos settled in the capital, the army (renamed Yugoslav People's Army) was sent in to supress them."
+	style = 2
+
+	action_a = {
+		name = "For a new Yugoslavia"
+		command = { type = belligerence value = 1 }
+		command = { type = transport_pool which = YUG value = 20 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = dissent value = -50 }
+		command = { type = set_domestic which = political_left value = 8 }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = freedom value = 4 }
+		command = { type = add_corps value = land where = 338 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 339 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 341 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 337 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 340 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 342 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 355 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 353 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 358 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 332 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 332 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 347 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 327 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 329 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 333 }
+        command = { type = add_division value = infantry when = 8 }
+
+		command = { type = construct which = ic where = 338 value = 1 }
+
+ 		command = { type = secedeprovince which = CRO value = 352 }
+ 		command = { type = secedeprovince which = SLV value = 349 }
+ 		command = { type = secedeprovince which = SLV value = 346 }
+ 		command = { type = secedeprovince which = CRO value = 345 }
+ 		command = { type = secedeprovince which = CRO value = 344 }
+ 		command = { type = secedeprovince which = CRO value = 350 }
+ 		command = { type = secedeprovince which = CRO value = 354 }
+ 		command = { type = secedeprovince which = CRO value = 356 }
+ 		command = { type = secedeprovince which = CRO value = 343 }
+ 		command = { type = secedeprovince which = CRO value = 357 }
+ 		command = { type = secedeprovince which = CRO value = 351 }
+ 		command = { type = secedeprovince which = CRO value = 347 }
+
+ 		command = { type = addcore which = 328 }
+ 		command = { type = addcore which = 332 }
+ 		command = { type = addcore which = 333 }
+ 		command = { type = addcore which = 366 }
+ 		command = { type = addcore which = 365 }
+
+		command = { type = construct which = land_fort where = 355 value = 4 }
+		command = { type = construct which = land_fort where = 332 value = 4 }
+		command = { type = add_corps value = land where = 355 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 332 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		
+ 		command = { type = trigger which = 3186027 }
+		
+		command = { type = addcore which = 2760 }
+		command = { type = secedeprovince which = YUG value = 2760 when = 2 }
+	}
+}
+
+event = {
+	id = 3186027
+	country = CRO
+	random = no
+
+	name = "Yugoslav Civil War"
+	desc = "Fearful of the consequences of the military takeover and taking advantage of the chaos in Belgrade, the Western portions of Yugoslavia declared their seccession. The soon as the chaos settled, the army (renamed Yugoslav People's Army) was sent in to supress them."
+	style = 2
+
+	action_a = {
+		name = "For motherland and freedom"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = belligerence value = 2 }
+		command = { type = transport_pool which = CRO value = 20 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = dissent value = -15 }
+		command = { type = set_domestic which = political_left value = 1 }
+		command = { type = set_domestic which = democratic value = 6 }
+		command = { type = set_domestic which = freedom value = 7 }
+		command = { type = add_corps value = land where = 354 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 344 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+        #command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+       	command = { type = add_division value = infantry when = 9 }
+        command = { type = add_division value = infantry when = 9 }
+       	command = { type = add_division value = infantry when = 9 }
+        command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 345 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 352 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 357 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 347 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 351 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 356 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 356 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 343 }
+        command = { type = add_division value = infantry when = 8 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = construct which = ic where = 352 value = 1 }
+
+ 		command = { type = secedeprovince which = YUG value = 338 }
+ 		command = { type = secedeprovince which = YUG value = 332 }
+ 		command = { type = secedeprovince which = YUG value = 330 }
+ 		command = { type = secedeprovince which = YUG value = 342 }
+ 		command = { type = secedeprovince which = YUG value = 329 }
+ 		command = { type = secedeprovince which = YUG value = 341 }
+ 		command = { type = secedeprovince which = YUG value = 336 }
+ 		command = { type = secedeprovince which = YUG value = 333 }
+ 		command = { type = secedeprovince which = YUG value = 328 }
+ 		command = { type = secedeprovince which = YUG value = 331 }
+ 		command = { type = secedeprovince which = YUG value = 334 }
+ 		command = { type = secedeprovince which = YUG value = 335 }
+ 		command = { type = secedeprovince which = YUG value = 340 }
+ 		command = { type = secedeprovince which = YUG value = 327 }
+ 		command = { type = secedeprovince which = YUG value = 339 }
+ 		command = { type = secedeprovince which = YUG value = 337 }
+ 		command = { type = secedeprovince which = YUG value = 353 }
+ 		command = { type = secedeprovince which = YUG value = 358 }
+
+ 		command = { type = removecore which = 346 }
+ 		command = { type = removecore which = 349 }
+ 		command = { type = removecore which = 338 }
+ 		command = { type = removecore which = 332 }
+ 		command = { type = removecore which = 330 }
+ 		command = { type = removecore which = 342 }
+ 		command = { type = removecore which = 329 }
+ 		command = { type = removecore which = 341 }
+ 		command = { type = removecore which = 336 }
+ 		command = { type = removecore which = 333 }
+ 		command = { type = removecore which = 328 }
+ 		command = { type = removecore which = 331 }
+ 		command = { type = removecore which = 334 }
+ 		command = { type = removecore which = 335 }
+ 		command = { type = removecore which = 340 }
+ 		command = { type = removecore which = 327 }
+ 		command = { type = removecore which = 339 }
+ 		command = { type = removecore which = 337 }
+ 		command = { type = removecore which = 353 }
+ 		command = { type = removecore which = 358 }
+ 		command = { type = removecore which = 365 }
+ 		command = { type = removecore which = 366 }
+ 		command = { type = removecore which = 403 }
+ 		command = { type = removecore which = 404 }
+
+ 		command = { type = addclaim which = 353 }
+ 		command = { type = addclaim which = 355 }
+ 		command = { type = addclaim which = 358 }
+ 		command = { type = addclaim which = 337 }
+		
+		command = { type = addcore which = 406 }
+
+ 		command = { type = removeclaim which = 403 }
+		command = { type = removeclaim which = 406 }
+ 		command = { type = removeclaim which = 404 }
+ 		command = { type = removeclaim which = 341 }
+ 		command = { type = removeclaim which = 346 }
+ 		command = { type = removeclaim which = 349 }
+ 		command = { type = removeclaim which = 336 }
+ 		command = { type = removeclaim which = 328 }
+ 		command = { type = removeclaim which = 329 }
+ 		command = { type = removeclaim which = 332 }
+ 		command = { type = removeclaim which = 333 }
+ 		command = { type = removeclaim which = 334 }
+ 		command = { type = removeclaim which = 359 }
+ 		command = { type = removeclaim which = 360 }
+ 		command = { type = removeclaim which = 361 }
+ 		command = { type = removeclaim which = 362 }
+ 		command = { type = removeclaim which = 365 }
+ 		command = { type = removeclaim which = 366 }
+
+		command = { type = make_puppet which = SLV }
+		
+		command = { type = event which = 2400538 where = SLV when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = SLV when = 0 } #stayInWar flag
+
+		command = { type = construct which = land_fort where = 344 value = 4 }
+		command = { type = construct which = land_fort where = 356 value = 2 }
+		command = { type = add_corps value = land where = 344 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 356 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+
+		command = { type = trigger which = 3186028 }
+		
+		command = { type = addcore which = 2464 }
+		command = { type = secedeprovince which = CRO value = 2464 when = 2 }
+		command = { type = addcore which = 1159 }
+		command = { type = secedeprovince which = SLV value = 1159 when = 2 }
+		
+		command = { type = access which = SLV }
+	}
+}
+
+event = {
+	id = 3186028
+	country = SLV
+	random = no
+	
+	name = "Yugoslav Civil War"
+	desc = "Fearful of the consequences of the military takeover and taking advantage of the chaos in Belgrade, the Western portions of Yugoslavia declared their seccession. The soon as the chaos settled, the army (renamed Yugoslav People's Army) was sent in to supress them."
+	style = 2
+
+	action_a = {
+		name = "For motherland and freedom"
+		command = { type = add_corps value = land where = 349 }
+        command = { type = add_division value = infantry when = 9 }
+	    command = { type = add_division value = infantry when = 9 }
+		command = { type = dissent value = -15 }
+		command = { type = set_domestic which = political_left value = 1 }
+		command = { type = set_domestic which = democratic value = 6 }
+		command = { type = set_domestic which = freedom value = 7 }
+	}
+}
+
+#########################################################################
+# Yugoslavia - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3119110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = SOV_to_YUG_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_YUG_delay }
+		#need permission from Romania or Greece
+		OR = {
+			event = 802071
+			event = 802081
+		}
+	}
+	
+	trigger = {
+		ai = yes
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = SOV_to_YUG_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_YUG_delay }
+		OR = {
+			event = 802071
+			event = 802081
+		}
+		
+		#ai will do if:
+		NOT = { alliance = { country = YUG } alliance = { country = U27 } }
+		OR = {
+			NOT = { flag = SOV_to_YUG_1 }
+			AND = {
+				ic = 25
+				NOT = { flag = SOV_to_YUG_2 }
+				OR = { 
+					flag = GER_to_CRO_1
+					flag = TUR_to_CRO_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_YUG_3 }
+				OR = { 
+					flag = GER_to_CRO_2
+					flag = TUR_to_CRO_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_YUG_4 }
+				OR = { 
+					flag = GER_to_CRO_3
+					flag = TUR_to_CRO_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_YUG_5 }
+				OR = { 
+					flag = GER_to_CRO_4
+					flag = TUR_to_CRO_4
+				}
+			}
+		}
+	}
+	
+	name = "Yugoslav Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_YUG_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = YUG supplies = -10 value = 1 }
+		command = { type = trade which = SOV where = U27 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_YUG_1 }
+		command = { trigger = { exists = YUG } type = event which = 3119111 where = YUG when = 15 }
+		command = { trigger = { exists = U27 } type = event which = 3119111 where = U27 when = 15 }
+		command = { type = setflag which = SOV_to_YUG_delay }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+		
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = event which = 3186150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = local_setflag which = YCWExp }
+		
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = event which = 3186200 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = local_setflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_YUG_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = YUG supplies = -10 value = 1 }
+		command = { type = trade which = SOV where = U27 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_YUG_4 NOT = { flag = SOV_to_YUG_5 } } type = setflag which = SOV_to_YUG_5 }
+		command = { trigger = { flag = SOV_to_YUG_3 NOT = { flag = SOV_to_YUG_4 } } type = setflag which = SOV_to_YUG_4 }
+		command = { trigger = { flag = SOV_to_YUG_2 NOT = { flag = SOV_to_YUG_3 } } type = setflag which = SOV_to_YUG_3 }
+		command = { trigger = { flag = SOV_to_YUG_1 NOT = { flag = SOV_to_YUG_2 } } type = setflag which = SOV_to_YUG_2 }
+		command = { trigger = { exists = YUG } type = event which = 3119111 where = YUG when = 15 }
+		command = { trigger = { exists = U27 } type = event which = 3119111 where = U27 when = 15 }
+		command = { type = setflag which = SOV_to_YUG_delay }
+	}
+}
+
+event = { 
+	id = 3119111
+	random = no
+	tag = { YUG U27 }
+	persistent = yes
+	
+	name = "Soviet help arrives in Yugoslavia"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the Romanian border to Yugoslavia."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { trigger = { event = 802071 } type = add_corps value = land where = 285 }
+		command = { trigger = { NOT = { event = 802071 } } type = add_corps value = land where = 365 }
+		command = { trigger = { flag = SOV_to_YUG_5 }								type = add_division which = "Soviet volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_4 NOT = { flag = SOV_to_YUG_5 } } type = add_division which = "Soviet volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_3 NOT = { flag = SOV_to_YUG_4 } } type = add_division which = "Soviet volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_2 NOT = { flag = SOV_to_YUG_3 } } type = add_division which = "Soviet volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_1 NOT = { flag = SOV_to_YUG_2 } } type = add_division which = "Soviet volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = SOV_to_YUG_delay }
+	}
+}
+
+event = { 
+	id = 3119112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_YUG_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_YUG_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_YUG_1
+		OR = {
+			AND = {
+				NOT = { war = { country = YUG country = CRO } }
+				NOT = { war = { country = U27 country = CRO } }
+			}
+			alliance = { country = YUG }
+			alliance = { country = U27 }
+		}
+	}
+	
+	name = "End of intervention in Yugoslavia"
+	desc = "With the civil war in Yugoslavia at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_YUG_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = YUG }
+		command = { type = end_access which = U27 }
+		command = { trigger = { NOT = { alliance = { country = YUG } } } type = military_control which = SOV where = YUG value = 0 }
+		command = { trigger = { NOT = { alliance = { country = U27 } } } type = military_control which = SOV where = U27 value = 0 }
+		command = { type = end_trades which = YUG where = SOV }
+		command = { type = end_trades which = U27 where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 5" value = YUG }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 4" value = YUG }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 3" value = YUG }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 2" value = YUG }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 1" value = YUG }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 5" value = U27 }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 4" value = U27 }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 3" value = U27 }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 2" value = U27 }
+		command = { type = remove_division which = "Soviet volunteers in Yugoslavia 1" value = U27 }
+		
+		command = { trigger = { event = 802071 } type = add_corps value = land where = 285 }
+		command = { trigger = { NOT = { event = 802071 } } type = add_corps value = land where = 365 }
+		command = { trigger = { flag = SOV_to_YUG_5 OR = { exists = YUG exists = U27 } } type = add_division which = "Soviet volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_4 OR = { exists = YUG exists = U27 } } type = add_division which = "Soviet volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_3 OR = { exists = YUG exists = U27 } } type = add_division which = "Soviet volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_2 OR = { exists = YUG exists = U27 } } type = add_division which = "Soviet volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_YUG_1 OR = { exists = YUG exists = U27 } } type = add_division which = "Soviet volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = SOV_to_YUG_5 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = SOV_to_YUG_4 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = SOV_to_YUG_3 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = SOV_to_YUG_2 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = SOV_to_YUG_1 }
+		
+		command = { trigger = { exists = YUG } type = event which = 3119113 where = YUG when = 0 }
+		command = { trigger = { exists = U27 } type = event which = 3119113 where = U27 when = 0 }
+	}
+}
+
+event = { 
+	id = 3119113
+	random = no
+	tag = { YUG U27 }
+	persistent = yes
+
+	name = "End of intervention in Yugoslavia"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_YUG_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_YUG_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_YUG_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_YUG_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_YUG_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_YUG_5 }
+		command = { type = clrflag which = SOV_to_YUG_4 }
+		command = { type = clrflag which = SOV_to_YUG_3 }
+		command = { type = clrflag which = SOV_to_YUG_2 }
+		command = { type = clrflag which = SOV_to_YUG_1 }
+	}
+}
+
+event = { 
+	id = 3119114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_YUG_1
+		NOT = { military_control = { country = YUG } }
+		NOT = { military_control = { country = U27 } }
+	}
+
+	decision_trigger = {
+		OR = {
+			exists = YUG
+			exists = U27
+		}
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Yugoslav Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Yugoslavia"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = YUG value = 1 }
+		command = { type = military_control which = SOV where = U27 value = 1 }
+	}
+}
+
+#French
+
+event = { 
+	id = 3119120
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = FRA_to_YUG_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = FRA_to_YUG_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = FRA_to_YUG_5 }
+		manpower = 16
+		NOT = { flag = FRA_to_YUG_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = YUG } alliance = { country = U27 } }
+		OR = {
+			NOT = { flag = FRA_to_YUG_1 }
+			AND = {
+				ic = 25
+				NOT = { flag = FRA_to_YUG_2 }
+				OR = { 
+					flag = GER_to_CRO_1
+					flag = TUR_to_CRO_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = FRA_to_YUG_3 }
+				OR = { 
+					flag = GER_to_CRO_2
+					flag = TUR_to_CRO_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = FRA_to_YUG_4 }
+				OR = { 
+					flag = GER_to_CRO_3
+					flag = TUR_to_CRO_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = FRA_to_YUG_5 }
+				OR = { 
+					flag = GER_to_CRO_4
+					flag = TUR_to_CRO_4
+				}
+			}
+		}
+	}
+	
+	name = "Yugoslav Civil War - French Intervention"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Yugoslav_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = FRA_to_YUG_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = YUG supplies = -10 value = 1 }
+		command = { type = trade which = FRA where = U27 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = FRA_to_YUG_1 }
+		command = { trigger = { exists = YUG } type = event which = 3119121 where = YUG when = 15 }
+		command = { trigger = { exists = U27 } type = event which = 3119121 where = U27 when = 15 }
+		command = { type = setflag which = FRA_to_YUG_delay }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+		
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = event which = 3186150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = local_setflag which = YCWExp }
+		
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = event which = 3186201 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = local_setflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = FRA_to_YUG_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = YUG supplies = -10 value = 1 }
+		command = { type = trade which = FRA where = U27 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = FRA_to_YUG_4 NOT = { flag = FRA_to_YUG_5 } } type = setflag which = FRA_to_YUG_5 }
+		command = { trigger = { flag = FRA_to_YUG_3 NOT = { flag = FRA_to_YUG_4 } } type = setflag which = FRA_to_YUG_4 }
+		command = { trigger = { flag = FRA_to_YUG_2 NOT = { flag = FRA_to_YUG_3 } } type = setflag which = FRA_to_YUG_3 }
+		command = { trigger = { flag = FRA_to_YUG_1 NOT = { flag = FRA_to_YUG_2 } } type = setflag which = FRA_to_YUG_2 }
+		command = { trigger = { exists = YUG } type = event which = 3119121 where = YUG when = 15 }
+		command = { trigger = { exists = U27 } type = event which = 3119121 where = U27 when = 15 }
+		command = { type = setflag which = FRA_to_YUG_delay }
+	}
+}
+
+event = { 
+	id = 3119121
+	random = no
+	tag = { YUG U27 }
+	persistent = yes
+	
+	name = "French help arrives in Yugoslavia"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived across the Romanian border to Yugoslavia."
+	style = 2
+	picture = "SCW_Yugoslav Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = FRA }
+		command = { type = steal_tech which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = access which = FRA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { trigger = { OR = { control = { province = 332 data = YUG } control = { province = 332 data = U27 } } } type = add_corps value = land where = 332 }
+		command = { trigger = { NOT = { control = { province = 332 data = YUG } control = { province = 332 data = U27 } } } type = add_corps value = land where = 365 }
+		command = { trigger = { flag = FRA_to_YUG_5 }								type = add_division which = "French volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_4 NOT = { flag = FRA_to_YUG_5 } } type = add_division which = "French volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_3 NOT = { flag = FRA_to_YUG_4 } } type = add_division which = "French volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_2 NOT = { flag = FRA_to_YUG_3 } } type = add_division which = "French volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_1 NOT = { flag = FRA_to_YUG_2 } } type = add_division which = "French volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = FRA_to_YUG_delay }
+	}
+}
+
+event = { 
+	id = 3119122
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		flag = FRA_to_YUG_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_YUG_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_YUG_1
+		OR = {
+			AND = {
+				NOT = { war = { country = YUG country = CRO } }
+				NOT = { war = { country = U27 country = CRO } }
+			}
+			alliance = { country = YUG }
+			alliance = { country = U27 }
+		}
+	}
+	
+	name = "End of intervention in Yugoslavia"
+	desc = "With the civil war in Yugoslavia at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Yugoslav_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = FRA_to_YUG_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = YUG }
+		command = { type = end_access which = U27 }
+		command = { trigger = { NOT = { alliance = { country = YUG } } } type = military_control which = FRA where = YUG value = 0 }
+		command = { trigger = { NOT = { alliance = { country = U27 } } } type = military_control which = FRA where = U27 value = 0 }
+		command = { type = end_trades which = YUG where = FRA }
+		command = { type = end_trades which = U27 where = FRA }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 5" value = YUG }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 4" value = YUG }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 3" value = YUG }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 2" value = YUG }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 1" value = YUG }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 5" value = U27 }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 4" value = U27 }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 3" value = U27 }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 2" value = U27 }
+		command = { type = remove_division which = "French volunteers in Yugoslavia 1" value = U27 }
+		
+		command = { trigger = { control = { province = 332 data = YUG } } type = add_corps value = land where = 332 }
+		command = { trigger = { NOT = { control = { province = 332 data = YUG } } } type = add_corps value = land where = 365 }
+		command = { trigger = { flag = FRA_to_YUG_5 OR = { exists = YUG exists = U27 } } type = add_division which = "French volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_4 OR = { exists = YUG exists = U27 } } type = add_division which = "French volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_3 OR = { exists = YUG exists = U27 } } type = add_division which = "French volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_2 OR = { exists = YUG exists = U27 } } type = add_division which = "French volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_YUG_1 OR = { exists = YUG exists = U27 } } type = add_division which = "French volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = FRA_to_YUG_5 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = FRA_to_YUG_4 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = FRA_to_YUG_3 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = FRA_to_YUG_2 }
+		command = { trigger = { NOT = { exists = YUG exists = U27 } } type = clrflag which = FRA_to_YUG_1 }
+		
+		command = { trigger = { exists = YUG } type = event which = 3119123 where = YUG when = 0 }
+		command = { trigger = { exists = U27 } type = event which = 3119123 where = U27 when = 0 }
+	}
+}
+
+event = { 
+	id = 3119123
+	random = no
+	tag = { YUG U27 }
+	persistent = yes
+
+	name = "End of intervention in Yugoslavia"
+	desc = "The French aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = FRA }
+		command = { trigger = { flag = FRA_to_YUG_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_YUG_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_YUG_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_YUG_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_YUG_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = FRA_to_YUG_5 }
+		command = { type = clrflag which = FRA_to_YUG_4 }
+		command = { type = clrflag which = FRA_to_YUG_3 }
+		command = { type = clrflag which = FRA_to_YUG_2 }
+		command = { type = clrflag which = FRA_to_YUG_1 }
+	}
+}
+
+#German
+
+event = { 
+	id = 3119150
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = GER_to_CRO_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = GER_to_CRO_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+	}
+	
+	trigger = {
+		ai = yes
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = GER_to_CRO_5 }
+		manpower = 16
+		NOT = { flag = GER_to_CRO_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+		
+		#ai will do if:
+		NOT = { alliance = { country = CRO } }
+		OR = {
+			NOT = { flag = GER_to_CRO_1 }
+			AND = {
+				ic = 25
+				NOT = { flag = GER_to_CRO_2 }
+				OR = { 
+					flag = SOV_to_YUG_3
+					flag = FRA_to_YUG_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = GER_to_CRO_3 }
+				OR = { 
+					flag = SOV_to_YUG_4
+					flag = FRA_to_YUG_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = GER_to_CRO_4 }
+				OR = { 
+					flag = SOV_to_YUG_5
+					flag = FRA_to_YUG_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = GER_to_CRO_5 }
+			#}
+		}
+	}
+	
+	name = "Yugoslav Civil War - German Intervention"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = GER_to_CRO_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = CRO supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = GER_to_CRO_1 }
+		command = { type = event which = 3119151 where = CRO when = 15 }
+		command = { type = access which = CRO }
+		command = { type = access which = SLV }
+		command = { type = setflag which = GER_to_CRO_delay }
+		
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = event which = 3186150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = local_setflag which = YCWExp }
+		
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = event which = 3186205 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = local_setflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = GER_to_CRO_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = CRO supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = GER_to_CRO_4 NOT = { flag = GER_to_CRO_5 } } type = setflag which = GER_to_CRO_5 }
+		command = { trigger = { flag = GER_to_CRO_3 NOT = { flag = GER_to_CRO_4 } } type = setflag which = GER_to_CRO_4 }
+		command = { trigger = { flag = GER_to_CRO_2 NOT = { flag = GER_to_CRO_3 } } type = setflag which = GER_to_CRO_3 }
+		command = { trigger = { flag = GER_to_CRO_1 NOT = { flag = GER_to_CRO_2 } } type = setflag which = GER_to_CRO_2 }
+		command = { type = event which = 3119151 where = CRO when = 15 }
+		command = { type = setflag which = GER_to_CRO_delay }
+	}
+}
+
+event = { 
+	id = 3119151
+	random = no
+	country = CRO
+	persistent = yes
+	
+	name = "German help arrives in Yugoslavia"
+	desc = "Despite its official claims of neutrality, large amount of German aid arrived across the German border to Croatia."
+	style = 2
+	picture = "SCW_German Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = GER }
+		command = { type = steal_tech which = GER }
+		command = { type = relation which = GER value = 50 }
+		command = { type = access which = GER }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = GER_to_CRO_5 }								type = add_division which = "German volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_4 NOT = { flag = GER_to_CRO_5 } } type = add_division which = "German volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_3 NOT = { flag = GER_to_CRO_4 } } type = add_division which = "German volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_2 NOT = { flag = GER_to_CRO_3 } } type = add_division which = "German volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_1 NOT = { flag = GER_to_CRO_2 } } type = add_division which = "German volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = GER_to_CRO_delay }
+	}
+}
+
+event = { 
+	id = 3119152
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		flag = GER_to_CRO_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = GER_to_CRO_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = GER_to_CRO_1
+		OR = {
+			AND = {
+				NOT = { war = { country = YUG country = CRO } }
+				NOT = { war = { country = U27 country = CRO } }
+			}
+			alliance = { country = CRO }
+		}
+	}
+	
+	name = "End of intervention in Yugoslavia"
+	desc = "With the civil war in Yugoslavia at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = GER_to_CRO_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_CRO_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_CRO_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_CRO_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_CRO_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CRO }
+		command = { type = end_access which = SLV }
+		command = { trigger = { NOT = { alliance = { country = CRO } } } type = military_control which = GER where = CRO value = 0 }
+		command = { trigger = { NOT = { alliance = { country = SLV } } } type = military_control which = GER where = SLV value = 0 }
+		command = { type = end_trades which = CRO where = GER }
+		command = { type = remove_division which = "German volunteers in Yugoslavia 5" value = CRO }
+		command = { type = remove_division which = "German volunteers in Yugoslavia 4" value = CRO }
+		command = { type = remove_division which = "German volunteers in Yugoslavia 3" value = CRO }
+		command = { type = remove_division which = "German volunteers in Yugoslavia 2" value = CRO }
+		command = { type = remove_division which = "German volunteers in Yugoslavia 1" value = CRO }
+		
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = GER_to_CRO_5 exists = CRO } type = add_division which = "German volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_4 exists = CRO } type = add_division which = "German volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_3 exists = CRO } type = add_division which = "German volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_2 exists = CRO } type = add_division which = "German volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_CRO_1 exists = CRO } type = add_division which = "German volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = GER_to_CRO_5 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = GER_to_CRO_4 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = GER_to_CRO_3 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = GER_to_CRO_2 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = GER_to_CRO_1 }
+		
+		command = { type = trigger which = 3119153 }
+	}
+}
+
+event = { 
+	id = 3119153
+	random = no
+	country = CRO
+	persistent = yes
+
+	name = "End of intervention in Yugoslavia"
+	desc = "The German aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = GER }
+		command = { trigger = { flag = GER_to_CRO_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_CRO_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_CRO_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_CRO_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_CRO_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = GER_to_CRO_5 }
+		command = { type = clrflag which = GER_to_CRO_4 }
+		command = { type = clrflag which = GER_to_CRO_3 }
+		command = { type = clrflag which = GER_to_CRO_2 }
+		command = { type = clrflag which = GER_to_CRO_1 }
+	}
+}
+
+event = { 
+	id = 3119154
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = GER_to_CRO_1
+		NOT = { military_control = { country = CRO } }
+	}
+
+	decision_trigger = {
+		exists = CRO
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Yugoslav Civil War - German command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Yugoslavia"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = GER where = CRO value = 1 }
+		command = { type = military_control which = GER where = SLV value = 1 }
+	}
+}
+
+#Turkish
+
+event = { 
+	id = 3119160
+	random = no
+	country = TUR
+	persistent = yes
+
+	decision = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = TUR_to_CRO_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = TUR_to_CRO_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+	}
+	
+	trigger = {
+		ai = yes
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		NOT = { flag = TUR_to_CRO_5 }
+		manpower = 16
+		NOT = { flag = TUR_to_CRO_delay }
+		#Need to have control over Austria
+		OR = {
+			control = { province = 191 data = GER }
+			control = { province = 191 data = -3 }
+		}
+		
+		#ai will do if:
+		NOT = { alliance = { country = CRO } }
+		OR = {
+			NOT = { flag = TUR_to_CRO_1 }
+			AND = {
+				ic = 25
+				NOT = { flag = TUR_to_CRO_2 }
+				OR = { 
+					flag = SOV_to_YUG_3
+					flag = FRA_to_YUG_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = TUR_to_CRO_3 }
+				OR = { 
+					flag = SOV_to_YUG_4
+					flag = FRA_to_YUG_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = TUR_to_CRO_4 }
+				OR = { 
+					flag = SOV_to_YUG_5
+					flag = FRA_to_YUG_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = TUR_to_CRO_5 }
+			#}
+		}
+	}
+	
+	name = "Yugoslav Civil War - Turkish Intervention"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Turkish_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = TUR_to_CRO_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = TUR where = CRO supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = TUR_to_CRO_1 }
+		command = { type = event which = 3119161 where = CRO when = 15 }
+		command = { type = access which = CRO }
+		command = { type = access which = SLV }
+		command = { type = setflag which = TUR_to_CRO_delay }
+		
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = event which = 3186150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWExp } } type = local_setflag which = YCWExp }
+		
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = event which = 3186206 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = YCWVolunteers } } type = local_setflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = TUR_to_CRO_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = TUR where = CRO supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = TUR_to_CRO_4 NOT = { flag = TUR_to_CRO_5 } } type = setflag which = TUR_to_CRO_5 }
+		command = { trigger = { flag = TUR_to_CRO_3 NOT = { flag = TUR_to_CRO_4 } } type = setflag which = TUR_to_CRO_4 }
+		command = { trigger = { flag = TUR_to_CRO_2 NOT = { flag = TUR_to_CRO_3 } } type = setflag which = TUR_to_CRO_3 }
+		command = { trigger = { flag = TUR_to_CRO_1 NOT = { flag = TUR_to_CRO_2 } } type = setflag which = TUR_to_CRO_2 }
+		command = { type = event which = 3119161 where = CRO when = 15 }
+		command = { type = setflag which = TUR_to_CRO_delay }
+	}
+}
+
+event = { 
+	id = 3119161
+	random = no
+	country = CRO
+	persistent = yes
+	
+	name = "Turkish help arrives in Yugoslavia"
+	desc = "Despite its official claims of neutrality, large amount of Turkish aid arrived across the German border to Croatia."
+	style = 2
+	picture = "SCW_Turkish Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = TUR }
+		command = { type = steal_tech which = TUR }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = access which = TUR }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = TUR_to_CRO_5 }								type = add_division which = "Turkish volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_4 NOT = { flag = TUR_to_CRO_5 } } type = add_division which = "Turkish volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_3 NOT = { flag = TUR_to_CRO_4 } } type = add_division which = "Turkish volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_2 NOT = { flag = TUR_to_CRO_3 } } type = add_division which = "Turkish volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_1 NOT = { flag = TUR_to_CRO_2 } } type = add_division which = "Turkish volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = TUR_to_CRO_delay }
+	}
+}
+
+event = { 
+	id = 3119162
+	random = no
+	country = TUR
+	persistent = yes
+
+	decision = { 
+		flag = TUR_to_CRO_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = TUR_to_CRO_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = TUR_to_CRO_1
+		OR = {
+			AND = {
+				NOT = { war = { country = YUG country = CRO } }
+				NOT = { war = { country = U27 country = CRO } }
+			}
+			alliance = { country = CRO }
+		}
+	}
+	
+	name = "End of intervention in Yugoslavia"
+	desc = "With the civil war in Yugoslavia at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Turkish_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = TUR_to_CRO_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = CRO }
+		command = { type = end_access which = SLV }
+		command = { trigger = { NOT = { alliance = { country = CRO } } } type = military_control which = TUR where = CRO value = 0 }
+		command = { trigger = { NOT = { alliance = { country = SLV } } } type = military_control which = TUR where = SLV value = 0 }
+		command = { type = end_trades which = CRO where = TUR }
+		command = { type = remove_division which = "Turkish volunteers in Yugoslavia 5" value = CRO }
+		command = { type = remove_division which = "Turkish volunteers in Yugoslavia 4" value = CRO }
+		command = { type = remove_division which = "Turkish volunteers in Yugoslavia 3" value = CRO }
+		command = { type = remove_division which = "Turkish volunteers in Yugoslavia 2" value = CRO }
+		command = { type = remove_division which = "Turkish volunteers in Yugoslavia 1" value = CRO }
+		
+		command = { type = add_corps value = land where = 191 }
+		command = { trigger = { flag = TUR_to_CRO_5 exists = CRO } type = add_division which = "Turkish volunteers in Yugoslavia 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_4 exists = CRO } type = add_division which = "Turkish volunteers in Yugoslavia 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_3 exists = CRO } type = add_division which = "Turkish volunteers in Yugoslavia 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_2 exists = CRO } type = add_division which = "Turkish volunteers in Yugoslavia 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = TUR_to_CRO_1 exists = CRO } type = add_division which = "Turkish volunteers in Yugoslavia 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = TUR_to_CRO_5 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = TUR_to_CRO_4 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = TUR_to_CRO_3 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = TUR_to_CRO_2 }
+		command = { trigger = { NOT = { exists = CRO } } type = clrflag which = TUR_to_CRO_1 }
+		
+		command = { type = trigger which = 3119163 }
+	}
+}
+
+event = { 
+	id = 3119163
+	random = no
+	country = CRO
+	persistent = yes
+
+	name = "End of intervention in Yugoslavia"
+	desc = "The Turkish aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = TUR }
+		command = { trigger = { flag = TUR_to_CRO_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = TUR_to_CRO_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = TUR_to_CRO_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = TUR_to_CRO_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = TUR_to_CRO_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = TUR_to_CRO_5 }
+		command = { type = clrflag which = TUR_to_CRO_4 }
+		command = { type = clrflag which = TUR_to_CRO_3 }
+		command = { type = clrflag which = TUR_to_CRO_2 }
+		command = { type = clrflag which = TUR_to_CRO_1 }
+	}
+}
+
+
+########################
+# Volunteers
+########################
+
+#1 div per month when total support = 9 (for example, 3 interventionists, each one at intervention level 3)
+
+event = {
+	id = 3186200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to Yugoslavia"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Yugoslavia to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = YCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountYUG when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CRO country = YUG }
+						flag = SOV_to_YUG_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountYUG when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = YCWVolunteers
+			war = { country = CRO country = YUG }
+			flag = SOV_to_YUG_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3186210 where = YUG when = 15 }
+		command = { type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_YUG_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_YUG_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_YUG_2 } type = event which = 3186210 where = YUG when = 15 }
+		command = { trigger = { flag = SOV_to_YUG_2 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_YUG_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_YUG_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_YUG_3 } type = event which = 3186210 where = YUG when = 20 }
+		command = { trigger = { flag = SOV_to_YUG_3 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_YUG_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_YUG_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_YUG_4 } type = event which = 3186210 where = YUG when = 25 }
+		command = { trigger = { flag = SOV_to_YUG_4 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_YUG_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_YUG_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_YUG_5 } type = event which = 3186210 where = YUG when = 30 }
+		command = { trigger = { flag = SOV_to_YUG_5 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_YUG_1 NOT = { flag = SOV_to_YUG_2 } } type = trade which = SOV where = YUG supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_2 NOT = { flag = SOV_to_YUG_3 } } type = trade which = SOV where = YUG supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_3 NOT = { flag = SOV_to_YUG_4 } } type = trade which = SOV where = YUG supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_4 NOT = { flag = SOV_to_YUG_5 } } type = trade which = SOV where = YUG supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_YUG_5 } type = trade which = SOV where = YUG supplies = -5 value = 1 }
+		
+		command = { type = event which = 3186200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3186201
+	random = no
+	country = FRA
+	persistent = yes
+
+	name = "Volunteers heading to Yugoslavia"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Yugoslavia to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = YCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountYUG when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CRO country = YUG }
+						flag = FRA_to_YUG_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountYUG when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = YCWVolunteers
+			war = { country = CRO country = YUG }
+			flag = FRA_to_YUG_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3186210 where = YUG when = 15 }
+		command = { type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_YUG_2 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_YUG_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_YUG_2 } type = event which = 3186210 where = YUG when = 15 }
+		command = { trigger = { flag = FRA_to_YUG_2 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_YUG_3 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_YUG_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_YUG_3 } type = event which = 3186210 where = YUG when = 20 }
+		command = { trigger = { flag = FRA_to_YUG_3 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_YUG_4 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_YUG_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_YUG_4 } type = event which = 3186210 where = YUG when = 25 }
+		command = { trigger = { flag = FRA_to_YUG_4 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_YUG_5 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_YUG_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_YUG_5 } type = event which = 3186210 where = YUG when = 30 }
+		command = { trigger = { flag = FRA_to_YUG_5 } type = setflag which = VolunteersCountYUG when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_YUG_1 NOT = { flag = FRA_to_YUG_2 } } type = trade which = FRA where = YUG supplies = -1 value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_2 NOT = { flag = FRA_to_YUG_3 } } type = trade which = FRA where = YUG supplies = -2 value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_3 NOT = { flag = FRA_to_YUG_4 } } type = trade which = FRA where = YUG supplies = -3 value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_4 NOT = { flag = FRA_to_YUG_5 } } type = trade which = FRA where = YUG supplies = -4 value = 1 }
+		command = { trigger = { flag = FRA_to_YUG_5 } type = trade which = FRA where = YUG supplies = -5 value = 1 }
+		
+		command = { type = event which = 3186201 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3186205
+	random = no
+	country = GER
+	persistent = yes
+
+	name = "Volunteers heading to Yugoslavia"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Yugoslavia to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = YCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCRO when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CRO country = YUG }
+						flag = GER_to_CRO_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCRO when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = YCWVolunteers
+			war = { country = CRO country = YUG }
+			flag = GER_to_CRO_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3186210 where = CRO when = 15 }
+		command = { type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_CRO_2 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_CRO_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_CRO_2 } type = event which = 3186210 where = CRO when = 15 }
+		command = { trigger = { flag = GER_to_CRO_2 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_CRO_3 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_CRO_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_CRO_3 } type = event which = 3186210 where = CRO when = 20 }
+		command = { trigger = { flag = GER_to_CRO_3 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_CRO_4 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_CRO_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_CRO_4 } type = event which = 3186210 where = CRO when = 25 }
+		command = { trigger = { flag = GER_to_CRO_4 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_CRO_5 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_CRO_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_CRO_5 } type = event which = 3186210 where = CRO when = 30 }
+		command = { trigger = { flag = GER_to_CRO_5 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_CRO_1 NOT = { flag = GER_to_CRO_2 } } type = trade which = GER where = CRO supplies = -1 value = 1 }
+		command = { trigger = { flag = GER_to_CRO_2 NOT = { flag = GER_to_CRO_3 } } type = trade which = GER where = CRO supplies = -2 value = 1 }
+		command = { trigger = { flag = GER_to_CRO_3 NOT = { flag = GER_to_CRO_4 } } type = trade which = GER where = CRO supplies = -3 value = 1 }
+		command = { trigger = { flag = GER_to_CRO_4 NOT = { flag = GER_to_CRO_5 } } type = trade which = GER where = CRO supplies = -4 value = 1 }
+		command = { trigger = { flag = GER_to_CRO_5 } type = trade which = GER where = CRO supplies = -5 value = 1 }
+		
+		command = { type = event which = 3186205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3186206
+	random = no
+	country = TUR
+	persistent = yes
+
+	name = "Volunteers heading to Yugoslavia"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Yugoslavia to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Volunteers - Intervention ends"
+		trigger = {
+			local_flag = YCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountCRO when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = CRO country = YUG }
+						flag = TUR_to_CRO_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = YCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountCRO when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = YCWVolunteers
+			war = { country = CRO country = YUG }
+			flag = TUR_to_CRO_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3186210 where = CRO when = 15 }
+		command = { type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = TUR_to_CRO_2 } type = money value = -200 }
+		command = { trigger = { flag = TUR_to_CRO_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = TUR_to_CRO_2 } type = event which = 3186210 where = CRO when = 15 }
+		command = { trigger = { flag = TUR_to_CRO_2 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = TUR_to_CRO_3 } type = money value = -200 }
+		command = { trigger = { flag = TUR_to_CRO_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = TUR_to_CRO_3 } type = event which = 3186210 where = CRO when = 20 }
+		command = { trigger = { flag = TUR_to_CRO_3 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = TUR_to_CRO_4 } type = money value = -200 }
+		command = { trigger = { flag = TUR_to_CRO_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = TUR_to_CRO_4 } type = event which = 3186210 where = CRO when = 25 }
+		command = { trigger = { flag = TUR_to_CRO_4 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = TUR_to_CRO_5 } type = money value = -200 }
+		command = { trigger = { flag = TUR_to_CRO_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = TUR_to_CRO_5 } type = event which = 3186210 where = CRO when = 30 }
+		command = { trigger = { flag = TUR_to_CRO_5 } type = setflag which = VolunteersCountCRO when = 1 value = 1 }
+		
+		command = { trigger = { flag = TUR_to_CRO_1 NOT = { flag = TUR_to_CRO_2 } } type = trade which = TUR where = CRO supplies = -1 value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_2 NOT = { flag = TUR_to_CRO_3 } } type = trade which = TUR where = CRO supplies = -2 value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_3 NOT = { flag = TUR_to_CRO_4 } } type = trade which = TUR where = CRO supplies = -3 value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_4 NOT = { flag = TUR_to_CRO_5 } } type = trade which = TUR where = CRO supplies = -4 value = 1 }
+		command = { trigger = { flag = TUR_to_CRO_5 } type = trade which = TUR where = CRO supplies = -5 value = 1 }
+		
+		command = { type = event which = 3186206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3186210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to Yugoslavia"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to Yugoslavia to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = YUG } type = add_corps value = land where = 285 }
+		command = { trigger = { country = CRO } type = add_corps value = land where = 191 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+
+
+
+# Hungary
+
+event = {
+	id = 3186040
+	country = HUN
+	random = no
+	
+	trigger = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		OR = {
+			control = { province = 341 data = YUG }
+			control = { province = 341 data = U27 }
+			control = { province = 341 data = CRO }
+		}
+	}
+
+	name = "Yugoslav Civil War"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to seize the rightfully our province of Novi Sad which was taken from us unfairly 20 years ago."
+	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Intervene and Demand Novi Sad in exchange for peace"
+		ai_chance = 100
+		command = { type = access which = CRO }
+		command = { type = belligerence value = 2 }
+		command = { type = domestic which = interventionism value = 1 }
+		
+        command = { type = relation which = CRO value = 10 }
+		#0.16*4.1*304=200
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		
+		command = { type = manpowerpool value = -40 }
+		
+        command = { type = trigger which = 3186041 }
+		command = { type = trigger which = 3186047 }
+	}
+	action_b = {
+		name = "We are better off staying out of it"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+        command = { type = dissent value = 1 }
+	}
+}
+
+event = {
+	id = 3186041
+	tag = { YUG U27 }
+	random = no
+	all = yes
+
+
+	name = "Hungary demands Novi Sad in exhcange for neutrality"
+	desc = "Horty of Hungary demands that that we let them seize the province of Novi Sad without resistance, offering neutrality and non-interference in our conflict against the rebels. If we refuse, however, there is nothing much we could do to prevent them from seizing the territory anyway..."
+	style = 2
+
+	action_a = {
+		name = "Ask for Romanian and Greek help"
+		ai_chance = 100
+        command = { type = trigger which = 3186042 }
+	}
+	action_b = {
+		name = "Honor precedes practicality"
+		ai_chance = 0
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = secedeprovince which = HUN value = 341 }
+        command = { type = war which = HUN }
+	}
+}
+
+event = {
+	id = 3186042
+	country = ROM
+	random = no
+
+
+	name = "Hungary demands Novi Sad from Yugoslavia"
+	desc = "Yugoslavia is asking for our help against Horty of Hungary, who demands the province of Novi Sad, threatening war. Germany stands behind him. Can we afford to challange Hungary and Germany?"
+	style = 2
+
+	action_a = {
+		name = "Do whatever it takes"
+		ai_chance = 100
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+       	command = { type = trigger which = 3186043 }
+	}
+	action_b = {
+		name = "No, we must preserve our neutrality"
+		ai_chance = 0
+        command = { type = trigger which = 3186045 }
+	}
+}
+
+event = {
+	id = 3186043
+	country = GRE
+	random = no
+
+
+	name = "Hungary demands Novi Sad from Yugoslavia"
+	desc = "Yugoslavia is asking for our help against Horty of Hungary, who demands the province of Novi Sad, threatening war. Germany stands behind him. Can we afford to challange Hungary and Germany?"
+	style = 2
+
+	
+	action_a = {
+		name = "No, we must preserve our neutrality"
+		ai_chance = 100
+       	command = { type = trigger which = 3186045 }
+	}
+	action_b = {
+		name = "Do whatever it takes"
+		ai_chance = 0
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+        command = { type = trigger which = 3186044 }
+	}
+}
+
+event = {
+	id = 3186044
+	country = HUN
+	random = no
+
+
+	name = "Romania and Greece back Yugoslavia"
+	desc = "Romania and Greece had declared their intention to stand by Yugoslavia in the event of conflict. Germany is not willing to back us against them at this time."
+	style = 2
+
+	action_a = {
+		name = "Back down"
+		ai_chance = 100
+        command = { type = dissent value = 5 }
+	}
+	action_b = {
+		name = "They don't scare us"
+		ai_chance = 0
+		command = { type = belligerence value = 10 }
+        command = { type = war which = YUG }
+		command = { type = war which = U27 }
+		command = { type = war which = ROM }
+		command = { type = war which = GRE }
+		command = { type = war which = SOV }
+	}
+}
+
+event = {
+	id = 3186045
+	tag = { YUG U27 }
+	random = no
+	all = yes
+
+	name = "Greece and Romania fail to reach a consensus"
+	desc = "Despite our hopes, our allies Greece and Romania had failed to come to our aid against Hungary. We have to deal with this problem alone."
+	style = 2
+
+	action_a = {
+		name = "A necessary sacrifice"
+		ai_chance = 100
+		command = { type = secedeprovince which = HUN value = 341 when = 2 }
+        command = { type = trigger which = 3186046 }
+	}
+	action_b = {
+		name = "Honor precedes practicality"
+		ai_chance = 0
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = secedeprovince which = HUN value = 341 }
+        command = { type = war which = HUN }
+	}
+}
+
+event = {
+	id = 3186046
+	country = HUN
+	random = no
+
+
+	name = "Hungary demands Novi Sad - Yugoslavia agrees"
+	desc = "The leadership of Yugoslavia wisely chose to accept our offer of territorial exchange for neutrality"
+	style = 2
+
+	action_a = {
+		name = "Great"
+		ai_chance = 100
+		command = { type = belligerence which = HUN value = 3 }
+	}
+}
+
+event = {
+	id = 3186047
+	country = CRO
+	random = no
+
+	name = "Hungarian Volunteers"
+	desc = "Hearing the news of our great revolution, the Hungarian government vows to help us as a way to resist Communist domination. They have started by giving us permission to use their territory for militay operations, and Hungarian volunteers have massed to help us fight the evil of Soviet Communism."
+
+	action_a = {
+		name = "OK"
+		command = { type = manpowerpool value = 8 }
+		command = { type = manpowerpool value = 40 }
+		command = { type = add_corps value = land where = 277 }
+		command = { type = add_division value = infantry when = 8 }
+	}
+}
+
+# Bulgaria
+
+event = {
+	id = 3186050
+	country = BUL
+	random = no
+	
+	trigger = {
+		OR = {
+			war = { country = YUG country = CRO }
+			war = { country = U27 country = CRO }
+		}
+		event = 3186032
+		event = 3186046
+		random = 20
+	}
+
+	name = "Yugoslav Civil War"
+	desc = "The outbreak of civil war in Yugoslavia presents an opportunity to seize the rightfully our province of Macedonia which was taken from us unfairly 30 years ago."
+	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		name = "Demand Macedonia in exchange for neutrality"
+		ai_chance = 100
+		command = { type = belligerence value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+        command = { type = trigger which = 3186051 }
+	}
+	action_b = {
+		name = "We are better off staying out of it"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+        command = { type = dissent value = 1 }
+	}
+}
+
+event = {
+	id = 3186051
+	tag = { YUG U27 }
+	random = no
+	all = yes
+
+	name = "Bulgaria demands Macedonia in exhcange for neutrality"
+	desc = "Boris of Bulgaria demands that that we let them seize the province of Macedonia without resistance, offering neutrality and non-interference in our conflict against the rebels. If we refuse, however, there is nothing much we could do to prevent them from seizing the territory anyway..."
+	style = 2
+
+	action_a = {
+		name = "Ask for Romanian and Greek help"
+		ai_chance = 100
+        command = { type = trigger which = 3186052 }
+	}
+	action_b = {
+		name = "Honor precedes practicality"
+		ai_chance = 0
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = secedeprovince which = BUL value = 328 }
+		command = { type = secedeprovince which = BUL value = 331 }
+		command = { type = secedeprovince which = BUL value = 333 }
+        command = { type = war which = BUL }
+	}
+}
+
+event = {
+	id = 3186052
+	country = GRE
+	random = no
+
+
+	name = "Bulgaria demands Macedonia from Yugoslavia"
+	desc = "Yugoslavia is asking for our help against Boris of Bulgaria, who demands the province of Macedonia, threatening war. Germany stands behind him, but Germany is not in any real position to assist. Can we afford to challange Bulgaria and Germany?"
+	style = 2
+
+	action_a = {
+		name = "Do whatever it takes"
+		ai_chance = 100
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+       	command = { type = trigger which = 3186053 }
+	}
+	action_b = {
+		name = "No, we must preserve our neutrality"
+		ai_chance = 0
+       	command = { type = trigger which = 3186055 }
+	}
+
+}
+
+event = {
+	id = 3186053
+	country = ROM
+	random = no
+
+
+	name = "Bulgaria demands Macedonia from Yugoslavia"
+	desc = "Yugoslavia is asking for our help against Boris of Bulgaria, who demands the province of Macedonia, threatening war. Germany stands behind him, but Germany is not in any real position to assist. Can we afford to challange Bulgaria and Germany?"
+	style = 2
+
+	action_a = {
+		name = "Do whatever it takes"
+		ai_chance = 100
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = access which = YUG }
+		command = { type = access which = U27 }
+        command = { type = trigger which = 3186054 }
+	}
+	action_b = {
+		name = "No, we must preserve our neutrality"
+		ai_chance = 0
+        command = { type = trigger which = 3186055 }
+	}
+}
+
+event = {
+	id = 3186054
+	country = BUL
+	random = no
+
+
+	name = "Romania and Greece back Yugoslavia"
+	desc = "Romania and Greece had declared their intention to stand by Yugoslavia in the event of conflict. Germany is not willing or able to back us against them at this time."
+	style = 2
+
+	action_a = {
+		name = "Back down"
+		ai_chance = 100
+       	command = { type = dissent value = 5 }
+	}
+	action_b = {
+		name = "They don't scare us"
+		ai_chance = 0
+		command = { type = belligerence value = 10 }
+       	command = { type = war which = YUG }
+		command = { type = war which = U27 }
+		command = { type = war which = ROM }
+		command = { type = war which = GRE }
+		command = { type = war which = SOV }
+	}
+}
+
+event = {
+	id = 3186055
+	tag = { YUG U27 }
+	random = no
+	all = yes
+
+	name = "Greece and Romania fail to reach a consensus"
+	desc = "Despite our hopes, our allies Greece and Romania had failed to come to our aid against Bulgaria. We have to deal with this problem alone."
+	style = 2
+
+	action_a = {
+		name = "A necessary sacrifice"
+		ai_chance = 100
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = secedeprovince which = BUL value = 328 }
+		command = { type = secedeprovince which = BUL value = 331 }
+		command = { type = secedeprovince which = BUL value = 333 }
+        command = { type = trigger which = 3186056 }
+	}
+	action_b = {
+		name = "Honor precedes practicality"
+		ai_chance = 0
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = secedeprovince which = BUL value = 328 }
+		command = { type = secedeprovince which = BUL value = 331 }
+		command = { type = secedeprovince which = BUL value = 333 }
+        command = { type = war which = BUL }
+	}
+}
+
+event = {
+	id = 3186056
+	country = BUL
+	random = no
+
+
+	name = "Bulgaria demands Macedonia - Yugoslavia agrees"
+	desc = "The leadership of Yugoslavia wisely chose to accept our offer of territorial exchange for neutrality"
+	style = 2
+
+	action_a = {
+		name = "Great"
+		ai_chance = 100
+		command = { type = belligerence which = BUL value = 3 }
+	}
+}
+
+##############################################
+# Yugoslavia - end of civil war
+##############################################
+
+##############################################
+# Yugoslavia - War widens
+##############################################
+
+event = { 
+	id = 3186080
+	random = no
+	tag = { YUG U27 }
+
+	trigger = {
+		atwar = YUG
+		NOT = { alliance = { country = YUG country = SOV } }
+		OR = {
+			#lost_national = { country = YUG value = 100 }
+			#lost_national = { country = YUG value = 100 }
+			alliance = { country = CRO country = GER }
+			alliance = { country = SLV country = GER }
+			war = { country = GER country = SOV }
+			war = { country = ENG country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Yugoslavia requests assitance"
+	desc = "Yugoslavia requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3186081 }
+	} 
+}
+	
+	
+event = { 
+	id = 3186081
+	random = no
+	country = SOV
+
+	name = "Yugoslavia requests assitance"
+	desc = "Yugoslavia requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = YUG NOT = { ai = SOV } } type = military_control which = SOV where = YUG value = 1 }
+		command = { type = alliance which = YUG }
+		command = { type = alliance which = U27 }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 3186082
+	random = no
+	country = CRO
+
+	trigger = {
+		atwar = CRO
+		NOT = { alliance = { country = CRO country = GER } }
+		OR = {
+			lost_national = { country = CRO value = 100 }
+			lost_national = { country = CRO value = 100 }
+			alliance = { country = YUG country = SOV }
+			alliance = { country = YUG country = FRA }
+			war = { country = GER country = SOV }
+			war = { country = ENG country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Croatia requests assitance"
+	desc = "Croatia requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3186083 }
+		command = { type = leave_alliance }
+	} 
+}
+	
+	
+event = { 
+	id = 3186083 
+	random = no
+	country = GER
+
+	name = "Croatia requests assitance"
+	desc = "Croatia requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = CRO NOT = { ai = GER } } type = military_control which = GER where = CRO value = 1 }
+		command = { trigger = { ai = SLV NOT = { ai = GER } } type = military_control which = GER where = SLV value = 1 }
+		command = { type = alliance which = CRO }
+		command = { type = alliance which = SLV }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Yugoslavia - Inheritance
+##############################################
+
+event = { 
+	id = 3186090
+	random = no
+	country = SOV
+
+	decision = {
+		OR = {
+			alliance = { country = YUG country = SOV }
+			alliance = { country = U27 country = SOV }
+		}
+		OR = {
+			atwar = YUG
+			atwar = U27
+		}
+	}
+
+	decision_trigger = {
+	}
+
+	trigger = {
+		atwar = YUG 
+		alliance = { country = YUG country = SOV }
+		#lost_national = { country = YUG value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Yugoslav army"
+	desc = "We are well in position to take direct control of the Yugoslav army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = SOV where = YUG value = 0 }
+		command = { type = military_control which = SOV where = U27 value = 0 }
+		command = { type = secedearea which = -1 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = -1 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = -1 value = "Bosnia" when = 2 }
+		command = { type = secedearea which = -1 value = "Croatia" when = 2 }
+		command = { type = secedearea which = -1 value = "Albania" when = 2 }
+		command = { type = event which = 3186091 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3186091
+	random = no
+	country = SOV
+
+	name = "The invasion of Yugoslavia"
+ 	desc = "Our forces enter Yugoslavia and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = make_puppet which = YUG }
+		command = { type = make_puppet which = U27 }
+		command = { trigger = { NOT = { ai = SOV } } type = military_control which = SOV where = U27 value = 1 }
+		command = { type = coup_nation which = YUG }
+		command = { trigger = { NOT = { ai = SOV } } type = military_control which = SOV where = U27 value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3186092 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3186092
+	random = no
+	country = SOV
+
+	name = "Provinces back to Yugoslavia"
+ 	desc = "Having established a friendly government in Belgrade, we will now transfer the territorial control back to Spain."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { ai = SOV } } type = military_control which = SOV where = YUG value = 1 }
+		command = { trigger = { NOT = { ai = SOV } } type = military_control which = SOV where = U27 value = 1 }
+		command = { type = event which = 2400538 where = U27 when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = U27 when = 0 } #stayInWar flag
+		command = { type = secedearea which = U27 value = "Central Serbia" }
+		command = { type = secedearea which = U27 value = "East Serbia" }
+		command = { type = secedearea which = U27 value = "Bosnia" }
+		command = { type = secedearea which = U27 value = "Croatia" }
+		command = { type = secedearea which = U27 value = "Albania" }
+		command = { type = addcore which = 328 where = U27 }
+ 		command = { type = addcore which = 332 where = U27 }
+ 		command = { type = addcore which = 333 where = U27 }
+ 		command = { type = addcore which = 366 where = U27 }
+ 		command = { type = addcore which = 365 where = U27 }
+		
+		command = { type = event which = 211000 where = U27 when = 900 }
+	}
+}
+
+event = { 
+	id = 3186093
+	random = no
+	country = GER
+
+	decision = {
+		alliance = { country = CRO country = GER }
+		atwar = CRO
+	}
+
+	decision_trigger = { 
+	}
+
+	trigger = {
+		atwar = CRO 
+		alliance = { country = CRO country = GER }
+		#lost_national = { country = CRO value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Croatian army"
+	desc = "We are well in position to take direct control of the Croatian army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = GER where = CRO value = 0 }
+		command = { type = military_control which = GER where = SLV value = 0 }
+		command = { type = removeclaim which = 346 where = GER }
+		command = { type = secedearea which = -1 value = "Central Serbia" when = 2 }
+		command = { type = secedearea which = -1 value = "East Serbia" when = 2 }
+		command = { type = secedearea which = -1 value = "Bosnia" when = 2 }
+		command = { type = secedearea which = -1 value = "Croatia" when = 2 }
+		command = { type = secedearea which = -1 value = "Albania" when = 2 }
+		command = { type = event which = 3186094 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3186094
+	random = no
+	country = GER
+
+	name = "The invasion of Croatia"
+ 	desc = "Our forces enter Croatia and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = make_puppet which = SLV }
+		command = { type = event which = 2400538 where = SLV when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = SLV when = 0 } #stayInWar flag
+		command = { type = make_puppet which = CRO }
+		command = { type = event which = 2400538 where = CRO when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = CRO when = 0 } #stayInWar flag
+		
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = CRO value = 1 }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = SLV value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3186095 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3186095
+	random = no
+	country = GER
+
+	name = "Provinces back to Croatia"
+ 	desc = "Having established a friendly government in Zagreb, we will now transfer the territorial control back to Croatia."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = CRO value = 1 }
+		command = { trigger = { NOT = { ai = GER } } type = military_control which = GER where = SLV value = 1 }
+		command = { type = addclaim which = 346 where = GER }
+		command = { type = secedeprovince which = SLV value = 346 }
+		command = { type = secedearea which = CRO value = "Central Serbia" }
+		command = { type = secedearea which = CRO value = "East Serbia" }
+		command = { type = secedearea which = CRO value = "Bosnia" }
+		command = { type = secedearea which = CRO value = "Croatia" }
+		command = { type = secedearea which = CRO value = "Albania" }
+		
+		#command = { type = coup_nation which = CRO }
+	}
+}
+
+event = {
+	id = 3186096
+	random = no
+	country = YUG
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = SOV } }
+	#	military_control = { country = SOV country = YUG }
+	#}
+
+	name = "Controlling our own militalry"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to France"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = SOV where = YUG value = 0 }
+	}
+}
+
+event = {
+	id = 3186097
+	random = no
+	country = CRO
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = GER } }
+	#	military_control = { country = GER country = CRO }
+	#}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to UK"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = GER where = CRO value = 0 }
+	}
+}
+
+
+##############################################
+# Yugoslavia - Experience gained
+##############################################
+
+event = {
+	id = 3186150
+	random = no
+	tag = { SOV GER }
+	persistent = yes
+
+	name = "Yugoslav Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_YUG_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_CRO_1 
+				}
+			}
+			local_flag = YCWExp
+		}
+		command = { type = local_clrflag which = YCWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_YUG_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_CRO_1 
+				}
+			}
+		}		
+		
+		command = { trigger = { OR = { country = SOV country = FRA } } type = relation which = YUG value = 5 }
+		command = { trigger = { OR = { country = GER country = ENG } } type = relation which = CRO value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_1 }
+										AND = { country = GER flag = GER_to_CRO_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_2 }
+										AND = { country = GER flag = GER_to_CRO_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_3 }
+										AND = { country = GER flag = GER_to_CRO_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_4 }
+										AND = { country = GER flag = GER_to_CRO_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_5 }
+										AND = { country = GER flag = GER_to_CRO_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_1 }
+										AND = { country = GER flag = GER_to_CRO_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_2 }
+										AND = { country = GER flag = GER_to_CRO_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_3 }
+										AND = { country = GER flag = GER_to_CRO_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_4 }
+										AND = { country = GER flag = GER_to_CRO_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_5 }
+										AND = { country = GER flag = GER_to_CRO_5 }
+								} }
+								type = money value = -5 }
+								
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_1 }
+										AND = { country = GER flag = GER_to_CRO_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_2 }
+										AND = { country = GER flag = GER_to_CRO_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_3 }
+										AND = { country = GER flag = GER_to_CRO_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_4 }
+										AND = { country = GER flag = GER_to_CRO_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_5 }
+										AND = { country = GER flag = GER_to_CRO_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_1 }
+										AND = { country = GER flag = GER_to_CRO_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_2 }
+										AND = { country = GER flag = GER_to_CRO_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_3 }
+										AND = { country = GER flag = GER_to_CRO_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_4 }
+										AND = { country = GER flag = GER_to_CRO_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_YUG_5 }
+										AND = { country = GER flag = GER_to_CRO_5 }
+								} }
+								type = gain_tech which = -1 }
+
+		command = { type = event which = 3186150 where = -1 when = 180 }
+	}
+}

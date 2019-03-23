@@ -1,0 +1,15 @@
+# Last Update 09-AUG-2008
+#########################
+
+#####################################################################
+# New Order in the East event written by The Yogi, a.k.a. Johan Ortiz
+# Modified by Luxor, hendriks
+# 
+# 3236000 - 3236999	German New Order East events
+# 3283000 - 3283999	USSR New Order East events
+# 23126501 - 23126506   The Great Patriotic War events for human SOV
+# Last used - 3283029, but 3283030 etc is used somewhere else!
+# converted to DH map by DerStudti
+#####################################################################
+
+

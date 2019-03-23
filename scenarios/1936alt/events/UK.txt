@@ -1,0 +1,1295 @@
+################################################################
+###BEF PREPARE
+################################################################
+# Rationale behind time and IC costs:
+# 1. free_ic * standard time subtracts base IC rather than effective IC, which is almost always higher than the base IC by at least 20% to 25%. As a consequence, all ic costs are reduced by 25%. 1 infantry division therefore costs 3.75 IC instead of 5 IC.
+# 2. free_ic * standard time assumes equal cost for each division, which is not true for serial builds where cost decreases for every new division
+# 3. If serialization is implemented for BEF divisions, it would incentivise the British to continue pumping troops into the European theatre, which is the wrong focus - Britain should be focusing on the American theatre. The human British player can continue to create troops as part of the BEF program and then transport them to the Americas anyway, but the British AI cannot really do that, hence it would create an unfair advantage to the British player over the AI.
+# 4. The cost of 1 unserialized infantry division is about 225 days, while the cost of completely serialized (-35%) infantry division is about 146 days. 
+# 5. To create the incentive for BEF formation but reduce the incentive for indefinite BEF spamming, instead of a progressive reduction in time, the time-cost of 1 BEF infantry division is fixed at 180 days which is equivalent to -20% serialization bonus, meaning that pumping out more BEF divisions becomes relatively unprofitable after the 5th one, a better bonus can be reached through standard seralized builds.
+# 6. If UK starts creating BEF in January 1937, by the expected outbreak of war in mid-1939, UK can be expected to have produced exactly 5 infantry divisions for every theatre. Normally UK will start creating BEF in about July 1936 with the outbreak of SCW.
+###################
+
+
+################################################################
+###BEF Iberia
+################################################################
+
+event = {
+        id = 2000500
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			NOT = { local_flag = BEF_Iberia_Formation }
+			NOT = { local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 15 } }
+        }
+		decision_trigger = {
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+			NOT = { local_flag = BEF_Iberia_Formation }
+			NOT = { local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 5 } } #AI will stop at 5
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Iberia"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF"
+			command = { type = manpowerpool value = -13 }
+			command = { type = free_ic value = -3.75 }
+			command = { type = event which = 2000501 where = -1 when = 180 }
+			command = { type = local_setflag which = BEF_Iberia_Formation }
+        }
+}
+
+event = {
+	id = 2000501
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "BEF - Iberia grows"
+	desc = "We have recruited, armed, and trained a new division for our BEF - Iberia force."
+	style = 2
+
+	action = {
+		name = "Great! Keep at it!"
+		trigger = { 
+			manpower = 13
+			NOT = { local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 14 } } #Can't go higher than 15 currently
+			OR = {
+				NOT = { ai = yes }
+				NOT = { local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 4 } } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Iberia_CountFormed when = 1 value = 1 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 2000501 where = -1 when = 180 }
+	}
+	action = {
+		name = "It's large enough, let's stop here"
+		trigger = { 
+			OR = { 
+				NOT = { ai = yes }
+				NOT = { manpower = 13 }
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 4 } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Iberia_CountFormed when = 1 value = 1 }
+		command = { type = free_ic value = 3.75 }
+		command = { type = local_clrflag which = BEF_Iberia_Formation }
+	}
+}
+
+event = {
+	id = 2000502
+	random = no
+	country = ENG
+	persistent = yes
+	
+	decision = {
+		local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 1 }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		NOT = { local_flag = BEF_Iberia_Deployment }
+		local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 1 }
+		war = { country = POR country = FRA }
+		alliance = { country = ENG country = POR }
+	}
+
+	name = "BEF - Iberia deployment"
+	desc = "With the outbreak of war in Europe, it is time to deploy our BEF into action"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Mobilize the BEF!"
+		trigger = { NOT = { local_flag = BEF_Iberia_Deployment } }
+		command = { type = local_setflag which = BEF_Iberia_Deployment }
+	}
+	action = {
+		name = "Keep it in reserve!"
+		trigger = { local_flag = BEF_Iberia_Deployment }
+		command = { type = local_clrflag which = BEF_Iberia_Deployment }
+	}
+}
+
+event = {
+	id = 2000503
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		local_flag = BEF_Iberia_Deployment
+		OR = {
+			NOT = { control = { province = 476 data = -2 } }
+			NOT = { control = { province = 441 data = -2 } }
+		}
+		
+		OR = {
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 1 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 1 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 2 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 2 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 3 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 3 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 4 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 4 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 5 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 5 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 6 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 6 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 7 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 7 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 8 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 8 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 9 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 9 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 10 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 10 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 11 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 11 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 12 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 12 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 13 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 13 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 14 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 14 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Iberia_CountFormed when = 1 value = 15 }
+				NOT = { local_flag = { which = BEF_Iberia_CountDeployed when = 1 value = 15 } }
+			}
+		}
+	}
+
+	name = "BEF - Iberia deployment in process"
+	desc = "Another division from BEF - Iberia has arrived to its assigned theatre of operations"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Great!"
+		command = { trigger = { NOT = { control = { province = 476 data = -2 } } } type = add_corps which = "BEF-Iberia" value = land where = 476 }
+		command = { trigger = { control = { province = 476 data = -2 } } type = add_corps which = "BEF-Iberia" value = land where = 441 }
+		command = { type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		
+		command = { type = local_setflag which = BEF_Iberia_CountDeployed when = 1 value = 1 }
+	}
+}
+
+
+################################################################
+###BEF Benelux
+################################################################
+
+event = {
+        id = 2000510
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			NOT = { local_flag = BEF_Benelux_Formation }
+			NOT = { local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 15 } }
+        }
+		decision_trigger = {
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+			NOT = { local_flag = BEF_Benelux_Formation }
+			NOT = { local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 5 } } #AI will stop at 5
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Benelux"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF"
+			command = { type = manpowerpool value = -13 }
+			command = { type = free_ic value = -3.75 }
+			command = { type = event which = 2000511 where = -1 when = 180 }
+			command = { type = local_setflag which = BEF_Benelux_Formation }
+        }
+}
+
+event = {
+	id = 2000511
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "BEF - Benelux grows"
+	desc = "We have recruited, armed, and trained a new division for our BEF - Benelux force."
+	style = 2
+
+	action = {
+		name = "Great! Keep at it!"
+		trigger = { 
+			manpower = 13
+			NOT = { local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 14 } } #Can't go higher than 15 currently
+			OR = {
+				NOT = { ai = yes }
+				NOT = { local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 4 } } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Benelux_CountFormed when = 1 value = 1 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 2000511 where = -1 when = 180 }
+	}
+	action = {
+		name = "It's large enough, let's stop here"
+		trigger = { 
+			OR = { 
+				NOT = { ai = yes }
+				NOT = { manpower = 13 }
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 4 } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Benelux_CountFormed when = 1 value = 1 }
+		command = { type = free_ic value = 3.75 }
+		command = { type = local_clrflag which = BEF_Benelux_Formation }
+	}
+}
+
+event = {
+	id = 2000512
+	random = no
+	country = ENG
+	persistent = yes
+	
+	decision = {
+		local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 1 }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		NOT = { local_flag = BEF_Benelux_Deployment }
+		local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 1 }
+		war = { country = HOL country = FRA }
+        alliance = { country = ENG country = HOL }
+	}
+
+	name = "BEF - Benelux deployment"
+	desc = "With the outbreak of war in Europe, it is time to deploy our BEF into action"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Mobilize the BEF!"
+		trigger = { NOT = { local_flag = BEF_Benelux_Deployment } }
+		command = { type = local_setflag which = BEF_Benelux_Deployment }
+	}
+	action = {
+		name = "Keep it in reserve!"
+		trigger = { local_flag = BEF_Benelux_Deployment }
+		command = { type = local_clrflag which = BEF_Benelux_Deployment }
+	}
+}
+
+event = {
+	id = 2000513
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		local_flag = BEF_Benelux_Deployment
+		NOT = { control = { province = 122 data = -2 } }
+		
+		OR = {
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 1 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 1 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 2 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 2 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 3 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 3 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 4 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 4 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 5 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 5 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 6 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 6 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 7 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 7 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 8 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 8 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 9 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 9 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 10 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 10 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 11 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 11 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 12 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 12 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 13 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 13 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 14 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 14 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Benelux_CountFormed when = 1 value = 15 }
+				NOT = { local_flag = { which = BEF_Benelux_CountDeployed when = 1 value = 15 } }
+			}
+		}
+	}
+
+	name = "BEF - Benelux deployment in process"
+	desc = "Another division from BEF - Benelux has arrived to its assigned theatre of operations"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Great!"
+		command = { type = add_corps which = "BEF-Benelux" value = land where = 122 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		
+		command = { type = local_setflag which = BEF_Benelux_CountDeployed when = 1 value = 1 }
+	}
+}
+
+################################################################
+###BEF Palestine
+################################################################
+
+event = {
+        id = 2000520
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			NOT = { local_flag = BEF_Palestine_Formation }
+			NOT = { local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 15 } }
+        }
+		decision_trigger = {
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+			NOT = { local_flag = BEF_Palestine_Formation }
+			NOT = { local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 5 } } #AI will stop at 5
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Palestine"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF"
+			command = { type = manpowerpool value = -13 }
+			command = { type = free_ic value = -3.75 }
+			command = { type = event which = 2000521 where = -1 when = 180 }
+			command = { type = local_setflag which = BEF_Palestine_Formation }
+        }
+}
+
+event = {
+	id = 2000521
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "BEF - Palestine grows"
+	desc = "We have recruited, armed, and trained a new division for our BEF - Palestine force."
+	style = 2
+
+	action = {
+		name = "Great! Keep at it!"
+		trigger = { 
+			manpower = 13
+			NOT = { local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 14 } } #Can't go higher than 15 currently
+			OR = {
+				NOT = { ai = yes }
+				NOT = { local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 4 } } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Palestine_CountFormed when = 1 value = 1 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 2000521 where = -1 when = 180 }
+	}
+	action = {
+		name = "It's large enough, let's stop here"
+		trigger = { 
+			OR = { 
+				NOT = { ai = yes }
+				NOT = { manpower = 13 }
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 4 } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Palestine_CountFormed when = 1 value = 1 }
+		command = { type = free_ic value = 3.75 }
+		command = { type = local_clrflag which = BEF_Palestine_Formation }
+	}
+}
+
+event = {
+	id = 2000522
+	random = no
+	country = ENG
+	persistent = yes
+	
+	decision = {
+		local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 1 }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		NOT = { local_flag = BEF_Palestine_Deployment }
+		local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 1 }
+		war = { country = ENG country = FRA }
+		OR = {
+			control = { province = 1011 data = -3 }
+			control = { province = 1008 data = -3 }
+		}
+	}
+
+	name = "BEF - Palestine deployment"
+	desc = "With the outbreak of war in Europe, it is time to deploy our BEF into action"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Mobilize the BEF!"
+		trigger = { NOT = { local_flag = BEF_Palestine_Deployment } }
+		command = { type = local_setflag which = BEF_Palestine_Deployment }
+	}
+	action = {
+		name = "Keep it in reserve!"
+		trigger = { local_flag = BEF_Palestine_Deployment }
+		command = { type = local_clrflag which = BEF_Palestine_Deployment }
+	}
+}
+
+event = {
+	id = 2000523
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		local_flag = BEF_Palestine_Deployment
+		OR = {
+			control = { province = 1011 data = -3 } 
+			control = { province = 1008 data = -3 } 
+		}
+		
+		OR = {
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 1 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 1 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 2 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 2 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 3 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 3 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 4 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 4 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 5 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 5 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 6 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 6 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 7 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 7 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 8 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 8 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 9 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 9 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 10 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 10 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 11 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 11 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 12 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 12 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 13 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 13 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 14 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 14 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Palestine_CountFormed when = 1 value = 15 }
+				NOT = { local_flag = { which = BEF_Palestine_CountDeployed when = 1 value = 15 } }
+			}
+		}
+	}
+
+	name = "BEF - Palestine deployment in process"
+	desc = "Another division from BEF - Palestine has arrived to its assigned theatre of operations"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Great!"
+		command = { trigger = { control = { province = 1011 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1011 }
+		command = { trigger = { NOT = { control = { province = 1011 data = -3 } } control = { province = 1008 data = -3 } } type = add_corps which = "BEF-Palestine" value = land where = 1008 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		
+		command = { type = local_setflag which = BEF_Palestine_CountDeployed when = 1 value = 1 }
+	}
+}
+
+
+################################################################
+###BEF Turkey
+################################################################
+
+event = {
+        id = 2000530
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			NOT = { local_flag = BEF_Turkey_Formation }
+			NOT = { local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 15 } }
+        }
+		decision_trigger = {
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+			NOT = { local_flag = BEF_Turkey_Formation }
+			NOT = { local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 5 } } #AI will stop at 5
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Turkey"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF"
+			command = { type = manpowerpool value = -13 }
+			command = { type = free_ic value = -3.75 }
+			command = { type = event which = 2000531 where = -1 when = 180 }
+			command = { type = local_setflag which = BEF_Turkey_Formation }
+        }
+}
+
+event = {
+	id = 2000531
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "BEF - Turkey grows"
+	desc = "We have recruited, armed, and trained a new division for our BEF - Turkey force."
+	style = 2
+
+	action = {
+		name = "Great! Keep at it!"
+		trigger = { 
+			manpower = 13
+			NOT = { local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 14 } } #Can't go higher than 15 currently
+			OR = {
+				NOT = { ai = yes }
+				NOT = { local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 4 } } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Turkey_CountFormed when = 1 value = 1 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 2000531 where = -1 when = 180 }
+	}
+	action = {
+		name = "It's large enough, let's stop here"
+		trigger = { 
+			OR = { 
+				NOT = { ai = yes }
+				NOT = { manpower = 13 }
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 4 } #AI will stop after 5 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Turkey_CountFormed when = 1 value = 1 }
+		command = { type = free_ic value = 3.75 }
+		command = { type = local_clrflag which = BEF_Turkey_Formation }
+	}
+}
+
+event = {
+	id = 2000532
+	random = no
+	country = ENG
+	persistent = yes
+	
+	decision = {
+		local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 1 }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		NOT = { local_flag = BEF_Turkey_Deployment }
+		local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 1 }
+		war = { country = TUR country = SOV }
+        alliance = { country = ENG country = TUR }
+	}
+
+	name = "BEF - Turkey deployment"
+	desc = "With the outbreak of war in Europe, it is time to deploy our BEF into action"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Mobilize the BEF!"
+		trigger = { NOT = { local_flag = BEF_Turkey_Deployment } }
+		command = { type = local_setflag which = BEF_Turkey_Deployment }
+	}
+	action = {
+		name = "Keep it in reserve!"
+		trigger = { local_flag = BEF_Turkey_Deployment }
+		command = { type = local_clrflag which = BEF_Turkey_Deployment }
+	}
+}
+
+event = {
+	id = 2000533
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		local_flag = BEF_Turkey_Deployment
+		NOT = { control = { province = 409 data = -2 } }
+		
+		OR = {
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 1 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 1 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 2 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 2 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 3 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 3 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 4 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 4 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 5 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 5 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 6 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 6 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 7 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 7 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 8 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 8 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 9 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 9 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 10 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 10 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 11 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 11 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 12 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 12 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 13 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 13 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 14 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 14 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Turkey_CountFormed when = 1 value = 15 }
+				NOT = { local_flag = { which = BEF_Turkey_CountDeployed when = 1 value = 15 } }
+			}
+		}
+	}
+
+	name = "BEF - Turkey deployment in process"
+	desc = "Another division from BEF - Turkey has arrived to its assigned theatre of operations"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Great!"
+		command = { type = add_corps which = "BEF-Turkey" value = land where = 409 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		
+		command = { type = local_setflag which = BEF_Turkey_CountDeployed when = 1 value = 1 }
+	}
+}
+
+
+################################################################
+###BEF Mexico
+################################################################
+
+event = {
+        id = 2000540
+        random = no
+        country = ENG
+        style = 2
+
+        decision = {
+			NOT = { local_flag = BEF_Mexico_Formation }
+			NOT = { local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 15 } }
+        }
+		decision_trigger = {
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+		}
+
+        trigger = {
+			NOT = { local_flag = BEF_Mexico_Formation }
+			NOT = { local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 15 } } #AI will stop at 15
+			manpower = 13
+			ic = 3.75
+        	OR = {
+				year = 1937
+				atwar = ENG
+				atwar = SOV
+				atwar = GER
+				atwar = FRA
+				atwar = JAP
+				atwar = USA
+				war = { country = SPA country = SPR }
+				war = { country = ITA country = U14 }
+				war = { country = BEL country = FLA }
+				war = { country = FIN country = U20 }
+				war = { country = YUG country = CRO }
+			}
+        }
+
+        date = { day = 1 month = february year = 1936 }
+        offset = 10
+        deathdate = { day = 1 month = january year = 1946 }
+
+        name = "Prepare the British Expeditionary force - Mexico"
+        desc = "Prior to the outbreak of war, Britain had prepared a number of expeditionary forces to be sent into various theaters of conflict to aid the friendly parties. Is it time to prepare these forces?"
+        picture = "minister_died"
+
+        action = {
+			name = "Prepare the BEF"
+			command = { type = manpowerpool value = -13 }
+			command = { type = free_ic value = -3.75 }
+			command = { type = event which = 2000541 where = -1 when = 180 }
+			command = { type = local_setflag which = BEF_Mexico_Formation }
+        }
+}
+
+event = {
+	id = 2000541
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "BEF - Mexico grows"
+	desc = "We have recruited, armed, and trained a new division for our BEF - Mexico force."
+	style = 2
+
+	action = {
+		name = "Great! Keep at it!"
+		trigger = { 
+			manpower = 13
+			NOT = { local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 14 } } #Can't go higher than 15 currently
+			#OR = {
+			#	NOT = { ai = yes }
+			#	NOT = { local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 14 } } #AI will stop after 15 divs
+			#}
+		}
+		
+		command = { type = local_setflag which = BEF_Mexico_CountFormed when = 1 value = 1 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 2000541 where = -1 when = 180 }
+	}
+	action = {
+		name = "It's large enough, let's stop here"
+		trigger = { 
+			OR = { 
+				NOT = { ai = yes }
+				NOT = { manpower = 13 }
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 14 } #AI will stop after 15 divs
+			}
+		}
+		
+		command = { type = local_setflag which = BEF_Mexico_CountFormed when = 1 value = 1 }
+		command = { type = free_ic value = 3.75 }
+		command = { type = local_clrflag which = BEF_Mexico_Formation }
+	}
+}
+
+event = {
+	id = 2000542
+	random = no
+	country = ENG
+	persistent = yes
+	
+	decision = {
+		local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 1 }
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		ai = yes
+		NOT = { local_flag = BEF_Mexico_Deployment }
+		local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 1 }
+		war = { country = MEX country = USA }
+        alliance = { country = ENG country = MEX }
+	}
+
+	name = "BEF - Mexico deployment"
+	desc = "With the outbreak of war in Europe, it is time to deploy our BEF into action"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Mobilize the BEF!"
+		trigger = { NOT = { local_flag = BEF_Mexico_Deployment } }
+		command = { type = local_setflag which = BEF_Mexico_Deployment }
+	}
+	action = {
+		name = "Keep it in reserve!"
+		trigger = { local_flag = BEF_Mexico_Deployment }
+		command = { type = local_clrflag which = BEF_Mexico_Deployment }
+	}
+}
+
+event = {
+	id = 2000543
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		local_flag = BEF_Mexico_Deployment
+		NOT = { control = { province = 2086 data = -2 } }
+		
+		OR = {
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 1 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 1 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 2 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 2 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 3 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 3 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 4 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 4 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 5 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 5 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 6 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 6 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 7 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 7 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 8 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 8 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 9 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 9 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 10 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 10 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 11 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 11 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 12 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 12 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 13 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 13 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 14 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 14 } }
+			}
+			AND = {
+				local_flag = { which = BEF_Mexico_CountFormed when = 1 value = 15 }
+				NOT = { local_flag = { which = BEF_Mexico_CountDeployed when = 1 value = 15 } }
+			}
+		}
+	}
+
+	name = "BEF - Mexico deployment in process"
+	desc = "Another division from BEF - Mexico has arrived to its assigned theatre of operations"
+	style = 2
+	
+	date = { day = 27 month = april year = 1936 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1949 }
+	
+	action = {
+		name = "Great!"
+		command = { type = add_corps which = "BEF-Mexico" value = land where = 2086 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		
+		command = { type = local_setflag which = BEF_Mexico_CountDeployed when = 1 value = 1 }
+	}
+}
+
+    #########################################################################
+    #  King Fuad I passes away
+    #########################################################################
+
+    event = {
+        id = 2069001
+        random = no
+        country = EGY
+        style = 2
+       
+        trigger = {
+            headofstate = 340001
+            }
+
+        date = { day = 27 month = april year = 1936 }
+        offset = 2
+        deathdate = { day = 1 month = january year = 2000 }
+
+        name = 463name
+        desc = 463desc
+        picture = "minister_died"
+
+        action_a = {
+            name = 463a # OK
+            command = { type = headofstate which = 340011 }
+            command = { type = sleepminister which = 340001 }
+            }
+        }

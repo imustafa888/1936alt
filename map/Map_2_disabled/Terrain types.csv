@@ -1,0 +1,13 @@
+Number;Type;Movment
+0;Plains;1.0
+1;Forest;1.2
+2;Mountain;2.0
+3;Desert;1.1
+4;Marsh;1.5
+5;Hills;1.2
+6;Jungle;2.0
+7;Urban;1.1
+8;Ocean;1.0
+9;River;1.0
+10;Terra incognito;0
+11;Unknown;0

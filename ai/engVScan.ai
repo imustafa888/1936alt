@@ -1,0 +1,51 @@
+# German 1936 AI File by Lothos
+
+switch = no # [yes/no]
+
+garrison = {
+	province_priorities = {	
+		2136 = 50
+		2138 = 50
+		19 = 10
+		20 = 10
+		5 = 10
+		
+		1008 = 1
+		1011 = 1
+		1172 = 1
+		
+		1013 = -1
+		1022 = -1
+		1023 = -1
+		1024 = -1
+		1025 = -1
+	}
+	area_multiplier = {
+		35 = 4.5 #6 provinces * 4.5 = 27 divisions in ireland
+		2136 = 15.0 #3 provinces * 15 = 30 divisions in north canada
+		1008 = 0.6 #11 provinces * 0.6 = ~7 divisions in Palestine
+		842 = 0.4 #35 provinces * 0.4 = 14 divisions in East Africa
+		1432 = 0.6 #7 provinces * 0.6 = 4 divisions in Malaysia
+		1415 = 0.1 #105 provinces * 0.1 = ~10 divisions in India
+		900	= 0 #none in suez
+		929 = 0 #none in nigeria
+		930 = 0 #none in nigeria
+		933 = 0 #none in nigeria
+		935 = 0 #none in nigeria
+		956 = 0 #none in ghana
+		964 = 0 #none in sierra leone
+		979 = 0 #none in ghambia
+		832 = 0 #none in somaliland
+		963 = 0 #portugese
+		893 = 0 #portugese
+	}
+	ignore = { 
+		979
+		964
+		963
+		952 953 954 955	956
+		929 930 931 932 933 934 935 936 937 938 939 940 941 
+		893
+		900 #suez
+	}
+}

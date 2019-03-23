@@ -1,0 +1,1359 @@
+####################################################
+# Franco-Soviet guarantees to Poland, Turkey, Iran, Manchuria
+####################################################
+
+#Iran
+
+
+event = { 
+	id = 3500003
+	random = no
+	country = SOV
+
+	decision = {
+		exists = PER
+		NOT = {
+			OR = {
+				ispuppet = PER
+				alliance = { country = PER country = SOV }
+				alliance = { country = PER country = GER }
+				alliance = { country = PER country = ENG }
+			}
+		}
+	}
+	
+	decision_trigger = {
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+	}
+
+	trigger = {
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+		exists = PER
+		NOT = {
+			OR = {
+				ispuppet = PER
+				alliance = { country = PER country = SOV }
+				alliance = { country = PER country = GER }
+				alliance = { country = PER country = ENG }
+			}
+		}
+	}
+	
+	name = "Guarantee of Iranian independence"
+	desc = "The looming threat of Germany in the west, UK in the south, and Japan in the east, leaves us with little options. Should we seek to guarantee Persia's security against UK to protect our southern flank?"
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Offer a guarantee to Iran"
+		ai_chance = 100
+		command = { type = relation which = FRA value = 10 }
+		command = { type = trigger which = 3500004 }
+	}
+	action_b = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = relation which = FRA value = -10 }
+	}
+}
+
+event = { 
+	id = 3500004
+	random = no
+	country = PER
+	
+	# Triggered by ENG 3131031
+	
+	name = "Franco-Iranian-Soviet negotiations"
+	desc = "The USSR and France offer to guarantee Iranian protection against a potential British attack. The US president Roosevelt, although not directly involved in the negotiations, suggests that Iran accept this offer as a means of containing the Axis and preventing a British attack. Under the terms of the treaty, the Soviet troops will be allowed to enter Iran and establish bases in the country in case of a British attack."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = ACTIONNAME3600A # Accept
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = GER value = -50 }
+		command = { type = trigger which = 3500005 }
+		command = { type = trigger which = 3500006 }
+	}
+	action_b = {
+		name = ACTIONNAME3600B # Refuse
+		ai_chance = 0
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+}
+
+event = { 
+	id = 3500005 
+	random = no
+	country = FRA
+	
+	name = "Guarantee accepted"
+	desc = "Iran wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = PER value = 100 }
+		command = { type = guarantee which = FRA where = PER }
+	}
+}
+
+event = { 
+	id = 3500006
+	random = no
+	country = SOV
+	
+	name = "Guarantee accepted"
+	desc = "Iran wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = PER value = 100 }
+		command = { type = guarantee which = SOV where = PER }
+	}
+}
+
+event = { 
+	id = 3500007
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3500006
+		war = { country = ENG country = PER }
+	}
+	
+	name = "British war against Iran"
+	desc = "With UK and Iran now at war, we must step in to defend our interests."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Fulfill our obligations"
+		command = { type = alliance which = PER }
+	}
+}
+
+event = { 
+	id = 3500008
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3500007
+		OR = {
+			lost_VP = { country = PER value = 20 }
+			random = 2
+		}
+	}
+	
+	name = "Iranian-Soviet Unified Command"
+	desc = "With the British war machine on the roll, it is imperative that the Iranian army is placed under Soviet command. It is also important that British sympathizers, pro-British forces, and potential British spies be kicked out of the Iranian government ASAP."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "We must work together"
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3500009 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+	action_b = {
+		name = "This is not necessary"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+event = { 
+	id = 3500009
+	random = no
+	country = PER
+	
+	name = "Iranian-Soviet Unified Command - Persian response"
+	desc = "With the British war machine on the roll, the Soviets demand that the Iranian army become subordinate to the Red Army, that the Iranian government expell ministers that the USSR deems not reliable enough, lift the ban on the Communist party, and suppress anti-Soviet views. What shall we do?"
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Go with the lesser evil"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = trigger which = 3500010 }
+	}
+	action_b = {
+		name = "Fight them"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = war which = SOV }
+		command = { type = belligerence which = PER value = -10 }
+		command = { type = dissent value = -5 }
+	}
+}
+
+event = { 
+	id = 3500010
+	random = no
+	country = SOV
+	
+	name = "Iranian-Soviet Unified Command - Iran accepts"
+	desc = "Faced with a mortal threat of British takeover, Iran wisely choses to accept Soviet demands."
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Great"
+		#command = { type = coup_nation which = PER }
+		command = { type = make_puppet which = PER }
+	}
+}
+
+event = { 
+	id = 3500015
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3500006
+		exists = PER
+		war = { country = GER country = PER }
+		war = { country = GER country = SOV }
+		lost_VP = { country = PER value = 80 }
+	}
+	
+	name = "British war against Iran"
+	desc = "With British taking over most of Iran despite our aid, the remains of the Iranian army is completely intergrated into the Red Army, with the more unreliable officers summarily executed. The part of the Iranian government friendly to Soviet Union take refuge in Moscow."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Salvage what we can"
+		command = { type = inherit which = PER value = 1 }
+	}
+}
+
+
+#Poland
+
+
+event = { 
+	id = 3165004
+	random = no
+	country = SOV
+
+	decision = {
+		exists = POL
+		NOT = {
+			OR = {
+				ispuppet = POL
+				alliance = { country = POL country = SOV }
+				alliance = { country = POL country = GER }
+				alliance = { country = POL country = ENG }
+			}
+		}
+	}
+	
+	decision_trigger = {
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+	}
+
+	trigger = {
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+		exists = POL
+		NOT = {
+			OR = {
+				ispuppet = POL
+				alliance = { country = POL country = SOV }
+				alliance = { country = POL country = GER }
+				alliance = { country = POL country = ENG }
+			}
+		}
+	}
+	
+	name = "Guarantee of Polish independence"
+	desc = "The looming threat of Germany in the west, UK in the south, and Japan in the east, leaves us with little options. Should we seek to guarantee Poland's protection against Germanycto protect our western flank?"
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Offer a guarantee to Poland"
+		ai_chance = 100
+		command = { type = relation which = FRA value = 10 }
+		command = { type = trigger which = 3600 }
+	}
+	action_b = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = relation which = FRA value = -10 }
+	}
+}
+
+event = { 
+	id = 3600
+	random = no
+	country = POL
+	
+	# Triggered by ENG 3131031
+	
+	name = "Franco-Polish-Soviet negotiations"
+	desc = "The USSR and France offers to guarantee Poland's protection against a potential German attack. The US president Roosevelt, although not directly involved in the negotiations, suggests that Poland accept this offer as a means of containing the Axis and preventing a German attack. Under the terms of the treaty, the Soviet troops will be allowed to enter Poland and establish bases in the country in case of a German attack."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = ACTIONNAME3600A # Accept
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = GER value = -50 }
+		command = { type = trigger which = 3165005 }
+		command = { type = trigger which = 3165006 }
+	}
+	action_b = {
+		name = ACTIONNAME3600B # Refuse
+		ai_chance = 0
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+}
+
+event = { 
+	id = 3165005
+	random = no
+	country = FRA
+	
+	name = "Guarantee accepted"
+	desc = "Poland wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = POL value = 100 }
+		command = { type = guarantee which = FRA where = POL }
+	}
+}
+
+event = { 
+	id = 3165006
+	random = no
+	country = SOV
+	
+	name = "Guarantee accepted"
+	desc = "Poland wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = POL value = 100 }
+		command = { type = guarantee which = SOV where = POL }
+	}
+}
+
+event = { 
+	id = 3165007
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165006
+		war = { country = GER country = POL }
+	}
+	
+	name = "German war against Poland"
+	desc = "With Germany and Poland now at war, we must step in to defend our interests."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Fulfill our obligations"
+		command = { type = alliance which = POL }
+	}
+}
+
+event = { 
+	id = 3165008
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165007
+		OR = {
+			lost_VP = { country = POL value = 20 }
+			random = 2
+		}
+	}
+	
+	name = "Polish-Soviet Unified Command"
+	desc = "With the German war machine on the roll, it is imperative that the Polish army is placed under Soviet command. It is also important that German sympathizers, pro-German forces, and potential German spies be kicked out of the Polish government ASAP."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "We must work together"
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3165009 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+	action_b = {
+		name = "This is not necessary"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+event = { 
+	id = 3165009
+	random = no
+	country = POL
+	
+	name = "Polish-Soviet Unified Command - Polish response"
+	desc = "With the German war machine on the roll, the Soviets demand that the Polish army become subordinate to the Red Army, that the Polish government expell ministers that the USSR deems not reliable enough, lift the ban on the Communist party, and suppress anti-Soviet views. What shall we do?"
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Go with the lesser evil"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = trigger which = 3165010 }
+	}
+	action_b = {
+		name = "Fight them"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = war which = SOV }
+		command = { type = belligerence which = POL value = -10 }
+		command = { type = dissent value = -5 }
+	}
+}
+
+event = { 
+	id = 3165010
+	random = no
+	country = SOV
+	
+	name = "Polish-Soviet Unified Command - Poland accepts"
+	desc = "Faced with a mortal threat of German takeover, Poland wisely choses to accept Soviet demands."
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Great"
+		command = { type = coup_nation which = POL }
+		command = { type = make_puppet which = POL }
+ 		command = { type = secedeprovince which = POL value = 223 }
+ 		command = { type = secedeprovince which = POL value = 227 }
+ 		command = { type = secedeprovince which = POL value = 233 }
+ 		command = { type = secedeprovince which = POL value = 230 }
+ 		command = { type = secedeprovince which = POL value = 231 }
+ 		command = { type = secedeprovince which = POL value = 232 }
+ 		command = { type = secedeprovince which = POL value = 234 }
+ 		command = { type = secedeprovince which = POL value = 236 }
+ 		command = { type = secedeprovince which = POL value = 237 }
+ 		command = { type = secedeprovince which = POL value = 228 }
+ 		command = { type = secedeprovince which = POL value = 229 }
+ 		command = { type = secedeprovince which = POL value = 239 }
+ 		command = { type = secedeprovince which = POL value = 243 }
+ 		command = { type = secedeprovince which = POL value = 246 }
+ 		command = { type = secedeprovince which = POL value = 250 }
+ 		command = { type = secedeprovince which = POL value = 254 }
+ 		command = { type = secedeprovince which = POL value = 252 }
+	}
+}
+
+event = { 
+	id = 3165015
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165006
+		exists = POL
+		war = { country = GER country = POL }
+		war = { country = GER country = SOV }
+		lost_VP = { country = POL value = 80 }
+	}
+	
+	name = "German war against Poland"
+	desc = "With Germany taking over most of Poland despite our aid, the remains of the Polish army is completely intergrated into the Red Army, with the more unreliable officers summarily executed. The part of the Polish government friendly to Soviet Union take refuge in Moscow."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Salvage what we can"
+		command = { type = inherit which = POL value = 1 }
+	}
+}
+
+
+#Turkey
+
+event = { 
+	id = 3165020
+	random = no 
+	country = SOV
+
+	name = "Guarantee of Turkish independence"
+	desc = "After the successful conclusion of the Hatay negotiations, the Turkish government entered into negotiations with France and the Soviet Union regarding the protection of Turkish neutrality in the face of uncertainties regarding the intentions of Italy, Britain, and Germany. "
+	style = 2 
+
+	decision = {
+		exists = TUR
+		NOT = {
+			OR = {
+				ispuppet = TUR
+				alliance = { country = TUR country = SOV }
+				alliance = { country = TUR country = GER }
+				alliance = { country = TUR country = ENG }
+			}
+		}
+	}
+	
+	decision_trigger = {
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+	}
+
+	trigger = {
+		exists = TUR
+		NOT = {
+			OR = {
+				ispuppet = TUR
+				alliance = { country = TUR country = SOV }
+				alliance = { country = TUR country = GER }
+				alliance = { country = TUR country = ENG }
+			}
+		}
+		OR = {
+			NOT = { exists = AUS }
+			NOT = { exists = CZE }
+			alliance = { country = GER country = CZE }
+			year = 1938
+		}
+	}
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = { 
+		name = "Offer guarantee to Turkey"
+		ai_chance = 100
+		command = { type = trigger which = 3165021 }
+	}
+	action_b = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = relation which = FRA value = -10 }
+	}
+}
+
+event = { 
+	id = 3165021
+	random = no 
+	country = TUR
+
+	name = "Franco-Turkish-Soviet negotiations"
+	desc = "After the successful conclusion of the Hatay negotiations, the Turkish government entered into negotiations with France and the Soviet Union regarding the protection of Turkish neutrality in the face of uncertainties regarding the intentions of Italy, Britain, and Germany. "
+	style = 2 
+
+	action = { 
+		name = ACTIONNAME3600A # Accept
+		trigger = { NOT = { flag = AxisTUR } }
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = GER value = -50 }
+		command = { type = trigger which = 3165025 }
+		command = { type = trigger which = 3165026 }
+	}
+	action = { 
+		name = ACTIONNAME3600B # Refuse
+		trigger = { NOT = { flag = AxisTUR } }
+		ai_chance = 0
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+	action = { 
+		name = ACTIONNAME3600A # Accept
+		trigger = { flag = AxisTUR }
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = GER value = -50 }
+		command = { type = trigger which = 3165025 }
+		command = { type = trigger which = 3165026 }
+	}
+	action = { 
+		name = ACTIONNAME3600B # Refuse
+		trigger = { flag = AxisTUR }
+		ai_chance = 100
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+}
+
+event = { 
+	id = 3165025
+	random = no
+	country = FRA
+	
+	name = "Guarantee accepted"
+	desc = "Turkey wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = TUR value = 100 }
+		command = { type = guarantee which = FRA where = TUR }
+	}
+}
+
+event = { 
+	id = 3165026
+	random = no
+	country = SOV
+	
+	name = "Guarantee accepted"
+	desc = "Turkey wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = TUR value = 100 }
+		command = { type = guarantee which = SOV where = TUR }
+	}
+}
+
+
+event = { 
+	id = 3165030 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165026 
+		war = { country = GER country = TUR }
+	}
+	
+	name = "German war against Turkey"
+	desc = "With Germany and Turkey now at war, we must step in to defend our interests."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Fulfill our obligations"
+		command = { type = alliance which = TUR }
+	}
+}
+
+event = { 
+	id = 3165031 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165030 
+		OR = {
+			lost_VP = { country = TUR value = 20 }
+			random = 2
+		}
+	}
+	
+	name = "Turkish-Soviet Unified Command"
+	desc = "With the German war machine on the roll, it is imperative that the Turkish army is placed under Soviet command. It is also important that German sympathizers, pro-German forces, and potential German spies be kicked out of the Turkish government ASAP."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "We must work together"
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3165032 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+	action_b = {
+		name = "This is not necessary"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+event = { 
+	id = 3165032 
+	random = no
+	country = TUR
+	
+	name = "Turkish-Soviet Unified Command - Turkish response"
+	desc = "With the German war machine on the roll, the Soviets demand that the Turkish army become subordinate to the Red Army, that the Turkish government expell ministers that the USSR deems not reliable enough, lift the ban on the Communist party, and suppress anti-Soviet views. What shall we do?"
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Go with the lesser evil"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = trigger which = 3165033 }
+	}
+	action_b = {
+		name = "Fight them"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = war which = SOV }
+		command = { type = belligerence which = TUR value = -10 }
+		command = { type = dissent value = -5 }
+	}
+}
+
+event = { 
+	id = 3165033 
+	random = no
+	country = SOV
+	
+	name = "Turkish-Soviet Unified Command - Turkey accepts"
+	desc = "Faced with a mortal threat of German takeover, Turkey wisely choses to accept Soviet demands."
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Great"
+		#command = { type = coup_nation which = TUR }
+		command = { type = make_puppet which = TUR }
+	}
+}
+
+event = { 
+	id = 3165034 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165006
+		exists = TUR
+		war = { country = GER country = TUR }
+		war = { country = GER country = SOV }
+		lost_VP = { country = TUR value = 90 }
+	}
+	
+	name = "German war against Turkey"
+	desc = "With Germany taking over most of Turkey despite our aid, the remains of the Turkish army is completely intergrated into the Red Army, with the more unreliable officers summarily executed. The part of the Turkish government friendly to Soviet Union take refuge in Moscow."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Salvage what we can"
+		command = { type = inherit which = TUR value = 1 }
+	}
+}
+
+#Manchuria
+
+event = { 
+	id = 3165120
+	random = no 
+	country = SOV
+
+	name = "Guarantee of Manchurian independence"
+	desc = "With the creation of a buffer state in Manchuria, the USSR moved to formalize its relations with the new state by guaranteeing its protection in case of invasion."
+	style = 2 
+
+	decision = {
+		exists = MAN
+		NOT = {
+			OR = {
+				ispuppet = MAN
+				alliance = { country = MAN country = SOV }
+				alliance = { country = MAN country = JAP }
+				alliance = { country = MAN country = ENG }
+			}
+		}
+	}
+	
+	decision_trigger = {
+
+	}
+
+	trigger = {
+		exists = MAN
+		NOT = {
+			OR = {
+				ispuppet = MAN
+				alliance = { country = MAN country = SOV }
+				alliance = { country = MAN country = JAP }
+				alliance = { country = MAN country = ENG }
+			}
+		}
+	}
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = { 
+		name = "Offer guarantee to Manchuria"
+		ai_chance = 100
+		command = { type = relation which = FRA value = 10 }
+		command = { type = trigger which = 3165121 }
+	}
+	action_b = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = relation which = FRA value = -10 }
+	}
+}
+
+event = { 
+	id = 3165121
+	random = no 
+	country = MAN
+
+	name = "Franco-Manchurian-Soviet negotiations"
+	desc = "After the successful conclusion of the Hatay negotiations, the Manchurian government entered into negotiations with France and the Soviet Union regarding the protection of Manchurian neutrality in the face of uncertainties regarding the intentions of Italy, Britain, and Germany. "
+	style = 2 
+
+	action_a = { 
+		name = ACTIONNAME3600A # Accept
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = JAP value = -50 }
+		command = { type = trigger which = 3165125 }
+		command = { type = trigger which = 3165126 }
+	}
+	action_b = { 
+		name = ACTIONNAME3600B # Refuse
+		ai_chance = 0
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+}
+
+event = { 
+	id = 3165125 
+	random = no
+	country = FRA
+	
+	name = "Guarantee accepted"
+	desc = "Manchuria wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = MAN value = 100 }
+		command = { type = guarantee which = FRA where = MAN }
+	}
+}
+
+event = { 
+	id = 3165126 
+	random = no
+	country = SOV
+	
+	name = "Guarantee accepted"
+	desc = "Manchuria wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = MAN value = 100 }
+		command = { type = guarantee which = SOV where = MAN }
+	}
+}
+
+
+event = { 
+	id = 3165130 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165126 
+		war = { country = JAP country = MAN }
+	}
+	
+	name = "Japanese war against Manchuria"
+	desc = "With Japan and Manchuria now at war, we must step in to defend our interests."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Fulfill our obligations"
+		command = { type = alliance which = MAN }
+	}
+}
+
+event = { 
+	id = 3165131 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165130 
+		OR = {
+			lost_VP = { country = MAN value = 20 }
+			random = 2
+		}
+	}
+	
+	name = "Manchurian-Soviet Unified Command"
+	desc = "With the German war machine on the roll, it is imperative that the Manchurian army is placed under Soviet command. It is also important that German sympathizers, pro-German forces, and potential German spies be kicked out of the Manchurian government ASAP."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "We must work together"
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3165132 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+	action_b = {
+		name = "This is not necessary"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+event = { 
+	id = 3165132 
+	random = no
+	country = MAN
+	
+	name = "Manchurian-Soviet Unified Command - Manchurian response"
+	desc = "With the German war machine on the roll, the Soviets demand that the Manchurian army become subordinate to the Red Army, that the Manchurian government expell ministers that the USSR deems not reliable enough, lift the ban on the Communist party, and suppress anti-Soviet views. What shall we do?"
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Go with the lesser evil"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = trigger which = 3165133 }
+	}
+	action_b = {
+		name = "Fight them"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = war which = SOV }
+		command = { type = belligerence which = MAN value = -10 }
+		command = { type = dissent value = -5 }
+	}
+}
+
+event = { 
+	id = 3165133 
+	random = no
+	country = SOV
+	
+	name = "Manchurian-Soviet Unified Command - Manchuria accepts"
+	desc = "Faced with a mortal threat of German takeover, Manchuria wisely choses to accept Soviet demands."
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Great"
+		#command = { type = coup_nation which = MAN }
+		command = { type = make_puppet which = MAN }
+	}
+}
+
+event = { 
+	id = 3165134 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165006
+		exists = MAN
+		war = { country = JAP country = MAN }
+		war = { country = JAP country = SOV }
+		lost_VP = { country = MAN value = 90 }
+	}
+	
+	name = "German war against Manchuria"
+	desc = "With Germany taking over most of Manchuria despite our aid, the remains of the Manchurian army is completely intergrated into the Red Army, with the more unreliable officers summarily executed. The part of the Manchurian government friendly to Soviet Union take refuge in Moscow."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Salvage what we can"
+		command = { type = inherit which = MAN value = 1 }
+	}
+}
+
+
+#Sinkiang
+
+event = { 
+	id = 3165220
+	random = no 
+	country = SOV
+
+	name = "Guarantee of Sinkiangs independence"
+	desc = "With the creation of a buffer state in Sinkiang, the USSR moved to formalize its relations with the new state by guaranteeing its protection in case of invasion."
+	style = 2 
+
+	decision = {
+		exists = SIK
+		NOT = { ispuppet = SIK }
+	}
+	
+	decision_trigger = {
+
+	}
+
+	trigger = {
+		exists = SIK
+		NOT = {	ispuppet = SIK }
+	}
+
+	date = { day = 29 month = march year = 1938 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = { 
+		name = "Offer guarantee to Sinkiang"
+		ai_chance = 100
+		command = { type = relation which = FRA value = 10 }
+		command = { type = trigger which = 3165221 }
+	}
+	action_b = {
+		name = "Stay out"
+		ai_chance = 0
+		command = { type = relation which = FRA value = -10 }
+	}
+}
+
+event = { 
+	id = 3165221
+	random = no 
+	country = SIK
+
+	name = "Franco-Sinkiangs-Soviet negotiations"
+	desc = "After the successful conclusion of the Hatay negotiations, the Sinkiangs government entered into negotiations with France and the Soviet Union regarding the protection of Sinkiangs neutrality in the face of uncertainties regarding the intentions of Italy, Britain, and Germany. "
+	style = 2 
+
+	action_a = { 
+		name = ACTIONNAME3600A # Accept
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = leave_alliance }
+		command = { type = domestic which = interventionism value = -2 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = JAP value = -50 }
+		command = { type = trigger which = 3165225 }
+		command = { type = trigger which = 3165226 }
+	}
+	action_b = { 
+		name = ACTIONNAME3600B # Refuse
+		ai_chance = 0
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -20 }
+		command = { type = relation which = FRA value = -20 }
+	}
+}
+
+event = { 
+	id = 3165225 
+	random = no
+	country = FRA
+	
+	name = "Guarantee accepted"
+	desc = "Sinkiang wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = SIK value = 100 }
+		command = { type = guarantee which = FRA where = SIK }
+	}
+}
+
+event = { 
+	id = 3165226 
+	random = no
+	country = SOV
+	
+	name = "Guarantee accepted"
+	desc = "Sinkiang wisely chose to accept our offer."
+	style = 2
+	picture = "guarantee_POL"
+	
+	action_a = {
+		name = "Great"
+		command = { type = relation which = SIK value = 100 }
+		command = { type = guarantee which = SOV where = SIK }
+	}
+}
+
+
+event = { 
+	id = 3165230 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165226 
+		war = { country = ENG country = SIK }
+	}
+	
+	name = "British war against Sinkiang"
+	desc = "With British and Sinkiang now at war, we must step in to defend our interests."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Fulfill our obligations"
+		command = { type = alliance which = SIK }
+	}
+}
+
+event = { 
+	id = 3165231 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165230 
+		OR = {
+			lost_VP = { country = SIK value = 20 }
+			random = 2
+		}
+	}
+	
+	name = "Sinkiangs-Soviet Unified Command"
+	desc = "With the German war machine on the roll, it is imperative that the Sinkiangs army is placed under Soviet command. It is also important that German sympathizers, pro-German forces, and potential German spies be kicked out of the Sinkiangs government ASAP."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "We must work together"
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3165232 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+	action_b = {
+		name = "This is not necessary"
+		ai_chance = 0
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = dissent value = 5 }
+	}
+}
+
+event = { 
+	id = 3165232 
+	random = no
+	country = SIK
+	
+	name = "Sinkiangs-Soviet Unified Command - Sinkiangs response"
+	desc = "With the German war machine on the roll, the Soviets demand that the Sinkiangs army become subordinate to the Red Army, that the Sinkiangs government expell ministers that the USSR deems not reliable enough, lift the ban on the Communist party, and suppress anti-Soviet views. What shall we do?"
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Go with the lesser evil"
+		ai_chance = 100
+		command = { type = dissent value = 10 }
+		command = { type = trigger which = 3165233 }
+	}
+	action_b = {
+		name = "Fight them"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = war which = SOV }
+		command = { type = belligerence which = SIK value = -10 }
+		command = { type = dissent value = -5 }
+	}
+}
+
+event = { 
+	id = 3165233 
+	random = no
+	country = SOV
+	
+	name = "Sinkiangs-Soviet Unified Command - Sinkiang accepts"
+	desc = "Faced with a mortal threat of German takeover, Sinkiang wisely choses to accept Soviet demands."
+	style = 2
+	picture = "guarantee_POL"
+
+	action_a = {
+		name = "Great"
+		#command = { type = coup_nation which = SIK }
+		command = { type = make_puppet which = SIK }
+	}
+}
+
+event = { 
+	id = 3165234 
+	random = no
+	country = SOV
+
+	trigger = {
+		event = 3165006
+		exists = SIK
+		war = { country = JAP country = SIK }
+		war = { country = JAP country = SOV }
+		lost_VP = { country = SIK value = 90 }
+	}
+	
+	name = "German war against Sinkiang"
+	desc = "With Germany taking over most of Sinkiang despite our aid, the remains of the Sinkiangs army is completely intergrated into the Red Army, with the more unreliable officers summarily executed. The part of the Sinkiangs government friendly to Soviet Union take refuge in Moscow."
+	style = 2
+	picture = "guarantee_POL"
+
+	date = { day = 29 month = march year = 1939 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Salvage what we can"
+		command = { type = inherit which = SIK value = 1 }
+	}
+}

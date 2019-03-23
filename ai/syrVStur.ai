@@ -1,0 +1,27 @@
+
+switch = no # [yes/no]
+
+garrison = {
+	country_priorities = {
+		IRQ = 0
+		LEB = 0
+		TUR = 20
+		PER = 0
+		SYR = 0
+	}
+
+	province_priorities = {	
+		184 = 50
+		889 = 50
+		36  = 10
+		35 = 10
+		1020 = 50
+	}
+	area_multiplier = {
+		184 = 3.0
+		889 = 4.0
+		36  = 4.0
+		35 = 4.0
+		1020 = 5.0
+	}
+}

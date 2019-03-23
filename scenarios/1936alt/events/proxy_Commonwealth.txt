@@ -1,0 +1,3407 @@
+
+###########################################################################
+# 3144000 - 3144999	Ireland events
+###########################################################################
+
+event = {
+	id = 272060
+	random = no
+	country = IRE
+
+	name = "Ireland militarisation"
+ 	desc = "Since the election of the Republicans in 1932, relations with Britain had rapidly deteriorated. Nonetheless, de Valera continued the course towards achieving independence, particularly concerned by the growth of Fascism in the UK. With help from France and the United States, he rapidly increased the size of the Irish army, in preparation for the inevitable confrontation with London."
+	style = 2
+
+	date = { day = 29 month = january year = 1936 }
+
+	action_a = {
+		name = ACTIONNAME272067A
+		command = { type = dissent value = -5 }
+		command = { type = belligerence value = 1 }
+		command = { type = manpowerpool value = 160 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = domestic which = political_left value = 7 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = domestic which = interventionism value = 3 }
+		command = { type = domestic which = defense_lobby value = 3 }
+	}
+}
+
+event = {
+	id = 272061
+	random = no
+	country = CAN
+	persistent = yes
+
+	trigger = { 
+		headofgovernment = 220002
+		OR = {
+			military_control = { country = ENG country = CAN }
+			military_control = { country = GER country = CAN }
+			military_control = { country = JAP country = CAN }
+		}
+	}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces"
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 2
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = ENG where = CAN value = 0 }
+		command = { type = military_control which = GER where = CAN value = 0 }
+		command = { type = military_control which = JAP where = CAN value = 0 }
+	}
+}
+
+#############################################
+# 272067 - (IRE) Irish Constitution of 1937 (by JRaup)
+#############################################
+event = {
+	id = 272067
+	random = no
+	country = IRE
+
+	name = EVT_272067_NAME
+ 	desc = EVT_272067_DESC
+	style = 2
+
+	date = { day = 29 month = may year = 1937 }
+
+	action_a = {
+		name = ACTIONNAME272067A
+		command = { type = end_puppet }
+		command = { type = leave_alliance }
+		command = { type = end_access which = ENG when = 0 }
+		command = { type = end_access which = GER when = 0 }
+		command = { type = headofstate which = 125015 } # Sean T. O'Kelly
+		command = { type = name where = IRE which = IRE }
+		command = { type = dissent value = -5 }
+		command = { type = manpowerpool value = 260 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = domestic which = interventionism value = 3 }
+		command = { type = domestic which = defense_lobby value = 3 }
+		command = { type = belligerence value = 1 }
+	}
+}
+
+event = {
+	id = 3144004
+	random = no
+	country = ENG
+	save_date = yes
+
+	name = "The Irish declare a Republic"
+ 	desc = "Despite repeated warnings and threats from London, the Irish government led by de Valera (elected in 1932) proceded with drafting a Republican constitution and scheduled a referendum on late june this year. A large group of US senators sent the Irish a letter of encouragement. The draft constitution is very likely to pass and will make Ireland an independent state. Have they gone too far?"
+	style = 2
+
+	date = { day = 1 month = june year = 1937 }
+
+	action_a = {
+		name = "They will pay for this"
+		command = { }
+		command = { type = addclaim which = 30 }
+		command = { type = addclaim which = 31 }
+		command = { type = addclaim which = 32 }
+		command = { type = addclaim which = 33 }
+		command = { type = addclaim which = 34 }
+		command = { type = ai_prepare_war which = IRE }
+	}
+}
+
+event = {
+	id = 3144005
+	random = no
+	country = ENG
+
+	name = "War on Ireland"
+ 	desc = "Despite repeated warnings and threats from London, the Irish government led by de Valera (elected in 1932) proceded with drafting a Republican constitution and scheduled a referendum on late june this year. A large group of US senators sent the Irish a letter of encouragement. The draft constitution is very likely to pass and will make Ireland an independent state. Have they gone too far?"
+	style = 2
+
+	decision = { 
+		event = 3144004
+		NOT = { war = { country = ENG country = IRE } }
+	}
+
+	decision_trigger = {
+		event = { id = 3144004 days = 10 }
+	}
+
+	trigger = {
+		event = { id = 3144004 days = 15 }
+		month = 3
+		NOT = { month = 10 }
+	}
+
+
+	date = { day = 1 month = june year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1938 }
+
+	action_a = {
+		name = "War on ireland"
+		command = { type = belligerence value = 5 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = war which = IRE }
+		command = { type = event which = 2400535 where = IRE when = 0 } #independence flag
+		command = { type = dissent value = -5 }
+		#command = { trigger = { ai = yes } type = add_corps where = 36 } #AI cheat
+		#command = { trigger = { ai = yes } type = add_division value = hq when = 2 where = anti_air }
+	}
+}
+
+event = {
+	id = 3144006
+	random = no
+	country = ENG
+
+	name = "No War on Ireland"
+ 	desc = "The Irish have successfully defied the British crown and declared themselves a republic. The lack of a firm response by the UK government towards this had set a terrible precedent at home and abroad, where many are considering following the precedent set by Ireland."
+	style = 2
+
+	trigger = {
+		event = 3144004
+		exists = IRE
+		NOT = { war = { country = ENG country = IRE } }
+		NOT = { puppet = { country = IRE country = ENG } }
+	}
+
+
+	date = { day = 1 month = march year = 1938 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1939 }
+
+	action = {
+		name = "We have to fight, now!"
+		command = { type = belligerence value = 5 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = war which = IRE }
+		command = { type = event which = 2400535 where = IRE when = 0 } #independence flag
+		command = { type = dissent value = -5 }
+		#command = { trigger = { ai = yes } type = add_corps where = 36 } #AI cheat
+		#command = { trigger = { ai = yes } type = add_division value = hq when = 2 where = anti_air }
+	}
+	action = {
+		name = "Stay true to our path"
+		command = { type = belligerence value = -2 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = domestic which = defense_lobby value = -1 }
+		command = { type = dissent value = 40 }
+		command = { type = relation which = IRE value = 50 }
+		command = { type = end_mastery which = IRE }
+		command = { type = end_mastery which = CAN }
+		command = { type = end_mastery which = AST }
+		command = { type = end_mastery which = NZL }
+		command = { type = end_mastery which = SAF }
+		command = { type = end_mastery which = U02 }
+	}
+}
+
+event = {
+	id = 3144007
+	random = no
+	country = IRE
+
+	name = "English invasion"
+ 	desc = "The English have treacherously attacked our country, trying to prevent the Irish people from voting in a referendum on republican rule. This was not unexpected, and we are prepared to fight! Our main defense strategy is based on the idea of retreating to Cork and digging into the natural defences in the area."
+	style = 2
+
+	trigger = {
+		war = { country = ENG country = IRE }
+	}
+
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action_a = {
+		name = "For the motherland!"
+		command = { type = dissent value = -5 }
+		command = { type = add_corps where = 31 }
+		command = { type = add_division value = garrison when = 5 where = anti_air }
+	}
+}
+
+################################################
+# 272068 - (IRE) External Relations Act, 1936 (by JRaup)
+################################################
+event = {
+	id = 272068
+	random = no
+	country = IRE
+
+	trigger = { }
+
+	name = EVT_272068_NAME
+ 	desc = EVT_272068_DESC
+	style = 2
+
+	date = { day = 20 month = december year = 1936 }
+
+	action_a = {
+		name = ACTIONNAME272068A
+		command = { type = dissent value = -5 }
+		command = { type = domestic which = interventionism value = 2 }
+		command = { type = domestic which = defense_lobby value = 2 }
+		command = { type = money value = 5 }
+	}
+}
+#####################################################
+# 272069 - (IRE) Aer Lingus Formed (by JRaup)
+#####################################################
+event = {
+	id = 272069
+	random = no
+	country = IRE
+	trigger = {
+		random = 75
+	}
+
+	name = EVT_272069_NAME
+	desc = EVT_272069_DESC
+	style = 2
+
+	date = { day = 1 month = August year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1936 }
+
+	action_a = {
+		name = ACTIONNAME272069A
+		command = { type = construct which = infrastructure where = 34 value = 10 } # Dublin
+		command = { type = construct which = infrastructure where = 31 value = 10 } # Cork
+		command = { type = construct which = infrastructure where = 32 value = 10 } # Galway
+		command = { type = construct which = ic where = 34 value = 1 } # Dublin
+		command = { type = construct which = ic where = 31 value = 1 } # Cork
+		command = { type = construct which = ic where = 32 value = 1 } # Galway
+		command = { type = money value = 2 }
+		command = { type = oilpool value = 1000 }
+	}
+}
+
+#####################################################
+# 3144010 - Indinesian rebellion
+#####################################################
+
+event = {
+	id = 3144010
+	random = no
+	country = U05
+
+	name = "Rebellion in Indonesia"
+ 	desc = "The Indonesian National Awakening consistently gathered pace throughout the 1930s and was particularly energized by the new direction of the Dutch government and the growing tension in Europe. When a major war finally broke out, the Indonesian resistance made its first moves and started to actively contenst the Dutch rule."
+	style = 2
+
+	trigger = {
+		NOT = { exists = INO }
+		OR = {
+			war = { country = HOL country = SOV }
+			war = { country = HOL country = USA }
+		}
+	}
+
+
+	date = { day = 1 month = march year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1965 }
+
+	action = {
+		name = "Suppress the rebellion!"
+		ai_chance = 100
+		command = { type = alliance which = HOL }
+		command = { type = civil_war which = INO }
+		command = { type = event which = 3144011 where = U05 when = 1 }
+	}
+}
+
+event = {
+	id = 3144011
+	random = no
+	country = U05
+
+	name = "Rebellion in Indonesia"
+ 	desc = "The Indonesian National Awakening consistently gathered pace throughout the 1930s and was particularly energized by the new direction of the Dutch government and the growing tension in Europe. When a major war finally broke out, the Indonesian resistance made its first moves and started to actively contenst the Dutch rule."
+	style = 2
+
+	action = {
+		name = "Suppress the rebellion!"
+		ai_chance = 100
+		command = { type = secedeprovince which = INO value = 1640 when = 2 }
+		command = { type = secedeprovince which = INO value = 1642 when = 2 }
+		command = { type = secedeprovince which = INO value = 1634 when = 2 }
+		command = { type = secedeprovince which = INO value = 1635 when = 2 }
+		command = { type = secedeprovince which = INO value = 1637 when = 2 }
+		command = { type = secedeprovince which = INO value = 1638 when = 2 }
+		command = { type = secedeprovince which = INO value = 1641 when = 2 }
+		command = { type = secedeprovince which = INO value = 1648 when = 2 }
+		command = { type = secedeprovince which = INO value = 1650 when = 2 }
+		command = { type = secedeprovince which = INO value = 1652 when = 2 }
+		command = { type = secedeprovince which = INO value = 1646 when = 2 }
+		command = { type = secedeprovince which = INO value = 1654 when = 2 }
+		
+		#15 garrisons 10 infantry
+		command = { type = add_corps value = land where = 1636 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1639 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1647 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1651 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1649 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1653 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1655 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1631 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1657 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1659 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1600 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1596 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1632 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1627 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		command = { type = add_corps value = land where = 1636 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1647 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1631 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1657 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1596 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		command = { type = trigger which = 3144012 }
+		
+		command = { type = construct which = land_fort where = 1636 value = 4 }
+	}
+}
+
+event = {
+	id = 3144012
+	random = no
+	country = INO
+
+	name = "Indonesian National Awakening"
+ 	desc = "The Indonesian National Awakening consistently gathered pace throughout the 1930s and was particularly energized by the new direction of the Dutch government and the growing tension in Europe. When a major war finally broke out, the Indonesian resistance made its first moves and started to actively contenst the Dutch rule."
+	style = 2
+
+	action = {
+		name = "For glory!"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		
+		command = { type = capital which = 1638 }
+		
+		command = { type = money value = 100 } #important to let them set up trades in the beginning
+		command = { type = supplies value = 5000 }
+		command = { type = oilpool value = 2500 }
+		command = { type = metalpool value = 2500 }
+		command = { type = energypool value = 5000 }
+		command = { type = rarematerialspool value = 2500 }
+		command = { type = transport_pool which = INO value = 1000 }
+		
+		command = { type = set_domestic which = political_left value = 7 }
+		command = { type = set_domestic which = democratic value = 5 }
+		command = { type = set_domestic which = interventionism value = 5 }
+		command = { type = set_domestic which = defense_lobby value = 7 }
+		
+		command = { type = secedeprovince which = U05 value = 1639 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1636 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1647 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1651 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1649 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1653 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1655 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1656 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1643 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1645 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1615 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1616 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1619 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1644 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1657 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1658 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1660 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1659 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1620 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1621 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1622 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1599 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1600 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1595 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1601 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1618 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1598 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1597 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1596 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1594 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1633 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1631 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1628 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1623 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1627 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1632 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1629 when = 2 }
+		command = { type = secedeprovince which = U05 value = 1630 when = 2 }
+		
+		#15 garrisons 10 infantry
+		command = { type = add_corps value = land where = 1648 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1650 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1652 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1646 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1654 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		command = { type = add_corps value = land where = 1640 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1642 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1634 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1637 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1635 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1638 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1641 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		command = { type = add_corps value = land where = 1648 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1650 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1654 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1638 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1641 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		command = { type = event which = 3144013 where = HOL when = 5 }
+		
+		command = { type = construct which = land_fort where = 1648 value = 2 }
+		command = { type = construct which = land_fort where = 1654 value = 2 }
+	}
+}
+
+
+event = {
+	id = 3144013
+	random = no
+	country = HOL
+
+	name = "Rebellion in Indonesia"
+ 	desc = "The Indonesian National Awakening consistently gathered pace throughout the 1930s and was particularly energized by the new direction of the Dutch government and the growing tension in Europe. When a major war finally broke out, the Indonesian resistance made its first moves and started to actively contenst the Dutch rule."
+	style = 2
+
+	action = {
+		name = "Suppress the rebellion!"
+		ai_chance = 100
+		command = { type = inherit which = U05 value = 1 }
+		command = { type = secedeprovince which = INO value = 1640 }
+		command = { type = secedeprovince which = INO value = 1642 }
+		command = { type = secedeprovince which = INO value = 1634 }
+		command = { type = secedeprovince which = INO value = 1635 }
+		command = { type = secedeprovince which = INO value = 1637 }
+		command = { type = secedeprovince which = INO value = 1638 }
+		command = { type = secedeprovince which = INO value = 1641 }
+		command = { type = secedeprovince which = INO value = 1648 }
+		command = { type = secedeprovince which = INO value = 1650 }
+		command = { type = secedeprovince which = INO value = 1652 }
+		command = { type = secedeprovince which = INO value = 1646 }
+		command = { type = secedeprovince which = INO value = 1654 }
+		command = { type = transport_pool which = HOL value = 1000 }
+	}
+	action = {
+		name = "Give them independence"
+		ai_chance = 0
+		command = { type = removeclaim which = 1639 }
+		command = { type = removeclaim which = 1642 }
+		command = { type = removeclaim which = 1640 }
+		command = { type = removeclaim which = 1635 }
+		command = { type = removeclaim which = 1634 }
+		command = { type = removeclaim which = 1637 }
+		command = { type = removeclaim which = 1636 }
+		command = { type = removeclaim which = 1641 }
+		command = { type = removeclaim which = 1638 }
+		command = { type = removeclaim which = 1647 }
+		command = { type = removeclaim which = 1648 }
+		command = { type = removeclaim which = 1646 }
+		command = { type = removeclaim which = 1651 }
+		command = { type = removeclaim which = 1650 }
+		command = { type = removeclaim which = 1649 }
+		command = { type = removeclaim which = 1654 }
+		command = { type = removeclaim which = 1653 }
+		command = { type = removeclaim which = 1652 }
+		command = { type = removeclaim which = 1655 }
+		command = { type = removeclaim which = 1656 }
+		command = { type = removeclaim which = 1643 }
+		command = { type = removeclaim which = 1645 }
+		command = { type = removeclaim which = 1615 }
+		command = { type = removeclaim which = 1616 }
+		command = { type = removeclaim which = 1619 }
+		command = { type = removeclaim which = 1644 }
+		command = { type = removeclaim which = 1657 }
+		command = { type = removeclaim which = 1658 }
+		command = { type = removeclaim which = 1660 }
+		command = { type = removeclaim which = 1659 }
+		command = { type = removeclaim which = 1620 }
+		command = { type = removeclaim which = 1621 }
+		command = { type = removeclaim which = 1622 }
+		command = { type = removeclaim which = 1599 }
+		command = { type = removeclaim which = 1600 }
+		command = { type = removeclaim which = 1595 }
+		command = { type = removeclaim which = 1601 }
+		command = { type = removeclaim which = 1618 }
+		command = { type = removeclaim which = 1598 }
+		command = { type = removeclaim which = 1597 }
+		command = { type = removeclaim which = 1596 }
+		command = { type = removeclaim which = 1594 }
+		command = { type = removeclaim which = 1633 }
+		command = { type = removeclaim which = 1631 }
+		command = { type = removeclaim which = 1628 }
+		command = { type = removeclaim which = 1623 }
+		command = { type = removeclaim which = 1627 }
+		command = { type = removeclaim which = 1632 }
+		command = { type = removeclaim which = 1629 }
+		command = { type = removeclaim which = 1630 }
+		command = { type = belligerence value = -1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = domestic which = defense_lobby value = -1 }
+		command = { type = dissent value = 15 }
+		command = { type = event which = 3144014 where = INO when = 0 }
+		command = { type = transport_pool which = HOL value = 500 }
+	}
+}
+
+event = {
+	id = 3144014
+	random = no
+	country = INO
+
+	name = "Indonesian National Awakening"
+ 	desc = "The Indonesian National Awakening consistently gathered pace throughout the 1930s and was particularly energized by the new direction of the Dutch government and the growing tension in Europe. When a major war finally broke out, the Indonesian resistance made its first moves and started to actively contenst the Dutch rule. Seeing this, the Dutch decided to not fight a losing battle and left."
+	style = 2
+
+	action = {
+		name = "Amazing!"
+		command = { type = inherit which = U05 value = 1 }
+		command = { type = dissent value = -15 }
+		command = { type = secedeprovince which = INO value = 1640 when = 2 }
+		command = { type = secedeprovince which = INO value = 1642 when = 2 }
+		command = { type = secedeprovince which = INO value = 1634 when = 2 }
+		command = { type = secedeprovince which = INO value = 1635 when = 2 }
+		command = { type = secedeprovince which = INO value = 1637 when = 2 }
+		command = { type = secedeprovince which = INO value = 1638 when = 2 }
+		command = { type = secedeprovince which = INO value = 1641 when = 2 }
+		command = { type = secedeprovince which = INO value = 1648 when = 2 }
+		command = { type = secedeprovince which = INO value = 1650 when = 2 }
+		command = { type = secedeprovince which = INO value = 1652 when = 2 }
+		command = { type = secedeprovince which = INO value = 1646 when = 2 }
+		command = { type = secedeprovince which = INO value = 1654 when = 2 }
+		command = { type = secedeprovince which = INO value = 1639 when = 2 }
+		command = { type = secedeprovince which = INO value = 1636 when = 2 }
+		command = { type = secedeprovince which = INO value = 1647 when = 2 }
+		command = { type = secedeprovince which = INO value = 1651 when = 2 }
+		command = { type = secedeprovince which = INO value = 1649 when = 2 }
+		command = { type = secedeprovince which = INO value = 1653 when = 2 }
+		command = { type = secedeprovince which = INO value = 1655 when = 2 }
+		command = { type = secedeprovince which = INO value = 1656 when = 2 }
+		command = { type = secedeprovince which = INO value = 1643 when = 2 }
+		command = { type = secedeprovince which = INO value = 1645 when = 2 }
+		command = { type = secedeprovince which = INO value = 1615 when = 2 }
+		command = { type = secedeprovince which = INO value = 1616 when = 2 }
+		command = { type = secedeprovince which = INO value = 1619 when = 2 }
+		command = { type = secedeprovince which = INO value = 1644 when = 2 }
+		command = { type = secedeprovince which = INO value = 1657 when = 2 }
+		command = { type = secedeprovince which = INO value = 1658 when = 2 }
+		command = { type = secedeprovince which = INO value = 1660 when = 2 }
+		command = { type = secedeprovince which = INO value = 1659 when = 2 }
+		command = { type = secedeprovince which = INO value = 1620 when = 2 }
+		command = { type = secedeprovince which = INO value = 1621 when = 2 }
+		command = { type = secedeprovince which = INO value = 1622 when = 2 }
+		command = { type = secedeprovince which = INO value = 1599 when = 2 }
+		command = { type = secedeprovince which = INO value = 1600 when = 2 }
+		command = { type = secedeprovince which = INO value = 1595 when = 2 }
+		command = { type = secedeprovince which = INO value = 1601 when = 2 }
+		command = { type = secedeprovince which = INO value = 1618 when = 2 }
+		command = { type = secedeprovince which = INO value = 1598 when = 2 }
+		command = { type = secedeprovince which = INO value = 1597 when = 2 }
+		command = { type = secedeprovince which = INO value = 1596 when = 2 }
+		command = { type = secedeprovince which = INO value = 1594 when = 2 }
+		command = { type = secedeprovince which = INO value = 1633 when = 2 }
+		command = { type = secedeprovince which = INO value = 1631 when = 2 }
+		command = { type = secedeprovince which = INO value = 1628 when = 2 }
+		command = { type = secedeprovince which = INO value = 1623 when = 2 }
+		command = { type = secedeprovince which = INO value = 1627 when = 2 }
+		command = { type = secedeprovince which = INO value = 1632 when = 2 }
+		command = { type = secedeprovince which = INO value = 1629 when = 2 }
+		command = { type = secedeprovince which = INO value = 1630 when = 2 }
+		
+		command = { type = peace which = ENG value = 1 }
+		command = { type = peace which = GER value = 1 }
+		command = { type = peace which = HOL value = 1 }
+		command = { type = peace which = SCA value = 1 }
+		command = { type = peace which = SPA value = 1 }
+		command = { type = peace which = POR value = 1 }
+		command = { type = peace which = FIN value = 1 }
+		command = { type = peace which = ITA value = 1 }
+		command = { type = peace which = CRO value = 1 }
+		command = { type = peace which = SLV value = 1 }
+		command = { type = peace which = TUR value = 1 }
+		command = { type = peace which = ISR value = 1 }
+		command = { type = peace which = JAP value = 1 }
+		command = { type = peace which = MEX value = 1 }
+		command = { type = peace which = COL value = 1 }
+	}
+}
+
+#####################################################
+# 3144020 - Vietnamese rebellion
+#####################################################
+
+event = {
+	id = 3144020
+	random = no
+	country = FRA
+
+	name = "Rebellion in Vietnam"
+ 	desc = "With the outbreak of war between France and Britain, the Vietnamese branch of the Chinese Kuomintang VNQDD, supported by smaller Viet-Minh coalition led by Pac Bo by Ho Chi Minh, started preparations for a nationalist revolt. They were strongly supported and encouraged by the British and Japanese who, while having their own designs on Indochina, had too many other pressing priorities and felt like they needed a local ally."
+	style = 2
+
+	trigger = {
+		NOT = { exists = VIE }
+		OR = {
+			war = { country = ENG country = FRA }
+			war = { country = JAP country = FRA }
+		}
+	}
+
+
+	date = { day = 1 month = march year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1965 }
+
+	action = {
+		name = "Suppress the rebellion!"
+		ai_chance = 100
+		command = { type = independence which = VIE value = 1 }
+		command = { type = war which = VIE }
+		command = { type = trigger which = 3144021 }
+	}
+	action = {
+		name = "Give them independence"
+		ai_chance = 0
+		command = { type = independence which = VIE value = 1 }
+		command = { type = removeclaim which = 1404 }
+		command = { type = removeclaim which = 1405 }
+		command = { type = removeclaim which = 1391 }
+		command = { type = removeclaim which = 1394 }
+		command = { type = removeclaim which = 1402 }
+		command = { type = removeclaim which = 1401 }
+		command = { type = removeclaim which = 1400 }
+		command = { type = removeclaim which = 1398 }
+		command = { type = removeclaim which = 1392 }
+		command = { type = removeclaim which = 1393 }
+		command = { type = removeclaim which = 1395 }
+		command = { type = removeclaim which = 1396 }
+		command = { type = removeclaim which = 1397 }
+		command = { type = removeclaim which = 1399 }
+		command = { type = removeclaim which = 1403 }
+		command = { type = belligerence value = -1 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = domestic which = defense_lobby value = -1 }
+		command = { type = dissent value = 10 }
+		command = { type = event which = 3144022 where = VIE when = 1 }
+		command = { type = secedeprovince which = VIE value = 1404 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1405 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1391 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1394 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1402 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1401 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1400 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1398 when = 2 }
+		
+	}
+}
+
+event = {
+	id = 3144021
+	random = no
+	country = FRA
+
+	name = "Rebellion in Vietnam"
+ 	desc = "With the outbreak of war between France and Britain, the Vietnamese branch of the Chinese Kuomintang VNQDD, supported by smaller Viet-Minh coalition led by Pac Bo by Ho Chi Minh, started preparations for a nationalist revolt. They were strongly supported and encouraged by the British and Japanese who, while having their own designs on Indochina, had too many other pressing priorities and felt like they needed a local ally."
+	style = 2
+
+	action = {
+		name = "Suppress the rebellion!"
+		ai_chance = 100
+		command = { type = secedeprovince which = VIE value = 1392 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1393 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1395 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1396 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1397 when = 2 }
+		command = { type = secedeprovince which = VIE value = 1398 when = 2 }
+		
+		#4 garrisons 4 infantry
+		command = { type = add_corps value = land where = 1405 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1394 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1401 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1402 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1400 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1403 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 1399 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		command = { type = trigger which = 3144022 }
+		
+		command = { type = construct which = land_fort where = 1399 value = 2 }
+	}
+}
+
+event = {
+	id = 3144022
+	random = no
+	country = VIE
+
+	name = "Vietnamese National Awakening"
+ 	desc = "With the outbreak of war between France and Britain, the Vietnamese branch of the Chinese Kuomintang VNQDD, supported by smaller Viet-Minh coalition led by Pac Bo by Ho Chi Minh, started preparations for a nationalist revolt. They were strongly supported and encouraged by the British and Japanese who, while having their own designs on Indochina, had too many other pressing priorities and felt like they needed a local ally."
+	style = 2
+
+	action = {
+		name = "For glory!"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		
+		command = { type = flag_ext where = VIE which = "_NLF" }
+		
+		command = { type = capital which = 1395 }
+		command = { type = construct which = land_fort where = 1395 value = 2 }
+		
+		command = { type = money value = 100 } #important to let them set up trades in the beginning
+		command = { type = supplies value = 5000 }
+		command = { type = oilpool value = 2500 }
+		command = { type = metalpool value = 2500 }
+		command = { type = energypool value = 5000 }
+		command = { type = rarematerialspool value = 2500 }
+		command = { type = transport_pool which = VIE value = 1000 }
+		
+		command = { type = set_domestic which = political_left value = 4 }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = interventionism value = 5 }
+		command = { type = set_domestic which = defense_lobby value = 7 }
+		
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1404 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1405 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1391 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1394 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1402 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1401 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1400 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1403 when = 2 }
+		command = { trigger = { war = { country = FRA } } type = secedeprovince which = FRA value = 1399 when = 2 }
+		
+		command = { type = addcore which = 1404 }
+		command = { type = addcore which = 1405 }
+		command = { type = addcore which = 1391 }
+		command = { type = addcore which = 1394 }
+		command = { type = addcore which = 1402 }
+		command = { type = addcore which = 1401 }
+		command = { type = addcore which = 1400 }
+		command = { type = addcore which = 1398 }
+		
+		#8 garrisons 10 infantry
+		command = { type = add_corps value = land where = 1395 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1392 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1393 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1396 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1397 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1398 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		#2 infantry
+		command = { type = add_corps value = land where = 1395 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 1396 }
+		command = { type = add_division value = infantry when = 8 }
+	}
+}
+
+#########################################################################
+# Commonwealth annexation
+#########################################################################
+event = { 
+	id = 3131001
+	random = no
+	country = ENG
+
+	decision = {
+		year = 1937
+		OR = {
+			war = { country = ENG country = IRE } 
+			NOT = { exists = IRE }
+			AND = {
+				NOT = { control = { province = 34 data = IRE } }
+				year = 1938
+			}
+		}
+	}
+	
+	decision_trigger = {
+		OR = {
+			NOT = { exists = IRE }
+			AND = {
+				NOT = { control = { province = 34 data = IRE } }
+				year = 1938
+			}
+		}
+		
+	}
+
+	trigger = {
+		year = 1937
+		OR = {
+			NOT = { exists = IRE }
+			AND = {
+				NOT = { control = { province = 34 data = IRE } }
+				year = 1938
+			}
+		}
+	}
+
+	name = EVT3131001_NAME
+	desc = EVT3131001_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Desperate times require desperate measures"
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = setflag which = CMW }
+		command = { type = belligerence value = 1 }
+	}
+	action_b = {
+		name = "Do not dare to provoke further backlash"
+		ai_chance = 0
+		command = { }
+	}
+}
+
+event = { 
+	id = 3131002
+	random = no
+	country = NZL
+
+	trigger = {
+		flag = CMW 
+		random = 20
+	}
+
+	name = EVT3131001_NAME
+	desc = EVT3131001_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Accept supervision from London"
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131006 }
+	}
+	action_b = {
+		name = "This is an unaccpetable proposition"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = end_puppet }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = war which = ENG }
+		command = { type = event which = 2400535 where = NZL when = 0 } #independence flag
+		command = { type = domestic which = political_left value = 9 }
+		command = { type = domestic which = democratic value = -5 }
+		command = { type = domestic which = interventionism value = 7 }
+		command = { type = domestic which = defense_lobby value = 7 }
+		command = { type = dissent value = 40 }
+	}
+}
+
+event = { 
+	id = 3131003
+	random = no
+	country = SAF
+
+	trigger = {
+		flag = CMW 
+		NOT = { exists = NZL }
+		random = 20
+	}
+
+	name = EVT3131001_NAME
+	desc = EVT3131001_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Appeal to the Dutch"
+		ai_chance = 95
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131010 }
+	}
+	action_b = {
+		name = "Accept supervision from London"
+		ai_chance = 5
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131007 }
+	}
+	action_c = {
+		name = "This is an unaccpetable proposition"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = end_puppet }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = war which = ENG }
+		command = { type = event which = 2400535 where = SAF when = 0 } #independence flag
+		command = { type = domestic which = political_left value = 9 }
+		command = { type = domestic which = democratic value = -5 }
+		command = { type = domestic which = interventionism value = 7 }
+		command = { type = domestic which = defense_lobby value = 7 }
+		command = { type = dissent value = 40 }
+	}
+}
+
+event = { 
+	id = 3131004
+	random = no
+	country = AST
+
+	trigger = {
+		flag = CMW 
+		random = 20
+		NOT = { exists = NZL }
+		NOT = { exists = U02 }
+	}
+
+	name = EVT3131001_NAME
+	desc = EVT3131001_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Accept supervision from London"
+		ai_chance = 97
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131008 }
+	}
+	action_b = {
+		name = "This is an unaccpetable proposition"
+		ai_chance = 3
+		command = { type = leave_alliance }
+		command = { type = end_puppet }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = war which = ENG }
+		command = { type = event which = 2400535 where = AST when = 0 } #independence flag
+		command = { type = domestic which = political_left value = 9 }
+		command = { type = domestic which = democratic value = -5 }
+		command = { type = domestic which = interventionism value = 7 }
+		command = { type = domestic which = defense_lobby value = 7 }
+		command = { type = dissent value = 40 }
+	}
+}
+
+event = { 
+	id = 3131005
+	random = no
+	country = CAN
+	save_date = yes
+
+	trigger = {
+		flag = CMW 
+		random = 20
+		NOT = { exists = NZL }
+		NOT = { exists = AST }
+	}
+
+	name = EVT3131005_NAME
+	desc = EVT3131005_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Accept supervision from London"
+		ai_chance = 1
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131009 }
+	}
+	action_b = {
+		name = "This is an unaccpetable proposition"
+		ai_chance = 99
+		command = { type = leave_alliance }
+		command = { type = end_puppet }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = civil_war which = QUE }
+		command = { type = event which = 2400535 where = CAN when = 0 } #independence flag
+		command = { type = event which = 3131020 where = CAN when = 1 }
+		command = { type = event which = 3131023 where = USA when = 1 }
+		command = { type = setflag which = CAN_fight }
+		command = { type = local_setflag which = UnionBreak }
+	}
+}
+
+event = { 
+	id = 3131018
+	random = no
+	country = U02
+
+	trigger = {
+		flag = CMW 
+		random = 20
+		NOT = { exists = NZL }
+	}
+
+	name = EVT3131001_NAME
+	desc = EVT3131001_DESC
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "Accept supervision from London"
+		ai_chance = 100
+		command = { type = dissent value = 1 }
+		command = { type = trigger which = 3131017 }
+	}
+	action_b = {
+		name = "This is an unaccpetable proposition"
+		ai_chance = 0
+		command = { type = leave_alliance }
+		command = { type = end_puppet }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = war which = ENG }
+		command = { type = event which = 2400535 where = U02 when = 0 } #independence flag
+		command = { type = domestic which = political_left value = 9 }
+		command = { type = domestic which = democratic value = -5 }
+		command = { type = domestic which = interventionism value = 7 }
+		command = { type = domestic which = defense_lobby value = 7 }
+		command = { type = dissent value = 80 }
+	}
+}
+
+event = { 
+	id = 3131006
+	random = no
+	country = ENG
+
+	name = "New Zealand caves in"
+	desc = "The strongly pro-British government of New Zealand led by the Reform party caves in to Mosley's demands for stronger control and coordination with London."
+	style = 2
+	
+	action_a = {
+		name = "Excellent!"
+		command = { type = belligerence value = 2 }
+		command = { type = inherit which = NZL value = 1 }
+		command = { type = dissent value = 1 } #dissent in Dominions balanced out by enthusiasm at home
+	}
+}
+
+event = { 
+	id = 3131007
+	random = no
+	country = ENG
+
+	name = "South Africa caves in"
+	desc = "The government of South Africa caves in to Mosley's demands for stronger control and coordination with London."
+	style = 2
+	
+	action_a = {
+		name = "Excellent!"
+		command = { type = belligerence value = 2 }
+		command = { type = inherit which = SAF value = 1 }
+		command = { type = dissent value = 3 } #dissent in Dominions balanced out by enthusiasm at home
+	}
+}
+
+event = { 
+	id = 3131008
+	random = no
+	country = ENG
+
+	name = "Australia caves in"
+	desc = "The government of Australia caves in to Mosley's demands for stronger control and coordination with London."
+	style = 2
+	
+	action_a = {
+		name = "Excellent!"
+		command = { type = belligerence value = 2 }
+		command = { type = inherit which = AST value = 1 }
+		command = { type = dissent value = 3 } #dissent in Dominions balanced out by enthusiasm at home
+	}
+}
+
+event = { 
+	id = 3131009
+	random = no
+	country = ENG
+
+	name = "Canada caves in"
+	desc = "The government of Canada caves in to Mosley's demands for stronger control and coordination with London."
+	style = 2
+	
+	action_a = {
+		name = "Good!"
+		command = { type = belligerence value = 3 }
+		command = { type = inherit which = CAN value = 1 }
+		command = { type = dissent value = 6 } #dissent in Dominions balanced out by enthusiasm at home
+
+		command = { type = add_corps value = land where = 2111 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2113 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2114 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2129 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2132 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2136 }
+		command = { type = add_division value = infantry when = 8 }
+	}
+}
+
+event = { 
+	id = 3131010
+	random = no
+	country = HOL
+
+	name = "British seek firmer control over South Africa"
+	desc = "With a new war raging in Ireland, the situation becomes tense in other Dominions of the Commonwealth who see this as a reversal of the previous policy of gradually increasing sovereignty. To prevent further destabilization, the Mosley government aims to decrease the autonomy of the Commonwealth by various means. However, it meets resistance where it least expects it - in South Africa, whose leadership appeals to our governemnt for help."
+	style = 2
+	
+	action_a = {
+		name = "Propose to partition South Africa with the British"
+		ai_chance = 75
+		command = { type = addcore which = 876 }
+		command = { type = addcore which = 878 }
+		command = { type = addcore which = 879 }
+		command = { type = addcore which = 880 }
+		command = { type = addcore which = 883 }
+		command = { type = trigger which = 3131013 }
+	}
+	action_b = {
+		name = "Ask the British for an exemption, promise cooperation"
+		ai_chance = 20
+		command = { type = addcore which = 876 }
+		command = { type = addcore which = 878 }
+		command = { type = addcore which = 879 }
+		command = { type = addcore which = 880 }
+		command = { type = addcore which = 883 }
+		command = { type = trigger which = 3131011 }
+	}
+	action_c = {
+		name = "South Africa is not our business"
+		ai_chance = 4
+		command = { type = trigger which = 3131007 }
+	}
+	action_d = {
+		name = "It's a good time to reclaim our colony!"
+		ai_chance = 1
+		command = { type = addcore which = 876 }
+		command = { type = addcore which = 878 }
+		command = { type = addcore which = 879 }
+		command = { type = addcore which = 880 }
+		command = { type = addcore which = 883 }
+		command = { type = trigger which = 3131015 }
+	}
+}
+
+event = { 
+	id = 3131011
+	random = no
+	country = ENG
+
+	name = "Dutch seek an exemption over South Africa"
+	desc = "The leaderhip of our dominion of South Africa, backed by the Dutch and German governments, asks us to make an exemption for South Africa and avoid decreasing its autonomy. To agree is to set a bad precedent, to disagree is to risk upsetting relations or even war."
+	style = 2
+	
+	action_a = {
+		name = "We can make an exemption for South Africa"
+		ai_chance = 75
+		command = { type = end_mastery which = SAF }
+		command = { type = dissent value = 2 }
+		command = { type = trigger which = 3131012 }
+	}
+	action_b = {
+		name = "Partition South Africa with the Dutch"
+		ai_chance = 24
+		command = { type = addcore which = 876 }
+		command = { type = trigger which = 3131014 }
+	}
+	action_c = {
+		name = "This is an unacceptable proposition"
+		ai_chance = 1
+		command = { type = trigger which = 3131015 }
+	}
+}
+
+event = { 
+	id = 3131012
+	random = no
+	country = HOL
+
+	name = "Exemption granted to South Africa"
+	desc = "Under presure from Amsterdam and Berlin, the UK agreed to grant an exmeption to South Africa. This show of weakness by the British side was quickly noted in Pretoria."
+	style = 2
+	
+	action_a = {
+		name = "Great!"
+		command = { type = belligerence value = 1 }
+		command = { type = addcore which = 876 }
+		command = { type = addcore which = 878 }
+		command = { type = addcore which = 879 }
+		command = { type = addcore which = 880 }
+		command = { type = addcore which = 883 }
+		command = { type = make_puppet which = SAF }
+		command = { type = event which = 2400538 where = SAF when = 0 } #strong puppet
+		command = { type = dissent value = -6 }
+	}
+}
+
+event = { 
+	id = 3131013
+	random = no
+	country = ENG
+
+	name = "Dutch seek a partition of South Africa"
+	desc = "The leaderhip of our dominion of South Africa, backed by the Dutch and German governments, asks us to allow for a partition of South Africa between the Dutch and ourselves"
+	style = 2
+	
+	action_a = {
+		name = "Agree to partition"
+		ai_chance = 99
+		command = { type = belligerence value = 2 }
+		command = { type = trigger which = 3131014 }
+	}
+	action_b = {
+		name = "This is an unacceptable proposition"
+		ai_chance = 1
+		command = { type = trigger which = 3131015 }
+	}
+}
+
+event = { 
+	id = 3131014
+	random = no
+	country = SAF
+
+	name = "Partition of South Africa"
+	desc = "UK proposes that under the present circumtances, partition of South Africa between Dutch and English zones of control is the best option."
+	style = 2
+	
+	action_a = {
+		name = "We have no choice but to accept"
+		command = { type = secedeprovince which = ENG value = 881 }
+		command = { type = secedeprovince which = ENG value = 882 }
+		command = { type = secedeprovince which = ENG value = 884 }
+		command = { type = secedeprovince which = ENG value = 885 }
+		command = { type = secedeprovince which = ENG value = 886 }
+		command = { type = secedeprovince which = ENG value = 872 }
+		command = { type = secedeprovince which = ENG value = 873 }
+		command = { type = secedeprovince which = ENG value = 875 }
+
+		command = { type = trigger which = 3131016 }
+		#command = { type = secedeprovince which = HOL value = 875 }
+		#command = { type = secedeprovince which = HOL value = 876 }
+		#command = { type = secedeprovince which = HOL value = 878 }
+		#command = { type = secedeprovince which = HOL value = 879 }
+		#command = { type = secedeprovince which = HOL value = 880 }
+		#command = { type = secedeprovince which = HOL value = 883 }
+	}
+}
+
+event = { 
+	id = 3131015
+	random = no
+	country = ENG
+
+	name = "War over South Africa"
+	desc = "Unable to resolve the South African dispute, a war looms against the Dutch and Germany"
+	style = 2
+	
+	action_a = {
+		name = "Back Down"
+		command = { type = dissent value = 15 }
+	}
+	action_b = {
+		name = "Fight"
+		command = { type = belligerence value = 3 }
+		command = { type = end_mastery which = SAF }
+		command = { type = leave_alliance }
+		command = { type = war which = SAF }
+		command = { type = event which = 2400535 where = SAF when = 0 } #independence flag
+	}
+}
+
+event = { 
+	id = 3131016
+	random = no
+	country = HOL
+
+	name = "Partition of South Africa"
+	desc = "UK proposes that under the present circumtances, partition of South Africa between Dutch and English zones of control is the best option."
+	style = 2
+	
+	action_a = {
+		name = "Great!"
+		command = { type = belligerence value = 3 }
+		command = { type = inherit which = SAF value = 1 }
+		command = { type = secedeprovince which = ENG value = 881 }
+		command = { type = secedeprovince which = ENG value = 882 }
+		command = { type = secedeprovince which = ENG value = 884 }
+		command = { type = secedeprovince which = ENG value = 885 }
+		command = { type = secedeprovince which = ENG value = 886 }
+		command = { type = secedeprovince which = ENG value = 872 }
+		command = { type = secedeprovince which = ENG value = 873 }
+		command = { type = secedeprovince which = ENG value = 875 }
+	}
+}
+
+event = { 
+	id = 3131017
+	random = no
+	country = ENG
+
+	name = "Raj caves in"
+	desc = "The colonial government of India and the local tribes agreed to closer supervision and coordination with London."
+	style = 2
+	
+	action_a = {
+		name = "Excellent!"
+		command = { type = belligerence value = 2 }
+		command = { type = inherit which = U02 value = 1 }
+		command = { type = dissent value = 1 }
+	}
+}
+
+event = { 
+	id = 3131020
+	random = no
+	country = CAN
+	save_date = yes
+
+	name = EVT3131020_NAME
+	desc = EVT3131020_DESC
+	style = 2
+
+	action = {
+		name = "For a new Canada!"
+		command = { type = belligerence value = 1 }
+		command = { type = name where = CAN which = CAN }
+		command = { type = flag_ext where = CAN which = "_1965" }
+		#command = { trigger = { ai = CAN NOT = { ai = USA } } type = military_control which = USA where = CAN value = 1 }
+		command = { type = dissent value = -5 }
+		command = { type = manpowerpool value = 160 }
+		
+		command = { type = set_domestic which = political_left value = 8 }
+		command = { type = set_domestic which = democratic value = 7 } #right wing parties have left the parliament
+		command = { type = set_domestic which = interventionism value = 5 }
+		command = { type = set_domestic which = defense_lobby value = 7 }
+		command = { type = secedeprovince which = QUE value = 2089 } #English loyalists
+		command = { type = secedeprovince which = QUE value = 2092 }
+		command = { type = secedeprovince which = QUE value = 2090 }
+		command = { type = secedeprovince which = QUE value = 2093 }
+		command = { type = secedeprovince which = QUE value = 2095 }
+		command = { type = secedeprovince which = QUE value = 2103 }
+		command = { type = secedeprovince which = QUE value = 2104 }
+		command = { type = secedeprovince which = QUE value = 2105 }
+		command = { type = secedeprovince which = QUE value = 2102 }
+		command = { type = secedeprovince which = QUE value = 2099 }
+		command = { type = secedeprovince which = QUE value = 2091 }
+		command = { type = secedeprovince which = QUE value = 2096 }
+		command = { type = secedeprovince which = QUE value = 2097 }
+		command = { type = secedeprovince which = QUE value = 2098 }
+		command = { type = secedeprovince which = QUE value = 2094 }
+		command = { type = secedeprovince which = QUE value = 2100 }
+		command = { type = secedeprovince which = QUE value = 2101 }
+		command = { type = secedeprovince which = QUE value = 2106 }
+		command = { type = secedeprovince which = QUE value = 2107 }
+		command = { type = secedeprovince which = QUE value = 2115 }
+		command = { type = secedeprovince which = QUE value = 2109 }
+     	command = { type = secedeprovince which = QUE value = 2110 }
+		command = { type = secedeprovince which = QUE value = 2113 }
+		command = { type = secedeprovince which = QUE value = 2148 }
+		command = { type = secedeprovince which = QUE value = 2149 }
+		command = { type = secedeprovince which = QUE value = 2111 }
+		command = { type = secedeprovince which = QUE value = 2135 }
+		command = { type = secedeprovince which = QUE value = 2136 }
+		command = { type = secedeprovince which = QUE value = 2138 }
+		command = { type = secedeprovince which = QUE value = 2137 }
+		command = { type = secedeprovince which = QUE value = 2132 }
+		command = { type = secedeprovince which = QUE value = 2130 }
+		command = { type = secedeprovince which = QUE value = 2131 }
+		command = { type = secedeprovince which = QUE value = 2133 }
+		command = { type = secedeprovince which = QUE value = 2129 }
+
+		#command = { type = secedeprovince which = QUE value = 2122 }
+		#command = { type = secedeprovince which = QUE value = 2123 }
+		#command = { type = secedeprovince which = QUE value = 2116 }
+		#command = { type = secedeprovince which = QUE value = 2112 }
+
+
+		command = { type = construct which = land_fort where = 2108 value = 4 }
+		command = { type = construct which = land_fort where = 2126 value = 4 }
+		command = { type = construct which = land_fort where = 2118 value = 2 }
+		
+		command = { type = add_corps value = land where = 2117 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2108 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2108 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2118 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2118 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2114 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2114 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2119 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2119 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2125 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2125 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2112 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2112 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2124 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2124 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2128 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2128 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2126 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2113 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2125 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2127 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		#20 inf
+		#20 gar
+		
+		command = { type = trigger which = 3131021 }
+		
+		command = { type = addcore which = 2108 }
+		
+		command = { type = addcore which = 2767 }
+		command = { type = secedeprovince which = CAN value = 2767 when = 2 }
+	}
+}
+
+event = { 
+	id = 3131021
+	random = no
+	country = QUE
+	save_date = yes
+
+	name = "Canada fights"
+	desc = "The government of Canada split over Mosley's demands for stronger control and coordination with London. The Conservative and New Age parties which enthusiastically supported the deal had failed to push through the necessary legislation and walked out of the Parliament, but they used their dominant position in regional parliaments to approve the deal separately. "
+	style = 2
+
+	#trigger = {
+	#	flag = CAN_fight
+	#}
+	
+	#date = { day = 1 month = january year = 1936 }
+	#offset = 1
+	#deathdate = { day = 29 month = december year = 1945 }
+	
+	action_a = {
+		name = "For a new Canada!"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = belligerence value = 1 }
+		command = { trigger = { ai = QUE NOT = { ai = ENG } } type = military_control which = ENG where = QUE value = 1 }
+		command = { type = alliance which = ENG }
+		command = { type = removecore which = 2129 }
+		command = { type = removecore which = 2114 }
+		command = { type = removecore which = 2112 }
+		command = { type = removecore which = 2127 }
+		command = { type = removecore which = 2116 }
+		command = { type = removecore which = 2123 }
+		command = { type = removecore which = 2122 }
+		command = { type = removecore which = 2121 }
+		command = { type = removecore which = 2120 }
+		command = { type = removecore which = 2125 }
+		command = { type = removecore which = 2124 }
+		command = { type = removecore which = 2117 }
+		command = { type = removecore which = 2118 }
+		command = { type = removecore which = 2119 }
+		command = { type = removecore which = 2128 }
+		command = { type = removecore which = 2131 }
+		command = { type = removecore which = 2134 }
+		command = { type = removecore which = 2126 }
+		command = { type = removecore which = 2133 }
+
+		command = { type = addcore which = 2089 }
+		command = { type = addcore which = 2092 }
+		command = { type = addcore which = 2090 }
+		command = { type = addcore which = 2093 }
+		command = { type = addcore which = 2095 }
+		command = { type = addcore which = 2103 }
+		command = { type = addcore which = 2104 }
+		command = { type = addcore which = 2105 }
+		command = { type = addcore which = 2102 }
+		command = { type = addcore which = 2099 }
+		command = { type = addcore which = 2091 }
+		command = { type = addcore which = 2096 }
+		command = { type = addcore which = 2097 }
+		command = { type = addcore which = 2098 }
+		command = { type = addcore which = 2094 }
+		command = { type = addcore which = 2100 }
+		command = { type = addcore which = 2101 }
+		command = { type = addcore which = 2106 }
+		command = { type = addcore which = 2107 }
+		command = { type = addcore which = 2115 }
+		command = { type = addcore which = 2108 }
+		command = { type = addcore which = 2109 }
+    	 command = { type = addcore which = 2110 }
+		command = { type = addclaim which = 2129 }
+		command = { type = addcore which = 2113 }
+		command = { type = addclaim which = 2114 }
+		command = { type = addcore which = 2148 }
+		command = { type = addcore which = 2149 }
+		command = { type = addclaim which = 2112 }
+		command = { type = addclaim which = 2127 }
+		command = { type = addcore which = 2130 }
+		command = { type = addcore which = 2111 }
+		command = { type = addclaim which = 2116 }
+		command = { type = addclaim which = 2123 }
+		command = { type = addclaim which = 2122 }
+		command = { type = addclaim which = 2121 }
+		command = { type = addclaim which = 2120 }
+		command = { type = addclaim which = 2125 }
+		command = { type = addclaim which = 2124 }
+		command = { type = addclaim which = 2117 }
+		command = { type = addclaim which = 2118 }
+		command = { type = addclaim which = 2119 }
+		command = { type = addclaim which = 2128 }
+		command = { type = addcore which = 2135 }
+		command = { type = addcore which = 2136 }
+		command = { type = addcore which = 2138 }
+		command = { type = addcore which = 2137 }
+		command = { type = addcore which = 2132 }
+		command = { type = addclaim which = 2131 }
+		command = { type = addclaim which = 2134 }
+		command = { type = addclaim which = 2126 }
+		command = { type = addclaim which = 2133 }
+
+		command = { type = secedeprovince which = CAN value = 2108 }
+		#command = { type = secedeprovince which = CAN value = 2129 }
+		command = { type = secedeprovince which = CAN value = 2114 }
+		command = { type = secedeprovince which = CAN value = 2112 }
+		command = { type = secedeprovince which = CAN value = 2127 }
+		command = { type = secedeprovince which = CAN value = 2126 }
+		command = { type = secedeprovince which = CAN value = 2116 }
+		command = { type = secedeprovince which = CAN value = 2121 }
+		command = { type = secedeprovince which = CAN value = 2125 }
+		command = { type = secedeprovince which = CAN value = 2124 }
+		command = { type = secedeprovince which = CAN value = 2117 }
+		command = { type = secedeprovince which = CAN value = 2118 }
+		command = { type = secedeprovince which = CAN value = 2119 }
+		command = { type = secedeprovince which = CAN value = 2128 }
+		#command = { type = secedeprovince which = CAN value = 2131 }
+		command = { type = secedeprovince which = CAN value = 2134 }
+		#command = { type = secedeprovince which = CAN value = 2133 }
+
+		command = { type = secedeprovince which = CAN value = 2123 }
+		command = { type = secedeprovince which = CAN value = 2122 }
+		command = { type = secedeprovince which = CAN value = 2120 }
+		
+		command = { type = construct which = land_fort where = 2111 value = 4 }
+		command = { type = construct which = land_fort where = 2129 value = 2 }
+
+		command = { type = trigger which = 3131025 }
+	}
+}
+
+event = { 
+	id = 3131025
+	random = no
+	country = QUE
+	persistent = yes
+
+	name = "Canada fights"
+	desc = "The government of Canada split over Mosley's demands for stronger control and coordination with London. The Conservative and New Age parties which enthusiastically supported the deal had failed to push through the necessary legislation and walked out of the Parliament, but they used their dominant position in regional parliaments to approve the deal separately. "
+	style = 2
+	
+	action_a = {
+		name = "For a new Canada!"
+		command = { type = add_corps value = land where = 2129 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2129 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2110 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2109 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2109 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2115 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2136 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2138 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2130 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2113 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2132 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2111 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2090 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2089 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2089 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2106 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2106 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2092 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2104 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2104 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2101 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2110 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 2110 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 2110 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#30 inf
+		#25 gar
+	}
+}
+
+
+event = {
+	id = 3131022
+	random = no
+	country = ENG
+
+	name = "War on Canada"
+ 	desc = "The government of Canada split over Mosley's demands for stronger control and coordination with London. The Conservative and New Age parties which enthusiastically supported the deal had failed to push through the necessary legislation and walked out of the Parliament, but they used their dominant position in regional parliaments to approve the deal separately."
+	style = 2
+
+	trigger = {
+		flag = CAN_fight
+		event = { id = 3131020 days = 15 }
+	}
+
+
+	date = { day = 1 month = August year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action_a = {
+		name = "War on Canada"
+		command = { type = belligerence value = 7 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = domestic which = defense_lobby value = 1 }
+
+		command = { type = inherit which = QUE value = 1 }
+		#command = { type = ai_prepare_war which = USA }
+		command = { type = addcore which = 2089 }
+		command = { type = addcore which = 2092 }
+		command = { type = addcore which = 2090 }
+		command = { type = addcore which = 2093 }
+		command = { type = addcore which = 2095 }
+		command = { type = addcore which = 2103 }
+		command = { type = addcore which = 2104 }
+		command = { type = addcore which = 2105 }
+		command = { type = addcore which = 2102 }
+		command = { type = addcore which = 2099 }
+		command = { type = addcore which = 2091 }
+		command = { type = addcore which = 2096 }
+		command = { type = addcore which = 2097 }
+		command = { type = addcore which = 2098 }
+		command = { type = addcore which = 2094 }
+		command = { type = addcore which = 2100 }
+		command = { type = addcore which = 2101 }
+		command = { type = addcore which = 2106 }
+		command = { type = addcore which = 2107 }
+		command = { type = addcore which = 2115 }
+		command = { type = addcore which = 2108 }
+		command = { type = addcore which = 2109 }
+    	command = { type = addcore which = 2110 }
+		command = { type = addclaim which = 2129 }
+		command = { type = addcore which = 2113 }
+		command = { type = addclaim which = 2114 }
+		command = { type = addcore which = 2148 }
+		command = { type = addcore which = 2149 }
+		command = { type = addclaim which = 2112 }
+		command = { type = addclaim which = 2127 }
+		command = { type = addcore which = 2130 }
+		command = { type = addcore which = 2111 }
+		command = { type = addclaim which = 2116 }
+		command = { type = addclaim which = 2123 }
+		command = { type = addclaim which = 2122 }
+		command = { type = addclaim which = 2121 }
+		command = { type = addclaim which = 2120 }
+		command = { type = addclaim which = 2125 }
+		command = { type = addclaim which = 2124 }
+		command = { type = addclaim which = 2117 }
+		command = { type = addclaim which = 2118 }
+		command = { type = addclaim which = 2119 }
+		command = { type = addclaim which = 2128 }
+		command = { type = addcore which = 2135 }
+		command = { type = addcore which = 2136 }
+		command = { type = addcore which = 2138 }
+		command = { type = addcore which = 2137 }
+		command = { type = addcore which = 2132 }
+		command = { type = addclaim which = 2131 }
+		command = { type = addclaim which = 2134 }
+		command = { type = addclaim which = 2126 }
+		command = { type = addclaim which = 2133 }
+	}
+}
+
+event = { 
+	id = 3131023
+	random = no
+	country = USA
+
+	name = "Canada asks for our help"
+	desc = "The government of Canada split over Mosley's demands for stronger control and coordination with London. The rebel faction is asking us for active assistance against the British."
+	style = 2
+
+	action = {
+		name = "We need more time to prepare!"
+		ai_chance = 100
+		command = { type = relation which = CAN value = -10 }
+		command = { type = end_guarantee which = USA where = CAN }
+		command = { type = dissent value = 1 }
+	}
+	action = {
+		name = "We will stand by them!"
+		ai_chance = 0
+		command = { type = belligerence value = 15 }
+		command = { type = alliance which = CAN }
+		command = { type = relation which = CAN value = 100 }
+		command = { type = guarantee which = USA where = CAN }
+		command = { type = dissent value = 30 }
+	}
+}
+
+event = { 
+	id = 3131024
+	random = no
+	country = ENG
+	save_date = yes
+
+	name = "Canada defeated. Or is it?"
+	desc = "With the pro-British forces victoriously entering Ottawa, the remnants of Mackenzie's government escaped across the border to the United States, from where they plan to carry out resistance against our rule."
+	style = 2
+	
+	trigger = {
+		war = { country = CAN country = ENG }
+		NOT = { war = { country = USA country = ENG } }
+		OR = {
+			AND = {
+				NOT = { vp = { country = CAN value = 2 } }
+				control = { province = 2108 data = -3 }
+				control = { province = 2118 data = -3 }
+			}
+			AND = {
+				NOT = { vp = { country = CAN value = 3 } }
+				OR = {
+					control = { province = 2133 data = CAN }
+					control = { province = 2098 data = CAN }
+					control = { province = 2149 data = CAN }
+					control = { province = 2090 data = CAN }
+					#control = { province = 2094 data = CAN }
+				}
+			}
+		}
+	}
+
+
+	date = { day = 1 month = August year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1946 }
+
+	action = {
+		name = "We must crush them!"
+		ai_chance = 0
+		command = { type = relation which = USA value = -10 }
+		command = { type = dissent value = 0.1 }
+	}
+}
+
+# Anglo-Irish conflict, Soviet intervention
+
+event = { 
+	id = 3188000
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = SOV_to_IRE }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_IRE_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = SOV_to_IRE }
+		NOT = { flag = SOV_to_IRE_delay }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+		NOT = { lost_national = { country = SOV value = 5 } }
+		NOT = { alliance = { country = IRE } }
+	}
+	
+	name = "Anglo-Irish conflict - Soviet intervention"
+	desc = "The new Anglo-Irish conflict deeply disturbed the Soviet public, highly sympathetic to the Irish, and caused a significant deterioration of Anglo-Soviet relations."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = access which = IRE }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = SOV where = IRE energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = energypool value = -500 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3188001 where = IRE when = 30 }
+		command = { type = setflag which = SOV_to_IRE }
+		command = { type = setflag which = SOV_to_IRE_delay }
+	}
+}
+
+event = { 
+	id = 3188001
+	random = no
+	country = IRE
+	persistent = yes
+	
+	name = "Soviet help arrives in Ireland"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived to Ireland in great secrecy under the cover of civilian merchant trade."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = clrflag which = SOV_to_IRE_delay }
+		command = { type = access which = SOV }
+		
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = energypool value = 500 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = add_corps value = land where = 31 }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = add_division which = "Soviet volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = add_division which = "Soviet volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+		
+		#command = { trigger = { ai = yes } type = add_corps value = land where = 31 }
+		#command = { trigger = { ai = yes } type = add_division which = "Soviet volunteers in Ireland 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { ai = yes } type = add_division which = "Soviet volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+	}
+}
+
+event = { 
+	id = 3188002
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { flag = SOV_to_IRE }
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_IRE_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_IRE
+		NOT = { flag = SOV_to_IRE_delay }
+		OR = {
+			NOT = { exists = IRE }
+			#unfortunately, if everybody withdraws aid, Ireland will not be able to continue resupplying its army
+			#AND = {
+			#	alliance = { country = IRE }
+			#	ai = IRE
+			#}
+			lost_national = { country = SOV value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = IRE }
+		command = { trigger = { NOT = { alliance = { country = IRE } } } type = military_control which = SOV where = IRE value = 0 }
+		command = { type = end_trades which = IRE where = SOV }
+		
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = remove_division which = "Soviet advisors in Ireland" value = IRE }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = remove_division which = "Soviet volunteers in Ireland 4" value = IRE }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = remove_division which = "Soviet volunteers in Ireland 3" value = IRE }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = remove_division which = "Soviet volunteers in Ireland 2" value = IRE }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = remove_division which = "Soviet volunteers in Ireland 1" value = IRE }
+		
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } } type = add_corps value = land where = 31 }
+		#command = { trigger = { NOT = { flag = SOV_to_IRE_happened } exists = IRE } type = add_division which = "Soviet advisors in Ireland" value = hq when = 3 where = anti_air }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } exists = IRE } type = add_division which = "Soviet volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_IRE_happened } exists = IRE } type = add_division which = "Soviet volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = SOV_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "Soviet volunteers in Ireland 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = SOV_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "Soviet volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = SOV_to_IRE_happened }
+		
+		command = { type = clrflag which = SOV_to_IRE }
+		command = { type = trigger which = 3188003 }
+	}
+}
+
+event = { 
+	id = 3188003 
+	random = no
+	country = IRE
+	persistent = yes
+
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = SOV }
+	}
+}
+
+
+# Anglo-Irish conflict, American intervention
+
+event = { 
+	id = 3188010
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = USA_to_IRE }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+	}
+
+	decision_trigger = {
+		NOT = { flag = USA_to_IRE_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = USA_to_IRE }
+		NOT = { flag = USA_to_IRE_delay }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+		NOT = {	alliance = { country = IRE } }
+		NOT = { lost_national = { country = USA value = 5 } }
+	}
+	
+	name = "Anglo-Irish conflict - American intervention"
+	desc = "The new Anglo-Irish conflict deeply disturbed the American public, highly sympathetic to the Irish, and caused a significant deterioration of Anglo-American relations. However, supporting Ireland also proved contraversial, with a significant portion of the population and the business community deeply opposed to confronting England."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = dissent value = 4 } #opposition to help for Ireland
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = relation which = ENG value = -50 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = relation which = IRE value = 100 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = political_left value = 1 }
+		#command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = democratic value = -1 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = defense_lobby value = 1 }		
+		
+		command = { type = access which = IRE }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = USA where = IRE energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = USA value = 1 }
+		command = { type = event which = 3188011 where = IRE when = 45 }
+		command = { type = setflag which = USA_to_IRE }
+		command = { type = setflag which = USA_to_IRE_delay }
+	}
+}
+
+event = { 
+	id = 3188011
+	random = no
+	country = IRE
+	persistent = yes
+	
+	name = "American help arrives in Ireland"
+	desc = "Despite its official claims of neutrality, large amount of American aid arrived to Ireland in great secrecy under the cover of civilian merchant trade."
+	style = 2
+	picture = "SCW_American Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = USA }
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = domestic which = freedom value = -1 }
+		
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = add_corps value = land where = 31 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = add_division which = "American volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = add_division which = "American volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+
+
+		#command = { trigger = { ai = yes } type = add_corps value = land where = 31 }
+		#command = { trigger = { ai = yes } type = add_division which = "American volunteers in Ireland 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { ai = yes } type = add_division which = "American volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = USA_to_IRE_delay }
+	}
+}
+
+event = { 
+	id = 3188012
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { flag = USA_to_IRE }
+
+	decision_trigger = {
+		NOT = { flag = USA_to_IRE_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = USA_to_IRE
+		NOT = { flag = USA_to_IRE_delay }
+		OR = {
+			NOT = { exists = IRE }
+			#unfortunately, if everybody withdraws aid, Ireland will not be able to continue resupplying its army
+			#AND = {
+			#	alliance = { country = IRE }
+			#	ai = IRE
+			#}
+			lost_national = { country = USA value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = dissent value = -1 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = relation which = ENG value = 10 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = relation which = IRE value = -20 }	
+		
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = IRE }
+		command = { trigger = { NOT = { alliance = { country = IRE } } } type = military_control which = USA where = IRE value = 0 }
+		command = { type = end_trades which = IRE where = USA }
+		
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = remove_division which = "American advisors in Ireland" value = IRE }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = remove_division which = "American volunteers in Ireland 4" value = IRE }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = remove_division which = "American volunteers in Ireland 3" value = IRE }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = remove_division which = "American volunteers in Ireland 2" value = IRE }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = remove_division which = "American volunteers in Ireland 1" value = IRE }
+		
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } } type = add_corps value = land where = 31 }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } exists = IRE } type = add_division which = "American volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = USA_to_IRE_happened } exists = IRE } type = add_division which = "American volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = USA_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "American volunteers in Ireland 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = USA_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "American volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = USA_to_IRE_happened }
+		
+		command = { type = clrflag which = USA_to_IRE }
+		command = { type = trigger which = 3188013 }
+	}
+}
+
+event = { 
+	id = 3188013 
+	random = no
+	country = IRE
+	persistent = yes
+
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = USA }
+	}
+}
+
+
+# Anglo-Irish conflict, French intervention
+
+event = { 
+	id = 3188020
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = FRA_to_IRE }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_IRE_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = FRA_to_IRE }
+		NOT = { flag = FRA_to_IRE_delay }
+		OR = {
+			war = { country = ENG country = IRE }
+			AND = {
+				event = 272067
+				exists = IRE
+				NOT = { year = 1940 }
+			}
+		}
+		NOT = { lost_national = { country = FRA value = 5 } }
+		NOT = { alliance = { country = IRE } }
+	}
+	
+	name = "Anglo-Irish conflict - French intervention"
+	desc = "The new Anglo-Irish conflict deeply disturbed the French public, highly sympathetic to the Irish, and caused a significant deterioration of Anglo-French relations. The French populace was united in its support for the Irish cause and secretely provided a significant amount of aid."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = access which = IRE }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = FRA where = IRE energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = IRE } type = money value = -305 }
+		#command = { trigger = { ai = IRE } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.6*312=380
+		#hq
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = money value = -380 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = manpowerpool value = -5 }
+		
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = FRA value = 1 }
+		command = { type = event which = 3188021 where = IRE when = 15 }
+		command = { type = setflag which = FRA_to_IRE }
+		command = { type = setflag which = FRA_to_IRE_delay }
+	}
+}
+
+event = { 
+	id = 3188021
+	random = no
+	country = IRE
+	persistent = yes
+	
+	name = "French help arrives in Ireland"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived to Ireland in great secrecy under the cover of civilian merchant trade."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = FRA }
+		command = { type = free_ic value = 2 }
+				
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = add_corps value = land where = 31 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = add_division which = "French advisors in Ireland" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = add_division which = "French volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = add_division which = "French volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+
+
+		#command = { trigger = { NOT = { flag = FRA_to_IRE_happened } ai = yes } type = add_corps value = land where = 31 }
+		#command = { trigger = { NOT = { flag = FRA_to_IRE_happened } ai = yes } type = add_division which = "French volunteers in Ireland 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { NOT = { flag = FRA_to_IRE_happened } ai = yes } type = add_division which = "French volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = FRA_to_IRE_delay }
+	}
+}
+
+event = { 
+	id = 3188022
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { flag = FRA_to_IRE }
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_IRE_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_IRE
+		NOT = { flag = FRA_to_IRE_delay }
+		OR = {
+			NOT = { exists = IRE }
+			#unfortunately, if everybody withdraws aid, Ireland will not be able to continue resupplying its army
+			#AND = {
+			#	alliance = { country = IRE }
+			#	ai = IRE
+			#}
+			lost_national = { country = FRA value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = IRE }
+		command = { trigger = { NOT = { alliance = { country = IRE } } } type = military_control which = FRA where = IRE value = 0 }
+		command = { type = end_trades which = IRE where = FRA }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = remove_division which = "French advisors in Ireland" value = IRE }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = remove_division which = "French volunteers in Ireland 4" value = IRE }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = remove_division which = "French volunteers in Ireland 3" value = IRE }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = remove_division which = "French volunteers in Ireland 2" value = IRE }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = remove_division which = "French volunteers in Ireland 1" value = IRE }
+		
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } } type = add_corps value = land where = 31 }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } exists = IRE } type = add_division which = "French advisors in Ireland" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } exists = IRE } type = add_division which = "French volunteers in Ireland 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_IRE_happened } exists = IRE } type = add_division which = "French volunteers in Ireland 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = FRA_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "French volunteers in Ireland 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = FRA_to_IRE_happened } ai = IRE exists = IRE } type = add_division which = "French volunteers in Ireland 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = FRA_to_IRE_happened }
+		
+		command = { type = clrflag which = FRA_to_IRE }
+		command = { type = trigger which = 3188023 }
+	}
+}
+
+event = { 
+	id = 3188023 
+	random = no
+	country = IRE
+	persistent = yes
+
+	name = "End of intervention in Ireland"
+	desc = "With the Anglo-Irish conflict at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = FRA }
+	}
+}
+
+
+# Anglo-Canadian war, Soviet intervention
+
+event = { 
+	id = 3189000
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = SOV_to_CAN }
+		war = { country = ENG country = CAN }
+	}
+
+	decision_trigger = { 
+		flag = USA_to_CAN
+		NOT = { flag = SOV_to_CAN_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = SOV_to_CAN }
+		NOT = { flag = SOV_to_CAN_delay }
+		war = { country = ENG country = CAN }
+		flag = USA_to_CAN
+		NOT = { alliance = { country = CAN } }
+		NOT = { lost_national = { country = SOV value = 5 } }
+	}
+	
+	name = "Anglo-Canadian war - Soviet intervention"
+	desc = "The new Anglo-Canadian war deeply disturbed the American public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-American relations."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+
+		command = { type = access which = CAN }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = SOV where = CAN energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = manpowerpool value = -16 }
+		
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = energypool value = -500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = belligerence value = 1 }
+		command = { type = event which = 3189001 where = CAN when = 45 }
+		command = { type = setflag which = SOV_to_CAN }
+		command = { type = setflag which = SOV_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189001
+	random = no
+	country = CAN
+	persistent = yes
+	
+	name = "Soviet help arrives in Canada"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived through the American border to Canada."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = SOV }
+		command = { type = free_ic value = 2 }
+				
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = add_division which = "Soviet volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = add_division which = "Soviet volunteers in Canada 2" value = infantry when = 9 where = artillery }
+		
+		#command = { trigger = { ai = yes } type = add_corps value = land where = 31 }
+		#command = { trigger = { ai = yes } type = add_division which = "Soviet volunteers in Canada 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { ai = yes } type = add_division which = "Soviet volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = SOV_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189002
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { flag = SOV_to_CAN }
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_CAN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_CAN
+		NOT = { flag = SOV_to_CAN_delay }
+		OR = {
+			NOT = { war = { country = ENG country = CAN } }
+			AND = {
+				alliance = { country = CAN }
+				ai = CAN
+				ai = USA
+			}
+			lost_national = { country = SOV value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = CAN }
+		command = { trigger = { NOT = { alliance = { country = CAN } } } type = military_control which = SOV where = CAN value = 0 }
+		command = { type = end_trades which = CAN where = SOV }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = remove_division which = "Soviet advisors in Canada" value = CAN }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = remove_division which = "Soviet volunteers in Canada 4" value = CAN }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = remove_division which = "Soviet volunteers in Canada 3" value = CAN }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = remove_division which = "Soviet volunteers in Canada 2" value = CAN }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = remove_division which = "Soviet volunteers in Canada 1" value = CAN }
+		
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		#command = { trigger = { NOT = { flag = SOV_to_CAN_happened } exists = CAN } type = add_division which = "Soviet advisors in Canada" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } exists = CAN } type = add_division which = "Soviet volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = SOV_to_CAN_happened } exists = CAN } type = add_division which = "Soviet volunteers in Canada 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = SOV_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "Soviet volunteers in Canada 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = SOV_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "Soviet volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = SOV_to_CAN_happened }
+		
+		command = { type = clrflag which = SOV_to_CAN }
+		command = { type = trigger which = 3189003 }
+	}
+}
+
+event = { 
+	id = 3189003 
+	random = no
+	country = CAN
+	persistent = yes
+
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = SOV }
+	}
+}
+
+
+# Anglo-Canadian war, American intervention
+
+event = { 
+	id = 3189010
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = USA_to_CAN }
+		war = { country = ENG country = CAN }
+	}
+
+	decision_trigger = {
+		NOT = { flag = USA_to_CAN_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = USA_to_CAN }
+		NOT = { flag = USA_to_CAN_delay }
+		war = { country = ENG country = CAN }
+		NOT = { alliance = { country = CAN } }
+		NOT = { lost_national = { country = USA value = 5 } }
+	}
+	
+	name = "Anglo-Canadian war - American intervention"
+	desc = "The new Anglo-Canadian war deeply disturbed the American public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-American relations. However, supporting Canada also proved contraversial, with a significant portion of the population and the business community deeply opposed to confronting England."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = dissent value = 4 } #opposition to help for Canada
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = relation which = ENG value = -50 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = relation which = CAN value = 100 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = political_left value = 1 }
+		#command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = democratic value = -1 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = defense_lobby value = 1 }		
+		
+		command = { type = access which = CAN }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = USA where = CAN energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = manpowerpool value = -16 }
+				
+		#0.16*7.6*312=380
+		#hq
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = money value = -380 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = manpowerpool value = -5 }
+		
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = USA value = 1 }
+		command = { type = event which = 3189011 where = CAN when = 15 }
+		command = { type = setflag which = USA_to_CAN }
+		command = { type = setflag which = USA_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189011
+	random = no
+	country = CAN
+	persistent = yes
+	
+	name = "American help arrives in Canada"
+	desc = "Despite its official claims of neutrality, large amount of American aid arrived through the American border to Canada."
+	style = 2
+	picture = "SCW_American Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = USA }
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = add_division which = "American advisors in Canada" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = add_division which = "American volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = add_division which = "American volunteers in Canada 2" value = infantry when = 9 where = artillery }
+
+
+		#command = { trigger = { ai = yes } type = add_corps value = land where = 1794 }
+		#command = { trigger = { ai = yes } type = add_division which = "American volunteers in Canada 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { ai = yes } type = add_division which = "American volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = USA_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189012
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { flag = USA_to_CAN }
+
+	decision_trigger = {
+		NOT = { flag = USA_to_CAN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = USA_to_CAN
+		NOT = { flag = USA_to_CAN_delay }
+		OR = {
+			NOT = { war = { country = ENG country = CAN } }
+			#AND = {
+			#	alliance = { country = CAN }
+			#	ai = CAN
+			#}
+			lost_national = { country = USA value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = dissent value = -1 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = relation which = ENG value = 10 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = relation which = CAN value = -20 }	
+		
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = CAN }
+		command = { trigger = { NOT = { alliance = { country = CAN } } } type = military_control which = USA where = CAN value = 0 }
+		command = { type = end_trades which = CAN where = USA }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = remove_division which = "American advisors in Canada" value = CAN }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = remove_division which = "American volunteers in Canada 4" value = CAN }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = remove_division which = "American volunteers in Canada 3" value = CAN }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = remove_division which = "American volunteers in Canada 2" value = CAN }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = remove_division which = "American volunteers in Canada 1" value = CAN }
+		
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } exists = CAN } type = add_division which = "American advisors in Canada" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } exists = CAN } type = add_division which = "American volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = USA_to_CAN_happened } exists = CAN } type = add_division which = "American volunteers in Canada 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = USA_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "American volunteers in Canada 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = USA_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "American volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = USA_to_CAN }
+		command = { type = trigger which = 3189013 }
+	}
+}
+
+event = { 
+	id = 3189013 
+	random = no
+	country = CAN
+	persistent = yes
+
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = USA }
+	}
+}
+
+
+# Anglo-Canadian war, French intervention
+
+event = { 
+	id = 3189020
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		NOT = { flag = FRA_to_CAN }
+		war = { country = ENG country = CAN }
+	}
+
+	decision_trigger = { 
+		flag = USA_to_CAN
+		NOT = { flag = FRA_to_CAN_delay }
+	}
+	
+	trigger = { 
+		ai = yes
+		NOT = { flag = FRA_to_CAN }
+		NOT = { flag = FRA_to_CAN_delay }
+		war = { country = ENG country = CAN }
+		NOT = { alliance = { country = CAN } }
+		flag = USA_to_CAN
+		NOT = { lost_national = { country = FRA value = 5 } }
+	}
+	
+	name = "Anglo-Canadian war - French intervention"
+	desc = "The new Anglo-Canadian war deeply disturbed the French public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-French relations. The French populace was united in its support for the Canadian cause and provided a significant amount of aid."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action_a = {
+		name = "Prepare materials and volunteers"
+		command = { type = access which = CAN }
+		command = { type = free_ic value = -2 }
+		#equivalent of 4 IC daily
+		command = { type = trade which = FRA where = CAN energy = -4 metal = -2 rare_materials = -1 oil = -1 supplies = -20 value = 1 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#command = { trigger = { ai = CAN } type = money value = -305 }
+		#command = { trigger = { ai = CAN } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = manpowerpool value = -16 }
+		
+		#0.16*7.6*312=380
+		#hq
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = money value = -380 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = manpowerpool value = -5 }
+		
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = oilpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = metalpool value = -500 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = energypool value = -500 }
+		command = { type = belligerence which = FRA value = 1 }
+		command = { type = event which = 3189021 where = CAN when = 30 }
+		command = { type = setflag which = FRA_to_CAN }
+		command = { type = setflag which = FRA_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189021
+	random = no
+	country = CAN
+	persistent = yes
+	
+	name = "French help arrives in Canada"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived through the American border to Canada."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Welcome them!"
+		command = { type = access which = FRA }
+		command = { type = free_ic value = 2 }
+		
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = domestic which = political_left value = 1 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = domestic which = freedom value = -1 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = oilpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = metalpool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = energypool value = 500 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = add_division which = "French advisors in Canada" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = add_division which = "French volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = add_division which = "French volunteers in Canada 2" value = infantry when = 9 where = artillery }
+
+
+		#command = { trigger = { ai = yes } type = add_corps value = land where = 1794 }
+		#command = { trigger = { ai = yes } type = add_division which = "French volunteers in Canada 3" value = infantry when = 9 where = artillery }		
+		#command = { trigger = { ai = yes } type = add_division which = "French volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = FRA_to_CAN_delay }
+	}
+}
+
+event = { 
+	id = 3189022
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { flag = FRA_to_CAN }
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_CAN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_CAN
+		NOT = { flag = FRA_to_CAN_delay }
+		OR = {
+			NOT = { war = { country = ENG country = CAN } }
+			AND = {
+				alliance = { country = CAN }
+				ai = CAN
+				ai = USA
+			}
+			lost_national = { country = FRA value = 20 }
+		}
+	}
+	
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { type = free_ic value = 2 }
+		command = { type = belligerence value = -0.5 }
+		command = { type = end_access which = CAN }
+		command = { trigger = { NOT = { alliance = { country = CAN } } } type = military_control which = FRA where = CAN value = 0 }
+		command = { type = end_trades which = CAN where = FRA }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = remove_division which = "French advisors in Canada" value = CAN }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = remove_division which = "French volunteers in Canada 4" value = CAN }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = remove_division which = "French volunteers in Canada 3" value = CAN }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = remove_division which = "French volunteers in Canada 2" value = CAN }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = remove_division which = "French volunteers in Canada 1" value = CAN }
+		
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } } type = add_corps value = land where = 1794 }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } exists = CAN } type = add_division which = "French advisors in Canada" value = hq when = 4 where = anti_air }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } exists = CAN } type = add_division which = "French volunteers in Canada 1" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_CAN_happened } exists = CAN } type = add_division which = "French volunteers in Canada 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = FRA_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "French volunteers in Canada 3" value = infantry when = 9 where = artillery }
+		#command = { trigger = { NOT = { flag = FRA_to_CAN_happened } ai = CAN exists = CAN } type = add_division which = "French volunteers in Canada 4" value = infantry when = 9 where = artillery }
+		
+		command = { type = setflag which = FRA_to_CAN_happened }
+		
+		command = { type = clrflag which = FRA_to_CAN }
+		command = { type = trigger which = 3189023 }
+	}
+}
+
+event = { 
+	id = 3189023 
+	random = no
+	country = CAN
+	persistent = yes
+
+	name = "End of intervention in Canada"
+	desc = "With the Anglo-Canadian war at an end, the aid given to us by the interventionists is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { type = free_ic value = -2 }
+		command = { type = end_access which = FRA }
+	}
+}
+
+
+event = { 
+	id = 3131200
+	random = no
+	country = USA
+
+	trigger = {
+		lost_national = { country = CAN value = 90 }
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 7
+	deathdate = { day = 29 month = december year = 1945 }
+
+	name = "American response to the annexation of Canada"
+	desc = "The British annexation of Canadia deeply disturbed the American public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-American relations."
+	style = 2
+	
+	action_a = {
+		name = "Express our strong disapproval"
+		command = { type = relation which = ENG value = -25 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+
+event = { 
+	id = 3131041
+	random = no
+	country = FRA
+
+	trigger = {
+		lost_national = { country = CAN value = 90 }
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 7
+	deathdate = { day = 29 month = december year = 1945 }
+
+	name = "French response to the annexation of Canada"
+	desc = "The British annexation of Canadia deeply disturbed the French public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-French relations."
+	style = 2
+	
+	action_a = {
+		name = "Express our strong disapproval"
+		command = { type = relation which = ENG value = -25 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+event = { 
+	id = 3131042
+	random = no
+	country = SOV
+
+	trigger = {
+		lost_national = { country = CAN value = 90 }
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 7
+	deathdate = { day = 29 month = december year = 1945 }
+
+	name = "Soviet response to the annexation of Canada"
+	desc = "The British annexation of Canadia deeply disturbed the Soviet public, highly sympathetic to the Canadians, and caused a significant deterioration of Anglo-Soviet relations."
+	style = 2
+	
+	action_a = {
+		name = "Express our strong disapproval"
+		command = { type = relation which = ENG value = -25 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+#########################################################################
+# Canadian war widens
+#########################################################################
+
+event = { 
+	id = 3131050
+	random = no
+	country = CAN
+
+	trigger = {
+		atwar = CAN
+		NOT = { alliance = { country = CAN country = ENG } }
+		#alliance = { country = USA country = SOV }
+		OR = {
+		#	lost_IC = { country = CAN value = 80 }
+			war = { country = USA country = ENG }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1942 }
+
+	name = "Canada requests assitance"
+	desc = "Canada requests assitance"
+	style = 2
+	
+	action_a = { 
+		name = "Request assistance"
+		command = { type = event which = 3131051 where = USA when = 5 }
+	} 
+}
+
+event = { 
+	id = 3131051
+	random = no
+	country = USA
+
+	name = "Canada requests assitance"
+	desc = "Canada requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		#command = { trigger = { ai = CAN NOT = { ai = USA } } type = military_control which = USA where = CAN value = 1 }
+		command = { type = alliance which = CAN }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Canada - Inheritance
+##############################################
+
+

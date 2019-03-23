@@ -1,0 +1,103 @@
+switch = no # [yes/no]
+
+technology = { 
+		preference 	= {
+		# Nukes
+		5470 5480 5490 5500 5510 5520 5530 5540 7170 7180 7190 16010 16020
+		
+		# Regular Infantry
+		1010 1020 1030 1040 1050 1060 1070 1080 1090 1100 1110 1120 1130 1140 1150 13000 13010 13020
+		
+		# Engineers
+		1830 1840 1850 1860 1870
+		
+		# Inf support
+		#1990 199100 199110 199120 199130 199140 199150 199160 199170 199180 
+
+		# Motorized Infantry
+		1396 1400 1410 1420 1430 1440 1450 1460 
+
+		# Mechanized Infantry
+		1470 1480 1490 1510 1520
+
+		# Light tanks
+		2630 2640 2646 2650 2030 2040 2050
+		
+		# Medium tanks
+		2070 2080 2090 2140 11000 2660 11010 2670
+		
+		# Field Artillery Support
+		2290 2300 2310 2900 2910 2920 2930 2940 2320 2330 2340 2360 2950 2350
+
+		# Submarines
+		3610 3620 3630 3640 3650 3660 3670 3680 3690 3700 3710
+		
+		# Interceptors
+		4510 4520 4530 4540 4550 4010 4020 4030 4060 4090 15000 15010 15020 4560 4570 4580
+
+		# Close Air Support
+		4400 4170 4280 4450 4180 15120 15130
+
+		# Tactical bombers 
+		4610 4620 4630 4120 4130 4140 4150 4160
+		
+		# Manufacturing
+		5810 5820 5050 5830 5060 5070 5130 5110 5120 5840 5850 5860
+		
+		# Applied Assembly lines 
+		5140 5150 5160 5170 5180
+		
+		# Computers
+		5320 5330 5340
+
+		# Cryptography
+		5316 5326 5327 5350 5360 5370 5380 5390 5400 53060 53116
+		
+		# Radar
+		5410 5416
+
+		# MEDICINE
+		5640 5650 5660 5670	
+		
+		# Electronic Computers
+		7140 7150 7160 16000 16040
+		
+		# Mobility Focus - Modern Blitzkrieg (Blitzkrieg Path - GER)
+		6210 6220 6230 6250 6260 6240 6270 6280 6290 14100
+		
+		# Hunter Groups - Unified Axis Doctrine
+		6720 6740 6750 6810 6820 6760 6830
+		
+		# Land Doctrines Soviet Branch.
+		6570 6300 6310 6320 6330 6340 6350 6360 6370 14060 6770 6780 6860 6870 6840
+		
+		# Land Doctrines / Armored Divisions
+		6560 6030 6120 6110 6130 6140 6170 6200 14070 6790 6800 6730 6880 6890 6850
+		
+		# Land Doctrines
+		6410 6430 6440 6160 6190 6450 6460 6490
+
+		# Landdoctrines
+		6010 6020 6040 6050 6060 6070 6080 6090 6100 6900
+	
+		
+		# Offensive Fighter Box - Fighter Ace Initiative
+		9310 9320 9330 9340
+		# Defensive Fighter Box - Air Reserve
+		9390 9400 9410 9420
+		# Operational Destruction - Key Point Bombardment
+		9090 9100 9110 9120 9130 9350 9360 9370 9380
+		# Battlefield Destruction - Bomber Ace Initiative
+		9040 9050 9060 9070 9080 9270 9280 9290 9300
+	} 
+	
+	armor 		= 4
+	infantry 	= 5
+	industry 	= 6
+	aircraft 	= 4
+	naval 		= 3
+	land_doctrines 	= 2
+	secret_weapons 	= 2
+	air_doctrines 	= 1
+	naval_doctrines = 1
+}

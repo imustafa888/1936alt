@@ -1,0 +1,43 @@
+# German 1936 AI File by Lothos
+
+switch = no # [yes/no]
+flags = { }
+max_front_ratios = { 
+	#ETH = 5
+} 
+
+front = { 
+	recklessness 		= 2
+	distrib_vs_ai 		= even
+	distrib_vs_human 	= even
+	enemy_reinf_days	= 2	# Count enemy units less than X days from a target province in odds calculations
+	reserve_prop		= 0.2	# Maximum proportion of total divisions in a front allowed to remain behind the front line ( HQs and divisions needing to recover.)
+	panic_ratio_vs_ai	= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	panic_ratio_vs_human	= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	base_attack_odds	= 0.4	# Will attack at X odds or better
+	min_attack_odds		= 0.3	# If stalemated for a long period, may go as low as these attack odds
+	max_attack_odds		= 3.5	# Don't use more force than necessary to reach these odds
+	reinforce_odds		= 0.1	# Send in more troops if the attacking force is at these odds
+	withdraw_odds		= 0.05	# Break off attacks and withdraw at these odds
+} 
+
+garrison = {
+	province_priorities = {	
+		184 = 50
+		1773 = 50
+		889 = 50
+		36  = 50
+		35 = 50
+		2136 = 50
+		2138 = 50
+	}
+	area_multiplier = {
+		184 = 3.0
+		1773 = 3.0
+		889 = 4.0
+		36  = 35.0
+		35 = 35.0
+		2136 = 10.0
+		2138 = 10.0
+	}
+}

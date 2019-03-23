@@ -1,0 +1,1513 @@
+
+#########################################################################
+#  Moving of Industry to Sibiria
+#########################################################################
+event = {
+	id = 2007041
+	random = no
+	country = SOV
+	save_date = yes
+
+	decision = {
+		atwar = yes
+	}
+	decision_trigger = {
+		atwar = yes
+		lost_national = { country = SOV value = 3 }
+	}
+	trigger = {
+		lost_national = { country = SOV value = 3 }
+		atwar = yes
+	}
+
+	name = "EVT_2633_NAME"
+	desc = "EVT_2633_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5 
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "ACTIONNAME2633A" # Let's move our industrial base to Sibiria
+		command = { }
+  }
+}
+
+#########################################################################
+#  Moving of Industry to Sibiria
+#########################################################################
+event = {
+	id = 2007042
+	random = no
+	country = SOV
+
+	decision = {
+		event = { id = 2007041 days = 10 } #Creation of the State Defense Committee
+		atwar = yes
+		region = { region = Ukraine country = SOV value = 20 }
+	}
+	decision_trigger = {
+		lost_national = { country = SOV value = 3 }
+	}
+	trigger = {
+		event = { id = 2007041 days = 10 } #Creation of the State Defense Committee
+		lost_national = { country = SOV value = 3 }
+		atwar = yes
+
+	}
+
+	name = "EVT_2634_NAME"
+	desc = "EVT_2634_DESC"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 7 
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action_a = {
+		name = "ACTIONNAME2634A" # Let's move our industrial base to Sibiria
+		command = { trigger = { control = { province = 631 data = SOV } } type = construct which = ic where = 631 value = -1 } #Rostov 
+		command = { trigger = { control = { province = 631 data = SOV } } type = construct which = ic where = 1129 value = 1 } #Novosibirsk
+		command = { trigger = { control = { province = 630 data = SOV } } type = construct which = ic where = 630 value = -4 }
+		command = { trigger = { control = { province = 630 data = SOV } } type = construct which = ic where = 630 value = 4 } #Novosibirsk
+		command = { trigger = { control = { province = 627 data = SOV } } type = construct which = ic where = 627 value = -1 } #Dnepropetrovsk 
+		command = { trigger = { control = { province = 627 data = SOV } } type = construct which = ic where = 1138 value = 1 } #Omsk
+		command = { trigger = { control = { province = 626 data = SOV } } type = construct which = ic where = 626 value = -1 } #Odessa 
+		command = { trigger = { control = { province = 626 data = SOV } } type = construct which = ic where = 1138 value = 1 } #Omsk
+		command = { trigger = { control = { province = 691 data = SOV } } type = construct which = ic where = 691 value = -1 } #Krasnodar 
+		command = { trigger = { control = { province = 691 data = SOV } } type = construct which = ic where = 1138 value = 1 } #Omsk 
+		command = { trigger = { control = { province = 629 data = SOV } } type = construct which = ic where = 629 value = -1 } #Zaporozhye 
+		command = { trigger = { control = { province = 629 data = SOV } } type = construct which = ic where = 1138 value = 1 } #Omsk 
+		command = { trigger = { control = { province = 606 data = SOV } } type = construct which = ic where = 606 value = -1 } #Sumy 
+		command = { trigger = { control = { province = 606 data = SOV } } type = construct which = ic where = 1138 value = 1 } #Omsk 
+		command = { trigger = { control = { province = 622 data = SOV } } type = construct which = ic where = 622 value = -1 } #Kherson 
+		command = { trigger = { control = { province = 622 data = SOV } }  type = construct which = ic where = 1151 value = 1 } #Kurgan
+		command = { trigger = { control = { province = 636 data = SOV } } type = construct which = ic where = 636 value = -1 } #Kharkov 
+		command = { trigger = { control = { province = 636 data = SOV } }  type = construct which = ic where = 1151 value = 1 } #Kurgan
+
+		command = { type = province_keypoints which = 631 value = -1 }
+		command = { trigger = { control = { province = 626 data = SOV } } type = province_keypoints which = 626 value = -1 }
+		command = { trigger = { control = { province = 636 data = SOV } } type = province_keypoints which = 636 value = -1 }
+		command = { trigger = { control = { province = 641 data = SOV } } type = province_keypoints which = 641 value = -1 } #Sevastapol 
+
+		command = { trigger = { control = { province = 636 data = SOV } } type = province_keypoints which = 1151 value = 1 }
+		command = { trigger = { control = { province = 626 data = SOV } } type = province_keypoints which = 1129 value = 1 }		
+		command = { trigger = { control = { province = 641 data = SOV } } type = province_keypoints which = 1138 value = 1 }
+
+
+		command = { trigger = { control = { province = 617 data = SOV } } type = construct which = ic where = 617 value = -6 } #Kiev 
+		command = { trigger = { control = { province = 553 data = SOV } } type = construct which = ic where = 553 value = -6 } #Leningrad 
+		command = { trigger = { control = { province = 617 data = SOV } } type = construct which = ic where = 1137 value = 5 } #Sverdlovsk
+		command = { trigger = { control = { province = 553 data = SOV } } type = construct which = ic where = 1130 value = 5 } #Chelyabinsk
+		command = { trigger = { control = { province = 617 data = SOV } } type = construct which = ic where = 501 value = 1 } #Kustanai
+		command = { trigger = { control = { province = 553 data = SOV } } type = construct which = ic where = 501 value = 1 } #Kustanai
+		
+		command = { trigger = { control = { province = 553 data = SOV } } type = province_keypoints which = 501 value = 1 }
+		command = { trigger = { control = { province = 589 data = SOV } } type = province_keypoints which = 1137 value = 1 } #Sverdlovsk
+		command = { trigger = { control = { province = 617 data = SOV } } type = province_keypoints which = 1130 value = 1 }
+		command = { trigger = { control = { province = 617 data = SOV } } type = province_keypoints which = 617 value = -3 } #Kiev
+		command = { trigger = { control = { province = 589 data = SOV } } type = province_keypoints which = 589 value = -3 } #Smolensk
+		command = { trigger = { control = { province = 553 data = SOV } } type = province_keypoints which = 553 value = -5 } #Leningrad
+		command = { type = domestic which = free_market value = -1 }
+
+	}
+}
+
+#########################################################################
+#  Moving of Industry to Sibiria
+#########################################################################
+event = {
+	id = 2007043
+	random = no
+	country = SOV
+
+	decision = {
+		event = { id = 2007041 days = 10 } #Creation of the State Defense Committee
+		atwar = yes
+		region = { region = "Baltic States" country = SOV value = 20 }
+	}
+	decision_trigger = {
+		lost_national = { country = SOV value = 3 }
+	}
+	trigger = {
+		event = { id = 2007041 days = 10 } #Creation of the State Defense Committee
+		atwar = yes
+		lost_national = { country = SOV value = 3 }
+	}
+
+	name = "EVT_2635_NAME"
+	desc = "EVT_2635_DESC"
+	style = 2
+	picture = "news_paper"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 7 # Check for trigger conditions every seven days
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "ACTIONNAME2635A" # Let's move our industrial base to Sibiria
+		command = { trigger = { control = { province = 599 data = SOV } } type = construct which = ic where = 599 value = -1 } #Minsk 
+		command = { trigger = { control = { province = 599 data = SOV } } type = construct which = ic where = 498 value = 1 } #Semipalatinsk
+		command = { trigger = { control = { province = 264 data = SOV } } type = construct which = ic where = 264 value = -3 } #Riga 6IC
+		command = { trigger = { control = { province = 264 data = SOV } } type = construct which = ic where = 498 value = 3 } #Semipalatinsk
+		command = { trigger = { control = { province = 597 data = SOV } } type = construct which = ic where = 597 value = -1 } #Gomel 
+		command = { trigger = { control = { province = 597 data = SOV } } type = construct which = ic where = 498 value = 1 } #Semipalatinsk
+		command = { trigger = { control = { province = 270 data = SOV } } type = construct which = ic where = 270 value = -3 } #Tallinn 6IC
+		command = { trigger = { control = { province = 270 data = SOV } } type = construct which = ic where = 1158 value = 3 } #Krasnojarsk
+		command = { trigger = { control = { province = 612 data = SOV } } type = construct which = ic where = 612 value = -2 } #Vinnista 
+		command = { trigger = { control = { province = 612 data = SOV } } type = construct which = ic where = 1158 value = 2 } #Krasnojarsk
+		command = { trigger = { control = { province = 628 data = SOV } } type = construct which = ic where = 628 value = -1 } #Krivoy Rog 
+		command = { trigger = { control = { province = 628 data = SOV } } type = construct which = ic where = 506 value = 1 } #Alma-Ata
+		command = { trigger = { control = { province = 590 data = SOV } } type = construct which = ic where = 590 value = -1 } #Vitebsk 
+		command = { trigger = { control = { province = 590 data = SOV } } type = construct which = ic where = 506 value = 1 } #Alma-Ata
+		
+
+		command = { trigger = { control = { province = 599 data = SOV } } type = province_keypoints which = 599 value = -3 }
+		command = { trigger = { control = { province = 599 data = SOV } } type = province_keypoints which = 506 value = 1 }
+		command = { trigger = { control = { province = 264 data = SOV } } type = province_keypoints which = 264 value = -1 }
+		command = { trigger = { control = { province = 264 data = SOV } } type = province_keypoints which = 498 value = 1 }
+		command = { trigger = { control = { province = 270 data = SOV } } type = province_keypoints which = 270 value = -1 }
+		command = { trigger = { control = { province = 270 data = SOV } } type = province_keypoints which = 1158 value = 1 }
+		command = { trigger = { control = { province = 590 data = SOV } } type = province_keypoints which = 590 value = -1 }
+
+		
+		
+		
+	}
+}
+
+###################################
+# The traitor Vlassov has defected New for Armageddon 1.3
+###################################
+event = {
+	id = 2007051
+	random = no
+	country = SOV
+
+	name = "EVT_2036_NAME" #German Vlassov event
+	desc = "EVT_2036_DESC"
+	style = 2
+	picture = "news_paper"
+
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = sleepleader which = 30564 } #Soviet Vlassov
+	}
+}
+#########################################################################
+#  The End of Tannu Tuva (USSR, Tannu Tuva)
+#########################################################################
+event = {
+	id = 2088001
+	random = no
+	country = TAN
+
+	# Historical event November 1944
+
+	name = EVT_11_NAME
+	desc = EVT_11_DESC
+	style = 2
+  	picture = "news_paper"
+
+	decision = {
+		exists = TAN
+		exists = SOV
+		alliance = { country = SOV country = TAN }
+		control = { province = 1119 data = TAN } # Kyzyl
+		NOT = {
+			event = 2007033 #Bitter Peace
+		}
+	}
+
+	decision_trigger = { 
+		alliance = { country = SOV country = TAN } 
+		control = { province = 1119 data = TAN } 
+	}
+
+	trigger = {
+		exists = TAN
+		exists = SOV
+		alliance = { country = SOV country = TAN }
+		control = { province = 1119 data = TAN } # Kyzyl
+		NOT = {
+			event = 2007033#Bitter Peace
+		}
+	}
+	
+	date = { day = 0 month = november year = 1944 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action_a = {
+		name = EVT_11_ACTA
+		ai_chance = 100
+		command = { type = dissent value = -5 }
+		command = { type = leave_alliance }
+		command = { type = trigger which = 2007054 }
+	}
+	action_b = {
+		ai_chance = 0
+		name = EVT_11_ACTB
+		command = { type = dissent value = 1 }
+		command = { type = money value = -25 }
+	}
+}
+
+event = {
+	id = 2007054
+	random = no
+	country = SOV
+
+	name = EVT_12_NAME
+	desc = EVT_12_DESC
+	style = 2
+	picture = "news_paper"
+	# triggered by event 2088001
+
+	action_a = {
+		name = EVT_12_ACTA
+		ai_chance = 100
+		command = { type = inherit which = TAN value = 1 } 	# annex Tannu Tuva
+		command = { type = addclaim which = 1119 } # Kyzyl - Krasnoyarsk 	# Kyzyl becomes USSR national territory
+		command = { type = manpowerpool value = 16 } 	# inherit manpower
+		command = { type = dissent value = -1 } 	# the Soviet people rejoice
+		command = { type = money value = 100 } 		# increase influence of USSR
+		command = { type = relation which = CHI value = -10 } # an insult to China
+	}
+	action_b = {
+		ai_chance = 0
+		name = EVT_12_ACTB
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = dissent value = -1 }
+		command = { type = money value = -200 }
+	}
+}
+
+
+
+#########################################################################
+#  The Great Purge Begins
+#########################################################################
+event = {
+	id = 2007020
+	random = no
+	country = SOV
+
+	trigger = {
+		government = communist
+	}
+
+	name = "The First Moscow Trial"
+	desc = "Between 1936 and 1938, three very large Moscow Trials of former senior Communist Party leaders were held, in which they were accused of conspiring with fascist and capitalist powers to assassinate Stalin and other Soviet leaders, dismember the Soviet Union and restore capitalism. These trials were highly publicized and extensively covered by the outside world, which was mesmerized by the spectacle of Lenin's closest associates confessing to most outrageous crimes and begging for death sentences."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 5 month = august year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1939 }
+
+
+	action = {
+		ai_chance = 100
+		name = "ACTIONNAME2609A" # Purge the traitors!
+		command = { type = dissent value = -5 }
+		command = { type = ground_def_eff value = -0.05 when = 1 }
+		command = { type = trigger which = 2007039 }
+	}
+}
+
+event = {
+	id = 2007021
+	random = no
+	country = SOV
+
+	trigger = {
+		government = communist
+	}
+
+	name = "The Second Moscow Trial"
+	desc = "Between 1936 and 1938, three very large Moscow Trials of former senior Communist Party leaders were held, in which they were accused of conspiring with fascist and capitalist powers to assassinate Stalin and other Soviet leaders, dismember the Soviet Union and restore capitalism. These trials were highly publicized and extensively covered by the outside world, which was mesmerized by the spectacle of Lenin's closest associates confessing to most outrageous crimes and begging for death sentences."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 20 month = january year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+
+
+	action = {
+		ai_chance = 100
+		name = "ACTIONNAME2609A" # Purge the traitors!
+		command = { type = dissent value = -5 }
+		command = { type = ground_def_eff value = -0.05 when = 1 }
+		command = { type = trigger which = 2007039 }
+	}
+}
+
+event = {
+	id = 2007025
+	random = no
+	country = SOV
+
+	trigger = {
+		government = communist
+	}
+
+	name = "The Third Moscow Trial"
+	desc = "EVT_2609_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = march year = 1938 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1941 }
+
+
+	action = {
+		ai_chance = 100
+		name = "ACTIONNAME2609A" # Purge the traitors!
+		command = { type = manpowerpool value = -100 }
+		command = { type = ground_def_eff value = -0.1 when = 1 }
+		command = { type = dissent value = -10 }
+		command = { type = belligerence which = SOV value = -1 }
+		command = { type = ministerofsecurity which = 30028 }
+		command = { type = chiefofstaff which = 30038 }
+		command = { type = chiefofnavy which = 30048 }
+		command = { type = chiefofair which = 30052 }
+		
+		# Remove Leningrad HQ:
+		command = { type = remove_division which = 10848 value = 9 } #Leningradskyi Voennyi Okrug
+		# Remove Belarus HQ:
+		command = { type = remove_division which = 10848 value = 43 } #Belorusskyi Voennyi Okrug
+		# Remove 2nd Moscow HQ:
+		command = { type = remove_division which = 10848 value = 83 } #Moskovskyi Voennyi Okrug
+		# Remove Kiev HQ:
+		command = { type = remove_division which = 10848 value = 136 } #Kievskyi Voennyi Okrug
+		# Remove Khabarovsk HQ:
+		command = { type = remove_division which = 10848 value = 251 } #Dalnevostochnyi Voennyi Okrug
+
+		command = { type = sleepleader which = 30040 } #   Belov  I.P.
+		command = { type = sleepleader which = 30042 } #   Belov  S.I.
+		command = { type = sleepleader which = 30044 } #   Berman
+		command = { type = sleepleader which = 30085 } #   Deev
+		command = { type = sleepleader which = 30095 } #   Dybenko
+		command = { type = sleepleader which = 30097 } #   Egorov  A.I.
+		command = { type = sleepleader which = 30101 } #   Eideman
+		command = { type = sleepleader which = 30108 } #   Fabricius
+		command = { type = sleepleader which = 30111 } # Fedko
+		command = { type = sleepleader which = 30127 } # Fomin
+		command = { type = sleepleader which = 30131 } #   Gaj
+		command = { type = sleepleader which = 30135 } # Gamarnik
+		command = { type = sleepleader which = 30152 } # Golubev  M.I.
+		command = { type = sleepleader which = 30156 } # Gordon
+		command = { type = sleepleader which = 30170 } # Hahanyan
+		command = { type = sleepleader which = 30175 } # Horoshin
+		command = { type = sleepleader which = 30192 } # Kalinovski
+		command = { type = sleepleader which = 30194 } # Kaminski
+		command = { type = sleepleader which = 30207 } # Kharitonov
+		command = { type = sleepleader which = 30217 } # Klimovskih
+		command = { type = sleepleader which = 30220 } # Kolchik
+		command = { type = sleepleader which = 30229 } # Kopec
+		command = { type = sleepleader which = 30232 } # Kork
+		command = { type = sleepleader which = 30243 } # Kotovski
+		command = { type = sleepleader which = 30255 } # Kuibyshev
+		command = { type = sleepleader which = 30267 } # Kuzn
+		command = { type = sleepleader which = 30272 } # Lapin
+		command = { type = sleepleader which = 30315 } # Medvedovski
+		command = { type = sleepleader which = 30316 } # Meklis
+		command = { type = sleepleader which = 30338 } # Navrocki
+		command = { type = sleepleader which = 30339 } # Nazarov
+		command = { type = sleepleader which = 30403 } #   Primakov  V.M.
+		command = { type = sleepleader which = 30409 } # Pshenn
+		command = { type = sleepleader which = 30416 } # Putna
+		command = { type = sleepleader which = 30454 } # Ryabyshev
+		command = { type = sleepleader which = 30472 } # Sedyakin
+		command = { type = sleepleader which = 30477 } # Serdich
+		command = { type = sleepleader which = 30484 } # Sharangovich
+		command = { type = sleepleader which = 30487 } # Sheklanov
+		command = { type = sleepleader which = 30498 } # Shmidt
+		command = { type = sleepleader which = 30523 } # Strepuhov
+		command = { type = sleepleader which = 30543 } # Tukhachevsky
+		command = { type = sleepleader which = 30547 } #   Uborevich
+		command = { type = sleepleader which = 30550 } # Uspenski
+		command = { type = sleepleader which = 30570 } # Vorozhejkin
+		command = { type = sleepleader which = 30571 } # Vostrechov
+		command = { type = sleepleader which = 30572 } #   Yakir
+		command = { type = sleepleader which = 30602 } # Zonberg
+		command = { type = sleepleader which = 30618 } # Galler
+		command = { type = sleepleader which = 30654 } # Alksnis
+		command = { type = sleepleader which = 30664 } # Gerasimov
+		command = { type = sleepleader which = 30673 } # Kharlamov
+		command = { type = sleepleader which = 30678 } # Krasovskij
+		command = { type = sleepleader which = 30701 } # Sudets
+		command = { type = sleepleader which = 30715 } # Vazetis
+		command = { type = sleepleader which = 30716 } # Unzherov
+		command = { type = sleepleader which = 30717 } # Kireev
+		command = { type = sleepleader which = 30718 } # Khalatov
+		command = { type = sleepleader which = 30719 } # Kashirin
+		command = { type = sleepleader which = 30721 } # Dushenov
+		command = { type = sleepleader which = 30722 } # Bidemann
+		command = { type = sleepleader which = 30723 } # Tupikov
+		command = { type = sleepleader which = 30650 } #Viktorov
+		#command = { type = sleepleader which = 30437 } #Rokossovsky
+		command = { type = sleepleader which = 30050 } #Blücher
+		command = { type = sleepleader which = 30512 } #Smirnov
+		command = { type = sleepleader which = 30007 } #Alekseev
+		command = { type = sleepleader which = 30374 } #Pavlov D.G.
+		command = { type = sleepleader which = 30238 } #Korobkov
+		command = { type = sleepleader which = 30276 } #Laskin
+		command = { type = sleepleader which = 30681 } #Loktionov
+		command = { type = sleepleader which = 30353 } #Oborin
+		command = { type = sleepleader which = 30687 } #Oborin
+		command = { type = sleepleader which = 30407 } #Proskurov
+		command = { type = sleepleader which = 30697 } #Rychagov
+		command = { type = sleepleader which = 30499 } #Shtern
+		command = { type = sleepleader which = 30004 } #Ahlyustin
+		command = { type = sleepleader which = 30008 } #Alekseenko
+		command = { type = sleepleader which = 30028 } #Baranov  S.V.
+		command = { type = sleepleader which = 30057 } #Borisov
+		command = { type = sleepleader which = 30059 } #Borzilov
+		command = { type = sleepleader which = 30063 } #Budyho
+		command = { type = sleepleader which = 30081 } #Chistyakov  V.I.
+		command = { type = sleepleader which = 30084 } #Dedaev
+		command = { type = sleepleader which = 30090 } #Dobroserdov
+		command = { type = sleepleader which = 30098 } #Egorov  E.A.
+		command = { type = sleepleader which = 30100 } #Egorov  P.G.
+		command = { type = sleepleader which = 30107 } #Ershakov
+		command = { type = sleepleader which = 30120 } #Filatov
+		command = { type = sleepleader which = 30136 } #Garnov
+		command = { type = sleepleader which = 30172 } #Hatckilevich
+		command = { type = sleepleader which = 30174 } #Horolenko
+		command = { type = sleepleader which = 30186 } #Ivanov  V.I.
+		command = { type = sleepleader which = 30190 } #Kachalov
+		command = { type = sleepleader which = 30191 } #Kachanov
+		command = { type = sleepleader which = 30198 } #Karmanov
+		command = { type = sleepleader which = 30199 } #Karpezo
+		command = { type = sleepleader which = 30214 } #Kirillov
+		command = { type = sleepleader which = 30215 } #Kirponos
+		command = { type = sleepleader which = 30226 } #Kondrusev
+		command = { type = sleepleader which = 30242 } #Kotlyarov
+		command = { type = sleepleader which = 30258 } #Kulikov  K.E.
+		command = { type = sleepleader which = 30263 } #Kurochkin P.S.
+		command = { type = sleepleader which = 30269 } #Kuznetsov  A.I.
+		command = { type = sleepleader which = 30275 } #Larionov
+		command = { type = sleepleader which = 30277 } #Lavrinovich
+		command = { type = sleepleader which = 30296 } #Magon
+		command = { type = sleepleader which = 30302 } #Malinovsk
+		command = { type = sleepleader which = 30324 } #Mironov  F.K.
+		command = { type = sleepleader which = 30326 } #Mishanin
+		command = { type = sleepleader which = 30345 } #Nikitin  I.S.
+		command = { type = sleepleader which = 30381 } #Petrov  M.P.
+		command = { type = sleepleader which = 30391 } #Ponedelin
+		command = { type = sleepleader which = 30399 } #Potaturchev
+		command = { type = sleepleader which = 30401 } #Potapov
+		command = { type = sleepleader which = 30411 } #Puganov
+		command = { type = sleepleader which = 30419 } #Rakutin
+		command = { type = sleepleader which = 30442 } #Romanov  M.T.
+		command = { type = sleepleader which = 30445 } #Roze
+		command = { type = sleepleader which = 30447 } #Rubtsov
+		command = { type = sleepleader which = 30491 } #Shestopalov
+		command = { type = sleepleader which = 30494 } #Shishenin
+		command = { type = sleepleader which = 30509 } #Skugarev
+		command = { type = sleepleader which = 30521 } #Starostin
+		command = { type = sleepleader which = 30548 } #Ugrimov
+		command = { type = sleepleader which = 30552 } #Vashugin
+		command = { type = sleepleader which = 30576 } #Zaitsev
+		command = { type = sleepleader which = 30614 } #Drozd
+		command = { type = sleepleader which = 30658 } #Chuvakov
+		command = { type = sleepleader which = 30660 } #Ekatov
+		command = { type = sleepleader which = 30720 } #Goryahov
+		command = { type = sleepleader which = 30473 } #Selivanov
+		command = { type = sleepleader which = 30778 } #Antonov-Ovseenko
+		command = { type = sleepleader which = 30076 } #Chernov
+		command = { type = sleepleader which = 30216 } #Kiselev
+		command = { type = sleepleader which = 30744 } #Krylenko
+		command = { type = sleepleader which = 30266 } #Kuzmin
+		command = { type = sleepleader which = 30322 } #Mikeladze
+		command = { type = sleepleader which = 30463 } #Rykov
+		command = { type = sleepleader which = 30479 } #Shadunts
+		command = { type = sleepleader which = 30538 } #Trifonov
+		command = { type = sleepleader which = 30789 } #Yegorov
+		command = { type = sleepleader which = 30313 } #Maslennikov
+		command = { type = sleepleader which = 30765 } #Vatsetis
+		command = { type = sleepleader which = 30767 } #Voskanov
+		command = { type = sleepleader which = 30515 } #Sokolov
+		command = { type = sleepleader which = 30776 } #Maximov
+		command = { type = sleepleader which = 30528 } #Tarasov
+		command = { type = sleepleader which = 30758 } #Schmidt
+		command = { type = sleepleader which = 30373 } #Pavlov
+		
+		command = { type = sleepteam which = 30007 } #Tukhachevsky
+		command = { type = sleepteam which = 30017 } #Alksnis
+		
+		command = { type = sleepminister which = 30005 } #Yagoda
+		command = { type = sleepminister which = 30007 } #Tukhachevsky
+		command = { type = sleepminister which = 30009 } #Orlov
+		command = { type = sleepminister which = 30053 } #Smushkevich
+		command = { type = sleepminister which = 30006 } #Berzin
+		command = { type = sleepminister which = 30010 } #Alksnis
+
+		command = { type = local_setflag which = "SOVterror" }
+		command = { type = trigger which = 2007039 }
+	}
+	action = {
+		ai_chance = 0
+		name = "Fold to their pressure"
+		command = { type = sleepminister which = 30146 }
+		command = { type = dissent value = 30 }
+		command = { type = regime_falls }
+	}
+}
+
+event = {
+	id = 2007026
+	random = no
+	country = SOV
+
+	trigger = {
+		local_flag = SOVterror
+		NOT = { local_flag = GPW }
+	}
+
+	name = "End of the Great Terror"
+	desc = "In 1938 a joint decree of Sovnarkom USSR and Central Committee of VKP(b) and the subsequent order of NKVD undersigned by Beria cancelled most of the NKVD orders of systematic repression and suspended implementation of death sentences. The decree signaled the end of massive Soviet purges."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = november year = 1938 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+
+
+	action = {
+		name = "Enough is enough"
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = trigger which = 2007040 }
+	}
+}
+
+event = {
+	id = 2007028
+	random = no
+	country = SOV
+
+	trigger = {
+		local_flag = SOVterror
+		NOT = { local_flag = GPW }
+	}
+
+	name = "Reorganization of the Red Army"
+	desc = "Following the brutal purges of 1936-1938, the Army began to gradually recover its combat capability while reorganizing along more modern lines. Some of the formerly purged officers were also released and allowed to rejoin."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = november year = 1939 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1941 }
+
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = trigger which = 2007040 }
+	}
+}
+
+event = {
+	id = 2007029
+	random = no
+	country = SOV
+
+	trigger = {
+		local_flag = SOVterror
+		NOT = { local_flag = GPW }
+	}
+
+	name = "Reorganization of the Red Army"
+	desc = "Following the brutal purges of 1936-1938, the Army began to gradually recover its combat capability while reorganizing along more modern lines. Some of the formerly purged officers were also released and allowed to rejoin."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = november year = 1940 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1942 }
+
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = trigger which = 2007040 }
+	}
+}
+
+event = {
+	id = 2007030
+	random = no
+	country = SOV
+
+	trigger = {
+		local_flag = SOVterror
+		NOT = { local_flag = GPW }
+	}
+
+	name = "Reorganization of the Red Army"
+	desc = "Following the brutal purges of 1936-1938, the Army began to gradually recover its combat capability while reorganizing along more modern lines. Some of the formerly purged officers were also released and allowed to rejoin."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = november year = 1941 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1943 }
+
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = trigger which = 2007040 }
+	}
+}
+
+event = {
+	id = 2007037
+	random = no
+	persistent = yes
+	all = yes
+	
+	name = "Depression in the USA"
+	desc = "From 1936 till 1938, the dust bowl and the resurgent recession threatened to undermine the gains made in the last few years and sink the US back into the depression. GDP growth slowed in 1936 and fell in 1937, while unemployment returned back to depression level highs."
+	style = 2
+  	picture = "news_paper"
+	
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { country = USA local_flag = noWarningsSOVUSA } } }
+	}
+	action = {
+		name = "Don't show me the Depression & Purge warnings again"
+		command = { trigger = { NOT = { country = USA local_flag = noWarningsSOVUSA } } type = local_setflag which = noWarningsSOVUSA }
+	}
+}
+
+event = {
+	id = 2007038
+	random = no
+	persistent = yes
+	all = yes
+	
+	name = "Recovery in the USA"
+	desc = "Following the problems of 1936-1938, the US entered back on the road to economic recovery as the dust bowl subsided and the Second New Deal Acts became effective."
+	style = 2
+  	picture = "news_paper"
+	
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { country = USA local_flag = noWarningsSOVUSA } } }
+	}
+	action = {
+		name = "Don't show me the Depression & Purge warnings again"
+		command = { trigger = { NOT = { country = USA local_flag = noWarningsSOVUSA } } type = local_setflag which = noWarningsSOVUSA }
+	}
+}
+
+event = {
+	id = 2007039
+	random = no
+	persistent = yes
+	all = yes
+	
+	name = "Great Purge in the USSR"
+	desc = "Between 1936 and 1938, three very large Moscow Trials of former senior Communist Party leaders were held, in which they were accused of conspiring with fascist and capitalist powers to assassinate Stalin and other Soviet leaders, dismember the Soviet Union and restore capitalism. These trials were highly publicized and extensively covered by the outside world, which was mesmerized by the spectacle of Lenin's closest associates confessing to most outrageous crimes and begging for death sentences."
+	style = 2
+  	picture = "news_paper"
+	
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { country = SOV local_flag = noWarningsSOVUSA } } }
+	}
+	action = {
+		name = "Don't show me the Depression & Purge warnings again"
+		command = { trigger = { NOT = { country = SOV local_flag = noWarningsSOVUSA } } type = local_setflag which = noWarningsSOVUSA }
+	}
+}
+
+event = {
+	id = 2007040
+	random = no
+	persistent = yes
+	all = yes
+	
+	name = "Reorganization of the Red Army"
+	desc = "Following the brutal purges of 1936-1938 in the Soviet Union, the Soviet Army began to gradually recover its combat capability while reorganizing along more modern lines. Some of the formerly purged officers were also released and gradually reinstated to the army."
+	style = 2
+  	picture = "news_paper"
+	
+	action = {
+		name = "Ok"
+		command = { trigger = { NOT = { country = SOV local_flag = noWarningsSOVUSA } } }
+	}
+	action = {
+		name = "Don't show me the Depression & Purge warnings again"
+		command = { trigger = { NOT = { country = SOV local_flag = noWarningsSOVUSA } } type = local_setflag which = noWarningsSOVUSA }
+	}
+}
+
+event = {
+	id = 2007050
+	random = no
+	country = SOV
+
+	trigger = {
+		lost_national = { country = SOV value = 5 }
+		war = { country = GER country = SOV }
+		NOT = { local_flag = GPW }
+	}
+
+	name = "Great Patriotic War"
+	desc = "Following the brutal purges of 1936-1938, the Army began to gradually recover its combat capability while reorganizing along more modern lines. Some of the formerly purged officers were also released and allowed to rejoin. The early disasters of the war helped the army gain necessary experience to understand modern combat."
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 1 month = september year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1963 }
+
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -20 }
+		command = { type = local_setflag which = "GPW" }
+		command = { type = wartime_ic_mod value = 10 }
+		command = { trigger = { event = 2007020 NOT = { event = 2007026 } } type = ground_def_eff value = 0.05 }
+		command = { trigger = { event = 2007021 NOT = { event = 2007028 } } type = ground_def_eff value = 0.05 }
+		command = { trigger = { event = 2007025 NOT = { event = 2007029 } } type = ground_def_eff value = 0.05 }
+		command = { trigger = { event = 2007025 NOT = { event = 2007030 } } type = ground_def_eff value = 0.05 }
+		command = { type = trigger which = 2007040 }
+		command = { type = sleepevent which = 2007020 }
+		command = { type = sleepevent which = 2007021 }
+		command = { type = sleepevent which = 2007025 }
+		command = { type = sleepevent which = 2007026 }
+		command = { type = sleepevent which = 2007027 }
+		command = { type = sleepevent which = 2007028 }
+		command = { type = sleepevent which = 2007029 }
+		command = { type = sleepevent which = 2007030 }
+		
+		command = { type = muddy_attack which = infantry value = 25 } # Infantry
+		command = { type = muddy_defense which = infantry value = 30 }
+		command = { type = muddy_move which = infantry value = 18 }
+		command = { type = frozen_move which = infantry value = 20 }
+		command = { type = frozen_attack which = infantry value = 30 } # Infantry
+		command = { type = frozen_defense which = infantry value = 35 }
+		command = { type = snow_attack which = infantry value = 35 }
+		command = { type = snow_defense which = infantry value = 35 }
+		command = { type = blizzard_attack which = infantry value = 30 }
+		command = { type = blizzard_defense which = infantry value = 40 }
+		command = { type = frozen_attack which = Motorized value = 18 } # Motorized 
+		command = { type = muddy_defense which = Motorized value = 23 } 
+		command = { type = frozen_defense which = Motorized value = 30 }
+		command = { type = muddy_move which = Motorized value = 18 }
+		command = { type = frozen_move which = Motorized value = 10 }
+		command = { type = snow_attack which = Motorized value = 18 }
+		command = { type = snow_defense which = Motorized value = 20 }
+		command = { type = blizzard_attack which = Motorized value = 25 }
+		command = { type = blizzard_defense which = Motorized value = 25 }
+		command = { type = frozen_attack which = Mechanized value = 20 } # Mechanized 
+		command = { type = frozen_defense which = Mechanized value = 25 }
+		command = { type = snow_attack which = Mechanized value = 20 }
+		command = { type = snow_defense which = Mechanized value = 25 }
+		command = { type = blizzard_attack which = Mechanized value = 30 }
+		command = { type = blizzard_defense which = Mechanized value = 25 }
+		command = { type = frozen_attack which = militia value = 30 } # Elite Infantry 
+		command = { type = frozen_defense which = militia value = 30 }
+		command = { type = muddy_move which = militia value = 18 }
+		command = { type = muddy_defense which = militia value = 25 }
+		command = { type = frozen_move which = militia value = 10 }
+		command = { type = snow_attack which = militia value = 33 }
+		command = { type = snow_defense which = militia value = 25 }
+		command = { type = blizzard_attack which = militia value = 40 }
+		command = { type = blizzard_defense which = militia value = 35 }
+		command = { type = frozen_attack which = Bergsjaeger value = 35 }
+		command = { type = frozen_defense which = Bergsjaeger value = 40 } # Bergsjaeger 
+		command = { type = snow_defense which = Bergsjaeger value = 40 }
+		command = { type = muddy_defense which = Bergsjaeger value = 30 }
+		command = { type = muddy_move which = Bergsjaeger value = 23 }
+		command = { type = frozen_move which = Bergsjaeger value = 15 }
+		command = { type = snow_attack which = Bergsjaeger value = 40 }
+		command = { type = blizzard_attack which = Bergsjaeger value = 35 }
+		command = { type = blizzard_defense which = Bergsjaeger value = 40 }
+		command = { type = frozen_attack which = paratrooper value = 20 } # Paratroop 
+		command = { type = frozen_defense which = paratrooper value = 23 }
+		command = { type = snow_attack which = paratrooper value = 25 }
+		command = { type = snow_defense which = paratrooper value = 23 }
+		command = { type = blizzard_attack which = paratrooper value = 25 }
+		command = { type = blizzard_defense which = paratrooper value = 23 }
+		command = { type = frozen_attack which = marine value = 20 } # Marine 
+		command = { type = frozen_defense which = marine value = 23 }
+		command = { type = snow_attack which = marine value = 25 }
+		command = { type = snow_defense which = marine value = 23 }
+		command = { type = blizzard_attack which = marine value = 25 }
+		command = { type = blizzard_defense which = marine value = 23 }
+		command = { type = frozen_attack which = armor value = 40 } # Armor 
+		command = { type = frozen_defense which = armor value = 30 }
+		command = { type = frozen_move which = armor value = 10 }
+		command = { type = muddy_move which = armor value = 15 }
+		command = { type = muddy_defense which = armor value = 30 }
+		command = { type = snow_attack which = armor value = 25 }
+		command = { type = snow_defense which = armor value = 23 }
+		command = { type = blizzard_attack which = armor value = 30 }
+		command = { type = blizzard_defense which = armor value = 28 }
+		command = { type = frozen_attack which = Light_armor value = 40 } # Elite Armor
+		command = { type = frozen_defense which = Light_armor value = 40 }
+		command = { type = muddy_move which = Light_armor value = 18 }
+		command = { type = frozen_move which = Light_armor value = 10 }
+		command = { type = muddy_defense which = Light_armor value = 35 }
+		command = { type = snow_attack which = Light_armor value = 35 }
+		command = { type = snow_defense which = Light_armor value = 35 }
+		command = { type = blizzard_attack which = Light_armor value = 40 }
+		command = { type = blizzard_defense which = Light_armor value = 40 }
+		command = { type = money value = 25 }
+	}
+}
+
+event = {
+	id = 2007060
+	random = no
+	country = SOV
+
+	trigger = {
+		policy = { type = professional_army value = 7 } 
+		NOT = { lost_national = { value = 5 } }
+	}
+
+	name = "Opposition to mobilization"
+	desc = "The government is encountering heavy opposition to mobilization from the population of the Union. Enthusiasm for conflict is weak and its goals are unclear. Many are seeing the initiative as foolish ambition by the heads in Moscow rather than dire necessity."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Shit!"
+		command = { type = dissent value = 5 }
+		#command = { trigger = { NOT = { local_flag = SOVterror } } type = dissent value = 5 }
+	}
+}
+
+event = {
+	id = 2007061
+	random = no
+	country = SOV
+
+	trigger = {
+		war = { country = SOV country = ENG } 
+		war = { country = SOV country = GER } 
+	}
+
+	name = "Opposition to the war"
+	desc = "Despite the obvious aggression from our neighbors, a large part of the Soviet society is blaming Moscow for the escalation and the war. The opposition is heavy across the spectrum of Soviet society, but especially among the non-Russian republics who are promised liberation by Germany. Many people are unwilling to fight, even worse, some are willing to fight for the enemy!"
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Shit!"
+		command = { type = dissent value = 5 }
+		command = { trigger = { NOT = { local_flag = SOVterror } } type = dissent value = 10 }
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+	}
+}
+event = {
+	id = 2007063
+	random = no
+	country = SOV
+
+	trigger = {
+		OR = {
+			war = { country = SOV country = ENG } 
+			war = { country = SOV country = GER } 
+		}
+		lost_national = { value = 10 }
+		event = 2007061
+	}
+
+	name = "Opposition to the war eases"
+	desc = "As the enemy is making steady gains at our expense and its aggressive intentions become increasingly obvious, the opposition to the war gradually eases."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -10 }
+		command = { trigger = { ai = yes } type = dissent value = -10 }
+		command = { trigger = { ai = yes } type = money value = 500 }
+		command = { trigger = { ai = yes } type = supplies value = 5000 }
+	}
+}
+
+##########################################################
+# Leningrad mobilizes for defense by Perkele
+# modified by Luxor AI USSR - Human GER
+##########################################################
+event = {
+	id = 23126500
+	random = no
+	country = SOV
+	
+	trigger = {
+		atwar = yes
+		control = { province = 553 data = SOV } # Leningrad
+		OR = {
+			NOT = { control = { province = 550 data = SOV } } # Luga
+			NOT = { control = { province = 551 data = SOV } } # Krasnogvarde
+			NOT = { control = { province = 531 data = SOV } } # Vipuri
+		}
+	}   
+	
+	name = "Leningrad mobilizes for defense"
+	desc = "As enemy troops pushed closer to the 'cradle of the revolution', the communist party mobilized its enormous human resources. Half a million civilians were used in the construction of a wide defensive perimeter around the city, and tens of thousands of workers were organized into infantry units by the 'Opolchenye' (Peoples Army). Within a month the city of Leningrad was turned into an inexpugnable fortress."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Leningrad PMC" value = land where = 553 } 
+		command = { type = add_division which = "Leninskaya PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "Smolninskaya PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "Oktiabrskaya2 PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "Smolninskaya4 PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "Oktiabrskaya3 PMD" value = garrison when = 5 where = engineer }
+        command = { type = construct which = land_fort where = 553 value = 1 } #Leningrad
+        command = { type = construct which = flak where = 553 value = 2 } #Leningrad
+	}
+}
+##########################################################
+# Leningrad forts destroyed as Germans move in
+# Modified by Gormadoc
+##########################################################
+event = {
+	id = 23126501
+	random = no
+	country = GER
+
+	trigger = {
+		NOT = { control = { province = 553 data = SOV } }#Leningrad
+        atwar = yes
+	}
+	
+	name = "Leningrad forts destroyed by combat"
+	desc = "Leningrad forts destroyed by combat"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15  
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "Heavy combat has destroyed the Leningrad forts"
+        command = { type = construct which = land_fort where = 553 value = -10 } #Leningrad
+        command = { type = construct which = flak where = 553 value = -5 } #Leningrad
+	}
+}
+##########################################################
+# Sevastopol mobilizes for defense by Perkele
+# modified by Luxor (AI-Human), Gormadoc
+##########################################################
+event = {
+	id = 23126502
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = { province = 641 data = SOV } # Sevastopol
+		OR = { 
+			NOT = { control = { province = 637 data = SOV } } # Yevpatoriya
+			NOT = { control = { province = 638 data = SOV } } # Simferopol
+			NOT = { control = { province = 640 data = SOV } } # Kerch
+		}
+		atwar = yes
+	}
+	
+	name = "Sevastopol mobilizes for defense"
+	desc = "Garrison units have been formed in Sevastopol in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Sevastopol PMC" value = land where = 641 } 
+		command = { type = add_division which = "1. Sevastopol PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "2. Sevastopol PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "3. Sevastopol PMD" value = garrison when = 5 where = engineer }
+		command = { type = construct which = land_fort where = 641 value = 1 } #Sevastopol
+		command = { type = construct which = flak where = 641 value = 2 } #Sevastopol
+	}
+}
+##########################################################
+# Stalingrad mobilizes for defense by Perkele
+# modified by Luxor, Gormadoc
+##########################################################
+event = {
+	id = 23126503
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = { province = 663 data = SOV } # Stalingrad
+		atwar = yes
+		OR = { 
+			NOT = { control = { province = 659 data = SOV } }# Kalach-On-Don
+			NOT = { control = { province = 661 data = SOV } }# Kamyshin
+			NOT = { control = { province = 662 data = SOV } }# Kotelnikovo
+		}
+	}
+	
+	name = "Stalingrad mobilizes for defense"
+	desc = "infantry units have been formed in Stalingrad in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+        command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Don Cossacks" value = land where = 663 } 
+		command = { type = add_division which = "Cossack cavalry PMD" value = cavalry when = 10 }
+		command = { type = add_corps which = "Stalingrad PMC" value = land where = 663 } 
+		command = { type = add_division which = "1. Stalingrad PMD" value = infantry when = 10 where = heavy_armor }
+		command = { type = add_division which = "6. Stalingrad PMD" value = infantry when = 10 where = heavy_armor }
+		command = { type = add_division which = "7. Stalingrad PMD" value = infantry when = 10 where = light_armor_brigade }
+		command = { type = add_division which = "2. Stalingrad PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "3. Stalingrad PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "4. Stalingrad PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "5. Stalingrad PMD" value = garrison when = 5 where = engineer }
+		command = { type = construct which = land_fort where = 663 value = 1 } #Stalingrad
+		command = { type = construct which = flak where = 663 value = 2 } #Stalingrad
+	}
+}
+##########################################################
+# Stalingrad forts destroyed as Germans move in
+# Modified by Gormadoc
+##########################################################
+event = {
+	id = 23126504
+	random = no
+	country = GER
+
+	trigger = {
+		NOT = { control = { province = 663 data = SOV } } #Stalingrad
+        atwar = yes
+	}
+	
+	name = "Stalingrad forts destroyed by combat"
+	desc = "Stalingrad forts destroyed by combat"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30  
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "Heavy combat has destroyed the Stalingrad forts"
+		command = { type = construct which = land_fort where = 663 value = -9 } #Stalingrad
+		command = { type = construct which = flak where = 663 value = -9 } #Stalingrad
+	}
+}
+##########################################################
+# Krasnodar mobilizes for defense by Perkele
+# modified by Luxor
+##########################################################
+event = {
+	id = 23126505
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = { province = 691 data = SOV } # Krasnodar
+        atwar = yes
+		NOT = {
+			OR = {
+				control = {  province = 640 data = SOV } # Kerch
+				control = {  province = 644 data = SOV } # Rostov-On-Don
+				control = {  province = 634 data = SOV } # Voroshilovgrad
+			}
+		}
+	}
+	
+	name = "Krasnodar mobilizes for defense"
+	desc = "infantry units have been formed in Krasnodar in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+        command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Krasnodar Cossacks" value = land where = 691 } 
+		command = { type = add_division which = "1. Cossack Division" value = cavalry when = 10 }
+		command = { type = add_division which = "2. Cossack Division" value = cavalry when = 10 }
+        command = { type = construct which = land_fort where = 691 value = 1 } #Krasnodar
+        command = { type = construct which = flak where = 691 value = 2 } #Krasnodar
+	}
+}
+##########################################################
+# Rostov mobilizes for defense by Perkele
+# modified by Luxor
+##########################################################
+event = {
+	id = 23126506
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = {  province = 644 data = SOV } # Rostov-On-Don
+		atwar = yes
+		OR = {
+			NOT = { control = { province = 630 data = SOV } } # Zaporozhye
+			NOT = { control = { province = 632 data = SOV } } # Dnepropetrovsk
+			NOT = { control = { province = 631 data = SOV } } # Mariupol
+			NOT = { control = { province = 635 data = SOV } } # Stalino
+		}
+	}
+	
+	name = "Rostov mobilizes for defense"
+	desc = "Infantry units have been formed in Rostov in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = add_corps which = "Rostov Cossacks" value = land where = 644 } 
+		command = { type = add_division which = "Rostov cavalry PMD" value = cavalry when = 9 }
+		command = { type = add_corps which = "Rostov PMC" value = land where = 644 }
+		command = { type = add_division which = "1. Rostov garrison PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "2. Rostov garrison PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "3. Rostov garrison PMD" value = garrison when = 5 where = engineer }
+		command = { type = add_division which = "4. Rostov garrison PMD" value = garrison when = 5 where = engineer }
+		command = { type = construct which = land_fort where = 644 value = 1 } #Rostov
+		command = { type = construct which = flak where = 644 value = 2 } #Rostov
+	}
+}
+##########################################################
+# Moscow mobilizes for defense by Perkele
+# modified by Luxor, hendriks, Gormadoc
+##########################################################
+event = {
+	id = 23126507
+	random = no
+	country = SOV
+
+	trigger = {
+		control = { province = 572 data = SOV } # Moscow
+        atwar = yes
+		OR = { 
+			NOT ={ control = { province = 571 data = SOV } } # Orekhovo-Zuyevo
+			NOT ={ control = { province = 567 data = SOV } } # Serpukhov
+			NOT ={ control = { province = 570 data = SOV } } # Zagorsk
+			NOT ={ control = { province = 676 data = SOV } } # Rybinsk
+			NOT ={ control = { province = 558 data = SOV } } # Rzhev
+			NOT ={ control = { province = 568 data = SOV } } # Solnechnogorsk
+		}
+	}
+	
+	name = "Moscow Reserves activated"
+	desc = "As enemy troops pushed closer to the capital of the USSR, the communist party mobilized its enormous human resources. Half a million civilians were used in the construction of a wide defensive perimeter in front of the city, and tens of thousands of workers were organized into infantry units by the 'Opolchenye' (Peoples Army). Within a month Moscow was turned into an inexpugnable fortress."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5  
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+        command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Moscow PMC" value = land when = 10393 where = 572 }
+		command = { type = add_division which = "1. Moscow PMD" value = infantry when = 10 where = engineer } 
+		command = { type = add_division which = "2. Moscow PMD" value = infantry when = 10 where = anti_tank }
+		command = { type = add_division which = "3. Moscow PMD" value = bergsjaeger when = 10 where = engineer }
+		command = { type = add_division which = "4. Moscow PMD" value = infantry when = 10 where = engineer }
+		command = { type = add_division which = "5. Moscow PMD" value = bergsjaeger when = 10 where = engineer }
+		command = { type = add_division which = "6. Moscow PMD" value = hq when = 4 where = anti_air }
+		command = { type = add_division which = "7. Moscow PMD" value = armor when = 0 where = sp_artillery }
+		command = { type = add_corps which = "Rybinsk PMC" value = land where = 676 }
+		command = { type = add_division which = "Rybinsk Communist Rifle PMC" value = infantry when = 10 }
+		command = { type = add_division which = "1. Rybinsk PMD" value = infantry when = 10 where = anti_tank }
+		command = { type = add_division which = "2. Rybinsk PMD" value = infantry when = 9 where = engineer }
+		command = { type = add_division which = "4. Rybinsk PMD" value = infantry when = 9 where = engineer }
+        command = { type = construct which = land_fort where = 572 value = 1 } #Moscow
+        command = { type = construct which = flak where = 572 value = 2 } #Moscow
+	}
+}
+##########################################################
+# Rhzev mobilizes for defense by hendriks
+##########################################################
+event = {
+	id = 23126508
+	random = no
+	country = SOV
+
+	trigger = {
+		control = { province = 558 data = SOV } # Rzhev
+        atwar = yes
+		OR = { 
+			NOT = { control = { province = 571 data = SOV } } # Orekhovo-Zuyevo
+			NOT = { control = { province = 567 data = SOV } } # Serpukhov
+			NOT = { control = { province = 570 data = SOV } } # Zagorsk´
+			NOT = { control = { province = 573 data = SOV } } # Velikiye Luki
+		}
+	}
+	
+	name = "Rzhev mobilizes for defense"
+	desc = "As enemy troops pushed closer to the capital of the USSR, the communist party mobilized its enormous human resources. Half a million civilians were used in the construction of a wide defensive perimeter in front of the city, and tens of thousands of workers were organized into infantry units by the 'Opolchenye' (Peoples Army). Within a month Moscow was turned into an inexpugnable fortress."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5  
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+        command = { type = dissent value = -1 }
+		command = { type = add_corps which = "Rhzev PMC" value = land where = 558 } 
+		command = { type = add_division which = "1. Rzhev PMD" value = infantry when = 9 }
+		command = { type = add_division which = "2. Rzhev PMD" value = infantry when = 10 }
+		command = { type = add_division which = "5. Rzhev PMD" value = armor when = 0 where = sp_artillery }
+	}
+}
+##########################################################
+# Moscow forts destroyed as Germans move in
+##########################################################
+event = {
+	id = 23126509
+	random = no
+	country = GER
+
+	trigger = {
+		NOT = { control = { province = 572 data = SOV } } # Moscow
+        atwar = yes
+	}
+	
+	name = "Moscow forts destroyed by combat"
+	desc = "Moscow forts destroyed by combat"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15  
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "Heavy combat has destroyed the Moscow forts"
+        command = { type = construct which = land_fort where = 572 value = -8 } #Moscow
+        command = { type = construct which = flak where = 572 value = -8 } #Moscow
+	}
+}
+##########################################################
+# Murmansk mobilizes for defense by Perkele
+# modified by Luxor
+##########################################################
+event = {
+	id = 23126510
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = { province = 535 data = SOV } # Murmansk
+		NOT = { control = { province = 517 data = SOV } } # Petsamo	
+		atwar = yes
+	}	
+	
+	name = "Murmansk mobilizes for defense"
+	desc = "infantry units have been formed in Murmansk in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+   	offset = 15
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = add_corps which = "Murmansk PMC" value = land where = 535 } 
+		command = { type = add_division which = "1. Murmansk PMD" value = garrison when = 5 }
+		command = { type = add_division which = "2. Murmansk PMD" value = garrison when = 5 }
+		command = { type = construct which = land_fort where = 535 value = 1 } #Murmansk
+		command = { type = construct which = flak where = 535 value = 2 } #Murmansk
+	}
+}
+
+##########################################################
+# Voronezh mobilizes for defense by Perkele
+# modified by Luxor
+##########################################################
+event = {
+	id = 23126511
+	random = no
+	country = SOV
+	
+	trigger = {
+		control = { province = 654 data = SOV } # Voronezh
+        atwar = yes
+		NOT = {
+			OR = {
+				control = {  province = 588 data = SOV } # Bryansk
+				control = {  province = 581 data = SOV } # Oryol
+				control = {  province = 604 data = SOV } # Kursk
+				control = {  province = 602 data = SOV } # Zheleznogorsk
+				control = {  province = 603 data = SOV } # Belgorod
+			}
+		}
+	}
+		
+	
+	name = "Voronezh mobilizes for defense"
+	desc = "infantry units have been formed in Voronezh in order to halt the enemy advance."
+	style = 2
+	picture = "226"
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = add_corps which = "Voronezh PMC" value = land where = 654 } 
+		command = { type = add_division which = "1.Voronezh PMD" value = infantry when = 9  }
+		command = { type = add_division which = "2.Voronezh PMD" value = infantry when = 9  }
+		command = { type = add_division which = "3.Voronezh PMD" value = infantry when = 10  }
+		command = { type = construct which = land_fort where = 654 value = 1 } #Voronezh
+		command = { type = construct which = flak where = 654 value = 2 } #Voronezh
+	}
+}
+
+#####################################################################################
+# Fall of Moscow and relocation of the capital to Kujbyshev
+#####################################################################################
+event = { 
+	id = 23126530
+	random = no
+	country = SOV
+
+	trigger= { 
+		NOT = { event = 3283025 }
+		NOT = { event = 3283026 }
+		NOT = { control = { province = 572 data = SOV } } # Moscow
+		control = { province = 668 data = SOV } # Kuybyshev
+	}
+
+	name = "Fall of Moscow - Government evacuates to Kuybyshev"
+	desc = "As enemy forces forced closed in on the burning ruins of the Kremlin, the Politburo were already on their way to Kujbyshev. The fall of Moscow was a tremendous moral blow to the Soviet people, and confidence in the Bolshevik leadership was seriously shaken."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = capital which = 668 } # Kuybyshev
+		command = { type = dissent value = 1 }
+		command = { type = province_keypoints which = 668 value = 4 } # Kuybyshev
+	}
+}
+#####################################################################################
+# Fall of Moscow and relocation of the capital to Novosibirsk
+#####################################################################################
+event = { 
+	id = 23126531
+	random = no
+	country = SOV
+
+	trigger= { 
+		NOT = { control = { province = 553 data = SOV } } # Leningrad
+		NOT = { control = { province = 572 data = SOV } } # Moscow
+		NOT = { control = { province = 668 data = SOV } } # Kuybyshev
+		control = { province = 1548 data = SOV }
+	}
+
+	name = "Government evacuates to Novosibirsk"
+	desc = "As enemy forces forced closed in on the burning ruins of the capital, the Politburo were already on their way to Novosibirsk. The fall of Moscow was a tremendous moral blow to the Soviet people, and confidence in the Bolshevik leadership was seriously shaken."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = capital which = 1142 } # Novosibirsk
+		command = { type = dissent value = 2 }
+		command = { type = province_keypoints which = 1142 value = 5 } # Novosibirsk
+	}
+}
+
+#####################################################################################
+# Moscow recaptured
+#####################################################################################
+event = { 
+	id = 23126532
+	random = no
+	country = SOV
+
+	trigger= { 
+		NOT = { capital = { province = 572 } }
+		owned = { province = 572 data = SOV } # Moscow
+		control = { province = 572 data = SOV }
+		control = { province = 571 data = SOV } # Orekhovo-Zuyevo
+		control = { province = 676 data = SOV } # Rybinsk
+		control = { province = 570 data = SOV } # Zagorsk
+		control = { province = 558 data = SOV } # Rzhev
+		control = { province = 568 data = SOV } # Solnechnogorsk
+		control = { province = 567 data = SOV } # Serpukhov
+	}
+
+	name = "Moscow recaptured"
+	desc = "With Moscow firmly back in Soviet hands, there was no reason for delaying the return of the Government to what was left of the Kremlin. The recapture of the capital was a huge boost to Soviet morale, and a sign that finally, the tide had turned." 
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	action_a = {
+		name = "OK"
+		command = { type = capital which = 572 }
+		command = { type = dissent value = -10 }
+		command = { type = inherit which = DFR }
+	}
+}

@@ -1,0 +1,5 @@
+switch = no # [yes/no]
+
+trade = {
+	embargo = { USA SOV FRA BEL SPR U20 U14 YUG POL ROM GRE NOR }
+}

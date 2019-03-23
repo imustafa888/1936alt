@@ -1,0 +1,2064 @@
+#########################################################################
+# Finland
+#########################################################################
+
+#########################################################################
+# Finland - Outbreak
+#########################################################################
+
+event = { 
+	id = 320000 
+	random = no
+	country = SOV
+
+	name = "USSR-Finland territory exchange"
+	desc = "As the tension grows in Europe, the a concern is growing over the proximity of the Finnish border to Leningrad, Russia's second largest city. The foreign ministry thus considers proposing a territorial exchange and a mutual-defense pact to Finland to prevent potential Swedish encroachement."
+	style = 2
+
+
+	decision = {
+		year = 1937
+		exists = SCA
+		NOT = { war = { country = SOV country = FIN } }
+	}
+	
+	decision_trigger = {
+		year = 1937
+	}
+
+	trigger = {
+		year = 1937
+		exists = SCA
+		NOT = { war = { country = SOV country = FIN } } 
+	}
+
+	date = { day = 1 month = april year = 1936 }
+	offset = 25
+	deathdate = { day = 29 month = december year = 1949 }
+	
+	action = {
+		name = "Propose the agreement"
+		command = { type = belligerence value = 1 }
+		command = { type = relation which = SWE value = -15 }
+		command = { type = trigger which = 320001 }
+	}
+}
+
+event = { 
+	id = 320001 
+	random = no
+	country = FIN
+
+	name = EVT320001_NAME
+	desc = EVT320001_DESC
+	style = 2
+	
+	action = {
+		name = "This is an unacceptable proposition"
+		ai_chance = 99
+		command = { type = dissent value = 30 }
+		command = { type = trigger which = 320002 } # SOV
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = relation which = SOV value = -10 }
+		command = { type = relation which = SWE value = 15 }
+		command = { type = relation which = NOR value = 15 }
+        command = { type = relation which = GER value = 10 }
+	}
+	action = {
+		name = "Fold to their pressure (Government resigns)"
+		ai_chance = 1
+		command = { type = dissent value = 60 }
+		command = { type = regime_falls }
+		command = { type = trigger which = 320004 }
+	}
+}
+
+event = { 
+	id = 320002 
+	random = no
+	country = SOV
+
+	name = "Finnish refusal"
+	desc = "Despite our best hopes, the Finnish government refused our demands."
+	style = 2
+	
+	action = {
+		name = "Keep trying, they can be convinced"
+		ai_chance = 99
+		command = { type = dissent value = 3 }
+		command = { type = energypool value = -2000 } 
+		command = { type = metalpool value = -1000 } 
+		command = { type = oilpool value = -1000 } 
+		command = { type = rarematerialspool value = -1000 } 
+		command = { type = supplies value = -3500 } 
+	}
+	action = {
+		name = "This means war"
+		ai_chance = 1
+		command = { type = trigger which = 3128005 } #finland joins sweden 
+		command = { type = war which = SCA }
+		command = { type = belligerence value = 5 }
+	}
+}
+
+event = { 
+	id = 320003
+	random = no
+	country = FIN
+	save_date = yes
+	
+	trigger = {
+		exists = SCA
+		event = 3128004
+		event = 320002 
+		random = 10
+		atwar = no
+	}
+
+	name = EVT320003_NAME
+	desc = EVT320003_DESC
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1949 }
+	
+	action = {
+		name = "The dice are cast"
+		command = { type = construct which = land_fort where = 531 value = -8 }
+		command = { type = leave_alliance }
+		command = { type = capital which = 516 }
+		command = { type = regime_falls }
+		command = { type = civil_war which = U20 }
+		command = { type = event which = 320005 where = FIN when = 1 }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = secedeprovince which = U20 value = 525 when = 2 } 
+		command = { type = secedeprovince which = FIN value = 516 when = 2 } 
+	}
+}
+
+event = { 
+	id = 320004
+	random = no
+	country = SOV
+
+	name = "Finnish acceptance"
+	desc = "Following the Finnish parliaments pressure to accept the Soviet treaty terms, the Finnish government resigned and was replaced by a left-leaning one. This was followed by widespread revolts across the country, which prompted the new Finnish government to request Soviet aid."
+	style = 2
+	
+	action = {
+		name = "Excellent"
+		command = { type = belligerence value = 5 }
+		command = { type = make_puppet which = FIN }
+		command = { type = coup_nation which = FIN }
+	}
+}
+
+
+event = { 
+	id = 320005 
+	random = no
+	country = FIN
+
+	name = EVT320003_NAME
+	desc = EVT320003_DESC
+	style = 2
+	
+	action = {
+		name = "The dice are cast"
+		command = { type = belligerence value = 1 }
+		command = { type = manpowerpool value = 400 } #Finnish government inherits main manpowerpool
+		command = { type = dissent value = -75 }
+		command = { type = set_domestic which = political_left value = 2 }
+		command = { type = set_domestic which = democratic value = 4 }
+		command = { type = set_domestic which = interventionism value = 6 }
+		command = { type = set_domestic which = defense_lobby value = 5 }
+		
+		#Frontline
+		command = { type = add_corps value = land where = 524 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 528 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 527 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 533 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+
+		#Internal
+		command = { type = add_corps value = land where = 520 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 522 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 523 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 523 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 521 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 511 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 526 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 518 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 519 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 515 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 517 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 532 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 514 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 515 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 516 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		#15 infantry
+		#10 garrison
+
+
+		command = { type = secedeprovince which = U20 value = 525 }
+		command = { type = secedeprovince which = U20 value = 529 }
+		command = { type = secedeprovince which = U20 value = 530 }
+		command = { type = secedeprovince which = U20 value = 531 }
+		
+		command = { type = control which = U20 value = 525 }
+		command = { type = control which = U20 value = 529 }
+		command = { type = control which = U20 value = 530 }
+		command = { type = control which = U20 value = 531 }
+
+		command = { type = transport_pool which = FIN value = 20 }
+
+		command = { type = construct which = land_fort where = 527 value = 4 }
+		command = { type = construct which = land_fort where = 524 value = 2 }
+		command = { type = construct which = land_fort where = 528 value = 2 }
+		
+		command = { type = trigger which = 320006 }
+		
+		command = { type = addcore which = 2766 }
+		command = { type = secedeprovince which = FIN value = 2766 when = 2 }
+	}
+}
+
+event = { 
+	id = 320006
+	random = no
+	country = U20
+	
+	name = EVT320003_NAME
+	desc = EVT320003_DESC
+	style = 2
+	
+	action = {
+		name = "The dice are cast"
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = belligerence value = 1 }
+		command = { type = manpowerpool value = -100 } #Finnish government inherits main manpowerpool
+		command = { type = dissent value = -75 }
+		command = { type = set_domestic which = interventionism value = 3 }
+		command = { type = set_domestic which = defense_lobby value = 4 }
+
+		
+		#Frontline
+
+		#Helsinki
+		command = { type = add_corps value = land where = 525 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 525 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		#Kouvola
+		command = { type = add_corps value = land where = 529 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 529 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		#Viipuri
+		command = { type = add_corps value = land where = 531 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_corps value = land where = 531 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		
+		#Terioki
+		command = { type = add_corps value = land where = 530 }
+		command = { type = add_division value = infantry when = 7 }
+		command = { type = add_division value = infantry when = 7 }
+		
+		#10 infantry
+		#5 garrison
+		#extra 2 infantry, 3 garrisons
+		
+ 		command = { type = secedeprovince which = FIN value = 513 }
+ 		command = { type = secedeprovince which = FIN value = 511 }
+ 		command = { type = secedeprovince which = FIN value = 526 }
+		command = { type = secedeprovince which = FIN value = 518 }
+ 		command = { type = secedeprovince which = FIN value = 519 } 
+		command = { type = secedeprovince which = FIN value = 521 }
+		command = { type = secedeprovince which = FIN value = 520 }
+ 		command = { type = secedeprovince which = FIN value = 516 } 
+		command = { type = secedeprovince which = FIN value = 515 }
+ 		command = { type = secedeprovince which = FIN value = 517 } 
+		command = { type = secedeprovince which = FIN value = 523 } 
+		command = { type = secedeprovince which = FIN value = 522 }
+		command = { type = secedeprovince which = FIN value = 527 } 
+ 		command = { type = secedeprovince which = FIN value = 528 } 
+		command = { type = secedeprovince which = FIN value = 512 }
+		command = { type = secedeprovince which = FIN value = 524 }
+		command = { type = secedeprovince which = FIN value = 532 } 
+		command = { type = secedeprovince which = FIN value = 533 }
+		command = { type = secedeprovince which = FIN value = 514 }
+		
+ 		command = { type = control which = FIN value = 513 }
+ 		command = { type = control which = FIN value = 511 }
+ 		command = { type = control which = FIN value = 526 }
+		command = { type = control which = FIN value = 518 }
+ 		command = { type = control which = FIN value = 519 } 
+		command = { type = control which = FIN value = 521 }
+		command = { type = control which = FIN value = 520 }
+ 		command = { type = control which = FIN value = 516 } 
+		command = { type = control which = FIN value = 515 }
+ 		command = { type = control which = FIN value = 517 } 
+		command = { type = control which = FIN value = 523 } 
+		command = { type = control which = FIN value = 522 }
+		command = { type = control which = FIN value = 527 } 
+ 		command = { type = control which = FIN value = 528 } 
+		command = { type = control which = FIN value = 512 }
+		command = { type = control which = FIN value = 524 } 
+		command = { type = control which = FIN value = 532 } 
+		command = { type = control which = FIN value = 533 }
+		command = { type = control which = FIN value = 514 }
+
+		command = { type = transport_pool which = U20 value = 20 }
+		
+		command = { type = capital which = 525 }
+
+		command = { type = construct which = land_fort where = 525 value = 2 }
+		command = { type = construct which = land_fort where = 529 value = 4 }
+		command = { type = construct which = land_fort where = 524 value = 4 }
+		command = { type = construct which = land_fort where = 531 value = 6 } #was originally 8
+		
+		#command = { type = construct which = ic where = 527 value = -1 }
+		#command = { type = construct which = ic where = 525 value = 1 }
+		
+		command = { type = addcore which = 2765 }
+		command = { type = secedeprovince which = U20 value = 2765 when = 2 }
+	}
+}
+
+#########################################################################
+# Finland - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3118110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		war = { country = U20 country = FIN }
+		NOT = { flag = SOV_to_U20_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_U20_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U20 country = FIN }
+		NOT = { flag = SOV_to_U20_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_U20_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = U20 } }
+		OR = {
+			NOT = { flag = SOV_to_U20_1 }
+			NOT = { flag = SOV_to_U20_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_U20_3 }
+				OR = { 
+					flag = GER_to_FIN_1
+					flag = SCA_to_FIN_1
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_U20_4 }
+				OR = { 
+					flag = GER_to_FIN_2
+					flag = SCA_to_FIN_2
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_U20_5 }
+				OR = { 
+					flag = GER_to_FIN_3
+					flag = SCA_to_FIN_3
+				}
+			}
+		}
+	}
+	
+	name = "Finnish Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in Finland presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_U20_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = U20 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_U20_1 }
+		command = { type = event which = 3118111 where = U20 when = 15 }
+		command = { type = setflag which = SOV_to_U20_delay }
+		command = { type = access which = U20 }
+		
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = event which = 320100 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = local_setflag which = FCWExp }
+		
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = event which = 3118200 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = local_setflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_U20_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = U20 supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_U20_4 NOT = { flag = SOV_to_U20_5 } } type = setflag which = SOV_to_U20_5 }
+		command = { trigger = { flag = SOV_to_U20_3 NOT = { flag = SOV_to_U20_4 } } type = setflag which = SOV_to_U20_4 }
+		command = { trigger = { flag = SOV_to_U20_2 NOT = { flag = SOV_to_U20_3 } } type = setflag which = SOV_to_U20_3 }
+		command = { trigger = { flag = SOV_to_U20_1 NOT = { flag = SOV_to_U20_2 } } type = setflag which = SOV_to_U20_2 }
+		command = { type = event which = 3118111 where = U20 when = 15 }
+		command = { type = setflag which = SOV_to_U20_delay }
+	}
+}
+
+event = { 
+	id = 3118111
+	random = no
+	country = U20
+	persistent = yes
+	
+	name = "Soviet help arrives in Finland"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the Soviet border to Finland."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 530 }
+		command = { trigger = { flag = SOV_to_U20_5 }								type = add_division which = "Soviet volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_4 NOT = { flag = SOV_to_U20_5 } } type = add_division which = "Soviet volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_3 NOT = { flag = SOV_to_U20_4 } } type = add_division which = "Soviet volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_2 NOT = { flag = SOV_to_U20_3 } } type = add_division which = "Soviet volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_1 NOT = { flag = SOV_to_U20_2 } } type = add_division which = "Soviet volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = SOV_to_U20_delay }
+	}
+}
+
+event = { 
+	id = 3118112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_U20_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_U20_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_U20_1
+		OR = {
+			NOT = { war = { country = U20 country = FIN } }
+			#will Annex instead
+			#alliance = { country = U20 }
+		}
+	}
+	
+	name = "End of intervention in Finland"
+	desc = "With the civil war in Finland at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_U20_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U20_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U20_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U20_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_U20_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = U20 }
+		command = { trigger = { NOT = { alliance = { country = U20 } } } type = military_control which = SOV where = U20 value = 0 }
+		command = { type = end_trades which = U20 where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in Finland 5" value = U20 }
+		command = { type = remove_division which = "Soviet volunteers in Finland 4" value = U20 }
+		command = { type = remove_division which = "Soviet volunteers in Finland 3" value = U20 }
+		command = { type = remove_division which = "Soviet volunteers in Finland 2" value = U20 }
+		command = { type = remove_division which = "Soviet volunteers in Finland 1" value = U20 }
+		
+		command = { type = add_corps value = land where = 530 }
+		command = { trigger = { flag = SOV_to_U20_5 exists = U20 } type = add_division which = "Soviet volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_4 exists = U20 } type = add_division which = "Soviet volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_3 exists = U20 } type = add_division which = "Soviet volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_2 exists = U20 } type = add_division which = "Soviet volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_U20_1 exists = U20 } type = add_division which = "Soviet volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = U20 } } type = clrflag which = SOV_to_U20_5 }
+		command = { trigger = { NOT = { exists = U20 } } type = clrflag which = SOV_to_U20_4 }
+		command = { trigger = { NOT = { exists = U20 } } type = clrflag which = SOV_to_U20_3 }
+		command = { trigger = { NOT = { exists = U20 } } type = clrflag which = SOV_to_U20_2 }
+		command = { trigger = { NOT = { exists = U20 } } type = clrflag which = SOV_to_U20_1 }
+		
+		command = { type = trigger which = 3118113 }
+	}
+}
+
+event = { 
+	id = 3118113
+	random = no
+	country = U20
+	persistent = yes
+
+	name = "End of intervention in Finland"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_U20_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U20_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U20_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U20_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_U20_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_U20_5 }
+		command = { type = clrflag which = SOV_to_U20_4 }
+		command = { type = clrflag which = SOV_to_U20_3 }
+		command = { type = clrflag which = SOV_to_U20_2 }
+		command = { type = clrflag which = SOV_to_U20_1 }
+	}
+}
+
+event = { 
+	id = 3118114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_U20_1
+		NOT = { military_control = { country = U20 } }
+	}
+
+	decision_trigger = {
+		exists = U20
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Finnish Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Finland"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = U20 value = 1 }
+	}
+}
+
+#Swedish
+
+event = { 
+	id = 3118140
+	random = no
+	country = SCA
+	persistent = yes
+
+	decision = {
+		war = { country = U20 country = FIN }
+		NOT = { flag = SCA_to_FIN_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SCA_to_FIN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U20 country = FIN }
+		NOT = { flag = SCA_to_FIN_5 }
+		manpower = 16
+		NOT = { flag = SCA_to_FIN_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = FIN } }
+		OR = {
+			NOT = { flag = SCA_to_FIN_1 }
+			AND = {
+				NOT = { flag = SCA_to_FIN_2 }
+				OR = { 
+					flag = SOV_to_U20_4
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = SCA_to_FIN_3 }
+				OR = { 
+					flag = SOV_to_U20_5
+				}
+			}
+			#AND = {
+			#	ic = 100
+			#	NOT = { flag = SCA_to_FIN_4 }
+			#}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = SCA_to_FIN_5 }
+			#}
+		}
+	}
+	
+	name = "Finnish Civil War - Swedish Intervention"
+	desc = "The outbreak of civil war in Finland presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Swedish_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SCA_to_FIN_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SCA where = FIN supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SCA_to_FIN_1 }
+		command = { type = event which = 3118141 where = FIN when = 15 }
+		command = { type = access which = FIN }
+		command = { type = setflag which = SCA_to_FIN_delay }
+		
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = event which = 320100 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = local_setflag which = FCWExp }
+		
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = event which = 3118206 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = local_setflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SCA_to_FIN_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SCA where = FIN supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SCA_to_FIN_4 NOT = { flag = SCA_to_FIN_5 } } type = setflag which = SCA_to_FIN_5 }
+		command = { trigger = { flag = SCA_to_FIN_3 NOT = { flag = SCA_to_FIN_4 } } type = setflag which = SCA_to_FIN_4 }
+		command = { trigger = { flag = SCA_to_FIN_2 NOT = { flag = SCA_to_FIN_3 } } type = setflag which = SCA_to_FIN_3 }
+		command = { trigger = { flag = SCA_to_FIN_1 NOT = { flag = SCA_to_FIN_2 } } type = setflag which = SCA_to_FIN_2 }
+		command = { type = event which = 3118141 where = FIN when = 15 }
+		command = { type = setflag which = SCA_to_FIN_delay }
+	}
+}
+
+event = { 
+	id = 3118141
+	random = no
+	country = FIN
+	persistent = yes
+	
+	name = "Swedish help arrives in Finland"
+	desc = "Despite its official claims of neutrality, large amount of Swedish aid arrived across the Swedish border to Finland."
+	style = 2
+	picture = "SCW_Swedish Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SCA }
+		command = { type = steal_tech which = SCA }
+		command = { type = relation which = SCA value = 50 }
+		command = { type = access which = SCA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 2166 }
+		command = { trigger = { flag = SCA_to_FIN_5 }								type = add_division which = "Swedish volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_4 NOT = { flag = SCA_to_FIN_5 } } type = add_division which = "Swedish volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_3 NOT = { flag = SCA_to_FIN_4 } } type = add_division which = "Swedish volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_2 NOT = { flag = SCA_to_FIN_3 } } type = add_division which = "Swedish volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_1 NOT = { flag = SCA_to_FIN_2 } } type = add_division which = "Swedish volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = SCA_to_FIN_delay }
+	}
+}
+
+event = { 
+	id = 3118142
+	random = no
+	country = SCA
+	persistent = yes
+
+	decision = { 
+		flag = SCA_to_FIN_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SCA_to_FIN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SCA_to_FIN_1
+		OR = {
+			NOT = { war = { country = U20 country = FIN } }
+			#will Annex instead
+			#alliance = { country = FIN }
+		}
+	}
+	
+	name = "End of intervention in Finland"
+	desc = "With the civil war in Finland at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Swedish_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SCA_to_FIN_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = FIN }
+		command = { trigger = { NOT = { alliance = { country = FIN } } } type = military_control which = SCA where = FIN value = 0 }
+		command = { type = end_trades which = FIN where = SCA }
+		command = { type = remove_division which = "Swedish volunteers in Finland 5" value = FIN }
+		command = { type = remove_division which = "Swedish volunteers in Finland 4" value = FIN }
+		command = { type = remove_division which = "Swedish volunteers in Finland 3" value = FIN }
+		command = { type = remove_division which = "Swedish volunteers in Finland 2" value = FIN }
+		command = { type = remove_division which = "Swedish volunteers in Finland 1" value = FIN }
+		
+		command = { type = add_corps value = land where = 2166 }
+		command = { trigger = { flag = SCA_to_FIN_5 exists = FIN } type = add_division which = "Swedish volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_4 exists = FIN } type = add_division which = "Swedish volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_3 exists = FIN } type = add_division which = "Swedish volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_2 exists = FIN } type = add_division which = "Swedish volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SCA_to_FIN_1 exists = FIN } type = add_division which = "Swedish volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = SCA_to_FIN_5 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = SCA_to_FIN_4 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = SCA_to_FIN_3 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = SCA_to_FIN_2 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = SCA_to_FIN_1 }
+		
+		command = { type = trigger which = 3118143 }
+	}
+}
+
+event = { 
+	id = 3118143
+	random = no
+	country = FIN
+	persistent = yes
+
+	name = "End of intervention in Finland"
+	desc = "The Swedish aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SCA }
+		command = { trigger = { flag = SCA_to_FIN_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SCA_to_FIN_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SCA_to_FIN_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SCA_to_FIN_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SCA_to_FIN_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SCA_to_FIN_5 }
+		command = { type = clrflag which = SCA_to_FIN_4 }
+		command = { type = clrflag which = SCA_to_FIN_3 }
+		command = { type = clrflag which = SCA_to_FIN_2 }
+		command = { type = clrflag which = SCA_to_FIN_1 }
+	}
+}
+
+event = { 
+	id = 3118144
+	random = no
+	country = SCA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SCA_to_FIN_1
+		NOT = { military_control = { country = FIN } }
+	}
+
+	decision_trigger = {
+		exists = FIN
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Finnish Civil War - Swedish command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Finland"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SCA where = FIN value = 1 }
+	}
+}
+
+#German
+
+event = { 
+	id = 3118150
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = {
+		war = { country = U20 country = FIN }
+		NOT = { flag = GER_to_FIN_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = GER_to_FIN_delay }
+		#Need permission from the Swedish
+		flag = SCA_to_FIN_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = U20 country = FIN }
+		NOT = { flag = GER_to_FIN_5 }
+		manpower = 16
+		NOT = { flag = GER_to_FIN_delay }
+		flag = SCA_to_FIN_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = FIN } }
+		OR = {
+			NOT = { flag = GER_to_FIN_1 }
+			AND = {
+				NOT = { flag = GER_to_FIN_2 }
+				OR = { 
+					flag = SOV_to_U20_4
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = GER_to_FIN_3 }
+				OR = { 
+					flag = SOV_to_U20_5
+				}
+			}
+			#AND = {
+			#	ic = 100
+			#	NOT = { flag = GER_to_FIN_4 }
+			#}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = GER_to_FIN_5 }
+			#}
+		}
+	}
+	
+	name = "Finnish Civil War - German Intervention"
+	desc = "The outbreak of civil war in Finland presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = GER_to_FIN_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = FIN supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = GER_to_FIN_1 }
+		command = { type = event which = 3118151 where = FIN when = 15 }
+		command = { type = access which = FIN }
+		command = { type = setflag which = GER_to_FIN_delay }
+		
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = event which = 320100 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = FCWExp } } type = local_setflag which = FCWExp }
+		
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = event which = 3118205 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = FCWVolunteers } } type = local_setflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = GER_to_FIN_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = FIN supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = GER_to_FIN_4 NOT = { flag = GER_to_FIN_5 } } type = setflag which = GER_to_FIN_5 }
+		command = { trigger = { flag = GER_to_FIN_3 NOT = { flag = GER_to_FIN_4 } } type = setflag which = GER_to_FIN_4 }
+		command = { trigger = { flag = GER_to_FIN_2 NOT = { flag = GER_to_FIN_3 } } type = setflag which = GER_to_FIN_3 }
+		command = { trigger = { flag = GER_to_FIN_1 NOT = { flag = GER_to_FIN_2 } } type = setflag which = GER_to_FIN_2 }
+		command = { type = event which = 3118151 where = FIN when = 15 }
+		command = { type = setflag which = GER_to_FIN_delay }
+	}
+}
+
+event = { 
+	id = 3118151
+	random = no
+	country = FIN
+	persistent = yes
+	
+	name = "German help arrives in Finland"
+	desc = "Despite its official claims of neutrality, large amount of German aid arrived across the Swedish border to Finland."
+	style = 2
+	picture = "SCW_German Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = GER }
+		command = { type = steal_tech which = GER }
+		command = { type = relation which = GER value = 50 }
+		command = { type = access which = GER }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 2166 }
+		command = { trigger = { flag = GER_to_FIN_5 }								type = add_division which = "German volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_4 NOT = { flag = GER_to_FIN_5 } } type = add_division which = "German volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_3 NOT = { flag = GER_to_FIN_4 } } type = add_division which = "German volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_2 NOT = { flag = GER_to_FIN_3 } } type = add_division which = "German volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_1 NOT = { flag = GER_to_FIN_2 } } type = add_division which = "German volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = GER_to_FIN_delay }
+	}
+}
+
+event = { 
+	id = 3118152
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		flag = GER_to_FIN_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = GER_to_FIN_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = GER_to_FIN_1
+		OR = {
+			NOT = { war = { country = U20 country = FIN } }
+			AND = { 
+				alliance = { country = FIN }
+				ai = SCA
+			}
+		}
+	}
+	
+	name = "End of intervention in Finland"
+	desc = "With the civil war in Finland at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = GER_to_FIN_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FIN_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FIN_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FIN_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FIN_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = FIN }
+		command = { trigger = { NOT = { alliance = { country = FIN } } } type = military_control which = GER where = FIN value = 0 }
+		command = { type = end_trades which = FIN where = GER }
+		command = { type = remove_division which = "German volunteers in Finland 5" value = FIN }
+		command = { type = remove_division which = "German volunteers in Finland 4" value = FIN }
+		command = { type = remove_division which = "German volunteers in Finland 3" value = FIN }
+		command = { type = remove_division which = "German volunteers in Finland 2" value = FIN }
+		command = { type = remove_division which = "German volunteers in Finland 1" value = FIN }
+		
+		command = { type = add_corps value = land where = 2166 }
+		command = { trigger = { flag = GER_to_FIN_5 exists = FIN } type = add_division which = "German volunteers in Finland 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_4 exists = FIN } type = add_division which = "German volunteers in Finland 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_3 exists = FIN } type = add_division which = "German volunteers in Finland 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_2 exists = FIN } type = add_division which = "German volunteers in Finland 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FIN_1 exists = FIN } type = add_division which = "German volunteers in Finland 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = GER_to_FIN_5 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = GER_to_FIN_4 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = GER_to_FIN_3 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = GER_to_FIN_2 }
+		command = { trigger = { NOT = { exists = FIN } } type = clrflag which = GER_to_FIN_1 }
+		
+		command = { type = trigger which = 3118153 }
+	}
+}
+
+event = { 
+	id = 3118153
+	random = no
+	country = FIN
+	persistent = yes
+
+	name = "End of intervention in Finland"
+	desc = "The German aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = GER }
+		command = { trigger = { flag = GER_to_FIN_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FIN_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FIN_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FIN_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FIN_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = GER_to_FIN_5 }
+		command = { type = clrflag which = GER_to_FIN_4 }
+		command = { type = clrflag which = GER_to_FIN_3 }
+		command = { type = clrflag which = GER_to_FIN_2 }
+		command = { type = clrflag which = GER_to_FIN_1 }
+	}
+}
+
+event = { 
+	id = 3118154
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = GER_to_FIN_1
+		NOT = { military_control = { country = FIN } }
+	}
+
+	decision_trigger = {
+		exists = FIN
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Finnish Civil War - German command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Finland"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = GER where = FIN value = 1 }
+	}
+}
+
+########################
+# Volunteers
+########################
+
+#1 div per month when total support = 9 (for example, 3 interventionists, each one at intervention level 3)
+
+event = {
+	id = 3118200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to Finland"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = FCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountU20 when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FIN country = U20 }
+						flag = SOV_to_U20_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountU20 when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = FCWVolunteers
+			war = { country = FIN country = U20 }
+			flag = SOV_to_U20_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3118210 where = U20 when = 15 }
+		command = { type = setflag which = VolunteersCountU20 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U20_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U20_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U20_2 } type = event which = 3118210 where = U20 when = 15 }
+		command = { trigger = { flag = SOV_to_U20_2 } type = setflag which = VolunteersCountU20 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U20_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U20_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U20_3 } type = event which = 3118210 where = U20 when = 20 }
+		command = { trigger = { flag = SOV_to_U20_3 } type = setflag which = VolunteersCountU20 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U20_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U20_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U20_4 } type = event which = 3118210 where = U20 when = 25 }
+		command = { trigger = { flag = SOV_to_U20_4 } type = setflag which = VolunteersCountU20 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U20_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_U20_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_U20_5 } type = event which = 3118210 where = U20 when = 30 }
+		command = { trigger = { flag = SOV_to_U20_5 } type = setflag which = VolunteersCountU20 when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_U20_1 NOT = { flag = SOV_to_U20_2 } } type = trade which = SOV where = U20 supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_U20_2 NOT = { flag = SOV_to_U20_3 } } type = trade which = SOV where = U20 supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_U20_3 NOT = { flag = SOV_to_U20_4 } } type = trade which = SOV where = U20 supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_U20_4 NOT = { flag = SOV_to_U20_5 } } type = trade which = SOV where = U20 supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_U20_5 } type = trade which = SOV where = U20 supplies = -5 value = 1 }
+		
+		command = { type = event which = 3118200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3118205
+	random = no
+	country = GER
+	persistent = yes
+
+	name = "Volunteers heading to Finland"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = FCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountFIN when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FIN country = U20 }
+						flag = GER_to_FIN_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountFIN when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = FCWVolunteers
+			war = { country = FIN country = U20 }
+			flag = GER_to_FIN_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3118210 where = FIN when = 15 }
+		command = { type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FIN_2 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FIN_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FIN_2 } type = event which = 3118210 where = FIN when = 15 }
+		command = { trigger = { flag = GER_to_FIN_2 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FIN_3 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FIN_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FIN_3 } type = event which = 3118210 where = FIN when = 20 }
+		command = { trigger = { flag = GER_to_FIN_3 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FIN_4 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FIN_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FIN_4 } type = event which = 3118210 where = FIN when = 25 }
+		command = { trigger = { flag = GER_to_FIN_4 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FIN_5 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FIN_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FIN_5 } type = event which = 3118210 where = FIN when = 30 }
+		command = { trigger = { flag = GER_to_FIN_5 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FIN_1 NOT = { flag = GER_to_FIN_2 } } type = trade which = GER where = FIN supplies = -1 value = 1 }
+		command = { trigger = { flag = GER_to_FIN_2 NOT = { flag = GER_to_FIN_3 } } type = trade which = GER where = FIN supplies = -2 value = 1 }
+		command = { trigger = { flag = GER_to_FIN_3 NOT = { flag = GER_to_FIN_4 } } type = trade which = GER where = FIN supplies = -3 value = 1 }
+		command = { trigger = { flag = GER_to_FIN_4 NOT = { flag = GER_to_FIN_5 } } type = trade which = GER where = FIN supplies = -4 value = 1 }
+		command = { trigger = { flag = GER_to_FIN_5 } type = trade which = GER where = FIN supplies = -5 value = 1 }
+		
+		command = { type = event which = 3118205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3118206
+	random = no
+	country = SCA
+	persistent = yes
+
+	name = "Volunteers heading to Finland"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = FCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountFIN when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FIN country = U20 }
+						flag = SCA_to_FIN_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = FCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountFIN when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = FCWVolunteers
+			war = { country = FIN country = U20 }
+			flag = SCA_to_FIN_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3118210 where = FIN when = 15 }
+		command = { type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = SCA_to_FIN_2 } type = money value = -200 }
+		command = { trigger = { flag = SCA_to_FIN_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SCA_to_FIN_2 } type = event which = 3118210 where = FIN when = 15 }
+		command = { trigger = { flag = SCA_to_FIN_2 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = SCA_to_FIN_3 } type = money value = -200 }
+		command = { trigger = { flag = SCA_to_FIN_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SCA_to_FIN_3 } type = event which = 3118210 where = FIN when = 20 }
+		command = { trigger = { flag = SCA_to_FIN_3 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = SCA_to_FIN_4 } type = money value = -200 }
+		command = { trigger = { flag = SCA_to_FIN_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SCA_to_FIN_4 } type = event which = 3118210 where = FIN when = 25 }
+		command = { trigger = { flag = SCA_to_FIN_4 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = SCA_to_FIN_5 } type = money value = -200 }
+		command = { trigger = { flag = SCA_to_FIN_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SCA_to_FIN_5 } type = event which = 3118210 where = FIN when = 30 }
+		command = { trigger = { flag = SCA_to_FIN_5 } type = setflag which = VolunteersCountFIN when = 1 value = 1 }
+		
+		command = { trigger = { flag = SCA_to_FIN_1 NOT = { flag = SCA_to_FIN_2 } } type = trade which = SCA where = FIN supplies = -1 value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_2 NOT = { flag = SCA_to_FIN_3 } } type = trade which = SCA where = FIN supplies = -2 value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_3 NOT = { flag = SCA_to_FIN_4 } } type = trade which = SCA where = FIN supplies = -3 value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_4 NOT = { flag = SCA_to_FIN_5 } } type = trade which = SCA where = FIN supplies = -4 value = 1 }
+		command = { trigger = { flag = SCA_to_FIN_5 } type = trade which = SCA where = FIN supplies = -5 value = 1 }
+		
+		command = { type = event which = 3118206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3118210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to Finland"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to Spain to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = U20 } type = add_corps value = land where = 530 }
+		command = { trigger = { country = FIN } type = add_corps value = land where = 2166 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+##############################################
+# Finland - end of civil war
+##############################################
+
+##############################################
+# Finland - War widens
+##############################################
+
+event = { 
+	id = 320060
+	random = no
+	country = FIN
+
+	trigger = {
+		atwar = FIN
+		NOT = { alliance = { country = FIN country = SCA } }
+		OR = {
+			#AND = {
+			#	NOT = { control = { province = 515 data = FIN } }
+			#	NOT = { control = { province = 516 data = FIN } }
+			#	NOT = { control = { province = 520 data = FIN } }
+			#}
+			alliance = { country = U20 country = SOV }
+			war = { country = SCA country = SOV }
+			war = { country = GER country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Finland requests assitance"
+	desc = "Finland requests assitance"
+	style = 2
+	
+	action = { 
+		name = "Request assistance"
+		command = { type = event which = 320061 where = GER when = 5 }
+	} 
+}
+	
+	
+event = { 
+	id = 320061 
+	random = no
+	country = GER
+
+	name = "Finland requests assitance"
+	desc = "Finland requests assitance"
+	style = 2
+
+	action = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = FIN NOT = { ai = SCA } } type = military_control which = SCA where = FIN value = 1 }
+		command = { trigger = { ai = FIN NOT = { ai = GER } } type = military_control which = GER where = FIN value = 1 }
+		command = { trigger = { ai = FIN NOT = { ai = ENG } } type = military_control which = ENG where = FIN value = 1 }
+		command = { type = alliance which = FIN }
+	} 
+	action = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 320065 
+	random = no
+	country = U20
+
+	trigger = {
+		NOT = { alliance = { country = U20 country = SOV } }
+		OR = {
+			#NOT = { control = { province = 525 data = U20 } }
+			#NOT = { control = { province = 524 data = U20 } }
+			#NOT = { control = { province = 527 data = U20 } }
+			#NOT = { control = { province = 529 data = U20 } }
+			#NOT = { control = { province = 531 data = U20 } }
+			alliance = { country = FIN country = SCA }
+			alliance = { country = FIN country = GER }
+			war = { country = SCA country = SOV }
+			war = { country = GER country = SOV }
+		}
+	}
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	name = "Finland requests assitance"
+	desc = "Finland requests assitance"
+	style = 2
+	
+	action = { 
+		name = "Request assistance"
+		command = { type = event which = 320066 where = SOV when = 5 }
+	} 
+}
+	
+	
+event = { 
+	id = 320066 
+	random = no
+	country = SOV
+
+	name = "Finland requests assitance"
+	desc = "Finland requests assitance"
+	style = 2
+
+	action = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = U20 NOT = { ai = SOV } } type = military_control which = SOV where = U20 value = 1 }
+		command = { type = alliance which = U20 }
+	} 
+	action = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Finland - Inheritance
+##############################################
+
+event = { 
+	id = 320070
+	random = no
+	country = U20
+
+	trigger = {
+		atwar = yes
+		alliance = { country = SOV }
+		#lost_national = { country = U20 value = 95 }
+		#ai = no
+	} 
+
+	name = "Joining the Soviet Union"
+	desc = "With the entry of USSR into the war, and the Soviet fighting for the second time to preserve Finnish independence from the imperialist Swedes, pressure grows on both sides of the border to correct the historical mistake and formally admit Finland as a republic of USSR with enhanced autonomy. We can resist these pressures, but it would come at a huge cost."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "We are with USSR!"
+		ai_chance = 100
+		command = { type = secederegion which = -1 value = "Finland" }
+		command = { type = dissent value = -2 }
+		command = { type = trigger which = 320071 }
+	}
+	action = { 
+		name = "We must defend our hard-won independence!"
+		ai_chance = 0
+		command = { type = secederegion which = -1 value = "Finland" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = GER }
+		command = { type = war which = SOV }
+		command = { type = dissent value = 20 }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		command = { type = switch_allegiance which = -1 where = SOV }
+		
+		command = { type = switch_allegiance which = -2 where = SOV }
+		command = { type = switch_allegiance which = -2 where = SOV }
+		command = { type = switch_allegiance which = -2 where = SOV }
+		command = { type = switch_allegiance which = -2 where = SOV }
+		command = { type = switch_allegiance which = -2 where = SOV }
+		
+		command = { type = switch_allegiance which = -3 where = SOV }
+		command = { type = switch_allegiance which = -3 where = SOV }
+		command = { type = switch_allegiance which = -3 where = SOV }
+		command = { type = switch_allegiance which = -3 where = SOV }
+		command = { type = switch_allegiance which = -3 where = SOV }
+	}
+}
+
+event = { 
+	id = 320071
+	random = no
+	country = SOV
+
+	name = "Soviet-Finnish Union"
+	desc = "With the entry of USSR into the war, and the Soviet fighting for the second time to preserve Finnish independence from the imperialist Swedes, pressure grows on both sides of the border to correct the historical mistake and formally admit Finland as a republic of USSR with enhanced autonomy. Seeing that it would be of benefit to both of our nations, the communist government of Finland wisely expressed the desire to join the Soviet Union!"
+	style = 2
+
+	action = { 
+		name = "A great day for the Soviet Union!"
+		command = { type = dissent value = -2 }
+		command = { type = inherit which = U20 value = 1 }
+		command = { type = belligerence which = SOV value = 5 }
+	}
+}
+
+event = { 
+	id = 320075
+	random = no
+	country = FIN
+
+	trigger = {
+		atwar = yes
+		alliance = { country = SCA }
+		OR = {
+			NOT = { flag = GER_to_FIN_1 }
+			NOT = { ai = GER }
+		}
+		#lost_national = { country = FIN value = 95 }
+		#ai = no
+	} 
+
+	name = "Joining the Scandinavian Union"
+	desc = "With the entry of Scandinavia into the war, and the Swedish fighting to helping to preserve Finnish independence from Soviets, pressure grows on both sides of the border to correct the historical mistake and formally admit Finland as a region of Scandinavia with enhanced autonomy. We can resist these pressures, but it would come at a huge cost."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "We are with Scandinavia!"
+		ai_chance = 100
+		command = { type = secederegion which = -1 value = "Finland" }
+		command = { type = dissent value = -2 }
+		command = { type = trigger which = 320076 }
+	}
+	action = { 
+		name = "We must defend our hard-won independence!"
+		ai_chance = 0
+		command = { type = secederegion which = -1 value = "Finland" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = GER }
+		command = { type = war which = SOV }
+		command = { type = dissent value = 20 }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		command = { type = switch_allegiance which = -1 where = SCA }
+		
+		command = { type = switch_allegiance which = -2 where = SCA }
+		command = { type = switch_allegiance which = -2 where = SCA }
+		command = { type = switch_allegiance which = -2 where = SCA }
+		command = { type = switch_allegiance which = -2 where = SCA }
+		command = { type = switch_allegiance which = -2 where = SCA }
+		
+		command = { type = switch_allegiance which = -3 where = SCA }
+		command = { type = switch_allegiance which = -3 where = SCA }
+		command = { type = switch_allegiance which = -3 where = SCA }
+		command = { type = switch_allegiance which = -3 where = SCA }
+		command = { type = switch_allegiance which = -3 where = SCA }
+	}
+}
+
+event = { 
+	id = 320076
+	random = no
+	country = SCA
+
+	name = "Scandinavian-Finnish Union"
+	desc = "With the entry of Scandinavia into the war, and the Swedes fighting to helping to preserve Finnish independence from the Soviets, pressure grows on both sides of the border to correct the historical mistake and formally admit Finland as a region of Scandinavia with enhanced autonomy. Seeing that it would be of benefit to both of our nations, the government of Flanders wisely expressed the desire to join the Scandinavian Union!"
+	style = 2
+
+	action = { 
+		name = "A great day for Scandinavia!"
+		command = { type = dissent value = -2 }
+		command = { type = inherit which = FIN value = 1 }
+		command = { type = belligerence which = SCA value = 5 }
+	} 
+}
+
+
+###########################################################################
+# 3134000 - 3134999	Finland events
+###########################################################################
+
+event = { 
+	id = 320080 
+	random = no
+	country = U20
+	
+	trigger = {
+		random = 30
+		control = { province = 530 data = U20 }
+	}
+
+	name = "Ratification of the Finnish-Soviet friendship treaty"
+	desc = "With the instability and violence in Finland in full swing, the new Finnish government moved quickly to ratify the Finnish-Soviet friendship agreement, containing clauses regarding territorial exchange and mutual defense. The Soviet Union moved immidiately to provide the Finnish government with extra aid."
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+	
+	action = {
+		name = "A necessary sacrifice"
+		command = { type = dissent value = 1 }
+		command = { type = secedeprovince which = SOV value = 530 }
+		command = { type = domestic which = political_left value = 1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = addcore which = 538 }
+		command = { type = addcore which = 539 }
+		command = { type = addcore which = 540 }
+		command = { type = trigger which = 320081 }
+		command = { type = add_corps value = land where = 530 }
+		command = { type = add_division which = "Soviet volunteers" value = infantry when = 9 where = artillery }
+		command = { type = add_division which = "Soviet volunteers" value = infantry when = 9 where = artillery }
+		command = { type = manpowerpool value = 50 }
+		command = { type = supplies value = 1000 }
+	}
+}
+
+event = { 
+	id = 320081 
+	random = no
+	country = SOV
+	
+	name = "Ratification of the Finnish-Soviet friendship treaty"
+	desc = "With the instability and violence in Finland in full swing, the new Finnish government moved quickly to ratify the Finnish-Soviet friendship agreement, containing clauses regarding territorial exchange and mutual defense. The Soviet Union moved immidiately to provide the Finnish government with extra aid."
+	style = 2
+	
+	action = {
+		name = "A necessary sacrifice"
+		command = { type = addcore which = 530 }
+		command = { type = belligerence which = SOV value = 1 }
+		command = { type = relation which = FIN value = -50 }
+		command = { type = relation which = U20 value = 100 }
+		command = { type = manpowerpool value = -50 }
+		command = { type = supplies value = -500 }
+		command = { type = domestic which = interventionism value = 1 }
+	}
+}
+
+event = { 
+	id = 320082 
+	random = no
+	country = SOV
+	
+	trigger = {
+		event = 320081 
+		OR = {
+			control = { province = 518 data = U20 }
+			control = { province = 519 data = U20 }
+			control = { province = 523 data = U20 }
+			#control = { province = 532 data = U20 }
+			#control = { province = 533 data = U20 }
+		}
+		#control = { province = 538 data = SOV }
+		#control = { province = 539 data = SOV }
+		control = { province = 540 data = SOV }
+	}
+
+	name = "Territory exchange finalized"
+	desc = "With the situation in Finland gradually stabilizing and its territory coming more under control of a friendly government, the territorial exchange between Finland and USSR is finalized."
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+	
+	action = {
+		name = "A necessary sacrifice"
+		command = { type = construct which = ic where = 539 value = 1 }
+		#command = { type = secedeprovince which = U20 value = 538 }
+		#command = { type = secedeprovince which = U20 value = 539 }
+		command = { type = secedeprovince which = U20 value = 540 }
+		command = { type = dissent value = 1 }
+	}
+}
+
+event = { 
+	id = 320085 
+	random = no
+	country = SCA
+	
+	trigger = {
+		exists = U20
+		#control = { province = 526 data = U20 }
+		random = 40
+	}
+
+	name = "Seizure of Aland islands"
+	desc = "With the situation in Finland getting out of control, Sweden quickly siezes the strategic Aland islands in the Baltic Sea from the Finnish Reds. Sweden also becomes a major transit hub for British and German military goods heading to Finland."
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1949 }
+	
+	action = {
+		name = "A necessary sacrifice"
+		command = { type = addcore which = 526 }
+		command = { type = belligerence which = SCA value = 3 }
+		command = { type = manpowerpool value = -50 }
+		command = { type = supplies value = -500 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 320086 }
+		command = { type = trigger which = 320087 }
+	}
+}
+
+event = { 
+	id = 320086 
+	random = no
+	country = FIN
+
+	name = "Seizure of Aland islands"
+	desc = "With the situation in Finland getting out of control, Sweden quickly seizes the strategic Aland islands in the Baltic Sea from the Finnish Reds. Sweden also becomes a major transit hub for British and German military goods heading to Finland."
+	style = 2
+	
+	action = {
+		name = "A necessary sacrifice"
+		command = { type = dissent value = 1 }
+		command = { type = secedeprovince which = SCA value = 526 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = add_corps value = land where = 2166 }
+		command = { type = add_division which = "British volunteers" value = infantry when = 9 where = artillery }
+		command = { type = add_division which = "German volunteers" value = infantry when = 9 where = artillery }
+		command = { type = manpowerpool value = 50 }
+		command = { type = supplies value = 1000 }
+	}
+}
+
+event = { 
+	id = 320087 
+	random = no
+	country = U20
+
+	name = "Seizure of Aland islands"
+	desc = "With the situation in Finland getting out of control, Sweden quickly siezes the strategic Aland islands in the Baltic Sea from the Finnish Reds. Sweden also becomes a major transit hub for British and German military goods heading to Finland."
+	style = 2
+	
+	action = {
+		name = "Damn it!"
+		command = { type = dissent value = -1 }
+		command = { type = secedeprovince which = SCA value = 526 }
+	}
+}
+
+
+##############################################
+# Finland - Experience gained
+##############################################
+
+event = {
+	id = 320100
+	random = no
+	tag = { SOV GER SCA }
+	persistent = yes
+
+	name = "Finnish Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_U20_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_FIN_1 
+				}
+				AND = {
+					country = SCA
+					flag = SCA_to_FIN_1 
+				}
+			}
+			local_flag = FCWExp
+		}
+		command = { type = local_clrflag which = FCWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_U20_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_FIN_1 
+				}
+				AND = {
+					country = SCA
+					flag = SCA_to_FIN_1 
+				}
+			}
+		}
+		
+		command = { trigger = { country = SOV } type = relation which = U20 value = 5 }
+		command = { trigger = { OR = { country = GER country = SCA } } type = relation which = FIN value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_1 }
+										AND = { country = GER flag = GER_to_FIN_1 }
+										AND = { country = SCA flag = SCA_to_FIN_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_2 }
+										AND = { country = GER flag = GER_to_FIN_2 }
+										AND = { country = SCA flag = SCA_to_FIN_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_3 }
+										AND = { country = GER flag = GER_to_FIN_3 }
+										AND = { country = SCA flag = SCA_to_FIN_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_4 }
+										AND = { country = GER flag = GER_to_FIN_4 }
+										AND = { country = SCA flag = SCA_to_FIN_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_5 }
+										AND = { country = GER flag = GER_to_FIN_5 }
+										AND = { country = SCA flag = SCA_to_FIN_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_1 }
+										AND = { country = GER flag = GER_to_FIN_1 }
+										AND = { country = SCA flag = SCA_to_FIN_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_2 }
+										AND = { country = GER flag = GER_to_FIN_2 }
+										AND = { country = SCA flag = SCA_to_FIN_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_3 }
+										AND = { country = GER flag = GER_to_FIN_3 }
+										AND = { country = SCA flag = SCA_to_FIN_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_4 }
+										AND = { country = GER flag = GER_to_FIN_4 }
+										AND = { country = SCA flag = SCA_to_FIN_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_5 }
+										AND = { country = GER flag = GER_to_FIN_5 }
+										AND = { country = SCA flag = SCA_to_FIN_5 }
+								} }
+								type = money value = -5 }
+
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_1 }
+										AND = { country = GER flag = GER_to_FIN_1 }
+										AND = { country = SCA flag = SCA_to_FIN_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_2 }
+										AND = { country = GER flag = GER_to_FIN_2 }
+										AND = { country = SCA flag = SCA_to_FIN_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_3 }
+										AND = { country = GER flag = GER_to_FIN_3 }
+										AND = { country = SCA flag = SCA_to_FIN_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_4 }
+										AND = { country = GER flag = GER_to_FIN_4 }
+										AND = { country = SCA flag = SCA_to_FIN_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_5 }
+										AND = { country = GER flag = GER_to_FIN_5 }
+										AND = { country = SCA flag = SCA_to_FIN_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_1 }
+										AND = { country = GER flag = GER_to_FIN_1 }
+										AND = { country = SCA flag = SCA_to_FIN_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_2 }
+										AND = { country = GER flag = GER_to_FIN_2 }
+										AND = { country = SCA flag = SCA_to_FIN_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_3 }
+										AND = { country = GER flag = GER_to_FIN_3 }
+										AND = { country = SCA flag = SCA_to_FIN_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_4 }
+										AND = { country = GER flag = GER_to_FIN_4 }
+										AND = { country = SCA flag = SCA_to_FIN_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_U20_5 }
+										AND = { country = GER flag = GER_to_FIN_5 }
+										AND = { country = SCA flag = SCA_to_FIN_5 }
+								} }
+								type = gain_tech which = -1 }
+
+		command = { type = event which = 320100 where = -1 when = 180 }
+	}
+}

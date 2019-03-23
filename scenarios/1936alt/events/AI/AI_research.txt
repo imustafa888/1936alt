@@ -1,0 +1,89 @@
+####################################
+# Majors
+####################################
+event = {
+	id = 3999001
+	random = no 
+	persistent = yes
+	
+	trigger = {
+		ai = yes
+		OR = {
+			ic = 40
+			country = ISR
+		}
+		NOT = { local_flag = NukeResearch  }
+	}
+
+	name = "AI_EVENT"
+	style = 0	
+	
+	date = { day = 0 month = january year = 1939 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1960 }
+
+	action_a = {
+		command = { type = ai which = "NukeResearch.ai" }
+		command = { type = local_setflag which = NukeResearch }
+	}
+}
+
+####################################
+# Construction ignore
+####################################
+event = {
+	id = 3999005
+	random = no 
+	persistent = yes
+	
+	trigger = {
+		ai = yes
+		NOT = { local_flag = Construct_Ignore }
+		atwar = yes
+		lost_IC = { country = -1 value = 30 }
+	}
+
+	name = "AI_EVENT"
+	style = 0	
+	
+	date = { day = 0 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action_a = {
+		command = { type = ai which = "switch/Construct_Ignore.ai" }
+		command = { type = local_setflag which = Construct_Ignore }
+	}
+}
+
+
+
+####################################
+# Construction noignore
+####################################
+event = {
+	id = 3999006
+	random = no 
+	persistent = yes
+	
+	trigger = {
+		ai = yes
+		local_flag = Construct_Ignore
+		OR = {
+			atwar = no
+			NOT = { lost_IC = { country = -1 value = 30 } }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 0	
+	
+	date = { day = 0 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1949 }
+
+	action_a = {
+		command = { type = ai which = "switch/Construct_NoIgnore.ai" }
+		command = { type = local_clrflag which = Construct_Ignore }
+	}
+}

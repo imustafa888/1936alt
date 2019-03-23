@@ -1,0 +1,138 @@
+#########################################################################
+#  1936 General Elections
+#########################################################################
+event = {
+	id = 2052001
+	random = no
+	country = SPR
+        one_action = yes
+
+	name = EVT_2_NAME
+	desc = EVT_2_DESC
+	style = 2
+  	picture = "news_paper"
+
+	trigger = {
+		government = democratic
+		atwar = no
+		NOT = {
+			exists = SPA
+		}
+	}
+
+	date = { day = 16 month = february year = 1936 }
+
+	action_a = {
+		ai_chance = 100
+		name = EVT_2_ACTA
+        	command = { type = dissent value = 20 } 
+		command = { type = set_domestic which = democratic value = 7 }
+		command = { type = set_domestic which = political_left value = 9 }
+		command = { type = headofstate which = 255011 }###
+		command = { type = headofgovernment which = 255034 }
+		command = { type = foreignminister which = 255062 }
+		command = { type = armamentminister which = 255103 }
+		command = { type = ministerofsecurity which = 255146 }
+		command = { type = ministerofintelligence which = 255174 }
+		command = { type = chiefofstaff which = 255204 }
+		command = { type = chiefofarmy which = 255231 }
+		command = { type = chiefofnavy which = 255252 }
+		command = { type = chiefofair which = 255269 }
+	}
+}
+
+#########################################################################
+#  Communist Coup - Anarchist movement crushed
+#########################################################################
+
+event = {
+	id = 2052002
+	random = no
+	country = SPR
+
+	name = "EVT_3101_NAME"
+	desc = "EVT_3101_DESC"
+  style = 2
+  picture = "news_paper"
+	
+	trigger = {
+		NOT = {
+			government = communist
+			exists = SPA
+			war = { country = SPA country = SPR }
+		}
+
+	}
+
+	# Note: historical date: May 3, 1937
+	date = { day = 3 month = april year = 1937 }
+	offset = 7
+	deathdate = { day = 3 month = june year = 1937 }
+
+	action_a = {
+		name = ACTION_NAME_OK
+		command = { type = set_domestic which = democratic value = 4 } 
+		command = { type = set_domestic which = political_left value = 10 }
+		command = { type = revolt which = 357 } #Barcelona Uprising-Pending balancing
+		command = { type = headofstate which = 255019 }
+		command = { type = headofgovernment which = 255026 }
+		command = { type = foreignminister which = 255057 }
+		command = { type = armamentminister which = 255095 }
+		command = { type = ministerofsecurity which = 255132 }
+		command = { type = ministerofintelligence which = 255171 }
+		command = { type = chiefofstaff which = 255196 }
+		command = { type = chiefofarmy which = 255220 }
+		command = { type = chiefofnavy which = 255244 }
+		command = { type = chiefofair which = 255010 }
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = relation which = SOV value = 20 }
+		command = { type = relation which = ENG value = -10 }
+		command = { type = relation which = FRA value = -10 }
+		command = { type = relation which = GER value = -20 }
+		command = { type = relation which = ITA value = -20 }
+		command = { type = relation which = USA value = -5 }
+		command = { type = relation which = POR value = -15 }
+
+		command = { type = sleepleader which = 255008 }
+		command = { type = sleepleader which = 255051 }
+	}
+}
+#########################################################################
+#  Spanish Civil War - Follow up event - Ceding oversea provinces to SPA
+#########################################################################
+event = {
+	id = 2052009
+	random = no
+	country = SPR
+
+	trigger = {
+		event = 3174004 
+		exists = SPA
+		war = { country = SPA country = SPR }
+		}
+
+	name = "EVT_3107_NAME"
+	desc = "EVT_3107_DESC"
+  style = 2
+  picture = "scw"
+	
+
+	date = { day = 16 month = july	year = 1936 }
+	offset = 1
+	deathdate = { day = 29	month = december year = 1963 }
+
+	action_a = {
+		name = ACTION_NAME_OK # En la Defensa de la Democracia!
+		command = { type = secedeprovince which = SPA value = 475 } # Palma de Mallorca
+		command = { type = secedeprovince which = SPA value = 715 } # Tetuán
+		command = { type = secedeprovince which = SPA value = 716 } # Nador 
+		command = { type = secedeprovince which = SPA value = 987 } # El Aiun
+		command = { type = secedeprovince which = SPA value = 988 } # Villa Cisneros
+		command = { type = secedeprovince which = SPA value = 989 } # Villa Bens
+		command = { type = secedeprovince which = SPA value = 990 } # Las Palmas de Gran Canaria 
+		command = { type = secedeprovince which = SPA value = 991 } # Santa Cruz de Tenerife 
+		command = { type = secedeprovince which = SPA value = 913 } # Bata
+		command = { type = secedeprovince which = SPA value = 916 } # Malabo
+		command = { type = secederegion which = SPA value = Sahara } # Sahara
+	}
+}

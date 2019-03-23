@@ -1,0 +1,3766 @@
+#########################################################################
+# Spain
+#########################################################################
+
+#########################################################################
+# Spain - Outbreak
+#########################################################################
+
+event = { 
+	id = 3174000
+	random = no
+	country = SPR
+
+	trigger = {
+		NOT = { exists = SPA }
+		atwar = no
+		NOT = { government = fascist }
+	}
+
+	name = "EVT_3100_NAME"
+	desc = "EVT_3100_DESC"
+	style = 2
+	picture = "SCW"
+
+	date = { day = 13 month = july year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = july year = 1936 }
+
+	action_a = {
+		ai_chance = 100
+		name = ACTION_NAME_OK # En la Defensa de la Democracia!
+        command = { type = local_clrflag which = NatDecision }
+        command = { type = civil_war which = SPA }
+		command = { type = ai which = "neutralityHigh.ai" }
+        command = { type = dissent value = -50 }  
+        command = { type = set_domestic which = democratic value = 6 }  
+        command = { type = set_domestic which = political_left value = 9 }  
+		command = { type = headofstate which = 255011 } #Azaña
+		command = { type = headofgovernment which = 255030 } #Azaña
+		command = { type = foreignminister which = 255061 } #Barcia Trelles
+		command = { type = armamentminister which = 255081 } #Juan Lopez Sanchez
+		command = { type = ministerofsecurity which = 255127 } #Melchor Rodriguez de Galdeano
+		command = { type = ministerofintelligence which = 255154 } #Rafael Videlia Rubio 
+		command = { type = chiefofstaff which = 255195 } #Gustavo Duran Martinez
+		command = { type = chiefofarmy which = 255219 } #Juan Hernandez Sarabia
+		command = { type = chiefofnavy which = 255248 } #Jose Giral Pereira
+		command = { type = chiefofair which = 255255 } #Hidalgo de Cisneros
+		command = { type = relation which = ENG value = 10 }  
+		command = { type = relation which = FRA value = 10 }  
+		command = { type = relation which = SOV value = 5 }  
+		command = { type = relation which = USA value = 5 }  
+		command = { type = relation which = GER value = -15 }  
+		command = { type = relation which = ITA value = -15 }  
+		command = { type = relation which = POR value = -10 }  
+		command = { type = event which = 3174004 where = SPR when = 1 }
+	}
+}
+
+
+event = { 
+	id = 3174004 
+	random = no
+	country = SPR
+	
+	# triggered by SPA 3173000
+
+	name = "EVT_2052011_NAME" #To the defence of Democracy
+	desc = "EVT_3001_DESC"
+	style = 2
+
+	action_a = { 
+		name = ACTIONNAME3174004A
+		command = { type = belligerence value = 1 }
+		command = { type = transport_pool which = SPR value = 200 }
+		command = { type = dissent value = -50 }
+		command = { type = supplies value = 5000 }
+		command = { type = add_corps value = land where = 460 }
+		command = { type = add_division which = "2 Brigada de Caballería" value = cavalry when = 5 } 
+		command = { type = add_division which = "27 División" value = infantry when = 9 }
+		command = { type = add_division which = "28 División" value = infantry when = 9 }
+		command = { type = add_division which = "39 División" value = infantry when = 9 }
+		command = { type = add_division which = "42 División" value = infantry when = 9 }
+		command = { type = add_division which = "41 División" value = infantry when = 9 }
+		command = { type = add_division which = "64 División" value = infantry when = 9 }
+		command = { type = add_division which = "40 División" value = infantry when = 9 }
+		command = { type = add_division which = "35 División" value = infantry when = 9 }
+		command = { type = add_division which = "46 División" value = infantry when = 9 }
+		command = { type = add_division which = "47 División" value = infantry when = 9 }
+		command = { type = add_division which = "48 División" value = infantry when = 9 } 
+		command = { type = add_division which = "49 División" value = infantry when = 9 } 
+
+		command = { type = add_corps value = land where = 440 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 464 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+
+		
+		command = { type = add_corps value = land where = 443 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 444 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 445 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 460 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 453 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+
+		command = { type = add_corps value = land where = 438 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 436 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 461 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 459 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 455 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+
+		command = { type = add_corps value = land where = 457 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 458 }
+       	command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 458 }
+        command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 468 }
+	    command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 469 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		
+		command = { type = add_corps value = land where = 437 }
+		command = { type = add_division which = "Milicias de Generalitat 1" value = infantry when = 8 }
+		command = { type = add_division which = "Milicias de Generalitat 2" value = infantry when = 8 }
+		command = { type = add_corps value = land where = 437 }
+		command = { type = add_division which = "Milicias de Generalitat 3" value = infantry when = 8 }
+		command = { type = add_division which = "Milicias de Generalitat 4" value = infantry when = 8 }
+
+		command = { type = add_corps value = land where = 466 }
+		command = { type = add_division which = "Milicias CNT" value = infantry when = 8 }
+		command = { type = add_corps value = land where = 471 }
+		command = { type = add_division which = "Milicias POUM" value = infantry when = 8 }
+
+
+	    command = { type = add_division value = garrison when = 5 }
+
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+
+		command = { type = addcore which = 436 }
+		command = { type = addcore which = 437 }
+		command = { type = addcore which = 439 }
+		command = { type = addcore which = 440 }
+		command = { type = addcore which = 461 }
+		command = { type = addcore which = 475 }
+		command = { type = addcore which = 464 }
+		command = { type = addcore which = 462 }
+		command = { type = addcore which = 438 }
+
+		command = { type = removecore which = 441 }
+		command = { type = removecore which = 449 }
+		command = { type = removecore which = 444 }
+		command = { type = removecore which = 448 }
+
+		#overriding regular union mechanics
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = total value = 5 } #percent_additive
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = money value = 10 } #percent_additive
+		command = { type = local_setflag which = OneNation }
+		command = { type = local_clrflag which = UnionBonds }
+		command = { type = local_setflag which = UnionBreak when = 0 value = 2 } #union broken for 10 years
+		command = { type = local_setflag which = AssimilationPolicyDelay }
+		command = { type = event which = 211000 where = -1 when = 1800 }
+
+		command = { type = construct which = land_fort where = 460 value = 4 }
+		command = { type = construct which = land_fort where = 440 value = 2 }
+		command = { type = construct which = land_fort where = 445 value = 2 }
+		command = { type = add_corps value = land where = 460 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 440 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+
+ 		command = { type = secedeprovince which = SPA value = 449 }
+ 		command = { type = secedeprovince which = SPA value = 472 }
+  		command = { type = secedeprovince which = SPA value = 441 }
+ 		command = { type = secedeprovince which = SPA value = 451 }
+ 		command = { type = secedeprovince which = SPA value = 456 }
+ 		command = { type = secedeprovince which = SPA value = 442 }
+ 		command = { type = secedeprovince which = SPA value = 438 }
+ 		command = { type = secedeprovince which = SPA value = 453 }
+ 		command = { type = secedeprovince which = SPA value = 474 }
+ 		command = { type = secedeprovince which = SPA value = 448 }
+ 		command = { type = secedeprovince which = SPA value = 447 }
+ 		command = { type = secedeprovince which = SPA value = 452 }
+ 		command = { type = secedeprovince which = SPA value = 450 }
+ 		command = { type = secedeprovince which = SPA value = 715 }
+ 		command = { type = secedeprovince which = SPA value = 716 }
+ 		command = { type = secedeprovince which = SPA value = 467 }
+ 		command = { type = secedeprovince which = SPA value = 473 }
+ 		command = { type = secedeprovince which = SPA value = 446 }
+ 		#command = { type = secedeprovince which = SPA value = 443 }
+		
+ 		command = { type = control which = SPA value = 449 }
+ 		command = { type = control which = SPA value = 472 }
+  		command = { type = control which = SPA value = 441 }
+ 		command = { type = control which = SPA value = 451 }
+ 		command = { type = control which = SPA value = 456 }
+ 		command = { type = control which = SPA value = 442 }
+ 		command = { type = control which = SPA value = 438 }
+ 		command = { type = control which = SPA value = 453 }
+ 		command = { type = control which = SPA value = 474 }
+ 		command = { type = control which = SPA value = 448 }
+ 		command = { type = control which = SPA value = 447 }
+ 		command = { type = control which = SPA value = 452 }
+ 		command = { type = control which = SPA value = 450 }
+ 		command = { type = control which = SPA value = 715 }
+ 		command = { type = control which = SPA value = 716 }
+ 		command = { type = control which = SPA value = 467 }
+ 		command = { type = control which = SPA value = 473 }
+ 		command = { type = control which = SPA value = 446 }
+ 		#command = { type = control which = SPA value = 443 }
+
+      	command = { type = trigger which = 3173000 }
+
+		command = { type = addcore which = 2761 }
+		command = { type = secedeprovince which = SPR value = 2761 when = 2 }
+	} 
+}
+
+event = { 
+	id = 3173000
+	random = no
+	country = SPA
+	save_date = yes
+	
+	name = "EVT_3001_NAME"
+	desc = " "
+	style = 2
+	
+	action_a = {
+		name = ACTIONNAME3173000A
+		command = { type = local_setflag which = legitIndie }
+		command = { type = local_setflag which = AllDefense2 }
+		command = { type = belligerence value = 1 }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = transport_pool which = SPA value = 200 }
+		command = { type = dissent value = -50 }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = political_left value = 3 }
+		command = { type = set_domestic which = interventionism value = 6 }
+		command = { type = headofstate which = 35001 }
+		command = { type = headofgovernment which = 35016 } #Francisco Franco Bahamonde
+		command = { type = foreignminister which = 35003 }
+		command = { type = armamentminister which = 35051 } #Joaquin Benjumea Búrin
+		command = { type = ministerofsecurity which = 35005 } #Miguel Ponte Manso de Zuniga
+		command = { type = ministerofintelligence which = 35101 } #Jose Ungria Jimenez
+		command = { type = chiefofstaff which = 35117 } #Francisco Franco Bahamonde
+		command = { type = chiefofarmy which = 35132 } #Fidel Davila Arrondo
+		command = { type = chiefofnavy which = 35009 } #Francisco Moreno Fernandez
+		command = { type = chiefofair which = 35171 } #Juan Ansaldo Vejarano
+
+		command = { type = sleepleader which = 35061 }	#Sanjurjo
+		command = { type = sleepminister which = 35121 } #José Sanjurjo as CoS
+		#command = { type = sleepminister which = 35184 } #José Sanjurjo as HoS
+		#command = { type = sleepminister which = 35186 } #José Sanjurjo as HoG
+		#command = { type = sleepminister which = 35137 } #José Sanjurjo as CoA
+
+		command = { type = money value = 300 } #important to let them set up trades in the beginning
+		command = { type = supplies value = 5000 }
+		command = { type = oilpool value = 25000 }
+		command = { type = metalpool value = 25000 }
+		command = { type = energypool value = 50000 }
+		command = { type = rarematerialspool value = 25000 }
+
+		command = { type = add_corps value = land where = 451 }			
+		command = { type = add_division which = "21 División" value = infantry when = 9 }
+		#command = { type = add_division which = "31 División" value = infantry when = 9 }
+		#command = { type = add_division which = "32 División" value = infantry when = 9 }
+		command = { type = add_corps value = land where = 456 }
+		command = { type = add_division which = "41 División" value = infantry when = 9 }
+		command = { type = add_division which = "42 División" value = infantry when = 9 }
+
+		command = { type = add_corps value = land where = 470 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 467 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 472 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 473 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_division value = infantry when = 9 }
+		
+		command = { type = add_corps value = land where = 447 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+
+		command = { type = add_corps value = land where = 449 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#command = { type = add_division which = "22 División" value = infantry when = 9 }
+		#command = { type = add_division which = "23 División" value = infantry when = 9 }
+		command = { type = add_corps value = land where = 448 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division which = "13 División" value = infantry when = 9 }	
+		command = { type = add_corps value = land where = 446 }
+		command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_corps value = land where = 451 }
+		#command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 452 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division which = "12 División" value = infantry when = 9 }
+		command = { type = add_corps value = land where = 442 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 446 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 450 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		#command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division which = "11 División" value = infantry when = 9 }
+		command = { type = add_corps value = land where = 456 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_corps value = land where = 453 }
+		command = { type = add_division value = infantry when = 9 }
+
+		command = { type = add_corps value = land when = 3425 where = 451 } # Burgos
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land when = 3426 where = 451 } # Burgos
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land when = 3427 where = 451 } # Burgos
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land when = 3428 where = 451 } # Burgos
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land when = 3429 where = 451 } # Burgos
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land when = 3435 where = 441 } # Bilbao
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = air when = 3430 where = 441 } # La Coruna
+		command = { type = add_division value = tactical_bomber when = 4 }
+		command = { type = add_division value = strategic_bomber when = 1 }
+		command = { type = add_corps value = air when = 3432 where = 441 } # La Coruna
+		command = { type = add_division value = interceptor when = 6 }
+		#command = { type = add_division value = interceptor when = 6 }
+		command = { type = convoy which = 441 value = 474 when = 16 } # Supplies to Seville
+		command = { type = add_corps value = naval when = 3431 where = 441 } # La Coruna
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_corps which = "Tropas de África 1" value = land when = 3422 where = 474 } # Seville
+		command = { type = add_division value = infantry when = 8 }
+		#command = { type = add_corps which = "Tropas de África 2" value = land when = 3423 where = 474 } # Seville
+		#command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps which = "Tropas de África 3" value = land when = 3424 where = 474 } # Seville
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land when = 3436 where = 474 } # Sevilla
+		command = { type = add_division value = garrison when = 5 }
+
+		command = { type = add_corps which = "Tropas de África" value = land when = 35023 where = 474 } # Sevilla - Spain
+		command = { type = add_division which = "Regulares Marroquíes" value = infantry when = 9 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+		command = { type = add_division value = transport when = 0 }
+
+		command = { type = addcore which = 441 }
+		command = { type = addcore which = 449 }
+		command = { type = addcore which = 444 }
+		command = { type = addcore which = 448 }
+
+		command = { type = removecore which = 436 }
+		command = { type = removecore which = 437 }
+		command = { type = removecore which = 439 }
+		command = { type = removecore which = 440 }
+		command = { type = removecore which = 461 }
+		command = { type = removecore which = 475 }
+		command = { type = removecore which = 464 }
+		command = { type = removecore which = 462 }
+		command = { type = removecore which = 438 }
+		command = { type = removecore which = 443 }
+		#command = { type = removecore which = 446 }
+		
+		#overriding regular union mechanics
+		command = { type = local_setflag which = OneNation }
+		command = { type = local_clrflag which = UnionBonds }
+		command = { type = local_setflag which = UnionBreak when = 0 value = 2 } #union broken for 10 years
+		command = { type = local_setflag which = AssimilationPolicyDelay }
+		command = { type = event which = 211000 where = -1 when = 1800 }
+		
+
+		command = { type = construct which = land_fort where = 448 value = 2 }
+		command = { type = construct which = land_fort where = 449 value = 2 }
+		command = { type = construct which = land_fort where = 441 value = 4 }
+		command = { type = construct which = land_fort where = 473 value = 2 }
+		command = { type = add_corps value = land where = 441 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_corps value = land where = 473 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+
+ 		command = { type = secedeprovince which = SPR value = 348 }
+ 		command = { type = secedeprovince which = SPR value = 444 }
+ 		command = { type = secedeprovince which = SPR value = 460 }
+ 		command = { type = secedeprovince which = SPR value = 457 }
+ 		command = { type = secedeprovince which = SPR value = 458 }
+ 		command = { type = secedeprovince which = SPR value = 471 }
+ 		command = { type = secedeprovince which = SPR value = 470 }
+ 		command = { type = secedeprovince which = SPR value = 463 }
+ 		command = { type = secedeprovince which = SPR value = 468 }
+ 		command = { type = secedeprovince which = SPR value = 464 }
+ 		command = { type = secedeprovince which = SPR value = 461 }
+ 		command = { type = secedeprovince which = SPR value = 436 }
+ 		command = { type = secedeprovince which = SPR value = 440 }
+ 		command = { type = secedeprovince which = SPR value = 437 }
+ 		command = { type = secedeprovince which = SPR value = 475 }
+ 		command = { type = secedeprovince which = SPR value = 439 }
+ 		command = { type = secedeprovince which = SPR value = 465 }
+ 		command = { type = secedeprovince which = SPR value = 462 }
+ 		command = { type = secedeprovince which = SPR value = 454 }
+ 		command = { type = secedeprovince which = SPR value = 455 }
+ 		command = { type = secedeprovince which = SPR value = 459 }
+ 		command = { type = secedeprovince which = SPR value = 445 }
+ 		command = { type = secedeprovince which = SPR value = 469 }
+		command = { type = secedeprovince which = SPR value = 443 }
+		
+ 		command = { type = control which = SPR value = 348 }
+ 		command = { type = control which = SPR value = 444 }
+ 		command = { type = control which = SPR value = 460 }
+ 		command = { type = control which = SPR value = 457 }
+ 		command = { type = control which = SPR value = 458 }
+ 		command = { type = control which = SPR value = 471 }
+ 		command = { type = control which = SPR value = 470 }
+ 		command = { type = control which = SPR value = 463 }
+ 		command = { type = control which = SPR value = 468 }
+ 		command = { type = control which = SPR value = 464 }
+ 		command = { type = control which = SPR value = 461 }
+ 		command = { type = control which = SPR value = 436 }
+ 		command = { type = control which = SPR value = 440 }
+ 		command = { type = control which = SPR value = 437 }
+ 		command = { type = control which = SPR value = 475 }
+ 		command = { type = control which = SPR value = 439 }
+ 		command = { type = control which = SPR value = 465 }
+ 		command = { type = control which = SPR value = 462 }
+ 		command = { type = control which = SPR value = 454 }
+ 		command = { type = control which = SPR value = 455 }
+ 		command = { type = control which = SPR value = 459 }
+ 		command = { type = control which = SPR value = 445 }
+ 		command = { type = control which = SPR value = 469 }
+		command = { type = control which = SPR value = 443 }
+		
+		command = { type = addcore which = 2762 }
+		command = { type = secedeprovince which = SPA value = 2762 when = 2 }
+	}
+}
+
+event = { 
+	id = 3173001
+	random = no
+	country = SPA
+
+	# triggered by SPA 3173000
+	
+	name = EVT_3173001_NAME
+	desc = EVT_3173001_DESC
+	style = 2
+
+	action_a = { 
+		name = ACTIONNAME3173001A 
+
+	} 
+}
+
+event = { 
+	id = 3173002
+	random = no
+	country = SPR
+
+	trigger = {
+		atwar = yes
+	}
+
+	name = "EVT_3100_NAME"
+	desc = "EVT_3100_DESC"
+	style = 2
+	picture = "SCW"
+
+	date = { day = 13 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = july year = 1966 }
+
+	action_a = { 
+		name = "Ok"
+		command = { type = manpowerpool value = 10 }
+		command = { type = unlock_division which = 27600 value = 9 }
+	} 
+}
+
+#########################################################################
+# Spain - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3116110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = SOV_to_SPR_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_SPR_delay }
+		#Need permission from France
+		flag = FRA_to_SPR_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = SOV_to_SPR_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_SPR_delay }
+		flag = FRA_to_SPR_1
+		
+		#ai will do if:
+		NOT = { war = { country = GER } }
+		NOT = { war = { country = ENG } }
+		OR = {
+			NOT = { flag = SOV_to_SPR_1 }
+			NOT = { flag = SOV_to_SPR_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_SPR_3 }
+				OR = { 
+					flag = GER_to_SPA_2
+					flag = ITA_to_SPA_2
+					flag = ENG_to_SPA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_SPR_4 }
+				OR = { 
+					flag = GER_to_SPA_3
+					flag = ITA_to_SPA_3
+					flag = ENG_to_SPA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_SPR_5 }
+				OR = { 
+					flag = GER_to_SPA_4
+					flag = ITA_to_SPA_4
+					flag = ENG_to_SPA_4
+				}
+			}
+		}
+	}
+	
+	name = "Spanish Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_SPR_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = SPR supplies = -10 value = 1 }
+		
+		#0.16*7.3*261=305
+		#Soviet Volunteers
+		#command = { type = money value = -305 }
+		#command = { type = manpowerpool value = -16 }
+		
+		#0.16*14.1*414=933
+		#tanks
+		command = { type = money value = -933 }
+		command = { type = manpowerpool value = -8 }
+		
+		#0.16*14.3*252=576
+		#interceptors
+		command = { type = money value = -576 }
+		command = { type = manpowerpool value = -0.8 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_SPR_1 }
+		command = { type = event which = 3116111 where = SPR when = 15 }
+		command = { type = setflag which = SOV_to_SPR_delay }
+		command = { type = access which = SPR }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116200 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_SPR_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = SPR supplies = -10 value = 1 }
+		
+		#0.16*4.1*304=200
+		#International brigade
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = money value = -200 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = manpowerpool value = -13 }
+		
+		#0.16*16*262=670
+		#Tactical bomber
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = money value = -670 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = manpowerpool value = -2.2 }
+		
+		#0.16*7.3*261=305
+		#Soviet Volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_SPR_4 NOT = { flag = SOV_to_SPR_5 } } type = setflag which = SOV_to_SPR_5 }
+		command = { trigger = { flag = SOV_to_SPR_3 NOT = { flag = SOV_to_SPR_4 } } type = setflag which = SOV_to_SPR_4 }
+		command = { trigger = { flag = SOV_to_SPR_2 NOT = { flag = SOV_to_SPR_3 } } type = setflag which = SOV_to_SPR_3 }
+		command = { trigger = { flag = SOV_to_SPR_1 NOT = { flag = SOV_to_SPR_2 } } type = setflag which = SOV_to_SPR_2 }
+		command = { type = event which = 3116111 where = SPR when = 15 }
+		command = { type = setflag which = SOV_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116111
+	random = no
+	country = SPR
+	persistent = yes
+	
+	name = "Soviet help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the French border to Spain."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		command = { type = relation which = SOV value = 50 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = flag_ext where = SPR which = "_communist" }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = name where = SPR which = SPA36 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = local_setflag which = nameFormal }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = local_clrflag which = nameGeneric }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = wakeleader which = 255008 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = wakeleader which = 255051 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = SOV_to_SPR_5 }								type = add_division which = "Soviet volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_4 NOT = { flag = SOV_to_SPR_5 } } type = add_division which = "Soviet volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_3 NOT = { flag = SOV_to_SPR_4 } } type = add_division which = "Soviet volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_2 NOT = { flag = SOV_to_SPR_3 } } type = add_division which = "Soviet volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { flag = SOV_to_SPR_1 NOT = { flag = SOV_to_SPR_2 } } type = add_division which = "Soviet volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = add_division which = "Carros Soviéticos" value = light_armor when = 0 }
+		command = { trigger = { NOT = { flag = SOV_to_SPR_2 } } type = add_division which = "Cazas soviéticos" value = interceptor when = 7 }
+		command = { trigger = { flag = SOV_to_SPR_2 NOT = { flag = SOV_to_SPR_3 } } type = add_division which = "Brigadas Internacionales" value = infantry when = 8 }
+		command = { trigger = { flag = SOV_to_SPR_2 NOT = { flag = SOV_to_SPR_3 } } type = add_division which = "Katiuskas soviéticos" value = tactical_bomber when = 5 }
+		
+		command = { type = clrflag which = SOV_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_SPR_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_SPR_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_SPR_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = GER }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_SPR_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_1 } type = free_ic value = 1 }
+
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPR }
+		command = { trigger = { NOT = { alliance = { country = SPR } } } type = military_control which = SOV where = SPR value = 0 }
+		command = { type = end_trades which = SPR where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in Spain 5" value = SPR }
+		command = { type = remove_division which = "Soviet volunteers in Spain 4" value = SPR }
+		command = { type = remove_division which = "Soviet volunteers in Spain 3" value = SPR }
+		command = { type = remove_division which = "Soviet volunteers in Spain 2" value = SPR }
+		command = { type = remove_division which = "Soviet volunteers in Spain 1" value = SPR }
+		
+		command = { type = remove_division which = "Carros Soviéticos" value = SPR }
+		command = { type = remove_division which = "Cazas soviéticos" value = SPR }
+		command = { type = remove_division which = "Brigadas Internacionales" value = SPR }
+		command = { type = remove_division which = "Katiuskas soviéticos" value = SPR }
+		
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = SOV_to_SPR_5 exists = SPR } type = add_division which = "Soviet volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_4 exists = SPR } type = add_division which = "Soviet volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_3 exists = SPR } type = add_division which = "Soviet volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_SPR_2 exists = SPR } type = add_division which = "Soviet volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { flag = SOV_to_SPR_1 exists = SPR } type = add_division which = "Soviet volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { exists = SPR } type = add_division which = "Carros Soviéticos" value = light_armor when = 0 }
+		command = { trigger = { exists = SPR } type = add_division which = "Cazas soviéticos" value = interceptor when = 7 }
+		command = { trigger = { flag = SOV_to_SPR_2 exists = SPR } type = add_division which = "Brigadas Internacionales" value = infantry when = 8 }
+		command = { trigger = { flag = SOV_to_SPR_2 exists = SPR } type = add_division which = "Katiuskas soviéticos" value = tactical_bomber when = 5 }
+		
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = SOV_to_SPR_5 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = SOV_to_SPR_4 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = SOV_to_SPR_3 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = SOV_to_SPR_2 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = SOV_to_SPR_1 }
+		
+		command = { type = trigger which = 3116113 }
+	}
+}
+
+event = { 
+	id = 3116113
+	random = no
+	country = SPR
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_SPR_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_SPR_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_SPR_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_SPR_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_SPR_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_SPR_5 }
+		command = { type = clrflag which = SOV_to_SPR_4 }
+		command = { type = clrflag which = SOV_to_SPR_3 }
+		command = { type = clrflag which = SOV_to_SPR_2 }
+		command = { type = clrflag which = SOV_to_SPR_1 }
+	}
+}
+
+event = { 
+	id = 3116114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_SPR_1
+		NOT = { military_control = { country = SPR } }
+	}
+
+	decision_trigger = {
+		exists = SPR
+	}
+	
+	trigger = {
+		ai = no
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	name = "Spanish Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = SPR value = 1 }
+	}
+}
+
+#French
+
+event = { 
+	id = 3116120
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = FRA_to_SPR_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = FRA_to_SPR_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = FRA_to_SPR_5 }
+		manpower = 16
+		NOT = { flag = FRA_to_SPR_delay }
+		
+		#ai will do if:
+		NOT = { war = { country = GER } }
+		NOT = { war = { country = ENG } }
+		OR = {
+			NOT = { flag = FRA_to_SPR_1 }
+			NOT = { flag = FRA_to_SPR_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = FRA_to_SPR_3 }
+				OR = { 
+					flag = GER_to_SPA_2
+					flag = ITA_to_SPA_2
+					flag = ENG_to_SPA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = FRA_to_SPR_4 }
+				OR = { 
+					flag = GER_to_SPA_3
+					flag = ITA_to_SPA_3
+					flag = ENG_to_SPA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = FRA_to_SPR_5 }
+				OR = { 
+					flag = GER_to_SPA_4
+					flag = ITA_to_SPA_4
+					flag = ENG_to_SPA_4
+				}
+			}
+		}
+	}
+	
+	name = "Spanish Civil War - French Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = FRA_to_SPR_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = SPR supplies = -10 value = 1 }
+		
+		
+		#0.16*7.6*312=380
+		command = { type = money value = -380 }
+		command = { type = manpowerpool value = -5 }
+		
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = FRA_to_SPR_1 }
+		command = { type = event which = 3116121 where = SPR when = 15 }
+		command = { type = setflag which = FRA_to_SPR_delay }
+		command = { type = access which = SPR }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116201 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = FRA_to_SPR_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = SPR supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = FRA_to_SPR_4 NOT = { flag = FRA_to_SPR_5 } } type = setflag which = FRA_to_SPR_5 }
+		command = { trigger = { flag = FRA_to_SPR_3 NOT = { flag = FRA_to_SPR_4 } } type = setflag which = FRA_to_SPR_4 }
+		command = { trigger = { flag = FRA_to_SPR_2 NOT = { flag = FRA_to_SPR_3 } } type = setflag which = FRA_to_SPR_3 }
+		command = { trigger = { flag = FRA_to_SPR_1 NOT = { flag = FRA_to_SPR_2 } } type = setflag which = FRA_to_SPR_2 }
+		command = { type = event which = 3116121 where = SPR when = 15 }
+		command = { type = setflag which = FRA_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116121
+	random = no
+	country = SPR
+	persistent = yes
+	
+	name = "French help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived across the French border to Spain."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = FRA }
+		command = { type = steal_tech which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = access which = FRA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = FRA_to_SPR_5 }								type = add_division which = "French volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_4 NOT = { flag = FRA_to_SPR_5 } } type = add_division which = "French volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_3 NOT = { flag = FRA_to_SPR_4 } } type = add_division which = "French volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_2 NOT = { flag = FRA_to_SPR_3 } } type = add_division which = "French volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_1 NOT = { flag = FRA_to_SPR_2 } } type = add_division which = "French volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { flag = FRA_to_SPR_2 } } type = add_division which = "French advisors" value = hq when = 4 where = anti_air } 
+		command = { trigger = { NOT = { flag = FRA_to_SPR_2 } } type = add_division which = "French volunteers in Spain 6" value = infantry when = 9 where = artillery }
+		command = { trigger = { NOT = { flag = FRA_to_SPR_2 } } type = add_division which = "French volunteers in Spain 7" value = infantry when = 9 where = artillery }
+		
+		command = { type = clrflag which = FRA_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116122
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		flag = FRA_to_SPR_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_SPR_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_SPR_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = GER }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = FRA_to_SPR_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_1 } type = free_ic value = 1 }
+
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPR }
+		command = { trigger = { NOT = { alliance = { country = SPR } } } type = military_control which = FRA where = SPR value = 0 }
+		command = { type = end_trades which = SPR where = FRA }
+		command = { type = remove_division which = "French advisors" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 9" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 8" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 7" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 6" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 5" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 4" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 3" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 2" value = SPR }
+		command = { type = remove_division which = "French volunteers in Spain 1" value = SPR }
+		
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = FRA_to_SPR_5 exists = SPR } type = add_division which = "French volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_4 exists = SPR } type = add_division which = "French volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_3 exists = SPR } type = add_division which = "French volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_2 exists = SPR } type = add_division which = "French volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_SPR_1 exists = SPR } type = add_division which = "French volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { exists = SPR } type = add_division which = "French advisors" value = hq when = 4 where = anti_air } 
+		command = { trigger = { exists = SPR } type = add_division which = "French volunteers in Spain 6" value = infantry when = 9 where = artillery }
+		command = { trigger = { exists = SPR } type = add_division which = "French volunteers in Spain 7" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = FRA_to_SPR_5 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = FRA_to_SPR_4 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = FRA_to_SPR_3 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = FRA_to_SPR_2 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = FRA_to_SPR_1 }
+		
+		command = { type = trigger which = 3116123 }
+	}
+}
+
+event = { 
+	id = 3116123
+	random = no
+	country = SPR
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The French aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = FRA }
+		command = { trigger = { flag = FRA_to_SPR_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_SPR_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_SPR_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_SPR_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_SPR_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = FRA_to_SPR_5 }
+		command = { type = clrflag which = FRA_to_SPR_4 }
+		command = { type = clrflag which = FRA_to_SPR_3 }
+		command = { type = clrflag which = FRA_to_SPR_2 }
+		command = { type = clrflag which = FRA_to_SPR_1 }
+	}
+}
+
+event = { 
+	id = 3116124
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = FRA_to_SPR_1
+		NOT = { military_control = { country = SPR } }
+	}
+
+	decision_trigger = {
+		exists = SPR
+	}
+	
+	trigger = {
+		ai = no
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	name = "Spanish Civil War - French command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = FRA where = SPR value = 1 }
+	}
+}
+
+#United States
+
+event = { 
+	id = 3116130
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = USA_to_SPR_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = USA_to_SPR_delay }
+		#Need permission from France
+		flag = FRA_to_SPR_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = USA_to_SPR_5 }
+		manpower = 16
+		NOT = { flag = USA_to_SPR_delay }
+		flag = FRA_to_SPR_1
+		
+		#ai will do if:
+		NOT = { war = { country = GER } }
+		NOT = { war = { country = ENG } }
+		OR = {
+			NOT = { flag = USA_to_SPR_1 }
+			NOT = { flag = USA_to_SPR_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = USA_to_SPR_3 }
+				OR = { 
+					flag = GER_to_SPA_2
+					flag = ITA_to_SPA_2
+					flag = ENG_to_SPA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = USA_to_SPR_4 }
+				OR = { 
+					flag = GER_to_SPA_3
+					flag = ITA_to_SPA_3
+					flag = ENG_to_SPA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = USA_to_SPR_5 }
+				OR = { 
+					flag = GER_to_SPA_4
+					flag = ITA_to_SPA_4
+					flag = ENG_to_SPA_4
+				}
+			}
+		}
+	}
+	
+	name = "Spanish Civil War - American Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = USA_to_SPR_1 } }
+		command = { type = dissent value = 1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = SPR supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = USA_to_SPR_1 }
+		command = { type = event which = 3116131 where = SPR when = 15 }
+		command = { type = setflag which = USA_to_SPR_delay }
+		command = { type = access which = SPR }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116202 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = USA_to_SPR_1 }
+		command = { type = dissent value = 0.5 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = SPR supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = USA_to_SPR_4 NOT = { flag = USA_to_SPR_5 } } type = setflag which = USA_to_SPR_5 }
+		command = { trigger = { flag = USA_to_SPR_3 NOT = { flag = USA_to_SPR_4 } } type = setflag which = USA_to_SPR_4 }
+		command = { trigger = { flag = USA_to_SPR_2 NOT = { flag = USA_to_SPR_3 } } type = setflag which = USA_to_SPR_3 }
+		command = { trigger = { flag = USA_to_SPR_1 NOT = { flag = USA_to_SPR_2 } } type = setflag which = USA_to_SPR_2 }
+		command = { type = event which = 3116131 where = SPR when = 15 }
+		command = { type = setflag which = USA_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116131
+	random = no
+	country = SPR
+	persistent = yes
+	
+	name = "American help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of American aid arrived across the French border to Spain."
+	style = 2
+	picture = "SCW_American Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = USA }
+		command = { type = steal_tech which = USA }
+		command = { type = relation which = USA value = 50 }
+		command = { type = access which = USA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = USA_to_SPR_5 }								type = add_division which = "American volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_4 NOT = { flag = USA_to_SPR_5 } } type = add_division which = "American volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_3 NOT = { flag = USA_to_SPR_4 } } type = add_division which = "American volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_2 NOT = { flag = USA_to_SPR_3 } } type = add_division which = "American volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_1 NOT = { flag = USA_to_SPR_2 } } type = add_division which = "American volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = USA_to_SPR_delay }
+	}
+}
+
+event = { 
+	id = 3116132
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		flag = USA_to_SPR_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = USA_to_SPR_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = USA_to_SPR_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = GER }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = USA_to_SPR_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_SPR_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_SPR_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_SPR_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_SPR_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPR }
+		command = { trigger = { NOT = { alliance = { country = SPR } } } type = military_control which = USA where = SPR value = 0 }
+		command = { type = end_trades which = SPR where = USA }
+		command = { type = remove_division which = "American volunteers in Spain 5" value = SPR }
+		command = { type = remove_division which = "American volunteers in Spain 4" value = SPR }
+		command = { type = remove_division which = "American volunteers in Spain 3" value = SPR }
+		command = { type = remove_division which = "American volunteers in Spain 2" value = SPR }
+		command = { type = remove_division which = "American volunteers in Spain 1" value = SPR }
+		
+		command = { type = add_corps value = land where = 80 }
+		command = { trigger = { flag = USA_to_SPR_5 exists = SPR } type = add_division which = "American volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_4 exists = SPR } type = add_division which = "American volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_3 exists = SPR } type = add_division which = "American volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_2 exists = SPR } type = add_division which = "American volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_SPR_1 exists = SPR } type = add_division which = "American volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = USA_to_SPR_5 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = USA_to_SPR_4 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = USA_to_SPR_3 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = USA_to_SPR_2 }
+		command = { trigger = { NOT = { exists = SPR } } type = clrflag which = USA_to_SPR_1 }
+		
+		command = { type = trigger which = 3116133 }
+	}
+}
+
+event = { 
+	id = 3116133
+	random = no
+	country = SPR
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The American aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = USA }
+		command = { trigger = { flag = USA_to_SPR_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_SPR_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_SPR_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_SPR_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_SPR_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = USA_to_SPR_5 }
+		command = { type = clrflag which = USA_to_SPR_4 }
+		command = { type = clrflag which = USA_to_SPR_3 }
+		command = { type = clrflag which = USA_to_SPR_2 }
+		command = { type = clrflag which = USA_to_SPR_1 }
+	}
+}
+
+event = { 
+	id = 3116134
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = USA_to_SPR_1
+		NOT = { military_control = { country = SPR } }
+	}
+
+	decision_trigger = {
+		exists = SPR
+	}
+	
+	trigger = {
+		ai = no
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	name = "Spanish Civil War - American command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = USA where = SPR value = 1 }
+	}
+}
+
+#English
+
+event = { 
+	id = 3116140
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = ENG_to_SPA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = ENG_to_SPA_delay }
+		#Need permission from the Portugese
+		event = 802057
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = ENG_to_SPA_5 }
+		manpower = 16
+		NOT = { flag = ENG_to_SPA_delay }
+		flag = ITA_to_SPA_1
+		
+		#ai will do if:
+		NOT = { war = { country = SOV } }
+		NOT = { war = { country = FRA } }
+		OR = {
+			NOT = { flag = ENG_to_SPA_1 }
+			NOT = { flag = ENG_to_SPA_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = ENG_to_SPA_3 }
+				OR = { 
+					flag = SOV_to_SPR_4
+					flag = USA_to_SPR_4
+					flag = FRA_to_SPR_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = ENG_to_SPA_4 }
+				OR = { 
+					flag = SOV_to_SPR_5
+					flag = USA_to_SPR_5
+					flag = FRA_to_SPR_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = ENG_to_SPA_5 }
+			#}
+		}
+	}
+	
+	name = "Spanish Civil War - British Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = ENG_to_SPA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = SPA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = ENG_to_SPA_1 }
+		command = { type = event which = 3116141 where = SPA when = 15 }
+		command = { type = access which = SPA }
+		command = { type = setflag which = ENG_to_SPA_delay }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116207 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = ENG_to_SPA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = SPA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = ENG_to_SPA_4 NOT = { flag = ENG_to_SPA_5 } } type = setflag which = ENG_to_SPA_5 }
+		command = { trigger = { flag = ENG_to_SPA_3 NOT = { flag = ENG_to_SPA_4 } } type = setflag which = ENG_to_SPA_4 }
+		command = { trigger = { flag = ENG_to_SPA_2 NOT = { flag = ENG_to_SPA_3 } } type = setflag which = ENG_to_SPA_3 }
+		command = { trigger = { flag = ENG_to_SPA_1 NOT = { flag = ENG_to_SPA_2 } } type = setflag which = ENG_to_SPA_2 }
+		command = { type = event which = 3116141 where = SPA when = 15 }
+		command = { type = setflag which = ENG_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116141
+	random = no
+	country = SPA
+	persistent = yes
+	
+	name = "British help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of British aid arrived across the Portugese border to Spain."
+	style = 2
+	picture = "SCW_British Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = ENG }
+		command = { type = steal_tech which = ENG }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = access which = ENG }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 481 }
+		command = { trigger = { flag = ENG_to_SPA_5 }								type = add_division which = "British volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_4 NOT = { flag = ENG_to_SPA_5 } } type = add_division which = "British volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_3 NOT = { flag = ENG_to_SPA_4 } } type = add_division which = "British volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_2 NOT = { flag = ENG_to_SPA_3 } } type = add_division which = "British volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_1 NOT = { flag = ENG_to_SPA_2 } } type = add_division which = "British volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = ENG_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116142
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		flag = ENG_to_SPA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = ENG_to_SPA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = ENG_to_SPA_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = SOV }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = ENG_to_SPA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPA }
+		command = { trigger = { NOT = { alliance = { country = SPA } } } type = military_control which = ENG where = SPA value = 0 }
+		command = { type = end_trades which = SPA where = ENG }
+		command = { type = remove_division which = "British volunteers in Spain 5" value = SPA }
+		command = { type = remove_division which = "British volunteers in Spain 4" value = SPA }
+		command = { type = remove_division which = "British volunteers in Spain 3" value = SPA }
+		command = { type = remove_division which = "British volunteers in Spain 2" value = SPA }
+		command = { type = remove_division which = "British volunteers in Spain 1" value = SPA }
+		
+		command = { type = add_corps value = land where = 481 }
+		command = { trigger = { flag = ENG_to_SPA_5 exists = SPA } type = add_division which = "British volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_4 exists = SPA } type = add_division which = "British volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_3 exists = SPA } type = add_division which = "British volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_2 exists = SPA } type = add_division which = "British volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_SPA_1 exists = SPA } type = add_division which = "British volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ENG_to_SPA_5 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ENG_to_SPA_4 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ENG_to_SPA_3 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ENG_to_SPA_2 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ENG_to_SPA_1 }
+		
+		command = { type = trigger which = 3116143 }
+	}
+}
+
+event = { 
+	id = 3116143
+	random = no
+	country = SPA
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The British aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = ENG }
+		command = { trigger = { flag = ENG_to_SPA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_SPA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_SPA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_SPA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_SPA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = ENG_to_SPA_5 }
+		command = { type = clrflag which = ENG_to_SPA_4 }
+		command = { type = clrflag which = ENG_to_SPA_3 }
+		command = { type = clrflag which = ENG_to_SPA_2 }
+		command = { type = clrflag which = ENG_to_SPA_1 }
+	}
+}
+
+event = { 
+	id = 3116144
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = ENG_to_SPA_1
+		NOT = { military_control = { country = SPA } }
+	}
+
+	decision_trigger = {
+		exists = SPA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Spanish Civil War - British command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = ENG where = SPA value = 1 }
+	}
+}
+
+#German
+
+event = { 
+	id = 3116150
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = GER_to_SPA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = GER_to_SPA_delay }
+		#Need permission from the Portugese
+		event = 802057
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = GER_to_SPA_5 }
+		manpower = 16
+		NOT = { flag = GER_to_SPA_delay }
+		flag = ITA_to_SPA_1
+		
+		#ai will do if:
+		NOT = { war = { country = SOV } }
+		NOT = { war = { country = FRA } }
+		OR = {
+			NOT = { flag = GER_to_SPA_1 }
+			NOT = { flag = GER_to_SPA_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = GER_to_SPA_3 }
+				OR = { 
+					flag = SOV_to_SPR_4
+					flag = USA_to_SPR_4
+					flag = FRA_to_SPR_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = GER_to_SPA_4 }
+				OR = { 
+					flag = SOV_to_SPR_5
+					flag = USA_to_SPR_5
+					flag = FRA_to_SPR_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = GER_to_SPA_5 }
+			#}
+		}
+	}
+	
+	name = "Spanish Civil War - German Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = GER_to_SPA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = SPA supplies = -10 value = 1 }
+		
+		#0.16*7.6*312=380
+		#hq
+		command = { type = money value = -380 }
+		command = { type = manpowerpool value = -5 }
+		
+		#0.16*14.1*414=933
+		#tanks
+		command = { type = money value = -933 }
+		command = { type = manpowerpool value = -8 }
+		
+		#0.16*14.3*252=576
+		#interceptors
+		command = { type = money value = -576 }
+		command = { type = manpowerpool value = -0.8 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = GER_to_SPA_1 }
+		command = { type = event which = 3116151 where = SPA when = 15 }
+		command = { type = access which = SPA }
+		command = { type = setflag which = GER_to_SPA_delay }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116205 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = GER_to_SPA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = SPA supplies = -10 value = 1 }
+		
+		#0.16*16*262=670
+		#Tactical bomber
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = money value = -670 }
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = manpowerpool value = -2.2 }
+		
+		#0.16*16*262=670
+		#Tactical bomber
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = money value = -670 }
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = manpowerpool value = -2.2 }
+		
+		#0.16*7.3*261=305
+		#German volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = GER_to_SPA_4 NOT = { flag = GER_to_SPA_5 } } type = setflag which = GER_to_SPA_5 }
+		command = { trigger = { flag = GER_to_SPA_3 NOT = { flag = GER_to_SPA_4 } } type = setflag which = GER_to_SPA_4 }
+		command = { trigger = { flag = GER_to_SPA_2 NOT = { flag = GER_to_SPA_3 } } type = setflag which = GER_to_SPA_3 }
+		command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = setflag which = GER_to_SPA_2 }
+		command = { type = event which = 3116151 where = SPA when = 15 }
+		command = { type = setflag which = GER_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116151
+	random = no
+	country = SPA
+	persistent = yes
+	
+	name = "German help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of German aid arrived across the Portugese border to Spain."
+	style = 2
+	picture = "SCW_German Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = GER }
+		command = { type = steal_tech which = GER }
+		command = { type = relation which = GER value = 50 }
+		
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = wakeleader which = 35067 }
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = wakeleader which = 35093 }
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = wakeleader which = 35094 }
+		command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = wakeleader which = 35095 }
+	   	command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = gain_tech which = 1070 } #21 inf	
+	   	command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = gain_tech which = 1080 } #26 inf	
+	   	command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = gain_tech which = 1090 } #31 inf	
+       	command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = gain_tech which = 9040 } #Battlefield Destruction
+       	command = { trigger = { NOT = { flag = GER_to_SPA_2 } } type = gain_tech which = 9090 } #Operational Destruction
+		
+		
+		command = { type = access which = GER }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 481 }
+		
+		command = { type = wakeleader which = 35094 } #von Richthofen W.
+		command = { type = wakeleader which = 35095 } #Sperrle (GER)
+		
+		command = { trigger = { flag = GER_to_SPA_5 }								type = add_division which = "German volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_4 NOT = { flag = GER_to_SPA_5 } } type = add_division which = "German volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_3 NOT = { flag = GER_to_SPA_4 } } type = add_division which = "German volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_2 NOT = { flag = GER_to_SPA_3 } } type = add_division which = "German volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		#command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = add_division which = "German volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = add_division which = "Fuhrungsstab Legion Condor" value = hq when = 4 where = anti_air } 
+		command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = add_division which = "Group Drohne" value = light_armor when = 0 }
+		command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = add_division which = "I./JG Legión Cóndor" value = multi_role when = 4 }
+		
+		command = { trigger = { flag = GER_to_SPA_2 NOT = { flag = GER_to_SPA_3 } } type = add_division which = "Bombarderos Legión Cóndor" value = tactical_bomber when = 5 }
+		command = { trigger = { flag = GER_to_SPA_2 NOT = { flag = GER_to_SPA_3 } } type = add_division which = "II./KG Legión Cóndor" value = tactical_bomber when = 5 }
+		
+		command = { type = clrflag which = GER_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116152
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		flag = GER_to_SPA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = GER_to_SPA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = GER_to_SPA_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = SOV }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = GER_to_SPA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_SPA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_SPA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_SPA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_SPA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPA }
+		command = { trigger = { NOT = { alliance = { country = SPA } } } type = military_control which = GER where = SPA value = 0 }
+		command = { type = end_trades which = SPA where = GER }
+		command = { type = remove_division which = "German volunteers in Spain 5" value = SPA }
+		command = { type = remove_division which = "German volunteers in Spain 4" value = SPA }
+		command = { type = remove_division which = "German volunteers in Spain 3" value = SPA }
+		command = { type = remove_division which = "German volunteers in Spain 2" value = SPA }
+		command = { type = remove_division which = "German volunteers in Spain 1" value = SPA }
+		
+		command = { type = remove_division which = "Fuhrungsstab Legion Condor" value = SPA }
+		command = { type = remove_division which = "I./JG Legión Cóndor" value = SPA }
+		command = { type = remove_division which = "Group Drohne" value = SPA }
+		command = { type = remove_division which = "Bombarderos Legión Cóndor" value = SPA }
+		command = { type = remove_division which = "II./KG Legión Cóndor" value = SPA }
+		
+		command = { type = add_corps value = land where = 481 }
+		command = { trigger = { flag = GER_to_SPA_5 exists = SPA } type = add_division which = "German volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_4 exists = SPA } type = add_division which = "German volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_3 exists = SPA } type = add_division which = "German volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_2 exists = SPA } type = add_division which = "German volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_SPA_1 exists = SPA } type = add_division which = "German volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { exists = SPA } type = add_division which = "Group Drohne" value = light_armor when = 0 }
+		command = { trigger = { exists = SPA } type = add_division which = "I./JG Legión Cóndor" value = multi_role when = 4 }
+		command = { trigger = { exists = SPA } type = add_division which = "Fuhrungsstab Legion Condor" value = hq when = 4 where = anti_air } 
+		
+		command = { trigger = { flag = GER_to_SPA_2 exists = SPA } type = add_division which = "Bombarderos Legión Cóndor" value = tactical_bomber when = 5 }
+		command = { trigger = { flag = GER_to_SPA_2 exists = SPA } type = add_division which = "II./KG Legión Cóndor" value = tactical_bomber when = 5 }
+		
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = GER_to_SPA_5 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = GER_to_SPA_4 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = GER_to_SPA_3 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = GER_to_SPA_2 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = GER_to_SPA_1 }
+		
+		command = { type = sleepleader which = 35067 }
+		command = { type = sleepleader which = 35093 }
+		command = { type = sleepleader which = 35094 }
+		command = { type = sleepleader which = 35095 }
+		
+		command = { type = trigger which = 3116153 }
+	}
+}
+
+event = { 
+	id = 3116153
+	random = no
+	country = SPA
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The German aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = GER }
+		command = { trigger = { flag = GER_to_SPA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_SPA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_SPA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_SPA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_SPA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = GER_to_SPA_5 }
+		command = { type = clrflag which = GER_to_SPA_4 }
+		command = { type = clrflag which = GER_to_SPA_3 }
+		command = { type = clrflag which = GER_to_SPA_2 }
+		command = { type = clrflag which = GER_to_SPA_1 }
+	}
+}
+
+event = { 
+	id = 3116154
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = GER_to_SPA_1
+		NOT = { military_control = { country = SPA } }
+	}
+
+	decision_trigger = {
+		exists = SPA
+	}
+	
+	trigger = {
+		ai = no
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	name = "Spanish Civil War - German command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = GER where = SPA value = 1 }
+	}
+}
+
+#Italian
+
+event = { 
+	id = 3116160
+	random = no
+	country = ITA
+	persistent = yes
+
+	decision = {
+		war = { country = SPR country = SPA }
+		NOT = { flag = ITA_to_SPA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = ITA_to_SPA_delay }
+		#Need permission from the Portugese
+		event = 802057
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = SPR country = SPA }
+		NOT = { flag = ITA_to_SPA_5 }
+		manpower = 16
+		NOT = { flag = ITA_to_SPA_delay }
+		event = 802057
+		
+		#ai will do if:
+		NOT = { war = { country = SOV } }
+		NOT = { war = { country = FRA } }
+		NOT = { war = { country = U14 } }
+		OR = {
+			NOT = { flag = ITA_to_SPA_1 }
+			NOT = { flag = ITA_to_SPA_2 }
+			AND = {
+				ic = 50
+				NOT = { flag = ITA_to_SPA_3 }
+				OR = { 
+					flag = SOV_to_SPR_4
+					flag = USA_to_SPR_4
+					flag = FRA_to_SPR_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = ITA_to_SPA_4 }
+				OR = { 
+					flag = SOV_to_SPR_5
+					flag = USA_to_SPR_5
+					flag = FRA_to_SPR_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = ITA_to_SPA_5 }
+			#}
+		}
+	}
+	
+	name = "Spanish Civil War - Italian Intervention"
+	desc = "The outbreak of civil war in Spain presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Italian_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = ITA_to_SPA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ITA where = SPA supplies = -10 value = 1 }
+		
+		#0.16*7.3*261=305
+		#Italian volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*14.8*378=895
+		#Motorized
+		command = { type = money value = -895 }
+		command = { type = manpowerpool value = -15.5 }
+		
+		#0.16*7.3*261=305
+		#Infantry+arty
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*14.3*252=576
+		#interceptors
+		command = { type = money value = -576 }
+		command = { type = manpowerpool value = -0.8 }
+		
+		#0.16*16*262=670
+		#Tactical bomber
+		command = { type = money value = -670 }
+		command = { type = manpowerpool value = -2.2 }
+		
+		#0.16*4.1*304=200
+		#Infantry
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		
+		#0.16*4.1*304=200
+		#Infantry
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		
+		#0.16*0.8*576=74
+		#Destroyer
+		command = { type = money value = -74 }
+		command = { type = manpowerpool value = -0.6 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = ITA_to_SPA_1 }
+		command = { type = event which = 3116161 where = SPA when = 15 }
+		command = { type = access which = SPA }
+		command = { type = setflag which = ITA_to_SPA_delay }
+		
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = event which = 3174150 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = SCWExp } } type = local_setflag which = SCWExp }
+		
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = event which = 3116206 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = SCWVolunteers } } type = local_setflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = ITA_to_SPA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ITA where = SPA supplies = -10 value = 1 }
+
+		#0.16*7.3*261=305
+		#Italian volunteers
+		command = { type = money value = -305 }
+		command = { type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#Infantry+arty
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -16 }
+		
+		#0.16*7.3*261=305
+		#Infantry+arty
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -305 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -16 }
+		
+		#0.16*4.1*304=200
+		#Infantry
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -200 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -13 }
+		
+		#0.16*4.1*304=200
+		#Infantry
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -200 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -13 }
+		
+		#0.16*10.6*227=385
+		#Cas
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -385 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -1.5 }
+		
+		#0.16*0.8*396=50
+		#Submarine
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = money value = -50 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = manpowerpool value = -0.3 }
+		
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = ITA_to_SPA_4 NOT = { flag = ITA_to_SPA_5 } } type = setflag which = ITA_to_SPA_5 }
+		command = { trigger = { flag = ITA_to_SPA_3 NOT = { flag = ITA_to_SPA_4 } } type = setflag which = ITA_to_SPA_4 }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = setflag which = ITA_to_SPA_3 }
+		command = { trigger = { flag = ITA_to_SPA_1 NOT = { flag = ITA_to_SPA_2 } } type = setflag which = ITA_to_SPA_2 }
+		command = { type = event which = 3116161 where = SPA when = 15 }
+		command = { type = setflag which = ITA_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116161
+	random = no
+	country = SPA
+	persistent = yes
+	
+	name = "Italian help arrives in Spain"
+	desc = "Despite its official claims of neutrality, large amount of Italian aid arrived across the Portugese border to Spain."
+	style = 2
+	picture = "SCW_Italian Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = ITA }
+		command = { type = steal_tech which = ITA }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = access which = ITA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 481 }
+		command = { trigger = { flag = ITA_to_SPA_5 }								type = add_division which = "Italian volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_4 NOT = { flag = ITA_to_SPA_5 } } type = add_division which = "Italian volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_3 NOT = { flag = ITA_to_SPA_4 } } type = add_division which = "Italian volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "Italian volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_1 NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Italian volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Littorio" value = motorized when = 1 where = light_armor_brigade }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Dio lo Vuole" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Italian destroyer loan" value = destroyer when = 6 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Bombarderos Aviación Legionaria I" value = tactical_bomber when = 5 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "Cazas Aviación Legionaria" value = interceptor when = 7 }	
+		
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "22 División" value = infantry when = 9 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = add_division which = "23 División" value = infantry when = 9 }
+		
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "Fiamme Nere" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "Penne Nere" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "31 División" value = infantry when = 9 }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "32 División" value = infantry when = 9 }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "Bombarderos Aviación Legionaria II" value = cas when = 1 }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = add_division which = "Italian submarine loan" value = submarine when = 5 }
+		
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = wakeleader which = 35014 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = wakeleader which = 35017 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = wakeleader which = 35028 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = wakeleader which = 35056 }
+		command = { trigger = { NOT = { flag = ITA_to_SPA_2 } } type = gain_tech which = 2320 } #Early field arty
+		
+		command = { type = clrflag which = ITA_to_SPA_delay }
+	}
+}
+
+event = { 
+	id = 3116162
+	random = no
+	country = ITA
+	persistent = yes
+
+	decision = { 
+		flag = ITA_to_SPA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = ITA_to_SPA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = ITA_to_SPA_1
+		OR = {
+			NOT = { war = { country = SPR country = SPA } }
+			war = { country = SOV }
+			war = { country = U14 }
+		}
+	}
+	
+	name = "End of intervention in Spain"
+	desc = "With the civil war in Spain at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Italian_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = ITA_to_SPA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = SPA }
+		command = { trigger = { NOT = { alliance = { country = ITA } } } type = military_control which = ITA where = SPA value = 0 }
+		command = { type = end_trades which = SPA where = ITA }
+		command = { type = remove_division which = "Italian volunteers in Spain 5" value = SPA }
+		command = { type = remove_division which = "Italian volunteers in Spain 4" value = SPA }
+		command = { type = remove_division which = "Italian volunteers in Spain 3" value = SPA }
+		command = { type = remove_division which = "Italian volunteers in Spain 2" value = SPA }
+		command = { type = remove_division which = "Italian volunteers in Spain 1" value = SPA }
+		
+		command = { type = remove_division which = "Littorio" value = SPA }
+		command = { type = remove_division which = "Dio lo Vuole" value = SPA }
+		command = { type = remove_division which = "Italian destroyer loan" value = SPA }
+		command = { type = remove_division which = "Italian submarine loan" value = SPA }
+		command = { type = remove_division which = "Bombarderos Aviación Legionaria I" value = SPA }
+		command = { type = remove_division which = "Cazas Aviación Legionaria" value = SPA }
+		command = { type = remove_division which = "22 División" value = SPA }
+		command = { type = remove_division which = "23 División" value = SPA }
+		command = { type = remove_division which = "Fiamme Nere" value = SPA }
+		command = { type = remove_division which = "Penne Nere" value = SPA }
+		command = { type = remove_division which = "Bombarderos Aviación Legionaria II" value = SPA }
+		
+		command = { type = add_corps value = land where = 481 }
+		command = { trigger = { flag = ITA_to_SPA_5 exists = SPA } type = add_division which = "Italian volunteers in Spain 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_4 exists = SPA } type = add_division which = "Italian volunteers in Spain 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_3 exists = SPA } type = add_division which = "Italian volunteers in Spain 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "Italian volunteers in Spain 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_1 exists = SPA } type = add_division which = "Italian volunteers in Spain 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { exists = SPA } type = add_division which = "Littorio" value = motorized when = 1 where = light_armor_brigade }
+		command = { trigger = { exists = SPA } type = add_division which = "Dio lo Vuole" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { exists = SPA } type = add_division which = "Italian destroyer loan" value = destroyer when = 6 }
+		command = { trigger = { exists = SPA } type = add_division which = "Bombarderos Aviación Legionaria I" value = tactical_bomber when = 5 }
+		command = { trigger = { exists = SPA } type = add_division which = "Cazas Aviación Legionaria" value = interceptor when = 7 }	
+		
+		command = { trigger = { exists = SPA } type = add_division which = "22 División" value = infantry when = 9 }
+		command = { trigger = { exists = SPA } type = add_division which = "23 División" value = infantry when = 9 }
+		
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "Fiamme Nere" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "Penne Nere" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "31 División" value = infantry when = 9 }
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "32 División" value = infantry when = 9 }
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "Bombarderos Aviación Legionaria II" value = cas when = 1 }
+		command = { trigger = { flag = ITA_to_SPA_2 exists = SPA } type = add_division which = "Italian submarine loan" value = submarine when = 5 }
+		
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ITA_to_SPA_5 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ITA_to_SPA_4 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ITA_to_SPA_3 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ITA_to_SPA_2 }
+		command = { trigger = { NOT = { exists = SPA } } type = clrflag which = ITA_to_SPA_1 }
+		
+		command = { type = trigger which = 3116163 }
+		
+		command = { type = sleepleader which = 35014 }
+		command = { type = sleepleader which = 35017 }
+		command = { type = sleepleader which = 35028 }
+		command = { type = sleepleader which = 35056 }
+	}
+}
+
+event = { 
+	id = 3116163
+	random = no
+	country = SPA
+	persistent = yes
+
+	name = "End of intervention in Spain"
+	desc = "The Italian aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = ITA }
+		command = { trigger = { flag = ITA_to_SPA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = ITA_to_SPA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = ITA_to_SPA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = ITA_to_SPA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = ITA_to_SPA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = ITA_to_SPA_5 }
+		command = { type = clrflag which = ITA_to_SPA_4 }
+		command = { type = clrflag which = ITA_to_SPA_3 }
+		command = { type = clrflag which = ITA_to_SPA_2 }
+		command = { type = clrflag which = ITA_to_SPA_1 }
+	}
+}
+
+event = { 
+	id = 3116164
+	random = no
+	country = ITA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = ITA_to_SPA_1
+		NOT = { military_control = { country = SPA } }
+	}
+
+	decision_trigger = {
+		exists = SPA
+	}
+	
+	trigger = {
+		ai = no
+	}
+	
+	name = "Spanish Civil War - Italian command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Spain"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = ITA where = SPA value = 1 }
+	}
+}
+
+########################
+# Volunteers
+########################
+
+#1 div per month when total support = 9 (for example, 3 interventionists, each one at intervention level 3)
+
+event = {
+	id = 3116200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPR when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = SOV_to_SPR_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPR when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = SOV_to_SPR_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPR when = 15 }
+		command = { type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_SPR_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_SPR_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_SPR_2 } type = event which = 3116210 where = SPR when = 15 }
+		command = { trigger = { flag = SOV_to_SPR_2 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_SPR_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_SPR_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_SPR_3 } type = event which = 3116210 where = SPR when = 20 }
+		command = { trigger = { flag = SOV_to_SPR_3 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_SPR_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_SPR_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_SPR_4 } type = event which = 3116210 where = SPR when = 25 }
+		command = { trigger = { flag = SOV_to_SPR_4 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_SPR_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_SPR_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_SPR_5 } type = event which = 3116210 where = SPR when = 30 }
+		command = { trigger = { flag = SOV_to_SPR_5 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_SPR_1 NOT = { flag = SOV_to_SPR_2 } } type = trade which = SOV where = SPR supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_2 NOT = { flag = SOV_to_SPR_3 } } type = trade which = SOV where = SPR supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_3 NOT = { flag = SOV_to_SPR_4 } } type = trade which = SOV where = SPR supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_4 NOT = { flag = SOV_to_SPR_5 } } type = trade which = SOV where = SPR supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_SPR_5 } type = trade which = SOV where = SPR supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3116201
+	random = no
+	country = FRA
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPR when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = FRA_to_SPR_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPR when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = FRA_to_SPR_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPR when = 15 }
+		command = { type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_SPR_2 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_SPR_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_SPR_2 } type = event which = 3116210 where = SPR when = 15 }
+		command = { trigger = { flag = FRA_to_SPR_2 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_SPR_3 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_SPR_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_SPR_3 } type = event which = 3116210 where = SPR when = 20 }
+		command = { trigger = { flag = FRA_to_SPR_3 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_SPR_4 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_SPR_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_SPR_4 } type = event which = 3116210 where = SPR when = 25 }
+		command = { trigger = { flag = FRA_to_SPR_4 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_SPR_5 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_SPR_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_SPR_5 } type = event which = 3116210 where = SPR when = 30 }
+		command = { trigger = { flag = FRA_to_SPR_5 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_SPR_1 NOT = { flag = FRA_to_SPR_2 } } type = trade which = FRA where = SPR supplies = -1 value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_2 NOT = { flag = FRA_to_SPR_3 } } type = trade which = FRA where = SPR supplies = -2 value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_3 NOT = { flag = FRA_to_SPR_4 } } type = trade which = FRA where = SPR supplies = -3 value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_4 NOT = { flag = FRA_to_SPR_5 } } type = trade which = FRA where = SPR supplies = -4 value = 1 }
+		command = { trigger = { flag = FRA_to_SPR_5 } type = trade which = FRA where = SPR supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116201 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3116202
+	random = no
+	country = USA
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPR when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = USA_to_SPR_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPR when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = USA_to_SPR_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPR when = 15 }
+		command = { type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_SPR_2 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_SPR_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_SPR_2 } type = event which = 3116210 where = SPR when = 15 }
+		command = { trigger = { flag = USA_to_SPR_2 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_SPR_3 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_SPR_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_SPR_3 } type = event which = 3116210 where = SPR when = 20 }
+		command = { trigger = { flag = USA_to_SPR_3 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_SPR_4 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_SPR_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_SPR_4 } type = event which = 3116210 where = SPR when = 25 }
+		command = { trigger = { flag = USA_to_SPR_4 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_SPR_5 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_SPR_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_SPR_5 } type = event which = 3116210 where = SPR when = 30 }
+		command = { trigger = { flag = USA_to_SPR_5 } type = setflag which = VolunteersCountSPR when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_SPR_1 NOT = { flag = USA_to_SPR_2 } } type = trade which = USA where = SPR supplies = -1 value = 1 }
+		command = { trigger = { flag = USA_to_SPR_2 NOT = { flag = USA_to_SPR_3 } } type = trade which = USA where = SPR supplies = -2 value = 1 }
+		command = { trigger = { flag = USA_to_SPR_3 NOT = { flag = USA_to_SPR_4 } } type = trade which = USA where = SPR supplies = -3 value = 1 }
+		command = { trigger = { flag = USA_to_SPR_4 NOT = { flag = USA_to_SPR_5 } } type = trade which = USA where = SPR supplies = -4 value = 1 }
+		command = { trigger = { flag = USA_to_SPR_5 } type = trade which = USA where = SPR supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116202 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3116205
+	random = no
+	country = GER
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = GER_to_SPA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = GER_to_SPA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPA when = 15 }
+		command = { type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_SPA_2 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_SPA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_SPA_2 } type = event which = 3116210 where = SPA when = 15 }
+		command = { trigger = { flag = GER_to_SPA_2 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_SPA_3 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_SPA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_SPA_3 } type = event which = 3116210 where = SPA when = 20 }
+		command = { trigger = { flag = GER_to_SPA_3 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_SPA_4 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_SPA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_SPA_4 } type = event which = 3116210 where = SPA when = 25 }
+		command = { trigger = { flag = GER_to_SPA_4 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_SPA_5 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_SPA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_SPA_5 } type = event which = 3116210 where = SPA when = 30 }
+		command = { trigger = { flag = GER_to_SPA_5 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_SPA_1 NOT = { flag = GER_to_SPA_2 } } type = trade which = GER where = SPA supplies = -1 value = 1 }
+		command = { trigger = { flag = GER_to_SPA_2 NOT = { flag = GER_to_SPA_3 } } type = trade which = GER where = SPA supplies = -2 value = 1 }
+		command = { trigger = { flag = GER_to_SPA_3 NOT = { flag = GER_to_SPA_4 } } type = trade which = GER where = SPA supplies = -3 value = 1 }
+		command = { trigger = { flag = GER_to_SPA_4 NOT = { flag = GER_to_SPA_5 } } type = trade which = GER where = SPA supplies = -4 value = 1 }
+		command = { trigger = { flag = GER_to_SPA_5 } type = trade which = GER where = SPA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3116206
+	random = no
+	country = ITA
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = ITA_to_SPA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = ITA_to_SPA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPA when = 15 }
+		command = { type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ITA_to_SPA_2 } type = money value = -200 }
+		command = { trigger = { flag = ITA_to_SPA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ITA_to_SPA_2 } type = event which = 3116210 where = SPA when = 15 }
+		command = { trigger = { flag = ITA_to_SPA_2 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ITA_to_SPA_3 } type = money value = -200 }
+		command = { trigger = { flag = ITA_to_SPA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ITA_to_SPA_3 } type = event which = 3116210 where = SPA when = 20 }
+		command = { trigger = { flag = ITA_to_SPA_3 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ITA_to_SPA_4 } type = money value = -200 }
+		command = { trigger = { flag = ITA_to_SPA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ITA_to_SPA_4 } type = event which = 3116210 where = SPA when = 25 }
+		command = { trigger = { flag = ITA_to_SPA_4 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ITA_to_SPA_5 } type = money value = -200 }
+		command = { trigger = { flag = ITA_to_SPA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ITA_to_SPA_5 } type = event which = 3116210 where = SPA when = 30 }
+		command = { trigger = { flag = ITA_to_SPA_5 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ITA_to_SPA_1 NOT = { flag = ITA_to_SPA_2 } } type = trade which = ITA where = SPA supplies = -1 value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_2 NOT = { flag = ITA_to_SPA_3 } } type = trade which = ITA where = SPA supplies = -2 value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_3 NOT = { flag = ITA_to_SPA_4 } } type = trade which = ITA where = SPA supplies = -3 value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_4 NOT = { flag = ITA_to_SPA_5 } } type = trade which = ITA where = SPA supplies = -4 value = 1 }
+		command = { trigger = { flag = ITA_to_SPA_5 } type = trade which = ITA where = SPA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3116207
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Volunteers heading to Spain"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Volunteers - Intervention ends"
+		trigger = {
+			local_flag = SCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountSPA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = SPA country = SPR }
+						flag = ENG_to_SPA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = SCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountSPA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = SCWVolunteers
+			war = { country = SPA country = SPR }
+			flag = ENG_to_SPA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3116210 where = SPA when = 15 }
+		command = { type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_SPA_2 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_SPA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_SPA_2 } type = event which = 3116210 where = SPA when = 15 }
+		command = { trigger = { flag = ENG_to_SPA_2 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_SPA_3 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_SPA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_SPA_3 } type = event which = 3116210 where = SPA when = 20 }
+		command = { trigger = { flag = ENG_to_SPA_3 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_SPA_4 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_SPA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_SPA_4 } type = event which = 3116210 where = SPA when = 25 }
+		command = { trigger = { flag = ENG_to_SPA_4 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_SPA_5 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_SPA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_SPA_5 } type = event which = 3116210 where = SPA when = 30 }
+		command = { trigger = { flag = ENG_to_SPA_5 } type = setflag which = VolunteersCountSPA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_SPA_1 NOT = { flag = ENG_to_SPA_2 } } type = trade which = ENG where = SPA supplies = -1 value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_2 NOT = { flag = ENG_to_SPA_3 } } type = trade which = ENG where = SPA supplies = -2 value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_3 NOT = { flag = ENG_to_SPA_4 } } type = trade which = ENG where = SPA supplies = -3 value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_4 NOT = { flag = ENG_to_SPA_5 } } type = trade which = ENG where = SPA supplies = -4 value = 1 }
+		command = { trigger = { flag = ENG_to_SPA_5 } type = trade which = ENG where = SPA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3116207 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3116210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to Spain"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to Spain to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = SPR } type = add_corps value = land where = 80 }
+		command = { trigger = { country = SPA } type = add_corps value = land where = 481 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+# US oil
+
+event = { 
+	id = 3173007
+	random = no
+	country = SPR
+	
+	trigger = {
+		war = { country = SPA country = SPR }
+		flag = USA_to_SPR_1
+		event = { id = 3173000 days = 60 } #2 months
+	}
+
+	date =  { day = 18 month = september year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+	
+	name = EVT_3173009_NAME
+	desc = " "
+	style = 2
+	
+	action_a = {
+		name = ACTIONNAME3173009A
+		command = { type = supplies value = 2000 }
+		command = { type = oilpool value = 1000 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = industrial_modifier which = total value = 2 }
+	}
+}
+
+# US oil
+
+event = { 
+	id = 3173009
+	random = no
+	country = SPR
+	
+	trigger = {
+		war = { country = SPA country = SPR }
+		flag = USA_to_SPR_1
+		event = { id = 3173000 days = 60 } #2 months
+	}
+
+	date =  { day = 18 month = september year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+	
+	name = EVT_3173009_NAME
+	desc = " "
+	style = 2
+	
+	action_a = {
+		name = ACTIONNAME3173009A
+		command = { type = supplies value = 2000 }
+		command = { type = oilpool value = 1000 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = construct which = infrastructure where = -1 value = 2 }
+		command = { type = industrial_modifier which = total value = 2 }
+	}
+}
+
+##############################################
+# Spain - end of civil war
+##############################################
+
+event = { 
+	id = 3174010
+	random = no
+	country = SPR
+
+	trigger = {
+		NOT = { capital = { province = 440 } }
+		war = { country = SPR country = SPA }
+		NOT = { control = { province = 460 data = SPR } }
+		control = { province = 440 data = SPR }
+	} 
+
+	name = EVT_3174005_NAME
+	desc = EVT_3174005_DESC
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = ACTIONNAME3174005A 
+		command = { type = capital which = 440 } # Barcelona
+	} 
+}
+
+event = { 
+	id = 3174011
+	random = no
+	country = SPR
+	persistent = yes
+
+	trigger = {
+		NOT = { capital = { province = 460 } }
+		event = 3174007
+		NOT = { exists = SPA }
+		control = { province = 460 data = SPR }
+	} 
+
+	name = EVT_3174005_NAME
+	desc = EVT_3174005_DESC
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = ACTIONNAME3174005A 
+		command = { type = capital which = 460 } # Madrid
+	} 
+}
+
+event = { 
+	id = 3174012
+	random = no
+	country = SPA
+	persistent = yes
+
+	trigger = {
+		NOT = { capital = { province = 460 } }
+		NOT = {	exists = SPR }
+		control = { province = 460 data = SPA }
+	} 
+
+	name = EVT_3173002_NAME
+	desc = EVT_3173002_DESC
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = ACTIONNAME3173002A 
+		command = { type = capital which = 460 } # Madrid
+	} 
+}
+
+event = { 
+	id = 3174013
+	random = no
+	country = SPA
+
+	trigger = {
+		NOT = { capital = { province = 441 } }
+		war = { country = SPR country = SPA }
+		NOT = {	control = { province = 460 data = SPA } }
+	} 
+
+	name = EVT_3173002_NAME
+	desc = EVT_3173002_DESC
+	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = ACTIONNAME3173002A 
+		command = { type = capital which = 441 } #Coruna
+	} 
+}
+
+event = { 
+	id = 3174020
+	random = no
+	country = SPR
+	persistent = yes
+
+	trigger = {
+		control = { province = 440 data = -3 }
+		control = { province = 463 data = -3 }
+		OR = { 
+			control = { province = 461 data = -2 }
+			control = { province = 464 data = -2 }
+		}
+		NOT = { local_flag = BarcelonaConvoy }
+	} 
+
+	name = "Resupply convoy"
+	desc = "Establishing a convoy to resupply our troops"
+	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Ok" 
+		command = { type = local_setflag which = BarcelonaConvoy }
+		command = { type = convoy which = 440 value = 463 when = 16 }
+		command = { type = convoy which = 440 value = 463 when = 1 }
+		command = { type = convoy which = 463 value = 440 when = 2 }
+		command = { type = convoy which = 463 value = 440 when = 4 }
+		command = { type = convoy which = 463 value = 440 when = 8 }
+	} 
+}
+
+event = { 
+	id = 3174021
+	random = no
+	country = SPR
+	persistent = yes
+
+	trigger = {
+		local_flag = BarcelonaConvoy
+		NOT = {
+			AND = {
+				control = { province = 440 data = -3 }
+				control = { province = 463 data = -3 }
+				OR = { 
+					control = { province = 461 data = -2 }
+					control = { province = 464 data = -2 }
+				}
+			}
+		}
+	} 
+
+	name = "Resupply convoy stops"
+	desc = "We can no longer maintain or need to maintain the resupply convoy"
+	style = 2
+
+	date = { day = 1 month = january year = 1937 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Ok" 
+		command = { type = local_clrflag which = BarcelonaConvoy }
+	} 
+}
+
+
+##############################################
+# Spain - War widens
+##############################################
+
+event = { 
+	id = 3174120
+	random = no
+	country = SPR
+
+	trigger = {
+		atwar = SPR
+		NOT = { alliance = { country = SPR country = FRA } }
+		OR = {
+			lost_national = { country = SPR value = 100 }
+			alliance = { country = SPA country = ENG }
+			war = { country = FRA country = ENG }
+		}
+	} 
+
+	name = "Spain requests assitance"
+	desc = "Spain requests assitance"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3174125 }
+	} 
+}
+
+event = { 
+	id = 3174121
+	random = no
+	country = SPA
+
+	trigger = {
+		atwar = SPA
+		NOT = { alliance = { country = SPA country = ENG } }
+		OR = {
+			lost_national = { country = SPA value = 100 }
+			alliance = { country = SPR country = FRA }
+			war = { country = FRA country = ENG }
+		}
+	}
+
+	name = "Spain requests assitance"
+	desc = "Spain requests assitance"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Request assistance"
+		command = { type = trigger which = 3174126 }
+	} 
+}
+
+
+event = { 
+	id = 3174125
+	random = no
+	country = FRA
+
+	name = "Spain requests assitance"
+	desc = "Spain requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = SPR NOT = { ai = FRA } } type = military_control which = FRA where = SPR value = 1 }
+		command = { trigger = { ai = SPR NOT = { ai = SOV } } type = military_control which = SOV where = SPR value = 1 }
+		command = { type = alliance which = SPR }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 3174126
+	random = no
+	country = ENG
+
+	name = "Spain requests assitance"
+	desc = "Spain requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = SPA NOT = { ai = GER } } type = military_control which = GER where = SPA value = 1 }
+		command = { trigger = { ai = SPA NOT = { ai = ENG } } type = military_control which = ENG where = SPA value = 1 }
+		command = { type = alliance which = SPA }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Spain - Inheritance/Puppet
+##############################################
+
+event = { 
+	id = 3174190
+	random = no
+	country = FRA
+
+	decision = {
+		alliance = { country = SPR country = FRA }
+		atwar = SPR
+	}
+
+	decision_trigger = {
+	}
+
+	trigger = {
+		atwar = SPR 
+		alliance = { country = SPR country = FRA }
+		#lost_national = { country = SPR value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Spanish army"
+	desc = "We are well in position to take direct control of the Spanish army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = FRA where = SPR value = 0 }
+		command = { type = secederegion which = -1 value = "Spain" when = 2 }
+		command = { type = event which = 3174191 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3174191
+	random = no
+	country = FRA
+
+	name = "The invasion of Spain"
+ 	desc = "Our forces enter Spain and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = make_puppet which = SPR }
+		command = { type = event which = 2400538 where = SPR when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = SPR when = 0 } #stayInWar flag
+		command = { trigger = { NOT = { ai = FRA } } type = military_control which = FRA where = SPR value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3174192 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3174192
+	random = no
+	country = FRA
+
+	name = "Provinces back to Spain"
+ 	desc = "Having established a friendly government in Madrid, we will now transfer the territorial control back to Spain."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = SPR value = "Spain" }
+		command = { trigger = { NOT = { ai = FRA } } type = military_control which = FRA where = SPR value = 1 }
+		#command = { type = coup_nation which = SPR }
+	}
+}
+
+event = { 
+	id = 3174193
+	random = no
+	country = ENG
+
+	decision = {
+		alliance = { country = SPA country = ENG }
+		atwar = SPA
+	}
+
+	decision_trigger = { 
+	}
+
+	trigger = {
+		atwar = SPA 
+		alliance = { country = SPA country = ENG }
+		#lost_national = { country = SPA value = 99 }
+		#ai = no
+	} 
+
+	name = "Taking control of the Spanish army"
+	desc = "We are well in position to take direct control of the Spanish army and make sure that it fights effectively on our side."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1945 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = military_control which = ENG where = SPA value = 0 }
+		command = { type = military_control which = GER where = SPA value = 0 }
+		command = { type = event which = 3174194 where = -1 when = 0 }
+	} 
+}
+
+event = {
+	id = 3174194
+	random = no
+	country = FRA
+
+	name = "The invasion of Spain"
+ 	desc = "Our forces enter Spain and occupy strategic keypoints across the country. In the meantime, friendly organizations take up arms as well and intimidate the local government into submission to our rule."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = -1 value = "Spain" when = 2 }
+		command = { type = make_puppet which = SPA }
+		command = { type = event which = 2400538 where = SPA when = 0 } #strong puppet
+		command = { type = event which = 2400530 where = SPA when = 0 } #stayInWar flag
+		command = { trigger = { NOT = { ai = ENG } } type = military_control which = ENG where = SPA value = 1 }
+		command = { trigger = { ai = ENG NOT = { ai = GER } } type = military_control which = GER where = SPA value = 1 }
+		command = { type = belligerence value = 1 }
+		command = { type = event which = 3174195 where = -1 when = 0 }
+	}
+}
+
+event = {
+	id = 3174195
+	random = no
+	country = ENG
+
+	name = "Provinces back to Spain"
+ 	desc = "Having established a friendly government in Madrid, we will now transfer the territorial control back to Spain."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = SPA value = "Spain" }
+		command = { type = secedeprovince which = ENG value = 348 when = 2 }
+		command = { trigger = { NOT = { ai = ENG } } type = military_control which = ENG where = SPA value = 1 }
+		command = { trigger = { ai = ENG NOT = { ai = GER } } type = military_control which = GER where = SPA value = 1 }
+		#command = { type = coup_nation which = SPA }
+	}
+}
+
+event = {
+	id = 3174196
+	random = no
+	country = SPR
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = FRA } }
+	#	military_control = { country = FRA country = SPR }
+	#}
+
+	name = "Controlling our own militalry"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to France"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = FRA where = SPR value = 0 }
+	}
+}
+
+event = {
+	id = 3174197
+	random = no
+	country = SPA
+	persistent = yes
+
+	#trigger = { 
+	#	NOT = { puppet = { country = -1 country = ENG } }
+	#	military_control = { country = ENG country = SPA }
+	#}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to UK"
+	style = 2
+
+	#date = { day = 1 month = july year = 1936 }
+	#offset = 2
+	#deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = ENG where = SPA value = 0 }
+	}
+}
+	
+
+##############################################
+# Spain - Experience gained
+##############################################
+
+event = {
+	id = 3174150
+	random = no
+	tag = { SOV FRA USA GER ITA ENG }
+	persistent = yes
+
+	name = "Spanish Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+	
+	action = {
+		name = "Experience - Intervention ends"
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_SPR_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_SPR_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_SPR_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_SPA_1 
+				}
+				AND = {
+					country = ITA
+					flag = ITA_to_SPA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_SPA_1 
+				}
+			}
+			local_flag = SCWExp
+		}
+		command = { type = local_clrflag which = SCWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_SPR_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_SPR_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_SPR_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_SPA_1 
+				}
+				AND = {
+					country = ITA
+					flag = ITA_to_SPA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_SPA_1 
+				}
+			}
+		}
+		
+		command = { trigger = { OR = { country = SOV country = FRA country = USA } } type = relation which = SPR value = 5 }
+		command = { trigger = { OR = { country = GER country = ITA country = ENG } } type = relation which = SPA value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_1 }
+										AND = { country = FRA flag = FRA_to_SPR_1 }
+										AND = { country = USA flag = USA_to_SPR_1 }
+										AND = { country = GER flag = GER_to_SPA_1 }
+										AND = { country = ITA flag = ITA_to_SPA_1 }
+										AND = { country = ENG flag = ENG_to_SPA_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_2 }
+										AND = { country = FRA flag = FRA_to_SPR_2 }
+										AND = { country = USA flag = USA_to_SPR_2 }
+										AND = { country = GER flag = GER_to_SPA_2 }
+										AND = { country = ITA flag = ITA_to_SPA_2 }
+										AND = { country = ENG flag = ENG_to_SPA_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_3 }
+										AND = { country = FRA flag = FRA_to_SPR_3 }
+										AND = { country = USA flag = USA_to_SPR_3 }
+										AND = { country = GER flag = GER_to_SPA_3 }
+										AND = { country = ITA flag = ITA_to_SPA_3 }
+										AND = { country = ENG flag = ENG_to_SPA_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_4 }
+										AND = { country = FRA flag = FRA_to_SPR_4 }
+										AND = { country = USA flag = USA_to_SPR_4 }
+										AND = { country = GER flag = GER_to_SPA_4 }
+										AND = { country = ITA flag = ITA_to_SPA_4 }
+										AND = { country = ENG flag = ENG_to_SPA_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_5 }
+										AND = { country = FRA flag = FRA_to_SPR_5 }
+										AND = { country = USA flag = USA_to_SPR_5 }
+										AND = { country = GER flag = GER_to_SPA_5 }
+										AND = { country = ITA flag = ITA_to_SPA_5 }
+										AND = { country = ENG flag = ENG_to_SPA_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_1 }
+										AND = { country = FRA flag = FRA_to_SPR_1 }
+										AND = { country = USA flag = USA_to_SPR_1 }
+										AND = { country = GER flag = GER_to_SPA_1 }
+										AND = { country = ITA flag = ITA_to_SPA_1 }
+										AND = { country = ENG flag = ENG_to_SPA_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_2 }
+										AND = { country = FRA flag = FRA_to_SPR_2 }
+										AND = { country = USA flag = USA_to_SPR_2 }
+										AND = { country = GER flag = GER_to_SPA_2 }
+										AND = { country = ITA flag = ITA_to_SPA_2 }
+										AND = { country = ENG flag = ENG_to_SPA_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_3 }
+										AND = { country = FRA flag = FRA_to_SPR_3 }
+										AND = { country = USA flag = USA_to_SPR_3 }
+										AND = { country = GER flag = GER_to_SPA_3 }
+										AND = { country = ITA flag = ITA_to_SPA_3 }
+										AND = { country = ENG flag = ENG_to_SPA_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_4 }
+										AND = { country = FRA flag = FRA_to_SPR_4 }
+										AND = { country = USA flag = USA_to_SPR_4 }
+										AND = { country = GER flag = GER_to_SPA_4 }
+										AND = { country = ITA flag = ITA_to_SPA_4 }
+										AND = { country = ENG flag = ENG_to_SPA_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_5 }
+										AND = { country = FRA flag = FRA_to_SPR_5 }
+										AND = { country = USA flag = USA_to_SPR_5 }
+										AND = { country = GER flag = GER_to_SPA_5 }
+										AND = { country = ITA flag = ITA_to_SPA_5 }
+										AND = { country = ENG flag = ENG_to_SPA_5 }
+								} }
+								type = money value = -5 }
+
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_1 }
+										AND = { country = FRA flag = FRA_to_SPR_1 }
+										AND = { country = USA flag = USA_to_SPR_1 }
+										AND = { country = GER flag = GER_to_SPA_1 }
+										AND = { country = ITA flag = ITA_to_SPA_1 }
+										AND = { country = ENG flag = ENG_to_SPA_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_2 }
+										AND = { country = FRA flag = FRA_to_SPR_2 }
+										AND = { country = USA flag = USA_to_SPR_2 }
+										AND = { country = GER flag = GER_to_SPA_2 }
+										AND = { country = ITA flag = ITA_to_SPA_2 }
+										AND = { country = ENG flag = ENG_to_SPA_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_3 }
+										AND = { country = FRA flag = FRA_to_SPR_3 }
+										AND = { country = USA flag = USA_to_SPR_3 }
+										AND = { country = GER flag = GER_to_SPA_3 }
+										AND = { country = ITA flag = ITA_to_SPA_3 }
+										AND = { country = ENG flag = ENG_to_SPA_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_4 }
+										AND = { country = FRA flag = FRA_to_SPR_4 }
+										AND = { country = USA flag = USA_to_SPR_4 }
+										AND = { country = GER flag = GER_to_SPA_4 }
+										AND = { country = ITA flag = ITA_to_SPA_4 }
+										AND = { country = ENG flag = ENG_to_SPA_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_5 }
+										AND = { country = FRA flag = FRA_to_SPR_5 }
+										AND = { country = USA flag = USA_to_SPR_5 }
+										AND = { country = GER flag = GER_to_SPA_5 }
+										AND = { country = ITA flag = ITA_to_SPA_5 }
+										AND = { country = ENG flag = ENG_to_SPA_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_1 }
+										AND = { country = FRA flag = FRA_to_SPR_1 }
+										AND = { country = USA flag = USA_to_SPR_1 }
+										AND = { country = GER flag = GER_to_SPA_1 }
+										AND = { country = ITA flag = ITA_to_SPA_1 }
+										AND = { country = ENG flag = ENG_to_SPA_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_2 }
+										AND = { country = FRA flag = FRA_to_SPR_2 }
+										AND = { country = USA flag = USA_to_SPR_2 }
+										AND = { country = GER flag = GER_to_SPA_2 }
+										AND = { country = ITA flag = ITA_to_SPA_2 }
+										AND = { country = ENG flag = ENG_to_SPA_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_3 }
+										AND = { country = FRA flag = FRA_to_SPR_3 }
+										AND = { country = USA flag = USA_to_SPR_3 }
+										AND = { country = GER flag = GER_to_SPA_3 }
+										AND = { country = ITA flag = ITA_to_SPA_3 }
+										AND = { country = ENG flag = ENG_to_SPA_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_4 }
+										AND = { country = FRA flag = FRA_to_SPR_4 }
+										AND = { country = USA flag = USA_to_SPR_4 }
+										AND = { country = GER flag = GER_to_SPA_4 }
+										AND = { country = ITA flag = ITA_to_SPA_4 }
+										AND = { country = ENG flag = ENG_to_SPA_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_SPR_5 }
+										AND = { country = FRA flag = FRA_to_SPR_5 }
+										AND = { country = USA flag = USA_to_SPR_5 }
+										AND = { country = GER flag = GER_to_SPA_5 }
+										AND = { country = ITA flag = ITA_to_SPA_5 }
+										AND = { country = ENG flag = ENG_to_SPA_5 }
+								} }
+								type = gain_tech which = -1 }
+
+		command = { type = event which = 3174150 where = -1 when = 180 }
+	}
+}

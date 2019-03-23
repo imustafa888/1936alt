@@ -1,0 +1,370 @@
+event = {
+	id = 3125000
+	random = no
+	country = PRU
+	persistent = yes
+
+	trigger = {
+		#war = { country = PRU country = ECU }
+		OR = {
+			AND = {
+				control = { province = 2008 data = -3 }
+				NOT = { owned = { province = 2008 data = PRU } }
+			}
+			AND = {
+				control = { province = 2010 data = -3 }
+				NOT = { owned = { province = 2010 data = PRU } }
+			}
+			AND = {
+				control = { province = 2033 data = -3 }
+				NOT = { owned = { province = 2033 data = PRU } }
+			}
+		}
+	}
+
+	name = "Peruvian annexation of Eastern Ecuador"
+ 	desc = "Peruvian forces are taking control of the eastern Ecuadorian jungle and proclaiming it to be an indespensible part of Peru."
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { trigger = { control = { province = 2008 data = -3 } } type = secedeprovince which = PRU value = 2008 when = 2 }
+		command = { trigger = { control = { province = 2010 data = -3 } } type = secedeprovince which = PRU value = 2010 when = 2 }
+		command = { trigger = { control = { province = 2033 data = -3 } } type = secedeprovince which = PRU value = 2033 when = 2 }
+	}
+}
+
+event = {
+	id = 3125001
+	random = no
+	country = HOL
+	persistent = yes
+
+	trigger = {
+		alliance = { country = HOL country = GER }
+		OR = {
+			AND = {
+				control = { province = 108 data = -3 }
+				NOT = { owned = { province = 108 data = HOL } }
+			}
+			AND = {
+				control = { province = 111 data = -3 }
+				NOT = { owned = { province = 111 data = HOL } }
+			}
+			AND = {
+				control = { province = 112 data = -3 }
+				NOT = { owned = { province = 112 data = HOL } }
+			}
+			AND = {
+				control = { province = 113 data = -3 }
+				NOT = { owned = { province = 113 data = HOL } }
+			}
+			AND = {
+				control = { province = 116 data = -3 }
+				NOT = { owned = { province = 116 data = HOL } }
+			}
+			AND = {
+				control = { province = 117 data = -3 }
+				NOT = { owned = { province = 117 data = HOL } }
+			}
+			AND = {
+				control = { province = 51 data = -3 }
+				NOT = { owned = { province = 51 data = HOL } }
+			}
+			AND = {
+				control = { province = 52 data = -3 }
+				NOT = { owned = { province = 52 data = HOL } }
+			}
+			AND = {
+				control = { province = 109 data = -3 }
+				NOT = { owned = { province = 109 data = GER } }
+			}
+			AND = {
+				control = { province = 110 data = -3 }
+				NOT = { owned = { province = 110 data = GER } }
+			}
+			control = { province = 49 data = -1 }
+			control = { province = 50 data = -1 }
+			control = { province = 101 data = -1 }
+			control = { province = 102 data = -1 }
+			control = { province = 103 data = -1 }
+			control = { province = 96 data = -1 }
+		}
+	}
+
+	name = "Dutch annexation of Wallonia"
+ 	desc = "The Dutch forces are taking control of the Wallonia and proclaiming it to be an indespensible part of the Netherlands."
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { trigger = { control = { province = 108 data = -3 } } type = secedeprovince which = HOL value = 108 when = 2 }
+		command = { trigger = { control = { province = 111 data = -3 } } type = secedeprovince which = HOL value = 111 when = 2 }
+		command = { trigger = { control = { province = 112 data = -3 } } type = secedeprovince which = HOL value = 112 when = 2 }
+		command = { trigger = { control = { province = 113 data = -3 } } type = secedeprovince which = HOL value = 113 when = 2 }
+		command = { trigger = { control = { province = 116 data = -3 } } type = secedeprovince which = HOL value = 116 when = 2 }
+		command = { trigger = { control = { province = 117 data = -3 } } type = secedeprovince which = HOL value = 117 when = 2 }
+		command = { trigger = { control = { province = 51 data = -3 } } type = secedeprovince which = HOL value = 51 when = 2 }
+		command = { trigger = { control = { province = 52 data = -3 } } type = secedeprovince which = HOL value = 52 when = 2 }
+		command = { trigger = { control = { province = 109 data = -3 } } type = secedeprovince which = GER value = 109 when = 2 }
+		command = { trigger = { control = { province = 110 data = -3 } } type = secedeprovince which = GER value = 110 when = 2 }
+		
+		command = { trigger = { control = { province = 49 data = -1 } } type = control which = GER value = 49 }
+		command = { trigger = { control = { province = 50 data = -1 } } type = control which = GER value = 50 }
+		command = { trigger = { control = { province = 101 data = -1 } } type = control which = GER value = 101 }
+		command = { trigger = { control = { province = 102 data = -1 } } type = control which = GER value = 102 }
+		command = { trigger = { control = { province = 103 data = -1 } } type = control which = GER value = 103 }
+		command = { trigger = { control = { province = 96 data = -1 } } type = control which = GER value = 96 }
+	}
+}
+
+event = {
+	id = 3125002
+	random = no
+	country = MOR
+	persistent = yes
+
+	trigger = {
+		alliance = { country = MOR country = FRA }
+		OR = {
+			AND = {
+				control = { province = 715 data = -3 }
+				NOT = { owned = { province = 715 data = MOR } }
+			}
+			AND = {
+				control = { province = 716 data = -3 }
+				NOT = { owned = { province = 716 data = MOR } }
+			}
+			AND = {
+				control = { province = 987 data = -3 }
+				NOT = { owned = { province = 987 data = MOR } }
+			}
+			AND = {
+				control = { province = 988 data = -3 }
+				NOT = { owned = { province = 988 data = MOR } }
+			}
+			AND = {
+				control = { province = 989 data = -3 }
+				NOT = { owned = { province = 989 data = MOR } }
+			}
+		}
+	}
+
+	name = "Moroccan annexation of West Africa"
+ 	desc = "The Moroccan forces are taking control of the West African region and proclaiming it to be an indespensible part of the Kingdom."
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { trigger = { control = { province = 715 data = -3 } } type = secedeprovince which = MOR value = 715 when = 2 }
+		command = { trigger = { control = { province = 716 data = -3 } } type = secedeprovince which = MOR value = 716 when = 2 }
+		command = { trigger = { control = { province = 987 data = -3 } } type = secedeprovince which = MOR value = 987 when = 2 }
+		command = { trigger = { control = { province = 988 data = -3 } } type = secedeprovince which = MOR value = 988 when = 2 }
+		command = { trigger = { control = { province = 989 data = -3 } } type = secedeprovince which = MOR value = 989 when = 2 }
+	}
+}
+
+event = {
+	id = 3125003
+	random = no
+	country = IND
+	persistent = yes
+
+	trigger = {
+		alliance = { country = IND country = SOV }
+		OR = {
+			AND = {
+				control = { province = 1529 data = -3 }
+				NOT = { owned = { province = 1529 data = IND } }
+			}
+			AND = {
+				control = { province = 1530 data = -3 }
+				NOT = { owned = { province = 1530 data = IND } }
+			}
+			AND = {
+				control = { province = 1532 data = -3 }
+				NOT = { owned = { province = 1532 data = IND } }
+			}
+			AND = {
+				control = { province = 1533 data = -3 }
+				NOT = { owned = { province = 1533 data = IND } }
+			}
+			AND = {
+				control = { province = 1534 data = -3 }
+				NOT = { owned = { province = 1534 data = IND } }
+			}
+			AND = {
+				control = { province = 1535 data = -3 }
+				NOT = { owned = { province = 1535 data = IND } }
+			}
+			AND = {
+				control = { province = 1537 data = -3 }
+				NOT = { owned = { province = 1537 data = IND } }
+			}
+			AND = {
+				control = { province = 1538 data = -3 }
+				NOT = { owned = { province = 1538 data = IND } }
+			}
+			AND = {
+				control = { province = 1539 data = -3 }
+				NOT = { owned = { province = 1539 data = IND } }
+			}
+			AND = {
+				control = { province = 1540 data = -3 }
+				NOT = { owned = { province = 1540 data = IND } }
+			}
+		}
+	}
+
+	name = "Indian annexation of Pakistan"
+ 	desc = "The Indian forces are taking control of the Pakistan region and proclaiming it to be an indespensible part of greater India."
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { trigger = { control = { province = 1529 data = -3 } } type = secedeprovince which = IND value = 1529 when = 2 }
+		command = { trigger = { control = { province = 1530 data = -3 } } type = secedeprovince which = IND value = 1530 when = 2 }
+		command = { trigger = { control = { province = 1532 data = -3 } } type = secedeprovince which = IND value = 1532 when = 2 }
+		command = { trigger = { control = { province = 1533 data = -3 } } type = secedeprovince which = IND value = 1533 when = 2 }
+		command = { trigger = { control = { province = 1534 data = -3 } } type = secedeprovince which = IND value = 1534 when = 2 }
+		command = { trigger = { control = { province = 1535 data = -3 } } type = secedeprovince which = IND value = 1535 when = 2 }
+		command = { trigger = { control = { province = 1537 data = -3 } } type = secedeprovince which = IND value = 1537 when = 2 }
+		command = { trigger = { control = { province = 1538 data = -3 } } type = secedeprovince which = IND value = 1538 when = 2 }
+		command = { trigger = { control = { province = 1539 data = -3 } } type = secedeprovince which = IND value = 1539 when = 2 }
+		command = { trigger = { control = { province = 1540 data = -3 } } type = secedeprovince which = IND value = 1540 when = 2 }
+	}
+}
+
+event = {
+	id = 3125004
+	random = no
+	persistent = yes
+
+	trigger = {
+		NOT = { country = FRA }
+		NOT = { country = SOV }
+		alliance = { country = FRA }
+		OR = {
+			control = { province = 845 data = -1 }
+			control = { province = 850 data = -1 }
+			control = { province = 848 data = -1 }
+		}
+	}
+
+	name = "French control in occupied territories"
+ 	desc = "The French forces are taking control of occupied territories"
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { type = control which = FRA value = 845 }
+		command = { type = control which = FRA value = 850 }
+		command = { type = control which = FRA value = 84 }
+	}
+}
+
+event = {
+	id = 3125005
+	random = no
+	persistent = yes
+
+	trigger = {
+		NOT = { country = SOV }
+		NOT = { country = FRA }
+		alliance = { country = SOV }
+		OR = {
+			control = { province = 259 data = -1 }
+			control = { province = 260 data = -1 }
+			control = { province = 261 data = -1 }
+			control = { province = 262 data = -1 }
+			control = { province = 263 data = -1 }
+			control = { province = 266 data = -1 }
+			control = { province = 267 data = -1 }
+			control = { province = 268 data = -1 }
+			control = { province = 269 data = -1 }
+			control = { province = 182 data = -1 }
+			control = { province = 184 data = -1 }
+			control = { province = 155 data = -1 }
+			control = { province = 158 data = -1 }
+			control = { province = 159 data = -1 }
+			control = { province = 161 data = -1 }
+			control = { province = 164 data = -1 }
+			control = { province = 165 data = -1 }
+			control = { province = 166 data = -1 }
+			control = { province = 167 data = -1 }
+			control = { province = 172 data = -1 }
+			control = { province = 173 data = -1 }
+			control = { province = 174 data = -1 }
+			control = { province = 175 data = -1 }
+			control = { province = 186 data = -1 }
+			control = { province = 188 data = -1 }
+			control = { province = 190 data = -1 }
+			control = { province = 191 data = -1 }
+			control = { province = 193 data = -1 }
+			control = { province = 194 data = -1 }
+			control = { province = 195 data = -1 }
+		}
+	}
+
+	name = "Soviet control in occupied territories"
+ 	desc = "The Soviet forces are taking control of occupied territories"
+	style = 2
+
+	date = { day = 1 month = may year = 1938 }
+	offset = 15
+	deathdate = { day = 1 month = august year = 1955 }
+
+	action = {
+		name = "Great!"
+		command = { type = control which = SOV value = 259 }
+		command = { type = control which = SOV value = 260 }
+		command = { type = control which = SOV value = 261 }
+		command = { type = control which = SOV value = 262 }
+		command = { type = control which = SOV value = 263 }
+		command = { type = control which = SOV value = 266 }
+		command = { type = control which = SOV value = 267 }
+		command = { type = control which = SOV value = 268 }
+		command = { type = control which = SOV value = 269 }
+		command = { type = control which = SOV value = 182 }
+		command = { type = control which = SOV value = 184 }
+		command = { type = control which = SOV value = 155 }
+		command = { type = control which = SOV value = 158 }
+		command = { type = control which = SOV value = 159 }
+		command = { type = control which = SOV value = 161 }
+		command = { type = control which = SOV value = 164 }
+		command = { type = control which = SOV value = 165 }
+		command = { type = control which = SOV value = 166 }
+		command = { type = control which = SOV value = 167 }
+		command = { type = control which = SOV value = 172 }
+		command = { type = control which = SOV value = 173 }
+		command = { type = control which = SOV value = 174 }
+		command = { type = control which = SOV value = 175 }
+		command = { type = control which = SOV value = 186 }
+		command = { type = control which = SOV value = 188 }
+		command = { type = control which = SOV value = 190 }
+		command = { type = control which = SOV value = 191 }
+		command = { type = control which = SOV value = 193 }
+		command = { type = control which = SOV value = 194 }
+		command = { type = control which = SOV value = 195 }
+	}
+}

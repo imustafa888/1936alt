@@ -1,0 +1,30 @@
+
+########################################################################
+#  Was 702040 - (BUL) The Death of Boris III, Conspirancy (by Burris)
+########################################################################
+event = {
+        id = 3119005 # 7200002
+        random = no
+        country = BUL
+        
+        trigger = { 
+		alliance = { country = GER country = BUL }
+		random = 50
+		headofstate = 19001 # Boris III
+        }
+
+	name = "The death of Tsar Boris III"
+	desc = EVT_3119005_DESC
+	style = 0
+	
+        date = { day = 25 month = august year = 1943 }
+        offset = 3
+	deathdate = { day = 29 month = december year = 1999 }
+
+        action_a = {
+		name = ACTIONNAME3119005A # The nation grieves its loss
+		command = { type = dissent value = 15 }
+		command = { type = headofstate which = 95011 } # Simeon II
+            	command = { type = domestic which = political_left value = 1 }
+        }
+}

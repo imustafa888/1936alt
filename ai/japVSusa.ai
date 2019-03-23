@@ -1,0 +1,174 @@
+switch = no
+
+max_front_ratios = { 
+	SOV = 0.1
+} 
+
+exp_force_ratio = 0.6 #lower exp force ratio than normal - save some troops for invasions
+exp_force_ratios = { } 
+
+garrison = {
+	defend_overseas_beaches = yes
+	home_multiplier = 0.2
+	overseas_multiplier = 1.0
+	home_peace_cap = 10 
+
+	ignore = { }
+	province_priorities = {	
+		1225 = 10 
+	}
+	area_multiplier = {
+		1232 = 0.8 # ~10 divisions in Korea
+	}
+}
+
+military = { 
+	relative_build_scheme 	= no
+
+	#### Divisions etc...
+	infantry			= 18
+	cavalry				= 0
+	motorized			= 1
+	mechanized			= 3
+	light_armor			= 6
+	armor				= 8
+	paratrooper			= 1
+	marine				= 1
+	bergsjaeger			= 1
+	garrison			= 3
+	hq					= 4
+	militia				= 0
+#				46 %
+
+	interceptor			= 8
+	multi_role			= 3
+	cas					= 1
+	strategic_bomber	= 3
+	tactical_bomber		= 5
+	naval_bomber		= 1
+	transport_plane		= 1
+	flying_bomb			= 0
+	flying_rocket		= 0
+#				22 %
+
+	battleship			= 2
+	carrier				= 4
+	escort_carrier		= 0
+	destroyer			= 4
+	light_cruiser		= 5
+	heavy_cruiser		= 1
+	battlecruiser		= 0
+	submarine			= 4
+	nuclear_submarine	= 0
+	transports			= 12
+#				32 %
+
+	#### Brigades
+	artillery			= 30	#30
+	sp_artillery			= 6	#8
+	rocket_artillery		= 2	#0 #Cav Brigade
+	sp_rct_artillery		= 2	#0
+   	anti_tank			= 2	#0 #Med. Tank
+   	tank_destroyer			= 2	#0
+   	light_armor_brigade		= 2	#0
+   	heavy_armor			= 2	#5
+	super_heavy_armor		= 1	#0
+	armored_car			= 2	#0
+   	anti_air			= 5	#0
+   	police				= 8	#1
+	engineer			= 11	#5
+#			75	#49
+
+	cag 				= 100
+	escort 				= 100
+
+	naval_asw			= 10	#20
+	naval_anti_air_s 		= 10	#20 
+	naval_radar_s 			= 10	#20 
+	naval_fire_controll_s 		= 20
+	naval_improved_hull_s 		= 10
+	naval_torpedoes_s 		= 10
+	naval_anti_air_l 		= 5	#0 
+	naval_radar_l 			= 5	#0
+	naval_fire_controll_l 		= 10	#0
+	naval_improved_hull_l 		= 5	#0
+	naval_torpedoes_l 		= 5	#0
+}
+
+invasion = { 
+	target = { 
+		#West Coast
+		2090 = 200
+		2089 = 200
+		1874 = 200
+		1878 = 500
+		1889 = 500
+		1891 = 500
+		1886 = 200
+		1980 = 200
+		1970 = 200
+		2080 = 100
+		2081 = 100
+		2077 = 100
+		
+		#Pacific
+		1734 = 500
+		1735 = 500
+		1736 = 500
+		1737 = 500
+		
+		1738 = 500
+		1739 = 500
+		1673 = 500
+		1683 = 500
+		
+		1747 = 50
+		1745 = 50
+		1751 = 50
+		1733 = 50
+		1730 = 50
+		1582 = 50
+		1583 = 50
+		1581 = 50
+		1584 = 50
+		1585 = 50
+		1586 = 50
+		1743 = 50
+		1740 = 50
+		1744 = 50
+		
+		#Philippines
+		1567 = 500
+		1566 = 500
+		1565 = 500
+		1571 = 500
+		1572 = 500
+		1568 = 500
+		1576 = 500
+		1575 = 500
+		1573 = 500
+		1574 = 500
+		1579 = 500
+		1577 = 500
+		
+		#Indochina
+		1392 = 100
+		1395 = 100
+		1399 = 100
+		1400 = 100
+		
+		#India
+		1447 = 50
+		1448 = 50
+		1472 = 50
+		1471 = 50
+		1494 = 50
+		1511 = 50
+		1495 = 50
+		1513 = 50
+		1518 = 50
+		1532 = 50
+		1533 = 50	
+	} 
+
+} 

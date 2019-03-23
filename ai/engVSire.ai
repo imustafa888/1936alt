@@ -1,0 +1,107 @@
+# German 1936 AI File by Lothos
+
+switch = no # [yes/no]
+
+max_garrison_prop = 0.35
+min_garrison_prop = 0.25
+
+flags = { }
+max_front_ratios = { 
+	IRE = 50.0
+	CAN = 20.0
+	FRA = 0.1
+	SOV = 0.1 
+} 
+
+front = { 
+	province_priorities = {
+		36 = 5.0
+		35 = 5.0
+		30 = 5.0
+		31 = 5.0
+		32 = 5.0
+
+		393 = 5.0
+		400 = 5.0
+	}
+	
+	recklessness 		= 2
+	distrib_vs_ai 		= even
+	distrib_vs_human 	= even
+	enemy_reinf_days	= 0		# Count enemy units less than X days from a target province in odds calculations
+	reserve_prop		= 0.1	# Maximum proportion of total divisions in a front allowed to remain behind the front line ( HQs and divisions needing to recover.)
+	panic_ratio_vs_ai	= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	panic_ratio_vs_human= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	base_attack_odds	= 0.8	# Will attack at X odds or better
+	min_attack_odds		= 0.35	# If stalemated for a long period, may go as low as these attack odds
+	max_attack_odds		= 1.5	# Don't use more force than necessary to reach these odds
+	reinforce_odds		= 0.4	# Send in more troops if the attacking force is at these odds
+	withdraw_odds		= 0.2	# Break off attacks and withdraw at these odds
+} 
+
+garrison = {
+	home_multiplier 	= 0.9
+	overseas_multiplier = 0.7
+	home_peace_cap 		= 13
+	war_zone_odds 		= 5.0
+	key_point_prio_mult	= 0.3
+	revolt_risk_mult	= 1.0
+
+	# PRIORITIES:
+	beach			= 15	# Beach level 2
+	capital			= 5		# Our capital
+	human_border	= 0		# Ignored for allied human players
+	war_target		= 100	# The next country targeted for attack by this AI
+	reserves		= 5
+	
+	opposing_alliance	= 5	# For neutrals, all alliances are "opposing"
+	claim_threat		= 0	# If we are neutral, countries with claims on us get this
+	unstable_border		= 5	# Bordering countries at war with someone else get this
+
+	province_priorities = {	
+		35 = 50
+		2136 = 30
+		2138 = 30
+		19 = 10
+		20 = 10
+		5 = 10
+		
+		1008 = 1
+		1011 = 1
+		1172 = 1
+		
+		1013 = -1
+		1022 = -1
+		1023 = -1
+		1024 = -1
+		1025 = -1
+	}
+	area_multiplier = {
+		35 = 25.0 #2 provinces * 20 = 50 divisions in north ireland
+		2136 = 1.6 #3 provinces * 1.6 = ~5 divisions in north canada
+		1008 = 0.6 #11 provinces * 0.6 = ~7 divisions in Palestine
+		842 = 0.4 #35 provinces * 0.4 = 14 divisions in East Africa
+		1432 = 0.6 #7 provinces * 0.6 = 4 divisions in Malaysia
+		1415 = 0.1 #105 provinces * 0.1 = ~10 divisions in India
+		900	= 0 #none in suez
+		929 = 0 #none in nigeria
+		930 = 0 #none in nigeria
+		933 = 0 #none in nigeria
+		935 = 0 #none in nigeria
+		956 = 0 #none in ghana
+		964 = 0 #none in sierra leone
+		979 = 0 #none in ghambia
+		832 = 0 #none in somaliland
+		963 = 0 #portugese
+		893 = 0 #portugese
+	}
+	ignore = { 
+		979
+		964
+		963
+		952 953 954 955	956
+		929 930 931 932 933 934 935 936 937 938 939 940 941 
+		893
+		900 #suez
+	}
+}

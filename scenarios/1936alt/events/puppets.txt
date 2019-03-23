@@ -1,0 +1,1748 @@
+##
+#2400521 - IndiePrep. Has to fire before any automatic process takes over. Prerequisite for 2400522, 2400523, 2400524, 2400525.
+#
+#2400522 - Automatic Independent State init. Will fire if country revolted, released by player, OR by event. Will clear any puppet effects if they exist (2400535) and will also trigger forced peace (2400602) if legitIndie is not set.
+#2400523 - Automatic Weak   Puppet init. Will fire if country is puppeted and puppetLevel1 flag is set, but not puppetLevel1made. Only triggers 2400536. Will ALSO fire if no puppetLevel flag is set at all, i.e. country made a puppet outside of events.
+#2400524 - Automatic Medium Puppet init. Will fire if country is puppeted and puppetLevel2 flag is set, but not puppetLevel2made. Only triggers 2400537.
+#2400525 - Automatic Strong Puppet init. Will fire if country is puppeted and puppetLevel3 flag is set, but not puppetLevel3made. Only triggers 2400538.
+#
+#2400530 - Setting the stayInWar flag to true. Country with the "stayInWar" flag will not quit the war if it ceases being a puppet.
+#
+#2400535 - Establishing Independent State. Can be triggered externally or by automatic 2400522. If country is already puppetLevel1, 2 or 3, will remove the effects and set flag to legitIndie.
+#2400536 - Establishing Weak   Puppet. Can be triggered externally or by automatic 2400523. If country is already puppetLevel 2 or 3, will switch the effects and flags to puppetLevel1.
+#2400537 - Establishing Medium Puppet. Can be triggered externally or by automatic 2400524. If country is already puppetLevel 1 or 3, will switch the effects and flags to puppetLevel2.
+#2400538 - Establishing Strong Puppet. Can be triggered externally or by automatic 2400525. If country is already puppetLevel 1 or 2, will switch the effects and flags to puppetLevel3.
+#
+#2400540 - Weak   Puppet Dissent floor. Will keep dissent at the minimum of 35% (effective 40%).
+#2400541 - Medium Puppet Dissent floor. Will keep dissent at the minimum of 15% (effective 20%).
+#2400542 - Strong Puppet Dissent floor. Will keep dissent at the minimum of  1% (effective  5%).
+#
+#2400545 - Adds    the counter-AI-cheat penalties. Will force penalties if dissent gets too high (normally AI gets a pass).
+#2400546 - Removes the counter-AI-cheat penalties. Will remove penalties if dissent is lowered, will ALSO fire if the former AI country becomes human controlled.
+#
+#2400600 - Resistance event chain starting point. Sets a timer to trigger 2400601 within a certain time period. 1 year for puppetLevel1, 2 years for puppetLevel2, 4 years for puppetLevel3
+#2400601 - If still a puppet, one of 3 things will happen: 50% revolution fails (5% dissent gain); 25% revolution succeeds (will end puppet status and trigger 2400535 & 2400602 with possibility of war), 25% civil war (10% dissent and massive rebellions)
+#2400602 - Break alliances, reset sliders, and set high neutrality. If still a puppet, will addcore on 1614 and trigger 2400603 and 2400604.
+#2400603 - End puppet and removecore on 1614. Core is needed to help overlord identify the rebellious puppet.
+#2400604 - The intervention - give the former overlord and option to declare war on the rebllious country identified by the 1614 core.
+##
+
+
+event = {
+	id = 2400521
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		NOT = { local_flag = indiePrep }
+		OR = {
+			AND = {
+				local_flag = puppetLevel1
+				NOT = { local_flag = puppetLevel1made }
+				ispuppet = yes
+			}
+			AND = {
+				local_flag = puppetLevel2
+				NOT = { local_flag = puppetLevel2made }
+				ispuppet = yes
+			}
+			AND = {
+				local_flag = puppetLevel3
+				NOT = { local_flag = puppetLevel3made }
+				ispuppet = yes
+			}
+			AND = {
+				NOT = { local_flag = puppetLevel1made }
+				NOT = { local_flag = puppetLevel2made }
+				NOT = { local_flag = puppetLevel3made }
+				ispuppet = yes
+			}
+			AND = {
+				NOT = { local_flag = legitIndie }
+				#OR = {
+				#	local_flag = puppetLevel1
+				#	local_flag = puppetLevel2
+				#	local_flag = puppetLevel3
+				#}
+				#OR = {
+				#	local_flag = puppetLevel1made
+				#	local_flag = puppetLevel2made
+				#	local_flag = puppetLevel3made
+				#}
+				NOT = { ispuppet = yes }
+			}
+		}
+	}
+
+	name = "Assessing our status"
+	desc = "Our new government has been recently established and it is currently being assessed by the local population and the international community for signs of legitimate rule."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = local_setflag which = indiePrep }
+	}
+}
+
+event = {
+	id = 2400522
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = indiePrep
+		
+		NOT = { ispuppet = yes }
+		
+		OR = {
+			NOT = { local_flag = legitIndie }
+			AND = {
+				local_flag = legitIndie
+				OR = {
+					local_flag = puppetLevel1made
+					local_flag = puppetLevel2made
+					local_flag = puppetLevel3made
+				}
+			}
+		}
+	}
+
+	name = "The Independent State"
+	desc = "Our government, previously a puppet of a foreign power, now represents a fully independent and sovereign state. At least - it is largely perceived that way by by the local population and the international community alike."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = trigger which = 2400535 } #cancel puppet effects
+		command = { trigger = { NOT = { local_flag = legitIndie } NOT = { local_flag = stayInWar } } type = trigger which = 2400602 } #force peace and end alliances.
+	}
+}
+
+event = {
+	id = 2400523
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = indiePrep
+		
+		#Is default
+		OR = {
+			local_flag = puppetLevel1
+			NOT = {
+				local_flag = puppetLevel1
+				local_flag = puppetLevel2
+				local_flag = puppetLevel3
+			}
+		}
+		
+		NOT = { local_flag = puppetLevel1made }
+
+		ispuppet = yes
+	}
+
+	name = "The Puppet State (weak)"
+	desc = "This government has been established by an occupying power to give its presense a semblance of legality, however it lacks both domestic and international legitimacy and is challanged by a host of resistance organizations, aka 'the underground state'."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = trigger which = 2400536 } #establish weak puppet
+	}
+}
+
+event = {
+	id = 2400524
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = indiePrep
+		
+		local_flag = puppetLevel2
+
+		NOT = { local_flag = puppetLevel2made }
+
+		ispuppet = yes
+	}
+
+	name = "The Puppet State (medium)"
+	desc = "This government has been established by an occupying power to give its presense a semblance of legality, however it has difficulty attracting domestic and international legitimacy and is challanged by a few resistance organizations."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = trigger which = 2400537 } #establish medium puppet
+	}
+}
+
+event = {
+	id = 2400525
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = indiePrep
+		
+		local_flag = puppetLevel3
+
+		NOT = { local_flag = puppetLevel3made }
+		
+		ispuppet = yes
+	}
+
+	name = "The Puppet State (strong)"
+	desc = "This government has been established by an occupying power to give its presense a semblance of legality, and over time it managed to aquire a strong domestic and international legitimacy despite its foreign dependency."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = trigger which = 2400538 } #establish strong puppet
+	}
+}
+
+event = {
+	id = 2400530
+	random = no 
+	persistent = yes
+
+	name = "Loyal Puppet"
+	desc = "Our enemies have it out for us, and we will not be able to simply quit the war even if we stop being a puppet."
+	style = 2	
+
+	action = {
+		name = "Understood"
+
+		command = { type = local_setflag which = stayInWar }
+	}
+}
+
+event = {
+	id = 2400535
+	random = no 
+	persistent = yes
+
+	name = "Legitimate independence"
+	desc = "Our independence has been widely recognized at home and abroad as having a legitimate and representative nature. We have no serious problems with resistance organizations, only political groups."
+	style = 2	
+
+	action = {
+		name = "We are creating a better future."
+		
+		#was puppet level 1 or 2, now independent. In theory, AllDefense2 does not fire for puppets level 1 or 2 anyway. But in the situation where the country was independent but then puppeted, it will have fired. Now it will fire again.
+		command = { trigger = { OR = { local_flag = puppetLevel1 local_flag = puppetLevel2 } } type = local_clrflag which = AllDefense2 } 
+		
+		command = { type = dissent value = -50 }
+		command = { trigger = { local_flag = puppetLevel1made } type = research_mod value = 20 }
+		command = { trigger = { local_flag = puppetLevel1made } type = land_fort_eff value  = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = coast_fort_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = convoy_def_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = energy value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = metal value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = oil value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = rare_materials value = 10 }
+		
+		command = { trigger = { local_flag = puppetLevel2made } type = research_mod value = 10 }
+		command = { trigger = { local_flag = puppetLevel2made } type = land_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = coast_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = convoy_def_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = energy value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = metal value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = oil value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = rare_materials value = 5 }
+		
+		command = { trigger = { local_flag = puppetLevel3made } type = research_mod value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = land_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = coast_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = convoy_def_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = energy value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = metal value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = oil value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = rare_materials value = 2 }
+		
+		command = { type = local_clrflag which = indiePrep }
+		command = { type = local_setflag which = legitIndie }
+		command = { type = local_clrflag which = puppetLevel1 }
+		command = { type = local_clrflag which = puppetLevel2 }
+		command = { type = local_clrflag which = puppetLevel3 }
+		command = { type = local_clrflag which = puppetLevel1made }
+		command = { type = local_clrflag which = puppetLevel2made }
+		command = { type = local_clrflag which = puppetLevel3made }
+		
+		command = { type = local_clrflag which = resistanceBrewing }
+	}
+}
+
+event = {
+	id = 2400536
+	random = no 
+	persistent = yes
+
+	name = "Weak puppet established"
+	desc = "This country is a weak puppet state"
+	style = 2	
+
+	action = {
+		name = "We are creating a better future."
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = research_mod value = -20 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = land_fort_eff value =  -0.10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = coast_fort_eff value = -0.10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = convoy_def_eff value = -0.10 } 
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = industrial_modifier which = energy value = -10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = industrial_modifier which = metal value = -10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = industrial_modifier which = oil value = -10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel1made } } type = industrial_modifier which = rare_materials value = -10 }
+
+		command = { trigger = { local_flag = puppetLevel2made } type = research_mod value = 10 }
+		command = { trigger = { local_flag = puppetLevel2made } type = land_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = coast_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = convoy_def_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = energy value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = metal value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = oil value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = rare_materials value = 5 }
+		
+		command = { trigger = { local_flag = puppetLevel3made } type = research_mod value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = land_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = coast_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = convoy_def_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = energy value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = metal value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = oil value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = rare_materials value = 2 }
+		
+		command = { type = local_clrflag which = indiePrep }
+		command = { type = local_clrflag which = legitIndie }
+		command = { type = local_setflag which = puppetLevel1 }
+		command = { type = local_clrflag which = puppetLevel2 }
+		command = { type = local_clrflag which = puppetLevel3 }
+		command = { type = local_setflag which = puppetLevel1made }
+		command = { type = local_clrflag which = puppetLevel2made }
+		command = { type = local_clrflag which = puppetLevel3made }
+	}
+}
+
+event = {
+	id = 2400537
+	random = no 
+	persistent = yes
+
+	name = "Medium puppet established"
+	desc = "This country is a medium puppet state"
+	style = 2	
+
+	action = {
+		name = "We are creating a better future."	
+		command = { trigger = { local_flag = puppetLevel1made } type = research_mod value = 20 }
+		command = { trigger = { local_flag = puppetLevel1made } type = land_fort_eff value  = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = coast_fort_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = convoy_def_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = energy value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = metal value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = oil value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = rare_materials value = 10 }
+		
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = research_mod value = -10 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = land_fort_eff value = -0.05 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = coast_fort_eff value = -0.05 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = convoy_def_eff value = -0.05 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = industrial_modifier which = energy value = -5 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = industrial_modifier which = metal value = -5 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = industrial_modifier which = oil value = -5 }
+		command = { trigger = { NOT = { local_flag = puppetLevel2made } } type = industrial_modifier which = rare_materials value = -5 }
+		
+		command = { trigger = { local_flag = puppetLevel3made } type = research_mod value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = land_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = coast_fort_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = convoy_def_eff value = 0.02 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = energy value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = metal value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = oil value = 2 }
+		command = { trigger = { local_flag = puppetLevel3made } type = industrial_modifier which = rare_materials value = 2 }
+		
+		command = { type = local_clrflag which = indiePrep }
+		command = { type = local_clrflag which = legitIndie }
+		command = { type = local_clrflag which = puppetLevel1 }
+		command = { type = local_setflag which = puppetLevel2 }
+		command = { type = local_clrflag which = puppetLevel3 }
+		command = { type = local_clrflag which = puppetLevel1made }
+		command = { type = local_setflag which = puppetLevel2made }
+		command = { type = local_clrflag which = puppetLevel3made }
+	}
+}
+
+event = {
+	id = 2400538
+	random = no 
+	persistent = yes
+
+	name = "Strong puppet established"
+	desc = "This country is a strong puppet state"
+	style = 2	
+
+	action = {
+		name = "We are creating a better future."
+		command = { trigger = { local_flag = puppetLevel1made } type = research_mod value = 20 }
+		command = { trigger = { local_flag = puppetLevel1made } type = land_fort_eff value  = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = coast_fort_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = convoy_def_eff value = 0.10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = energy value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = metal value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = oil value = 10 }
+		command = { trigger = { local_flag = puppetLevel1made } type = industrial_modifier which = rare_materials value = 10 }
+		
+		command = { trigger = { local_flag = puppetLevel2made } type = research_mod value = 10 }
+		command = { trigger = { local_flag = puppetLevel2made } type = land_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = coast_fort_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = convoy_def_eff value = 0.05 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = energy value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = metal value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = oil value = 5 }
+		command = { trigger = { local_flag = puppetLevel2made } type = industrial_modifier which = rare_materials value = 5 }
+		
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = research_mod value = -2 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = land_fort_eff value = -0.02 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = coast_fort_eff value = -0.02 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = convoy_def_eff value = -0.02 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = industrial_modifier which = energy value = -2 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = industrial_modifier which = metal value = -2 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = industrial_modifier which = oil value = -2 }
+		command = { trigger = { NOT = { local_flag = puppetLevel3made } } type = industrial_modifier which = rare_materials value = -2 }
+		
+		command = { type = local_clrflag which = indiePrep }
+		command = { type = local_clrflag which = legitIndie }
+		command = { type = local_clrflag which = puppetLevel1 }
+		command = { type = local_clrflag which = puppetLevel2 }
+		command = { type = local_setflag which = puppetLevel3 }
+		command = { type = local_clrflag which = puppetLevel1made }
+		command = { type = local_clrflag which = puppetLevel2made }
+		command = { type = local_setflag which = puppetLevel3made }
+	}
+}
+
+event = {
+	id = 2400540
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = puppetLevel1made
+		ispuppet = yes
+		NOT = { dissent = 35 }
+	}
+
+	name = "Dissent against our rule"
+	desc = "As a weak puppet state, our minimum dissent is fixed at 35 percent, we cannot lower it any further."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = money value = 100 }
+		command = { type = dissent value = 5 }
+		#command = { trigger = { NOT = { dissent = 40 } } type = dissent value = 5 }
+	}
+}
+
+event = {
+	id = 2400541
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = puppetLevel2made
+		ispuppet = yes
+		NOT = { dissent = 15 }
+	}
+
+	name = "Dissent against our rule"
+	desc = "As a medium puppet state, our minimum dissent is fixed at 15 percent, we cannot lower it any further."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = money value = 100 }
+		command = { type = dissent value = 5 }
+		#command = { trigger = { NOT = { dissent = 20 } } type = dissent value = 5 }
+	}
+}
+
+event = {
+	id = 2400542
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = puppetLevel3made
+		ispuppet = yes
+		NOT = { dissent = 1 }
+	}
+
+	name = "Dissent against our rule"
+	desc = "As a strong puppet state, our minimum dissent is fixed at 1 percent, we cannot lower it any further."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = money value = 100 }
+		command = { type = dissent value = 5 }
+		#command = { trigger = { NOT = { dissent = 5 } } type = dissent value = 5 }
+	}
+}
+
+event = {
+	id = 2400545
+	random = no 
+	persistent = yes
+
+	trigger = { 
+		ai = yes
+		OR = {
+			AND = {
+				local_flag = dissent10
+				NOT = { dissent = 10 }
+			}
+			AND = {
+				local_flag = dissent20
+				NOT = { dissent = 20 }
+			}
+			AND = {
+				local_flag = dissent30
+				NOT = { dissent = 30 }
+			}
+			AND = {
+				local_flag = dissent40
+				NOT = { dissent = 40 }
+			}
+			AND = {
+				local_flag = dissent50
+				NOT = { dissent = 50 }
+			}
+			AND = {
+				local_flag = dissent60
+				NOT = { dissent = 60 }
+			}
+			AND = {
+				local_flag = dissent70
+				NOT = { dissent = 70 }
+			}
+			AND = {
+				local_flag = dissent80
+				NOT = { dissent = 80 }
+			}
+			AND = {
+				NOT = { local_flag = dissent10 }
+				dissent = 10
+				NOT = { dissent = 20 }
+			}
+			AND = {
+				NOT = { local_flag = dissent20 }
+				dissent = 20
+				NOT = { dissent = 30 }
+			}
+			AND = {
+				NOT = { local_flag = dissent30 }
+				dissent = 30
+				NOT = { dissent = 40 }
+			}
+			AND = {
+				NOT = { local_flag = dissent40 }
+				dissent = 40
+				NOT = { dissent = 50 }
+			}
+			AND = {
+				NOT = { local_flag = dissent50 }
+				dissent = 50
+				NOT = { dissent = 60 }
+			}
+			AND = {
+				NOT = { local_flag = dissent60 }
+				dissent = 60
+				NOT = { dissent = 70 }
+			}
+			AND = {
+				NOT = { local_flag = dissent70 }
+				dissent = 70
+				NOT = { dissent = 80 }
+			}
+			AND = {
+				NOT = { local_flag = dissent80 }
+				dissent = 80
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "Countering ai cheats"
+		command = { trigger = { local_flag = dissent10 } type = industrial_modifier which = ic value = 10 }
+		command = { trigger = { local_flag = dissent20 } type = industrial_modifier which = ic value = 20 }
+		command = { trigger = { local_flag = dissent30 } type = industrial_modifier which = ic value = 30 }
+		command = { trigger = { local_flag = dissent40 } type = industrial_modifier which = ic value = 40 }
+		command = { trigger = { local_flag = dissent50 } type = industrial_modifier which = ic value = 50 }
+		command = { trigger = { local_flag = dissent60 } type = industrial_modifier which = ic value = 60 }
+		command = { trigger = { local_flag = dissent70 } type = industrial_modifier which = ic value = 70 }
+		command = { trigger = { local_flag = dissent80 } type = industrial_modifier which = ic value = 80 }
+		
+		
+		command = { type = local_clrflag which = dissent10 }
+		command = { type = local_clrflag which = dissent20 }
+		command = { type = local_clrflag which = dissent30 }
+		command = { type = local_clrflag which = dissent40 }
+		command = { type = local_clrflag which = dissent50 }
+		command = { type = local_clrflag which = dissent60 }
+		command = { type = local_clrflag which = dissent70 }
+		command = { type = local_clrflag which = dissent80 }
+		
+		command = { trigger = { dissent = 10 NOT = { dissent = 20 } } type = local_setflag which = dissent10 }
+		command = { trigger = { dissent = 10 NOT = { dissent = 20 } } type = industrial_modifier which = ic value = -10 }
+		command = { trigger = { dissent = 20 NOT = { dissent = 30 } } type = local_setflag which = dissent20 }
+		command = { trigger = { dissent = 20 NOT = { dissent = 30 } } type = industrial_modifier which = ic value = -20 }
+		command = { trigger = { dissent = 30 NOT = { dissent = 40 } } type = local_setflag which = dissent30 }
+		command = { trigger = { dissent = 30 NOT = { dissent = 40 } } type = industrial_modifier which = ic value = -30 }
+		command = { trigger = { dissent = 40 NOT = { dissent = 50 } } type = local_setflag which = dissent40 }
+		command = { trigger = { dissent = 40 NOT = { dissent = 50 } } type = industrial_modifier which = ic value = -40 }
+		command = { trigger = { dissent = 50 NOT = { dissent = 60 } } type = local_setflag which = dissent50 }
+		command = { trigger = { dissent = 50 NOT = { dissent = 60 } } type = industrial_modifier which = ic value = -50 }
+		command = { trigger = { dissent = 60 NOT = { dissent = 70 } } type = local_setflag which = dissent60 }
+		command = { trigger = { dissent = 60 NOT = { dissent = 70 } } type = industrial_modifier which = ic value = -60 }
+		command = { trigger = { dissent = 70 NOT = { dissent = 80 } } type = local_setflag which = dissent70 }
+		command = { trigger = { dissent = 70 NOT = { dissent = 80 } } type = industrial_modifier which = ic value = -70 }
+		command = { trigger = { dissent = 80 }						  type = local_setflag which = dissent80 }
+		command = { trigger = { dissent = 80 }						  type = industrial_modifier which = ic value = -80 }
+	}
+}
+
+event = {
+	id = 2400546
+	random = no 
+	persistent = yes
+
+	trigger = { 
+		ai = no
+		OR = {
+			local_flag = dissent10
+			local_flag = dissent20
+			local_flag = dissent30
+			local_flag = dissent40
+			local_flag = dissent50
+			local_flag = dissent60
+			local_flag = dissent70
+			local_flag = dissent80
+		}
+	}
+
+	name = "Undoing ai cheating counters"
+	desc = "Since this country is no longer controlled by ai, this event removes the counter-cheat ai penalty"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "Undoing ai cheats"
+		command = { trigger = { local_flag = dissent10 } type = industrial_modifier which = ic value = 10 }
+		command = { trigger = { local_flag = dissent20 } type = industrial_modifier which = ic value = 20 }
+		command = { trigger = { local_flag = dissent30 } type = industrial_modifier which = ic value = 30 }
+		command = { trigger = { local_flag = dissent40 } type = industrial_modifier which = ic value = 40 }
+		command = { trigger = { local_flag = dissent50 } type = industrial_modifier which = ic value = 50 }
+		command = { trigger = { local_flag = dissent60 } type = industrial_modifier which = ic value = 60 }
+		command = { trigger = { local_flag = dissent70 } type = industrial_modifier which = ic value = 70 }
+		command = { trigger = { local_flag = dissent80 } type = industrial_modifier which = ic value = 80 }
+		
+		command = { type = local_clrflag which = dissent10 }
+		command = { type = local_clrflag which = dissent20 }
+		command = { type = local_clrflag which = dissent30 }
+		command = { type = local_clrflag which = dissent40 }
+		command = { type = local_clrflag which = dissent50 }
+		command = { type = local_clrflag which = dissent60 }
+		command = { type = local_clrflag which = dissent70 }
+		command = { type = local_clrflag which = dissent80 }
+	}
+}
+
+
+
+
+event = {
+	id = 2400600
+	random = no 
+	persistent = yes
+	
+	trigger = {
+		ispuppet = yes
+		NOT = { local_flag = resistanceBrewing }
+		NOT = { local_flag = resistanceReady }
+		OR = {
+			AND = {
+				local_flag = puppetLevel1made
+				random = 25
+			}
+			AND = {
+				local_flag = puppetLevel2made
+				random = 15
+			}
+			AND = {
+				local_flag = puppetLevel3made
+				random = 5
+			}
+		}
+
+	}
+
+	name = "Resistance is brewing"
+	desc = "Over time, the underground resistance to our rule is getting stronger. It's only a matter of time until the people demand independence from foreign domination"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "We are creating a better future."
+		command = { type = local_setflag which = resistanceBrewing }
+		command = { trigger = { local_flag = puppetLevel1made } type = event which = 2400601 where = -1 when = 360 }
+		command = { trigger = { local_flag = puppetLevel2made } type = event which = 2400601 where = -1 when = 720 }
+		command = { trigger = { local_flag = puppetLevel3made } type = event which = 2400601 where = -1 when = 1440 }
+	}
+}
+
+event = {
+	id = 2400601
+	random = no 
+	persistent = yes
+	one_action = yes
+
+	name = "Resistance strikes!"
+	desc = "Having spent a long time gathering forces and rallying support, the resistance movements launched a massive revolt and proclaimed a revolutionary state!"
+	style = 2
+	
+	action = {
+		name = "Stay the course! (Revolution fails)"
+		ai_chance = 50
+		trigger = { ispuppet = yes }
+		
+		command = { type = dissent value = 5 }
+
+		command = { type = local_clrflag which = resistanceBrewing }
+	}
+	action = {
+		name = "For freedom! (Revolution succeeds)"
+		ai_chance = 25
+		trigger = { ispuppet = yes }
+		
+		command = { type = regime_falls }
+		command = { type = dissent value = -100 }
+		
+		command = { type = trigger which = 2400535 } #cancel puppet effects
+		command = { type = trigger which = 2400602 } #forcepeace. former overlord has the option to declare war
+	}
+	action = {
+		name = "Collaboration is the lesser evil! (Civil war)"
+		ai_chance = 25
+		trigger = { ispuppet = yes }
+		
+		command = { type = dissent value = 10 }
+		
+		command = { type = local_clrflag which = resistanceBrewing }
+		
+		command = { type = revolt which = -3 }
+		command = { type = revolt which = -3 }
+		command = { type = revolt which = -3 }
+		command = { type = revolt which = -3 }
+		command = { type = revolt which = -3 }
+		command = { trigger = { vp = 3 } type = revolt which = -3 }
+		command = { trigger = { vp = 6 } type = revolt which = -3 }
+		command = { trigger = { vp = 9 } type = revolt which = -3 }
+		command = { trigger = { vp = 12 } type = revolt which = -3 }
+		command = { trigger = { vp = 15 } type = revolt which = -3 }
+		command = { trigger = { vp = 18 } type = revolt which = -3 }
+		command = { trigger = { vp = 21 } type = revolt which = -3 }
+		command = { trigger = { vp = 24 } type = revolt which = -3 }
+		command = { trigger = { vp = 27 } type = revolt which = -3 }
+		command = { trigger = { vp = 30 } type = revolt which = -3 }
+		command = { trigger = { vp = 33 } type = revolt which = -3 }
+		command = { trigger = { vp = 36 } type = revolt which = -3 }
+		command = { trigger = { vp = 39 } type = revolt which = -3 }
+		command = { trigger = { vp = 42 } type = revolt which = -3 }
+		command = { trigger = { vp = 45 } type = revolt which = -3 }
+		command = { trigger = { vp = 48 } type = revolt which = -3 }
+		command = { trigger = { vp = 51 } type = revolt which = -3 }
+		command = { trigger = { vp = 54 } type = revolt which = -3 }
+		command = { trigger = { vp = 57 } type = revolt which = -3 }
+		command = { trigger = { vp = 60 } type = revolt which = -3 }
+		command = { trigger = { vp = 63 } type = revolt which = -3 }
+		command = { trigger = { vp = 66 } type = revolt which = -3 }
+		command = { trigger = { vp = 69 } type = revolt which = -3 }
+		command = { trigger = { vp = 72 } type = revolt which = -3 }
+		command = { trigger = { vp = 75 } type = revolt which = -3 }
+		command = { trigger = { vp = 78 } type = revolt which = -3 }
+		command = { trigger = { vp = 81 } type = revolt which = -3 }
+		command = { trigger = { vp = 84 } type = revolt which = -3 }
+		command = { trigger = { vp = 87 } type = revolt which = -3 }
+		command = { trigger = { vp = 90 } type = revolt which = -3 }
+		command = { trigger = { vp = 93 } type = revolt which = -3 }
+		command = { trigger = { vp = 96 } type = revolt which = -3 }
+		command = { trigger = { vp = 99 } type = revolt which = -3 }
+		command = { trigger = { vp = 102 } type = revolt which = -3 }
+		command = { trigger = { vp = 105 } type = revolt which = -3 }
+		command = { trigger = { vp = 108 } type = revolt which = -3 }
+		command = { trigger = { vp = 111 } type = revolt which = -3 }
+		command = { trigger = { vp = 114 } type = revolt which = -3 }
+		command = { trigger = { vp = 117 } type = revolt which = -3 }
+		command = { trigger = { vp = 120 } type = revolt which = -3 }
+		command = { trigger = { vp = 123 } type = revolt which = -3 }
+		command = { trigger = { vp = 126 } type = revolt which = -3 }
+		command = { trigger = { vp = 129 } type = revolt which = -3 }
+		command = { trigger = { vp = 132 } type = revolt which = -3 }
+		command = { trigger = { vp = 135 } type = revolt which = -3 }
+		command = { trigger = { vp = 138 } type = revolt which = -3 }
+		command = { trigger = { vp = 141 } type = revolt which = -3 }
+		command = { trigger = { vp = 144 } type = revolt which = -3 }
+		command = { trigger = { vp = 147 } type = revolt which = -3 }
+		command = { trigger = { vp = 150 } type = revolt which = -3 }
+		command = { trigger = { vp = 153 } type = revolt which = -3 }
+		command = { trigger = { vp = 156 } type = revolt which = -3 }
+		command = { trigger = { vp = 159 } type = revolt which = -3 }
+		command = { trigger = { vp = 162 } type = revolt which = -3 }
+		command = { trigger = { vp = 165 } type = revolt which = -3 }
+		command = { trigger = { vp = 168 } type = revolt which = -3 }
+		command = { trigger = { vp = 171 } type = revolt which = -3 }
+		command = { trigger = { vp = 174 } type = revolt which = -3 }
+		command = { trigger = { vp = 177 } type = revolt which = -3 }
+		command = { trigger = { vp = 180 } type = revolt which = -3 }
+		command = { trigger = { vp = 183 } type = revolt which = -3 }
+		command = { trigger = { vp = 186 } type = revolt which = -3 }
+		command = { trigger = { vp = 189 } type = revolt which = -3 }
+		command = { trigger = { vp = 192 } type = revolt which = -3 }
+		command = { trigger = { vp = 195 } type = revolt which = -3 }
+		command = { trigger = { vp = 198 } type = revolt which = -3 }
+		command = { trigger = { vp = 201 } type = revolt which = -3 }
+		command = { trigger = { vp = 204 } type = revolt which = -3 }
+		command = { trigger = { vp = 207 } type = revolt which = -3 }
+		command = { trigger = { vp = 210 } type = revolt which = -3 }
+		command = { trigger = { vp = 213 } type = revolt which = -3 }
+		command = { trigger = { vp = 216 } type = revolt which = -3 }
+		command = { trigger = { vp = 219 } type = revolt which = -3 }
+		command = { trigger = { vp = 222 } type = revolt which = -3 }
+		command = { trigger = { vp = 225 } type = revolt which = -3 }
+		command = { trigger = { vp = 228 } type = revolt which = -3 }
+		command = { trigger = { vp = 231 } type = revolt which = -3 }
+		command = { trigger = { vp = 234 } type = revolt which = -3 }
+		command = { trigger = { vp = 237 } type = revolt which = -3 }
+		command = { trigger = { vp = 240 } type = revolt which = -3 }
+		command = { trigger = { vp = 243 } type = revolt which = -3 }
+		command = { trigger = { vp = 246 } type = revolt which = -3 }
+		command = { trigger = { vp = 249 } type = revolt which = -3 }
+		command = { trigger = { vp = 252 } type = revolt which = -3 }
+		command = { trigger = { vp = 255 } type = revolt which = -3 }
+		command = { trigger = { vp = 258 } type = revolt which = -3 }
+		command = { trigger = { vp = 261 } type = revolt which = -3 }
+		command = { trigger = { vp = 264 } type = revolt which = -3 }
+		command = { trigger = { vp = 267 } type = revolt which = -3 }
+		command = { trigger = { vp = 270 } type = revolt which = -3 }
+		command = { trigger = { vp = 273 } type = revolt which = -3 }
+		command = { trigger = { vp = 276 } type = revolt which = -3 }
+		command = { trigger = { vp = 279 } type = revolt which = -3 }
+		command = { trigger = { vp = 282 } type = revolt which = -3 }
+		command = { trigger = { vp = 285 } type = revolt which = -3 }
+		command = { trigger = { vp = 288 } type = revolt which = -3 }
+		command = { trigger = { vp = 291 } type = revolt which = -3 }
+		command = { trigger = { vp = 294 } type = revolt which = -3 }
+		command = { trigger = { vp = 297 } type = revolt which = -3 }
+		command = { trigger = { vp = 300 } type = revolt which = -3 }
+	}
+}
+
+event = {
+	id = 2400602
+	random = no 
+	persistent = yes
+
+	name = "The Independent State"
+	desc = "Having been released from foreign bondage, we are finally free to unleash our full potential upon anyone who encroaches on our sovereignty."
+	style = 2	
+	
+	action = {
+		name = "For freedom!"
+		command = { type = leave_alliance }
+		command = { type = regime_falls }
+		command = { type = belligerence value = -100 }
+		command = { type = dissent value = -100 }
+		command = { type = peace which = AFG value = 1 }
+		command = { type = peace which = ALB value = 1 }
+		command = { type = peace which = ALG value = 1 }
+		command = { type = peace which = ANG value = 1 }
+		command = { type = peace which = ARA value = 1 }
+		command = { type = peace which = ARG value = 1 }
+		command = { type = peace which = ARM value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = AUS value = 1 }
+		command = { type = peace which = AZB value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = BEN value = 1 }
+		command = { type = peace which = BHU value = 1 }
+		command = { type = peace which = BLR value = 1 }
+		command = { type = peace which = BOL value = 1 }
+		command = { type = peace which = BOS value = 1 }
+		command = { type = peace which = BRA value = 1 }
+		command = { type = peace which = BRU value = 1 }
+		command = { type = peace which = BUL value = 1 }
+		command = { type = peace which = BUR value = 1 }
+		command = { type = peace which = CAL value = 1 }
+		command = { type = peace which = CAM value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHL value = 1 }
+		command = { type = peace which = CMB value = 1 }
+		command = { type = peace which = COL value = 1 }
+		command = { type = peace which = CON value = 1 }
+		command = { type = peace which = COS value = 1 }
+		command = { type = peace which = CRO value = 1 }
+		command = { type = peace which = CSA value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CUB value = 1 }
+		command = { type = peace which = CXB value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CYP value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = peace which = DDR value = 1 }
+		command = { type = peace which = DEN value = 1 }
+		command = { type = peace which = DFR value = 1 }
+		command = { type = peace which = DOM value = 1 }
+		command = { type = peace which = EAF value = 1 }
+		command = { type = peace which = ECU value = 1 }
+		command = { type = peace which = EGY value = 1 }
+		command = { type = peace which = ENG value = 1 }
+		command = { type = peace which = EQA value = 1 }
+		command = { type = peace which = EST value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = peace which = EUS value = 1 }
+		command = { type = peace which = FIN value = 1 }
+		command = { type = peace which = FLA value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = GAB value = 1 }
+		command = { type = peace which = GEO value = 1 }
+		command = { type = peace which = GER value = 1 }
+		command = { type = peace which = GLD value = 1 }
+		command = { type = peace which = GRE value = 1 }
+		command = { type = peace which = GUA value = 1 }
+		command = { type = peace which = GUI value = 1 }
+		command = { type = peace which = GUY value = 1 }
+		command = { type = peace which = HAI value = 1 }
+		command = { type = peace which = HOL value = 1 }
+		command = { type = peace which = HON value = 1 }
+		command = { type = peace which = HUN value = 1 }
+		command = { type = peace which = ICL value = 1 }
+		command = { type = peace which = IDC value = 1 }
+		command = { type = peace which = IND value = 1 }
+		command = { type = peace which = INO value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = IRQ value = 1 }
+		command = { type = peace which = ISR value = 1 }
+		command = { type = peace which = ITA value = 1 }
+		command = { type = peace which = JAP value = 1 }
+		command = { type = peace which = JOR value = 1 }
+		command = { type = peace which = KAZ value = 1 }
+		command = { type = peace which = KOR value = 1 }
+		command = { type = peace which = KUR value = 1 }
+		command = { type = peace which = KYG value = 1 }
+		command = { type = peace which = LAO value = 1 }
+		command = { type = peace which = LAT value = 1 }
+		command = { type = peace which = LBY value = 1 }
+		command = { type = peace which = LEB value = 1 }
+		command = { type = peace which = LIB value = 1 }
+		command = { type = peace which = LIT value = 1 }
+		command = { type = peace which = LUX value = 1 }
+		command = { type = peace which = MAD value = 1 }
+		command = { type = peace which = MAL value = 1 }
+		command = { type = peace which = MAN value = 1 }
+		command = { type = peace which = MEN value = 1 }
+		command = { type = peace which = MEX value = 1 }
+		command = { type = peace which = MLY value = 1 }
+		command = { type = peace which = MON value = 1 }
+		command = { type = peace which = MOR value = 1 }
+		command = { type = peace which = MOZ value = 1 }
+		command = { type = peace which = MTN value = 1 }
+		command = { type = peace which = NAM value = 1 }
+		command = { type = peace which = NEP value = 1 }
+		command = { type = peace which = NIC value = 1 }
+		command = { type = peace which = NIG value = 1 }
+		command = { type = peace which = NOR value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = OMN value = 1 }
+		command = { type = peace which = OTT value = 1 }
+		command = { type = peace which = PAK value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = PAN value = 1 }
+		command = { type = peace which = PAR value = 1 }
+		command = { type = peace which = PER value = 1 }
+		command = { type = peace which = PHI value = 1 }
+		command = { type = peace which = POL value = 1 }
+		command = { type = peace which = POR value = 1 }
+		command = { type = peace which = PRI value = 1 }
+		command = { type = peace which = PRK value = 1 }
+		command = { type = peace which = PRU value = 1 }
+		command = { type = peace which = QUE value = 1 }
+		command = { type = peace which = RHO value = 1 }
+		command = { type = peace which = ROM value = 1 }
+		command = { type = peace which = RSI value = 1 }
+		command = { type = peace which = RUS value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = SAL value = 1 }
+		command = { type = peace which = SAR value = 1 }
+		command = { type = peace which = SAU value = 1 }
+		command = { type = peace which = SCA value = 1 }
+		command = { type = peace which = SCH value = 1 }
+		command = { type = peace which = SCO value = 1 }
+		command = { type = peace which = SER value = 1 }
+		command = { type = peace which = SIA value = 1 }
+		command = { type = peace which = SIB value = 1 }
+		command = { type = peace which = SIE value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = SLO value = 1 }
+		command = { type = peace which = SLV value = 1 }
+		command = { type = peace which = SOM value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = SPA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SUD value = 1 }
+		command = { type = peace which = SWE value = 1 }
+		command = { type = peace which = SYR value = 1 }
+		command = { type = peace which = TAJ value = 1 }
+		command = { type = peace which = TAN value = 1 }
+		command = { type = peace which = TEX value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = peace which = TRA value = 1 }
+		command = { type = peace which = TRK value = 1 }
+		command = { type = peace which = TUN value = 1 }
+		command = { type = peace which = TUR value = 1 }
+		command = { type = peace which = UKR value = 1 }
+		command = { type = peace which = URU value = 1 }
+		command = { type = peace which = USA value = 1 }
+		command = { type = peace which = UZB value = 1 }
+		command = { type = peace which = VEN value = 1 }
+		command = { type = peace which = VIE value = 1 }
+		command = { type = peace which = WLL value = 1 }
+		command = { type = peace which = YEM value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = U01 value = 1 }
+		command = { type = peace which = U02 value = 1 }
+		command = { type = peace which = U03 value = 1 }
+		command = { type = peace which = U04 value = 1 }
+		command = { type = peace which = U05 value = 1 }
+		command = { type = peace which = U06 value = 1 }
+		command = { type = peace which = U08 value = 1 }
+		command = { type = peace which = U09 value = 1 }
+		command = { type = peace which = U10 value = 1 }
+		command = { type = peace which = U11 value = 1 }
+		command = { type = peace which = U12 value = 1 }
+		command = { type = peace which = U13 value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U15 value = 1 }
+		command = { type = peace which = U16 value = 1 }
+		command = { type = peace which = U17 value = 1 }
+		command = { type = peace which = U18 value = 1 }
+		command = { type = peace which = U19 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = U21 value = 1 }
+		command = { type = peace which = U22 value = 1 }
+		command = { type = peace which = U23 value = 1 }
+		command = { type = peace which = U24 value = 1 }
+		command = { type = peace which = U25 value = 1 }
+		command = { type = peace which = U26 value = 1 }
+		command = { type = peace which = U27 value = 1 }
+		command = { type = peace which = U28 value = 1 }
+		command = { type = peace which = U29 value = 1 }
+		command = { type = peace which = U30 value = 1 }
+		command = { type = peace which = U31 value = 1 }
+		command = { type = peace which = U32 value = 1 }
+		command = { type = peace which = U33 value = 1 }
+		command = { type = peace which = U34 value = 1 }
+		command = { type = peace which = U35 value = 1 }
+		command = { type = peace which = U36 value = 1 }
+		command = { type = peace which = U37 value = 1 }
+		command = { type = peace which = U39 value = 1 }
+		command = { type = peace which = U40 value = 1 }
+		command = { type = peace which = U41 value = 1 }
+		command = { type = peace which = U42 value = 1 }
+		command = { type = peace which = U43 value = 1 }
+		command = { type = peace which = U44 value = 1 }
+		command = { type = peace which = U45 value = 1 }
+		command = { type = peace which = U46 value = 1 }
+		command = { type = peace which = U47 value = 1 }
+		command = { type = peace which = U48 value = 1 }
+		command = { type = peace which = U49 value = 1 }
+		command = { type = peace which = U50 value = 1 }
+		command = { type = peace which = U51 value = 1 }
+		command = { type = peace which = U52 value = 1 }
+		command = { type = peace which = U57 value = 1 }
+		command = { type = peace which = U58 value = 1 }
+		command = { type = peace which = U59 value = 1 }
+		command = { type = peace which = U60 value = 1 }
+		command = { type = peace which = U62 value = 1 }
+		command = { type = peace which = U67 value = 1 }
+		command = { type = peace which = U70 value = 1 }
+		command = { type = peace which = U71 value = 1 }
+		command = { type = peace which = U72 value = 1 }
+		command = { type = peace which = U73 value = 1 }
+		command = { type = peace which = U74 value = 1 }
+		command = { type = peace which = U75 value = 1 }
+		command = { type = peace which = U76 value = 1 }
+		command = { type = peace which = U77 value = 1 }
+		command = { type = peace which = U78 value = 1 }
+		command = { type = peace which = U79 value = 1 }
+		command = { type = peace which = U80 value = 1 }
+		command = { type = peace which = U81 value = 1 }
+		command = { type = peace which = U82 value = 1 }
+		command = { type = peace which = U83 value = 1 }
+		command = { type = peace which = U84 value = 1 }
+		command = { type = peace which = U85 value = 1 }
+		command = { type = peace which = U86 value = 1 }
+		command = { type = peace which = U87 value = 1 }
+		command = { type = peace which = U88 value = 1 }
+		command = { type = peace which = U89 value = 1 }
+		command = { type = peace which = U90 value = 1 }
+		command = { type = peace which = U91 value = 1 }
+		command = { type = peace which = U92 value = 1 }
+		command = { type = peace which = U93 value = 1 }
+		command = { type = peace which = U94 value = 1 }
+		command = { type = peace which = U95 value = 1 }
+		command = { type = peace which = U96 value = 1 }
+		command = { type = peace which = U97 value = 1 }
+		command = { type = peace which = U98 value = 1 }
+		command = { type = peace which = U99 value = 1 }
+		command = { type = peace which = UCH value = 1 }
+		command = { type = peace which = UER value = 1 }
+		command = { type = peace which = UGS value = 1 }
+		command = { type = peace which = UPE value = 1 }
+		command = { type = peace which = UTC value = 1 }
+		command = { type = end_access which = AFG }
+		command = { type = end_access which = ALB }
+		command = { type = end_access which = ALG }
+		command = { type = end_access which = ANG }
+		command = { type = end_access which = ARA }
+		command = { type = end_access which = ARG }
+		command = { type = end_access which = ARM }
+		command = { type = end_access which = AST }
+		command = { type = end_access which = AUS }
+		command = { type = end_access which = AZB }
+		command = { type = end_access which = BEL }
+		command = { type = end_access which = BEN }
+		command = { type = end_access which = BHU }
+		command = { type = end_access which = BLR }
+		command = { type = end_access which = BOL }
+		command = { type = end_access which = BOS }
+		command = { type = end_access which = BRA }
+		command = { type = end_access which = BRU }
+		command = { type = end_access which = BUL }
+		command = { type = end_access which = BUR }
+		command = { type = end_access which = CAL }
+		command = { type = end_access which = CAM }
+		command = { type = end_access which = CAN }
+		command = { type = end_access which = CGX }
+		command = { type = end_access which = CHC }
+		command = { type = end_access which = CHI }
+		command = { type = end_access which = CHL }
+		command = { type = end_access which = CMB }
+		command = { type = end_access which = COL }
+		command = { type = end_access which = CON }
+		command = { type = end_access which = COS }
+		command = { type = end_access which = CRO }
+		command = { type = end_access which = CSA }
+		command = { type = end_access which = CSX }
+		command = { type = end_access which = CUB }
+		command = { type = end_access which = CXB }
+		command = { type = end_access which = CYN }
+		command = { type = end_access which = CYP }
+		command = { type = end_access which = CZE }
+		command = { type = end_access which = DDR }
+		command = { type = end_access which = DEN }
+		command = { type = end_access which = DFR }
+		command = { type = end_access which = DOM }
+		command = { type = end_access which = EAF }
+		command = { type = end_access which = ECU }
+		command = { type = end_access which = EGY }
+		command = { type = end_access which = ENG }
+		command = { type = end_access which = EQA }
+		command = { type = end_access which = EST }
+		command = { type = end_access which = ETH }
+		command = { type = end_access which = EUS }
+		command = { type = end_access which = FIN }
+		command = { type = end_access which = FLA }
+		command = { type = end_access which = FRA }
+		command = { type = end_access which = GAB }
+		command = { type = end_access which = GEO }
+		command = { type = end_access which = GER }
+		command = { type = end_access which = GLD }
+		command = { type = end_access which = GRE }
+		command = { type = end_access which = GUA }
+		command = { type = end_access which = GUI }
+		command = { type = end_access which = GUY }
+		command = { type = end_access which = HAI }
+		command = { type = end_access which = HOL }
+		command = { type = end_access which = HON }
+		command = { type = end_access which = HUN }
+		command = { type = end_access which = ICL }
+		command = { type = end_access which = IDC }
+		command = { type = end_access which = IND }
+		command = { type = end_access which = INO }
+		command = { type = end_access which = IRE }
+		command = { type = end_access which = IRQ }
+		command = { type = end_access which = ISR }
+		command = { type = end_access which = ITA }
+		command = { type = end_access which = JAP }
+		command = { type = end_access which = JOR }
+		command = { type = end_access which = KAZ }
+		command = { type = end_access which = KOR }
+		command = { type = end_access which = KUR }
+		command = { type = end_access which = KYG }
+		command = { type = end_access which = LAO }
+		command = { type = end_access which = LAT }
+		command = { type = end_access which = LBY }
+		command = { type = end_access which = LEB }
+		command = { type = end_access which = LIB }
+		command = { type = end_access which = LIT }
+		command = { type = end_access which = LUX }
+		command = { type = end_access which = MAD }
+		command = { type = end_access which = MAL }
+		command = { type = end_access which = MAN }
+		command = { type = end_access which = MEN }
+		command = { type = end_access which = MEX }
+		command = { type = end_access which = MLY }
+		command = { type = end_access which = MON }
+		command = { type = end_access which = MOR }
+		command = { type = end_access which = MOZ }
+		command = { type = end_access which = MTN }
+		command = { type = end_access which = NAM }
+		command = { type = end_access which = NEP }
+		command = { type = end_access which = NIC }
+		command = { type = end_access which = NIG }
+		command = { type = end_access which = NOR }
+		command = { type = end_access which = NZL }
+		command = { type = end_access which = OMN }
+		command = { type = end_access which = OTT }
+		command = { type = end_access which = PAK }
+		command = { type = end_access which = PAL }
+		command = { type = end_access which = PAN }
+		command = { type = end_access which = PAR }
+		command = { type = end_access which = PER }
+		command = { type = end_access which = PHI }
+		command = { type = end_access which = POL }
+		command = { type = end_access which = POR }
+		command = { type = end_access which = PRI }
+		command = { type = end_access which = PRK }
+		command = { type = end_access which = PRU }
+		command = { type = end_access which = QUE }
+		command = { type = end_access which = RHO }
+		command = { type = end_access which = ROM }
+		command = { type = end_access which = RSI }
+		command = { type = end_access which = RUS }
+		command = { type = end_access which = SAF }
+		command = { type = end_access which = SAL }
+		command = { type = end_access which = SAR }
+		command = { type = end_access which = SAU }
+		command = { type = end_access which = SCA }
+		command = { type = end_access which = SCH }
+		command = { type = end_access which = SCO }
+		command = { type = end_access which = SER }
+		command = { type = end_access which = SIA }
+		command = { type = end_access which = SIB }
+		command = { type = end_access which = SIE }
+		command = { type = end_access which = SIK }
+		command = { type = end_access which = SLO }
+		command = { type = end_access which = SLV }
+		command = { type = end_access which = SOM }
+		command = { type = end_access which = SOV }
+		command = { type = end_access which = SPA }
+		command = { type = end_access which = SPR }
+		command = { type = end_access which = SUD }
+		command = { type = end_access which = SWE }
+		command = { type = end_access which = SYR }
+		command = { type = end_access which = TAJ }
+		command = { type = end_access which = TAN }
+		command = { type = end_access which = TEX }
+		command = { type = end_access which = TIB }
+		command = { type = end_access which = TRA }
+		command = { type = end_access which = TRK }
+		command = { type = end_access which = TUN }
+		command = { type = end_access which = TUR }
+		command = { type = end_access which = UKR }
+		command = { type = end_access which = URU }
+		command = { type = end_access which = USA }
+		command = { type = end_access which = UZB }
+		command = { type = end_access which = VEN }
+		command = { type = end_access which = VIE }
+		command = { type = end_access which = WLL }
+		command = { type = end_access which = YEM }
+		command = { type = end_access which = YUG }
+		command = { type = end_access which = U01 }
+		command = { type = end_access which = U02 }
+		command = { type = end_access which = U03 }
+		command = { type = end_access which = U04 }
+		command = { type = end_access which = U05 }
+		command = { type = end_access which = U06 }
+		command = { type = end_access which = U08 }
+		command = { type = end_access which = U09 }
+		command = { type = end_access which = U10 }
+		command = { type = end_access which = U11 }
+		command = { type = end_access which = U12 }
+		command = { type = end_access which = U13 }
+		command = { type = end_access which = U14 }
+		command = { type = end_access which = U15 }
+		command = { type = end_access which = U16 }
+		command = { type = end_access which = U17 }
+		command = { type = end_access which = U18 }
+		command = { type = end_access which = U19 }
+		command = { type = end_access which = U20 }
+		command = { type = end_access which = U21 }
+		command = { type = end_access which = U22 }
+		command = { type = end_access which = U23 }
+		command = { type = end_access which = U24 }
+		command = { type = end_access which = U25 }
+		command = { type = end_access which = U26 }
+		command = { type = end_access which = U27 }
+		command = { type = end_access which = U28 }
+		command = { type = end_access which = U29 }
+		command = { type = end_access which = U30 }
+		command = { type = end_access which = U31 }
+		command = { type = end_access which = U32 }
+		command = { type = end_access which = U33 }
+		command = { type = end_access which = U34 }
+		command = { type = end_access which = U35 }
+		command = { type = end_access which = U36 }
+		command = { type = end_access which = U37 }
+		command = { type = end_access which = U39 }
+		command = { type = end_access which = U40 }
+		command = { type = end_access which = U41 }
+		command = { type = end_access which = U42 }
+		command = { type = end_access which = U43 }
+		command = { type = end_access which = U44 }
+		command = { type = end_access which = U45 }
+		command = { type = end_access which = U46 }
+		command = { type = end_access which = U47 }
+		command = { type = end_access which = U48 }
+		command = { type = end_access which = U49 }
+		command = { type = end_access which = U50 }
+		command = { type = end_access which = U51 }
+		command = { type = end_access which = U52 }
+		command = { type = end_access which = U57 }
+		command = { type = end_access which = U58 }
+		command = { type = end_access which = U59 }
+		command = { type = end_access which = U60 }
+		command = { type = end_access which = U62 }
+		command = { type = end_access which = U67 }
+		command = { type = end_access which = U70 }
+		command = { type = end_access which = U71 }
+		command = { type = end_access which = U72 }
+		command = { type = end_access which = U73 }
+		command = { type = end_access which = U74 }
+		command = { type = end_access which = U75 }
+		command = { type = end_access which = U76 }
+		command = { type = end_access which = U77 }
+		command = { type = end_access which = U78 }
+		command = { type = end_access which = U79 }
+		command = { type = end_access which = U80 }
+		command = { type = end_access which = U81 }
+		command = { type = end_access which = U82 }
+		command = { type = end_access which = U83 }
+		command = { type = end_access which = U84 }
+		command = { type = end_access which = U85 }
+		command = { type = end_access which = U86 }
+		command = { type = end_access which = U87 }
+		command = { type = end_access which = U88 }
+		command = { type = end_access which = U89 }
+		command = { type = end_access which = U90 }
+		command = { type = end_access which = U91 }
+		command = { type = end_access which = U92 }
+		command = { type = end_access which = U93 }
+		command = { type = end_access which = U94 }
+		command = { type = end_access which = U95 }
+		command = { type = end_access which = U96 }
+		command = { type = end_access which = U97 }
+		command = { type = end_access which = U98 }
+		command = { type = end_access which = U99 }
+		command = { type = end_access which = UCH }
+		command = { type = end_access which = UER }
+		command = { type = end_access which = UGS }
+		command = { type = end_access which = UPE }
+		command = { type = end_access which = UTC }
+		
+		command = { trigger = { NOT = { domestic = { type = democratic value = 5 } } } type = local_setflag which = demoInc }
+		command = { trigger = { domestic = { type = democratic value = 5 } } type = local_setflag which = demoDec }
+		command = { trigger = { NOT = { domestic = { type = political_left value = 5 } } } type = local_setflag which = leftInc }
+		command = { trigger = { domestic = { type = political_left value = 5 } } type = local_setflag which = leftDec }
+		
+		command = { trigger = { local_flag = demoInc } type = domestic which = democratic value = 2 }
+		command = { trigger = { local_flag = demoDec } type = domestic which = democratic value = -2 }
+		command = { trigger = { local_flag = leftInc } type = domestic which = political_left value = 2 }
+		command = { trigger = { local_flag = leftDec } type = domestic which = political_left value = -2 }
+		
+		command = { type = local_clrflag which = demoInc }
+		command = { type = local_clrflag which = demoDec }
+		command = { type = local_clrflag which = leftInc }
+		command = { type = local_clrflag which = leftDec }
+		
+		#command = { trigger = { NOT = { domestic = { type = democratic value = 5 } } } type = domestic which = democratic value = 2 }
+		#command = { trigger = { domestic = { type = democratic value = 5 } } type = domestic which = democratic value = -2 }
+		#command = { trigger = { NOT = { domestic = { type = political_left value = 5 } } } type = domestic which = political_left value = 2 }
+		#command = { trigger = { domestic = { type = political_left value = 5 } } type = domestic which = political_left value = -2 }
+		
+		command = { type = set_domestic which = free_market value = 4 }
+		command = { type = set_domestic which = freedom value = 7 }
+		command = { type = set_domestic which = defense_lobby value = 2 }
+		command = { type = set_domestic which = interventionism value = 1 }
+		command = { type = ai which = "neutralityHigh.ai" }
+		
+		command = { trigger = { ispuppet = yes } type =	addcore which = 1614 }
+		command = { trigger = { ispuppet = yes } type = event which = 2400603 where = -1 when = 2 }
+		command = { trigger = { ispuppet = yes } type = trigger which = 2400604 }
+		
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+		command = { trigger = { NOT = { technology = 1080 } } type = add_division value = infantry when = 6 }
+		command = { trigger = { technology = 1080 NOT = { technology = 1090 } } type = add_division value = infantry when = 7 }
+		command = { trigger = { technology = 1090 NOT = { technology = 1100 } } type = add_division value = infantry when = 8 }
+		command = { trigger = { technology = 1100 NOT = { technology = 1110 } } type = add_division value = infantry when = 9 }
+		command = { trigger = { technology = 1110 NOT = { technology = 1120 } } type = add_division value = infantry when = 10 }
+		command = { trigger = { technology = 1120 NOT = { technology = 1130 } } type = add_division value = infantry when = 11 }
+		command = { trigger = { technology = 1130 } type = add_division value = infantry when = 12 }
+	}
+}
+
+event = {
+	id = 2400603
+	random = no 
+	persistent = yes
+
+	name = "Independence established"
+	desc = "Independence established"
+	style = 2	
+
+	action = {
+		name = "We are creating a better future."
+		command = { trigger = { ispuppet = yes } type = end_puppet }
+		command = { trigger = { core = { province = 1614 } } type = removecore which = 1614 }
+	}
+}
+
+event = {
+	id = 2400604
+	random = no 
+	persistent = yes
+	all = yes
+
+	name = "The Intervention"
+	desc = "As expected, our former tormentors have seen the latest developments in our country with the greatest dismay and are now preparing for an all out intervention to restore the ancien regime!"
+	style = 2	
+	
+	action = {
+		command = { }
+		command = { trigger = { core = { province = 1614 data = AFG } puppet = { country = AFG } } type = war which = AFG }
+		command = { trigger = { core = { province = 1614 data = ALB } puppet = { country = ALB } } type = war which = ALB }
+		command = { trigger = { core = { province = 1614 data = ALG } puppet = { country = ALG } } type = war which = ALG }
+		command = { trigger = { core = { province = 1614 data = ANG } puppet = { country = ANG } } type = war which = ANG }
+		command = { trigger = { core = { province = 1614 data = ARA } puppet = { country = ARA } } type = war which = ARA }
+		command = { trigger = { core = { province = 1614 data = ARG } puppet = { country = ARG } } type = war which = ARG }
+		command = { trigger = { core = { province = 1614 data = ARM } puppet = { country = ARM } } type = war which = ARM }
+		command = { trigger = { core = { province = 1614 data = AST } puppet = { country = AST } } type = war which = AST }
+		command = { trigger = { core = { province = 1614 data = AUS } puppet = { country = AUS } } type = war which = AUS }
+		command = { trigger = { core = { province = 1614 data = AZB } puppet = { country = AZB } } type = war which = AZB }
+		command = { trigger = { core = { province = 1614 data = BEL } puppet = { country = BEL } } type = war which = BEL }
+		command = { trigger = { core = { province = 1614 data = BEN } puppet = { country = BEN } } type = war which = BEN }
+		command = { trigger = { core = { province = 1614 data = BHU } puppet = { country = BHU } } type = war which = BHU }
+		command = { trigger = { core = { province = 1614 data = BLR } puppet = { country = BLR } } type = war which = BLR }
+		command = { trigger = { core = { province = 1614 data = BOL } puppet = { country = BOL } } type = war which = BOL }
+		command = { trigger = { core = { province = 1614 data = BOS } puppet = { country = BOS } } type = war which = BOS }
+		command = { trigger = { core = { province = 1614 data = BRA } puppet = { country = BRA } } type = war which = BRA }
+		command = { trigger = { core = { province = 1614 data = BRU } puppet = { country = BRU } } type = war which = BRU }
+		command = { trigger = { core = { province = 1614 data = BUL } puppet = { country = BUL } } type = war which = BUL }
+		command = { trigger = { core = { province = 1614 data = BUR } puppet = { country = BUR } } type = war which = BUR }
+		command = { trigger = { core = { province = 1614 data = CAL } puppet = { country = CAL } } type = war which = CAL }
+		command = { trigger = { core = { province = 1614 data = CAM } puppet = { country = CAM } } type = war which = CAM }
+		command = { trigger = { core = { province = 1614 data = CAN } puppet = { country = CAN } } type = war which = CAN }
+		command = { trigger = { core = { province = 1614 data = CGX } puppet = { country = CGX } } type = war which = CGX }
+		command = { trigger = { core = { province = 1614 data = CHC } puppet = { country = CHC } } type = war which = CHC }
+		command = { trigger = { core = { province = 1614 data = CHI } puppet = { country = CHI } } type = war which = CHI }
+		command = { trigger = { core = { province = 1614 data = CHL } puppet = { country = CHL } } type = war which = CHL }
+		command = { trigger = { core = { province = 1614 data = CMB } puppet = { country = CMB } } type = war which = CMB }
+		command = { trigger = { core = { province = 1614 data = COL } puppet = { country = COL } } type = war which = COL }
+		command = { trigger = { core = { province = 1614 data = CON } puppet = { country = CON } } type = war which = CON }
+		command = { trigger = { core = { province = 1614 data = COS } puppet = { country = COS } } type = war which = COS }
+		command = { trigger = { core = { province = 1614 data = CRO } puppet = { country = CRO } } type = war which = CRO }
+		command = { trigger = { core = { province = 1614 data = CSA } puppet = { country = CSA } } type = war which = CSA }
+		command = { trigger = { core = { province = 1614 data = CSX } puppet = { country = CSX } } type = war which = CSX }
+		command = { trigger = { core = { province = 1614 data = CUB } puppet = { country = CUB } } type = war which = CUB }
+		command = { trigger = { core = { province = 1614 data = CXB } puppet = { country = CXB } } type = war which = CXB }
+		command = { trigger = { core = { province = 1614 data = CYN } puppet = { country = CYN } } type = war which = CYN }
+		command = { trigger = { core = { province = 1614 data = CYP } puppet = { country = CYP } } type = war which = CYP }
+		command = { trigger = { core = { province = 1614 data = CZE } puppet = { country = CZE } } type = war which = CZE }
+		command = { trigger = { core = { province = 1614 data = DDR } puppet = { country = DDR } } type = war which = DDR }
+		command = { trigger = { core = { province = 1614 data = DEN } puppet = { country = DEN } } type = war which = DEN }
+		command = { trigger = { core = { province = 1614 data = DFR } puppet = { country = DFR } } type = war which = DFR }
+		command = { trigger = { core = { province = 1614 data = DOM } puppet = { country = DOM } } type = war which = DOM }
+		command = { trigger = { core = { province = 1614 data = EAF } puppet = { country = EAF } } type = war which = EAF }
+		command = { trigger = { core = { province = 1614 data = ECU } puppet = { country = ECU } } type = war which = ECU }
+		command = { trigger = { core = { province = 1614 data = EGY } puppet = { country = EGY } } type = war which = EGY }
+		command = { trigger = { core = { province = 1614 data = ENG } puppet = { country = ENG } } type = war which = ENG }
+		command = { trigger = { core = { province = 1614 data = EQA } puppet = { country = EQA } } type = war which = EQA }
+		command = { trigger = { core = { province = 1614 data = EST } puppet = { country = EST } } type = war which = EST }
+		command = { trigger = { core = { province = 1614 data = ETH } puppet = { country = ETH } } type = war which = ETH }
+		command = { trigger = { core = { province = 1614 data = EUS } puppet = { country = EUS } } type = war which = EUS }
+		command = { trigger = { core = { province = 1614 data = FIN } puppet = { country = FIN } } type = war which = FIN }
+		command = { trigger = { core = { province = 1614 data = FLA } puppet = { country = FLA } } type = war which = FLA }
+		command = { trigger = { core = { province = 1614 data = FRA } puppet = { country = FRA } } type = war which = FRA }
+		command = { trigger = { core = { province = 1614 data = GAB } puppet = { country = GAB } } type = war which = GAB }
+		command = { trigger = { core = { province = 1614 data = GEO } puppet = { country = GEO } } type = war which = GEO }
+		command = { trigger = { core = { province = 1614 data = GER } puppet = { country = GER } } type = war which = GER }
+		command = { trigger = { core = { province = 1614 data = GLD } puppet = { country = GLD } } type = war which = GLD }
+		command = { trigger = { core = { province = 1614 data = GRE } puppet = { country = GRE } } type = war which = GRE }
+		command = { trigger = { core = { province = 1614 data = GUA } puppet = { country = GUA } } type = war which = GUA }
+		command = { trigger = { core = { province = 1614 data = GUI } puppet = { country = GUI } } type = war which = GUI }
+		command = { trigger = { core = { province = 1614 data = GUY } puppet = { country = GUY } } type = war which = GUY }
+		command = { trigger = { core = { province = 1614 data = HAI } puppet = { country = HAI } } type = war which = HAI }
+		command = { trigger = { core = { province = 1614 data = HOL } puppet = { country = HOL } } type = war which = HOL }
+		command = { trigger = { core = { province = 1614 data = HON } puppet = { country = HON } } type = war which = HON }
+		command = { trigger = { core = { province = 1614 data = HUN } puppet = { country = HUN } } type = war which = HUN }
+		command = { trigger = { core = { province = 1614 data = ICL } puppet = { country = ICL } } type = war which = ICL }
+		command = { trigger = { core = { province = 1614 data = IDC } puppet = { country = IDC } } type = war which = IDC }
+		command = { trigger = { core = { province = 1614 data = IND } puppet = { country = IND } } type = war which = IND }
+		command = { trigger = { core = { province = 1614 data = INO } puppet = { country = INO } } type = war which = INO }
+		command = { trigger = { core = { province = 1614 data = IRE } puppet = { country = IRE } } type = war which = IRE }
+		command = { trigger = { core = { province = 1614 data = IRQ } puppet = { country = IRQ } } type = war which = IRQ }
+		command = { trigger = { core = { province = 1614 data = ISR } puppet = { country = ISR } } type = war which = ISR }
+		command = { trigger = { core = { province = 1614 data = ITA } puppet = { country = ITA } } type = war which = ITA }
+		command = { trigger = { core = { province = 1614 data = JAP } puppet = { country = JAP } } type = war which = JAP }
+		command = { trigger = { core = { province = 1614 data = JOR } puppet = { country = JOR } } type = war which = JOR }
+		command = { trigger = { core = { province = 1614 data = KAZ } puppet = { country = KAZ } } type = war which = KAZ }
+		command = { trigger = { core = { province = 1614 data = KOR } puppet = { country = KOR } } type = war which = KOR }
+		command = { trigger = { core = { province = 1614 data = KUR } puppet = { country = KUR } } type = war which = KUR }
+		command = { trigger = { core = { province = 1614 data = KYG } puppet = { country = KYG } } type = war which = KYG }
+		command = { trigger = { core = { province = 1614 data = LAO } puppet = { country = LAO } } type = war which = LAO }
+		command = { trigger = { core = { province = 1614 data = LAT } puppet = { country = LAT } } type = war which = LAT }
+		command = { trigger = { core = { province = 1614 data = LBY } puppet = { country = LBY } } type = war which = LBY }
+		command = { trigger = { core = { province = 1614 data = LEB } puppet = { country = LEB } } type = war which = LEB }
+		command = { trigger = { core = { province = 1614 data = LIB } puppet = { country = LIB } } type = war which = LIB }
+		command = { trigger = { core = { province = 1614 data = LIT } puppet = { country = LIT } } type = war which = LIT }
+		command = { trigger = { core = { province = 1614 data = LUX } puppet = { country = LUX } } type = war which = LUX }
+		command = { trigger = { core = { province = 1614 data = MAD } puppet = { country = MAD } } type = war which = MAD }
+		command = { trigger = { core = { province = 1614 data = MAL } puppet = { country = MAL } } type = war which = MAL }
+		command = { trigger = { core = { province = 1614 data = MAN } puppet = { country = MAN } } type = war which = MAN }
+		command = { trigger = { core = { province = 1614 data = MEN } puppet = { country = MEN } } type = war which = MEN }
+		command = { trigger = { core = { province = 1614 data = MEX } puppet = { country = MEX } } type = war which = MEX }
+		command = { trigger = { core = { province = 1614 data = MLY } puppet = { country = MLY } } type = war which = MLY }
+		command = { trigger = { core = { province = 1614 data = MON } puppet = { country = MON } } type = war which = MON }
+		command = { trigger = { core = { province = 1614 data = MOR } puppet = { country = MOR } } type = war which = MOR }
+		command = { trigger = { core = { province = 1614 data = MOZ } puppet = { country = MOZ } } type = war which = MOZ }
+		command = { trigger = { core = { province = 1614 data = MTN } puppet = { country = MTN } } type = war which = MTN }
+		command = { trigger = { core = { province = 1614 data = NAM } puppet = { country = NAM } } type = war which = NAM }
+		command = { trigger = { core = { province = 1614 data = NEP } puppet = { country = NEP } } type = war which = NEP }
+		command = { trigger = { core = { province = 1614 data = NIC } puppet = { country = NIC } } type = war which = NIC }
+		command = { trigger = { core = { province = 1614 data = NIG } puppet = { country = NIG } } type = war which = NIG }
+		command = { trigger = { core = { province = 1614 data = NOR } puppet = { country = NOR } } type = war which = NOR }
+		command = { trigger = { core = { province = 1614 data = NZL } puppet = { country = NZL } } type = war which = NZL }
+		command = { trigger = { core = { province = 1614 data = OMN } puppet = { country = OMN } } type = war which = OMN }
+		command = { trigger = { core = { province = 1614 data = OTT } puppet = { country = OTT } } type = war which = OTT }
+		command = { trigger = { core = { province = 1614 data = PAK } puppet = { country = PAK } } type = war which = PAK }
+		command = { trigger = { core = { province = 1614 data = PAL } puppet = { country = PAL } } type = war which = PAL }
+		command = { trigger = { core = { province = 1614 data = PAN } puppet = { country = PAN } } type = war which = PAN }
+		command = { trigger = { core = { province = 1614 data = PAR } puppet = { country = PAR } } type = war which = PAR }
+		command = { trigger = { core = { province = 1614 data = PER } puppet = { country = PER } } type = war which = PER }
+		command = { trigger = { core = { province = 1614 data = PHI } puppet = { country = PHI } } type = war which = PHI }
+		command = { trigger = { core = { province = 1614 data = POL } puppet = { country = POL } } type = war which = POL }
+		command = { trigger = { core = { province = 1614 data = POR } puppet = { country = POR } } type = war which = POR }
+		command = { trigger = { core = { province = 1614 data = PRI } puppet = { country = PRI } } type = war which = PRI }
+		command = { trigger = { core = { province = 1614 data = PRK } puppet = { country = PRK } } type = war which = PRK }
+		command = { trigger = { core = { province = 1614 data = PRU } puppet = { country = PRU } } type = war which = PRU }
+		command = { trigger = { core = { province = 1614 data = QUE } puppet = { country = QUE } } type = war which = QUE }
+		command = { trigger = { core = { province = 1614 data = RHO } puppet = { country = RHO } } type = war which = RHO }
+		command = { trigger = { core = { province = 1614 data = ROM } puppet = { country = ROM } } type = war which = ROM }
+		command = { trigger = { core = { province = 1614 data = RSI } puppet = { country = RSI } } type = war which = RSI }
+		command = { trigger = { core = { province = 1614 data = RUS } puppet = { country = RUS } } type = war which = RUS }
+		command = { trigger = { core = { province = 1614 data = SAF } puppet = { country = SAF } } type = war which = SAF }
+		command = { trigger = { core = { province = 1614 data = SAL } puppet = { country = SAL } } type = war which = SAL }
+		command = { trigger = { core = { province = 1614 data = SAR } puppet = { country = SAR } } type = war which = SAR }
+		command = { trigger = { core = { province = 1614 data = SAU } puppet = { country = SAU } } type = war which = SAU }
+		command = { trigger = { core = { province = 1614 data = SCA } puppet = { country = SCA } } type = war which = SCA }
+		command = { trigger = { core = { province = 1614 data = SCH } puppet = { country = SCH } } type = war which = SCH }
+		command = { trigger = { core = { province = 1614 data = SCO } puppet = { country = SCO } } type = war which = SCO }
+		command = { trigger = { core = { province = 1614 data = SER } puppet = { country = SER } } type = war which = SER }
+		command = { trigger = { core = { province = 1614 data = SIA } puppet = { country = SIA } } type = war which = SIA }
+		command = { trigger = { core = { province = 1614 data = SIB } puppet = { country = SIB } } type = war which = SIB }
+		command = { trigger = { core = { province = 1614 data = SIE } puppet = { country = SIE } } type = war which = SIE }
+		command = { trigger = { core = { province = 1614 data = SIK } puppet = { country = SIK } } type = war which = SIK }
+		command = { trigger = { core = { province = 1614 data = SLO } puppet = { country = SLO } } type = war which = SLO }
+		command = { trigger = { core = { province = 1614 data = SLV } puppet = { country = SLV } } type = war which = SLV }
+		command = { trigger = { core = { province = 1614 data = SOM } puppet = { country = SOM } } type = war which = SOM }
+		command = { trigger = { core = { province = 1614 data = SOV } puppet = { country = SOV } } type = war which = SOV }
+		command = { trigger = { core = { province = 1614 data = SPA } puppet = { country = SPA } } type = war which = SPA }
+		command = { trigger = { core = { province = 1614 data = SPR } puppet = { country = SPR } } type = war which = SPR }
+		command = { trigger = { core = { province = 1614 data = SUD } puppet = { country = SUD } } type = war which = SUD }
+		command = { trigger = { core = { province = 1614 data = SWE } puppet = { country = SWE } } type = war which = SWE }
+		command = { trigger = { core = { province = 1614 data = SYR } puppet = { country = SYR } } type = war which = SYR }
+		command = { trigger = { core = { province = 1614 data = TAJ } puppet = { country = TAJ } } type = war which = TAJ }
+		command = { trigger = { core = { province = 1614 data = TAN } puppet = { country = TAN } } type = war which = TAN }
+		command = { trigger = { core = { province = 1614 data = TEX } puppet = { country = TEX } } type = war which = TEX }
+		command = { trigger = { core = { province = 1614 data = TIB } puppet = { country = TIB } } type = war which = TIB }
+		command = { trigger = { core = { province = 1614 data = TRA } puppet = { country = TRA } } type = war which = TRA }
+		command = { trigger = { core = { province = 1614 data = TRK } puppet = { country = TRK } } type = war which = TRK }
+		command = { trigger = { core = { province = 1614 data = TUN } puppet = { country = TUN } } type = war which = TUN }
+		command = { trigger = { core = { province = 1614 data = TUR } puppet = { country = TUR } } type = war which = TUR }
+		command = { trigger = { core = { province = 1614 data = UKR } puppet = { country = UKR } } type = war which = UKR }
+		command = { trigger = { core = { province = 1614 data = URU } puppet = { country = URU } } type = war which = URU }
+		command = { trigger = { core = { province = 1614 data = USA } puppet = { country = USA } } type = war which = USA }
+		command = { trigger = { core = { province = 1614 data = UZB } puppet = { country = UZB } } type = war which = UZB }
+		command = { trigger = { core = { province = 1614 data = VEN } puppet = { country = VEN } } type = war which = VEN }
+		command = { trigger = { core = { province = 1614 data = VIE } puppet = { country = VIE } } type = war which = VIE }
+		command = { trigger = { core = { province = 1614 data = WLL } puppet = { country = WLL } } type = war which = WLL }
+		command = { trigger = { core = { province = 1614 data = YEM } puppet = { country = YEM } } type = war which = YEM }
+		command = { trigger = { core = { province = 1614 data = YUG } puppet = { country = YUG } } type = war which = YUG }
+		command = { trigger = { core = { province = 1614 data = U01 } puppet = { country = U01 } } type = war which = U01 }
+		command = { trigger = { core = { province = 1614 data = U02 } puppet = { country = U02 } } type = war which = U02 }
+		command = { trigger = { core = { province = 1614 data = U03 } puppet = { country = U03 } } type = war which = U03 }
+		command = { trigger = { core = { province = 1614 data = U04 } puppet = { country = U04 } } type = war which = U04 }
+		command = { trigger = { core = { province = 1614 data = U05 } puppet = { country = U05 } } type = war which = U05 }
+		command = { trigger = { core = { province = 1614 data = U06 } puppet = { country = U06 } } type = war which = U06 }
+		command = { trigger = { core = { province = 1614 data = U08 } puppet = { country = U08 } } type = war which = U08 }
+		command = { trigger = { core = { province = 1614 data = U09 } puppet = { country = U09 } } type = war which = U09 }
+		command = { trigger = { core = { province = 1614 data = U10 } puppet = { country = U10 } } type = war which = U10 }
+		command = { trigger = { core = { province = 1614 data = U11 } puppet = { country = U11 } } type = war which = U11 }
+		command = { trigger = { core = { province = 1614 data = U12 } puppet = { country = U12 } } type = war which = U12 }
+		command = { trigger = { core = { province = 1614 data = U13 } puppet = { country = U13 } } type = war which = U13 }
+		command = { trigger = { core = { province = 1614 data = U14 } puppet = { country = U14 } } type = war which = U14 }
+		command = { trigger = { core = { province = 1614 data = U15 } puppet = { country = U15 } } type = war which = U15 }
+		command = { trigger = { core = { province = 1614 data = U16 } puppet = { country = U16 } } type = war which = U16 }
+		command = { trigger = { core = { province = 1614 data = U17 } puppet = { country = U17 } } type = war which = U17 }
+		command = { trigger = { core = { province = 1614 data = U18 } puppet = { country = U18 } } type = war which = U18 }
+		command = { trigger = { core = { province = 1614 data = U19 } puppet = { country = U19 } } type = war which = U19 }
+		command = { trigger = { core = { province = 1614 data = U20 } puppet = { country = U20 } } type = war which = U20 }
+		command = { trigger = { core = { province = 1614 data = U21 } puppet = { country = U21 } } type = war which = U21 }
+		command = { trigger = { core = { province = 1614 data = U22 } puppet = { country = U22 } } type = war which = U22 }
+		command = { trigger = { core = { province = 1614 data = U23 } puppet = { country = U23 } } type = war which = U23 }
+		command = { trigger = { core = { province = 1614 data = U24 } puppet = { country = U24 } } type = war which = U24 }
+		command = { trigger = { core = { province = 1614 data = U25 } puppet = { country = U25 } } type = war which = U25 }
+		command = { trigger = { core = { province = 1614 data = U26 } puppet = { country = U26 } } type = war which = U26 }
+		command = { trigger = { core = { province = 1614 data = U27 } puppet = { country = U27 } } type = war which = U27 }
+		command = { trigger = { core = { province = 1614 data = U28 } puppet = { country = U28 } } type = war which = U28 }
+		command = { trigger = { core = { province = 1614 data = U29 } puppet = { country = U29 } } type = war which = U29 }
+		command = { trigger = { core = { province = 1614 data = U30 } puppet = { country = U30 } } type = war which = U30 }
+		command = { trigger = { core = { province = 1614 data = U31 } puppet = { country = U31 } } type = war which = U31 }
+		command = { trigger = { core = { province = 1614 data = U32 } puppet = { country = U32 } } type = war which = U32 }
+		command = { trigger = { core = { province = 1614 data = U33 } puppet = { country = U33 } } type = war which = U33 }
+		command = { trigger = { core = { province = 1614 data = U34 } puppet = { country = U34 } } type = war which = U34 }
+		command = { trigger = { core = { province = 1614 data = U35 } puppet = { country = U35 } } type = war which = U35 }
+		command = { trigger = { core = { province = 1614 data = U36 } puppet = { country = U36 } } type = war which = U36 }
+		command = { trigger = { core = { province = 1614 data = U37 } puppet = { country = U37 } } type = war which = U37 }
+		command = { trigger = { core = { province = 1614 data = U39 } puppet = { country = U39 } } type = war which = U39 }
+		command = { trigger = { core = { province = 1614 data = U40 } puppet = { country = U40 } } type = war which = U40 }
+		command = { trigger = { core = { province = 1614 data = U41 } puppet = { country = U41 } } type = war which = U41 }
+		command = { trigger = { core = { province = 1614 data = U42 } puppet = { country = U42 } } type = war which = U42 }
+		command = { trigger = { core = { province = 1614 data = U43 } puppet = { country = U43 } } type = war which = U43 }
+		command = { trigger = { core = { province = 1614 data = U44 } puppet = { country = U44 } } type = war which = U44 }
+		command = { trigger = { core = { province = 1614 data = U45 } puppet = { country = U45 } } type = war which = U45 }
+		command = { trigger = { core = { province = 1614 data = U46 } puppet = { country = U46 } } type = war which = U46 }
+		command = { trigger = { core = { province = 1614 data = U47 } puppet = { country = U47 } } type = war which = U47 }
+		command = { trigger = { core = { province = 1614 data = U48 } puppet = { country = U48 } } type = war which = U48 }
+		command = { trigger = { core = { province = 1614 data = U49 } puppet = { country = U49 } } type = war which = U49 }
+		command = { trigger = { core = { province = 1614 data = U50 } puppet = { country = U50 } } type = war which = U50 }
+		command = { trigger = { core = { province = 1614 data = U51 } puppet = { country = U51 } } type = war which = U51 }
+		command = { trigger = { core = { province = 1614 data = U52 } puppet = { country = U52 } } type = war which = U52 }
+		command = { trigger = { core = { province = 1614 data = U57 } puppet = { country = U57 } } type = war which = U57 }
+		command = { trigger = { core = { province = 1614 data = U58 } puppet = { country = U58 } } type = war which = U58 }
+		command = { trigger = { core = { province = 1614 data = U59 } puppet = { country = U59 } } type = war which = U59 }
+		command = { trigger = { core = { province = 1614 data = U60 } puppet = { country = U60 } } type = war which = U60 }
+		command = { trigger = { core = { province = 1614 data = U62 } puppet = { country = U62 } } type = war which = U62 }
+		command = { trigger = { core = { province = 1614 data = U67 } puppet = { country = U67 } } type = war which = U67 }
+		command = { trigger = { core = { province = 1614 data = U70 } puppet = { country = U70 } } type = war which = U70 }
+		command = { trigger = { core = { province = 1614 data = U71 } puppet = { country = U71 } } type = war which = U71 }
+		command = { trigger = { core = { province = 1614 data = U72 } puppet = { country = U72 } } type = war which = U72 }
+		command = { trigger = { core = { province = 1614 data = U73 } puppet = { country = U73 } } type = war which = U73 }
+		command = { trigger = { core = { province = 1614 data = U74 } puppet = { country = U74 } } type = war which = U74 }
+		command = { trigger = { core = { province = 1614 data = U75 } puppet = { country = U75 } } type = war which = U75 }
+		command = { trigger = { core = { province = 1614 data = U76 } puppet = { country = U76 } } type = war which = U76 }
+		command = { trigger = { core = { province = 1614 data = U77 } puppet = { country = U77 } } type = war which = U77 }
+		command = { trigger = { core = { province = 1614 data = U78 } puppet = { country = U78 } } type = war which = U78 }
+		command = { trigger = { core = { province = 1614 data = U79 } puppet = { country = U79 } } type = war which = U79 }
+		command = { trigger = { core = { province = 1614 data = U80 } puppet = { country = U80 } } type = war which = U80 }
+		command = { trigger = { core = { province = 1614 data = U81 } puppet = { country = U81 } } type = war which = U81 }
+		command = { trigger = { core = { province = 1614 data = U82 } puppet = { country = U82 } } type = war which = U82 }
+		command = { trigger = { core = { province = 1614 data = U83 } puppet = { country = U83 } } type = war which = U83 }
+		command = { trigger = { core = { province = 1614 data = U84 } puppet = { country = U84 } } type = war which = U84 }
+		command = { trigger = { core = { province = 1614 data = U85 } puppet = { country = U85 } } type = war which = U85 }
+		command = { trigger = { core = { province = 1614 data = U86 } puppet = { country = U86 } } type = war which = U86 }
+		command = { trigger = { core = { province = 1614 data = U87 } puppet = { country = U87 } } type = war which = U87 }
+		command = { trigger = { core = { province = 1614 data = U88 } puppet = { country = U88 } } type = war which = U88 }
+		command = { trigger = { core = { province = 1614 data = U89 } puppet = { country = U89 } } type = war which = U89 }
+		command = { trigger = { core = { province = 1614 data = U90 } puppet = { country = U90 } } type = war which = U90 }
+		command = { trigger = { core = { province = 1614 data = U91 } puppet = { country = U91 } } type = war which = U91 }
+		command = { trigger = { core = { province = 1614 data = U92 } puppet = { country = U92 } } type = war which = U92 }
+		command = { trigger = { core = { province = 1614 data = U93 } puppet = { country = U93 } } type = war which = U93 }
+		command = { trigger = { core = { province = 1614 data = U94 } puppet = { country = U94 } } type = war which = U94 }
+		command = { trigger = { core = { province = 1614 data = U95 } puppet = { country = U95 } } type = war which = U95 }
+		command = { trigger = { core = { province = 1614 data = U96 } puppet = { country = U96 } } type = war which = U96 }
+		command = { trigger = { core = { province = 1614 data = U97 } puppet = { country = U97 } } type = war which = U97 }
+		command = { trigger = { core = { province = 1614 data = U98 } puppet = { country = U98 } } type = war which = U98 }
+		command = { trigger = { core = { province = 1614 data = U99 } puppet = { country = U99 } } type = war which = U99 }
+		command = { trigger = { core = { province = 1614 data = UCH } puppet = { country = UCH } } type = war which = UCH }
+		command = { trigger = { core = { province = 1614 data = UER } puppet = { country = UER } } type = war which = UER }
+		command = { trigger = { core = { province = 1614 data = UGS } puppet = { country = UGS } } type = war which = UGS }
+		command = { trigger = { core = { province = 1614 data = UPE } puppet = { country = UPE } } type = war which = UPE }
+		command = { trigger = { core = { province = 1614 data = UTC } puppet = { country = UTC } } type = war which = UTC }
+	}
+	action = {
+		name = "Let them go"
+		command = { type = dissent value = 2 }
+	}
+}

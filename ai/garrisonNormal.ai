@@ -1,0 +1,4 @@
+switch = no # [yes/no]
+
+max_garrison_prop = 0.20
+min_garrison_prop = 0.15

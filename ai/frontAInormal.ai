@@ -1,0 +1,15 @@
+switch = no # [yes/no]
+
+front = { 
+	reserve_prop		= 0.1	# Maximum proportion of total divisions in a front allowed to remain behind the front line ( HQs and divisions needing to recover.)
+	panic_ratio_vs_ai	= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	panic_ratio_vs_human= 2.5	# Front requests more troops if outnumbered by this factor. NOTE: this results in troops being drawn from garrison duties, etc, so set HIGH.
+	base_attack_odds	= 0.9	# Will attack at X odds or better
+	min_attack_odds		= 0.45	# If stalemated for a long period, may go as low as these attack odds
+	max_attack_odds		= 1.3	# Don't use more force than necessary to reach these odds
+	reinforce_odds		= 0.5	# Send in more troops if the attacking force is at these odds
+	withdraw_odds		= 0.3	# Break off attacks and withdraw at these odds
+
+	occupied 	= 0.7
+	owned 		= 0.7
+} 

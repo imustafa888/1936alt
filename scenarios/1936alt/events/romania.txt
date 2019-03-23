@@ -1,0 +1,19 @@
+#
+# HoI - Romania Events
+#
+#		written by Henrik Fåhraeus
+#
+### 2023003  ROM  USSR Claims Bessarabia
+### 2023004  ROM  The Vienna Dictate
+### 2023005  ROM  The Vienna Dictate - Germans rule in Romanian favor
+### 2023006  ROM  War
+### 2023007  ROM  End of the Soviet-Romanian War
+### 2023008  ROM  The Molotov-Ribbentrop Pact - Eastern Poland to Soviets
+### 2023009  ROM  Bulgarian claims on Dobrich
+### 2023010  ROM  A stab in the back
+### 2023011  ROM  The Romanian Surrender
+### 2023012  ROM  The Romanian Surrender
+### 2023013  ROM  The Bulgarian Defeat
+### 2023014  ROM  The Bulgarian Defeat
+### 2023015  ROM  The Hungarian Defeat
+### 2023016  ROM  Romania defeated after Vienna Dictate

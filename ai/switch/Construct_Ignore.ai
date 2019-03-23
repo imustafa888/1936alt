@@ -1,0 +1,37 @@
+construction = { 
+	max_factor = 0.0
+
+   	AA_batteries = not_atwar
+	max_AA_level = 3
+	AA_provs = { }
+
+	coastal_fort = no
+	max_coastal_level = 3
+
+	radar_station = not_atwar
+	max_radar = 2
+	radar_provs = {	} 
+
+	air_base = not_atwar
+	max_air_base = 5
+	air_base_provs = { } 
+
+	naval_base = no
+	max_naval_base = 5 
+	naval_base_provs = { } 
+
+	land_fort = not_atwar
+	max_land_level = 10
+	fort_borders = { }
+	fort_provs	= { 197 200 204 205 206 208	#Czech
+			    389 390 391 392 }		#Swiss
+
+	ic_at_war = no
+	force_ic_until = 1936
+	ic_end_year = 1937
+	
+	nuclear_reactor = yes	
+	max_nuclear = 10
+	rocket_test = yes
+	max_rocket = 10
+}

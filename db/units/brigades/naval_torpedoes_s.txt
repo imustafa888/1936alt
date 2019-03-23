@@ -1,0 +1,44 @@
+# BRIG_MODEL_21_
+
+# 0 - Early type naval_torpedoes (1870)
+model = {
+	cost						= 0.2
+	buildtime					= 140
+	manpower					= 0.0
+	surfacedetectioncapability	= 0
+	airdetectioncapability		= 0
+	subdetectioncapability		= 0
+	airdefence					= 0
+	seaattack					= 0
+	convoyattack				= 3
+	subattack					= 0
+	airattack					= 0
+	shorebombardment			= 0
+	distance					= 0
+	supplyconsumption			= 0.2
+	fuelconsumption				= 0
+	upgrade_time_factor			= 1.0
+	upgrade_cost_factor 		= 0.6
+	naval_torpedoes_s			= -2	# Do not upgrade to the next level
+}
+
+# 1 - Modern guided torpedoes (1948)
+model = {
+	cost						= 0.8
+	buildtime					= 140
+	manpower					= 0.0
+	surfacedetectioncapability	= 0
+	airdetectioncapability		= 0
+	subdetectioncapability		= 0
+	airdefence					= 0
+	seaattack					= 6
+	convoyattack				= 7
+	subattack					= 8
+	airattack					= 0
+	shorebombardment			= 0
+	distance					= 0
+	supplyconsumption			= 0.5
+	fuelconsumption				= 0
+	upgrade_time_factor 		= 0.8
+	upgrade_cost_factor 		= 0.6
+}

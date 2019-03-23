@@ -1,0 +1,301 @@
+############# AI MINISTER SWITCHES ################
+##### AUSTRALIA
+
+### Cyril Bingham-White (COA) into office
+
+# GERMANY
+
+### Martin Bormann into office
+
+event = {
+	id = 3003069
+	random = no
+	country = GER
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = nazi
+		}
+
+	date = { day = 1 month = january year = 1942 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofgovernment which = 23 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+
+
+##### CHINA 
+
+### Chiang Kai-Shek (HOS) into office
+
+event = {
+	id = 3012034
+	random = no
+	country = CHI
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = paternal_autocrat
+		}
+
+	date = { day = 1 month = january year = 1943 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofstate which = 55011 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+##### UNITED KINGDOM
+
+##### FRANCE
+
+### Joseph Paul Boncour into office
+
+event = {
+	id = 3002030
+	random = no
+	country = FRA
+	style = 0
+
+	trigger = {
+		ai = yes
+		government = democratic
+		}
+
+	date = { day = 1 month = may year = 1938 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = foreignminister which = 5031 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### ITALY
+
+
+##### HUNGARY
+
+### László Bárdossy into office
+
+event = {
+	id = 3022022
+	random = no
+	country = HUN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = fascist
+		}
+
+	date = { day = 1 month = january year = 1941 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofgovernment which = 105025 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### Béla Imrédy de Omoravia into office
+
+event = {
+	id = 3022023
+	random = no
+	country = HUN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = fascist
+		}
+
+	date = { day = 1 month = january year = 1938 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = foreignminister which = 105037 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### László Bárdossy into office
+
+event = {
+	id = 3022024
+	random = no
+	country = HUN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = fascist
+		}
+
+	date = { day = 1 month = january year = 1941 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = foreignminister which = 105039 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+
+##### FINLAND
+
+### Kysti Kallio into office
+
+event = {
+	id = 3030014
+	random = no
+	country = FIN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = social_conservative
+		}
+
+	date = { day = 1 month = january year = 1937 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofstate which = 145015 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### Risto Ryti into office
+
+event = {
+	id = 3030015
+	random = no
+	country = FIN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = social_conservative
+		}
+
+	date = { day = 1 month = january year = 1940 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofstate which = 145016 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### Risto Ryti into office
+
+event = {
+	id = 3030016
+	random = no
+	country = FIN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = social_conservative
+		}
+
+	date = { day = 1 month = january year = 1939 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofgovernment which = 145028 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### Väin A. Tanner into office
+
+event = {
+	id = 3030017
+	random = no
+	country = FIN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = social_conservative
+		}
+
+	date = { day = 1 month = january year = 1939 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = foreignminister which = 145038 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+
+##### MANCHURIA
+
+### Liou Tcheng-fou into office
+
+event = {
+	id = 3048011
+	random = no
+	country = MAN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = fascist
+		}
+
+	date = { day = 1 month = january year = 1937 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofgovernment which = 235013 }
+		command = { type = dissent value = -1 }
+		}
+	}
+
+### Wei Cheng-chen into office
+
+event = {
+	id = 3048012
+	random = no
+	country = MAN
+	style = 0
+
+	trigger = {
+		ai = yes
+		ideology = fascist
+		}
+
+	date = { day = 1 month = january year = 1939 }
+
+	name = "AI_EVENT"
+
+	action_a = {
+		command = { type = headofgovernment which = 235014 }
+		command = { type = dissent value = -1 }
+		}
+	}

@@ -1,0 +1,79 @@
+switch = no # [yes/no]
+
+military = { 
+	relative_build_scheme 	= no
+	max_batch_peace			= 720 #720 
+	max_batch_war			= 360 #360 
+	max_batch_home_front	= 160 #160
+	extra_convoys_war		= 0.0000 
+	extra_convoys_peace		= 0.0000
+
+	#### Divisions etc...
+	infantry			= 72
+	cavalry				= 0
+	motorized			= 12
+	mechanized			= 0
+	light_armor			= 13
+	armor				= 0
+	paratrooper			= 0
+	marine				= 0
+	bergsjaeger			= 1
+	garrison			= 1
+	hq					= 1
+	militia				= 0
+#				98 %
+
+	interceptor			= 0
+	multi_role			= 0
+	cas					= 0
+	strategic_bomber	= 0
+	tactical_bomber		= 0
+	naval_bomber		= 0
+	transport_plane		= 0
+	flying_bomb			= 0
+	flying_rocket		= 0
+#				0 %
+
+	battleship			= 0
+	carrier				= 0
+	escort_carrier		= 0
+	destroyer			= 0
+	light_cruiser		= 0
+	heavy_cruiser		= 0
+	battlecruiser		= 0
+	submarine			= 0
+	nuclear_submarine	= 0
+	transports			= 0
+#				0 %
+
+	#### Brigades
+	artillery			= 30	#30
+	sp_artillery		= 6	#8
+	rocket_artillery	= 2	#0 #Cav Brigade
+	sp_rct_artillery	= 2	#0
+   	anti_tank			= 2	#0 #Med. Tank
+   	tank_destroyer		= 2	#0
+   	light_armor_brigade	= 2	#0
+   	heavy_armor			= 2	#5
+	super_heavy_armor	= 1	#0
+	armored_car			= 2	#0
+   	anti_air			= 5	#0
+   	police				= 8	#1
+	engineer			= 11	#5
+#			75	#49
+
+	cag 					= 100
+	escort 					= 100
+
+	naval_asw				= 10	#20
+	naval_anti_air_s 		= 10	#20 
+	naval_radar_s 			= 10	#20 
+	naval_fire_controll_s 	= 20
+	naval_improved_hull_s 	= 10
+	naval_torpedoes_s 		= 10
+	naval_anti_air_l 		= 5	#0 
+	naval_radar_l 			= 5	#0
+	naval_fire_controll_l 	= 10	#0
+	naval_improved_hull_l 	= 5	#0
+	naval_torpedoes_l 		= 5	#0
+}

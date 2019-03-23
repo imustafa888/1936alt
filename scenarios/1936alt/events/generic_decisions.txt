@@ -1,0 +1,3973 @@
+################################
+# Atlantik Wall
+################################
+event = {
+	id = 1300000
+	random = no
+	country = GER
+
+	decision = { 
+		war = { country = GER country = ENG } 
+		war = { country = GER country = SOV } 
+		NOT = { war = { country = GER country = FRA } }
+		OR = { 
+			control = { province = 37 data = GER } 
+			control = { province = 39 data = GER } 
+			control = { province = 44 data = GER } 
+			control = { province = 46 data = GER } 
+			control = { province = 49 data = GER } 
+			control = { province = 51 data = GER } 
+			control = { province = 53 data = GER } 
+			control = { province = 68 data = GER } 
+			control = { province = 69 data = GER } 
+			control = { province = 114 data = GER } 
+			control = { province = 115 data = GER } 
+			control = { province = 122 data = GER } 
+			control = { province = 125 data = GER } 
+		}
+	}
+
+	decision_trigger = {
+		money = 3000
+		metal = 20000
+	}
+
+	trigger = {
+		OR = {
+			ai = no
+			AND = {
+				money = 3000
+				metal = 20000
+			}
+		}
+		war = { country = GER country = ENG } 
+		war = { country = GER country = SOV } 
+		NOT = { war = { country = GER country = FRA } }
+		OR = { 
+			control = { province = 37 data = GER } 
+			control = { province = 39 data = GER } 
+			control = { province = 44 data = GER } 
+			control = { province = 46 data = GER } 
+			control = { province = 49 data = GER } 
+			control = { province = 51 data = GER } 
+			control = { province = 53 data = GER } 
+			control = { province = 68 data = GER } 
+			control = { province = 69 data = GER } 
+			control = { province = 114 data = GER } 
+			control = { province = 115 data = GER } 
+			control = { province = 122 data = GER } 
+			control = { province = 125 data = GER } 
+		}
+	}
+   
+	name = "1300001name"
+	desc = "1300001desc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "1300001text"
+		command = { type = building_prod_mod which = coastal_fort value = 50 }
+		command = { trigger = { ai = no } type = money value = -3000 }
+		command = { trigger = { ai = no } type = metalpool value = -20000 }
+		command = { type = industrial_modifier which = total value = 2 }
+		command = { type = trigger which = 1300001 }
+	}
+}
+event = {
+	id = 1300001
+	random = no
+	country = FRA
+
+	name = "1300001name"
+	desc = "1300001desc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = industrial_modifier which = total value = 2 }
+		command = { type = dissent value = -3 }
+		command = { type = domestic which = defense_lobby value = 1 }
+	}
+}
+################################
+# Grand Offensive - GER
+################################
+event = {
+	id = 1300002
+	random = no
+	country = GER
+	
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 20000 }
+
+	trigger = {
+		OR = {
+			ai = yes
+			supplies = 20000
+		}
+		OR = {
+			war = { country = GER country = SOV }
+			lost_national = { country = GER value = 10 }
+		}
+	}
+
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -20000 }
+		command = { type = event which = 1300003 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300003
+	random = no
+	country = GER
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+
+################################
+# Grand Offensive - SOV
+################################
+event = {
+	id = 1300004
+	random = no
+	country = SOV
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 20000 }
+
+	trigger = {
+		atwar = yes
+		OR = { 
+			ai = yes
+			supplies = 20000
+		}
+		OR = {
+			lost_national = { country = SOV value = 30 }
+			AND = { 
+				war = { country = GER country = SOV } 
+				lost_national = { country = GER value = 10 } 
+			}
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive3"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -20000 }
+		command = { type = event which = 1300005 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300005
+	random = no
+	country = SOV
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+
+################################
+# Grand Offensive - ENG
+################################
+event = {
+	id = 1300006
+	random = no
+	country = ENG
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 20000 }
+
+	trigger = {
+		lost_national = { country = ENG value = 10 }
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 20000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive5"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -20000 }
+		command = { type = event which = 1300007 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300007
+	random = no
+	country = ENG
+   
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+
+################################
+# Grand Offensive - JAP
+################################
+event = {
+	id = 1300008
+	random = no
+	country = JAP
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 20000 }
+
+	trigger = {
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 20000
+		}
+		OR = {
+			war = { country = JAP country = CHI } 
+			war = { country = JAP country = USA } 
+			lost_national = { country = JAP value = 10 } 
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive5"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -20000 }
+		command = { type = event which = 1300009 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300009
+	random = no
+	country = JAP
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+################################
+# Grand Offensive - USA
+################################
+event = {
+	id = 13000010
+	random = no
+	country = USA
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 20000 }
+
+	trigger = {
+		atwar = yes
+		lost_national = { country = USA value = 10 } 
+		OR = {
+			ai = yes
+			supplies = 20000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive2"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -20000 }
+		command = { type = event which = 1300011 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300011
+	random = no
+	country = USA
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "Wehrmacht"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+################################
+# Grand Offensive - U08
+################################
+event = {
+	id = 13000012
+	random = no
+	country = U08
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 2000 }
+
+	trigger = {
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 2000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+	decision_picture = "decision_german_mobilization"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -2000 }
+		command = { type = event which = 1300013 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300013
+	random = no
+	country = U08
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+################################
+# Grand Offensive - FRA
+################################
+event = {
+	id = 13000014
+	random = no
+	country = FRA
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 2000 }
+
+	trigger = {
+		lost_national = { country = FRA value = 10 } 
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 2000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+	decision_picture = "decision_german_mobilization"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1925 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -2000 }
+		command = { type = event which = 1300015 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300015
+	random = no
+	country = FRA
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+################################
+# Grand Offensive - RUS
+################################
+event = {
+	id = 13000016
+	random = no
+	country = RUS
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 2000 }
+
+	trigger = {
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 2000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+	decision_picture = "decision_german_mobilization"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1925 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -2000 }
+		command = { type = event which = 1300017 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300017
+	random = no
+	country = RUS
+
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+
+################################
+# Grand Offensive - U09
+################################
+event = {
+	id = 13000018
+	random = no
+	country = U09
+
+	decision = { atwar = yes }
+
+	decision_trigger = { supplies = 2000 }
+
+	trigger = {
+		atwar = yes
+		OR = {
+			ai = yes
+			supplies = 2000
+		}
+	}
+   
+	name = "GrandOffensiveName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+	decision_picture = "decision_german_mobilization"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1925 }
+
+	action = {
+		name = "GrandOffensiveText"
+		command = { type = max_organization which = land value = 10 }
+		command = { type = morale which = land value = 10 }
+		command = { type = morale which = naval value = 10 }
+		command = { type = morale which = air value = 10 }
+		command = { type = counterattack value = 2 }
+		command = { type = assault value = 2 }
+		command = { type = ambush value = 2 }
+		command = { type = breakthrough value = 2 }
+		command = { type = encirclement value = 2 }
+		command = { type = hq_supply_eff value = 2 }
+		command = { type = sce_frequency value = 0.3 }
+		command = { type = attrition_mod value = 2 }
+		command = { type = trickleback_mod value = 5 }
+		command = { trigger = { ai = no } type = supplies value = -2000 }
+		command = { type = event which = 1300019 where = -1 when = 30 }
+	}
+}
+
+event = {
+	id = 1300019
+	random = no
+	country = U09
+   
+	name = "GrandOffensiveOverName"
+	desc = "GrandOffensiveDesc" 
+	style = 2
+	picture = "WW1_Offensive"
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = max_organization which = land value = -10 }
+		command = { type = morale which = land value = -10 }
+		command = { type = morale which = naval value = -10 }
+		command = { type = morale which = air value = -10 }
+		command = { type = counterattack value = -2 }
+		command = { type = assault value = -2 }
+		command = { type = ambush value = -2 }
+		command = { type = breakthrough value = -2 }
+		command = { type = encirclement value = -2 }
+		command = { type = hq_supply_eff value = -2 }
+		command = { type = sce_frequency value = -0.3 }
+		command = { type = attrition_mod value = -2 }
+		command = { type = trickleback_mod value = -5 }
+	}
+}
+# Up to 1300019 free for Grand Offensive decisions
+
+
+################################
+# Equipment decisions
+################################
+
+event = { #start winterequip production
+	id = 9000000
+	random = no
+	persistent = yes
+	TAG = { AFG AUS AST BEL BUL CAL CAN CHC CHI CSA CZE DDR DEN DFR ENG EST FIN FLA FRA GEO GER GRE HOL HUN IND IRE ITA JAP LAT LIT MAN MEN MEX NOR OTT PAK PER POL POR PRK PRU QUE ROM RSI RUS SCA SCH SCO SER SLO SLV SOV SPA SPR SWE TUR UKR VEN VIC VIE WLL YUG USA U01 u02 u03 u08 u09 u10 u11 u12 u13 u14 u15 u16 u17 u18 u19 u20 u21 u22 u26 u27 u28 u29 u30 u31 u32 u33 u34 u35 u40 u41 u42 u43 u44 u45 u46 u47 u48 u72 u73 u74 u77 u78 } 
+
+
+
+	decision = {
+		technology = 5920
+		technology = 5930
+		NOT = { local_flag = wequip}
+		}
+	
+
+	decision_trigger = {
+		technology = 5130
+		supplies = 500		
+	}
+
+	trigger = {
+	     NOT = { local_flag = wequip}
+		 OR = {
+				ai = no
+				country = SOV
+				country = CAN
+				country = NOR
+				country = SWE
+				country = FIN
+			}
+	NOT = {	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+			}	}	
+	}
+   
+	name = 9000000_name
+	desc = 9000000_desc
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_winter_equipment_start"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = { 
+	  name = "equip_act"
+	  
+	  trigger = { NOT = { local_flag = wequip} }
+	  
+	  ai_chance = 100
+	  
+	  command = { type = tc_mod value = -2.5 }
+	  command = { type = research_mod value = -1 }
+	  command = { type = build_time which = land value = 25 when = on_upgrade }
+	  command = { type = build_time which = land value = 0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }	  
+	  command = { type = supply_consumption which = land value = 0.3 where = relative }
+	  command = { type = local_setflag which = wequip }
+	  command = { type = local_setflag which = equipchange }
+
+	}
+	
+	
+}
+
+event = { #start jungleequip production
+	id = 9000001
+	random = no
+	persistent = yes
+    TAG = { ARG AUS AST BEL BOL BRA CAL CHC CHI CHL COL CSA DDR DFR EAF ENG ETH FRA GER HOL IND INO ITA JAP KOR MAN MEN MEX NZL OTT PAR PER POL POR PRK PRU ROM RSI RUS SAF SCA SIA SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE YUG USA U01 u02 u03 u08 u09 u72 u73 u74 u77 u78 } 
+
+
+
+	decision = {
+		technology = 5940
+	    technology = 5950		
+		NOT = { local_flag = jequip}
+		}
+	
+
+	decision_trigger = {
+		technology = 5130
+		supplies = 500		
+	}
+
+	trigger = {
+	     NOT = { local_flag = jequip}
+		 OR = {
+				ai = no
+				country = BRA
+				country = COL
+				country = VEN
+				country = BOL
+				country = ECU
+			}
+	NOT = {	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+			}	}	
+	}
+   
+	name = 9000001_name
+	desc = 9000001_desc
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_jungle_equipment_start"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = { 
+		name = "equip_act"
+		
+	  trigger = { NOT = { local_flag = jequip} }
+	  
+	  ai_chance = 100
+	  
+	  command = { type = tc_mod value = -2.5 }
+	  command = { type = research_mod value = -1 }
+	  command = { type = build_time which = land value = 25 when = on_upgrade }
+	  command = { type = build_time which = land value = 0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = 0.3 where = relative }
+	  command = { type = local_setflag which = jequip }
+	  command = { type = local_setflag which = equipchange }
+
+	}
+	
+	
+}
+
+event = { #start desertequip production
+	id = 9000002
+	random = no
+	persistent = yes
+	TAG = { AFG ARA AUS AST BEL BRA CAL CHC CHI COL CSA DDR DFR EGY ENG ETH FRA GER GRE HOL HUN IND IRQ ISR ITA JAP LBY MAN MEN MEX NZL OTT PAK PER POL POR PRK PRU ROM RSI RUS SAF SAU SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE YUG USA U01 u02 u03 u08 u09 u72 u73 u74 u77 u78 } 
+
+
+	decision = {
+		technology = 5960
+	    technology = 5970		
+		NOT = { local_flag = dequip}
+		}
+	
+
+	decision_trigger = {
+		technology = 5130
+		supplies = 500		
+	}
+
+	trigger = {
+		 NOT = { local_flag = dequip}
+		 OR = { 
+				ai = no
+				country = SAU
+				country = ENG
+				country = EGY
+			}
+	NOT = {	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+			}	}	
+	}
+   
+	name = 9000002_name
+	desc = 9000002_desc
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_desert_equipment_start"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = { 
+		name = "equip_act"
+		
+	  trigger = { NOT = { local_flag = dequip} }
+	  
+	  ai_chance = 100
+	  
+	  command = { type = tc_mod value = -2.5 }
+	  command = { type = research_mod value = -1 }
+	  command = { type = build_time which = land value = 25 when = on_upgrade }
+	  command = { type = build_time which = land value = 0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = 0.3 where = relative }
+	  command = { type = local_setflag which = dequip }
+	  command = { type = local_setflag which = equipchange }
+
+	}
+	
+	
+}
+
+event = { #start sturdyequip production
+	id = 9000003
+	random = no
+	persistent = yes
+	TAG = { AFG ARA ARG AUS AST BEL BOL BRA BUL CAL CAN CHC CHI CHL COL CSA CZE DDR DEN DFR EAF EGY ENG ETH EST FIN FLA FRA GEO GER GRE HOL HUN IDC IND INO IRE IRQ ISR ITA JAP KOR LAT LBY LIT MAN MEN MEX NOR NZL OTT PAK PAR PER POL POR PRK PRU QUE ROM RSI RUS SAF SAU SCA SCH SCO SER SIA SLO SLV SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE WLL YUG USA U01 u02 u03 u08 u09 u10 u11 u12 u13 u14 u15 u16 u17 u18 u19 u20 u21 u22 u26 u27 u28 u29 u30 u31 u32 u33 u34 u35 u40 u41 u42 u43 u44 u45 u46 u47 u48 u72 u73 u74 u77 u78 } 
+
+	decision = {
+		technology = 5980
+	    technology = 5990
+		NOT = { local_flag = sequip}
+		}
+	
+
+	decision_trigger = {
+		technology = 5130
+		supplies = 500
+	}
+
+	trigger = {
+	     NOT = { local_flag = sequip}
+		 OR = { 
+		        ai = no
+				country = PER
+				country = TUR
+				country = U02
+				country = SCH
+				country = ARG
+				country = PER
+				country = SPA
+				country = SPR
+			}
+	NOT = {	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+			}	}	
+	}
+   
+	name = 9000003_name
+	desc = 9000003_desc
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_rough_terrain_equipment_start"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = { 
+		name = "equip_act"
+		
+	  trigger = { NOT = { local_flag = sequip} }
+	  
+	  ai_chance = 100
+	  
+	  command = { type = tc_mod value = -2.5 }
+	  command = { type = research_mod value = -1 }
+	  command = { type = build_time which = land value = 25 when = on_upgrade }
+	  command = { type = build_time which = land value = 0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = 0.3 where = relative }
+	  command = { type = local_setflag which = sequip }
+	  command = { type = local_setflag which = equipchange }
+
+	}
+	
+	
+}
+
+event = {  #stop winterequip production
+	id = 9000010
+	random = no
+	persistent = yes
+	TAG = { AFG AUS AST BEL BUL CAL CAN CHC CHI CSA CZE DDR DEN DFR ENG EST FIN FLA FRA GEO GER GRE HOL HUN IND IRE ITA JAP LAT LIT MAN MEN MEX NOR OTT PAK PER POL POR PRK PRU QUE ROM RSI RUS SCA SCH SCO SER SLO SLV SOV SPA SPR SWE TUR UKR VEN VIC VIE WLL YUG USA U01 u02 u03 u08 u09 u10 u11 u12 u13 u14 u15 u16 u17 u18 u19 u20 u21 u22 u26 u27 u28 u29 u30 u31 u32 u33 u34 u35 u40 u41 u42 u43 u44 u45 u46 u47 u48 u72 u73 u74 u77 u78 } 
+
+
+	decision = {
+		local_flag = wequip
+
+	}
+
+	decision_trigger = {
+		local_flag = wequip		
+	}
+
+	trigger = { 
+		local_flag = wequip		
+		 OR = {
+				ai = no
+				country = SOV
+				country = CAN
+				country = NOR
+				country = SWE
+				country = FIN
+			}
+	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+		}	
+	}
+   
+	name = "wuequip_name"
+	desc = "wuequip_desc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_winter_equipment_stop"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	
+	action = { #issued
+	  name = "uequip_act"
+	  
+	  trigger = { local_flag = wequipx }
+	  
+      ai_chance = 100
+
+	  command = { type = local_clrflag which = wequip }
+	  command = { type = local_clrflag which = wequipx }
+	  
+	  command = { type = frozen_move which = land value = -13 }
+      command = { type = frozen_attack which = land value = -13 }
+      command = { type = frozen_defense which = land value = -13 }
+	  command = { type = snow_move which = land value = -13 }
+      command = { type = snow_attack which = land value = -13 }
+      command = { type = snow_defense which = land value = -13 }
+      
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+	  
+	}	
+	
+	
+	action = { #not issued
+	  name = "uequip_act"
+	  
+	  trigger = { 
+	  NOT = { local_flag = wequipx }
+	  local_flag = wequip
+	  }
+	  ai_chance = 100
+	  command = { type = local_clrflag which = wequip }
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+
+	  }
+}
+
+event = { #stop jungleequip production
+	id = 9000011
+	random = no
+	persistent = yes
+	TAG = { ARG AUS AST BEL BOL BRA CAL CHC CHI CHL COL CSA DDR DFR EAF ENG ETH FRA GER HOL IND INO ITA JAP KOR MAN MEN MEX NZL OTT PAR PER POL POR PRK PRU ROM RSI RUS SAF SCA SIA SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE YUG USA U01 u02 u03 u08 u09 u72 u73 u74 u77 u78 } 
+
+	decision = {
+		local_flag = jequip
+	}
+
+	decision_trigger = {
+		local_flag = jequip		
+	}
+
+	trigger = { 
+		local_flag = jequip		
+		 OR = {
+				ai = no
+				country = BRA
+				country = COL
+				country = VEN
+				country = BOL
+				country = ECU
+			}
+	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+		}	
+	}
+   
+	name = "juequip_name"
+	desc = "juequip_desc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_jungle_equipment_stop"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	
+	action = { #issued
+	  name = "uequip_act"
+	  
+	  trigger = { local_flag = jequipx }
+	  
+      ai_chance = 100
+
+	  command = { type = local_clrflag which = jequip }
+	  command = { type = local_clrflag which = jequipx }
+	  
+	  command = { type = jungle_move which = land value = -13 }
+      command = { type = jungle_attack which = land value = -13 }
+      command = { type = jungle_defense which = land value = -13 }
+      command = { type = forest_move which = land value = -5 }
+      command = { type = forest_attack which = land value = -5 }
+      command = { type = forest_defense which = land value = -5 }
+      
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+	  
+	}	
+	
+
+	
+	action = { #not issued
+	  name = "uequip_act"
+	  
+	  trigger = { 
+	  NOT = { local_flag = jequipx }
+	  local_flag = jequip
+	  }
+	  ai_chance = 100
+	  command = { type = local_clrflag which = jequip }
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+	  }
+ }	  
+
+event = { #stop desertequip production
+	id = 9000012
+	random = no
+	persistent = yes
+	TAG = { AFG ARA AUS AST BEL BRA CAL CHC CHI COL CSA DDR DFR EGY ENG ETH FRA GER GRE HOL HUN IND IRQ ISR ITA JAP LBY MAN MEN MEX NZL OTT PAK PER POL POR PRK PRU ROM RSI RUS SAF SAU SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE YUG USA U01 u02 u03 u08 u09 u72 u73 u74 u77 u78 } 
+
+	decision = {
+		local_flag = dequip
+	}
+
+	decision_trigger = {
+		local_flag = dequip		
+	}
+
+	trigger = { 
+		local_flag = dequip		
+		 OR = { 
+				ai = no
+				country = SAU
+				country = ITA
+				country = ENG
+				country = EGY
+			}
+	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+		}	
+	}
+   
+	name = "duequip_name"
+	desc = "duequip_desc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_desert_equipment_stop"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	
+	action = { #issued
+	  name = "uequip_act"
+	  
+	  trigger = { local_flag = dequipx }
+	  
+	  ai_chance = 100
+      
+	  command = { type = local_clrflag which = dequip }
+	  command = { type = local_clrflag which = dequipx }
+
+	  command = { type = desert_move which = land value = -8 }
+      command = { type = desert_attack which = land value = -8 }
+      command = { type = desert_defense which = land value = -8 }
+      
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+	  
+	}	
+	
+
+	
+	action = { #not issued
+	  name = "uequip_act"
+	  
+	  trigger = { 
+	  NOT = { local_flag = dequipx }
+	  local_flag = dequip
+	  }
+	  ai_chance = 100
+	  
+	  command = { type = local_clrflag which = dequip }
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+
+	  }
+}
+
+event = { #stop sturdyequip production
+	id = 9000013
+	random = no
+	persistent = yes
+	TAG = { AFG ARA ARG AUS AST BEL BOL BRA BUL CAL CAN CHC CHI CHL COL CSA CZE DDR DEN DFR EAF EGY ENG ETH EST FIN FLA FRA GEO GER GRE HOL HUN IDC IND INO IRE IRQ ISR ITA JAP KOR LAT LBY LIT MAN MEN MEX NOR NZL OTT PAK PAR PER POL POR PRK PRU QUE ROM RSI RUS SAF SAU SCA SCH SCO SER SIA SLO SLV SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE WLL YUG USA U01 u02 u03 u08 u09 u10 u11 u12 u13 u14 u15 u16 u17 u18 u19 u20 u21 u22 u26 u27 u28 u29 u30 u31 u32 u33 u34 u35 u40 u41 u42 u43 u44 u45 u46 u47 u48 u72 u73 u74 u77 u78 } 
+
+	decision = {
+		local_flag = sequip
+
+	}
+
+	decision_trigger = {
+		local_flag = sequip		
+	}
+
+	trigger = { 
+		local_flag = sequip		
+		 OR = { 
+		        ai = no
+				country = PER
+				country = TUR
+				country = U02
+				country = SCH
+				country = ARG
+				country = PER
+				country = SPA
+				country = SPR
+			}
+	OR = {
+			resource_shortage = supplies
+			resource_shortage = oil
+		}	
+	}
+   
+	name = "suequip_name"
+	desc = "suequip_desc" 
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_rough_terrain_equipment_stop"
+	
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	
+	action = { #issued
+	  name = "uequip_act"
+	  
+	  trigger = { local_flag = sequipx }
+     
+  	  ai_chance = 100
+
+	  command = { type = local_clrflag which = sequip }
+	  command = { type = local_clrflag which = sequipx }
+
+	  command = { type = hill_move which = land value = -8 }
+      command = { type = hill_attack which = land value = -8 }
+      command = { type = hill_defense which = land value = -8 }
+      command = { type = mountain_move which = land value = -13 }
+      command = { type = mountain_attack which = land value = -13 }
+      command = { type = mountain_defense which = land value = -13 }
+      command = { type = muddy_move which = land value = -15 }
+      command = { type = muddy_attack which = land value = -15 }
+      command = { type = muddy_defense which = land value = -15 }
+      
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+	}	
+	
+
+	
+	action = { #not issued
+	  name = "uequip_act"
+	  
+	  trigger = { 
+	  NOT = { local_flag = sequipx }
+	  local_flag = sequip
+	  }
+	  
+	  ai_chance = 100
+	  
+	  command = { type = local_clrflag which = sequip }
+	  command = { type = tc_mod value = 2.5 }
+	  command = { type = research_mod value = 1 }
+	  command = { type = build_time which = land value = -25 when = on_upgrade }
+	  command = { type = build_time which = land value = -0.8 when = on_upgrade }
+	  command = { type = build_cost which = mechanized value = mechanized when = on_upgrade }
+	  command = { type = build_cost which = armor value = armor when = on_upgrade }
+	  command = { type = build_cost which = light_armor value = light_armor when = on_upgrade }
+	  command = { type = supply_consumption which = land value = -0.3 }
+
+	  }
+} 
+ 
+event = { #apply equipment boni
+	id = 9000020  
+	random = no
+	persistent = yes
+	TAG = { AFG ARA ARG AUS AST BEL BOL BRA BUL CAL CAN CHC CHI CHL COL CSA CZE DDR DEN DFR EAF EGY ENG ETH EST FIN FLA FRA GEO GER GRE HOL HUN IDC IND INO IRE IRQ ISR ITA JAP KOR LAT LBY LIT MAN MEN MEX NOR NZL OTT PAK PAR PER POL POR PRK PRU QUE ROM RSI RUS SAF SAU SCA SCH SCO SER SIA SLO SLV SOV SPA SPR SWE TEX TUR UKR VEN VIC VIE WLL YUG USA U01 u02 u03 u08 u09 u10 u11 u12 u13 u14 u15 u16 u17 u18 u19 u20 u21 u22 u26 u27 u28 u29 u30 u31 u32 u33 u34 u35 u40 u41 u42 u43 u44 u45 u46 u47 u48 u72 u73 u74 u77 u78 } 
+
+	name = "equip_name"
+	desc = equip_desc
+	style = 2
+	picture = "news_paper"
+	
+	trigger = {
+			local_flag = equipchange
+			OR = {	
+				month = 3
+				month = 9
+				}
+
+				}
+
+	
+	date = { day = 0 month = january year = 1914 }
+  	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	
+	
+	action = { 	#wdjs
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = jequipx }
+			NOT = { local_flag = sequipx }
+			local_flag = wequip 
+			local_flag = dequip 
+			local_flag = jequip 
+			local_flag = sequip 
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = jequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+     
+	  command = { type = local_clrflag which = equipchange }
+	}
+
+	action = { 	#wdj
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = jequipx }
+			local_flag = wequip 
+			local_flag = dequip 
+			local_flag = jequip 
+		OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = jequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#wds
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = sequipx }		
+			local_flag = wequip 
+			local_flag = dequip 
+			OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+			local_flag = sequip 
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+       
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#wjs
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = jequipx }
+			NOT = { local_flag = sequipx }		
+			local_flag = wequip 
+		OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+			local_flag = jequip 
+			local_flag = sequip 
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = jequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#djs
+		trigger = { 
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = jequipx }
+			NOT = { local_flag = sequipx }
+		OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+			local_flag = dequip 
+			local_flag = jequip 
+			local_flag = sequip 
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = jequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#wd
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = dequipx }
+			local_flag = wequip 
+			local_flag = dequip 
+			OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+			OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = dequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}	
+	
+	action = { 	#js
+		trigger = { 
+			NOT = { local_flag = jequipx }
+			NOT = { local_flag = sequipx }		
+		 OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+		 OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+			local_flag = jequip 
+			local_flag = sequip 
+
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = jequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  
+	  command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#dj
+		trigger = { 
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = jequipx }
+			local_flag = dequip 
+			local_flag = jequip 
+		OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+		OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		}
+	  name = "xequip_act" 		
+
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = jequipx }
+	  	  
+	  command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}	
+
+	action = { 	#ws
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = sequipx }		
+			local_flag = wequip 
+			local_flag = sequip 
+		OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+		OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}
+
+	action = { 	#wj
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			NOT = { local_flag = jequipx }
+			local_flag = wequip 
+			local_flag = jequip 
+		OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  command = { type = local_setflag which = jequipx }
+
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	}
+	
+	action = { 	#ds
+		trigger = { 
+			NOT = { local_flag = dequipx }
+			NOT = { local_flag = sequipx }		
+		OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+		OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+			local_flag = sequip 
+			local_flag = dequip 
+		}
+	  name = "xequip_act" 		
+
+	  command = { type = local_setflag which = dequipx }
+	  command = { type = local_setflag which = sequipx }
+	  
+	  	  
+	  command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	  
+	}	
+	
+	action = { 	#w
+		trigger = { 
+			NOT = { local_flag = wequipx }
+			local_flag = wequip 
+			OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+			OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+			OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = wequipx }
+	  
+	  command = { type = frozen_move which = land value = 13 }
+      command = { type = frozen_attack which = land value = 13 }
+      command = { type = frozen_defense which = land value = 13 }
+      command = { type = snow_move which = land value = 13 }
+      command = { type = snow_attack which = land value = 13 }
+      command = { type = snow_defense which = land value = 13 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	}
+	
+	action = { 	#d
+		trigger = { 
+			NOT = { local_flag = dequipx }
+			local_flag = dequip 
+			OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+			OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+			OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = dequipx }
+	  
+	  command = { type = desert_move which = land value = 13 }
+      command = { type = desert_attack which = land value = 13 }
+      command = { type = desert_defense which = land value = 13 }
+      
+	  command = { type = local_clrflag which = equipchange }
+	}
+	
+	action = { 	#j
+		trigger = { 
+			NOT = { local_flag = jequipx }
+			local_flag = jequip 
+			OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+			OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+			OR = { NOT = { local_flag = sequip } local_flag = sequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = jequipx }
+	  
+	  command = { type = jungle_move which = land value = 13 }
+      command = { type = jungle_attack which = land value = 13 }
+      command = { type = jungle_defense which = land value = 13 }
+      command = { type = forest_move which = land value = 5 }
+      command = { type = forest_attack which = land value = 5 }
+      command = { type = forest_defense which = land value = 5 }
+	  
+	  command = { type = local_clrflag which = equipchange }
+	}
+	
+	action = { 	#s
+		trigger = { 
+			NOT = { local_flag = sequipx }		
+			local_flag = sequip 
+			OR = { NOT = { local_flag = wequip } local_flag = wequipx }
+			OR = { NOT = { local_flag = dequip } local_flag = dequipx }
+			OR = { NOT = { local_flag = jequip } local_flag = jequipx }
+		}
+	  name = "xequip_act" 		
+	  command = { type = local_setflag which = sequipx }
+
+	  command = { type = muddy_move which = land value = 18 }
+      command = { type = muddy_attack which = land value = 18 }
+      command = { type = muddy_defense which = land value = 18 }
+      command = { type = hill_move which = land value = 8 }
+      command = { type = hill_attack which = land value = 8 }
+      command = { type = hill_defense which = land value = 8 }
+      command = { type = mountain_move which = land value = 13 }
+      command = { type = mountain_attack which = land value = 13 }
+      command = { type = mountain_defense which = land value = 13 }
+	  
+	  command = { type = local_clrflag which = equipchange }
+	}
+	
+}	
+
+################################
+# Generic set of decisions
+################################
+#### Create Public Jobs
+event = {
+	id = 9000021
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		OR = {
+			money = 3000
+			AND = {
+				NOT = { IC = 80 }
+				money = 2000
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 1500
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 500
+				}	
+			}
+		OR = { 
+			NOT = { policy = { type = free_market value = 8 } }
+			headofstate = 240001 # FDR
+		}
+	}
+
+	decision_trigger = {
+		OR = {
+			money = 6000
+			AND = {
+				NOT = { IC = 80 }
+				money = 4000
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 3000
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 1000
+				}	
+			}
+		atwar = no
+	}
+
+	trigger = {
+		money = 6000
+		policy = { type = free_market value = 5 }
+		OR = { 
+			NOT = { policy = { type = free_market value = 8 } }
+			headofstate = 240001 # FDR
+		}
+	}
+   
+	name = "9000021name"
+	desc = "9000021desc" 
+	style = 2
+	picture = "public_jobs"
+	decision_picture = "decision_public_jobs"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000021text"
+		command = { type = dissent value = -2 }
+		command = { trigger = { IC = 80 } type = money value = -6000 }
+		command = { trigger = { IC = 50 NOT = { IC = 80 } } type = money value = -4000 }
+		command = { trigger = { IC = 15 NOT = { IC = 50 } } type = money value = -3000 }
+		command = { trigger = { NOT = { IC = 15 } } type = money value = -1000 }
+		#command = { type = domestic which = free_market value = -1 }
+		command = { type = event which = 9000040 where = -1 when = 60 }
+	}
+}
+
+event = {
+	id = 9000040
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+
+	name = "9000040name"
+	desc = "9000040desc" 
+	style = 2
+	picture = "public_jobs"
+	
+	action = {
+		name = "ACTION_NAME_GREAT"
+		command = { type = construct which = ic where = -4 value = 1 }
+		command = { }
+	}
+}
+	
+#### Issue Currency
+event = {
+	id = 9000022
+	random = no
+	persistent = yes
+
+	decision = { 
+		NOT = { money = 150 }
+		atwar = no
+	}
+
+	decision_trigger = {
+		NOT = { money = 100 }
+	}
+
+	trigger = {
+		ai = no
+		NOT = { money = 10 }
+	}
+   
+	name = "9000022name"
+	desc = "9000022desc" 
+	style = 2
+	picture = "issue_currency"
+	decision_picture = "decision_issue_currency"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000022text"
+		command = { type = dissent value = -1 }
+		command = { trigger = { IC = 80 } type = money value = 1000 }
+		command = { trigger = { IC = 50 NOT = { IC = 80 } } type = money value = 800 }
+		command = { trigger = { IC = 15 NOT = { IC = 50 } } type = money value = 400 }
+		command = { trigger = { NOT = { IC = 15 } } type = money value = 200 }
+		command = { type = industrial_modifier which = total value = -1 }
+	}
+}
+#### Money Devaluation
+event = {
+	id = 9000023
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		OR = {
+			money = 1000
+			AND = {
+				NOT = { IC = 80 }
+				money = 700
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 500
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 150
+				}	
+			}
+		atwar = no
+	}
+
+	decision_trigger = {
+		OR = {
+			money = 3000
+			AND = {
+				NOT = { IC = 80 }
+				money = 2000
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 1500
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 500
+				}	
+			}
+	}
+
+	trigger = {
+		#ai = no
+		money = 3000
+		NOT = { dissent = 2 }
+		atwar = no
+		NOT = { policy = { type = professional_army value = 5 } }
+	}
+   
+	name = "9000023name"
+	desc = "9000023desc"
+	style = 2
+	picture = "money_devaluation"
+	decision_picture = "decision_money_devaluation"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000023text"
+		command = { type = dissent value = 3 }
+		command = { trigger = { IC = 80 } type = money value = -3000 }
+		command = { trigger = { IC = 50 NOT = { IC = 80 } } type = money value = -2000 }
+		command = { trigger = { IC = 15 NOT = { IC = 50 } } type = money value = -1500 }
+		command = { trigger = { NOT = { IC = 15 } } type = money value = -500 }
+		command = { type = industrial_modifier which = total value = 0.5 }
+	}
+}
+
+#### Allow Foreign Volunteers
+event = {
+	id = 9000025
+	random = no
+	persistent = yes
+
+	decision = { 
+		NOT = { local_flag = foreign_volunteers }
+		government = democratic
+		atwar = yes
+	}
+
+	decision_trigger = {
+		government = democratic
+		NOT = { manpower = 100 }
+		atwar = yes
+	}
+
+	trigger = {
+		NOT = { local_flag = foreign_volunteers }
+		random = 20
+		government = democratic
+		NOT = { manpower = 100 }
+		atwar = yes
+	}
+   
+	name = "9000025name"
+	desc = "9000025desc" 
+	style = 2
+	picture = "foreign_volunteers"
+	decision_picture = "decision_foreign_volunteers"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000025text"
+		command = { type = manpowerpool value = 1 when = 1 }
+		command = { type = relative_manpower value = 0.01 }
+		command = { type = morale which = land value = -2 }
+		#command = { type = unit when = morale value = -0.500 }
+		command = { type = local_setflag which = foreign_volunteers }
+	}
+}
+#### Purchase Licensed Unit from USA
+event = {
+	id = 9000026
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		#NOT = { ic = 60 }
+		#NOT = { army = 20 }
+		manpower = 10
+		exists = USA
+		NOT = { war = { country = USA } }
+	}
+
+	decision_trigger = {
+		money = 4000
+		#NOT = { army = 20 }
+	}
+
+	trigger = {
+		NOT = { ic = 60 }
+		money = 6000
+		#NOT = { army = 20 }
+		exists = USA
+		NOT = { war = { country = USA } }
+	}
+   
+	name = "9000026name"
+	desc = "9000026desc" 
+	style = 2
+	picture = "licensed_unit"
+	decision_picture = "decision_licensed_unit"
+
+	date = { day = 1 month = january year = 1920 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { exists = USA money = 4000 technology = { country = USA value = 1396 } }
+		ai_chance = 5
+		name = "9000026a"
+		command = { type = money value = -4000 }
+		command = { type = manpowerpool value = -10 }
+	  	command = { trigger = { technology = { country = USA value = 1396 } NOT = { technology = { country = USA value = 1400 } } } type = add_division value = motorized when = 0 }
+		command = { trigger = { technology = { country = USA value = 1400 } NOT = { technology = { country = USA value = 1410 } } } type = add_division value = motorized when = 1 }
+		command = { trigger = { technology = { country = USA value = 1410 } NOT = { technology = { country = USA value = 1420 } } } type = add_division value = motorized when = 2 }
+		command = { trigger = { technology = { country = USA value = 1420 } NOT = { technology = { country = USA value = 1430 } } } type = add_division value = motorized when = 3 }
+		command = { trigger = { technology = { country = USA value = 1430 } NOT = { technology = { country = USA value = 1440 } } } type = add_division value = motorized when = 4 }
+		command = { trigger = { technology = { country = USA value = 1440 } NOT = { technology = { country = USA value = 1450 } } } type = add_division value = motorized when = 5 }
+		command = { trigger = { technology = { country = USA value = 1450 } NOT = { technology = { country = USA value = 1460 } } } type = add_division value = motorized when = 6 }
+		command = { trigger = { technology = { country = USA value = 1460 } } type = add_division value = motorized when = 7 }
+
+	}
+	action = {  trigger = { exists = USA money = 5000 technology = { country = USA value = 2030 } NOT = { technology = { country = USA value = 2070 } } }
+		ai_chance = 5
+		name = "9000026b"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = USA value = 2030 } NOT = { technology = { country = USA value = 2040 } } } type = add_division value = light_armor when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 2040 } NOT = { technology = { country = USA value = 2050 } } } type = add_division value = light_armor when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 2050 } } type = add_division value = light_armor when = 2 }
+	}
+	action = {  trigger = { exists = USA money = 6000 technology = { country = USA value = 2070 } }
+		ai_chance = 80
+		name = "9000026b"
+		command = { type = money value = -6000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = USA value = 2070 } NOT = { technology = { country = USA value = 2080 } } } type = add_division value = armor when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 2080 } NOT = { technology = { country = USA value = 2090 } } } type = add_division value = armor when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 2090 } NOT = { technology = { country = USA value = 2140 } } } type = add_division value = armor when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 2140 } NOT = { technology = { country = USA value = 11000 } } } type = add_division value = armor when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 11000 } NOT = { technology = { country = USA value = 2660 } } } type = add_division value = armor when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 2660 } NOT = { technology = { country = USA value = 11010 } } } type = add_division value = armor when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 11010 } NOT = { technology = { country = USA value = 2670 } } } type = add_division value = armor when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 2670 } } type = add_division value = armor when = 7 }
+	}
+	action = {  trigger = { exists = USA money = 5000 technology = { country = USA value = 4500 } }
+		ai_chance = 5
+		name = "9000026c"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = USA value = 4500 } NOT = { technology = { country = USA value = 4510 } } } type = add_division value = interceptor when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 4510 } NOT = { technology = { country = USA value = 4520 } } } type = add_division value = interceptor when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4520 } NOT = { technology = { country = USA value = 4530 } } } type = add_division value = interceptor when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4530 } NOT = { technology = { country = USA value = 4540 } } } type = add_division value = interceptor when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4540 } NOT = { technology = { country = USA value = 4550 } } } type = add_division value = interceptor when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4550 } NOT = { technology = { country = USA value = 4010 } } } type = add_division value = interceptor when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4010 } NOT = { technology = { country = USA value = 4020 } } } type = add_division value = interceptor when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 4020 } NOT = { technology = { country = USA value = 4030 } } } type = add_division value = interceptor when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 4030 } NOT = { technology = { country = USA value = 4060 } } } type = add_division value = interceptor when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 4060 } NOT = { technology = { country = USA value = 4090 } } } type = add_division value = interceptor when = 9 }
+	  	command = { trigger = { technology = { country = USA value = 4090 } NOT = { technology = { country = USA value = 15000 } } } type = add_division value = interceptor when = 10 }
+	  	command = { trigger = { technology = { country = USA value = 15000 } NOT = { technology = { country = USA value = 15010 } } } type = add_division value = interceptor when = 11 }
+		command = { trigger = { technology = { country = USA value = 15010 } NOT = { technology = { country = USA value = 15020 } } } type = add_division value = interceptor when = 12 }
+	  	command = { trigger = { technology = { country = USA value = 15020 } NOT = { technology = { country = USA value = 4560 } } } type = add_division value = interceptor when = 13 }
+	  	command = { trigger = { technology = { country = USA value = 4560 } NOT = { technology = { country = USA value = 4570 } } } type = add_division value = interceptor when = 14 }
+	  	command = { trigger = { technology = { country = USA value = 4570 } NOT = { technology = { country = USA value = 4580 } } } type = add_division value = interceptor when = 15 }
+	  	command = { trigger = { technology = { country = USA value = 4580 } } type = add_division value = interceptor when = 16 }
+	}
+	action = {  trigger = { exists = USA money = 5000 technology = { country = USA value = 4600 } }
+		ai_chance = 5
+		name = "9000026d"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -1 }
+	  	command = { trigger = { technology = { country = USA value = 4600 } NOT = { technology = { country = USA value = 4610 } } } type = add_division value = tactical_bomber when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 4610 } NOT = { technology = { country = USA value = 4620 } } } type = add_division value = tactical_bomber when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4620 } NOT = { technology = { country = USA value = 4630 } } } type = add_division value = tactical_bomber when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4630 } NOT = { technology = { country = USA value = 4120 } } } type = add_division value = tactical_bomber when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4120 } NOT = { technology = { country = USA value = 4130 } } } type = add_division value = tactical_bomber when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4130 } NOT = { technology = { country = USA value = 4140 } } } type = add_division value = tactical_bomber when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4140 } NOT = { technology = { country = USA value = 4150 } } } type = add_division value = tactical_bomber when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 4150 } NOT = { technology = { country = USA value = 4160 } } } type = add_division value = tactical_bomber when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 4160 } NOT = { technology = { country = USA value = 15100 } } } type = add_division value = tactical_bomber when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 15100 } NOT = { technology = { country = USA value = 15110 } } } type = add_division value = tactical_bomber when = 9 }
+	  	command = { trigger = { technology = { country = USA value = 15110 } NOT = { technology = { country = USA value = 4640 } } } type = add_division value = tactical_bomber when = 10 }
+	  	command = { trigger = { technology = { country = USA value = 4640 } NOT = { technology = { country = USA value = 4650 } } } type = add_division value = tactical_bomber when = 11 }
+	  	command = { trigger = { technology = { country = USA value = 4650 } } type = add_division value = tactical_bomber when = 12 }
+	}
+	
+	action = {  trigger = { money = 5000 technology = { country = USA value = 4300 } }
+		ai_chance = 5
+		name = "Fighter aircraft"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -0.5 }
+		command = { trigger = { technology = { country = USA value = 4300 } NOT = { technology = { country = USA value = 4310 } } } type = add_division value = multi_role when = 0 }
+		command = { trigger = { technology = { country = USA value = 4310 } NOT = { technology = { country = USA value = 4320 } } } type = add_division value = multi_role when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4320 } NOT = { technology = { country = USA value = 4330 } } } type = add_division value = multi_role when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4330 } NOT = { technology = { country = USA value = 4340 } } } type = add_division value = multi_role when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4340 } NOT = { technology = { country = USA value = 4040 } } } type = add_division value = multi_role when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4040 } NOT = { technology = { country = USA value = 4070 } } } type = add_division value = multi_role when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4070 } NOT = { technology = { country = USA value = 4100 } } } type = add_division value = multi_role when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 4100 } NOT = { technology = { country = USA value = 4350 } } } type = add_division value = multi_role when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 4350 } NOT = { technology = { country = USA value = 15030 } } } type = add_division value = multi_role when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 15030 } NOT = { technology = { country = USA value = 15040 } } } type = add_division value = multi_role when = 9 }
+	  	command = { trigger = { technology = { country = USA value = 15040 } NOT = { technology = { country = USA value = 15050 } } } type = add_division value = multi_role when = 10 }
+	  	command = { trigger = { technology = { country = USA value = 15050 } NOT = { technology = { country = USA value = 4360 } } } type = add_division value = multi_role when = 11 }
+		command = { trigger = { technology = { country = USA value = 4360 } NOT = { technology = { country = USA value = 4370 } } } type = add_division value = multi_role when = 12 }
+	  	command = { trigger = { technology = { country = USA value = 4370 } } type = add_division value = multi_role when = 13 }
+	}
+}
+#### Purchase outdated Unit from USA
+
+event = {
+	id = 9000039
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		#NOT = { ic = 60 }
+		#NOT = { army = 20 }
+		manpower = 10
+		exists = USA
+		NOT = { war = { country = USA } }
+	}
+
+	decision_trigger = {
+		money = 1500
+		#NOT = { army = 20 }
+	}
+
+	trigger = {
+		NOT = { ic = 60 }
+		money = 2500
+		#NOT = { army = 20 }
+		exists = USA
+		NOT = { war = { country = USA } }
+	}
+   
+	name = "9000039name"
+	desc = "9000039desc" 
+	style = 2
+	picture = "obs_unit"
+	decision_picture = "decision_obs_unit"
+
+	date = { day = 1 month = january year = 1920 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { money = 1500 technology = { country = USA value = 1420 } }
+		ai_chance = 5
+		name = "9000039a"
+		command = { type = money value = -1500 }
+		command = { type = manpowerpool value = -10 }
+		command = { trigger = { technology = { country = USA value = 1420 } NOT = { technology = { country = USA value = 1420 } } } type = add_division value = motorized when = 0 }
+		command = { trigger = { technology = { country = USA value = 1420 } NOT = { technology = { country = USA value = 1430 } } } type = add_division value = motorized when = 1 }
+		command = { trigger = { technology = { country = USA value = 1430 } NOT = { technology = { country = USA value = 1440 } } } type = add_division value = motorized when = 2 }
+		command = { trigger = { technology = { country = USA value = 1440 } NOT = { technology = { country = USA value = 1450 } } } type = add_division value = motorized when = 3 }
+		command = { trigger = { technology = { country = USA value = 1450 } NOT = { technology = { country = USA value = 1460 } } } type = add_division value = motorized when = 4 }
+		command = { trigger = { technology = { country = USA value = 1460 } } type = add_division value = motorized when = 7 }
+
+	}
+	action = {  trigger = { money = 2000 technology = { country = USA value = 2050 } NOT = { technology = { country = USA value = 2090 } } }
+		ai_chance = 80
+		name = "9000039b"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = USA value = 2050 } NOT = { technology = { country = USA value = 2070 } } } type = add_division value = light_armor when = 0 }
+		command = { trigger = { technology = { country = USA value = 2070 } NOT = { technology = { country = USA value = 2080 } } } type = add_division value = light_armor when = 1 }
+		command = { trigger = { technology = { country = USA value = 2080 } } type = add_division value = light_armor when = 2 }
+	}
+	action = {  trigger = { money = 2500 technology = { country = USA value = 2090 } }
+		ai_chance = 80
+		name = "9000039b"
+		command = { type = money value = -2500 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = USA value = 2090 } NOT = { technology = { country = USA value = 2140 } } } type = add_division value = armor when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 2140 } NOT = { technology = { country = USA value = 11000 } } } type = add_division value = armor when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 11000 } NOT = { technology = { country = USA value = 2660 } } } type = add_division value = armor when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 2660 } NOT = { technology = { country = USA value = 11010 } } } type = add_division value = armor when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 11010 } NOT = { technology = { country = USA value = 2670 } } } type = add_division value = armor when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 2670 } } type = add_division value = armor when = 7 }
+	}
+	action = {  trigger = { money = 2000 technology = { country = USA value = 4520 } }
+		ai_chance = 5
+		name = "9000039c"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = USA value = 4520 } NOT = { technology = { country = USA value = 4530 } } } type = add_division value = interceptor when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 4530 } NOT = { technology = { country = USA value = 4540 } } } type = add_division value = interceptor when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4540 } NOT = { technology = { country = USA value = 4550 } } } type = add_division value = interceptor when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4550 } NOT = { technology = { country = USA value = 4010 } } } type = add_division value = interceptor when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4010 } NOT = { technology = { country = USA value = 4020 } } } type = add_division value = interceptor when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4020 } NOT = { technology = { country = USA value = 4030 } } } type = add_division value = interceptor when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4030 } NOT = { technology = { country = USA value = 4060 } } } type = add_division value = interceptor when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 4060 } NOT = { technology = { country = USA value = 4090 } } } type = add_division value = interceptor when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 4090 } NOT = { technology = { country = USA value = 15000 } } } type = add_division value = interceptor when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 15000 } NOT = { technology = { country = USA value = 15010 } } } type = add_division value = interceptor when = 9 }
+		command = { trigger = { technology = { country = USA value = 15010 } NOT = { technology = { country = USA value = 15020 } } } type = add_division value = interceptor when = 10 }
+	  	command = { trigger = { technology = { country = USA value = 15020 } NOT = { technology = { country = USA value = 4560 } } } type = add_division value = interceptor when = 11 }
+	  	command = { trigger = { technology = { country = USA value = 4560 } NOT = { technology = { country = USA value = 4570 } } } type = add_division value = interceptor when = 12 }
+	  	command = { trigger = { technology = { country = USA value = 4570 } NOT = { technology = { country = USA value = 4580 } } } type = add_division value = interceptor when = 13 }
+	  	command = { trigger = { technology = { country = USA value = 4580 } } type = add_division value = interceptor when = 14 }
+	}
+	action = {  trigger = { money = 2000 technology = { country = USA value = 4620 } }
+		ai_chance = 5
+		name = "9000039d"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -1 }
+	  	command = { trigger = { technology = { country = USA value = 4620 } NOT = { technology = { country = USA value = 4630 } } } type = add_division value = tactical_bomber when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 4630 } NOT = { technology = { country = USA value = 4120 } } } type = add_division value = tactical_bomber when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4120 } NOT = { technology = { country = USA value = 4130 } } } type = add_division value = tactical_bomber when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4130 } NOT = { technology = { country = USA value = 4140 } } } type = add_division value = tactical_bomber when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4140 } NOT = { technology = { country = USA value = 4150 } } } type = add_division value = tactical_bomber when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4150 } NOT = { technology = { country = USA value = 4160 } } } type = add_division value = tactical_bomber when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4160 } NOT = { technology = { country = USA value = 15100 } } } type = add_division value = tactical_bomber when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 15100 } NOT = { technology = { country = USA value = 15110 } } } type = add_division value = tactical_bomber when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 15110 } NOT = { technology = { country = USA value = 4640 } } } type = add_division value = tactical_bomber when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 4640 } NOT = { technology = { country = USA value = 4650 } } } type = add_division value = tactical_bomber when = 9 }
+	  	command = { trigger = { technology = { country = USA value = 4650 } } type = add_division value = tactical_bomber when = 12 }
+	}
+	
+	action = {  trigger = { money = 2000 technology = { country = USA value = 4320 } }
+		ai_chance = 5
+		name = "Fighter aircraft"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = USA value = 4320 } NOT = { technology = { country = USA value = 4330 } } } type = add_division value = multi_role when = 0 }
+	  	command = { trigger = { technology = { country = USA value = 4330 } NOT = { technology = { country = USA value = 4340 } } } type = add_division value = multi_role when = 1 }
+	  	command = { trigger = { technology = { country = USA value = 4340 } NOT = { technology = { country = USA value = 4040 } } } type = add_division value = multi_role when = 2 }
+	  	command = { trigger = { technology = { country = USA value = 4040 } NOT = { technology = { country = USA value = 4070 } } } type = add_division value = multi_role when = 3 }
+	  	command = { trigger = { technology = { country = USA value = 4070 } NOT = { technology = { country = USA value = 4100 } } } type = add_division value = multi_role when = 4 }
+	  	command = { trigger = { technology = { country = USA value = 4100 } NOT = { technology = { country = USA value = 4350 } } } type = add_division value = multi_role when = 5 }
+	  	command = { trigger = { technology = { country = USA value = 4350 } NOT = { technology = { country = USA value = 15030 } } } type = add_division value = multi_role when = 6 }
+	  	command = { trigger = { technology = { country = USA value = 15030 } NOT = { technology = { country = USA value = 15040 } } } type = add_division value = multi_role when = 7 }
+	  	command = { trigger = { technology = { country = USA value = 15040 } NOT = { technology = { country = USA value = 15050 } } } type = add_division value = multi_role when = 8 }
+	  	command = { trigger = { technology = { country = USA value = 15050 } NOT = { technology = { country = USA value = 4360 } } } type = add_division value = multi_role when = 9 }
+		command = { trigger = { technology = { country = USA value = 4360 } NOT = { technology = { country = USA value = 4370 } } } type = add_division value = multi_role when = 10 }
+	  	command = { trigger = { technology = { country = USA value = 4370 } } type = add_division value = multi_role when = 11 }
+	}
+}
+
+#### Purchase Licensed Unit from ENG
+event = {
+	id = 9000126
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY USA EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		#NOT = { ic = 60 }
+		#NOT = { army = 20 }
+		manpower = 10
+		exists = ENG
+		NOT = { war = { country = ENG } }
+	}
+
+	decision_trigger = {
+		money = 4000
+		#NOT = { army = 20 }
+	}
+
+	trigger = {
+		NOT = { ic = 60 }
+		money = 6000
+		#NOT = { army = 20 }
+		exists = ENG
+		NOT = { war = { country = ENG } }
+	}
+   
+	name = "9000126name"
+	desc = "9000026desc" 
+	style = 2
+	picture = "licensed_unit"
+	decision_picture = "decision_licensed_unit"
+
+	date = { day = 1 month = january year = 1920 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { exists = ENG money = 4000 technology = { country = ENG value = 1396 } }
+		ai_chance = 5
+		name = "9000026a"
+		command = { type = money value = -4000 }
+		command = { type = manpowerpool value = -10 }
+	  	command = { trigger = { technology = { country = ENG value = 1396 } NOT = { technology = { country = ENG value = 1400 } } } type = add_division value = motorized when = 0 }
+		command = { trigger = { technology = { country = ENG value = 1400 } NOT = { technology = { country = ENG value = 1410 } } } type = add_division value = motorized when = 1 }
+		command = { trigger = { technology = { country = ENG value = 1410 } NOT = { technology = { country = ENG value = 1420 } } } type = add_division value = motorized when = 2 }
+		command = { trigger = { technology = { country = ENG value = 1420 } NOT = { technology = { country = ENG value = 1430 } } } type = add_division value = motorized when = 3 }
+		command = { trigger = { technology = { country = ENG value = 1430 } NOT = { technology = { country = ENG value = 1440 } } } type = add_division value = motorized when = 4 }
+		command = { trigger = { technology = { country = ENG value = 1440 } NOT = { technology = { country = ENG value = 1450 } } } type = add_division value = motorized when = 5 }
+		command = { trigger = { technology = { country = ENG value = 1450 } NOT = { technology = { country = ENG value = 1460 } } } type = add_division value = motorized when = 6 }
+		command = { trigger = { technology = { country = ENG value = 1460 } } type = add_division value = motorized when = 7 }
+
+	}
+	action = {  trigger = { exists = ENG money = 5000 technology = { country = ENG value = 2030 } NOT = { technology = { country = ENG value = 2070 } } }
+		ai_chance = 5
+		name = "9000026b"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = ENG value = 2030 } NOT = { technology = { country = ENG value = 2040 } } } type = add_division value = light_armor when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 2040 } NOT = { technology = { country = ENG value = 2050 } } } type = add_division value = light_armor when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 2050 } } type = add_division value = light_armor when = 2 }
+	}
+	action = {  trigger = { exists = ENG money = 6000 technology = { country = ENG value = 2070 } }
+		ai_chance = 80
+		name = "9000026b"
+		command = { type = money value = -6000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = ENG value = 2070 } NOT = { technology = { country = ENG value = 2080 } } } type = add_division value = armor when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 2080 } NOT = { technology = { country = ENG value = 2090 } } } type = add_division value = armor when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 2090 } NOT = { technology = { country = ENG value = 2140 } } } type = add_division value = armor when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 2140 } NOT = { technology = { country = ENG value = 11000 } } } type = add_division value = armor when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 11000 } NOT = { technology = { country = ENG value = 2660 } } } type = add_division value = armor when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 2660 } NOT = { technology = { country = ENG value = 11010 } } } type = add_division value = armor when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 11010 } NOT = { technology = { country = ENG value = 2670 } } } type = add_division value = armor when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 2670 } } type = add_division value = armor when = 7 }
+	}
+	action = {  trigger = { exists = ENG money = 5000 technology = { country = ENG value = 4500 } }
+		ai_chance = 5
+		name = "9000026c"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = ENG value = 4500 } NOT = { technology = { country = ENG value = 4510 } } } type = add_division value = interceptor when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 4510 } NOT = { technology = { country = ENG value = 4520 } } } type = add_division value = interceptor when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4520 } NOT = { technology = { country = ENG value = 4530 } } } type = add_division value = interceptor when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4530 } NOT = { technology = { country = ENG value = 4540 } } } type = add_division value = interceptor when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4540 } NOT = { technology = { country = ENG value = 4550 } } } type = add_division value = interceptor when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4550 } NOT = { technology = { country = ENG value = 4010 } } } type = add_division value = interceptor when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4010 } NOT = { technology = { country = ENG value = 4020 } } } type = add_division value = interceptor when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 4020 } NOT = { technology = { country = ENG value = 4030 } } } type = add_division value = interceptor when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 4030 } NOT = { technology = { country = ENG value = 4060 } } } type = add_division value = interceptor when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 4060 } NOT = { technology = { country = ENG value = 4090 } } } type = add_division value = interceptor when = 9 }
+	  	command = { trigger = { technology = { country = ENG value = 4090 } NOT = { technology = { country = ENG value = 15000 } } } type = add_division value = interceptor when = 10 }
+	  	command = { trigger = { technology = { country = ENG value = 15000 } NOT = { technology = { country = ENG value = 15010 } } } type = add_division value = interceptor when = 11 }
+		command = { trigger = { technology = { country = ENG value = 15010 } NOT = { technology = { country = ENG value = 15020 } } } type = add_division value = interceptor when = 12 }
+	  	command = { trigger = { technology = { country = ENG value = 15020 } NOT = { technology = { country = ENG value = 4560 } } } type = add_division value = interceptor when = 13 }
+	  	command = { trigger = { technology = { country = ENG value = 4560 } NOT = { technology = { country = ENG value = 4570 } } } type = add_division value = interceptor when = 14 }
+	  	command = { trigger = { technology = { country = ENG value = 4570 } NOT = { technology = { country = ENG value = 4580 } } } type = add_division value = interceptor when = 15 }
+	  	command = { trigger = { technology = { country = ENG value = 4580 } } type = add_division value = interceptor when = 16 }
+	}
+	action = {  trigger = { exists = ENG money = 5000 technology = { country = ENG value = 4600 } }
+		ai_chance = 5
+		name = "9000026d"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -1 }
+	  	command = { trigger = { technology = { country = ENG value = 4600 } NOT = { technology = { country = ENG value = 4610 } } } type = add_division value = tactical_bomber when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 4610 } NOT = { technology = { country = ENG value = 4620 } } } type = add_division value = tactical_bomber when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4620 } NOT = { technology = { country = ENG value = 4630 } } } type = add_division value = tactical_bomber when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4630 } NOT = { technology = { country = ENG value = 4120 } } } type = add_division value = tactical_bomber when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4120 } NOT = { technology = { country = ENG value = 4130 } } } type = add_division value = tactical_bomber when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4130 } NOT = { technology = { country = ENG value = 4140 } } } type = add_division value = tactical_bomber when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4140 } NOT = { technology = { country = ENG value = 4150 } } } type = add_division value = tactical_bomber when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 4150 } NOT = { technology = { country = ENG value = 4160 } } } type = add_division value = tactical_bomber when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 4160 } NOT = { technology = { country = ENG value = 15100 } } } type = add_division value = tactical_bomber when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 15100 } NOT = { technology = { country = ENG value = 15110 } } } type = add_division value = tactical_bomber when = 9 }
+	  	command = { trigger = { technology = { country = ENG value = 15110 } NOT = { technology = { country = ENG value = 4640 } } } type = add_division value = tactical_bomber when = 10 }
+	  	command = { trigger = { technology = { country = ENG value = 4640 } NOT = { technology = { country = ENG value = 4650 } } } type = add_division value = tactical_bomber when = 11 }
+	  	command = { trigger = { technology = { country = ENG value = 4650 } } type = add_division value = tactical_bomber when = 12 }
+	}
+	
+	action = {  trigger = { money = 5000 technology = { country = ENG value = 4300 } }
+		ai_chance = 5
+		name = "Fighter aircraft"
+		command = { type = money value = -5000 }
+		command = { type = manpowerpool value = -0.5 }
+		command = { trigger = { technology = { country = ENG value = 4300 } NOT = { technology = { country = ENG value = 4310 } } } type = add_division value = multi_role when = 0 }
+		command = { trigger = { technology = { country = ENG value = 4310 } NOT = { technology = { country = ENG value = 4320 } } } type = add_division value = multi_role when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4320 } NOT = { technology = { country = ENG value = 4330 } } } type = add_division value = multi_role when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4330 } NOT = { technology = { country = ENG value = 4340 } } } type = add_division value = multi_role when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4340 } NOT = { technology = { country = ENG value = 4040 } } } type = add_division value = multi_role when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4040 } NOT = { technology = { country = ENG value = 4070 } } } type = add_division value = multi_role when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4070 } NOT = { technology = { country = ENG value = 4100 } } } type = add_division value = multi_role when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 4100 } NOT = { technology = { country = ENG value = 4350 } } } type = add_division value = multi_role when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 4350 } NOT = { technology = { country = ENG value = 15030 } } } type = add_division value = multi_role when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 15030 } NOT = { technology = { country = ENG value = 15040 } } } type = add_division value = multi_role when = 9 }
+	  	command = { trigger = { technology = { country = ENG value = 15040 } NOT = { technology = { country = ENG value = 15050 } } } type = add_division value = multi_role when = 10 }
+	  	command = { trigger = { technology = { country = ENG value = 15050 } NOT = { technology = { country = ENG value = 4360 } } } type = add_division value = multi_role when = 11 }
+		command = { trigger = { technology = { country = ENG value = 4360 } NOT = { technology = { country = ENG value = 4370 } } } type = add_division value = multi_role when = 12 }
+	  	command = { trigger = { technology = { country = ENG value = 4370 } } type = add_division value = multi_role when = 13 }
+	}
+}
+#### Purchase outdated Unit from ENG
+
+event = {
+	id = 9000139
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY USA EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		#NOT = { ic = 60 }
+		#NOT = { army = 20 }
+		manpower = 10
+		exists = ENG
+		NOT = { war = { country = ENG } }
+	}
+
+	decision_trigger = {
+		money = 1500
+		#NOT = { army = 20 }
+	}
+
+	trigger = {
+		NOT = { ic = 60 }
+		money = 2500
+		#NOT = { army = 20 }
+		exists = ENG
+		NOT = { war = { country = ENG } }
+	}
+   
+	name = "9000139name"
+	desc = "9000039desc" 
+	style = 2
+	picture = "obs_unit"
+	decision_picture = "decision_obs_unit"
+
+	date = { day = 1 month = january year = 1920 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { money = 1500 technology = { country = ENG value = 1420 } }
+		ai_chance = 5
+		name = "9000039a"
+		command = { type = money value = -1500 }
+		command = { type = manpowerpool value = -10 }
+		command = { trigger = { technology = { country = ENG value = 1420 } NOT = { technology = { country = ENG value = 1420 } } } type = add_division value = motorized when = 0 }
+		command = { trigger = { technology = { country = ENG value = 1420 } NOT = { technology = { country = ENG value = 1430 } } } type = add_division value = motorized when = 1 }
+		command = { trigger = { technology = { country = ENG value = 1430 } NOT = { technology = { country = ENG value = 1440 } } } type = add_division value = motorized when = 2 }
+		command = { trigger = { technology = { country = ENG value = 1440 } NOT = { technology = { country = ENG value = 1450 } } } type = add_division value = motorized when = 3 }
+		command = { trigger = { technology = { country = ENG value = 1450 } NOT = { technology = { country = ENG value = 1460 } } } type = add_division value = motorized when = 4 }
+		command = { trigger = { technology = { country = ENG value = 1460 } } type = add_division value = motorized when = 7 }
+
+	}
+	action = {  trigger = { money = 2000 technology = { country = ENG value = 2050 } NOT = { technology = { country = ENG value = 2090 } } }
+		ai_chance = 80
+		name = "9000039b"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = ENG value = 2050 } NOT = { technology = { country = ENG value = 2070 } } } type = add_division value = light_armor when = 0 }
+		command = { trigger = { technology = { country = ENG value = 2070 } NOT = { technology = { country = ENG value = 2080 } } } type = add_division value = light_armor when = 1 }
+		command = { trigger = { technology = { country = ENG value = 2080 } } type = add_division value = light_armor when = 2 }
+	}
+	action = {  trigger = { money = 2500 technology = { country = ENG value = 2090 } }
+		ai_chance = 80
+		name = "9000039b"
+		command = { type = money value = -2500 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { trigger = { technology = { country = ENG value = 2090 } NOT = { technology = { country = ENG value = 2140 } } } type = add_division value = armor when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 2140 } NOT = { technology = { country = ENG value = 11000 } } } type = add_division value = armor when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 11000 } NOT = { technology = { country = ENG value = 2660 } } } type = add_division value = armor when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 2660 } NOT = { technology = { country = ENG value = 11010 } } } type = add_division value = armor when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 11010 } NOT = { technology = { country = ENG value = 2670 } } } type = add_division value = armor when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 2670 } } type = add_division value = armor when = 7 }
+	}
+	action = {  trigger = { money = 2000 technology = { country = ENG value = 4520 } }
+		ai_chance = 5
+		name = "9000039c"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = ENG value = 4520 } NOT = { technology = { country = ENG value = 4530 } } } type = add_division value = interceptor when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 4530 } NOT = { technology = { country = ENG value = 4540 } } } type = add_division value = interceptor when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4540 } NOT = { technology = { country = ENG value = 4550 } } } type = add_division value = interceptor when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4550 } NOT = { technology = { country = ENG value = 4010 } } } type = add_division value = interceptor when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4010 } NOT = { technology = { country = ENG value = 4020 } } } type = add_division value = interceptor when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4020 } NOT = { technology = { country = ENG value = 4030 } } } type = add_division value = interceptor when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4030 } NOT = { technology = { country = ENG value = 4060 } } } type = add_division value = interceptor when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 4060 } NOT = { technology = { country = ENG value = 4090 } } } type = add_division value = interceptor when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 4090 } NOT = { technology = { country = ENG value = 15000 } } } type = add_division value = interceptor when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 15000 } NOT = { technology = { country = ENG value = 15010 } } } type = add_division value = interceptor when = 9 }
+		command = { trigger = { technology = { country = ENG value = 15010 } NOT = { technology = { country = ENG value = 15020 } } } type = add_division value = interceptor when = 10 }
+	  	command = { trigger = { technology = { country = ENG value = 15020 } NOT = { technology = { country = ENG value = 4560 } } } type = add_division value = interceptor when = 11 }
+	  	command = { trigger = { technology = { country = ENG value = 4560 } NOT = { technology = { country = ENG value = 4570 } } } type = add_division value = interceptor when = 12 }
+	  	command = { trigger = { technology = { country = ENG value = 4570 } NOT = { technology = { country = ENG value = 4580 } } } type = add_division value = interceptor when = 13 }
+	  	command = { trigger = { technology = { country = ENG value = 4580 } } type = add_division value = interceptor when = 14 }
+	}
+	action = {  trigger = { money = 2000 technology = { country = ENG value = 4620 } }
+		ai_chance = 5
+		name = "9000039d"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -1 }
+	  	command = { trigger = { technology = { country = ENG value = 4620 } NOT = { technology = { country = ENG value = 4630 } } } type = add_division value = tactical_bomber when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 4630 } NOT = { technology = { country = ENG value = 4120 } } } type = add_division value = tactical_bomber when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4120 } NOT = { technology = { country = ENG value = 4130 } } } type = add_division value = tactical_bomber when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4130 } NOT = { technology = { country = ENG value = 4140 } } } type = add_division value = tactical_bomber when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4140 } NOT = { technology = { country = ENG value = 4150 } } } type = add_division value = tactical_bomber when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4150 } NOT = { technology = { country = ENG value = 4160 } } } type = add_division value = tactical_bomber when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4160 } NOT = { technology = { country = ENG value = 15100 } } } type = add_division value = tactical_bomber when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 15100 } NOT = { technology = { country = ENG value = 15110 } } } type = add_division value = tactical_bomber when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 15110 } NOT = { technology = { country = ENG value = 4640 } } } type = add_division value = tactical_bomber when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 4640 } NOT = { technology = { country = ENG value = 4650 } } } type = add_division value = tactical_bomber when = 9 }
+	  	command = { trigger = { technology = { country = ENG value = 4650 } } type = add_division value = tactical_bomber when = 12 }
+	}
+	
+	action = {  trigger = { money = 2000 technology = { country = ENG value = 4320 } }
+		ai_chance = 5
+		name = "Fighter aircraft"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { trigger = { technology = { country = ENG value = 4320 } NOT = { technology = { country = ENG value = 4330 } } } type = add_division value = multi_role when = 0 }
+	  	command = { trigger = { technology = { country = ENG value = 4330 } NOT = { technology = { country = ENG value = 4340 } } } type = add_division value = multi_role when = 1 }
+	  	command = { trigger = { technology = { country = ENG value = 4340 } NOT = { technology = { country = ENG value = 4040 } } } type = add_division value = multi_role when = 2 }
+	  	command = { trigger = { technology = { country = ENG value = 4040 } NOT = { technology = { country = ENG value = 4070 } } } type = add_division value = multi_role when = 3 }
+	  	command = { trigger = { technology = { country = ENG value = 4070 } NOT = { technology = { country = ENG value = 4100 } } } type = add_division value = multi_role when = 4 }
+	  	command = { trigger = { technology = { country = ENG value = 4100 } NOT = { technology = { country = ENG value = 4350 } } } type = add_division value = multi_role when = 5 }
+	  	command = { trigger = { technology = { country = ENG value = 4350 } NOT = { technology = { country = ENG value = 15030 } } } type = add_division value = multi_role when = 6 }
+	  	command = { trigger = { technology = { country = ENG value = 15030 } NOT = { technology = { country = ENG value = 15040 } } } type = add_division value = multi_role when = 7 }
+	  	command = { trigger = { technology = { country = ENG value = 15040 } NOT = { technology = { country = ENG value = 15050 } } } type = add_division value = multi_role when = 8 }
+	  	command = { trigger = { technology = { country = ENG value = 15050 } NOT = { technology = { country = ENG value = 4360 } } } type = add_division value = multi_role when = 9 }
+		command = { trigger = { technology = { country = ENG value = 4360 } NOT = { technology = { country = ENG value = 4370 } } } type = add_division value = multi_role when = 10 }
+	  	command = { trigger = { technology = { country = ENG value = 4370 } } type = add_division value = multi_role when = 11 }
+	}
+}
+
+#### Purchase outdated Unit from a third party
+
+event = {
+	id = 9000140
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY USA EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		#NOT = { ic = 60 }
+		#NOT = { army = 20 }
+		manpower = 10
+	}
+
+	decision_trigger = {
+		money = 1500
+	}
+
+	trigger = {
+		NOT = { ic = 60 }
+		money = 2500
+		#NOT = { army = 20 }
+		OR = {
+			NOT = { exists = ENG }
+			war = { country = ENG }
+		}
+		OR = {
+			NOT = { exists = USA }
+			war = { country = USA }
+		}
+	}
+   
+	name = "9000140name"
+	desc = "9000039desc" 
+	style = 2
+	picture = "obs_unit"
+	decision_picture = "decision_obs_unit"
+
+	date = { day = 1 month = january year = 1920 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { money = 1500 year = 1945 }
+		ai_chance = 5
+		name = "9000039a"
+		command = { type = money value = -1500 }
+		command = { type = manpowerpool value = -10 }
+	  	command = { type = add_division value = motorized }
+	}
+	action = {  trigger = { money = 2500 year = 1945 }
+		ai_chance = 80
+		name = "9000039b"
+		command = { type = money value = -2500 }
+		command = { type = manpowerpool value = -5 }
+	  	command = { type = add_division value = armor }
+	}
+	action = {  trigger = { money = 2000 }
+		ai_chance = 5
+		name = "9000039c"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { type = add_division value = interceptor }
+	}
+	action = {  trigger = { money = 2500 }
+		ai_chance = 5
+		name = "9000039d"
+		command = { type = money value = -2500 }
+		command = { type = manpowerpool value = -1 }
+	  	command = { type = add_division value = tactical_bomber }
+	}
+	action = {  trigger = { money = 2000 }
+		ai_chance = 5
+		name = "Fighter aircraft"
+		command = { type = money value = -2000 }
+		command = { type = manpowerpool value = -0.5 }
+	  	command = { type = add_division value = multi_role }
+	}
+}
+
+
+#### Press Censorship
+event = {
+	id = 9000027
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		NOT = { local_flag = press_censorship }
+		government = democratic
+		atwar = yes
+	}
+
+	decision_trigger = {
+		government = democratic
+		atwar = yes
+		OR = {
+			money = 500
+			AND = {
+				NOT = { IC = 80 }
+				money = 400
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 250
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 100
+				}	
+			}
+	}
+
+	trigger = {
+		NOT = { local_flag = press_censorship }
+		dissent = 3
+		government = democratic
+		atwar = yes
+		money = 500
+	}
+   
+	name = "9000027name"
+	desc = "9000027desc" 
+	style = 2
+	picture = "censorship"
+	decision_picture = "decision_censorship"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000027text"
+		command = { type = domestic which = democratic value = -1 }
+		command = { type = dissent value = -3 }
+		#command = { type = dissent value = -0.1000 } # Should be 10%
+		command = { trigger = { IC = 80 } type = money value = -500 }
+		command = { trigger = { IC = 50 NOT = { IC = 80 } } type = money value = -400 }
+		command = { trigger = { IC = 15 NOT = { IC = 50 } } type = money value = -250 }
+		command = { trigger = { NOT = { IC = 15 } } type = money value = -100 }
+		command = { type = local_setflag which = press_censorship }
+	}
+}
+#### War Propaganda
+event = {
+	id = 9000028
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		NOT = { local_flag = war_propaganda }
+		atwar = yes
+		NOT = { local_flag = MOB9 }
+	}
+
+	decision_trigger = {
+		atwar = yes
+		OR = {
+			money = 500
+			AND = {
+				NOT = { IC = 80 }
+				money = 400
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 250
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 100
+				}	
+			}
+	}
+
+	trigger = {
+		NOT = { local_flag = war_propaganda }
+		OR = {
+			NOT = { manpower = 100 }
+			dissent = 3
+		}
+		atwar = yes
+		money = 500
+		NOT = { local_flag = MOB9 }
+	}
+   
+	name = "9000028name"
+	desc = "9000028desc" 
+	style = 2
+	picture = "war_propaganda"
+	decision_picture = "decision_war_propaganda"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000028text"
+		command = { type = domestic which = freedom value = -1 }
+		command = { type = dissent value = -3 }
+		command = { type = manpowerpool value = 0.1 when = 1 }
+		command = { trigger = { IC = 80 } type = money value = -500 }
+		command = { trigger = { IC = 50 NOT = { IC = 80 } } type = money value = -400 }
+		command = { trigger = { IC = 15 NOT = { IC = 50 } } type = money value = -250 }
+		command = { trigger = { NOT = { IC = 15 } } type = money value = -100 }
+		command = { type = local_setflag which = war_propaganda }
+	}
+}
+#### Ersatz Conversion
+event = {
+	id = 9000029
+	random = no
+	persistent = yes
+	tag = { GER ITA JAP U08 U09 }
+
+	decision = { 
+		money = 100
+		energy = 4000
+		NOT = { rare_materials = 500 }
+	}
+
+	decision_trigger = {
+		money = 100
+		energy = 5000
+		NOT = { rare_materials = 300 }
+	}
+
+	trigger = {
+		NOT = { dissent = 5 }
+		NOT = { rare_materials = 200 }
+		money = 100
+		energy = 5000
+	}
+   
+	name = "9000029name"
+	desc = "9000029desc" 
+	style = 2
+	picture = "ersatz_conversion"
+	decision_picture = "decision_ersatz_conversion"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000029text"
+		command = { type = dissent value = 2 }
+		command = { type = money value = -100 }
+		command = { type = energypool value = -5000 }
+		command = { type = rarematerialspool value = 500 }
+	}
+}
+#### Invest in National Infrastructures
+event = {
+	id = 9000030
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		OR = {
+			money = 800
+			AND = {
+				NOT = { IC = 80 }
+				money = 650
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 400
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 200
+				}	
+			}
+		NOT = { policy = { type = free_market value = 8 } }
+	}
+
+	decision_trigger = { 
+		OR = {
+			money = 1000
+			AND = {
+				NOT = { IC = 80 }
+				money = 800
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 600
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 300
+				}	
+			}
+	}
+
+	trigger = {
+		random = 20
+		money = 1000
+		NOT = { policy = { type = professional_army value = 7 } }
+		#NOT = { policy = { type = free_market value = 8 } }
+	}
+   
+	name = "9000030name"
+	desc = "9000030desc" 
+	style = 2
+	picture = "invest_infrastructures"
+	decision_picture = "decision_invest_infrastructures"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { IC = 80 money = 1000 }
+		ai_chance = 30
+		name = "9000030a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -1000 }
+		command = { type = tc_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 80 money = 2000 }
+		ai_chance = 30
+		name = "9000030b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -2000 }
+		command = { type = tc_mod value = 1 }
+	}
+	action = {  trigger = { IC = 80 money = 4000 }
+		ai_chance = 40
+		name = "9000030c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -4000 }
+		command = { type = tc_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}
+	
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 800 }
+		ai_chance = 30
+		name = "9000030a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -800 }
+		command = { type = tc_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 1600 }
+		ai_chance = 30
+		name = "9000030b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -1600 }
+		command = { type = tc_mod value = 1 }
+	}
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 3200 }
+		ai_chance = 40
+		name = "9000030c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -3200 }
+		command = { type = tc_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}
+	
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 600 }
+		ai_chance = 30
+		name = "9000030a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -600 }
+		command = { type = tc_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 1200 }
+		ai_chance = 30
+		name = "9000030b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -1200 }
+		command = { type = tc_mod value = 1 }
+	}
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 2400 }
+		ai_chance = 40
+		name = "9000030c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -2400 }
+		command = { type = tc_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}	
+	
+	action = {  trigger = { NOT = { IC = 15 } money = 300 }
+		ai_chance = 30
+		name = "9000030a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -300 }
+		command = { type = tc_mod value = 0.5 }
+	}
+	action = {  trigger = { NOT = { IC = 15 } money = 600 }
+		ai_chance = 30
+		name = "9000030b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -600 }
+		command = { type = tc_mod value = 1 }
+	}
+	action = {  trigger = { NOT = { IC = 15 } money = 1200 }
+		ai_chance = 40
+		name = "9000030c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -1200 }
+		command = { type = tc_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}	
+}
+#### Invest in National Research
+event = {
+	id = 9000031
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		OR = {
+			money = 800
+			AND = {
+				NOT = { IC = 80 }
+				money = 650
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 400
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 200
+				}	
+			}
+		NOT = { policy = { type = free_market value = 8 } }
+	}
+
+	decision_trigger = { 
+		OR = {
+			money = 1000
+			AND = {
+				NOT = { IC = 80 }
+				money = 800
+				}
+			AND = {
+				NOT = { IC = 50 }
+				money = 600
+				}
+			AND = {
+				NOT = { IC = 15 }
+				money = 300
+				}	
+			}
+	}
+
+	trigger = {
+		random = 60
+		money = 1000
+		NOT = { policy = { type = professional_army value = 7 } }
+		#NOT = { policy = { type = free_market value = 8 } }
+	}
+   
+	name = "9000031name"
+	desc = "9000031desc" 
+	style = 2
+	picture = "invest_research"
+	decision_picture = "decision_invest_research"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { IC = 80 money = 1000 }
+		ai_chance = 30
+		name = "9000031a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -1000 }
+		command = { type = research_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 80 money = 2000 }
+		ai_chance = 30
+		name = "9000031b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -2000 }
+		command = { type = research_mod value = 1 }
+	}
+	action = {  trigger = { IC = 80 money = 4000 }
+		ai_chance = 40
+		name = "9000031c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -4000 }
+		command = { type = research_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}
+	
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 800 }
+		ai_chance = 30
+		name = "9000031a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -800 }
+		command = { type = research_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 1600 }
+		ai_chance = 30
+		name = "9000031b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -1600 }
+		command = { type = research_mod value = 1 }
+	}
+	action = {  trigger = { IC = 50 NOT = { IC = 80 } money = 3200 }
+		ai_chance = 40
+		name = "9000031c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -3200 }
+		command = { type = research_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}		
+	
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 600 }
+		ai_chance = 30
+		name = "9000031a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -600 }
+		command = { type = research_mod value = 0.5 }
+	}
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 1200 }
+		ai_chance = 30
+		name = "9000031b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -1200 }
+		command = { type = research_mod value = 1 }
+	}
+	action = {  trigger = { IC = 15 NOT = { IC = 50 } money = 2400 }
+		ai_chance = 40
+		name = "9000031c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -2400 }
+		command = { type = research_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}	
+		
+	action = {  trigger = { NOT = { IC = 15 } money = 300 }
+		ai_chance = 30
+		name = "9000031a"
+		command = { type = dissent value = -0.5 }
+		command = { type = money value = -300 }
+		command = { type = research_mod value = 0.5 }
+	}
+	action = {  trigger = { NOT = { IC = 15 } money = 600 }
+		ai_chance = 30
+		name = "9000031b"
+		command = { type = dissent value = -1 }
+		command = { type = money value = -600 }
+		command = { type = research_mod value = 1 }
+	}
+	action = {  trigger = { NOT = { IC = 15 } money = 1200 }
+		ai_chance = 40
+		name = "9000031c"
+		command = { type = dissent value = -2 }
+		command = { type = money value = -1200 }
+		command = { type = research_mod value = 2.5 }
+		#command = { type = domestic which = free_market value = -1 }
+	}	
+}
+#### Purge the Army
+event = {
+	id = 9000032
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		NOT = { local_flag = purges_army }
+		NOT = { government = democratic }
+		policy = { type = defense_lobby value = 3 }
+		NOT = { AND = { country = SOV event = 2007025 } }
+	}
+
+	decision_trigger = { 
+		NOT = { government = democratic }
+		policy = { type = defense_lobby value = 3 }
+	}
+
+	trigger = {
+		NOT = { local_flag = purges_army }
+		random = 1
+		NOT = { government = democratic }
+		policy = { type = defense_lobby value = 3 }
+	}
+   
+	name = "9000032name"
+	desc = "9000032desc" 
+	style = 2
+	picture = "purge_army"
+	decision_picture = "decision_purge_army"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000032text"
+		command = { trigger = { NOT = { country = SOV } } type = dissent value = 2 }
+		command = { type = morale which = land value = 3 }
+		command = { trigger = { NOT = { country = SOV } } type = trigger which = 9000036 }
+		command = { trigger = { country = SOV } type = trigger which = 2007025 }
+		command = { type = local_setflag which = purges_army }
+	}
+}
+event = {
+	id = 9000036
+	random = no
+	persistent = yes
+	one_action = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	name = "9000036name"
+	desc = "9000032desc" 
+	style = 2
+	picture = "purge_army"
+
+	action = {
+		ai_chance = 25
+		name = "9000032text"
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { }
+	}
+	action = {
+		ai_chance = 25
+		name = "9000032text"
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { }
+	}
+	action = {
+		ai_chance = 25
+		name = "9000032text"
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { }
+	}
+	action = {
+		ai_chance = 25
+		name = "9000032text"
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { type = sleepleader which = -1 }
+		command = { }
+	}
+}
+#### Wargames
+event = {
+	id = 9000033
+	random = no
+	persistent = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }
+	decision = { 
+		money = 400
+		supplies = 100
+		policy = { type = defense_lobby value = 3 }
+	}
+
+	decision_trigger = { 
+		money = 800
+		supplies = 200
+	}
+
+	trigger = {
+		atwar = no
+		random = 50
+		money = 800
+		supplies = 200
+		policy = { type = defense_lobby value = 3 }
+		NOT = { policy = { type = professional_army value = 9 } }
+	}
+   
+	name = "9000033name"
+	desc = "9000033desc" 
+	style = 2
+	picture = "wargames"
+	decision_picture = "decision_wargames"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000033text"
+		command = { type = money value = -800 }
+		command = { type = supplies value = -200 }
+		command = { type = trigger which = 9000035 }
+	}
+}
+event = {
+	id = 9000035
+	random = no
+	persistent = yes
+	one_action = yes
+	TAG =  { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHI CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR EAF ECU EGY ENG EQA EST ETH EUS FIN FLA FRA GAB GEO GER GLD GRE GUA GUI GUY HOL HON HUN ICL IDC IND INO IRE IRQ ISR ITA JAP JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SLV SOM SOV SPA SPR SUD SWE SYR TAJ TAN TEX TRA TRK TUN TUR UKR URU USA UZB VEN VIE WLL YEM YUG U01 U02 U03 U04 U08 U09 U10 U11 U12 U13 U14 U15 U16 U17 U18 U19 U20 U21 U22 U26 U27 U28 U29 U30 U31 U32 U33 U34 U35 U40 U41 U42 U43 U44 U45 U46 U47 U48 U49 U50 U51 U52 U53 U54 U55 U56 U57 U58 U59 U67 UTC UER UPE U70 U71 U72 U73 U74 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 }   
+	name = "9000033name"
+	desc = "9000033desc" 
+	style = 2
+	picture = "wargames"
+
+	action = {
+		ai_chance = 33
+		name = "9000033text"
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { }
+	}
+	action = {
+		ai_chance = 34
+		name = "9000033text"
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { }
+	}
+	action = {
+		ai_chance = 33
+		name = "9000033text"
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { type = add_leader_skill which = -1 value = 1 }
+		command = { }
+	}
+}
+#### Diplomatic Campaign
+event = {
+	id = 9000034
+	random = no
+	persistent = yes
+	country = GER
+
+	decision = { 
+		money = 300
+		atwar = no
+	}
+
+	decision_trigger = { 
+		money = 500
+		atwar = no
+	}
+
+	trigger = {
+		random = 5
+		money = 500
+		atwar = no
+	}
+   
+	name = "9000034name"
+	desc = "9000034desc" 
+	style = 2
+	picture = "diplomatic_campaign"
+	decision_picture = "decision_diplomatic_campaign"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {  trigger = { country = GER }
+		name = "9000034text"
+		command = { type = money value = -500 }
+		command = { type = 	belligerence value = -1 }
+		command = { type = 	relation which = FRA value = 10 }
+		command = { type = 	relation which = ENG value = 10 }
+		command = { type = 	relation which = POL value = 10 }
+		command = { type = 	relation which = SOV value = 10 }
+		command = { type = 	relation which = ITA value = 10 }
+		command = { type = 	relation which = JAP value = 5 }
+		command = { type = 	relation which = HUN value = 10 }
+		command = { type = 	relation which = AUS value = 10 }
+		command = { type = 	relation which = ROM value = 10 }
+		command = { type = 	relation which = YUG value = 10 }
+		command = { type = 	relation which = BUL value = 10 }
+	}
+}
+#### War Bonds
+event = {
+	id = 9000037
+	random = no
+	persistent = yes
+	tag = { U08 FRA U09 ENG RUS ITA USA OTT CAN }
+	decision = { 
+		NOT = { local_flag = war_bonds }
+		atwar = yes
+	}
+
+	decision_trigger = { }
+
+	trigger = {
+		NOT = { local_flag = war_bonds }
+		OR = {
+			random = 80
+			NOT = { supplies = 1000 }
+		}
+		atwar = yes
+		NOT = { dissent = 5 }
+	}
+   
+	name = "9000037name"
+	desc = "9000037desc" 
+	style = 2
+	picture = "War_Bonds"
+	decision_picture = "decision_War_Bonds"
+
+	date = { day = 1 month = january year = 1914 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "9000037text"
+		command = { type = money value = 2000 }
+		command = { type = supplies value = 5000 }
+		command = { type = dissent value = 2  }
+		command = { type = local_setflag which = war_bonds }
+	}
+}
+
+##############
+# Sacred Union
+#################################
+event = {
+	id = 9000038
+	tag = { U08 FRA ENG RUS }
+	persistent = yes
+	random = no
+
+	decision = { 
+		NOT = { local_flag = sacred_union }
+		atwar = yes
+	}
+	
+	decision_trigger = { }
+	
+	trigger = { 
+		NOT = { local_flag = sacred_union }
+		random = 80 
+		atwar = yes
+		dissent = 3 
+	}
+
+   date = { day = 1 month = january year = 1914 }
+   offset = 30
+   deathdate = { day = 29 month = december year = 1919 }
+   
+   name = "EVT1914_9000038_NAME"
+   desc = "EVT1914_9000038_DESC" 
+   style = 2
+   decision_picture = "decision_diplomatic_campaign"
+
+   action = {
+	name = "EVT1914_9000038_TEXT"
+		command = { type = 	dissent value = -5  }
+		command = { trigger = { country = FRA } type = domestic which = political_left value = 4 }
+		command = { trigger = { country = FRA } type = foreignminister which = 5273 } # Delcassé
+		command = { trigger = { country = FRA } type = armamentminister which = 5372 } # Millerand
+		command = { type = local_setflag which = sacred_union }
+
+   }
+}
+
+#### Convert Commerce Convoys Into Troop Carriers
+event = {
+	id = 9000051
+
+	persistent = yes
+	random = no
+
+	decision = { technology = 3810 convoypool = 100 }
+	decision_trigger = { money = 200 }
+	trigger = { 
+		technology = 3810
+		convoypool = 100
+		money = 20
+		OR = {
+			NOT = { transport = { value = 1 when = now } }
+			AND = {
+				ic = 30
+				NOT = { transport = { value = 3 when = now } }
+			}
+			AND = {
+				country = ENG
+				NOT = { transport = { value = 6 when = now } }
+			}
+			AND = {
+				country = JAP
+				NOT = { transport = { value = 6 when = now } }
+			}
+		}
+	}
+
+	name = "9000051name"
+	desc = "9000051desc"
+	style = 2
+	picture = "Convoys"
+	decision_picture = "decision_convoys"
+
+	date = { day = 0 month = january year = 1914 }
+	offset = 6
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "ACTION_NAME_GREAT"
+		command = { type = transport_pool which = -1 value = -50 }
+		#command = { trigger = { country = FRA } type = add_corps value = naval where = 86 }
+		command = { trigger = { technology = 3810 NOT = { technology = 3820 } } type = add_division value = transport when = 0 }
+		command = { trigger = { technology = 3820 NOT = { technology = 3830 } } type = add_division value = transport when = 1 }
+		command = { trigger = { technology = 3830 NOT = { technology = 3840 } } type = add_division value = transport when = 2 }
+		command = { trigger = { technology = 3840 NOT = { technology = 3850 } } type = add_division value = transport when = 3 }
+		command = { trigger = { technology = 3850 NOT = { technology = 3860 } } type = add_division value = transport when = 4 }
+		command = { trigger = { technology = 3860 } type = add_division value = transport when = 5 }
+		command = { trigger = { NOT = { ai = yes } } type = money value = -200 }
+		command = { trigger = { ai = yes } type = money value = -20 } #AI can be exploited by repeatedly sinking transports
+	}
+}
+
+event = {
+	id = 9000055
+
+	persistent = yes
+	random = no
+
+	decision = { NOT = { local_flag = warOfManuever } NOT = { local_flag = stanceDelay } }
+	decision_trigger = { }
+	trigger = { 
+		ai = yes
+		NOT = { local_flag = stanceDelay }
+		NOT = { local_flag = warOfManuever }
+		OR = {
+			AND = {
+				country = USA
+				NOT = { year = 1942 }
+			}
+			AND = {
+				country = ENG
+				NOT = { year = 1942 }
+			}
+			AND = {
+				country = CAN
+				NOT = { year = 1942 }
+			}
+		}
+	}
+
+	name = "War of Maneuver Stance"
+	desc = "Adopting the War of Maneuver Stance will allow us to move our troops around 10 percent faster at the expense of 5 percent combat efficiency. Beware that the change will take 3 months during which our army will have a 10 percent penalty to its max organization."
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive"
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Ok"
+		command = { type = dissent value = 0.5 }
+		command = { type = max_organization which = land value = -10 } 
+		#10% speed increase
+		command = { type = plain_move which = land value = 10 }
+		command = { type = desert_move which = land value = 10 }
+		command = { type = mountain_move which = land value = 10 }
+		command = { type = urban_move which = land value = 10 }
+		command = { type = hill_move which = land value = 10 }
+		command = { type = forest_move which = land value = 10 }
+		command = { type = jungle_move which = land value = 10 }
+		command = { type = swamp_move which = land value = 10 }
+		
+		#5% combat efficiency decrease
+		command = { type = ground_def_eff value = -0.05 when = 1 }
+		
+		#10% speed increase
+		command = { trigger = { local_flag = warOfAttrition } type = plain_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = desert_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = mountain_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = urban_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = hill_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = forest_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = jungle_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = swamp_move which = land value = 10 }
+		
+		#10% combat efficiency decrease
+		command = { trigger = { local_flag = warOfAttrition } type = ground_def_eff value = -0.05 when = 1 }
+		
+		command = { type = local_setflag which = warOfManuever }
+		command = { type = local_clrflag which = warOfAttrition }
+		command = { type = local_setflag which = stanceDelay }
+		command = { type = event which = 9000058 where = -1 when = 90 } #90 days before we can change again
+	}
+}
+
+event = {
+	id = 9000056
+
+	persistent = yes
+	random = no
+
+	decision = { NOT = { local_flag = warOfAttrition } NOT = { local_flag = stanceDelay } }
+	decision_trigger = { }
+	trigger = { 
+		ai = yes
+		NOT = { local_flag = stanceDelay }
+		NOT = { local_flag = warOfAttrition }
+		OR = {
+			AND = {
+				country = FRA
+				NOT = { year = 1942 }
+			}
+		}
+	}
+
+	name = "War of Attrition Stance"
+	desc = "Adopting the War of Attrition Stance will allow us to gain 5 percent extra combat efficiency at the expense of 10 percent movement speed. Beware that the change will take 3 months during which our army will have a 10 percent penalty to its max organization."
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive"
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Ok"
+		command = { type = dissent value = 0.5 }
+		command = { type = max_organization which = land value = -10 } 
+		#10% speed decrease
+		command = { type = plain_move which = land value = -10 }
+		command = { type = desert_move which = land value = -10 }
+		command = { type = mountain_move which = land value = -10 }
+		command = { type = urban_move which = land value = -10 }
+		command = { type = hill_move which = land value = -10 }
+		command = { type = forest_move which = land value = -10 }
+		command = { type = jungle_move which = land value = -10 }
+		command = { type = swamp_move which = land value = -10 }
+		
+		#5% combat efficiency increase
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		
+		#10% speed decrease
+		command = { trigger = { local_flag = warOfManuever } type = plain_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = desert_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = mountain_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = urban_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = hill_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = forest_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = jungle_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = swamp_move which = land value = -10 }
+		
+		#10% combat efficiency increase
+		command = { trigger = { local_flag = warOfManuever } type = ground_def_eff value = 0.05 when = 1 }
+		
+		command = { type = local_clrflag which = warOfManuever }
+		command = { type = local_setflag which = warOfAttrition }
+		command = { type = local_setflag which = stanceDelay }
+		command = { type = event which = 9000058 where = -1 when = 90 } #90 days before we can change again
+	}
+}
+
+event = {
+	id = 9000057
+
+	persistent = yes
+	random = no
+
+	decision = {
+		NOT = { local_flag = stanceDelay }
+		OR = { 
+			local_flag = warOfManuever
+			local_flag = warOfAttrition
+		}
+	}
+	decision_trigger = { }
+	trigger = {
+		ai = yes
+		NOT = { local_flag = stanceDelay }
+		OR = {
+			AND = {
+				local_flag = warOfManuever
+				OR = {
+					AND = {
+						NOT = { country = USA }
+						NOT = { country = CAN }
+						NOT = { country = ENG }
+					}
+					year = 1942
+				}
+			}
+			AND = {
+				local_flag = warOfAttrition
+				OR = {
+					NOT = { country = FRA }
+					year = 1942
+				}
+			}
+		}
+	}
+
+	name = "Mixed Stance"
+	desc = "Adopting the Mixed Doctrine will allow us to remove the effects of War of Attrition or War of Maneuver and reset our army to balanced behavior. Beware that the change will take 3 months during which our army will have a 10 percent penalty to its max organization."
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive"
+
+	date = { day = 0 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Ok"
+		command = { type = dissent value = 0.5 }
+		command = { type = max_organization which = land value = -10 } 
+		#10% speed increase
+		command = { trigger = { local_flag = warOfAttrition } type = plain_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = desert_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = mountain_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = urban_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = hill_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = forest_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = jungle_move which = land value = 10 }
+		command = { trigger = { local_flag = warOfAttrition } type = swamp_move which = land value = 10 }
+		
+		#5% combat efficiency decrease
+		command = { trigger = { local_flag = warOfAttrition } type = ground_def_eff value = -0.05 when = 1 }
+		
+		#10% speed decrease
+		command = { trigger = { local_flag = warOfManuever } type = plain_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = desert_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = mountain_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = urban_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = hill_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = forest_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = jungle_move which = land value = -10 }
+		command = { trigger = { local_flag = warOfManuever } type = swamp_move which = land value = -10 }
+		
+		#5% combat efficiency increase
+		command = { trigger = { local_flag = warOfManuever } type = ground_def_eff value = 0.05 when = 1 }
+		
+		command = { type = local_clrflag which = warOfManuever }
+		command = { type = local_clrflag which = warOfAttrition }
+		command = { type = local_setflag which = stanceDelay }
+		command = { type = event which = 9000058 where = -1 when = 90 } #90 days before we can change again
+	}
+}
+
+event = {
+	id = 9000058
+
+	persistent = yes
+	random = no
+
+	name = "Stance Reset"
+	desc = "We have finished reorganizing our armed forces along new lines and are ready for action!"
+	style = 2
+	picture = "Wehrmacht"
+	decision_picture = "decision_grand_offensive"
+
+	action = {
+		name = "Ok"
+		command = { type = local_clrflag which = stanceDelay }
+		command = { type = max_organization which = land value = 10 } 
+	}
+}
+
+#######################################
+#Hands-off mode
+#######################################
+
+event = {
+	id = 1
+	persistent = yes
+	random = no
+
+	decision = { 
+		NOT = { local_flag = handsOffMode }
+	}
+	
+	decision_trigger = { }
+	
+	trigger = { 
+		ai = no
+	}
+
+   date = { day = 1 month = january year = 1914 }
+   offset = 60
+   deathdate = { day = 29 month = december year = 1960 }
+   
+   name = "Hands-off mode enable"
+   desc = "Hands-off mode enable" 
+   style = 2
+
+   action = {
+		name = "Enable"
+		command = { type = local_setflag which = noWarningsSOVUSA }
+		command = { type = local_setflag which = noWarningsMobDemob }
+		command = { type = local_setflag which = handsOffMode }
+   }
+   action = {
+		name = "Remove"
+		command = { type = local_clrflag which = noWarningsSOVUSA }
+		command = { type = local_clrflag which = noWarningsMobDemob }
+		command = { type = local_setflag which = handsOffMode }
+   }
+}

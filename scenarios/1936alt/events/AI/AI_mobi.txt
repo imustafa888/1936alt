@@ -1,0 +1,66 @@
+#### events are written in a generic patern, can/should be cleaned up for performance later
+
+#### generic events - for ai puppets
+
+event = {
+	id = 150024
+	random = no
+	persistent = yes
+
+	
+	
+	trigger = {
+		ai = yes
+		OR = {
+			atwar = yes
+			policy = { type = professional_army value = 7 }
+		}
+		NOT = { local_flag = reinf }
+		}
+   
+	name = "AI_EVENT"
+	
+	date = { day = 1 month = january year = 1908 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+	
+		ai_chance = 100
+
+		command = { type = local_clrflag which = noreinf }
+		command = { type = local_setflag which = reinf }
+		command = { type = ai which = "Reinforcement_Boost_Up.ai" }
+	}
+}	
+event = {
+	id = 150025
+	random = no
+	persistent = yes
+
+	
+	
+	trigger = {
+		ai = yes
+		NOT = {
+			atwar = yes
+			policy = { type = professional_army value = 7 }
+		}
+		NOT = { local_flag = noreinf }
+		}
+   
+	name = "AI_EVENT"
+	
+	date = { day = 1 month = january year = 1908 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+	
+		ai_chance = 100
+
+		command = { type = local_clrflag which = reinf }
+		command = { type = local_setflag which = noreinf }
+		command = { type = ai which = "Reinforcement_Boost_Down.ai" }
+	}	
+}

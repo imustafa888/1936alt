@@ -1,0 +1,2520 @@
+####################################
+# AI events
+####################################
+
+event = {
+	id = 2400001
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		NOT = { local_flag = AIinit }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIinit }
+		command = { type = local_setflag which = AIBuildStandard }
+		command = { type = local_clrflag which = AIBuildNaval }
+		command = { type = local_clrflag which = AIBuildLand }
+		command = { type = ai which = "default.ai" }
+	}
+}
+
+event = {
+	id = 2400002
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinitCommie }
+		government = communist
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIinitNonCommie }
+		command = { type = local_setflag which = AIinitCommie }
+		command = { type = ai which = "release_communist.ai" }
+	}
+}
+
+event = {
+	id = 2400003
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinitNonCommie }
+		NOT = { government = communist }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIinitNonCommie }
+		command = { type = local_clrflag which = AIinitCommie }
+		command = { type = ai which = "release_nonCommunist.ai" }
+	}
+}
+
+event = {
+	id = 2400004
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		atwar = no
+		local_flag = AIinit
+		NOT = { local_flag = AIfreeCommie }
+		government = communist
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIfreeNonCommie }
+		command = { type = local_setflag which = AIfreeCommie }
+		#command = { type = ai which = "releaseNation_communist.ai" }
+	}
+}
+
+event = {
+	id = 2400005
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		atwar = no
+		local_flag = AIinit
+		NOT = { local_flag = AIfreeNonCommie }
+		NOT = { government = communist }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIfreeCommie }
+		command = { type = local_clrflag which = AIfreeNonCommie }
+		#command = { type = ai which = "releaseNation_nonCommunist.ai" }
+	}
+}
+
+event = {
+	id = 2400006
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		atwar = yes
+		local_flag = AIinit
+		OR = { 
+			local_flag = releaseNation_nonCommunist
+			local_flag = releaseNation_communist
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIfreeCommie }
+		command = { type = local_clrflag which = AIfreeNonCommie }
+		#command = { type = ai which = "releaseNation_none.ai" }
+	}
+}
+
+
+
+
+
+
+
+event = {
+	id = 2400015
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIBuildStandard }
+		#No own conditions, only by exclusion of others
+		#Excluding conditions for naval or land ai
+		NOT = {
+			OR = {
+				lost_national = { value = 30 }
+				AND = {
+					country = ISR
+					OR = {
+						control = { province = 787 data = -2 } # Cairo
+						control = { province = 1034 data = -2 } # Baghdad
+					}
+				}
+				AND = {
+					country = ENG
+					OR = {
+						NOT = { naval_percentage = { country = USA value = 1.0 } }
+						NOT = { transport = { value = 10 } }
+					}
+				}
+				AND = {
+					country = USA
+					control = { province = 2108 data = -3 }
+					control = { province = 2109 data = -3 }
+					control = { province = 2117 data = -3 }
+					OR = {
+						NOT = { naval_percentage = { country = ENG value = 1.2 } }
+						NOT = { transport = { value = 10 } }
+					}
+				}
+				AND = {
+					country = USA
+					NOT = { land_percentage = { country = ENG value = 0.6 } }
+				}
+				AND = {
+					country = SOV
+					army = { size = 300 which = 1 }
+					air = 20
+					NOT = { navy = 300 }
+					control = { province = 163 data = -3 } # Berlin
+					control = { province = 55 data = -3 }  # Paris
+					control = { province = 572 data = -3 } # Moscow
+					NOT = { lost_national = { value = 3 } }
+				}
+				AND = {
+					country = FRA
+					army = { size = 150 which = 1 }
+					air = 15
+					NOT = { navy = 200 }
+					control = { province = 163 data = -3 } # Berlin
+					control = { province = 55 data = -3 }  # Paris
+					control = { province = 572 data = -3 } # Moscow
+					NOT = { lost_national = { value = 3 } }
+				}
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIBuildStandard }
+		command = { type = local_clrflag which = AIBuildNaval }
+		command = { type = local_clrflag which = AIBuildLand }
+		command = { type = ai which = "buildStandard.ai" }
+	}
+}
+
+event = {
+	id = 2400016
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIBuildLand }
+		OR = {
+			lost_national = { value = 30 }
+			AND = {
+				country = ISR
+				OR = {
+					control = { province = 787 data = -2 } # Cairo
+					control = { province = 1034 data = -2 } # Baghdad
+				}
+			}
+			AND = {
+				country = USA
+				NOT = { land_percentage = { country = ENG value = 0.6 } }
+			}
+		}
+		#Excluding conditions for standard and naval ai
+		NOT = {
+			OR = {
+				AND = {
+					country = ENG
+					OR = {
+						NOT = { naval_percentage = { country = USA value = 1.0 } }
+						NOT = { transport = { value = 10 } }
+					}
+				}
+				AND = {
+					country = USA
+					control = { province = 2108 data = -3 }
+					control = { province = 2109 data = -3 }
+					control = { province = 2117 data = -3 }
+					OR = {
+						NOT = { naval_percentage = { country = ENG value = 1.2 } }
+						NOT = { transport = { value = 10 } }
+					}
+				}
+				AND = {
+					country = SOV
+					army = { size = 300 which = 1 }
+					air = 20
+					NOT = { navy = 300 }
+					control = { province = 163 data = -3 } # Berlin
+					control = { province = 55 data = -3 }  # Paris
+					control = { province = 572 data = -3 } # Moscow
+					NOT = { lost_national = { value = 3 } }
+				}
+				AND = {
+					country = FRA
+					army = { size = 150 which = 1 }
+					air = 15
+					NOT = { navy = 200 }
+					control = { province = 163 data = -3 } # Berlin
+					control = { province = 55 data = -3 }  # Paris
+					control = { province = 572 data = -3 } # Moscow
+					NOT = { lost_national = { value = 3 } }
+				}
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIBuildStandard }
+		command = { type = local_clrflag which = AIBuildNaval }
+		command = { type = local_setflag which = AIBuildLand }
+		command = { type = ai which = "buildLand.ai" }
+	}
+}
+
+event = {
+	id = 2400017
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIBuildNaval }
+
+		OR = {
+			AND = {
+				country = ENG
+				OR = {
+					NOT = { naval_percentage = { country = USA value = 1.0 } }
+					NOT = { transport = { value = 10 } }
+				}
+			}
+			AND = {
+				country = USA
+				control = { province = 2108 data = -3 }
+				control = { province = 2109 data = -3 }
+				control = { province = 2117 data = -3 }
+				OR = {
+					NOT = { naval_percentage = { country = ENG value = 1.2 } }
+					NOT = { transport = { value = 10 } }
+				}
+			}
+			AND = {
+				country = SOV
+				army = { size = 300 which = 1 }
+				air = 20
+				NOT = { navy = 300 }
+				control = { province = 163 data = -3 } # Berlin
+				control = { province = 55 data = -3 }  # Paris
+				control = { province = 572 data = -3 } # Moscow
+				NOT = { lost_national = { value = 3 } }
+			}
+			AND = {
+				country = FRA
+				army = { size = 150 which = 1 }
+				air = 15
+				NOT = { navy = 200 }
+				control = { province = 163 data = -3 } # Berlin
+				control = { province = 55 data = -3 }  # Paris
+				control = { province = 572 data = -3 } # Moscow
+				NOT = { lost_national = { value = 3 } }
+			}
+		}
+		NOT = {
+			OR = {
+				#Excluding conditions for standard or land ai
+				lost_national = { value = 30 }
+				AND = {
+					country = ISR
+					OR = {
+						control = { province = 787 data = -2 } # Cairo
+						control = { province = 1034 data = -2 } # Baghdad
+					}
+				}
+				AND = {
+					country = USA
+					NOT = { land_percentage = { country = ENG value = 0.6 } }
+				}
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIBuildStandard }
+		command = { type = local_setflag which = AIBuildNaval }
+		command = { type = local_clrflag which = AIBuildLand }
+		command = { type = ai which = "buildNaval.ai" }
+	}
+}
+
+event = {
+	id = 2400018
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		ic = 50
+		#AI never builds more than 2 at a time
+		OR = {
+			AND = {
+				technology = 5520 #max-size = 3
+				NOT = { nuclear_reactor = 1 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 5530 #max-size = 4
+				NOT = { nuclear_reactor = 2 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 5540 #max-size = 5
+				NOT = { nuclear_reactor = 3 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 7170 #max-size = 6
+				NOT = { nuclear_reactor = 4 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 7180 #max-size = 7
+				NOT = { nuclear_reactor = 5 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 7190 #max-size = 8
+				NOT = { nuclear_reactor = 6 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 16010 #max-size = 9
+				NOT = { nuclear_reactor = 7 }
+				NOT = { local_flag = nukeBuild }
+			}
+			AND = {
+				technology = 16020 #max-size = 10
+				NOT = { nuclear_reactor = 8 }
+				NOT = { local_flag = nukeBuild }
+			}
+		}
+		OR = {
+			NOT = { country = USA country = FRA country = JAP country = SOV country = GER country = ENG }
+			AND = {
+				country = USA
+				control = { province = 1816 data = -1 }
+			}
+			AND = {
+				country = FRA
+				control = { province = 81 data = -1 }
+			}
+			AND = {
+				country = JAP
+				control = { province = 1548 data = -1 }
+			}
+			AND = {
+				country = SOV
+				control = { province = 1136 data = -1 }
+			}
+			AND = {
+				country = GER
+				control = { province = 156 data = -1 }
+			}
+			AND = {
+				country = ENG
+				control = { province = 6 data = -1 }
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = manpowerpool value = -0.5 }
+		command = { type = free_ic value = -15 } #15 instead of 20 because free_ic subtracts base IC rather than effective IC
+		command = { type = event which = 2400019 where = -1 when = 166 }
+		
+		command = { type = local_setflag which = nukeBuild }
+	}
+}
+
+event = {
+	id = 2400019
+	random = no 
+	persistent = yes
+	
+	name = "AI_EVENT"
+	style = 2	
+	
+	action = {
+		command = { type = local_clrflag which = nukeBuild }
+		command = { type = free_ic value = 15 }
+		command = { trigger = { nuclear_reactor = 1 } type = construct which = nuclear_reactor where = -4 value = 1 }
+		command = { trigger = { NOT = { nuclear_reactor = 1 } NOT = { country = USA country = FRA country = JAP country = SOV country = GER country = ENG } } type = construct which = nuclear_reactor where = -1 value = 1 }
+		command = { trigger = { control = { province = 1816 data = -1 } NOT = { nuclear_reactor = 1 } country = USA } type = construct which = nuclear_reactor where = 1816 value = 1 }
+		command = { trigger = { control = { province = 81 data = -1 } NOT = { nuclear_reactor = 1 } country = FRA } type = construct which = nuclear_reactor where = 81 value = 1 }
+		command = { trigger = { control = { province = 1548 data = -1 } NOT = { nuclear_reactor = 1 } country = JAP } type = construct which = nuclear_reactor where = 1548 value = 1 }
+		command = { trigger = { control = { province = 1136 data = -1 } NOT = { nuclear_reactor = 1 } country = SOV } type = construct which = nuclear_reactor where = 1136 value = 1 }
+		command = { trigger = { control = { province = 156 data = -1 } NOT = { nuclear_reactor = 1 } country = GER } type = construct which = nuclear_reactor where = 156 value = 1 }
+		command = { trigger = { control = { province = 6 data = -1 } NOT = { nuclear_reactor = 1 } country = ENG } type = construct which = nuclear_reactor where = 6 value = 1 }
+		#if lost control of the province, money is wasted.
+	}
+}
+
+event = {
+	id = 2400020
+	random = no 
+	persistent = yes
+	tag = { USA FRA JAP SOV GER ENG }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = ReactorPlacementInitialized }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { trigger = { country = USA } type = ai which = "reactorBuildUSA.ai" }
+		command = { trigger = { country = FRA } type = ai which = "reactorBuildFRA.ai" }
+		command = { trigger = { country = JAP } type = ai which = "reactorBuildJAP.ai" }
+		command = { trigger = { country = SOV } type = ai which = "reactorBuildSOV.ai" }
+		command = { trigger = { country = GER } type = ai which = "reactorBuildGER.ai" }
+		command = { trigger = { country = ENG } type = ai which = "reactorBuildENG.ai" }
+		command = { type = local_setflag which = ReactorPlacementInitialized }
+	}
+}
+
+event = {
+	id = 2400021
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		OR = {
+			nuclear_reactor = 4 #building nuclear reactors
+			nuke = 1 #residual nukes, maybe reactor was destroyed
+		}
+		NOT = { strategic_bomber = { value = 2 } }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { }
+		command = { type = build_division which = strategic_bomber value = escort when = 2 cost = -1 where = 60 }	
+	}
+}
+
+event = {
+	id = 2400022
+	random = no 
+	persistent = yes
+	tag = { ISR IND }
+	
+	trigger = {	
+		#ai = yes
+		OR = { 
+			local_flag = AIinit
+			ai = no
+		}
+		NOT = { local_flag = AIinit2 }
+		NOT = { ispuppet = yes }
+		atwar = yes
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	#date = { day = 1 month = january year = 1936 }
+	#offset = 5
+	#deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIinit2 }
+		command = { type = build_division which = infantry value = light_armor_brigade when = 3 cost = -2 where = 240 }
+		command = { type = build_division which = infantry value = light_armor_brigade when = 3 cost = -2 where = 180 }
+		command = { type = build_division which = infantry value = light_armor_brigade when = 3 cost = -2 where = 120 }
+		command = { type = build_division which = infantry value = light_armor_brigade when = 3 cost = -2 where = 60 }
+	}
+}
+
+event = {
+	id = 2400023
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = AIinit
+		NOT = { local_flag = AIGarrisonOnly }
+		ai = yes
+		NOT = { country = JAP }
+		NOT = { country = ENG }
+		NOT = { country = USA }
+		NOT = { country = FRA }
+		
+		#We ceded control of our army
+		#OR = {
+		#	AND = {
+		#		NOT = { army = { size = 30 type = 1 which = 0 } }
+		#		army = { size = 35 type = 1 which = 1 }
+		#	}
+		#	AND = {
+		#		NOT = { army = { size = 20 type = 1 which = 0 } }
+		#		army = { size = 25 type = 1 which = 1 }
+		#	}
+		#	AND = {
+		#		NOT = { army = { size = 10 type = 1 which = 0 } }
+		#		army = { size = 15 type = 1 which = 1 }
+		#	}
+		#}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	#date = { day = 1 month = january year = 1936 }
+	#offset = 5
+	#deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = AIGarrisonOnly }
+		command = { type = ai which = "garrisonOnlyEnable.ai" }
+	}
+}
+
+event = {
+	id = 2400024
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		local_flag = AIinit
+		local_flag = AIGarrisonOnly
+		ai = yes
+		
+		#We ceded control of our army
+		NOT = {
+			OR = {
+				AND = {
+					NOT = { army = { size = 30 type = 1 which = 0 } }
+					army = { size = 35 type = 1 which = 1 }
+				}
+				AND = {
+					NOT = { army = { size = 20 type = 1 which = 0 } }
+					army = { size = 25 type = 1 which = 1 }
+				}
+				AND = {
+					NOT = { army = { size = 10 type = 1 which = 0 } }
+					army = { size = 15 type = 1 which = 1 }
+				}
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	#date = { day = 1 month = january year = 1936 }
+	#offset = 5
+	#deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_clrflag which = AIGarrisonOnly }
+		command = { type = ai which = "garrisonOnlyDisable.ai" }
+	}
+}
+
+event = {
+	id = 2400049
+	random = no 
+	persistent = yes
+	
+	trigger = { 
+		ai = no
+		lost_national = { value = 95 }
+		
+		OR = {
+			AND = { 
+				NOT = { allies = 30 }
+				participant = { value = 1 }
+			}
+			AND = { 
+				NOT = { axis = 30 }
+				participant = { value = 2 }
+			}
+			AND = { 
+				NOT = { comintern = 30 }
+				participant = { value = 3 }
+			}
+		}
+		NOT = { participant = { country = ARG value = 1 } }
+		NOT = { participant = { country = ARG value = 2 } }
+		NOT = { participant = { country = ARG value = 3 } }
+		NOT = { atwar = ARG }
+	}
+
+	name = "The Long Sail"
+	desc = "Having been thoroughly beaten by our enemies, we have but one last hope of avoiding a humiliating show trial and mass execution. We have made secret arrangements with friendly local officials and sympathizers in the neutral country of Argentina to arrange for our escape. It will be a long journey, but if we are ready, it is time to start packing."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = "What if the leader is not on the stage when the curtain falls?"
+		command = { type = local_setflag which = escapeToArgentina }
+		command = { type = secedeprovince which = -1 value = 2766 }
+		command = { type = secedeprovince which = -1 value = 2765 }
+		command = { type = secedeprovince which = -1 value = 2764 }
+		command = { type = secedeprovince which = -1 value = 2763 }
+		command = { type = secedeprovince which = -1 value = 2762 }
+		command = { type = secedeprovince which = -1 value = 2761 }
+		command = { type = secedeprovince which = -1 value = 2760 }
+		command = { type = secedeprovince which = -1 value = 2464 }
+		command = { type = secedeprovince which = -1 value = 1159 }
+		command = { type = secedeprovince which = -1 value = 1012 }
+		command = { type = secedeprovince which = -1 value = 2767 }
+		command = { type = secedeprovince which = -1 value = 2769 }
+		command = { type = secedeprovince which = -1 value = 2768 }
+	}
+}
+
+
+
+event = {
+	id = 2400050
+	random = no 
+	country = GER
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		command = { type = ai which = "gerVSpol.ai" }
+	}
+}
+
+event = {
+	id = 2400051
+	random = no 
+	country = ETH
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		war = { country = ETH country = ITA }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		command = { type = ai which = "ethVSita.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400052
+	random = no 
+	country = ENG
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		command = { type = ai which = "engVSire.ai" }
+	}
+}
+
+event = {
+	id = 2400053
+	random = no 
+	country = ENG
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		event = 2400052
+		OR = {
+			war = { country = ENG country = IRE }
+			year = 1938 
+		}
+		NOT = { war = { country = ENG country = CAN } }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1938 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "engVScan.ai" }
+	}
+}
+
+event = {
+	id = 2400054
+	random = no 
+	country = ENG
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		#event = 2400053
+		OR = { 
+			NOT = { exists = CAN }
+			war = { country = ENG country = CAN }
+		}
+		NOT = { war = { country = ENG country = USA } }
+		exists = USA
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "engVSusa.ai" }
+	}
+}
+
+event = {
+	id = 2400055
+	random = no 
+	country = CZE
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "czeVSger.ai" }
+	}
+}
+
+
+event = {
+	id = 2400056
+	random = no 
+	country = EGY
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		ispuppet = yes
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		command = { type = leave_alliance }
+		command = { type = ai which = "neutralityHigh.ai" }
+	}
+}
+
+event = {
+	id = 2400057
+	random = no 
+	country = IRQ
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		ispuppet = yes
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1937 }
+
+	action = {
+		command = { type = leave_alliance }
+		command = { type = ai which = "neutralityHigh.ai" }
+	}
+}
+
+event = {
+	id = 2400058
+	random = no 
+	country = JAP
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = JAP country = USA }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		command = { type = ai which = "japVSusa.ai" }
+		
+	}
+}
+
+event = {
+	id = 2400059
+	random = no 
+	country = IRE
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		command = { type = ai which = "ireVSeng.ai" }
+	}
+}
+
+event = {
+	id = 2400060
+	random = no 
+	country = ITA
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = ITA country = ETH }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		command = { type = ai which = "itaVSeth.ai" }
+	}
+}
+
+event = {
+	id = 2400061
+	random = no 
+	country = ITA
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		OR = {
+			NOT = { war = { country = ITA country = ETH } }
+			war = { country = ITA country = FRA }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1947 }
+
+	action = {
+		command = { type = ai which = "default.ai" }
+	}
+}
+
+event = {
+	id = 2400062
+	random = no 
+	persistent = yes
+	tag = { FIN U20 U14 ITA SPA SPR BEL FLA }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400063
+	random = no 
+	persistent = yes
+	tag = { TUR SCA GER HOL }
+	
+	trigger = {	
+		ai = yes
+		OR = {
+			war = { country = PAL } 
+			war = { country = CAN } 
+			war = { country = IRE } 
+			war = { country = JOR } 
+		}
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		NOT = { 
+			war = { country = ENG country = USA } 
+			war = { country = ENG country = FRA } 
+			war = { country = ENG country = SOV } 
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		trigger = { ai = SOV ai = FRA }
+		command = { type = ai which = "expLow.ai" }
+		#command = { type = ai which = "invasionNo.ai" }
+		#command = { type = peace which = PAL value = 1 }
+		#command = { type = peace which = CAN value = 1 }
+		#command = { type = peace which = IRE value = 1 }
+		#command = { type = peace which = JOR value = 1 }
+		command = { type = local_setflag which = AIinit2 }
+	}
+	action = {
+		trigger = { NOT = { ai = SOV ai = FRA } }
+		command = { type = ai which = "expNo.ai" }
+		#command = { type = ai which = "invasionNo.ai" }
+		#command = { type = peace which = PAL value = 1 }
+		#command = { type = peace which = CAN value = 1 }
+		#command = { type = peace which = IRE value = 1 }
+		#command = { type = peace which = JOR value = 1 }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400064
+	random = no 
+	persistent = yes
+	tag = { TUR SCA GER HOL }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit2
+		OR = {
+			war = { country = SOV }
+			war = { country = FRA }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "expYes.ai" }
+		#command = { type = ai which = "invasionYes.ai" }
+		command = { type = local_clrflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400065
+	random = no 
+	persistent = yes
+	tag = { SYR IRQ }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		year = 1937
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1939 }
+
+	action = {
+		command = { type = ai which = "syrVStur.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400066
+	random = no 
+	tag = { FRA }
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		NOT = {
+			AND = {
+				NOT = { control = { province = 29 data = -3 } } #London
+				region = { region = "France" value = 96 }
+				control = { province = 116 data = -3 } #Brussels
+				#control = { province = 131 data = -3 } #Cologne
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "fraVSgerEngLight.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400067
+	random = no 
+	tag = { FRA }
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit2
+		NOT = { control = { province = 29 data = -3 } } #London
+		region = { region = "France" value = 96 }
+		control = { province = 116 data = -3 } #Brussels
+		#control = { province = 131 data = -3 } #Cologne
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "fraVSgerEngNormal.ai" }
+		command = { type = local_clrflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400068
+	random = no 
+	tag = { SOV }
+	#persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		NOT = { lost_national = { value = 5 } }
+		NOT = { control = { province = 232 data = -3 } }
+		NOT = { control = { province = 232 data = -2 } }
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "sovVSgerNpol.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400069
+	random = no 
+	tag = { SOV }
+	#persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit2
+		OR = {
+			lost_national = { value = 5 }
+			control = { province = 232 data = -3 }
+			control = { province = 232 data = -2 }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "garrisonNormal.ai" }
+		command = { type = ai which = "maxFrontRatiosDefault.ai" }
+		command = { type = local_clrflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400070
+	random = no 
+	tag = { POL }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "polVSger.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400071
+	random = no 
+	country = POR
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		war = { country = POR country = FRA }
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "engVScan.ai" }
+	}
+}
+
+
+event = {
+	id = 2400072
+	random = no 
+	persistent = yes
+	tag = { COL }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		NOT = { war = { country = VEN } }
+		NOT = { control = { province = 1993 data = -3 } }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = ai which = "expNo.ai" }
+		command = { type = ai which = "garrisonHigh.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400073
+	random = no 
+	persistent = yes
+	tag = { TUR }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit2
+		control = { province = 889 data = -3 }
+		control = { province = 1993 data = -3 }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "expYes.ai" }
+		command = { type = local_clrflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400074
+	random = no 
+	tag = { IRE }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		OR = {
+			control = { province = 34 data = -3 }
+			year = 1943
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "default.ai" }
+	}
+}
+
+event = {
+	id = 2400075
+	random = no 
+	tag = { PAL }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "palVSeng.ai" }
+		command = { type = ai which = "expAll.ai" }
+	}
+}
+
+event = {
+	id = 2400076
+	random = no 
+	country = ENG
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = ENG country = USA }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "engVSallies.ai" }
+	}
+}
+
+event = {
+	id = 2400077
+	random = no 
+	country = SPR
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = SPR country = SPA }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "sprVSspa.ai" }
+	}
+}
+
+event = {
+	id = 2400078
+	random = no 
+	country = SPA
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = SPR country = SPA }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "spaVSspr.ai" }
+	}
+}
+
+event = {
+	id = 2400079
+	random = no 
+	persistent = yes
+	tag = { COL }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		local_flag = AIinit2
+		OR = {
+			war = { country = VEN }
+			control = { province = 1993 data = -3 }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "expYes.ai" }
+		command = { type = ai which = "garrisonNormal.ai" }
+		command = { type = local_clrflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400080
+	random = no 
+	tag = { POR }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1945 }
+
+	action = {
+		command = { type = ai which = "porVSfra.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400081
+	random = no 
+	tag = { CZE }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIinit2 }
+		NOT = { war = { country = GER } }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = ai which = "expNo.ai" }
+		command = { type = local_setflag which = AIinit2 }
+	}
+}
+
+event = {
+	id = 2400082
+	random = no 
+	tag = { CZE }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit2
+		war = { country = GER }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = event which = 2400083 where = -1 when = 20 }
+	}
+}
+
+event = {
+	id = 2400083
+	random = no 
+	tag = { CZE }
+	
+	name = "AI_EVENT"
+	style = 2	
+
+	action = {
+		command = { type = ai which = "expYes.ai" }
+	}
+}
+
+event = {
+	id = 2400084
+	random = no 
+	tag = { CZE }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		OR = {
+			war = { country = GER }
+			year = 1939
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = ai which = "buildLand.ai" }
+	}
+}
+
+event = {
+	id = 2400085
+	random = no 
+	tag = { FLA }
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		war = { country = BEL }
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1940 }
+
+	action = {
+		command = { type = ai which = "flaVSbel.ai" }
+	}
+}
+
+event = {
+	id = 2400200
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIEmbargoAgainstAxis }
+		
+		exists = GER
+		exists = JAP
+		exists = ENG
+		NOT = { alliance = { country = GER } }
+		NOT = { alliance = { country = JAP } }
+		NOT = { alliance = { country = ENG } }
+		OR = {
+			AND = {
+				NOT = { year = 1945 }
+				NOT = { participant = { value = 1 } }
+				NOT = { participant = { value = 2 } }
+				NOT = { participant = { value = 3 } }
+				OR = {
+					country = USA
+					country = SOV
+					country = FRA
+					country = BEL
+					country = SPR
+					country = U20
+					country = U14
+					country = YUG
+					country = POL
+					country = ROM
+					country = GRE
+					country = NOR
+					country = VEN
+				}
+			}
+			participant = { value = 1 } #Allied
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1939 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "embargoVSaxis.ai" }
+		command = { type = local_setflag which = AIEmbargoAgainstAxis }
+	}
+}
+
+event = {
+	id = 2400201
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = AIEmbargoAgainstAllies }
+		
+		exists = USA
+		exists = FRA
+		exists = SOV
+		NOT = { alliance = { country = USA } }
+		NOT = { alliance = { country = FRA } }
+		NOT = { alliance = { country = SOV } }
+		OR = {
+			AND = {
+				NOT = { year = 1945 }
+				NOT = { participant = { value = 1 } }
+				NOT = { participant = { value = 2 } }
+				NOT = { participant = { value = 3 } }
+				OR = {
+					country = GER
+					country = ENG
+					country = JAP
+					country = FLA
+					country = SPA
+					country = ITA
+					country = FIN
+					country = CRO
+					country = SLV
+					country = SCA
+					country = HOL
+				}
+			}
+			participant = { value = 2 } #Axis
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1939 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "embargoVSallies.ai" }
+		command = { type = local_setflag which = AIEmbargoAgainstAllies }
+	}
+}
+
+event = {
+	id = 2400202
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		OR = {
+			local_flag = AIEmbargoAgainstAllies
+			local_flag = AIEmbargoAgainstAxis
+		}
+		
+		NOT = {
+			OR = {
+				AND = {
+					exists = GER
+					exists = JAP
+					exists = ENG
+					NOT = { alliance = { country = GER } }
+					NOT = { alliance = { country = JAP } }
+					NOT = { alliance = { country = ENG } }
+					OR = {
+						AND = {
+							NOT = { year = 1945 }
+							NOT = { participant = { value = 1 } }
+							NOT = { participant = { value = 2 } }
+							NOT = { participant = { value = 3 } }
+							OR = {
+								country = USA
+								country = SOV
+								country = FRA
+								country = BEL
+								country = SPR
+								country = U20
+								country = U14
+								country = YUG
+								country = POL
+								country = ROM
+								country = GRE
+								country = NOR
+								country = VEN
+							}
+						}
+						participant = { value = 1 } #Allied
+					}
+				}
+				AND = {
+					exists = USA
+					exists = FRA
+					exists = SOV
+					NOT = { alliance = { country = USA } }
+					NOT = { alliance = { country = FRA } }
+					NOT = { alliance = { country = SOV } }
+					OR = {
+						AND = {
+							NOT = { year = 1945 }
+							NOT = { participant = { value = 1 } }
+							NOT = { participant = { value = 2 } }
+							NOT = { participant = { value = 3 } }
+							OR = {
+								country = GER
+								country = ENG
+								country = JAP
+								country = FLA
+								country = SPA
+								country = ITA
+								country = FIN
+								country = CRO
+								country = SLV
+								country = SCA
+								country = HOL
+							}
+						}
+						participant = { value = 2 } #Axis
+					}
+				}
+			}
+		}
+
+	}
+
+	name = "AI_EVENT"
+	style = 2
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1955 }
+
+	action = {
+		command = { type = ai which = "embargoVSnobody.ai" }
+		command = { type = local_clrflag which = AIEmbargoAgainstAxis }
+		command = { type = local_clrflag which = AIEmbargoAgainstAllies }
+	}
+}
+
+event = {
+	id = 2400250
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		nuclear_reactor = 1
+		NOT = { 
+			war = { country = GER }
+			war = { country = SOV }
+			war = { country = ENG }
+			war = { country = USA }
+			war = { country = JAP }
+			war = { country = FRA }
+		}
+		NOT = { local_flag = nukesDisabled }
+	}
+
+	name = "Our Nuclear arsenal"
+	desc = "Our strategic nuclear arsenal cannot be used unless in situation of a major world conflict."
+	style = 2
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1965 }
+
+	action = {
+		command = { type = disable_task which = nuke }
+		command = { type = local_setflag which = nukesDisabled }
+	}
+}
+
+event = {
+	id = 2400251
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		nuclear_reactor = 1
+		OR = { 
+			war = { country = GER }
+			war = { country = SOV }
+			war = { country = ENG }
+			war = { country = USA }
+			war = { country = JAP }
+			war = { country = FRA }
+		}
+		local_flag = nukesDisabled
+	}
+
+	name = "Our Nuclear arsenal"
+	desc = "Given the outbreak of a major world war, our strategic nuclear arsenal can now be used against our enemies."
+	style = 2
+	
+	date = { day = 1 month = january year = 1940 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1965 }
+
+	action = {
+		command = { type = enable_task which = nuke }
+		command = { type = local_clrflag which = nukesDisabled }
+	}
+}
+
+
+event = {
+	id = 2400255
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = RedeployDisable }
+		NOT = { 
+			war = { country = ENG }
+			#war = { country = USA }
+			war = { country = SOV }
+			war = { country = FRA }
+			war = { country = JAP }
+		}
+		OR = {
+			country = USA
+			country = GER
+			country = SOV
+			country = FRA
+			country = SCA
+			country = TUR
+			country = EGY
+			country = IRQ
+			country = SYR
+			country = HOL
+			country = CZE
+			country = GRE
+			country = NOR
+			country = POR
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1938 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1939 }
+
+	action = {
+		command = { type = event which = 2400256 where = -1 when = 2 }
+	}
+}
+
+event = {
+	id = 2400256
+	random = no 
+	persistent = yes
+	
+	name = "AI_EVENT"
+	style = 2	
+	
+	action = {
+		command = { type = disable_task which = strat_redeploy }
+		command = { type = ai which = "redeployDisable.ai" }
+		command = { type = local_setflag which = RedeployDisable }
+	}
+}
+
+event = {
+	id = 2400257
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		local_flag = AIinit
+		local_flag = RedeployDisable
+		OR = { 
+			ai = no
+			war = { country = ENG }
+			#war = { country = USA }
+			war = { country = SOV }
+			war = { country = FRA }
+			war = { country = JAP }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1938 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = event which = 2400258 where = -1 when = 3 }
+	}
+}
+
+event = {
+	id = 2400258
+	random = no 
+	persistent = yes
+	
+	name = "AI_EVENT"
+	style = 2	
+	
+	action = {
+		command = { type = enable_task which = strat_redeploy }
+		command = { type = ai which = "redeployEnable.ai" }
+		command = { type = local_clrflag which = RedeployDisable }
+	}
+}
+
+event = {
+	id = 2400260
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		NOT = { local_flag = FrontAICautious }
+		OR = {
+			policy = { type = professional_army value = 9 } #Enacted extended mobilization (need to conserve manpower)
+			AND = {
+				country = CAN
+				NOT = { year = 1940 }
+			}
+			AND = {
+				country = USA
+				NOT = { year = 1940 }
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "frontAIcautious.ai" }
+		command = { type = local_setflag which = FrontAICautious }
+	}
+}
+
+event = {
+	id = 2400261
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		ai = yes
+		local_flag = AIinit
+		local_flag = FrontAICautious
+		NOT = { policy = { type = professional_army value = 9 } } #Enacted extended mobilization (need to conserve manpower)
+		NOT = {
+			AND = {
+				country = CAN
+				NOT = { year = 1940 }
+			}
+			AND = {
+				country = USA
+				NOT = { year = 1940 }
+			}
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		command = { type = ai which = "frontAInormal.ai" }
+		command = { type = local_clrflag which = FrontAICautious }
+	}
+}
+
+event = {
+	id = 2400265
+	random = no 
+	persistent = yes
+	
+	trigger = {	
+		local_flag = forcedNeutrality
+		OR = {
+			war = { country = SOV }
+			war = { country = ENG }
+			war = { country = GER }
+			war = { country = FRA }
+			war = { country = JAP }
+			war = { country = CAN }
+			war = { country = PAL }
+			war = { country = JOR }
+			war = { country = INO }
+			war = { country = IND }
+			war = { country = IRE }
+			war = { country = USA }
+		}
+	}
+
+	name = "Neutrality"
+	desc = "Our country has pledged to have a neutral status in this war. We can force our way into the war regardless, but it will come at a serious cost."
+	style = 2	
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1950 }
+
+	action = {
+		name = "Stay neutral"
+		ai_chance = 100
+		command = { type = dissent value = -1 }
+		command = { type = peace which = AFG value = 1 }
+		command = { type = peace which = ALB value = 1 }
+		command = { type = peace which = ALG value = 1 }
+		command = { type = peace which = ANG value = 1 }
+		command = { type = peace which = ARA value = 1 }
+		command = { type = peace which = ARG value = 1 }
+		command = { type = peace which = ARM value = 1 }
+		command = { type = peace which = AST value = 1 }
+		command = { type = peace which = AUS value = 1 }
+		command = { type = peace which = AZB value = 1 }
+		command = { type = peace which = BEL value = 1 }
+		command = { type = peace which = BEN value = 1 }
+		command = { type = peace which = BHU value = 1 }
+		command = { type = peace which = BLR value = 1 }
+		command = { type = peace which = BOL value = 1 }
+		command = { type = peace which = BOS value = 1 }
+		command = { type = peace which = BRA value = 1 }
+		command = { type = peace which = BRU value = 1 }
+		command = { type = peace which = BUL value = 1 }
+		command = { type = peace which = BUR value = 1 }
+		command = { type = peace which = CAL value = 1 }
+		command = { type = peace which = CAM value = 1 }
+		command = { type = peace which = CAN value = 1 }
+		command = { type = peace which = CGX value = 1 }
+		command = { type = peace which = CHC value = 1 }
+		command = { type = peace which = CHI value = 1 }
+		command = { type = peace which = CHL value = 1 }
+		command = { type = peace which = CMB value = 1 }
+		command = { type = peace which = COL value = 1 }
+		command = { type = peace which = CON value = 1 }
+		command = { type = peace which = COS value = 1 }
+		command = { type = peace which = CRO value = 1 }
+		command = { type = peace which = CSA value = 1 }
+		command = { type = peace which = CSX value = 1 }
+		command = { type = peace which = CUB value = 1 }
+		command = { type = peace which = CXB value = 1 }
+		command = { type = peace which = CYN value = 1 }
+		command = { type = peace which = CYP value = 1 }
+		command = { type = peace which = CZE value = 1 }
+		command = { type = peace which = DDR value = 1 }
+		command = { type = peace which = DEN value = 1 }
+		command = { type = peace which = DFR value = 1 }
+		command = { type = peace which = DOM value = 1 }
+		command = { type = peace which = EAF value = 1 }
+		command = { type = peace which = ECU value = 1 }
+		command = { type = peace which = EGY value = 1 }
+		command = { type = peace which = ENG value = 1 }
+		command = { type = peace which = EQA value = 1 }
+		command = { type = peace which = EST value = 1 }
+		command = { type = peace which = ETH value = 1 }
+		command = { type = peace which = EUS value = 1 }
+		command = { type = peace which = FIN value = 1 }
+		command = { type = peace which = FLA value = 1 }
+		command = { type = peace which = FRA value = 1 }
+		command = { type = peace which = GAB value = 1 }
+		command = { type = peace which = GEO value = 1 }
+		command = { type = peace which = GER value = 1 }
+		command = { type = peace which = GLD value = 1 }
+		command = { type = peace which = GRE value = 1 }
+		command = { type = peace which = GUA value = 1 }
+		command = { type = peace which = GUI value = 1 }
+		command = { type = peace which = GUY value = 1 }
+		command = { type = peace which = HAI value = 1 }
+		command = { type = peace which = HOL value = 1 }
+		command = { type = peace which = HON value = 1 }
+		command = { type = peace which = HUN value = 1 }
+		command = { type = peace which = ICL value = 1 }
+		command = { type = peace which = IDC value = 1 }
+		command = { type = peace which = IND value = 1 }
+		command = { type = peace which = INO value = 1 }
+		command = { type = peace which = IRE value = 1 }
+		command = { type = peace which = IRQ value = 1 }
+		command = { type = peace which = ISR value = 1 }
+		command = { type = peace which = ITA value = 1 }
+		command = { type = peace which = JAP value = 1 }
+		command = { type = peace which = JOR value = 1 }
+		command = { type = peace which = KAZ value = 1 }
+		command = { type = peace which = KOR value = 1 }
+		command = { type = peace which = KUR value = 1 }
+		command = { type = peace which = KYG value = 1 }
+		command = { type = peace which = LAO value = 1 }
+		command = { type = peace which = LAT value = 1 }
+		command = { type = peace which = LBY value = 1 }
+		command = { type = peace which = LEB value = 1 }
+		command = { type = peace which = LIB value = 1 }
+		command = { type = peace which = LIT value = 1 }
+		command = { type = peace which = LUX value = 1 }
+		command = { type = peace which = MAD value = 1 }
+		command = { type = peace which = MAL value = 1 }
+		command = { type = peace which = MAN value = 1 }
+		command = { type = peace which = MEN value = 1 }
+		command = { type = peace which = MEX value = 1 }
+		command = { type = peace which = MLY value = 1 }
+		command = { type = peace which = MON value = 1 }
+		command = { type = peace which = MOR value = 1 }
+		command = { type = peace which = MOZ value = 1 }
+		command = { type = peace which = MTN value = 1 }
+		command = { type = peace which = NAM value = 1 }
+		command = { type = peace which = NEP value = 1 }
+		command = { type = peace which = NIC value = 1 }
+		command = { type = peace which = NIG value = 1 }
+		command = { type = peace which = NOR value = 1 }
+		command = { type = peace which = NZL value = 1 }
+		command = { type = peace which = OMN value = 1 }
+		command = { type = peace which = OTT value = 1 }
+		command = { type = peace which = PAK value = 1 }
+		command = { type = peace which = PAL value = 1 }
+		command = { type = peace which = PAN value = 1 }
+		command = { type = peace which = PAR value = 1 }
+		command = { type = peace which = PER value = 1 }
+		command = { type = peace which = PHI value = 1 }
+		command = { type = peace which = POL value = 1 }
+		command = { type = peace which = POR value = 1 }
+		command = { type = peace which = PRI value = 1 }
+		command = { type = peace which = PRK value = 1 }
+		command = { type = peace which = PRU value = 1 }
+		command = { type = peace which = QUE value = 1 }
+		command = { type = peace which = RHO value = 1 }
+		command = { type = peace which = ROM value = 1 }
+		command = { type = peace which = RSI value = 1 }
+		command = { type = peace which = RUS value = 1 }
+		command = { type = peace which = SAF value = 1 }
+		command = { type = peace which = SAL value = 1 }
+		command = { type = peace which = SAR value = 1 }
+		command = { type = peace which = SAU value = 1 }
+		command = { type = peace which = SCA value = 1 }
+		command = { type = peace which = SCH value = 1 }
+		command = { type = peace which = SCO value = 1 }
+		command = { type = peace which = SER value = 1 }
+		command = { type = peace which = SIA value = 1 }
+		command = { type = peace which = SIB value = 1 }
+		command = { type = peace which = SIE value = 1 }
+		command = { type = peace which = SIK value = 1 }
+		command = { type = peace which = SLO value = 1 }
+		command = { type = peace which = SLV value = 1 }
+		command = { type = peace which = SOM value = 1 }
+		command = { type = peace which = SOV value = 1 }
+		command = { type = peace which = SPA value = 1 }
+		command = { type = peace which = SPR value = 1 }
+		command = { type = peace which = SUD value = 1 }
+		command = { type = peace which = SWE value = 1 }
+		command = { type = peace which = SYR value = 1 }
+		command = { type = peace which = TAJ value = 1 }
+		command = { type = peace which = TAN value = 1 }
+		command = { type = peace which = TEX value = 1 }
+		command = { type = peace which = TIB value = 1 }
+		command = { type = peace which = TRA value = 1 }
+		command = { type = peace which = TRK value = 1 }
+		command = { type = peace which = TUN value = 1 }
+		command = { type = peace which = TUR value = 1 }
+		command = { type = peace which = UKR value = 1 }
+		command = { type = peace which = URU value = 1 }
+		command = { type = peace which = USA value = 1 }
+		command = { type = peace which = UZB value = 1 }
+		command = { type = peace which = VEN value = 1 }
+		command = { type = peace which = VIE value = 1 }
+		command = { type = peace which = WLL value = 1 }
+		command = { type = peace which = YEM value = 1 }
+		command = { type = peace which = YUG value = 1 }
+		command = { type = peace which = U01 value = 1 }
+		command = { type = peace which = U02 value = 1 }
+		command = { type = peace which = U03 value = 1 }
+		command = { type = peace which = U04 value = 1 }
+		command = { type = peace which = U05 value = 1 }
+		command = { type = peace which = U06 value = 1 }
+		command = { type = peace which = U08 value = 1 }
+		command = { type = peace which = U09 value = 1 }
+		command = { type = peace which = U10 value = 1 }
+		command = { type = peace which = U11 value = 1 }
+		command = { type = peace which = U12 value = 1 }
+		command = { type = peace which = U13 value = 1 }
+		command = { type = peace which = U14 value = 1 }
+		command = { type = peace which = U15 value = 1 }
+		command = { type = peace which = U16 value = 1 }
+		command = { type = peace which = U17 value = 1 }
+		command = { type = peace which = U18 value = 1 }
+		command = { type = peace which = U19 value = 1 }
+		command = { type = peace which = U20 value = 1 }
+		command = { type = peace which = U21 value = 1 }
+		command = { type = peace which = U22 value = 1 }
+		command = { type = peace which = U23 value = 1 }
+		command = { type = peace which = U24 value = 1 }
+		command = { type = peace which = U25 value = 1 }
+		command = { type = peace which = U26 value = 1 }
+		command = { type = peace which = U27 value = 1 }
+		command = { type = peace which = U28 value = 1 }
+		command = { type = peace which = U29 value = 1 }
+		command = { type = peace which = U30 value = 1 }
+		command = { type = peace which = U31 value = 1 }
+		command = { type = peace which = U32 value = 1 }
+		command = { type = peace which = U33 value = 1 }
+		command = { type = peace which = U34 value = 1 }
+		command = { type = peace which = U35 value = 1 }
+		command = { type = peace which = U36 value = 1 }
+		command = { type = peace which = U37 value = 1 }
+		command = { type = peace which = U39 value = 1 }
+		command = { type = peace which = U40 value = 1 }
+		command = { type = peace which = U41 value = 1 }
+		command = { type = peace which = U42 value = 1 }
+		command = { type = peace which = U43 value = 1 }
+		command = { type = peace which = U44 value = 1 }
+		command = { type = peace which = U45 value = 1 }
+		command = { type = peace which = U46 value = 1 }
+		command = { type = peace which = U47 value = 1 }
+		command = { type = peace which = U48 value = 1 }
+		command = { type = peace which = U49 value = 1 }
+		command = { type = peace which = U50 value = 1 }
+		command = { type = peace which = U51 value = 1 }
+		command = { type = peace which = U52 value = 1 }
+		command = { type = peace which = U57 value = 1 }
+		command = { type = peace which = U58 value = 1 }
+		command = { type = peace which = U59 value = 1 }
+		command = { type = peace which = U60 value = 1 }
+		command = { type = peace which = U62 value = 1 }
+		command = { type = peace which = U67 value = 1 }
+		command = { type = peace which = U70 value = 1 }
+		command = { type = peace which = U71 value = 1 }
+		command = { type = peace which = U72 value = 1 }
+		command = { type = peace which = U73 value = 1 }
+		command = { type = peace which = U74 value = 1 }
+		command = { type = peace which = U75 value = 1 }
+		command = { type = peace which = U76 value = 1 }
+		command = { type = peace which = U77 value = 1 }
+		command = { type = peace which = U78 value = 1 }
+		command = { type = peace which = U79 value = 1 }
+		command = { type = peace which = U80 value = 1 }
+		command = { type = peace which = U81 value = 1 }
+		command = { type = peace which = U82 value = 1 }
+		command = { type = peace which = U83 value = 1 }
+		command = { type = peace which = U84 value = 1 }
+		command = { type = peace which = U85 value = 1 }
+		command = { type = peace which = U86 value = 1 }
+		command = { type = peace which = U87 value = 1 }
+		command = { type = peace which = U88 value = 1 }
+		command = { type = peace which = U89 value = 1 }
+		command = { type = peace which = U90 value = 1 }
+		command = { type = peace which = U91 value = 1 }
+		command = { type = peace which = U92 value = 1 }
+		command = { type = peace which = U93 value = 1 }
+		command = { type = peace which = U94 value = 1 }
+		command = { type = peace which = U95 value = 1 }
+		command = { type = peace which = U96 value = 1 }
+		command = { type = peace which = U97 value = 1 }
+		command = { type = peace which = U98 value = 1 }
+		command = { type = peace which = U99 value = 1 }
+		command = { type = peace which = UCH value = 1 }
+		command = { type = peace which = UER value = 1 }
+		command = { type = peace which = UGS value = 1 }
+		command = { type = peace which = UPE value = 1 }
+		command = { type = peace which = UTC value = 1 }
+	}
+	action = {
+		name = "We have to fight"
+		ai_chance = 0
+		command = { type = belligerence value = 5 }
+		command = { type = dissent value = 20 }
+		command = { type = local_clrflag which = forcedNeutrality }
+	}
+}
+
+
+event = {
+	id = 2400300
+	random = no 
+	country = ENG
+	
+	trigger = {
+		ai = yes
+		atwar = yes
+		OR = {
+			NOT = { region = { region = "England" } }
+			NOT = { region = { region = "Scotland" } }
+		}
+	}
+
+	name = "AI_EVENT"
+	
+	date = { day = 1 month = january year = 1933 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1964 }
+
+	action = {
+		command = { trigger = { control = { province = 23 data = ENG } } type = activate_division which = 12700 value = 10001 where = 23 when = 0 } # Homeland
+		command = { trigger = { control = { province = 23 data = ENG } } type = activate_division which = 12700 value = 10002 where = 23 when = 0 } # Homeland
+		command = { trigger = { control = { province = 27 data = ENG } } type = activate_division which = 12700 value = 10003 where = 27 when = 0 } # Homeland
+		command = { trigger = { control = { province = 27 data = ENG } } type = activate_division which = 12700 value = 10004 where = 27 when = 0 } # Homeland
+		command = { trigger = { control = { province = 26 data = ENG } } type = activate_division which = 12700 value = 10005 where = 26 when = 0 } # Homeland
+		command = { trigger = { control = { province = 26 data = ENG } } type = activate_division which = 12700 value = 10006 where = 26 when = 0 } # Homeland
+		command = { trigger = { control = { province = 29 data = ENG } } type = activate_division which = 12700 value = 10007 where = 29 when = 0 } # Homeland
+		command = { trigger = { control = { province = 22 data = ENG } } type = activate_division which = 12700 value = 10008 where = 22 when = 0 } # Homeland
+		command = { trigger = { control = { province = 22 data = ENG } } type = activate_division which = 12700 value = 10009 where = 25 when = 0 } # Homeland
+		command = { trigger = { control = { province = 36 data = ENG } } type = activate_division which = 12700 value = 10010 where = 36 when = 0 } # Homeland
+		command = { trigger = { control = { province = 36 data = ENG } } type = activate_division which = 12700 value = 10011 where = 36 when = 0 } # Homeland
+		command = { trigger = { control = { province = 17 data = ENG } } type = activate_division which = 12700 value = 10012 where = 17 when = 0 } # Homeland
+		command = { trigger = { control = { province = 17 data = ENG } } type = activate_division which = 12700 value = 10013 where = 17 when = 0 } # Homeland
+		command = { trigger = { control = { province = 11 data = ENG } } type = activate_division which = 12700 value = 10014 where = 11 when = 0 } # Homeland
+		command = { trigger = { control = { province = 11 data = ENG } } type = activate_division which = 12700 value = 10015 where = 11 when = 0 } # Homeland
+		command = { trigger = { control = { province = 12 data = ENG } } type = activate_division which = 12700 value = 10016 where = 12 when = 0 } # Homeland
+		command = { trigger = { control = { province = 12 data = ENG } } type = activate_division which = 12700 value = 10017 where = 12 when = 0 } # Homeland        	
+		command = { trigger = { control = { province = 9 data = ENG } } type = activate_division which = 12700 value = 10018 where = 9 when = 0 } # Homeland
+	}
+}
+
+
+###################################
+# Minor invasion shut down events
+###################################
+
+event = {
+	id = 2400000
+	random = no 
+	persistent = yes
+	TAG = { AFG ALB ALG ANG ARA ARG ARM AST AUS AZB BEL BEN BHU BLR BOL BOS BRA BRU BUL BUR CAL CAM CAN CGX CHC CHL CMB COL CON COS CRO CSA CSX CUB CXB CYN CYP CZE DDR DEN DFR DOM EAF ECU EGY EQA EST ETH EUS FIN FLA GAB GEO GLD GRE GUA GUI GUY HAI HOL HON HUN ICL IDC IND INO IRE IRQ ISR JOR KAZ KOR KUR KYG LAO LAT LBY LEB LIB LIT LUX MAD MAL MAN MEN MEX MLY MON MOR MOZ MTN NAM NEP NIC NIG NOR NZL OMN OTT PAK PAL PAN PAR PER PHI POL POR PRI PRK PRU QUE RHO ROM RSI RUS SAF SAL SAR SAU SCA SCH SCO SER SIA SIB SIE SIK SLO SOM SPA SPR SUD SWE SYR TAJ TAN TEX TIB TRA TRK TUN TUR UKR URU UZB VEN VIE WLL YEM YUG U70 U71 U72 U73 U75 U76 U77 U78 U79 U80 U81 U82 U83 U84 U85 U86 U87 U88 U89 U90 U91 U92 U93 U94 U95 U96 U97 U98 U99 U50 U51 U52 U53 U54 U55 U56 U67 U39 U23 U24 U25 }
+	
+	trigger = {
+		ai = yes
+		NOT = { local_flag = InvShutOff }
+		OR = {
+			alliance = { country = GER }
+			alliance = { country = ITA }
+			alliance = { country = USA }
+			alliance = { country = FRA }
+			alliance = { country = ENG }
+			alliance = { country = JAP }
+			alliance = { country = SOV }
+			alliance = { country = CHI }
+		}
+	}
+
+	name = "AI_EVENT"
+	style = 0	
+	
+	date = { day = 1 month = january year = 1933 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = local_setflag which = InvShutOff }
+		command = { type = ai which = "invasionNo.ai" }
+	}
+}

@@ -1,0 +1,1813 @@
+### 2049016  USA  The Pitman Act - Chinese Currency
+### 2012024  CHI  Pitman Act - US assistance
+### 2049017  USA  Panay Incident
+### 2011029  JAP  Panay Incident
+### 2049018  USA  Panay Incident
+### 2049019  USA  The Japanese refuse to pay compensation
+### 2049020  USA  Gearing up for War
+### 2001023  ENG  Destroyers for bases
+### 2049021  USA  Destroyers for bases
+### 2001024  ENG  Destroyers for bases
+### 2049022  USA  The Nanjing Massacre
+### 2049023  USA  The Arsenal of Democracy
+### 2049024  USA  Ultimatum to Japan
+### 2011030  JAP  The Americans dictate an ultimatum to us
+### 2049025  USA  The Japanese submit!
+### 2049026  USA  Oil Embargo against Japan
+### 2049027  USA  Gibraltar has fallen 
+### 2049028  USA  Suez has fallen
+### 2049029  USA  China has surrendered
+### 2049030  USA  The Allied invade Norway
+### 2049031  USA  Allied diplomatic offensive in Europe
+### 2049032  USA  US occupation of Greenland and Iceland
+### 2049033  USA  FDR dies
+### 2049034  USA  Japan demands French Indochina from Vichy
+### 2049035  USA  US. Presidential Election of 1936 - Historical Outcome
+### 2049036  USA  US. Presidential Election of 1940 - Historical Outcome
+### 2049037  USA  US. Presidential Election of 1944 - Historical Outcome
+### 2049038  USA  US. Presidential Election of 1936 - Alternative Outcome
+### 2049039  USA  US. Presidential Election of 1940 - Alternative Outcome
+### 2049040  USA  US. Presidential Election of 1944 - Alternative Outcome
+### 2049041  USA  The Revolution has come!
+### 2049042  USA  The Americans controls Chinese army
+### 2049043  USA  The Americans no longer controls Chinese army
+### 2049044  USA  The Americans controls French army
+### 2049045  USA  The Americans no longer controls French army
+### 2049046  USA  US Surrender - Japanese demands
+### 2011031  JAP  US Surrender - Japanese demands
+### 2049047  USA  The USA surrenders
+### 2066001  PHI  US - Military Access
+### 2077001  LIB  US - Military Access
+### 2049064  CUB  US - Military Access
+### 2049048  USA  Separatists on the Rise
+### 2049049  USA  US Surrender - Soviet demands
+### 2007017  SOV  US Surrender - Soviet demands
+### 2049050  USA  The USA surrenders
+### 2049051  USA  US Surrender - German demands
+### 2003075  GER  US Surrender - German demands
+### 2049052  USA  The USA surrenders
+### 2049054  USA  A War for Revenge
+### 2049084  USA  Dutch Harbor naval base
+### 2049085  USA  Dutch Harbor naval base
+
+#########################################################################
+#  The Pitman-Chinese Currency Act
+#@ 1937-07-09
+#########################################################################
+event = {
+	id = 2049016
+	random = no
+	country = USA
+
+	name = EVT_84_NAME
+	desc = EVT_84_DESC
+	style = 2
+  	picture = "news_paper"
+
+	decision = {
+		OR = {
+		war = { country = CHI country = JAP }
+		war = { country = CHI country = CGX }
+		}
+		NOT = { alliance = { country = USA country = JAP } }
+	}
+	
+	decision_trigger = { 
+		supplies  = 1000
+	}
+	
+	trigger = {
+		OR = {
+		war = { country = CHI country = JAP }
+		war = { country = CHI country = CGX }
+		}
+		random = 70
+		supplies  = 1000		
+		NOT = { alliance = { country = USA country = JAP } }
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		ai_chance = 100
+		name = EVT_84_ACTA
+		command = { type = supplies value = -1500 }
+		command = { type = oilpool value = -250 }		
+		command = { type = money value = 50 }
+		command = { type = relation which = CHI value = 15 }
+		command = { type = relation which = JAP value = -10 }
+		command = { type = trigger which = 2012024 }
+	}
+}
+
+# Pitman-Chinese Currency Act, CHI effects
+#@ 1937-07-09
+event = {
+	id = 2012024
+	random = no
+	country = CHI
+
+	name = EVT_85_NAME
+	desc = EVT_85_DESC
+	style = 2
+	picture = "news_paper"
+
+	# Triggered by USA event 2049016
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { trigger = { ai = no } type = money value = -50 } # new for DD1.3
+		command = { type = supplies value = 1500 }
+		command = { type = oilpool value = 250 }		
+		command = { type = wakeleader which = 55368 } #Chennault 
+		command = { type = waketeam which = 55007 }
+	   	command = { type = gain_tech which = 9010 }	#Air Superiority Doctrine
+	   	command = { trigger = { NOT = { technology = 5310 } } type = gain_tech which = 5310 }	#Census Tabulating Machine
+	   	command = { trigger = { technology = 5310 NOT = { technology = 54010 } } type = gain_tech which = 54010 } #automatic feed tabulator	
+	   	command = { trigger = { technology = 5310 NOT = { technology = 5316 } } type = gain_tech which = 5316 } #ciphering machine
+	}
+}
+#########################################################################
+#  The US gears up for war
+#########################################################################
+ event = {
+	id = 2049020
+	random = no
+	country = USA
+	one_action = yes
+
+	name = EVT_58_NAME
+	desc = EVT_58_DESC
+	style = 2
+	picture = "news_paper"
+
+	trigger = {
+		OR = {
+			atwar = yes
+			NOT = { control = { province = 2089 data = CAN } } #Vancouver
+			NOT = { control = { province = 2090 data = CAN } } #Victoria
+			NOT = { control = { province = 2117 data = CAN } } #Québec
+			NOT = { control = { province = 2118 data = CAN } } #Sherbrooke
+			NOT = { control = { province = 2132 data = CAN } } #Halifax
+			NOT = { control = { province = 2128 data = CAN } } #Fredericton
+			NOT = { control = { province = 2133 data = CAN } } #Charlottetown
+			control = { province = 2136 data = GER } #Nain
+			control = { province = 2136 data = ITA } #Nain
+			control = { province = 2136 data = SOV } #Nain
+			control = { province = 2136 data = JAP } #Nain
+			control = { province = 2137 data = GER } #St. John's
+			control = { province = 2137 data = ITA } #St. John's
+			control = { province = 2137 data = SOV } #St. John's
+			control = { province = 2137 data = JAP } #St. John's
+			control = { province = 2135 data = GER } #St. piere
+			control = { province = 2135 data = ITA } #St. piere's
+			control = { province = 2135 data = SOV } #St. piere's
+			control = { province = 2135 data = JAP } #St. piere's
+			control = { province = 1783 data = GER } #Greenland
+			control = { province = 1 data = GER } #Reykjavík
+			control = { province = 1783 data = SOV } #Greenland
+			control = { province = 1 data = SOV } #Reykjavík
+			control = { province = 1773 data = GER } #Hamilton - Bermuda
+			control = { province = 1773 data = ITA } #Hamilton - Bermuda
+			control = { province = 1773 data = SOV } #Hamilton - Bermuda
+			control = { province = 1773 data = JAP } #Hamilton - Bermuda
+
+			NOT = { control = { province = 995 data = POR } } #Ponta Delgada
+			alliance = { country = POR  country = GER }
+			access = { country = POR country = GER }
+			alliance = { country = POR  country = SOV }
+			access = { country = POR country = SOV }
+			alliance = { country = POR  country = JAP }
+			access = { country = POR country = JAP }
+			alliance = { country = POR  country = ITA }
+			access = { country = POR country = ITA }
+
+			alliance = { country = ARG  country = GER }
+			access = { country = ARG country = GER }
+			alliance = { country = ARG  country = SOV }
+			access = { country = ARG country = SOV }
+			alliance = { country = ARG  country = JAP }
+			access = { country = ARG country = JAP }
+			alliance = { country = ARG  country = ITA }
+			access = { country = ARG country = ITA }
+			under_attack = ARG
+
+			alliance = { country = MEX  country = GER }
+			access = { country = MEX country = GER }
+			alliance = { country = MEX  country = SOV }
+			access = { country = MEX country = SOV }
+			alliance = { country = MEX  country = JAP }
+			access = { country = MEX country = JAP }
+			alliance = { country = MEX  country = ITA }
+			access = { country = MEX country = ITA }
+			under_attack = MEX
+
+			alliance = { country = BRA  country = GER }
+			access = { country = BRA country = GER }
+			alliance = { country = BRA  country = SOV }
+			access = { country = BRA country = SOV }
+			alliance = { country = BRA  country = JAP }
+			access = { country = BRA country = JAP }
+			alliance = { country = BRA  country = ITA }
+			access = { country = BRA country = ITA }
+			under_attack = BRA
+
+			alliance = { country = VEN  country = GER }
+			access = { country = VEN country = GER }
+			alliance = { country = VEN  country = SOV }
+			access = { country = VEN country = SOV }
+			alliance = { country = VEN  country = JAP }
+			access = { country = VEN country = JAP }
+			alliance = { country = VEN  country = ITA }
+			access = { country = VEN country = ITA }
+			under_attack = VEN
+
+			alliance = { country = CUB  country = GER }
+			access = { country = CUB country = GER }
+			alliance = { country = CUB  country = SOV }
+			access = { country = CUB country = SOV }
+			alliance = { country = CUB  country = JAP }
+			access = { country = CUB country = JAP }
+			alliance = { country = CUB  country = ITA }
+			access = { country = CUB country = ITA }
+			under_attack = CUB
+
+			alliance = { country = COL  country = GER }
+			access = { country = COL country = GER }
+			alliance = { country = COL  country = SOV }
+			access = { country = COL country = SOV }
+			alliance = { country = COL  country = JAP }
+			access = { country = COL country = JAP }
+			alliance = { country = COL  country = ITA }
+			access = { country = COL country = ITA }
+			under_attack = COL
+		}
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		ai_chance = 100
+		name = 32a
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = peacetime_ic_mod value = 10 }
+		command = { type = manpowerpool value = 100 }
+	}
+}
+#########################################################################
+#  The Arsenal of Democracy
+#########################################################################
+event = {
+	id = 2049023
+	random = no
+	country = USA
+
+	name = EVT_32_NAME
+	desc = EVT_32_DESC
+	style = 2
+  	picture = "news_paper"
+
+	trigger = {
+		OR = {
+			war = { country = GER country = FRA }
+			alliance = { country = GER country = ENG }
+			alliance = { country = JAP country = ENG }
+			NOT = { exists = AUS }
+		}
+		random = 25
+	}
+
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = peacetime_ic_mod value = 10 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = GER value = -20 }
+	}
+}
+#########################################################################
+#  FDR dies
+#@ 1945-04-12
+#########################################################################
+event = {
+	id = 2049033
+	random = no
+	country = USA
+
+	trigger = {
+		headofstate = 240001
+		random = 5 # 5% chance
+	}
+
+	name = "EVT_3706_NAME"
+	desc = "EVT_3706_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 8 month = january year = 1945 }
+	offset = 7 # Check every week
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action_a = {
+		name = ACTION_NAME_OK # Oh, the Tragedy! The man who could rise up from his wheel-chair!
+		command = { type = headofstate which = 240013 }
+		command = { type = headofgovernment which = 240024 }
+		command = { type = foreignminister which = 240039 }
+		command = { type = armamentminister which = 240058 }
+		command = { type = ministerofsecurity which = 240005 }
+		command = { type = ministerofintelligence which = 240096 }
+		command = { type = chiefofstaff which = 240104 }
+		command = { type = chiefofarmy which = 240110 }
+		command = { type = chiefofnavy which = 240119 }
+		command = { type = chiefofair which = 240129 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = domestic which = political_left value = -1 }
+		command = { type = sleepminister which = 240001 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1936
+#@ 1936-11-03
+#########################################################################
+event = {
+	id = 2049035
+	random = no
+	country = USA
+	one_action = yes
+
+	name = "EVT_3709_NAME"
+	desc = "EVT_3709_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	trigger = {
+			government = democratic
+		NOT = {	ispuppet = USA }
+	}
+
+	date = { day = 3 month = november year = 1936 }
+
+	action = {
+		ai_chance = 100
+		name = "elec_ROO"
+		command = { type = dissent value = -2 }
+		command = { type = manpowerpool value = 20 }
+
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 8 }
+
+		command = { type = headofstate which = 240001 }
+		command = { type = headofgovernment which = 240232 }
+		command = { type = foreignminister which = 240003 }
+		command = { type = armamentminister which = 240004 }
+		command = { type = ministerofsecurity which = 240005 }
+		command = { type = ministerofintelligence which = 240006 }
+	}
+	action = { trigger = { dissent = 5 }
+		ai_chance = 0
+		name = "elec_LAN"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 5 }
+
+		command = { type = headofstate which = 240014 }
+		command = { type = headofgovernment which = 240026 }
+		command = { type = foreignminister which = 240041 }
+		command = { type = armamentminister which = 240060 }
+		command = { type = ministerofsecurity which = 240080 }
+		command = { type = ministerofintelligence which = 240143 }
+		command = { type = sleepevent which = 2049036 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = construct which = ic where = -1 value = 5 }
+		command = { type = construct which = ic where = -1 value = 5 }
+		command = { type = oilpool value = 100 }
+		command = { type = energypool value = 100 }
+		command = { type = metalpool value = 100 }
+		command = { type = rarematerialspool value = 100 }
+		command = { type = dissent value = 2 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1940
+#@ 1940-11-05
+#########################################################################
+event = {
+	id = 2049036
+	random = no
+	country = USA
+	one_action = yes
+
+	trigger = {
+		government = democratic
+		NOT = { ispuppet = USA }
+	}
+
+	name = "EVT_3711_NAME"
+	desc = "EVT_3711_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 5 month = november year = 1940 }
+
+	action = { trigger = { headofstate = 240001 }
+		ai_chance = 100
+		name = "elec_ROO"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 8 }
+		command = { type = dissent value = -2 }
+		command = { type = manpowerpool value = 10 }
+		command = { type = headofstate which = 240001 }
+		command = { type = headofgovernment which = 240232 }
+		command = { type = foreignminister which = 240003 }
+		command = { type = armamentminister which = 240004 }
+		command = { type = ministerofsecurity which = 240005 }
+		command = { type = ministerofintelligence which = 240098 }
+	}
+	action = { trigger = { dissent = 10 headofstate = 240001 }
+		ai_chance = 0
+		name = "elec_WIL"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 5 }
+		command = { type = headofstate which = 240015 }
+		command = { type = headofgovernment which = 240027 }
+		command = { type = foreignminister which = 240041 }
+		command = { type = armamentminister which = 240062 }
+		command = { type = ministerofsecurity which = 240005 }
+		command = { type = ministerofintelligence which = 240098 }
+	}
+	action = { trigger = { headofstate = 240014 }
+		ai_chance = 50
+		name = "elec_LAN"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 5 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = supplies value = 200 }
+		command = { type = headofstate which = 240014 }
+		command = { type = headofgovernment which = 240026 }
+		command = { type = foreignminister which = 240042 }
+		command = { type = armamentminister which = 240061 }
+		command = { type = ministerofsecurity which = 240081 }
+		command = { type = ministerofintelligence which = 240098 }
+	}
+	action = { trigger = { headofstate = 240014 }
+		ai_chance = 50
+		name = "elec_WAL"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 7 }
+		command = { type = headofstate which = 240011 }
+		command = { type = headofgovernment which = 240023 }
+		command = { type = foreignminister which = 240003 }
+		command = { type = armamentminister which = 240055 }
+		command = { type = ministerofsecurity which = 240077 }
+		command = { type = ministerofintelligence which = 240098 }
+		command = { type = dissent value = -2 }
+		command = { type = manpowerpool value = 10 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1944
+#@ 1944-11-07
+#########################################################################
+event = {
+	id = 2049037
+	random = no
+	country = USA
+	one_action = yes
+
+	name = "EVT_3715_NAME"
+	desc = "EVT_3715_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	trigger = {
+		government = democratic
+		NOT = { ispuppet = USA }
+	}
+
+	date = { day = 7 month = november year = 1944 }
+
+	action = { trigger = { OR = { ideology = social_liberal ideology = social_democrat } }
+		ai_chance = 95
+		name = "elec_keepdem"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 8 }
+		command = { type = dissent value = -2 }
+		command = { type = headofgovernment which = 240024 }
+		command = { type = foreignminister which = 240036 }
+		command = { type = armamentminister which = 240004 }
+		command = { type = ministerofsecurity which = 240005 }
+		command = { type = ministerofintelligence which = 240098 }
+	}
+	action = { trigger = { OR = { ideology = social_liberal ideology = social_democrat } }
+		ai_chance = 5
+		name = "elec_TED"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 8 }
+		command = { type = headofstate which = 240017 }
+		command = { type = headofgovernment which = 240028 }
+		command = { type = foreignminister which = 240043 }
+		command = { type = armamentminister which = 240064 }
+		command = { type = ministerofsecurity which = 240082 }
+		command = { type = ministerofintelligence which = 240098 }
+		command = { type = oilpool value = 100 }
+		command = { type = energypool value = 100 }
+		command = { type = metalpool value = 100 }
+		command = { type = rarematerialspool value = 100 }
+		command = { type = supplies value = 200 }
+	}
+	action = { trigger = { OR= { ideology = market_liberal ideology = social_conservative } }
+		ai_chance = 95
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 5 }
+		command = { type = dissent value = -2 }
+		command = { type = foreignminister which = 240043 }
+		command = { type = armamentminister which = 240064 }
+		command = { type = ministerofsecurity which = 240082 }
+		command = { type = ministerofintelligence which = 240098 }
+	}
+	action = { trigger = { OR= { ideology = market_liberal ideology = social_conservative } }
+		ai_chance = 5
+		name = "elec_HOO"
+		command = { type = set_domestic which = democratic value = 10 }
+		command = { type = set_domestic which = political_left value = 7 }
+		command = { type = headofstate which = 240012 }
+		command = { type = headofgovernment which = 240024 }
+		command = { type = foreignminister which = 240038 }
+		command = { type = armamentminister which = 240056 }
+		command = { type = ministerofsecurity which = 240079 }
+		command = { type = ministerofintelligence which = 240098 }
+		command = { type = manpowerpool value = 20 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1936 - Alternative Outcome
+#########################################################################
+event = {
+	id = 2049038
+	random = no
+	country = USA
+	one_action = yes
+
+	trigger = {
+		ideology = paternal_autocrat
+		NOT = { ispuppet = USA }
+		OR = {
+			headofstate = 240001
+			headofstate = 240011
+			headofstate = 240012
+			headofstate = 240013
+			headofstate = 240014
+			headofstate = 240015
+			headofstate = 240016
+			headofstate = 240017
+		}
+	}
+
+	name = "EVT_3710_NAME"
+	desc = "EVT_3726_DESC"
+	style = 2
+  picture = "news_paper"
+
+	date = { day = 2 month = november year = 1936 }
+
+	action = {
+		ai_chance = 50
+		name = "elec_LEM"
+		command = { type = headofstate which = 240146 }
+		command = { type = headofgovernment which = 240147 }
+		command = { type = foreignminister which = 240045 }
+		command = { type = armamentminister which = 240068 }
+		command = { type = ministerofsecurity which = 240148 }
+		command = { type = chiefofstaff which = 240152 }
+		command = { type = chiefofarmy which = 240112 }
+		command = { type = chiefofnavy which = 240127 }
+		command = { type = chiefofair which = 240131 }
+		command = { type = domestic which = interventionism value = -2 }
+		command = { type = dissent value = 2 }
+	}
+	action = {
+		ai_chance = 50
+		name = "elec_keep"
+		command = { type = headofstate which = 240146 }
+		command = { type = headofgovernment which = 240147 }
+		#command = { type = foreignminister which = 240045 }
+		#command = { type = armamentminister which = 240068 }
+		#command = { type = ministerofsecurity which = 240148 }
+		#command = { type = chiefofstaff which = 240152 }
+		#command = { type = chiefofarmy which = 240112 }
+		#command = { type = chiefofnavy which = 240127 }
+		#command = { type = chiefofair which = 240131 }
+		command = { type = domestic which = interventionism value = -2 }
+		command = { type = dissent value = 2 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1940 - Alternative Outcome
+#########################################################################
+event = {
+	id = 2049039
+	random = no
+	country = USA
+	one_action = yes
+
+	trigger = {
+		ideology = paternal_autocrat
+		NOT = { ispuppet = USA }
+		OR = {
+			headofstate = 240001
+			headofstate = 240011
+			headofstate = 240012
+			headofstate = 240013
+			headofstate = 240014
+			headofstate = 240015
+			headofstate = 240016
+			headofstate = 240017
+			headofstate = 240146
+		}
+	}
+
+	name = "EVT_3712_NAME"
+	desc = "EVT_3727_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	date = { day = 5 month = november year = 1940 }
+
+	action = {
+		ai_chance = 50
+		name = "elec_LIN"
+		command = { type = headofstate which = 240149 }
+		command = { type = headofgovernment which = 240150 }
+		command = { type = foreignminister which = 240045 }
+		command = { type = armamentminister which = 240070 }
+		command = { type = ministerofsecurity which = 240151 }
+		command = { type = chiefofstaff which = 240106 }
+		command = { type = chiefofarmy which = 240112 }
+		command = { type = chiefofnavy which = 240127 }
+		command = { type = chiefofair which = 240132 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = -1 }
+	}
+	action = {
+		ai_chance = 50
+		name = "elec_keep"
+		command = { type = headofstate which = 240149 }
+		command = { type = headofgovernment which = 240150 }
+		#command = { type = foreignminister which = 240045 }
+		#command = { type = armamentminister which = 240070 }
+		#command = { type = ministerofsecurity which = 240151 }
+		#command = { type = chiefofstaff which = 240106 }
+		#command = { type = chiefofarmy which = 240112 }
+		#command = { type = chiefofnavy which = 240127 }
+		#command = { type = chiefofair which = 240132 }
+		command = { type = domestic which = interventionism value = -1 }
+		command = { type = dissent value = -1 }
+	}
+}
+#########################################################################
+#  US. Presidential Election of 1944 - Alternative Outcome
+#########################################################################
+event = {
+	id = 2049040
+	random = no
+	country = USA
+	one_action = yes
+
+	name = "EVT_3716_NAME"
+	desc = "EVT_3728_DESC"
+	style = 2
+  	picture = "news_paper"
+
+	trigger = {
+		ideology = paternal_autocrat
+		NOT = { ispuppet = USA }
+		OR = {
+			headofstate = 240001
+			headofstate = 240011
+			headofstate = 240012
+			headofstate = 240013
+			headofstate = 240014
+			headofstate = 240015
+			headofstate = 240016
+			headofstate = 240017
+			headofstate = 240146
+		}
+	}
+
+	date = { day = 7 month = november year = 1944 }
+
+	action = {
+		ai_chance = 50
+		name = "elec_LIN"
+		command = { type = headofstate which = 240149 }
+		command = { type = headofgovernment which = 240150 }
+		command = { type = foreignminister which = 240045 }
+		command = { type = armamentminister which = 240070 }
+		command = { type = ministerofsecurity which = 240151 }
+		command = { type = chiefofstaff which = 240106 }
+		command = { type = chiefofarmy which = 240112 }
+		command = { type = chiefofnavy which = 240127 }
+		command = { type = chiefofair which = 240132 }
+		command = { type = domestic which = interventionism value = 2 }
+		command = { type = domestic which = defense_lobby value = 3 }
+		command = { type = dissent value = -1 }
+	}
+	action = {
+		ai_chance = 50
+		name = "elec_keep"
+		command = { type = headofstate which = 240149 }
+		command = { type = headofgovernment which = 240150 }
+		#command = { type = foreignminister which = 240045 }
+		#command = { type = armamentminister which = 240070 }
+		#command = { type = ministerofsecurity which = 240151 }
+		#command = { type = chiefofstaff which = 240106 }
+		#command = { type = chiefofarmy which = 240112 }
+		#command = { type = chiefofnavy which = 240127 }
+		#command = { type = chiefofair which = 240132 }
+		command = { type = domestic which = interventionism value = 2 }
+		command = { type = domestic which = defense_lobby value = 3 }
+		command = { type = dissent value = -1 }
+	}
+}
+#########################################################################
+#  The Revolution has come!
+#########################################################################
+event = {
+	id = 2049041
+	random = no
+	country = USA
+
+	name = "EVT_3718_NAME"
+	desc = "EVT_3718_DESC"
+	style = 2
+	picture = "news_paper"
+
+	trigger = {
+		government = democratic
+		dissent = 65
+	}
+
+	date = { day = 1 month = january year = 1933 }
+	offset = 25 # Check for this every 25 days
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action_a = {
+		ai_chance = 50
+		name = "elec_BRO"
+		command = { type = dissent value = -40 }
+		command = { type = set_domestic which = democratic value = 1 }
+		command = { type = set_domestic which = political_left value = 10 }
+		command = { type = domestic which = freedom value = -10 }
+		command = { type = domestic	which = free_market value = -10 }
+		command = { type = headofstate which = 240020 } #Earl Browder
+		command = { type = headofgovernment which = 240033 } #William Z. Foster
+		command = { type = foreignminister which = 240047 } #Floyd Olson
+		command = { type = armamentminister which = 240072 } #William D. Pelley
+		command = { type = ministerofsecurity which = 240086 } #William Aalto
+		command = { type = ministerofintelligence which = 240103 } #Harry Haywood
+		command = { type = chiefofstaff which = 240107 } #Hans Arnlie
+		command = { type = chiefofarmy which = 240113 } #Oliver Law
+		command = { type = chiefofnavy which = 240128 } #John Abt
+		command = { type = chiefofair which = 240134 } #Abt
+		#command = { type = sleepevent which = 2049035 }
+		#command = { type = sleepevent which = 2049036 }
+		#command = { type = sleepevent which = 2049037 }
+
+
+		command = { type = flag_ext where = USA which = _communist }
+	}
+	action_b = {
+		ai_chance = 50
+		name = "elec_THO"
+		command = { type = dissent value = -20 }
+		command = { type = domestic which = democratic value = -4 }
+		command = { type = set_domestic which = political_left value = 9 }
+		command = { type = domestic which = freedom value = -5 }
+		command = { type = domestic	which = free_market value = -5 }
+		command = { type = headofstate which = 240021 } #Normal Thomas - changed startdate in ministers file, ran for prez in 36
+		command = { type = headofgovernment which = 240034 } #James Cannon - founding member of CPUSA
+		command = { type = foreignminister which = 240047 } #Floyd Olson 
+		command = { type = armamentminister which = 240072 } #Wyndham Mortimer
+		command = { type = ministerofsecurity which = 240086 } #William Aalto
+		command = { type = ministerofintelligence which = 240103 } #Harry Haywood
+		command = { type = chiefofstaff which = 240007 } #Malin Craig
+		command = { type = chiefofarmy which = 240113 } #Oliver Law
+		command = { type = chiefofnavy which = 240128 } #John Abt
+		command = { type = chiefofair which = 240010 } #Westover
+		#command = { type = sleepevent which = 2049035 }
+		#command = { type = sleepevent which = 2049036 }
+		#command = { type = sleepevent which = 2049037 }
+		
+		command = { type = flag_ext where = USA which = _communist }
+	}
+}
+
+
+
+#########################################################################
+# Second New Deal by Mettermrck
+# Modified by Luxor
+#########################################################################
+event = {
+	id = 3182055
+	random = no
+	country = USA
+
+	name = "The great Dust Bowl continues"
+	desc = "The Dust Bowl was a period of severe dust storms causing major ecological and agricultural damage to American and Canadian prairie lands in the 1930s, particularly in 1934 and 1936"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Darn"
+		command = { type = dissent value = 2.5 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#-275
+		command = { type = free_ic value = -25 }
+		command = { type = free_oil value = -25 }
+		command = { type = free_metal value = -25 }
+		command = { type = free_energy value = -25 }
+		command = { type = free_rare_materials value = -25 }
+		command = { type = trigger which = 2007037 }
+	}
+}
+
+event = {
+	id = 3182056
+	random = no
+	country = USA
+
+	decision = {
+		headofstate = 240001
+		atwar = no
+	}
+	trigger = {
+		headofstate = 240001
+		atwar = no
+	}
+
+	name = "Second New Deal"
+	desc = EVT_3182056_DESC
+	style = 2
+
+	date = { day = 1 month = september year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Let us hope that it will be effective"
+		command = { type = dissent value = 5 }
+		command = { type = local_setflag which = "secondND" }
+		command = { type = trigger which = 2007037 }
+	}
+}
+
+event = {
+	id = 3182057
+	random = no
+	country = USA
+
+	name = "Recession of 1937"
+	desc = "In 1937, the American economy unexpectedly fell, lasting through most of 1938. Production declined sharply, as did profits and employment. GDP growth slowed in 1936 and fell in 1937, while unemployment returned back to depression level highs."
+	style = 2
+
+	date = { day = 1 month = february year = 1937 }
+	offset = 5
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Darn"
+		command = { type = dissent value = 2.5 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#command = { type = construct which = ic where = -4 value = -1 }
+		#-300
+		command = { type = free_ic value = -25 }
+		command = { type = free_oil value = -25 }
+		command = { type = free_metal value = -25 }
+		command = { type = free_energy value = -25 }
+		command = { type = free_rare_materials value = -25 }
+		command = { type = free_money value = -4.0 }
+		command = { type = trigger which = 2007037 }
+	}
+}
+
+event = {
+	id = 3182058
+	random = no
+	country = USA
+
+	trigger = {
+		local_flag = secondND
+	}
+
+	name = "Social Security Act becomes effective"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = september year = 1937 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#-275
+		command = { type = free_ic value = 25 }
+		command = { type = free_oil value = 25 }
+		command = { type = free_metal value = 25 }
+		command = { type = free_energy value = 25 }
+		command = { type = free_rare_materials value = 25 }
+		command = { type = free_money value = -4.0 } #drain on the budget
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+event = {
+	id = 3182059
+	random = no
+	country = USA
+
+	name = "The Dust Bowl subsides"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = december year = 1938 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#-250
+		command = { type = free_ic value = 25 }
+		command = { type = free_oil value = 25 }
+		command = { type = free_metal value = 25 }
+		command = { type = free_energy value = 25 }
+		command = { type = free_rare_materials value = 25 }
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+event = {
+	id = 3182060
+	random = no
+	country = USA
+
+	trigger = {
+		local_flag = secondND
+	}
+
+	name = "Large economic stimulus is announced"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = february year = 1938 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#-200
+		command = { type = free_ic value = 50 }
+		command = { type = free_oil value = 50 }
+		command = { type = free_metal value = 50 }
+		command = { type = free_energy value = 50 }
+		command = { type = free_rare_materials value = 50 }
+		command = { type = free_money value = -4.0 } #Further drain on the budget
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+event = {
+	id = 3182061
+	random = no
+	country = USA
+
+	trigger = {
+		local_flag = secondND
+		policy = { type = professional_army value = 5 } 
+	}
+
+	name = "Rearmament spurs growth"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = april year = 1938 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#-150
+		command = { type = free_ic value = 50 }
+		command = { type = free_oil value = 50 }
+		command = { type = free_metal value = 50 }
+		command = { type = free_energy value = 50 }
+		command = { type = free_rare_materials value = 50 }
+		command = { type = free_money value = 5.0 }
+		command = { type = money value = -1000.0 }
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+event = {
+	id = 3182062
+	random = no
+	country = USA
+
+	trigger = {
+		local_flag = secondND
+	}
+
+	name = "New Labor and financial acts become effective"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = october year = 1938 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1939 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#-100
+		command = { type = free_ic value = 50 }
+		command = { type = free_oil value = 50 }
+		command = { type = free_metal value = 50 }
+		command = { type = free_energy value = 50 }
+		command = { type = free_rare_materials value = 50 }
+		#Not free money
+		command = { type = money value = 5.0 }
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+event = {
+	id = 3182063
+	random = no
+	country = USA
+
+	trigger = {
+		local_flag = secondND
+		atwar = yes
+		year = 1938
+	}
+
+	name = "War economy"
+	desc = "Our economy is recovering from the depth of the Great Depression"
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 25
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action_a = {
+		name = "Great!"
+		command = { type = dissent value = -2 }
+		#0
+		command = { type = free_ic value = 100 }
+		command = { type = free_oil value = 100 }
+		command = { type = free_metal value = 100 }
+		command = { type = free_energy value = 100 }
+		command = { type = free_rare_materials value = 100 }
+		command = { type = free_money value = 5.0 }
+		command = { type = trigger which = 2007038 }
+	}
+}
+
+#net money loss: 2
+#net IC loss: 0
+
+event = {
+	id = 3182070
+	random = no
+	country = USA
+
+	trigger = {
+		policy = { type = professional_army value = 7 } 
+		NOT = { lost_national = { value = 5 } }
+	}
+
+	name = "Opposition to mobilization"
+	desc = "The government is encountering heavy opposition to the proposed draft law in Congress from the representatives of the Anglo and German communities as well as large business owners who do trade with aforementioned countries. Even in these dire times, our society is bitterly divided and forcing the law through as well as enforcing it is promising to be a challenge."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Shit!"
+		command = { type = dissent value = 10 }
+	}
+}
+
+event = {
+	id = 3182071
+	random = no
+	country = USA
+
+	trigger = {
+		war = { country = USA country = ENG } 
+		war = { country = USA country = GER } 
+	}
+
+	name = "Opposition to the war"
+	desc = "Despite the obvious aggression from our neighbors, a large part of the American society is blaming Washington for the escalation and the war. The opposition is heavy across the spectrum of American society, from the Jewish, Anglo, and German communities to the Mexicans living in the south. Many people are unwilling to fight, even worse, some are willing to fight for the enemy!"
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Shit!"
+		command = { type = dissent value = 5 }
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1922 } #Rebels
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1922 }
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1922 }
+		
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1926 }
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1926 }
+		command = { trigger = { war = { country = USA country = MEX } } type = revolt which = 1926 }
+		
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		
+		#command = { type = switch_allegiance which = -1 where = ENG }
+		#command = { type = switch_allegiance which = -1 where = GER }
+		#command = { trigger = { war = { country = USA country = MEX } } type = switch_allegiance which = -1 where = MEX } 
+
+		command = { type = unlock_division which = 12700 value = 644 }
+		command = { type = unlock_division which = 12700 value = 646 }
+		command = { type = unlock_division which = 12700 value = 648 }
+	}
+}
+
+event = {
+	id = 3182072
+	random = no
+	country = USA
+
+	trigger = {
+		OR = {
+			war = { country = USA country = ENG } 
+			war = { country = USA country = GER } 
+		}
+		lost_national = { value = 5 }
+		event = 3182071
+	}
+
+	name = "Opposition to the war eases"
+	desc = "As the enemy is making steady gains at our expense and its aggressive intentions become increasingly obvious, the opposition to the war gradually eases."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -5 }
+		command = { trigger = { ai = yes } type = dissent value = -5 }
+		command = { trigger = { ai = yes } type = money value = 300 }
+		command = { trigger = { ai = yes } type = supplies value = 3000 }
+		command = { }
+	}
+}
+
+event = {
+	id = 3182073
+	random = no
+	country = USA
+
+	trigger = {
+		OR = {
+			war = { country = USA country = ENG } 
+			war = { country = USA country = GER } 
+		}
+		lost_national = { value = 15 }
+		event = 3182070
+	}
+
+	name = "Opposition to the war eases"
+	desc = "As the enemy is making steady gains at our expense and its aggressive intentions become increasingly obvious, the opposition to the war gradually eases."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Great!"
+		command = { type = dissent value = -10 }
+		command = { trigger = { ai = yes } type = dissent value = -10 }
+		command = { trigger = { ai = yes } type = money value = 500 }
+		command = { trigger = { ai = yes } type = supplies value = 5000 }
+		command = { }
+	}
+}
+
+event = {
+	id = 3182098
+	random = no
+	country = PHI
+
+	trigger = {
+		puppet = { country = PHI country = USA }
+		#NOT = { war = { country = PHI country = JAP } }
+		NOT = { lost_national = { value = 1 } }
+		NOT = { garrison = { country = USA province = 1565 type = land size = 1 area = 2 } }
+		OR = {
+			random = 1
+			AND = {
+				lost_national = { country = USA value = 5 }
+				random = 2
+			}
+			AND = {
+				lost_national = { country = USA value = 10 }
+				random = 3
+			}
+			AND = {
+				lost_national = { country = USA value = 15 }
+				random = 4
+			}
+			AND = {
+				lost_national = { country = USA value = 20 }
+				random = 5
+			}
+			AND = {
+				lost_national = { country = USA value = 25 }
+				random = 6
+			}
+			AND = {
+				lost_national = { country = USA value = 30 }
+				random = 7
+			}
+			AND = {
+				lost_national = { country = USA value = 35 }
+				random = 8
+			}
+			AND = {
+				lost_national = { country = USA value = 40 }
+				random = 9
+			}
+			AND = {
+				lost_national = { country = USA value = 45 }
+				random = 10
+			}
+		}
+	}
+
+	name = "Uprising in the Philippines"
+	desc = "With the withdrawal of the American troops from the Philippines, we have an opportunity to an avenge our earlier defeat and regain full independence from the United States. Shall we take this opportunity? Beware that some of our factions and military units are still loyal to the Americans."
+	style = 2
+
+	date = { day = 1 month = october year = 1936 }
+	offset = 10
+	deathdate = { day = 29 month = october year = 1949 }
+
+	action = {
+		name = "Yes!"
+		command = { type = end_puppet }
+		command = { type = leave_alliance when = 1 }
+		
+		command = { type = local_setflag which = stayInWar }
+		
+		command = { type = switch_allegiance which = -1 where = USA }
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		
+		command = { type = event which = 2400535 where = PHI when = 0 } #legitIndie
+		
+		command = { trigger = { NOT = { war = { country = JAP country = USA } } } type = war which = USA }
+		command = { trigger = { war = { country = JAP country = USA } } type = war which = JAP }
+		#command = { trigger = { war = { country = JAP country = USA } } type = alliance which = JAP }
+	}
+	action = {
+		name = "No!"
+		command = { type = dissent value = 5 }
+		command = { type = switch_allegiance which = -1 where = REB }
+		command = { type = revolt which = 1565 }
+		command = { type = revolt which = 1565 }
+		command = { type = revolt which = 1567 }
+		command = { type = revolt which = 1569 }
+		command = { type = revolt which = 1579 }
+		
+		
+		command = { type = damage_division which = -1 where = 50 }
+		command = { type = damage_division which = -1 where = 50 }
+		
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+		command = { type = disorg_division which = -1 where = 90 }
+	}
+}
+
+#Subjugating Philippines
+
+event = {
+	id = 3182100
+	random = no
+	country = JAP
+
+	decision = {
+		alliance = { country = PHI country = JAP }
+		NOT = { puppet = { country = PHI country = JAP } }
+	}
+	decision_trigger = {
+	}
+	trigger = { 
+		alliance = { country = PHI country = JAP }
+		NOT = { puppet = { country = PHI country = JAP } }
+		
+		OR = {
+			NOT = { control = { province = 1565 data = PHI } }
+			year = 1944
+			lost_national = { country = USA value = 50 }
+		}
+	}
+
+	name = "Preparing to subjugate Philippines"
+	desc = "With our forces crossing the border into Philippines, it is time to take firmer control of the country in order to achieve our long-term objectives. This may cause a temporary disruption in the war effort, but it will serve us in the end. The process will take approximately 2 months."
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 10
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Prepare to seize strategic keypoints across the country"
+		command = { type = ground_def_eff value = -0.05 when = 1 }
+		command = { type = event which = 3182101 where = JAP when = 60 }
+	}
+}
+
+event = {
+	id = 3182101
+	random = no
+	country = JAP
+
+	name = "Seizing control of Philippines"
+	desc = "With our forces positioned across the strategic areas of Philippines and arms distributed to friendly organizations, we can now make the Philippine nationalist government an offer it won't be able to refuse - to form a unity government with the local pan-Asian organizations which would get key ministries, and to put their entire war effort under our military control."
+	style = 2
+
+	action = {
+		name = "Present the ultimatum"
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = event which = 3182102 where = PHI when = 1 }
+	}
+}
+
+event = {
+	id = 3182102
+	random = no
+	country = PHI
+	save_date = yes
+
+	name = "Japanese are attempting to seize control"
+	desc = "Much as we expected, having crossed the border into our country, the Japanese quickly got to work on setting up bases and checkpoins in strategic areas and distributing arms to friendly organizations. They have now made us an offer we cannot refuse - we are to form a unity government with the local pan-Asian organizations which would get key ministries, and to put our entire war effort under Japanese military control."
+	style = 2
+
+	action = {
+		name = "We have no choice!"
+		ai_chance = 0
+		trigger = {
+			NOT = {
+				AND = {
+					OR = {
+						NOT = { control = { province = 1565 data = PHI } }
+						lost_national = { value = 40 }
+					}
+					NOT = { lost_national = { country = USA value = 50 } }
+				}
+			}
+		}
+		command = { type = trigger which = 3182103 }
+	}
+	action = {
+		name = "We have to put up at least a semblance of resistance!"
+		ai_chance = 100
+		trigger = {
+			NOT = {
+				AND = {
+					OR = {
+						NOT = { control = { province = 1565 data = PHI } }
+						lost_national = { value = 40 }
+					}
+					NOT = { lost_national = { country = USA value = 50 } }
+				}
+			}
+		}
+		command = { type = secederegion which = -1 value = "Philippines" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = JAP }
+		command = { type = war which = USA }
+		command = { type = local_setflag which = OccupationResistance }
+	}
+	action = {
+		name = "We have no choice!"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				NOT = { control = { province = 1565 data = PHI } }
+				lost_national = { value = 40 }
+			}
+			NOT = { lost_national = { country = USA value = 50 } }
+		}
+		command = { type = trigger which = 3182103 }
+	}
+	action = {
+		name = "We have to put up at least a semblance of resistance!"
+		ai_chance = 0
+		trigger = {
+			OR = {
+				NOT = { control = { province = 1565 data = PHI } }
+				lost_national = { value = 40 }
+			}
+			NOT = { lost_national = { country = USA value = 50 } }
+		}
+		command = { type = secederegion which = -1 value = "Philippines" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = JAP }
+		command = { type = war which = USA }
+		command = { type = local_setflag which = OccupationResistance }
+	}
+}
+
+event = {
+	id = 3182103
+	random = no
+	country = JAP
+
+	name = "Philippines accepts our generous offer"
+	desc = "After some convincing, the Philippines have wisely chosen to accept our generous offer. We now have effective control over the Philippine government."
+	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = make_puppet which = PHI }
+		command = { type = event which = 2400537 where = PHI when = 0 } #medium puppet
+		command = { type = event which = 2400530 where = PHI when = 0 } #stayInWar flag
+		command = { type = event which = 3182104 where = -1 when = 1 }
+		command = { type = military_control which = JAP where = PHI value = 1 }
+	}
+}
+
+event = {
+	id = 3182104
+	random = no
+	country = JAP
+
+	name = "Provinces back to Philippines"
+ 	desc = "Having established a friendly government in Warsaw, we will now transfer the territorial control back to Philippines."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secederegion which = PHI value = "Philippines" }
+		command = { type = coup_nation which = PHI }
+	}
+}
+
+event = {
+	id = 3182105
+	random = no
+	country = PHI
+
+	decision = {
+		local_flag = OccupationResistance
+		war = { country = PHI country = JAP }
+	}
+	decision_trigger = {
+		event = { id = 3182102 days = 2 } #at least 2 days
+	}
+	trigger = { 
+		event = { id = 3182102 days = 2 } #at least 2 days
+		local_flag = OccupationResistance
+		war = { country = PHI country = JAP }
+		OR = {
+			NOT = { control = { province = 1565 data = -3 } }
+			lost_national = { value = 40 }
+		}
+	}
+
+	name = "Surrender"
+	desc = "Having been quickly overwhelmed by enemy forces, we have no choice but to accept Japanese demands and decrease further suffering of our people."
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "We will comply, for now"
+		command = { type = trigger which = 3182103 }
+	}
+}
+
+event = {
+	id = 3182106
+	random = no
+	country = PHI
+	persistent = yes
+
+	trigger = { 
+		NOT = { puppet = { country = -1 country = JAP } }
+		military_control = { country = -1 country = JAP }
+	}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to the Japanese"
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 2
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = JAP where = PHI value = 0 }
+	}
+}
+
+#Subjugating Vietnam
+
+event = {
+	id = 3182120
+	random = no
+	country = JAP
+
+	decision = {
+		alliance = { country = VIE country = JAP }
+		NOT = { puppet = { country = VIE country = JAP } }
+	}
+	decision_trigger = {
+	}
+	trigger = { 
+		alliance = { country = VIE country = JAP }
+		NOT = { puppet = { country = VIE country = JAP } }
+		
+		OR = {
+			lost_national = { country = IND value = 60 }
+			NOT = { war = { country = IND } }
+		}
+		
+		OR = {
+			NOT = { control = { province = 1395 data = VIE } }
+			year = 1944
+			lost_national = { country = USA value = 50 }
+		}
+	}
+
+	name = "Preparing to subjugate Vietnam"
+	desc = "With our forces crossing the border into Vietnam, it is time to take firmer control of the country in order to achieve our long-term objectives. This may cause a temporary disruption in the war effort, but it will serve us in the end. The process will take approximately 2 months."
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 10
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Prepare to seize strategic keypoints across the country"
+		command = { type = ground_def_eff value = -0.05 when = 1 }
+		command = { type = event which = 3182121 where = JAP when = 60 }
+	}
+}
+
+event = {
+	id = 3182121
+	random = no
+	country = JAP
+
+	name = "Seizing control of Vietnam"
+	desc = "With our forces positioned across the strategic areas of Vietnam and arms distributed to friendly organizations, we can now make the Vietnamese nationalist government an offer it won't be able to refuse - to form a unity government with the local pan-Asian organizations which would get key ministries, and to put their entire war effort under our military control."
+	style = 2
+
+	action = {
+		name = "Present the ultimatum"
+		command = { type = ground_def_eff value = 0.05 when = 1 }
+		command = { type = event which = 3182122 where = VIE when = 1 }
+	}
+}
+
+event = {
+	id = 3182122
+	random = no
+	country = VIE
+	save_date = yes
+
+	name = "Japanese are attempting to seize control"
+	desc = "Much as we expected, having crossed the border into our country, the Japanese quickly got to work on setting up bases and checkpoins in strategic areas and distributing arms to friendly organizations. They have now made us an offer we cannot refuse - we are to form a unity government with the local pan-Asian organizations which would get key ministries, and to put our entire war effort under Japanese military control."
+	style = 2
+
+	action = {
+		name = "We have no choice!"
+		ai_chance = 0
+		trigger = {
+			NOT = {
+				AND = {
+					OR = {
+						NOT = { control = { province = 1395 data = VIE } }
+						lost_national = { value = 40 }
+					}
+					NOT = { lost_national = { country = USA value = 50 } }
+				}
+			}
+		}
+		command = { type = trigger which = 3182123 }
+	}
+	action = {
+		name = "We have to put up at least a semblance of resistance!"
+		ai_chance = 100
+		trigger = {
+			NOT = {
+				AND = {
+					OR = {
+						NOT = { control = { province = 1395 data = VIE } }
+						lost_national = { value = 40 }
+					}
+					NOT = { lost_national = { country = USA value = 50 } }
+				}
+			}
+		}
+		command = { type = secederegion which = -1 value = "Indochine" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = FRA }
+		command = { type = war which = JAP }
+		command = { type = local_setflag which = OccupationResistance }
+	}
+	action = {
+		name = "We have no choice!"
+		ai_chance = 100
+		trigger = {
+			OR = {
+				NOT = { control = { province = 1395 data = VIE } }
+				lost_national = { value = 40 }
+			}
+			NOT = { lost_national = { country = USA value = 50 } }
+		}
+		command = { type = trigger which = 3182123 }
+	}
+	action = {
+		name = "We have to put up at least a semblance of resistance!"
+		ai_chance = 0
+		trigger = {
+			OR = {
+				NOT = { control = { province = 1395 data = VIE } }
+				lost_national = { value = 40 }
+			}
+			NOT = { lost_national = { country = USA value = 50 } }
+		}
+		command = { type = secederegion which = -1 value = "Indochine" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = FRA }
+		command = { type = war which = JAP }
+		command = { type = local_setflag which = OccupationResistance }
+	}
+}
+
+event = {
+	id = 3182123
+	random = no
+	country = JAP
+
+	name = "Vietnam accepts our generous offer"
+	desc = "After some convincing, the Vietnam have wisely chosen to accept our generous offer. We now have effective control over the Vietnamese government."
+	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = make_puppet which = VIE }
+		command = { type = event which = 2400537 where = VIE when = 0 } #medium puppet
+		command = { type = event which = 2400530 where = VIE when = 0 } #stayInWar flag
+		command = { type = event which = 3182124 where = -1 when = 1 }
+		command = { type = military_control which = JAP where = VIE value = 1 }
+	}
+}
+
+event = {
+	id = 3182124
+	random = no
+	country = JAP
+
+	name = "Provinces back to Vietnam"
+ 	desc = "Having established a friendly government in Warsaw, we will now transfer the territorial control back to Vietnam."
+	style = 2
+
+	action = {
+		name = "Ok"
+		command = { type = secedearea which = VIE value = "Indochine" }
+		command = { type = coup_nation which = VIE }
+	}
+}
+
+event = {
+	id = 3182125
+	random = no
+	country = VIE
+
+	decision = {
+		local_flag = OccupationResistance
+		war = { country = VIE country = JAP }
+	}
+	decision_trigger = {
+		event = { id = 3182122 days = 2 } #at least 2 days
+	}
+	trigger = { 
+		event = { id = 3182122 days = 2 } #at least 2 days
+		local_flag = OccupationResistance
+		war = { country = VIE country = JAP }
+		OR = {
+			NOT = { control = { province = 1395 data = -3 } }
+			lost_national = { value = 40 }
+		}
+	}
+
+	name = "Surrender"
+	desc = "Having been quickly overwhelmed by enemy forces, we have no choice but to accept Japanese demands and decrease further suffering of our people."
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 3
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "We will comply, for now"
+		command = { type = trigger which = 3182123 }
+	}
+}
+
+event = {
+	id = 3182126
+	random = no
+	country = VIE
+	persistent = yes
+
+	trigger = { 
+		NOT = { puppet = { country = -1 country = JAP } }
+		military_control = { country = -1 country = JAP }
+	}
+
+	name = "Controlling our own military"
+	desc = "Our government is fiercely independent minded and refuses to yield military control of our armed forces to the Japanese"
+	style = 2
+
+	date = { day = 1 month = july year = 1936 }
+	offset = 2
+	deathdate = { day = 1 month = august year = 1949 }
+
+	action = {
+		name = "Their attempts to control us are foolish"
+		command = { type = military_control which = JAP where = VIE value = 0 }
+	}
+}

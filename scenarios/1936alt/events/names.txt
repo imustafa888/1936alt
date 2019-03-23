@@ -1,0 +1,623 @@
+
+event = { 
+	id = 230000
+	random = no
+	persistent = yes
+
+	name = "Name change - generic"
+	desc = "We have no competitors for our country's generic common name. Should we use the generic name or stick to the formal one?"
+	style = 2
+	
+	trigger = {
+		NOT = { local_flag = nameGeneric }
+		OR = {
+			AND = {
+				country = AUS
+				NOT = { exists = U09 }
+				NOT = { exists = U16 }
+			}
+			AND = {
+				country = U16
+				NOT = { exists = U09 }
+				NOT = { exists = AUS }
+			}
+			AND = {
+				country = CAN
+				NOT = { exists = QUE }
+			}
+			AND = {
+				country = QUE
+				NOT = { exists = CAN }
+			}
+			AND = {
+				country = CHI
+				NOT = { exists = CHC }
+				NOT = { exists = CGX }
+				NOT = { exists = CSX }
+				NOT = { exists = CYN }
+				NOT = { exists = CXB }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = CHC
+				NOT = { exists = CHI }
+				NOT = { exists = CGX }
+				NOT = { exists = CSX }
+				NOT = { exists = CYN }
+				NOT = { exists = CXB }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = CGX
+				NOT = { exists = CHC }
+				NOT = { exists = CHI }
+				NOT = { exists = CSX }
+				NOT = { exists = CYN }
+				NOT = { exists = CXB }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = CSX
+				NOT = { exists = CHC }
+				NOT = { exists = CGX }
+				NOT = { exists = CHI }
+				NOT = { exists = CYN }
+				NOT = { exists = CXB }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = CYN
+				NOT = { exists = CHC }
+				NOT = { exists = CGX }
+				NOT = { exists = CSX }
+				NOT = { exists = CHI }
+				NOT = { exists = CXB }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = CXB
+				NOT = { exists = CHC }
+				NOT = { exists = CGX }
+				NOT = { exists = CSX }
+				NOT = { exists = CYN }
+				NOT = { exists = CHI }
+				NOT = { exists = SIK }
+			}
+			AND = {
+				country = SIK
+				NOT = { exists = CHC }
+				NOT = { exists = CGX }
+				NOT = { exists = CSX }
+				NOT = { exists = CYN }
+				NOT = { exists = CXB }
+				NOT = { exists = CHI }
+			}
+			AND = {
+				country = CZE
+				NOT = { exists = U31 }
+			}
+			AND = {
+				country = U31
+				NOT = { exists = CZE }
+			}
+			AND = {
+				country = GER
+				NOT = { exists = DDR }
+				NOT = { exists = DFR }
+				NOT = { exists = U08 }
+			}
+			AND = {
+				country = DDR
+				NOT = { exists = GER }
+				NOT = { exists = DFR }
+				NOT = { exists = U08 }
+			}
+			AND = {
+				country = DFR
+				NOT = { exists = DDR }
+				NOT = { exists = GER }
+				NOT = { exists = U08 }
+			}
+			AND = {
+				country = U08
+				NOT = { exists = DDR }
+				NOT = { exists = DFR }
+				NOT = { exists = GER }
+			}
+			AND = {
+				country = FIN
+				NOT = { exists = U20 }
+			}
+			AND = {
+				country = U20
+				NOT = { exists = FIN }
+			}
+			AND = {
+				country = FRA
+				NOT = { exists = U11 }
+				NOT = { exists = VIC }
+			}
+			AND = {
+				country = U11
+				NOT = { exists = FRA }
+				NOT = { exists = VIC }
+			}
+			AND = {
+				country = VIC
+				NOT = { exists = U11 }
+				NOT = { exists = FRA }
+			}
+			AND = {
+				country = KOR
+				NOT = { exists = PRK }
+			}
+			AND = {
+				country = PRK
+				NOT = { exists = KOR }
+			}
+			AND = {
+				country = POL
+				NOT = { exists = U32 }
+			}
+			AND = {
+				country = U32
+				NOT = { exists = POL }
+			}
+			AND = {
+				country = ITA
+				NOT = { exists = RSI }
+				NOT = { exists = U14 }
+			}
+			AND = {
+				country = RSI
+				NOT = { exists = ITA }
+				NOT = { exists = U14 }
+			}
+			AND = {
+				country = U14
+				NOT = { exists = RSI }
+				NOT = { exists = ITA }
+			}
+			AND = {
+				country = SPA
+				NOT = { exists = SPR }
+				NOT = { exists = U35 }
+			}
+			AND = {
+				country = SPR
+				NOT = { exists = SPA }
+				NOT = { exists = U35 }
+			}
+			AND = {
+				country = U35
+				NOT = { exists = SPA }
+				NOT = { exists = SPR }
+			}
+			AND = {
+				country = TUR
+				NOT = { exists = U34 }
+			}
+			AND = {
+				country = U34
+				NOT = { exists = TUR }
+			}
+			AND = {
+				country = VIE
+				NOT = { exists = U72 }
+			}
+			AND = {
+				country = U72
+				NOT = { exists = VIE }
+			}
+			AND = {
+				country = YUG
+				NOT = { exists = U27 }
+			}
+			AND = {
+				country = U27
+				NOT = { exists = YUG }
+			}
+			AND = {
+				country = ALB
+				NOT = { exists = U28 }
+			}
+			AND = {
+				country = U28
+				NOT = { exists = ALB }
+			}
+			AND = {
+				country = BEL
+				NOT = { exists = U17 }
+			}
+			AND = {
+				country = U17
+				NOT = { exists = BEL }
+			}
+			AND = {
+				country = BUL
+				NOT = { exists = U29 }
+			}
+			AND = {
+				country = U29
+				NOT = { exists = BUL }
+			}
+			AND = {
+				country = DEN
+				NOT = { exists = U22 }
+			}
+			AND = {
+				country = U22
+				NOT = { exists = DEN }
+			}
+			AND = {
+				country = GRE
+				NOT = { exists = U33 }
+			}
+			AND = {
+				country = U33
+				NOT = { exists = GRE }
+			}
+			AND = {
+				country = HOL
+				NOT = { exists = U10 }
+			}
+			AND = {
+				country = U10
+				NOT = { exists = HOL }
+			}
+			AND = {
+				country = HUN
+				NOT = { exists = U13 }
+			}
+			AND = {
+				country = U13
+				NOT = { exists = HUN }
+			}
+			AND = {
+				country = NOR
+				NOT = { exists = U19 }
+			}
+			AND = {
+				country = U19
+				NOT = { exists = NOR }
+			}
+			AND = {
+				country = ROM
+				NOT = { exists = U30 }
+			}
+			AND = {
+				country = U30
+				NOT = { exists = ROM }
+			}
+			AND = {
+				country = SWE
+				NOT = { exists = U21 }
+			}
+			AND = {
+				country = U21
+				NOT = { exists = SWE }
+			}
+			AND = {
+				country = LUX
+				NOT = { exists = U18 }
+			}
+			AND = {
+				country = U18
+				NOT = { exists = LUX }
+			}
+			AND = {
+				country = POR
+				NOT = { exists = U15 }
+			}
+			AND = {
+				country = U15
+				NOT = { exists = POR }
+			}
+			AND = {
+				country = SCH
+				NOT = { exists = U26 }
+			}
+			AND = {
+				country = U26
+				NOT = { exists = SCH }
+			}
+			AND = {
+				country = U39
+				NOT = { exists = CYP }
+			}
+			AND = {
+				country = CYP
+				NOT = { exists = U39 }
+			}
+		}
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = july year = 1996 }
+
+	action = {
+		name = "Generic"
+		ai_chance = 100
+		command = { trigger = { country = AUS NOT = { exists = U09 } NOT = { exists = U16 } } type = name where = AUS which = AUS_G }
+		command = { trigger = { country = U16 NOT = { exists = U09 } NOT = { exists = AUS } } type = name where = U16 which = AUS_G }
+		command = { trigger = { country = CAN NOT = { exists = QUE } } type = name where = CAN which = CAN_G }
+		command = { trigger = { country = QUE NOT = { exists = CAN } } type = name where = QUE which = CAN_G }
+		command = { trigger = { country = CHI NOT = { exists = CHC } NOT = { exists = CGX } NOT = { exists = CSX } NOT = { exists = CYN } NOT = { exists = CXB } NOT = { exists = SIK } } type = name where = CHI which = CHI_G }
+		command = { trigger = { country = CHC NOT = { exists = CHI } NOT = { exists = CGX } NOT = { exists = CSX } NOT = { exists = CYN } NOT = { exists = CXB } NOT = { exists = SIK } } type = name where = CHC which = CHI_G }
+		command = { trigger = { country = CGX NOT = { exists = CHC } NOT = { exists = CHI } NOT = { exists = CSX } NOT = { exists = CYN } NOT = { exists = CXB } NOT = { exists = SIK } } type = name where = CGX which = CHI_G }
+		command = { trigger = { country = CSX NOT = { exists = CHC } NOT = { exists = CGX } NOT = { exists = CHI } NOT = { exists = CYN } NOT = { exists = CXB } NOT = { exists = SIK } } type = name where = CSX which = CHI_G }
+		command = { trigger = { country = CYN NOT = { exists = CHC } NOT = { exists = CGX } NOT = { exists = CSX } NOT = { exists = CHI } NOT = { exists = CXB } NOT = { exists = SIK } } type = name where = CYN which = CHI_G }
+		command = { trigger = { country = CXB NOT = { exists = CHC } NOT = { exists = CGX } NOT = { exists = CSX } NOT = { exists = CYN } NOT = { exists = CHI } NOT = { exists = SIK } } type = name where = CXB which = CHI_G }
+		command = { trigger = { country = SIK NOT = { exists = CHC } NOT = { exists = CGX } NOT = { exists = CSX } NOT = { exists = CYN } NOT = { exists = CXB } NOT = { exists = CHI } } type = name where = SIK which = CHI_G }
+		command = { trigger = { country = CZE NOT = { exists = U31 } } type = name where = CZE which = CZE_G }
+		command = { trigger = { country = U31 NOT = { exists = CZE } } type = name where = U31 which = CZE_G }
+		command = { trigger = { country = GER NOT = { exists = DDR } NOT = { exists = DFR } NOT = { exists = U08 } } type = name where = GER which = GER_G }
+		command = { trigger = { country = DDR NOT = { exists = GER } NOT = { exists = DFR } NOT = { exists = U08 } } type = name where = DDR which = GER_G }
+		command = { trigger = { country = DDR NOT = { exists = GER } NOT = { exists = DFR } NOT = { exists = U08 } } type = flag_ext where = DDR which = "_G" }
+		command = { trigger = { country = DFR NOT = { exists = DDR } NOT = { exists = GER } NOT = { exists = U08 } } type = name where = DFR which = GER_G }
+		command = { trigger = { country = DFR NOT = { exists = DDR } NOT = { exists = GER } NOT = { exists = U08 } } type = flag_ext where = DFR which = "_G" }
+		command = { trigger = { country = U08 NOT = { exists = DDR } NOT = { exists = DFR } NOT = { exists = GER } } type = name where = U08 which = GER_G }
+		command = { trigger = { country = FIN NOT = { exists = U20 } } type = name where = FIN which = FIN_G }
+		command = { trigger = { country = U20 NOT = { exists = FIN } } type = name where = U20 which = FIN_G }
+		command = { trigger = { country = FRA NOT = { exists = U11 } NOT = { exists = VIC } } type = name where = FRA which = FRA_G }
+		command = { trigger = { country = U11 NOT = { exists = FRA } NOT = { exists = VIC } } type = name where = U11 which = FRA_G }
+		command = { trigger = { country = VIC NOT = { exists = U11 } NOT = { exists = FRA } } type = name where = VIC which = FRA_G }
+		command = { trigger = { country = KOR NOT = { exists = PRK } } type = name where = KOR which = KOR_G }
+		command = { trigger = { country = PRK NOT = { exists = KOR } } type = name where = PRK which = KOR_G }
+		command = { trigger = { country = POL NOT = { exists = U32 } } type = name where = POL which = POL_G }
+		command = { trigger = { country = U32 NOT = { exists = POL } } type = name where = U32 which = POL_G }
+		command = { trigger = { country = ITA NOT = { exists = RSI } NOT = { exists = U14 } } type = name where = ITA which = ITA_G }
+		command = { trigger = { country = ITA NOT = { exists = RSI } NOT = { exists = U14 } NOT = { government = fascist } } type = flag_ext where = ITA which = "_G" }
+		command = { trigger = { country = RSI NOT = { exists = ITA } NOT = { exists = U14 } } type = name where = RSI which = ITA_G }
+		command = { trigger = { country = U14 NOT = { exists = RSI } NOT = { exists = ITA } } type = name where = U14 which = ITA_G }
+		command = { trigger = { country = U14 NOT = { exists = RSI } NOT = { exists = ITA } NOT = { government = communist } } type = flag_ext where = U14 which = "_G" }
+		command = { trigger = { country = SPA NOT = { exists = SPR } NOT = { exists = U35 } } type = name where = SPA which = SPA_G }
+		command = { trigger = { country = SPR NOT = { exists = SPA } NOT = { exists = U35 } } type = name where = SPR which = SPA_G }
+		command = { trigger = { country = U35 NOT = { exists = SPA } NOT = { exists = SPR } } type = name where = U35 which = SPA_G }
+		command = { trigger = { country = TUR NOT = { exists = U34 } } type = name where = TUR which = TUR_G }
+		command = { trigger = { country = U34 NOT = { exists = TUR } } type = name where = U34 which = TUR_G }
+		command = { trigger = { country = VIE NOT = { exists = U72 } } type = name where = VIE which = VIE_G }
+		command = { trigger = { country = U72 NOT = { exists = VIE } } type = name where = U72 which = VIE_G }
+		command = { trigger = { country = YUG NOT = { exists = U27 } } type = name where = YUG which = YUG_G }
+		command = { trigger = { country = U27 NOT = { exists = YUG } } type = name where = U27 which = YUG_G }
+		command = { trigger = { country = ALB NOT = { exists = U28 } } type = name where = ALB which = ALB_G }
+		command = { trigger = { country = U28 NOT = { exists = ALB } } type = name where = U28 which = ALB_G }
+		command = { trigger = { country = BEL NOT = { exists = U17 } } type = name where = BEL which = BEL_G }
+		command = { trigger = { country = U17 NOT = { exists = BEL } } type = name where = U17 which = BEL_G }
+		command = { trigger = { country = BUL NOT = { exists = U29 } } type = name where = BUL which = BUL_G }
+		command = { trigger = { country = U29 NOT = { exists = BUL } } type = name where = U29 which = BUL_G }
+		command = { trigger = { country = DEN NOT = { exists = U22 } } type = name where = DEN which = DEN_G }
+		command = { trigger = { country = U22 NOT = { exists = DEN } } type = name where = U22 which = DEN_G }
+		command = { trigger = { country = GRE NOT = { exists = U33 } } type = name where = GRE which = GRE_G }
+		command = { trigger = { country = U33 NOT = { exists = GRE } } type = name where = U33 which = GRE_G }
+		command = { trigger = { country = HOL NOT = { exists = U10 } } type = name where = HOL which = HOL_G }
+		command = { trigger = { country = U10 NOT = { exists = HOL } } type = name where = U10 which = HOL_G }
+		command = { trigger = { country = HUN NOT = { exists = U13 } } type = name where = HUN which = HUN_G }
+		command = { trigger = { country = U13 NOT = { exists = HUN } } type = name where = U13 which = HUN_G }
+		command = { trigger = { country = NOR NOT = { exists = U19 } } type = name where = NOR which = NOR_G }
+		command = { trigger = { country = U19 NOT = { exists = NOR } } type = name where = U19 which = NOR_G }
+		command = { trigger = { country = ROM NOT = { exists = U30 } } type = name where = ROM which = ROM_G }
+		command = { trigger = { country = U30 NOT = { exists = ROM } } type = name where = U30 which = ROM_G }
+		command = { trigger = { country = SWE NOT = { exists = U21 } } type = name where = SWE which = SWE_G }
+		command = { trigger = { country = U21 NOT = { exists = SWE } } type = name where = U21 which = SWE_G }
+		command = { trigger = { country = LUX NOT = { exists = U18 } } type = name where = LUX which = LUX_G }
+		command = { trigger = { country = U18 NOT = { exists = LUX } } type = name where = U18 which = LUX_G }
+		command = { trigger = { country = POR NOT = { exists = U15 } } type = name where = POR which = POR_G }
+		command = { trigger = { country = U15 NOT = { exists = POR } } type = name where = U15 which = POR_G }
+		command = { trigger = { country = SCH NOT = { exists = U26 } } type = name where = SCH which = SCH_G }
+		command = { trigger = { country = U26 NOT = { exists = SCH } } type = name where = U26 which = SCH_G }
+		command = { trigger = { country = CYP NOT = { exists = U39 } } type = name where = CYP which = CYP_G }
+		command = { trigger = { country = U39 NOT = { exists = CYP } } type = name where = U39 which = CYP_G }
+		command = { type = local_setflag which = nameGeneric }
+		command = { type = local_clrflag which = nameFormal }
+	}
+	action = {
+		name = "Formal"
+		ai_chance = 0
+		command = { type = local_setflag which = nameGeneric }
+		command = { type = local_clrflag which = nameFormal }
+	}
+}
+
+event = { 
+	id = 230001
+	random = no
+	persistent = yes
+
+	name = "Name change - formal"
+	desc = "Since there is competition for our country's generic common name, we are forced to use the formal name in our diplomatic communications."
+	style = 2
+	
+	trigger = {
+		NOT = { local_flag = nameFormal }
+		OR = {
+			AND = { country = AUS OR = { exists = U09 exists = U16 } } 
+			AND = { country = U16 OR = { exists = U09 exists = AUS } } 
+			AND = { country = CAN exists = QUE } 
+			AND = { country = QUE exists = CAN } 
+			AND = { country = CHI OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CXB exists = SIK } } 
+			AND = { country = CHC OR = { exists = CHI exists = CGX exists = CSX exists = CYN exists = CXB exists = SIK } } 
+			AND = { country = CGX OR = { exists = CHC exists = CHI exists = CSX exists = CYN exists = CXB exists = SIK } } 
+			AND = { country = CSX OR = { exists = CHC exists = CGX exists = CHI exists = CYN exists = CXB exists = SIK } } 
+			AND = { country = CYN OR = { exists = CHC exists = CGX exists = CSX exists = CHI exists = CXB exists = SIK } } 
+			AND = { country = CXB OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CHI exists = SIK } } 
+			AND = { country = SIK OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CXB exists = CHI } } 
+			AND = { country = CZE exists = U31 } 
+			AND = { country = U31 exists = CZE } 
+			AND = { country = GER OR = { exists = DDR exists = DFR exists = U08 } }
+			AND = { country = DDR OR = { exists = GER exists = DFR exists = U08 } } 
+			AND = { country = DFR OR = { exists = DDR exists = GER exists = U08 } } 
+			AND = { country = U08 OR = { exists = DDR exists = DFR exists = GER } } 
+			AND = { country = FIN exists = U20 } 
+			AND = { country = U20 exists = FIN } 
+			AND = { country = FRA OR = { exists = U11 exists = VIC } } 
+			AND = { country = U11 OR = { exists = FRA exists = VIC } } 
+			AND = { country = VIC OR = { exists = U11 exists = FRA } } 
+			AND = { country = KOR exists = PRK } 
+			AND = { country = PRK exists = KOR } 
+			AND = { country = POL exists = U32 } 
+			AND = { country = U32 exists = POL } 
+			AND = { country = ITA OR = { exists = RSI exists = U14 } } 
+			AND = { country = RSI OR = { exists = ITA exists = U14 } } 
+			AND = { country = U14 OR = { exists = RSI exists = ITA } } 
+			AND = { country = SPA OR = { exists = SPR exists = U35 } } 
+			AND = { country = SPR OR = { exists = SPA exists = U35 } } 
+			AND = { country = U35 OR = { exists = SPA exists = SPR } } 
+			AND = { country = TUR exists = U34 } 
+			AND = { country = U34 exists = TUR } 
+			AND = { country = VIE exists = U72 } 
+			AND = { country = U72 exists = VIE } 
+			AND = { country = YUG exists = U27 } 
+			AND = { country = U27 exists = YUG } 
+			AND = { country = ALB exists = U28 } 
+			AND = { country = U28 exists = ALB } 
+			AND = { country = BEL exists = U17 } 
+			AND = { country = U17 exists = BEL } 
+			AND = { country = BUL exists = U29 } 
+			AND = { country = U29 exists = BUL } 
+			AND = { country = DEN exists = U22 } 
+			AND = { country = U22 exists = DEN } 
+			AND = { country = GRE exists = U33 } 
+			AND = { country = U33 exists = GRE } 
+			AND = { country = HOL exists = U10 } 
+			AND = { country = U10 exists = HOL } 
+			AND = { country = HUN exists = U13 } 
+			AND = { country = U13 exists = HUN } 
+			AND = { country = NOR exists = U19 } 
+			AND = { country = U19 exists = NOR } 
+			AND = { country = ROM exists = U30 } 
+			AND = { country = U30 exists = ROM } 
+			AND = { country = SWE exists = U21 } 
+			AND = { country = U21 exists = SWE } 
+			AND = { country = LUX exists = U18 } 
+			AND = { country = U18 exists = LUX } 
+			AND = { country = POR exists = U15 } 
+			AND = { country = U15 exists = POR }
+			AND = { country = SCH exists = U26 }
+			AND = { country = U26 exists = SCH }
+			AND = { country = CYP exists = U39 }
+		}
+	}
+
+	date = { day = 2 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = july year = 1996 }
+
+	action = {
+		name = "Okay"
+		ai_chance = 100
+		command = { trigger = { country = AUS OR = { exists = U09 exists = U16 } } type = name where = AUS which = AUS }
+		command = { trigger = { country = U16 OR = { exists = U09 exists = AUS } } type = name where = U16 which = U16 }
+		command = { trigger = { country = CAN exists = QUE } type = name where = CAN which = CAN }
+		command = { trigger = { country = QUE exists = CAN } type = name where = QUE which = QUE }
+		command = { trigger = { country = CHI OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CXB exists = SIK } } type = name where = CHI which = CHI }
+		command = { trigger = { country = CHC OR = { exists = CHI exists = CGX exists = CSX exists = CYN exists = CXB exists = SIK } } type = name where = CHC which = CHC }
+		command = { trigger = { country = CGX OR = { exists = CHC exists = CHI exists = CSX exists = CYN exists = CXB exists = SIK } } type = name where = CGX which = CGX }
+		command = { trigger = { country = CSX OR = { exists = CHC exists = CGX exists = CHI exists = CYN exists = CXB exists = SIK } } type = name where = CSX which = CSX }
+		command = { trigger = { country = CYN OR = { exists = CHC exists = CGX exists = CSX exists = CHI exists = CXB exists = SIK } } type = name where = CYN which = CYN }
+		command = { trigger = { country = CXB OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CHI exists = SIK } } type = name where = CXB which = CXB }
+		command = { trigger = { country = SIK OR = { exists = CHC exists = CGX exists = CSX exists = CYN exists = CXB exists = CHI } } type = name where = SIK which = SIK }
+		command = { trigger = { country = CZE exists = U31 } type = name where = CZE which = CZE }
+		command = { trigger = { country = U31 exists = CZE } type = name where = U31 which = U31 }
+		command = { trigger = { country = GER OR = { exists = DDR exists = DFR exists = U08 } } type = name where = GER which = GER } 
+		command = { trigger = { country = DDR OR = { exists = GER exists = DFR exists = U08 } } type = name where = DDR which = DDR }
+		command = { trigger = { country = DDR OR = { exists = GER exists = DFR exists = U08 } } type = flag_ext where = DDR which = "" }
+		command = { trigger = { country = DFR OR = { exists = DDR exists = GER exists = U08 } } type = name where = DFR which = DFR }
+		command = { trigger = { country = DFR OR = { exists = DDR exists = GER exists = U08 } } type = flag_ext where = DFR which = "" }
+		command = { trigger = { country = U08 OR = { exists = DDR exists = DFR exists = GER } } type = name where = U08 which = U08 }
+		command = { trigger = { country = FIN exists = U20 } type = name where = FIN which = FIN }
+		command = { trigger = { country = U20 exists = FIN } type = name where = U20 which = U20 }
+		command = { trigger = { country = FRA OR = { exists = U11 exists = VIC } } type = name where = FRA which = FRA }
+		command = { trigger = { country = U11 OR = { exists = FRA exists = VIC } } type = name where = U11 which = U11 }
+		command = { trigger = { country = VIC OR = { exists = U11 exists = FRA } } type = name where = VIC which = VIC }
+		command = { trigger = { country = KOR exists = PRK } type = name where = KOR which = KOR }
+		command = { trigger = { country = PRK exists = KOR } type = name where = PRK which = PRK }
+		command = { trigger = { country = POL exists = U32 } type = name where = POL which = POL }
+		command = { trigger = { country = U32 exists = POL } type = name where = U32 which = U32 }
+		command = { trigger = { country = ITA OR = { exists = RSI exists = U14 } } type = name where = ITA which = ITA }
+		command = { trigger = { country = ITA OR = { exists = RSI exists = U14 } } type = flag_ext where = ITA which = "" }
+		command = { trigger = { country = RSI OR = { exists = ITA exists = U14 } } type = name where = RSI which = RSI }
+		command = { trigger = { country = U14 OR = { exists = RSI exists = ITA } } type = flag_ext where = ITA which = "" }
+		command = { trigger = { country = SPA OR = { exists = SPR exists = U35 } } type = name where = SPA which = SPA }
+		command = { trigger = { country = SPR OR = { exists = SPA exists = U35 } } type = name where = SPR which = SPR }
+		command = { trigger = { country = U35 OR = { exists = SPA exists = SPR } } type = name where = U35 which = U35 }
+		command = { trigger = { country = TUR exists = U34 } type = name where = TUR which = TUR }
+		command = { trigger = { country = U34 exists = TUR } type = name where = U34 which = U34 }
+		command = { trigger = { country = VIE exists = U72 } type = name where = VIE which = VIE }
+		command = { trigger = { country = U72 exists = VIE } type = name where = U72 which = U72 }
+		command = { trigger = { country = YUG exists = U27 } type = name where = YUG which = YUG }
+		command = { trigger = { country = U27 exists = YUG } type = name where = U27 which = U27 }
+		command = { trigger = { country = ALB exists = U28 } type = name where = ALB which = ALB }
+		command = { trigger = { country = U28 exists = ALB } type = name where = U28 which = U28 }
+		command = { trigger = { country = BEL exists = U17 } type = name where = BEL which = BEL }
+		command = { trigger = { country = U17 exists = BEL } type = name where = U17 which = U17 }
+		command = { trigger = { country = BUL exists = U29 } type = name where = BUL which = BUL }
+		command = { trigger = { country = U29 exists = BUL } type = name where = U29 which = U29 }
+		command = { trigger = { country = DEN exists = U22 } type = name where = DEN which = DEN }
+		command = { trigger = { country = U22 exists = DEN } type = name where = U22 which = U22 }
+		command = { trigger = { country = GRE exists = U33 } type = name where = GRE which = GRE }
+		command = { trigger = { country = U33 exists = GRE } type = name where = U33 which = U33 }
+		command = { trigger = { country = HOL exists = U10 } type = name where = HOL which = HOL }
+		command = { trigger = { country = U10 exists = HOL } type = name where = U10 which = U10 }
+		command = { trigger = { country = HUN exists = U13 } type = name where = HUN which = HUN }
+		command = { trigger = { country = U13 exists = HUN } type = name where = U13 which = U13 }
+		command = { trigger = { country = NOR exists = U19 } type = name where = NOR which = NOR }
+		command = { trigger = { country = U19 exists = NOR } type = name where = U19 which = U19 }
+		command = { trigger = { country = ROM exists = U30 } type = name where = ROM which = ROM }
+		command = { trigger = { country = U30 exists = ROM } type = name where = U30 which = U30 }
+		command = { trigger = { country = SWE exists = U21 } type = name where = SWE which = SWE }
+		command = { trigger = { country = U21 exists = SWE } type = name where = U21 which = U21 }
+		command = { trigger = { country = LUX exists = U18 } type = name where = LUX which = LUX }
+		command = { trigger = { country = U18 exists = LUX } type = name where = U18 which = U18 }
+		command = { trigger = { country = POR exists = U15 } type = name where = POR which = POR }
+		command = { trigger = { country = U15 exists = POR } type = name where = U15 which = U15 }
+		command = { trigger = { country = SCH exists = U26 } type = name where = SCH which = SCH }
+		command = { trigger = { country = U26 exists = SCH } type = name where = U26 which = U26 }
+		command = { trigger = { country = CYP exists = U39 } type = name where = CYP which = CYP }
+		command = { trigger = { country = U39 exists = CYP } type = name where = U39 which = U39 }
+		command = { type = local_clrflag which = nameGeneric }
+		command = { type = local_setflag which = nameFormal }
+	}
+}
+
+event = { 
+	id = 230002
+	random = no
+	country = IRE
+
+	name = "Irish Free State"
+	desc = "Since the treaty or 1921, Ireland had been left in a position of quasi-dependency on the British Empire. The Crown, through its Governor General, could veto any Irish legislation, and the British Parliamnet had the right to legislate on the behalf of Ireland. But there was was a huge demand for achieving more sovereignty, by diplomacy or by force."
+	style = 2
+	
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = july year = 1996 }
+
+	action = {
+		name = "Okay"
+		command = { type = dissent value = 1 }
+		command = { type = name where = IRE which = IRE36 }
+	}
+}
+
+event = { 
+	id = 230003
+	random = no
+	country = CAN
+
+	name = "Dominion of Canada"
+	desc = EVT230003_DESC
+	style = 2
+	
+
+	#date = { day = 1 month = january year = 1936 }
+	#offset = 3
+	#deathdate = { day = 29 month = july year = 1996 }
+
+	action = {
+		name = "Okay"
+		command = { type = name where = CAN which = "Dominion of Canada" }
+	}
+}

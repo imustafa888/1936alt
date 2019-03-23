@@ -1,0 +1,610 @@
+#######################################################################
+
+################################
+# Nuked capital events
+################################
+    event = {
+       id = 12049057
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = USA
+
+       trigger = {
+          nuked = { country = USA data = -1 where = 1809 } # Washington - Northeast US
+          }
+
+       date = { day = 1 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1805 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12049058
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = USA
+
+       trigger = {
+          event = 2049057
+          nuked = { country = USA data = -1 where = 1805 } # Philadelphia - Northeast US
+          }
+
+       date = { day = 1 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1908 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+
+    event = {
+       id = 12003087
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = GER
+
+       trigger = {
+          nuked = { country = GER data = -1 where = 163 } # Berlin - Germany
+          }
+
+       date = { day = 2 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 179 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12003088
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = GER
+
+       trigger = {
+          event = 2003087
+          nuked = { country = GER data = -1 where = 179 } # München - Germany
+          }
+
+       date = { day = 2 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 195 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+
+    event = {
+       id = 12002024
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = FRA
+
+       trigger = {
+          nuked = { country = FRA data = -1 where = 55 } # Paris - France
+          }
+
+       date = { day = 3 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 68 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12002025
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = FRA
+
+       trigger = {
+          event = 2002024
+          nuked = { country = FRA data = -1 where = 68 } # Bordeaux - France
+          }
+
+       date = { day = 3 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 85 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+
+    event = {
+       id = 12006019
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = ITA
+
+       trigger = {
+          nuked = { country = ITA data = -1 where = 419 } # Roma - Italy
+          }
+
+       date = { day = 4 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 407 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12006020
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = ITA
+
+       trigger = {
+          event = 2006019
+          nuked = { country = ITA data = -1 where = 407 } # Milano - Italy
+          }
+
+       date = { day = 4 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 410 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+
+    event = {
+       id = 12007068
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = SOV
+
+       trigger = {
+          nuked = { country = SOV data = -1 where = 572 } # Moskva - Russia
+          }
+
+       date = { day = 5 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 663 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12007069
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = SOV
+
+       trigger = {
+          event = 2007068
+          nuked = { country = SOV data = -1 where = 663 } # Stalingrad - Russia
+          }
+
+       date = { day = 5 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 668 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+
+    event = {
+       id = 12011035
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = JAP
+
+       trigger = {
+          nuked = { country = JAP data = -1 where = 1552 } # Tokyo-to - Japan
+          }
+
+       date = { day = 6 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1558 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12011036
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = JAP
+
+       trigger = {
+          event = 2011035
+          nuked = { country = JAP data = -1 where = 1558 } # Kyoto-shi - Japan
+          }
+
+       date = { day = 6 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1557 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12001075
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = ENG
+
+       trigger = {
+          nuked = { country = ENG data = -1 where = 29 } # London - England
+          }
+
+       date = { day = 7 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 17 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12001076
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = ENG
+
+       trigger = {
+          event = 2001075
+          nuked = { country = ENG data = -1 where = 17 } # Manchester - England
+          }
+
+       date = { day = 7 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 12 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12012026
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = CHI
+
+       trigger = {
+          nuked = { country = CHI data = -1 where = 1337 } # Nanjing - China
+          }
+
+       date = { day = 8 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1369 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12012027
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = CHI
+
+       trigger = {
+          event = 2012026
+          nuked = { country = CHI data = -1 where = 1369 } # Guanzhou
+          }
+
+       date = { day = 8 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1357 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+    event = {
+       id = 12053002
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = CHC
+
+       trigger = {
+          nuked = { country = CHC data = -1 where = 1260 } # Yulin - China
+          }
+
+       date = { day = 9 month = march year = 1943 } # got the tech as us with a nuke research rush in may 43
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1337 }
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+    event = {
+       id = 12053003
+       random = no
+       name = "cnuke_name"
+       desc = "cnuke_desc"
+       style = 2
+  		 picture = "nuke"
+  		 
+       country = CHC
+
+       trigger = {
+          event = 2053002
+          nuked = { country = CHC data = -1 where = 1337 } # Nanjing - China
+          }
+
+       date = { day = 9 month = march year = 1943 }
+       offset = 9
+       deathdate = { day = 29 month = december year = 1963 }
+       
+       action
+       = {
+       name = "Cnuke_act"
+       command = { type =   capital which = 1369 } #Guangzhou
+       command = { type =    dissent value = -1}
+          }   
+    }
+
+event = { 
+	id = 2024003
+	random = no
+	country = REB
+
+	trigger = {
+		OR ={ #5% chances in 1942, 100% afterwards
+			AND = {
+				random = 5
+				year = 1942
+				NOT = { year = 1943 }
+			}
+			year = 1943
+		}
+		NOT = { control = { province = 194 data = REB } } #Hollabrun not controlled by Rebels
+		OR = {
+			control = { province = 194 data = GER }
+			control = { province = 194 data = DDR }
+			control = { province = 194 data = DFR }
+			control = { province = 194 data = AUS }
+			control = { province = 194 data = U16 }
+			control = { province = 194 data = U24 }
+			control = { province = 194 data = U25 }
+			control = { province = 194 data = ITA }
+			control = { province = 194 data = U14 }
+			control = { province = 194 data = HUN }
+			control = { province = 194 data = U13 }
+			control = { province = 194 data = CZE }
+			control = { province = 194 data = U31 }
+			control = { province = 194 data = SLO }
+			control = { province = 194 data = YUG }
+			control = { province = 194 data = U27 }
+			control = { province = 194 data = ENG }
+			control = { province = 194 data = FRA }
+			control = { province = 194 data = U01 }
+			control = { province = 194 data = USA }
+			control = { province = 194 data = SOV }
+			control = { province = 194 data = ROM }
+			control = { province = 194 data = BUL }
+			control = { province = 194 data = GRE }
+			control = { province = 194 data = SCH }
+			control = { province = 194 data = SPR }
+			control = { province = 194 data = SPA }
+			control = { province = 194 data = SWE }
+			control = { province = 194 data = NOR }
+			control = { province = 194 data = FIN }
+			control = { province = 194 data = U08 }
+			control = { province = 194 data = U09 }
+		}
+	}	
+
+	name = "AI_EVENT"
+	style = 2
+
+	date = { day = 1 month = january year = 1942 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		command = { type = trigger which = 2024004 } #New oil fields
+	}
+}
+
+event = {
+	id = 2024004
+	random = no
+
+	trigger = {
+		OR ={ #5% chances in 1942, 100% afterwards
+			AND = {
+				random = 5
+				year = 1942
+				NOT = { year = 1943 }
+			}
+			year = 1943
+		}
+		control = { province = 194 data = -1 }
+	}	
+
+	name = "EVT_2024004_NAME"
+	desc = "EVT_2024004_DESC"
+	style = 2
+	picture = "ersatz_conversion"
+	
+	date = { day = 1 month = january year = 1942 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = ACTION_NAME_GOOD
+		command = { type = add_prov_resource which = 194 value = 5 where = oil } #Hollabrun
+	}
+}
+
+event = {
+	id = 2024006
+	random = no
+	
+	trigger = {
+		OR ={ #5% chances in 1942, 100% afterwards
+			AND = {
+				random = 5
+				year = 1942
+				NOT = { year = 1943 }
+			}
+			year = 1943
+		}
+		control = { province = 276 data = -1 }
+	}	
+
+	name = "EVT_2024006_NAME"
+	desc = "EVT_2024006_DESC"
+	style = 2
+	picture = "ersatz_conversion"
+	
+	date = { day = 1 month = january year = 1942 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = ACTION_NAME_GOOD
+		command = { type = add_prov_resource which = 276 value = 3 where = oil } #Zalaegerszed
+	}
+}

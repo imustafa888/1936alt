@@ -1,0 +1,3529 @@
+#########################################################################
+# Belgium
+#########################################################################
+
+#########################################################################
+# Belgium - Outbreak
+#########################################################################
+
+event = { 
+	id = 3115100
+	random = no
+	country = BEL
+
+	trigger = {
+		NOT = { exists = FLA }
+		NOT = { exists = AUS }		
+	}
+
+	name = "Government instability in Belgium"
+	desc = "Following the German occupation of the Austria, the Belgian government falls and new elections produce a left-leaning parliament. However the government is not formed due to strong Flemish opposition. New elections are held in three months, but they fail to resolve the poiltical deadlock. Street fighting erupts in Brussels and demonstrations spread throught the country."
+	style = 2
+
+	date = { day = 13 month = july year = 1937 }
+	offset = 15
+	deathdate = { day = 29 month = july year = 1940 }
+
+	action_a = {
+		ai_chance = 100
+		name = "Damn!"
+		command = { type = dissent value = 40 }
+		command = { type = set_domestic which = political_left value = 6 }
+		command = { type = set_domestic which = democratic value = 6 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = manpowerpool value = 10 }
+	}
+}
+
+event = { 
+	id = 3115101
+	random = no  
+	country = BEL 
+	save_date = yes
+  
+	trigger = { 
+		event = 3115100
+		random = 25
+	 	NOT = { exists = FLA } 
+	} 
+
+	name = EVT3115101_NAME
+	desc = EVT3115101_DESC
+	style = 2
+     
+     date = { day = 13 month = july year = 1937 } 
+     offset = 5
+     deathdate = { day = 29 month = december year = 1999 } 
+  
+     action_a = { 
+        name = "War" 
+        command = { type = civil_war which = FLA }
+		command = { type = ai which = "neutralityHigh.ai" }
+        command = { type = dissent value = -50 } 
+        command = { type = set_domestic which = democratic value = 5 } 
+        command = { type = set_domestic which = political_left value = 10 } 
+        command = { type = relation which = FRA value = 20 } 
+        command = { type = relation which = SOV value = 15 } 
+        command = { type = relation which = USA value = 15 } 
+		command = { type = relation which = GER value = -25 } 
+        command = { type = relation which = ITA value = -25 } 
+        command = { type = relation which = ENG value = -25 } 
+		command = { trigger = { ai = yes } type = ai which = "belVSfla.ai" }
+		
+		command = { type = event which = 3115102 where = BEL when = 1 }
+      }
+}
+
+event = { 
+	id = 3115102
+	random = no
+	country = BEL
+	
+	# triggered by FLA 3173000
+
+	name = "Belgian Civil War - Wallonia"
+	desc = "Belgian Civil War - Wallonia"
+	style = 2
+
+	action_a = { 
+		name = ACTIONNAME3116004A
+		
+		#Brussels
+		command = { type = add_corps value = land where = 113 }		
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		
+		#Namur
+		command = { type = add_corps value = land where = 113 }		
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 113 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+	    command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#Liege
+		command = { type = add_corps value = land where = 108 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 113 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#Mons
+		command = { type = add_corps value = land where = 112 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 112 }
+	    command = { type = add_division value = garrison when = 5 }
+
+		#Arlon
+		command = { type = add_corps value = land where = 111 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 111 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#16 infantry
+		#7 garrison
+
+
+		command = { type = add_division value = tactical_bomber when = 4 }
+	    command = { type = add_division value = interceptor when = 6 }
+
+		command = { type = secedeprovince which = FLA value = 110 } 
+		command = { type = secedeprovince which = FLA value = 117 }
+		command = { type = secedeprovince which = FLA value = 114 }
+		command = { type = secedeprovince which = FLA value = 115 }
+		command = { type = secedeprovince which = FLA value = 116 }
+		
+		command = { type = control which = FLA value = 110 } 
+		command = { type = control which = FLA value = 117 }
+		command = { type = control which = FLA value = 114 }
+		command = { type = control which = FLA value = 115 }
+		command = { type = control which = FLA value = 116 }
+
+		command = { type = transport_pool which = BEL value = 20 }
+
+		command = { type = removecore which = 114 }
+		command = { type = removecore which = 115 }
+		command = { type = removecore which = 117 }
+
+		command = { type = addclaim which = 114 }
+		command = { type = addclaim which = 115 }
+		command = { type = addclaim which = 117 }
+		
+		#overriding regular union mechanics
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = total value = 5 } #percent_additive
+		command = { trigger = { local_flag = UnionBonds } type = industrial_modifier which = money value = 10 } #percent_additive
+		command = { type = local_setflag which = OneNation }
+		command = { type = local_clrflag which = UnionBonds }
+		command = { type = local_setflag which = UnionBreak when = 0 value = 2 } #union broken for 10 years
+		command = { type = local_setflag which = AssimilationPolicyDelay }
+		command = { type = event which = 211000 where = -1 when = 1800 }
+
+		command = { type = construct which = land_fort where = 113 value = 4 }
+		command = { type = construct which = land_fort where = 112 value = 2 }
+		command = { type = construct which = ic where = 116 value = -2 }
+		command = { type = construct which = ic where = 112 value = 2 }
+		
+		command = { type = construct which = air_base where = 112 value = 2 }
+		
+		command = { type = province_manpower which = 116 value = -1 }
+		command = { type = province_manpower which = 117 value = -1 }
+		command = { type = province_manpower which = 111 value = 1 }
+		command = { type = province_manpower which = 113 value = 1 }
+		
+		command = { type = trigger which = 3115103 } # FLA
+		
+		command = { type = addcore which = 2769 }
+		command = { type = secedeprovince which = BEL value = 2769 when = 2 }
+	} 
+}
+
+
+event = { 
+	id = 3115103
+	random = no
+	country = FLA
+	
+	name = "Belgian Civil War - Flanders"
+	desc = "Belgian Civil War - Flanders"
+	style = 2
+	
+	action_a = {
+		name = ACTIONNAME3173000A
+		command = { type = local_setflag which = legitIndie }
+		command = { type = ai which = "neutralityHigh.ai" }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = political_left value = 3 }
+		command = { type = set_domestic which = interventionism value = 6 }
+		command = { type = supplies value = 5000 }
+		command = { type = oilpool value = 2500 }
+		command = { type = metalpool value = 2500 }
+		command = { type = energypool value = 5000 }
+		command = { type = rarematerialspool value = 2500 }
+		
+		#Bruges
+		command = { type = add_corps value = land where = 114 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 114 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#Hasselt
+		command = { type = add_corps value = land where = 117 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		
+		#Antwerpen
+		command = { type = add_corps value = land where = 115 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 115 }
+		command = { type = add_division value = garrison when = 5 }
+		
+		#Brussels
+		command = { type = add_corps value = land where = 116 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_corps value = land where = 116 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+		command = { type = add_division value = garrison when = 5 }
+
+		#Eupen
+		command = { type = add_corps value = land where = 110 }
+		command = { type = add_division value = infantry when = 9 }
+		command = { type = add_division value = infantry when = 9 }
+		
+		#15 infantry
+		#5 garrison
+		#Extra from mobilization - 1 infantry, 2 garrison
+
+		command = { type = add_division value = tactical_bomber when = 4 }
+	    command = { type = add_division value = interceptor when = 6 }
+
+		command = { type = secedeprovince which = BEL value = 108 } 
+		command = { type = secedeprovince which = BEL value = 111 }
+		command = { type = secedeprovince which = BEL value = 112 }
+		command = { type = secedeprovince which = BEL value = 113 }
+		
+		command = { type = control which = BEL value = 108 } 
+		command = { type = control which = BEL value = 111 }
+		command = { type = control which = BEL value = 112 }
+		command = { type = control which = BEL value = 113 }
+
+		command = { type = removecore which = 108 }
+		command = { type = removecore which = 111 }
+		command = { type = removecore which = 112 }
+		command = { type = removecore which = 113 }
+
+		command = { type = transport_pool which = FLA value = 20 }
+
+		command = { type = construct which = land_fort where = 116 value = 2 }
+		command = { type = construct which = land_fort where = 114 value = 2 }
+		
+		command = { type = province_manpower which = 116 value = -1 }
+		command = { type = province_manpower which = 117 value = -1 }
+		command = { type = province_manpower which = 111 value = 1 }
+		command = { type = province_manpower which = 113 value = 1 }
+		
+		command = { type = addcore which = 2768 }
+		command = { type = secedeprovince which = FLA value = 2768 when = 2 }
+	}
+}
+
+
+#########################################################################
+# Belgium - Intervention
+#########################################################################
+
+#Soviet
+
+event = { 
+	id = 3115110
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = SOV_to_BEL_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = SOV_to_BEL_delay }
+		#Need permission from France
+		flag = FRA_to_BEL_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = SOV_to_BEL_5 }
+		manpower = 16
+		NOT = { flag = SOV_to_BEL_delay }
+		flag = FRA_to_BEL_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = BEL } }
+		OR = {
+			NOT = { flag = SOV_to_BEL_1 }
+			AND = {
+				NOT = { flag = SOV_to_BEL_2 }
+				OR = { 
+					flag = GER_to_FLA_1
+					flag = HOL_to_FLA_1
+					flag = ENG_to_FLA_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = SOV_to_BEL_3 }
+				OR = { 
+					flag = GER_to_FLA_2
+					flag = HOL_to_FLA_2
+					flag = ENG_to_FLA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = SOV_to_BEL_4 }
+				OR = { 
+					flag = GER_to_FLA_3
+					flag = HOL_to_FLA_3
+					flag = ENG_to_FLA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = SOV_to_BEL_5 }
+				OR = { 
+					flag = GER_to_FLA_4
+					flag = HOL_to_FLA_4
+					flag = ENG_to_FLA_4
+				}
+			}
+		}
+	}
+	
+	name = "Belgian Civil War - Soviet Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = SOV_to_BEL_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = SOV_to_BEL_1 }
+		command = { type = event which = 3115111 where = BEL when = 15 }
+		command = { type = setflag which = SOV_to_BEL_delay }
+		command = { type = access which = BEL }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115200 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = SOV_to_BEL_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = SOV where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = SOV_to_BEL_4 NOT = { flag = SOV_to_BEL_5 } } type = setflag which = SOV_to_BEL_5 }
+		command = { trigger = { flag = SOV_to_BEL_3 NOT = { flag = SOV_to_BEL_4 } } type = setflag which = SOV_to_BEL_4 }
+		command = { trigger = { flag = SOV_to_BEL_2 NOT = { flag = SOV_to_BEL_3 } } type = setflag which = SOV_to_BEL_3 }
+		command = { trigger = { flag = SOV_to_BEL_1 NOT = { flag = SOV_to_BEL_2 } } type = setflag which = SOV_to_BEL_2 }
+		command = { type = event which = 3115111 where = BEL when = 15 }
+		command = { type = setflag which = SOV_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115111
+	random = no
+	country = BEL
+	persistent = yes
+	
+	name = "Soviet help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of Soviet aid arrived across the French border to Belgium."
+	style = 2
+	picture = "SCW_Soviet Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = SOV }
+		command = { type = steal_tech which = SOV }
+		command = { type = relation which = SOV value = 50 }
+		command = { type = access which = SOV }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 52 }
+		command = { trigger = { flag = SOV_to_BEL_5 }								type = add_division which = "Soviet volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_4 NOT = { flag = SOV_to_BEL_5 } } type = add_division which = "Soviet volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_3 NOT = { flag = SOV_to_BEL_4 } } type = add_division which = "Soviet volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_2 NOT = { flag = SOV_to_BEL_3 } } type = add_division which = "Soviet volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_1 NOT = { flag = SOV_to_BEL_2 } } type = add_division which = "Soviet volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = SOV_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115112
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		flag = SOV_to_BEL_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = SOV_to_BEL_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = SOV_to_BEL_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			AND = { 
+				alliance = { country = BEL }
+				ai = FRA
+			}
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Soviet_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = SOV_to_BEL_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = BEL }
+		command = { trigger = { NOT = { alliance = { country = BEL } } } type = military_control which = SOV where = BEL value = 0 }
+		command = { type = end_trades which = BEL where = SOV }
+		command = { type = remove_division which = "Soviet volunteers in Belgium 5" value = BEL }
+		command = { type = remove_division which = "Soviet volunteers in Belgium 4" value = BEL }
+		command = { type = remove_division which = "Soviet volunteers in Belgium 3" value = BEL }
+		command = { type = remove_division which = "Soviet volunteers in Belgium 2" value = BEL }
+		command = { type = remove_division which = "Soviet volunteers in Belgium 1" value = BEL }
+		
+		command = { type = add_corps value = land where = 52 }
+		command = { trigger = { flag = SOV_to_BEL_5 exists = BEL } type = add_division which = "Soviet volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_4 exists = BEL } type = add_division which = "Soviet volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_3 exists = BEL } type = add_division which = "Soviet volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_2 exists = BEL } type = add_division which = "Soviet volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = SOV_to_BEL_1 exists = BEL } type = add_division which = "Soviet volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = SOV_to_BEL_5 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = SOV_to_BEL_4 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = SOV_to_BEL_3 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = SOV_to_BEL_2 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = SOV_to_BEL_1 }
+		
+		command = { type = trigger which = 3115113 }
+	}
+}
+
+event = { 
+	id = 3115113
+	random = no
+	country = BEL
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The Soviet aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = SOV }
+		command = { trigger = { flag = SOV_to_BEL_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_BEL_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_BEL_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_BEL_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = SOV_to_BEL_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = SOV_to_BEL_5 }
+		command = { type = clrflag which = SOV_to_BEL_4 }
+		command = { type = clrflag which = SOV_to_BEL_3 }
+		command = { type = clrflag which = SOV_to_BEL_2 }
+		command = { type = clrflag which = SOV_to_BEL_1 }
+	}
+}
+
+event = { 
+	id = 3115114
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = SOV_to_BEL_1
+		NOT = { military_control = { country = BEL } }
+	}
+
+	decision_trigger = {
+		exists = BEL
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - Soviet command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = SOV where = BEL value = 1 }
+	}
+}
+
+#French
+
+event = { 
+	id = 3115120
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = FRA_to_BEL_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = FRA_to_BEL_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = FRA_to_BEL_5 }
+		manpower = 16
+		NOT = { flag = FRA_to_BEL_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = BEL } }
+		OR = {
+			NOT = { flag = FRA_to_BEL_1 }
+			AND = {
+				NOT = { flag = FRA_to_BEL_2 }
+				OR = { 
+					flag = GER_to_FLA_1
+					flag = HOL_to_FLA_1
+					flag = ENG_to_FLA_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = FRA_to_BEL_3 }
+				OR = { 
+					flag = GER_to_FLA_2
+					flag = HOL_to_FLA_2
+					flag = ENG_to_FLA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = FRA_to_BEL_4 }
+				OR = { 
+					flag = GER_to_FLA_3
+					flag = HOL_to_FLA_3
+					flag = ENG_to_FLA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = FRA_to_BEL_5 }
+				OR = { 
+					flag = GER_to_FLA_4
+					flag = HOL_to_FLA_4
+					flag = ENG_to_FLA_4
+				}
+			}
+		}
+	}
+	
+	name = "Belgian Civil War - French Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = FRA_to_BEL_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = FRA_to_BEL_1 }
+		command = { type = event which = 3115121 where = BEL when = 15 }
+		command = { type = setflag which = FRA_to_BEL_delay }
+		command = { type = access which = BEL }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115201 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = FRA_to_BEL_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = FRA where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = FRA_to_BEL_4 NOT = { flag = FRA_to_BEL_5 } } type = setflag which = FRA_to_BEL_5 }
+		command = { trigger = { flag = FRA_to_BEL_3 NOT = { flag = FRA_to_BEL_4 } } type = setflag which = FRA_to_BEL_4 }
+		command = { trigger = { flag = FRA_to_BEL_2 NOT = { flag = FRA_to_BEL_3 } } type = setflag which = FRA_to_BEL_3 }
+		command = { trigger = { flag = FRA_to_BEL_1 NOT = { flag = FRA_to_BEL_2 } } type = setflag which = FRA_to_BEL_2 }
+		command = { type = event which = 3115121 where = BEL when = 15 }
+		command = { type = setflag which = FRA_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115121
+	random = no
+	country = BEL
+	persistent = yes
+	
+	name = "French help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of French aid arrived across the French border to Belgium."
+	style = 2
+	picture = "SCW_French Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = FRA }
+		command = { type = steal_tech which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = access which = FRA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 52 }
+		command = { trigger = { flag = FRA_to_BEL_5 }								type = add_division which = "French volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_4 NOT = { flag = FRA_to_BEL_5 } } type = add_division which = "French volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_3 NOT = { flag = FRA_to_BEL_4 } } type = add_division which = "French volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_2 NOT = { flag = FRA_to_BEL_3 } } type = add_division which = "French volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_1 NOT = { flag = FRA_to_BEL_2 } } type = add_division which = "French volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = FRA_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115122
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		flag = FRA_to_BEL_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = FRA_to_BEL_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = FRA_to_BEL_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			#will Annex instead
+			#alliance = { country = BEL }
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_French_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = FRA_to_BEL_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = BEL }
+		command = { trigger = { NOT = { alliance = { country = BEL } } } type = military_control which = FRA where = BEL value = 0 }
+		command = { type = end_trades which = BEL where = FRA }
+		command = { type = remove_division which = "French volunteers in Belgium 5" value = BEL }
+		command = { type = remove_division which = "French volunteers in Belgium 4" value = BEL }
+		command = { type = remove_division which = "French volunteers in Belgium 3" value = BEL }
+		command = { type = remove_division which = "French volunteers in Belgium 2" value = BEL }
+		command = { type = remove_division which = "French volunteers in Belgium 1" value = BEL }
+		
+		command = { trigger = { exists = BEL } type = add_corps value = land where = 52 }
+		command = { trigger = { flag = FRA_to_BEL_5 exists = BEL } type = add_division which = "French volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_4 exists = BEL } type = add_division which = "French volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_3 exists = BEL } type = add_division which = "French volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_2 exists = BEL } type = add_division which = "French volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = FRA_to_BEL_1 exists = BEL } type = add_division which = "French volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = FRA_to_BEL_5 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = FRA_to_BEL_4 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = FRA_to_BEL_3 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = FRA_to_BEL_2 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = FRA_to_BEL_1 }
+		
+		command = { type = trigger which = 3115123 }
+	}
+}
+
+event = { 
+	id = 3115123
+	random = no
+	country = BEL
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The French aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = FRA }
+		command = { trigger = { flag = FRA_to_BEL_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_BEL_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_BEL_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_BEL_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = FRA_to_BEL_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = FRA_to_BEL_5 }
+		command = { type = clrflag which = FRA_to_BEL_4 }
+		command = { type = clrflag which = FRA_to_BEL_3 }
+		command = { type = clrflag which = FRA_to_BEL_2 }
+		command = { type = clrflag which = FRA_to_BEL_1 }
+	}
+}
+
+event = { 
+	id = 3115124
+	random = no
+	country = FRA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = FRA_to_BEL_1
+		NOT = { military_control = { country = BEL } }
+	}
+
+	decision_trigger = {
+		exists = BEL
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - French command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = FRA where = BEL value = 1 }
+	}
+}
+
+#United States
+
+event = { 
+	id = 3115130
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = USA_to_BEL_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = USA_to_BEL_delay }
+		#Need permission from France
+		flag = FRA_to_BEL_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = USA_to_BEL_5 }
+		manpower = 16
+		NOT = { flag = USA_to_BEL_delay }
+		flag = FRA_to_BEL_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = BEL } }
+		OR = {
+			NOT = { flag = USA_to_BEL_1 }
+			AND = {
+				NOT = { flag = USA_to_BEL_2 }
+				OR = { 
+					flag = GER_to_FLA_1
+					flag = HOL_to_FLA_1
+					flag = ENG_to_FLA_1
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = USA_to_BEL_3 }
+				OR = { 
+					flag = GER_to_FLA_2
+					flag = HOL_to_FLA_2
+					flag = ENG_to_FLA_2
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = USA_to_BEL_4 }
+				OR = { 
+					flag = GER_to_FLA_3
+					flag = HOL_to_FLA_3
+					flag = ENG_to_FLA_3
+				}
+			}
+			AND = {
+				ic = 150
+				NOT = { flag = USA_to_BEL_5 }
+				OR = { 
+					flag = GER_to_FLA_4
+					flag = HOL_to_FLA_4
+					flag = ENG_to_FLA_4
+				}
+			}
+		}
+	}
+	
+	name = "Belgian Civil War - American Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = USA_to_BEL_1 } }
+		command = { type = dissent value = 1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = USA_to_BEL_1 }
+		command = { type = event which = 3115131 where = BEL when = 15 }
+		command = { type = setflag which = USA_to_BEL_delay }
+		command = { type = access which = BEL }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115202 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = USA_to_BEL_1 }
+		command = { type = dissent value = 0.5 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = USA where = BEL supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = USA_to_BEL_4 NOT = { flag = USA_to_BEL_5 } } type = setflag which = USA_to_BEL_5 }
+		command = { trigger = { flag = USA_to_BEL_3 NOT = { flag = USA_to_BEL_4 } } type = setflag which = USA_to_BEL_4 }
+		command = { trigger = { flag = USA_to_BEL_2 NOT = { flag = USA_to_BEL_3 } } type = setflag which = USA_to_BEL_3 }
+		command = { trigger = { flag = USA_to_BEL_1 NOT = { flag = USA_to_BEL_2 } } type = setflag which = USA_to_BEL_2 }
+		command = { type = event which = 3115131 where = BEL when = 15 }
+		command = { type = setflag which = USA_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115131
+	random = no
+	country = BEL
+	persistent = yes
+	
+	name = "American help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of American aid arrived across the French border to Belgium."
+	style = 2
+	picture = "SCW_American Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = USA }
+		command = { type = steal_tech which = USA }
+		command = { type = relation which = USA value = 50 }
+		command = { type = access which = USA }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { trigger = { exists = BEL } type = add_corps value = land where = 52 }
+		command = { trigger = { flag = USA_to_BEL_5 }								type = add_division which = "American volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_4 NOT = { flag = USA_to_BEL_5 } } type = add_division which = "American volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_3 NOT = { flag = USA_to_BEL_4 } } type = add_division which = "American volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_2 NOT = { flag = USA_to_BEL_3 } } type = add_division which = "American volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_1 NOT = { flag = USA_to_BEL_2 } } type = add_division which = "American volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = USA_to_BEL_delay }
+	}
+}
+
+event = { 
+	id = 3115132
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		flag = USA_to_BEL_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = USA_to_BEL_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = USA_to_BEL_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			AND = { 
+				alliance = { country = BEL }
+				ai = FRA
+			}
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_American_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = USA_to_BEL_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_BEL_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_BEL_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_BEL_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = USA_to_BEL_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = BEL }
+		command = { trigger = { NOT = { alliance = { country = BEL } } } type = military_control which = USA where = BEL value = 0 }
+		command = { type = end_trades which = BEL where = USA }
+		command = { type = remove_division which = "American volunteers in Belgium 5" value = BEL }
+		command = { type = remove_division which = "American volunteers in Belgium 4" value = BEL }
+		command = { type = remove_division which = "American volunteers in Belgium 3" value = BEL }
+		command = { type = remove_division which = "American volunteers in Belgium 2" value = BEL }
+		command = { type = remove_division which = "American volunteers in Belgium 1" value = BEL }
+		
+		command = { trigger = { exists = BEL } type = add_corps value = land where = 52 }
+		command = { trigger = { flag = USA_to_BEL_5 exists = BEL } type = add_division which = "American volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_4 exists = BEL } type = add_division which = "American volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_3 exists = BEL } type = add_division which = "American volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_2 exists = BEL } type = add_division which = "American volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = USA_to_BEL_1 exists = BEL } type = add_division which = "American volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = USA_to_BEL_5 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = USA_to_BEL_4 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = USA_to_BEL_3 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = USA_to_BEL_2 }
+		command = { trigger = { NOT = { exists = BEL } } type = clrflag which = USA_to_BEL_1 }
+		
+		command = { type = trigger which = 3115133 }
+	}
+}
+
+event = { 
+	id = 3115133
+	random = no
+	country = BEL
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The American aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = USA }
+		command = { trigger = { flag = USA_to_BEL_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_BEL_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_BEL_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_BEL_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = USA_to_BEL_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = USA_to_BEL_5 }
+		command = { type = clrflag which = USA_to_BEL_4 }
+		command = { type = clrflag which = USA_to_BEL_3 }
+		command = { type = clrflag which = USA_to_BEL_2 }
+		command = { type = clrflag which = USA_to_BEL_1 }
+	}
+}
+
+event = { 
+	id = 3115134
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = USA_to_BEL_1
+		NOT = { military_control = { country = BEL } }
+	}
+
+	decision_trigger = {
+		exists = BEL
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - American command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = USA where = BEL value = 1 }
+	}
+}
+
+#English
+
+event = { 
+	id = 3115140
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = ENG_to_FLA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = ENG_to_FLA_delay }
+		#Need permission from the Dutch
+		flag = HOL_to_FLA_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = ENG_to_FLA_5 }
+		manpower = 16
+		NOT = { flag = ENG_to_FLA_delay }
+		flag = HOL_to_FLA_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = FLA } }
+		OR = {
+			NOT = { flag = ENG_to_FLA_1 }
+			AND = {
+				NOT = { flag = ENG_to_FLA_2 }
+				OR = { 
+					flag = SOV_to_BEL_3
+					flag = USA_to_BEL_3
+					flag = FRA_to_BEL_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = ENG_to_FLA_3 }
+				OR = { 
+					flag = SOV_to_BEL_4
+					flag = USA_to_BEL_4
+					flag = FRA_to_BEL_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = ENG_to_FLA_4 }
+				OR = { 
+					flag = SOV_to_BEL_5
+					flag = USA_to_BEL_5
+					flag = FRA_to_BEL_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = ENG_to_FLA_5 }
+			#}
+		}
+	}
+	
+	name = "Belgian Civil War - British Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = ENG_to_FLA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = ENG_to_FLA_1 }
+		command = { type = event which = 3115141 where = FLA when = 15 }
+		command = { type = access which = FLA }
+		command = { type = setflag which = ENG_to_FLA_delay }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115207 where = -1 when = 270 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = ENG_to_FLA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = ENG where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = ENG_to_FLA_4 NOT = { flag = ENG_to_FLA_5 } } type = setflag which = ENG_to_FLA_5 }
+		command = { trigger = { flag = ENG_to_FLA_3 NOT = { flag = ENG_to_FLA_4 } } type = setflag which = ENG_to_FLA_4 }
+		command = { trigger = { flag = ENG_to_FLA_2 NOT = { flag = ENG_to_FLA_3 } } type = setflag which = ENG_to_FLA_3 }
+		command = { trigger = { flag = ENG_to_FLA_1 NOT = { flag = ENG_to_FLA_2 } } type = setflag which = ENG_to_FLA_2 }
+		command = { type = event which = 3115141 where = FLA when = 15 }
+		command = { type = setflag which = ENG_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115141
+	random = no
+	country = FLA
+	persistent = yes
+	
+	name = "British help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of British aid arrived across the Dutch border to Belgium."
+	style = 2
+	picture = "SCW_British Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = ENG }
+		command = { type = steal_tech which = ENG }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = access which = ENG }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 123 }
+		command = { trigger = { flag = ENG_to_FLA_5 }								type = add_division which = "British volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_4 NOT = { flag = ENG_to_FLA_5 } } type = add_division which = "British volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_3 NOT = { flag = ENG_to_FLA_4 } } type = add_division which = "British volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_2 NOT = { flag = ENG_to_FLA_3 } } type = add_division which = "British volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_1 NOT = { flag = ENG_to_FLA_2 } } type = add_division which = "British volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = ENG_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115142
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		flag = ENG_to_FLA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = ENG_to_FLA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = ENG_to_FLA_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			alliance = { country = FLA }
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_British_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = ENG_to_FLA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = FLA }
+		command = { trigger = { NOT = { alliance = { country = FLA } } } type = military_control which = ENG where = FLA value = 0 }
+		command = { type = end_trades which = FLA where = ENG }
+		command = { type = remove_division which = "British volunteers in Belgium 5" value = FLA }
+		command = { type = remove_division which = "British volunteers in Belgium 4" value = FLA }
+		command = { type = remove_division which = "British volunteers in Belgium 3" value = FLA }
+		command = { type = remove_division which = "British volunteers in Belgium 2" value = FLA }
+		command = { type = remove_division which = "British volunteers in Belgium 1" value = FLA }
+		
+		command = { trigger = { exists = FLA } type = add_corps value = land where = 123 }
+		command = { trigger = { flag = ENG_to_FLA_5 exists = FLA } type = add_division which = "British volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_4 exists = FLA } type = add_division which = "British volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_3 exists = FLA } type = add_division which = "British volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_2 exists = FLA } type = add_division which = "British volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = ENG_to_FLA_1 exists = FLA } type = add_division which = "British volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = ENG_to_FLA_5 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = ENG_to_FLA_4 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = ENG_to_FLA_3 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = ENG_to_FLA_2 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = ENG_to_FLA_1 }
+		
+		command = { type = trigger which = 3115143 }
+	}
+}
+
+event = { 
+	id = 3115143
+	random = no
+	country = FLA
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The British aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = ENG }
+		command = { trigger = { flag = ENG_to_FLA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_FLA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_FLA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_FLA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = ENG_to_FLA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = ENG_to_FLA_5 }
+		command = { type = clrflag which = ENG_to_FLA_4 }
+		command = { type = clrflag which = ENG_to_FLA_3 }
+		command = { type = clrflag which = ENG_to_FLA_2 }
+		command = { type = clrflag which = ENG_to_FLA_1 }
+	}
+}
+
+event = { 
+	id = 3115144
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = ENG_to_FLA_1
+		NOT = { military_control = { country = FLA } }
+	}
+
+	decision_trigger = {
+		exists = FLA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - British command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = ENG where = FLA value = 1 }
+	}
+}
+
+#German
+
+event = { 
+	id = 3115150
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = GER_to_FLA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = GER_to_FLA_delay }
+		#Need permission from the Dutch
+		flag = HOL_to_FLA_1
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = GER_to_FLA_5 }
+		manpower = 16
+		NOT = { flag = GER_to_FLA_delay }
+		flag = HOL_to_FLA_1
+		
+		#ai will do if:
+		NOT = { alliance = { country = FLA } }
+		OR = {
+			NOT = { flag = GER_to_FLA_1 }
+			AND = {
+				NOT = { flag = GER_to_FLA_2 }
+				OR = { 
+					flag = SOV_to_BEL_3
+					flag = USA_to_BEL_3
+					flag = FRA_to_BEL_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = GER_to_FLA_3 }
+				OR = { 
+					flag = SOV_to_BEL_4
+					flag = USA_to_BEL_4
+					flag = FRA_to_BEL_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = GER_to_FLA_4 }
+				OR = { 
+					flag = SOV_to_BEL_5
+					flag = USA_to_BEL_5
+					flag = FRA_to_BEL_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = GER_to_FLA_5 }
+			#}
+		}
+	}
+	
+	name = "Belgian Civil War - German Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = GER_to_FLA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = GER_to_FLA_1 }
+		command = { type = event which = 3115151 where = FLA when = 15 }
+		command = { type = access which = FLA }
+		command = { type = setflag which = GER_to_FLA_delay }
+		
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115205 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = GER_to_FLA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = GER where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = GER_to_FLA_4 NOT = { flag = GER_to_FLA_5 } } type = setflag which = GER_to_FLA_5 }
+		command = { trigger = { flag = GER_to_FLA_3 NOT = { flag = GER_to_FLA_4 } } type = setflag which = GER_to_FLA_4 }
+		command = { trigger = { flag = GER_to_FLA_2 NOT = { flag = GER_to_FLA_3 } } type = setflag which = GER_to_FLA_3 }
+		command = { trigger = { flag = GER_to_FLA_1 NOT = { flag = GER_to_FLA_2 } } type = setflag which = GER_to_FLA_2 }
+		command = { type = event which = 3115151 where = FLA when = 15 }
+		command = { type = setflag which = GER_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115151
+	random = no
+	country = FLA
+	persistent = yes
+	
+	name = "German help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of German aid arrived across the Dutch border to Belgium."
+	style = 2
+	picture = "SCW_German Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = GER }
+		command = { type = steal_tech which = GER }
+		command = { type = relation which = GER value = 50 }
+		command = { type = access which = GER }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { type = add_corps value = land where = 123 }
+		command = { trigger = { flag = GER_to_FLA_5 }								type = add_division which = "German volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_4 NOT = { flag = GER_to_FLA_5 } } type = add_division which = "German volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_3 NOT = { flag = GER_to_FLA_4 } } type = add_division which = "German volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_2 NOT = { flag = GER_to_FLA_3 } } type = add_division which = "German volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_1 NOT = { flag = GER_to_FLA_2 } } type = add_division which = "German volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = GER_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115152
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		flag = GER_to_FLA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = GER_to_FLA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = GER_to_FLA_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			alliance = { country = FLA }
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_German_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = GER_to_FLA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FLA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FLA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FLA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = GER_to_FLA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = FLA }
+		command = { trigger = { NOT = { alliance = { country = FLA } } } type = military_control which = GER where = FLA value = 0 }
+		command = { type = end_trades which = FLA where = GER }
+		command = { type = remove_division which = "German volunteers in Belgium 5" value = FLA }
+		command = { type = remove_division which = "German volunteers in Belgium 4" value = FLA }
+		command = { type = remove_division which = "German volunteers in Belgium 3" value = FLA }
+		command = { type = remove_division which = "German volunteers in Belgium 2" value = FLA }
+		command = { type = remove_division which = "German volunteers in Belgium 1" value = FLA }
+		
+		command = { trigger = { exists = FLA } type = add_corps value = land where = 123 }
+		command = { trigger = { flag = GER_to_FLA_5 exists = FLA } type = add_division which = "German volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_4 exists = FLA } type = add_division which = "German volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_3 exists = FLA } type = add_division which = "German volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_2 exists = FLA } type = add_division which = "German volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = GER_to_FLA_1 exists = FLA } type = add_division which = "German volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = GER_to_FLA_5 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = GER_to_FLA_4 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = GER_to_FLA_3 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = GER_to_FLA_2 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = GER_to_FLA_1 }
+		
+		command = { type = trigger which = 3115153 }
+	}
+}
+
+event = { 
+	id = 3115153
+	random = no
+	country = FLA
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The German aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = GER }
+		command = { trigger = { flag = GER_to_FLA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FLA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FLA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FLA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = GER_to_FLA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = GER_to_FLA_5 }
+		command = { type = clrflag which = GER_to_FLA_4 }
+		command = { type = clrflag which = GER_to_FLA_3 }
+		command = { type = clrflag which = GER_to_FLA_2 }
+		command = { type = clrflag which = GER_to_FLA_1 }
+	}
+}
+
+event = { 
+	id = 3115154
+	random = no
+	country = GER
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = GER_to_FLA_1
+		NOT = { military_control = { country = FLA } }
+	}
+
+	decision_trigger = {
+		exists = FLA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - German command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = GER where = FLA value = 1 }
+	}
+}
+
+#Dutch
+
+event = { 
+	id = 3115160
+	random = no
+	country = HOL
+	persistent = yes
+
+	decision = {
+		war = { country = BEL country = FLA }
+		NOT = { flag = HOL_to_FLA_5 }
+	}
+
+	decision_trigger = { 
+		#5*7.3*261=9525
+		#infantry+arty
+		#not using supplies because can't go into debt with them
+		#supplies = 6525
+		manpower = 16
+		NOT = { flag = HOL_to_FLA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		war = { country = BEL country = FLA }
+		NOT = { flag = HOL_to_FLA_5 }
+		manpower = 16
+		NOT = { flag = HOL_to_FLA_delay }
+		
+		#ai will do if:
+		NOT = { alliance = { country = FLA } }
+		OR = {
+			NOT = { flag = HOL_to_FLA_1 }
+			AND = {
+				NOT = { flag = HOL_to_FLA_2 }
+				OR = { 
+					flag = SOV_to_BEL_3
+					flag = USA_to_BEL_3
+					flag = FRA_to_BEL_3
+				}
+			}
+			AND = {
+				ic = 50
+				NOT = { flag = HOL_to_FLA_3 }
+				OR = { 
+					flag = SOV_to_BEL_4
+					flag = USA_to_BEL_4
+					flag = FRA_to_BEL_4
+				}
+			}
+			AND = {
+				ic = 100
+				NOT = { flag = HOL_to_FLA_4 }
+				OR = { 
+					flag = SOV_to_BEL_5
+					flag = USA_to_BEL_5
+					flag = FRA_to_BEL_5
+				}
+			}
+			#AND = {
+			#	ic = 150
+			#	NOT = { flag = HOL_to_FLA_5 }
+			#}
+		}
+	}
+	
+	name = "Belgian Civil War - Dutch Intervention"
+	desc = "The outbreak of civil war in Belgium presents an opportunity to intervene on the side of the forces friendly to us. Taking this decision repeatedly (up to 5 times) will increase the amount of aid we are sending to our allies. Large amounts of aid take a large time to prepare and ship, so we can only take this decision once in 15 days."
+	style = 2
+	picture = "SCW_Dutch_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Send materials and volunteers!"
+		trigger = { NOT = { flag = HOL_to_FLA_1 } }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = HOL where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { type = setflag which = HOL_to_FLA_1 }
+		command = { type = event which = 3115161 where = FLA when = 15 }
+		command = { type = access which = FLA }
+		command = { type = setflag which = HOL_to_FLA_delay }
+		
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = event which = 3115250 where = -1 when = 180 }
+		command = { trigger = { NOT = { local_flag = BCWExp } } type = local_setflag which = BCWExp }
+		
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = event which = 3115206 where = -1 when = 90 }
+		command = { trigger = { NOT = { local_flag = BCWVolunteers } } type = local_setflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Send more materials and volunteers!"
+		trigger = { flag = HOL_to_FLA_1 }
+		command = { type = free_ic value = -1 }
+		#equivalent of 2 IC daily
+		command = { type = trade which = HOL where = FLA supplies = -10 value = 1 }
+		command = { type = manpowerpool value = -16 }
+		#0.16*7.3*261=305
+		command = { type = money value = -305 }
+		command = { type = oilpool value = -500 }
+		command = { type = metalpool value = -500 }
+		command = { type = energypool value = -500 }
+		command = { type = belligerence value = 0.5 }
+		command = { trigger = { flag = HOL_to_FLA_4 NOT = { flag = HOL_to_FLA_5 } } type = setflag which = HOL_to_FLA_5 }
+		command = { trigger = { flag = HOL_to_FLA_3 NOT = { flag = HOL_to_FLA_4 } } type = setflag which = HOL_to_FLA_4 }
+		command = { trigger = { flag = HOL_to_FLA_2 NOT = { flag = HOL_to_FLA_3 } } type = setflag which = HOL_to_FLA_3 }
+		command = { trigger = { flag = HOL_to_FLA_1 NOT = { flag = HOL_to_FLA_2 } } type = setflag which = HOL_to_FLA_2 }
+		command = { type = event which = 3115161 where = FLA when = 15 }
+		command = { type = setflag which = HOL_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115161
+	random = no
+	country = FLA
+	persistent = yes
+	
+	name = "Dutch help arrives in Belgium"
+	desc = "Despite its official claims of neutrality, large amount of Dutch aid arrived across the Dutch border to Belgium."
+	style = 2
+	picture = "SCW_Dutch Intervention"
+	
+	action_a = {
+		name = "Great!"
+		command = { type = free_ic value = 1 }
+		command = { type = steal_tech which = HOL }
+		command = { type = steal_tech which = HOL }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = access which = HOL }
+		command = { type = oilpool value = 500 }
+		command = { type = metalpool value = 500 }
+		command = { type = energypool value = 500 }
+		command = { trigger = { exists = FLA } type = add_corps value = land where = 123 }
+		command = { trigger = { flag = HOL_to_FLA_5 }								type = add_division which = "Dutch volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_4 NOT = { flag = HOL_to_FLA_5 } } type = add_division which = "Dutch volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_3 NOT = { flag = HOL_to_FLA_4 } } type = add_division which = "Dutch volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_2 NOT = { flag = HOL_to_FLA_3 } } type = add_division which = "Dutch volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_1 NOT = { flag = HOL_to_FLA_2 } } type = add_division which = "Dutch volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		command = { type = clrflag which = HOL_to_FLA_delay }
+	}
+}
+
+event = { 
+	id = 3115162
+	random = no
+	country = HOL
+	persistent = yes
+
+	decision = { 
+		flag = HOL_to_FLA_1
+	}
+
+	decision_trigger = {
+		NOT = { flag = HOL_to_FLA_delay }
+	}
+	
+	trigger = {
+		ai = yes
+		flag = HOL_to_FLA_1
+		OR = {
+			NOT = { war = { country = BEL country = FLA } }
+			#will Annex instead
+			#alliance = { country = FLA }
+		}
+	}
+	
+	name = "End of intervention in Belgium"
+	desc = "With the civil war in Belgium at an end it's time to end our assistance to the conflicting parties."
+	style = 2
+	picture = "SCW_Dutch_Intervention"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1999 }
+	
+	action = {
+		name = "Finally"
+		command = { trigger = { flag = HOL_to_FLA_5 } type = free_ic value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_4 } type = free_ic value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_3 } type = free_ic value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_2 } type = free_ic value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_1 } type = free_ic value = 1 }
+		
+		command = { type = belligerence value = -0.2 }
+		command = { type = end_access which = FLA }
+		command = { trigger = { NOT = { alliance = { country = FLA } } } type = military_control which = HOL where = FLA value = 0 }
+		command = { type = end_trades which = FLA where = HOL }
+		command = { type = remove_division which = "Dutch volunteers in Belgium 5" value = FLA }
+		command = { type = remove_division which = "Dutch volunteers in Belgium 4" value = FLA }
+		command = { type = remove_division which = "Dutch volunteers in Belgium 3" value = FLA }
+		command = { type = remove_division which = "Dutch volunteers in Belgium 2" value = FLA }
+		command = { type = remove_division which = "Dutch volunteers in Belgium 1" value = FLA }
+		
+		command = { type = add_corps value = land where = 123 }
+		command = { trigger = { flag = HOL_to_FLA_5 exists = FLA } type = add_division which = "Dutch volunteers in Belgium 5" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_4 exists = FLA } type = add_division which = "Dutch volunteers in Belgium 4" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_3 exists = FLA } type = add_division which = "Dutch volunteers in Belgium 3" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_2 exists = FLA } type = add_division which = "Dutch volunteers in Belgium 2" value = infantry when = 9 where = artillery }
+		command = { trigger = { flag = HOL_to_FLA_1 exists = FLA } type = add_division which = "Dutch volunteers in Belgium 1" value = infantry when = 9 where = artillery }
+		
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = HOL_to_FLA_5 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = HOL_to_FLA_4 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = HOL_to_FLA_3 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = HOL_to_FLA_2 }
+		command = { trigger = { NOT = { exists = FLA } } type = clrflag which = HOL_to_FLA_1 }
+		
+		command = { type = trigger which = 3115163 }
+	}
+}
+
+event = { 
+	id = 3115163
+	random = no
+	country = FLA
+	persistent = yes
+
+	name = "End of intervention in Belgium"
+	desc = "The Dutch aid given to us is withdrawn"
+	style = 2
+	
+	action = {
+		name = "Darn!"
+		command = { }
+		command = { type = end_access which = HOL }
+		command = { trigger = { flag = HOL_to_FLA_5 } type = free_ic value = -1 }
+		command = { trigger = { flag = HOL_to_FLA_4 } type = free_ic value = -1 }
+		command = { trigger = { flag = HOL_to_FLA_3 } type = free_ic value = -1 }
+		command = { trigger = { flag = HOL_to_FLA_2 } type = free_ic value = -1 }
+		command = { trigger = { flag = HOL_to_FLA_1 } type = free_ic value = -1 }
+		
+		command = { type = clrflag which = HOL_to_FLA_5 }
+		command = { type = clrflag which = HOL_to_FLA_4 }
+		command = { type = clrflag which = HOL_to_FLA_3 }
+		command = { type = clrflag which = HOL_to_FLA_2 }
+		command = { type = clrflag which = HOL_to_FLA_1 }
+	}
+}
+
+event = { 
+	id = 3115164
+	random = no
+	country = HOL
+	persistent = yes
+
+	decision = { 
+		ai = no
+		flag = HOL_to_FLA_1
+		NOT = { military_control = { country = FLA } }
+	}
+
+	decision_trigger = {
+		exists = FLA
+	}
+	
+	trigger = {
+		ai = no
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1999 }
+
+	name = "Belgian Civil War - Dutch command"
+	desc = "We have the opportunity to take overall control of the military operations of our allies in Belgium"
+	style = 2
+	
+	action = {
+		name = "Do it!"
+		command = { }
+		command = { type = military_control which = HOL where = FLA value = 1 }
+	}
+}
+
+########################
+# Volunteers
+########################
+
+#1 div per month when total support = 9 (for example, 3 interventionists, each one at intervention level 3)
+
+event = {
+	id = 3115200
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountBEL when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = SOV_to_BEL_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountBEL when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = SOV_to_BEL_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = BEL when = 15 }
+		command = { type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_BEL_2 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_BEL_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_BEL_2 } type = event which = 3115210 where = BEL when = 15 }
+		command = { trigger = { flag = SOV_to_BEL_2 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_BEL_3 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_BEL_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_BEL_3 } type = event which = 3115210 where = BEL when = 20 }
+		command = { trigger = { flag = SOV_to_BEL_3 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_BEL_4 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_BEL_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_BEL_4 } type = event which = 3115210 where = BEL when = 25 }
+		command = { trigger = { flag = SOV_to_BEL_4 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_BEL_5 } type = money value = -200 }
+		command = { trigger = { flag = SOV_to_BEL_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = SOV_to_BEL_5 } type = event which = 3115210 where = BEL when = 30 }
+		command = { trigger = { flag = SOV_to_BEL_5 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = SOV_to_BEL_1 NOT = { flag = SOV_to_BEL_2 } } type = trade which = SOV where = BEL supplies = -1 value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_2 NOT = { flag = SOV_to_BEL_3 } } type = trade which = SOV where = BEL supplies = -2 value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_3 NOT = { flag = SOV_to_BEL_4 } } type = trade which = SOV where = BEL supplies = -3 value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_4 NOT = { flag = SOV_to_BEL_5 } } type = trade which = SOV where = BEL supplies = -4 value = 1 }
+		command = { trigger = { flag = SOV_to_BEL_5 } type = trade which = SOV where = BEL supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115200 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3115201
+	random = no
+	country = FRA
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountBEL when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = FRA_to_BEL_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountBEL when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = FRA_to_BEL_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = BEL when = 15 }
+		command = { type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_BEL_2 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_BEL_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_BEL_2 } type = event which = 3115210 where = BEL when = 15 }
+		command = { trigger = { flag = FRA_to_BEL_2 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_BEL_3 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_BEL_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_BEL_3 } type = event which = 3115210 where = BEL when = 20 }
+		command = { trigger = { flag = FRA_to_BEL_3 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_BEL_4 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_BEL_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_BEL_4 } type = event which = 3115210 where = BEL when = 25 }
+		command = { trigger = { flag = FRA_to_BEL_4 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_BEL_5 } type = money value = -200 }
+		command = { trigger = { flag = FRA_to_BEL_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = FRA_to_BEL_5 } type = event which = 3115210 where = BEL when = 30 }
+		command = { trigger = { flag = FRA_to_BEL_5 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = FRA_to_BEL_1 NOT = { flag = FRA_to_BEL_2 } } type = trade which = FRA where = BEL supplies = -1 value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_2 NOT = { flag = FRA_to_BEL_3 } } type = trade which = FRA where = BEL supplies = -2 value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_3 NOT = { flag = FRA_to_BEL_4 } } type = trade which = FRA where = BEL supplies = -3 value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_4 NOT = { flag = FRA_to_BEL_5 } } type = trade which = FRA where = BEL supplies = -4 value = 1 }
+		command = { trigger = { flag = FRA_to_BEL_5 } type = trade which = FRA where = BEL supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115201 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3115202
+	random = no
+	country = USA
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountBEL when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = USA_to_BEL_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountBEL when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = USA_to_BEL_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = BEL when = 15 }
+		command = { type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_BEL_2 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_BEL_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_BEL_2 } type = event which = 3115210 where = BEL when = 15 }
+		command = { trigger = { flag = USA_to_BEL_2 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_BEL_3 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_BEL_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_BEL_3 } type = event which = 3115210 where = BEL when = 20 }
+		command = { trigger = { flag = USA_to_BEL_3 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_BEL_4 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_BEL_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_BEL_4 } type = event which = 3115210 where = BEL when = 25 }
+		command = { trigger = { flag = USA_to_BEL_4 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_BEL_5 } type = money value = -200 }
+		command = { trigger = { flag = USA_to_BEL_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = USA_to_BEL_5 } type = event which = 3115210 where = BEL when = 30 }
+		command = { trigger = { flag = USA_to_BEL_5 } type = setflag which = VolunteersCountBEL when = 1 value = 1 }
+		
+		command = { trigger = { flag = USA_to_BEL_1 NOT = { flag = USA_to_BEL_2 } } type = trade which = USA where = BEL supplies = -1 value = 1 }
+		command = { trigger = { flag = USA_to_BEL_2 NOT = { flag = USA_to_BEL_3 } } type = trade which = USA where = BEL supplies = -2 value = 1 }
+		command = { trigger = { flag = USA_to_BEL_3 NOT = { flag = USA_to_BEL_4 } } type = trade which = USA where = BEL supplies = -3 value = 1 }
+		command = { trigger = { flag = USA_to_BEL_4 NOT = { flag = USA_to_BEL_5 } } type = trade which = USA where = BEL supplies = -4 value = 1 }
+		command = { trigger = { flag = USA_to_BEL_5 } type = trade which = USA where = BEL supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115202 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3115205
+	random = no
+	country = GER
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountFLA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = GER_to_FLA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountFLA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = GER_to_FLA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = FLA when = 15 }
+		command = { type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FLA_2 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FLA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FLA_2 } type = event which = 3115210 where = FLA when = 15 }
+		command = { trigger = { flag = GER_to_FLA_2 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FLA_3 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FLA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FLA_3 } type = event which = 3115210 where = FLA when = 20 }
+		command = { trigger = { flag = GER_to_FLA_3 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FLA_4 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FLA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FLA_4 } type = event which = 3115210 where = FLA when = 25 }
+		command = { trigger = { flag = GER_to_FLA_4 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FLA_5 } type = money value = -200 }
+		command = { trigger = { flag = GER_to_FLA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = GER_to_FLA_5 } type = event which = 3115210 where = FLA when = 30 }
+		command = { trigger = { flag = GER_to_FLA_5 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = GER_to_FLA_1 NOT = { flag = GER_to_FLA_2 } } type = trade which = GER where = FLA supplies = -1 value = 1 }
+		command = { trigger = { flag = GER_to_FLA_2 NOT = { flag = GER_to_FLA_3 } } type = trade which = GER where = FLA supplies = -2 value = 1 }
+		command = { trigger = { flag = GER_to_FLA_3 NOT = { flag = GER_to_FLA_4 } } type = trade which = GER where = FLA supplies = -3 value = 1 }
+		command = { trigger = { flag = GER_to_FLA_4 NOT = { flag = GER_to_FLA_5 } } type = trade which = GER where = FLA supplies = -4 value = 1 }
+		command = { trigger = { flag = GER_to_FLA_5 } type = trade which = GER where = FLA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115205 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3115206
+	random = no
+	country = HOL
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountFLA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = HOL_to_FLA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountFLA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = HOL_to_FLA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = FLA when = 15 }
+		command = { type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = HOL_to_FLA_2 } type = money value = -200 }
+		command = { trigger = { flag = HOL_to_FLA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = HOL_to_FLA_2 } type = event which = 3115210 where = FLA when = 15 }
+		command = { trigger = { flag = HOL_to_FLA_2 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = HOL_to_FLA_3 } type = money value = -200 }
+		command = { trigger = { flag = HOL_to_FLA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = HOL_to_FLA_3 } type = event which = 3115210 where = FLA when = 20 }
+		command = { trigger = { flag = HOL_to_FLA_3 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = HOL_to_FLA_4 } type = money value = -200 }
+		command = { trigger = { flag = HOL_to_FLA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = HOL_to_FLA_4 } type = event which = 3115210 where = FLA when = 25 }
+		command = { trigger = { flag = HOL_to_FLA_4 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = HOL_to_FLA_5 } type = money value = -200 }
+		command = { trigger = { flag = HOL_to_FLA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = HOL_to_FLA_5 } type = event which = 3115210 where = FLA when = 30 }
+		command = { trigger = { flag = HOL_to_FLA_5 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = HOL_to_FLA_1 NOT = { flag = HOL_to_FLA_2 } } type = trade which = HOL where = FLA supplies = -1 value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_2 NOT = { flag = HOL_to_FLA_3 } } type = trade which = HOL where = FLA supplies = -2 value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_3 NOT = { flag = HOL_to_FLA_4 } } type = trade which = HOL where = FLA supplies = -3 value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_4 NOT = { flag = HOL_to_FLA_5 } } type = trade which = HOL where = FLA supplies = -4 value = 1 }
+		command = { trigger = { flag = HOL_to_FLA_5 } type = trade which = HOL where = FLA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115206 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+event = {
+	id = 3115207
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Volunteers heading to Belgium"
+	desc = "Organized with our generous support and financial aid, foreign volunteers from all over the world are flocking to Spain to aid our cause there."
+	style = 2
+
+	action = {
+		name = "Volunteers - Intervention ends"
+		trigger = {
+			local_flag = BCWVolunteers
+			OR = {
+				flag = { which = VolunteersCountFLA when = 1 value = 50 } #will stop after 50 divisions are sent
+				NOT = {
+					AND = {
+						war = { country = FLA country = BEL }
+						flag = ENG_to_FLA_1
+					}
+				}
+			}
+		}
+		command = { type = local_clrflag which = BCWVolunteers }
+	}
+	action = {
+		name = "Great!" 
+		trigger = {
+			NOT = { flag = { which = VolunteersCountFLA when = 1 value = 50 } } #will stop after 50 divisions are sent
+			local_flag = BCWVolunteers
+			war = { country = FLA country = BEL }
+			flag = ENG_to_FLA_1
+		}
+		#normal infantry division = 200/13.
+		command = { type = money value = -200 }
+		command = { type = manpowerpool value = -13 }
+		command = { type = event which = 3115210 where = FLA when = 15 }
+		command = { type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_FLA_2 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_FLA_2 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_FLA_2 } type = event which = 3115210 where = FLA when = 15 }
+		command = { trigger = { flag = ENG_to_FLA_2 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_FLA_3 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_FLA_3 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_FLA_3 } type = event which = 3115210 where = FLA when = 20 }
+		command = { trigger = { flag = ENG_to_FLA_3 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_FLA_4 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_FLA_4 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_FLA_4 } type = event which = 3115210 where = FLA when = 25 }
+		command = { trigger = { flag = ENG_to_FLA_4 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_FLA_5 } type = money value = -200 }
+		command = { trigger = { flag = ENG_to_FLA_5 } type = manpowerpool value = -13 }
+		command = { trigger = { flag = ENG_to_FLA_5 } type = event which = 3115210 where = FLA when = 30 }
+		command = { trigger = { flag = ENG_to_FLA_5 } type = setflag which = VolunteersCountFLA when = 1 value = 1 }
+		
+		command = { trigger = { flag = ENG_to_FLA_1 NOT = { flag = ENG_to_FLA_2 } } type = trade which = ENG where = FLA supplies = -1 value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_2 NOT = { flag = ENG_to_FLA_3 } } type = trade which = ENG where = FLA supplies = -2 value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_3 NOT = { flag = ENG_to_FLA_4 } } type = trade which = ENG where = FLA supplies = -3 value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_4 NOT = { flag = ENG_to_FLA_5 } } type = trade which = ENG where = FLA supplies = -4 value = 1 }
+		command = { trigger = { flag = ENG_to_FLA_5 } type = trade which = ENG where = FLA supplies = -5 value = 1 }
+		
+		command = { type = event which = 3115207 where = -1 when = 270 } #at intevention level 1: 1 div per 9 months
+	}
+}
+
+
+event = {
+	id = 3115210
+	random = no
+	persistent = yes
+	
+	name = "Volunteers arriving to Belgium"
+	desc = "Organized with the support and financial aid from our allies, foreign volunteers from all over the world are flocking to Spain to aid our cause."
+	style = 2
+
+	action = {
+		name = "Great!" 
+		command = { type = dissent value = 0.05 } #these foreigners don't always share the "correct" views and culture and can become troublemakers
+		command = { trigger = { country = BEL } type = add_corps value = land where = 52 }
+		command = { trigger = { country = FLA } type = add_corps value = land where = 118 }
+		command = { type = add_division which = "Foreign volunteers" value = infantry when = 8 }
+	}
+}
+
+
+##
+#
+##
+
+event = { 
+	id = 3115240
+	random = no
+	country = GER
+	
+	trigger = {
+		exists = FLA
+		#control = { province = 110 data = FLA }
+		random = 40
+	}
+
+	name = "Seizure of Eupen"
+	desc = "With the situation in Belgium getting out of control, Germany quickly siezes the province of Eupen, taken from it after World War 2 by the Versailles treaty."
+	style = 2
+
+	date = { day = 1 month = april year = 1937 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1942 }
+	
+	action = {
+		name = "It is necessary"
+		command = { type = addcore which = 110 }
+		command = { type = belligerence which = GER value = 3 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 3115241 }
+		command = { type = trigger which = 3115242 }
+	}
+}
+
+event = { 
+	id = 3115241
+	random = no
+	country = FLA
+
+	name = "Siezure of Eupen"
+	desc = "With the situation in Belgium getting out of control, Germany quickly siezes the province of Eupen, taken from it after World War 2 by the Versailles treaty."
+	style = 2
+	
+	action = {
+		name = "A small loss"
+		command = { type = secedeprovince which = GER value = 110 }
+		command = { }
+	}
+}
+
+event = { 
+	id = 3115242
+	random = no
+	country = BEL
+
+	name = "Siezure of Eupen"
+	desc = "With the situation in Belgium getting out of control, Germany quickly siezes the province of Eupen, taken from it after World War 2 by the Versailles treaty."
+	style = 2
+	
+	action = {
+		name = "A small loss"
+		command = { type = secedeprovince which = GER value = 110 }
+		command = { }
+	}
+}
+
+##############################################
+# Belgium - end of civil war
+##############################################
+
+event = { 
+	id = 3115350 
+	random = no
+	country = FLA
+
+	trigger = {
+		event = 3115101
+		NOT = {	exists = BEL }
+	} 
+
+	name = EVT_3173002_NAME
+	desc = EVT_3173002_DESC
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+	name = ACTIONNAME3173002A 
+		command = { type = capital which = 116 } # Brussels
+
+	} 
+}
+
+##############################################
+# Belgium - War widens
+##############################################
+
+event = { 
+	id = 3115260 
+	random = no
+	country = BEL
+
+	trigger = {
+		atwar = BEL
+		NOT = { alliance = { country = BEL country = FRA } }
+		OR = {
+			#lost_national = { country = BEL value = 100 }
+			alliance = { country = FLA country = ENG }
+			war = { country = FRA country = ENG }
+		}
+	} 
+
+	name = "Belgium requests assitance"
+	desc = "Belgium requests assitance"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Request assistance"
+		command = { type = event which = 3115265 where = FRA when = 5 }
+	} 
+}
+
+event = { 
+	id = 3115261
+	random = no
+	country = FLA
+
+	trigger = {
+		atwar = FLA
+		NOT = { alliance = { country = FLA country = ENG } }
+		OR = {
+			#lost_national = { country = FLA value = 100 }
+			alliance = { country = BEL country = FRA }
+			war = { country = FRA country = ENG }
+		}
+	}
+
+	name = "Flanders requests assitance"
+	desc = "Flanders requests assitance"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action_a = { 
+		name = "Request assistance"
+		command = { type = event which = 3115266 where = ENG when = 5 }
+	} 
+}
+
+
+event = { 
+	id = 3115265
+	random = no
+	country = FRA
+
+	name = "Belgium requests assitance"
+	desc = "Belgium requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = BEL NOT = { ai = FRA } } type = military_control which = FRA where = BEL value = 1 }
+		command = { type = alliance which = BEL }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+event = { 
+	id = 3115266
+	random = no
+	country = ENG
+
+	name = "Flanders requests assitance"
+	desc = "Flanders requests assitance"
+	style = 2
+
+	action_a = { 
+		name = "We must help them"
+		ai_chance = 100
+		command = { trigger = { ai = FLA NOT = { ai = ENG } } type = military_control which = ENG where = FLA value = 1 }
+		command = { trigger = { ai = FLA NOT = { ai = GER } } type = military_control which = GER where = FLA value = 1 }
+		command = { type = alliance which = FLA }
+	} 
+	action_b = { 
+		name = "They shall stand alone"
+		ai_chance = 0
+		command = { type = dissent value = 1 }
+	} 
+}
+
+##############################################
+# Belgium - Inheritance
+##############################################
+
+event = { 
+	id = 3115270
+	random = no
+	country = BEL
+
+	trigger = {
+		atwar = yes
+		alliance = { country = FRA }
+		OR = {
+			NOT = { flag = SOV_to_BEL_1 }
+			NOT = { ai = SOV }
+		}
+		OR = {
+			NOT = { flag = USA_to_BEL_1 }
+			NOT = { ai = USA }
+		}
+		#lost_national = { country = BEL value = 95 }
+		#ai = no
+	} 
+
+	name = "Joining the French Republic"
+	desc = "With the entry of France into the war, the second time the French brothers helping out Belgium preserve its independence from the Dutch, pressure grows on both sides of the border to correct the historical mistake and formally admit Belgium as a region of France with enhanced autonomy. We can resist these pressures, but it would come at a huge cost."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "We are with France!"
+		ai_chance = 100
+		command = { type = secedearea which = -1 value = "Flanders" }
+		command = { type = secedearea which = -1 value = "Wallonia" }
+		command = { type = dissent value = -2 }
+		command = { type = trigger which = 3115271 }
+	}
+	action = { 
+		name = "We must defend our hard-won independence!"
+		ai_chance = 0
+		command = { type = secedearea which = -1 value = "Flanders" }
+		command = { type = secedearea which = -1 value = "Wallonia" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = GER }
+		command = { type = war which = FRA }
+		command = { type = dissent value = 20 }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		command = { type = switch_allegiance which = -1 where = FRA }
+		
+		command = { type = switch_allegiance which = -2 where = FRA }
+		command = { type = switch_allegiance which = -2 where = FRA }
+		command = { type = switch_allegiance which = -2 where = FRA }
+		command = { type = switch_allegiance which = -2 where = FRA }
+		command = { type = switch_allegiance which = -2 where = FRA }
+		
+		command = { type = switch_allegiance which = -3 where = FRA }
+		command = { type = switch_allegiance which = -3 where = FRA }
+		command = { type = switch_allegiance which = -3 where = FRA }
+		command = { type = switch_allegiance which = -3 where = FRA }
+		command = { type = switch_allegiance which = -3 where = FRA }
+	}
+}
+
+event = { 
+	id = 3115271
+	random = no
+	country = FRA
+
+	name = "Franco-Belgian Union"
+	desc = "With the entry of France into the war, and the French fighting for the second time to preserve Belgian independence from the Dutch, pressure grows on both sides of the border to correct the historical mistake and formally admit Belgium as a region of France with enhanced autonomy. Seeing that it would be of benefit to both of our nations, the government of Belgium wisely expressed the desire to join the French Republic!"
+	style = 2
+
+	action = { 
+		name = "A great day for France!"
+		command = { type = dissent value = -2 }
+		command = { type = inherit which = BEL value = 1 }
+		command = { type = belligerence which = FRA value = 5 }
+	}
+}
+
+event = { 
+	id = 3115275
+	random = no
+	country = FLA
+
+	trigger = {
+		atwar = yes
+		alliance = { country = HOL }
+		OR = {
+			NOT = { flag = GER_to_FLA_1 }
+			NOT = { ai = GER }
+		}
+		OR = {
+			NOT = { flag = ENG_to_FLA_1 }
+			NOT = { ai = ENG }
+		}
+		#lost_national = { country = FLA value = 95 }
+		#ai = no
+	} 
+
+	name = "Joining the Dutch Kingdom"
+	desc = "With the entry of Netherlands into the war, and the Dutch fighting to helping to preserve Flemish independence from Belgians and France alike, pressure grows on both sides of the border to correct the historical mistake and formally admit Flanders as a region of Netherlands with enhanced autonomy. We can resist these pressures, but it would come at a huge cost."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "We are with the Netherlands!"
+		ai_chance = 100
+		command = { type = secedearea which = -1 value = "Flanders" }
+		command = { type = secedearea which = -1 value = "Wallonia" }
+		command = { type = dissent value = -2 }
+		command = { type = trigger which = 3115276 }
+	}
+	action = { 
+		name = "We must defend our hard-won independence!"
+		ai_chance = 0
+		command = { type = secedearea which = -1 value = "Flanders" }
+		command = { type = secedearea which = -1 value = "Wallonia" }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = GER }
+		command = { type = war which = FRA }
+		command = { type = dissent value = 20 }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		command = { type = switch_allegiance which = -1 where = HOL }
+		
+		command = { type = switch_allegiance which = -2 where = HOL }
+		command = { type = switch_allegiance which = -2 where = HOL }
+		command = { type = switch_allegiance which = -2 where = HOL }
+		command = { type = switch_allegiance which = -2 where = HOL }
+		command = { type = switch_allegiance which = -2 where = HOL }
+		
+		command = { type = switch_allegiance which = -3 where = HOL }
+		command = { type = switch_allegiance which = -3 where = HOL }
+		command = { type = switch_allegiance which = -3 where = HOL }
+		command = { type = switch_allegiance which = -3 where = HOL }
+		command = { type = switch_allegiance which = -3 where = HOL }
+	}
+}
+
+event = { 
+	id = 3115276
+	random = no
+	country = HOL
+
+	name = "Dutch-Flemish Union"
+	desc = "With the entry of Netherlands into the war, and the Dutch fighting to helping to preserve Flemish independence from Belgians and France alike, pressure grows on both sides of the border to correct the historical mistake and formally admit Flanders as a region of Netherlands with enhanced autonomy. Seeing that it would be of benefit to both of our nations, the government of Flanders wisely expressed the desire to join the Dutch Kingdom!"
+	style = 2
+
+	action = { 
+		name = "A great day for Netherlands!"
+		command = { type = dissent value = -2 }
+		command = { type = inherit which = FLA value = 1 }
+		command = { type = belligerence which = HOL value = 5 }
+	} 
+}
+
+event = { 
+	id = 3115280
+	random = no
+	country = FRA
+
+	decision = {
+		war = { country = FRA country = GER } 
+	}
+
+	decision_trigger = { 
+		NOT = { war = { country = LUX country = FRA } }
+		NOT = { war = { country = LUX country = GER } }
+	}
+
+	trigger = {
+		war = { country = FRA country = GER } 
+		NOT = { war = { country = LUX country = FRA } }
+		NOT = { war = { country = LUX country = GER } }
+	} 
+
+	name = "Put pressure on Luxembourg"
+	desc = "With the outbreak of war on our eastern front, it is imperative for us to gain access to the lightly defended territory of Luxemburg before Germany does, as it is a site of significant industry and strategic value. Luxembourg officially renounced its neutrality in 1919, howerver since then it refused to take sides in the new brewing conflict and saw both sides as equally dangerous to its way of life."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 9
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Put pressure on Luxembourg"
+		command = { type = trigger which = 3115282 }
+		#command = { type = inherit which = LUX value = 1 }
+		command = { type = belligerence which = FRA value = 5 }
+	} 
+}
+
+event = { 
+	id = 3115281
+	random = no
+	country = GER
+
+	decision = {
+		war = { country = FRA country = GER } 
+	}
+
+	decision_trigger = { 
+		NOT = { war = { country = LUX country = FRA } }
+		NOT = { war = { country = LUX country = GER } }
+	}
+
+	trigger = {
+		war = { country = FRA country = GER } 
+		NOT = { war = { country = LUX country = FRA } }
+		NOT = { war = { country = LUX country = GER } }
+	} 
+
+	name = "Put pressure on Luxemburg"
+	desc = "With the outbreak of war on our western front, it is imperative for us to gain access to the lightly defended territory of Luxemburg before France does, as it is a site of significant industry and strategic value. Luxemburg officially renounced its neutrality in 1919, howerver since then it refused to take sides in the new brewing conflict and saw both sides as equally dangerous to its way of life."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 11
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Put pressure on Luxembourg"
+		command = { type = trigger which = 3115282 }
+	} 
+}
+
+event = { 
+	id = 3115282
+	random = no
+	country = LUX
+
+	name = "Luxembourg under pressure"
+	desc = "With the outbreak of war in Europe, both Germany and France started putting immense pressure upon Luxembourg to permit entry of their troops into our country. While Luxembourg officially renounced its neutrality in 1919, it refused to take sides in the new brewing conflict and saw both sides as equally dangerous to its way of life."
+	style = 2
+
+	action = { 
+		name = "France is the lesser evil! (game over)"
+		ai_chance = 5
+		command = { type = trigger which = 3115283 }
+	} 
+	action = { 
+		name = "Germany is the lesser evil! (game over)"
+		ai_chance = 5
+		command = { type = trigger which = 3115284 }
+	} 
+	action = { 
+		name = "They are both evil!"
+		ai_chance = 90
+		command = { type = dissent value = 10 }
+		command = { type = leave_alliance when = 1 }
+		command = { type = war which = GER }
+		command = { type = war which = FRA }
+	} 
+}
+
+event = { 
+	id = 3115283
+	random = no
+	country = FRA
+
+	name = "Luxembourg folds"
+	desc = "Having wisely assessed the situation before them, the Luxembourgish leadership decided to peacefully allow the entry of our forces into their country and the accompanying demands of the occupation. With this move, Luxembourg effectively lost its sovereignty and became a French protectorate. Once this war is over, we will decide whether we want to allow Luxembourg to regain its independence."
+	style = 2
+
+	action = { 
+		name = "For Greater France!"
+		ai_chance = 100
+		command = { type = inherit which = LUX value = 1 }
+		command = { type = belligerence which = FRA value = 5 }
+	} 
+	action = { 
+		name = "Just leave them as a puppet."
+		ai_chance = 0
+		command = { type = make_puppet which = LUX }
+	} 
+}
+
+event = { 
+	id = 3115284
+	random = no
+	country = GER
+
+	name = "Luxemburg folds"
+	desc = "Having wisely assessed the situation before them, the Luxemburgish leadership decided to peacefully allow the entry of our forces into their country and the accompanying demands of the occupation. With this move, Luxemburg effectively lost its sovereignty and became a German protectorate. Once this war is over, we will decide whether we want to allow Luxemburg to regain its independence."
+	style = 2
+
+	action = { 
+		name = "For Greater Germany!"
+		ai_chance = 100
+		command = { type = inherit which = LUX value = 1 }
+		command = { type = belligerence which = GER value = 5 }
+	} 
+	action = { 
+		name = "Just leave them as a puppet."
+		ai_chance = 0
+		command = { type = make_puppet which = LUX }
+	} 
+}
+
+
+################
+# Congo events
+################
+
+event = { 
+	id = 3115300
+	random = no
+	country = FRA
+
+	decision = { 	NOT = { alliance = { country = BEL country = FRA } }
+			war = { country = BEL country = FLA }
+	}
+
+	decision_trigger = { }
+
+	trigger = {
+		NOT = { alliance = { country = BEL country = FRA } }
+		war = { country = BEL country = FLA }
+	} 
+
+	name = "Occupy Belgian Congo"
+	desc = "With the civil war breaking out in Belgium, it is imperative that we occupy the Belgian colony of Congo before it falls in the wrong hands. Should we demand to be allowed to do so from the Belgian government?"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Demand Congo"
+		command = { type = trigger which = 3115301 }
+		command = { type = belligerence value = 2 }
+	} 
+}
+
+event = { 
+	id = 3115301
+	random = no
+	country = BEL
+
+	name = "France demands entry to Belgian Congo"
+	desc = "With the civil war breaking out in Belgium, the French government presented a demand to allow its troops to move in and occupy our only colony of Congo. If we refuse, however, there would be little stopping the French from occupying it anyway."
+	style = 2
+
+	action = { 
+		name = "Okay"
+		ai_chance = 100
+		command = { type = access which = FRA }
+		command = { type = trigger which = 3115302 }
+	} 
+	action = {
+		name = "Honor precedes practicality"
+		ai_chance = 0
+		command = { type = set_domestic which = political_left value = -2 }
+		command = { type = set_domestic which = democratic value = 1 }
+	    command = { type = war which = FRA }
+	}
+}
+
+event = { 
+	id = 3115302
+	random = no
+	country = ENG
+
+	name = "France demands entry to Belgian Congo"
+	desc = "With the civil war breaking out in Belgium, the French government presented a demand to allow its troops to move in and occupy our only colony of Congo. We have the option to threaten them with war if they proceed with their plan, or we can offer a compromise - independence of Congo as a neutral buffer state."
+	style = 2
+
+	action = {
+		name = "Do nothing"
+		ai_chance = 0
+		command = { type = trigger which = 3115303 }
+	}
+	action = {
+		name = "Offer compromise - neutral Congo"
+		ai_chance = 100
+		command = { type = trigger which = 3115304 }
+	}
+	action = { 
+		name = "Threaten war!"
+		ai_chance = 0
+		command = { type = trigger which = 3115305 }
+	} 
+}
+
+event = { 
+	id = 3115303
+	random = no
+	country = FRA
+
+	name = "Belgium agrees"
+	desc = "The embattled Belgian government agreed to our demand of occupation of Belgian Congo. The British, to our surprise, also raised no objectsion. It will however take a bit before our troops fully take control of the Belgian colony."
+	style = 2
+
+	action = {
+		name = "Great!"
+		command = { type = secedeprovince which = FRA value = 904 when = 2 }
+		command = { type = secedeprovince which = FRA value = 903 when = 2 }
+		command = { type = secedeprovince which = FRA value = 905 when = 2 }
+		command = { type = secedeprovince which = FRA value = 906 when = 2 }
+		command = { type = secedeprovince which = FRA value = 901 when = 2 }
+		command = { type = secedeprovince which = FRA value = 894 when = 2 }
+		command = { type = secedeprovince which = FRA value = 902 when = 2 }
+		command = { type = secedeprovince which = FRA value = 898 when = 2 }
+		command = { type = secedeprovince which = FRA value = 897 when = 2 }
+		command = { type = secedeprovince which = FRA value = 899 when = 2 }
+		command = { type = secedeprovince which = FRA value = 890 when = 2 }
+
+		command = { type = secedeprovince which = FRA value = 846 when = 2 }
+		command = { type = secedeprovince which = FRA value = 847 when = 2 }
+	}
+}
+
+event = { 
+	id = 3115304
+	random = no
+	country = FRA
+	save_date = yes
+
+	name = "Belgium agrees - Britain threatens war"
+	desc = "The embattled Belgian government agreed to our demand of occupation of Congo. The British, however, were not pleased. But they offered us a compromise - instead of our troops moving in to occupy the colony, we can proclaim it to be an independent and netural state. Congo presents little strategic interest for us in itself, but its extremely large territory and long borders demand a large concentration of our troops which could be better used elsewhere."
+	style = 2
+
+	action = {
+		name = "We are okay with this"
+		ai_chance = 100
+		command = { type = secedeprovince which = FRA value = 904 when = 2 }
+		command = { type = secedeprovince which = FRA value = 903 when = 2 }
+		command = { type = secedeprovince which = FRA value = 905 when = 2 }
+		command = { type = secedeprovince which = FRA value = 906 when = 2 }
+		command = { type = secedeprovince which = FRA value = 901 when = 2 }
+		command = { type = secedeprovince which = FRA value = 894 when = 2 }
+		command = { type = secedeprovince which = FRA value = 902 when = 2 }
+		command = { type = secedeprovince which = FRA value = 898 when = 2 }
+		command = { type = secedeprovince which = FRA value = 897 when = 2 }
+		command = { type = secedeprovince which = FRA value = 899 when = 2 }
+		command = { type = secedeprovince which = FRA value = 890 when = 2 }
+
+		command = { type = secedeprovince which = FRA value = 846 when = 2 }
+		command = { type = secedeprovince which = FRA value = 847 when = 2 }
+		
+		command = { type = belligerence value = -1.5 }
+		command = { type = independence which = CON value = 1 }
+		command = { type = event which = 2400535 where = CON when = 0 } #independence flag
+		command = { type = secedeprovince which = CON value = 904 }
+		command = { type = secedeprovince which = CON value = 903 }
+		command = { type = secedeprovince which = CON value = 905 }
+		command = { type = secedeprovince which = CON value = 906 }
+		command = { type = secedeprovince which = CON value = 901 }
+		command = { type = secedeprovince which = CON value = 894 }
+		command = { type = secedeprovince which = CON value = 902 }
+		command = { type = secedeprovince which = CON value = 898 }
+		command = { type = secedeprovince which = CON value = 897 }
+		command = { type = secedeprovince which = CON value = 899 }
+		command = { type = secedeprovince which = CON value = 890 }
+
+		command = { type = secedeprovince which = CON value = 846 }
+		command = { type = secedeprovince which = CON value = 847 }
+
+		command = { type = removeclaim which = 904 }
+		command = { type = removeclaim which = 903 }
+		command = { type = removeclaim which = 905 }
+		command = { type = removeclaim which = 906 }
+		command = { type = removeclaim which = 901 }
+		command = { type = removeclaim which = 894 }
+		command = { type = removeclaim which = 902 }
+		command = { type = removeclaim which = 898 }
+		command = { type = removeclaim which = 897 }
+		command = { type = removeclaim which = 899 }
+		command = { type = removeclaim which = 890 }
+
+		command = { type = removeclaim which = 846 }
+		command = { type = removeclaim which = 847 }
+	}
+	action = {
+		name = "Call their bluff"
+		ai_chance = 0
+		command = { type = trigger which = 3115306 }
+		command = { type = secedeprovince which = FRA value = 904 when = 2 }
+		command = { type = secedeprovince which = FRA value = 903 when = 2 }
+		command = { type = secedeprovince which = FRA value = 905 when = 2 }
+		command = { type = secedeprovince which = FRA value = 906 when = 2 }
+		command = { type = secedeprovince which = FRA value = 901 when = 2 }
+		command = { type = secedeprovince which = FRA value = 894 when = 2 }
+		command = { type = secedeprovince which = FRA value = 902 when = 2 }
+		command = { type = secedeprovince which = FRA value = 898 when = 2 }
+		command = { type = secedeprovince which = FRA value = 897 when = 2 }
+		command = { type = secedeprovince which = FRA value = 899 when = 2 }
+		command = { type = secedeprovince which = FRA value = 890 when = 2 }
+
+		command = { type = secedeprovince which = FRA value = 846 when = 2 }
+		command = { type = secedeprovince which = FRA value = 847 when = 2 }
+	}
+}
+
+event = { 
+	id = 3115305
+	random = no
+	country = FRA
+
+	name = "Belgium agrees - Britain threatens war"
+	desc = "The embattled Belgian government agreed to our demand of occupation of Congo. The British, however, were not pleased. They oppose absolutely any move by us into the Congo. What shall we do?"
+	style = 2
+
+	action = {
+		name = "Back off"
+		ai_chance = 100
+		command = { type = dissent value = 2 }
+	}
+	action = {
+		name = "Call their bluff"
+		ai_chance = 0
+		command = { type = trigger which = 3115306 }
+		command = { type = secedeprovince which = FRA value = 904 when = 2 }
+		command = { type = secedeprovince which = FRA value = 903 when = 2 }
+		command = { type = secedeprovince which = FRA value = 905 when = 2 }
+		command = { type = secedeprovince which = FRA value = 906 when = 2 }
+		command = { type = secedeprovince which = FRA value = 901 when = 2 }
+		command = { type = secedeprovince which = FRA value = 894 when = 2 }
+		command = { type = secedeprovince which = FRA value = 902 when = 2 }
+		command = { type = secedeprovince which = FRA value = 898 when = 2 }
+		command = { type = secedeprovince which = FRA value = 897 when = 2 }
+		command = { type = secedeprovince which = FRA value = 899 when = 2 }
+		command = { type = secedeprovince which = FRA value = 890 when = 2 }
+
+		command = { type = secedeprovince which = FRA value = 846 when = 2 }
+		command = { type = secedeprovince which = FRA value = 847 when = 2 }
+	}
+}
+
+event = { 
+	id = 3115306
+	random = no
+	country = ENG
+
+	name = "France disregards our warnings"
+	desc = "Despite out warnings, France intends to proceed with the occupation of Belgium."
+	style = 2
+
+	action = {
+		name = "War it is"
+		ai_chance = 100
+		command = { type = war which = FRA }
+	}
+	action = {
+		name = "Back down, we are not ready!"
+		ai_chance = 0
+		command = { type = dissent value = 20 }
+	}
+}
+
+event = { 
+	id = 3115215
+	random = no
+	country = CON
+
+	name = "Independence of Belgian Congo"
+	desc = "The document stating the Congolese independence and neutrality is signed in Brazzavile as the French and Belgian troops withdraw from the former colony."
+	style = 2
+
+	trigger = {
+		event = { id = 3115304 days = 30 }
+	} 
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1950 } 
+
+	action = { 
+		name = "Okay"
+		command = { type = addclaim which = 846 }
+		command = { type = addclaim which = 847 }
+
+		command = { type = set_domestic which = defense_lobby value = 4 }
+		command = { type = set_domestic which = interventionism value = 3 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+		command = { type = add_division value = infantry when = 8 }
+	} 
+}
+
+
+##############################################
+# Belgium - Experience gained
+##############################################
+
+event = {
+	id = 3115250
+	random = no
+	tag = { SOV FRA USA GER HOL ENG }
+	persistent = yes
+
+	name = "Belgian Civil War - Important Experience"
+	desc = "EVT_2662_DESC"
+	style = 2
+	picture = "scw"
+
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			NOT = {
+				AND = {
+					country = SOV
+					flag = SOV_to_BEL_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_BEL_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_BEL_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_FLA_1 
+				}
+				AND = {
+					country = HOL
+					flag = HOL_to_FLA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_FLA_1 
+				}
+			}
+			local_flag = BCWExp
+		}
+		command = { type = local_clrflag which = BCWExp }
+	}
+	action = {
+		name = "ACTION_NAME_GREAT" # Great! 
+		trigger = {
+			OR = {
+				AND = {
+					country = SOV
+					flag = SOV_to_BEL_1 
+				}
+				AND = {
+					country = FRA
+					flag = FRA_to_BEL_1 
+				}
+				AND = {
+					country = USA
+					flag = USA_to_BEL_1 
+				}
+				AND = {
+					country = GER
+					flag = GER_to_FLA_1 
+				}
+				AND = {
+					country = HOL
+					flag = HOL_to_FLA_1 
+				}
+				AND = {
+					country = ENG
+					flag = ENG_to_FLA_1 
+				}
+			}
+		}
+		command = { trigger = { OR = { country = SOV country = FRA country = USA } } type = relation which = BEL value = 5 }
+		command = { trigger = { OR = { country = GER country = HOL country = ENG } } type = relation which = FLA value = 5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_1 }
+										AND = { country = FRA flag = FRA_to_BEL_1 }
+										AND = { country = USA flag = USA_to_BEL_1 }
+										AND = { country = GER flag = GER_to_FLA_1 }
+										AND = { country = HOL flag = HOL_to_FLA_1 }
+										AND = { country = ENG flag = ENG_to_FLA_1 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_2 }
+										AND = { country = FRA flag = FRA_to_BEL_2 }
+										AND = { country = USA flag = USA_to_BEL_2 }
+										AND = { country = GER flag = GER_to_FLA_2 }
+										AND = { country = HOL flag = HOL_to_FLA_2 }
+										AND = { country = ENG flag = ENG_to_FLA_2 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_3 }
+										AND = { country = FRA flag = FRA_to_BEL_3 }
+										AND = { country = USA flag = USA_to_BEL_3 }
+										AND = { country = GER flag = GER_to_FLA_3 }
+										AND = { country = HOL flag = HOL_to_FLA_3 }
+										AND = { country = ENG flag = ENG_to_FLA_3 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_4 }
+										AND = { country = FRA flag = FRA_to_BEL_4 }
+										AND = { country = USA flag = USA_to_BEL_4 }
+										AND = { country = GER flag = GER_to_FLA_4 }
+										AND = { country = HOL flag = HOL_to_FLA_4 }
+										AND = { country = ENG flag = ENG_to_FLA_4 }
+								} }
+								type = manpowerpool value = -2 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_5 }
+										AND = { country = FRA flag = FRA_to_BEL_5 }
+										AND = { country = USA flag = USA_to_BEL_5 }
+										AND = { country = GER flag = GER_to_FLA_5 }
+										AND = { country = HOL flag = HOL_to_FLA_5 }
+										AND = { country = ENG flag = ENG_to_FLA_5 }
+								} }
+								type = manpowerpool value = -2 }
+								
+
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_1 }
+										AND = { country = FRA flag = FRA_to_BEL_1 }
+										AND = { country = USA flag = USA_to_BEL_1 }
+										AND = { country = GER flag = GER_to_FLA_1 }
+										AND = { country = HOL flag = HOL_to_FLA_1 }
+										AND = { country = ENG flag = ENG_to_FLA_1 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_2 }
+										AND = { country = FRA flag = FRA_to_BEL_2 }
+										AND = { country = USA flag = USA_to_BEL_2 }
+										AND = { country = GER flag = GER_to_FLA_2 }
+										AND = { country = HOL flag = HOL_to_FLA_2 }
+										AND = { country = ENG flag = ENG_to_FLA_2 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_3 }
+										AND = { country = FRA flag = FRA_to_BEL_3 }
+										AND = { country = USA flag = USA_to_BEL_3 }
+										AND = { country = GER flag = GER_to_FLA_3 }
+										AND = { country = HOL flag = HOL_to_FLA_3 }
+										AND = { country = ENG flag = ENG_to_FLA_3 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_4 }
+										AND = { country = FRA flag = FRA_to_BEL_4 }
+										AND = { country = USA flag = USA_to_BEL_4 }
+										AND = { country = GER flag = GER_to_FLA_4 }
+										AND = { country = HOL flag = HOL_to_FLA_4 }
+										AND = { country = ENG flag = ENG_to_FLA_4 }
+								} }
+								type = money value = -5 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_5 }
+										AND = { country = FRA flag = FRA_to_BEL_5 }
+										AND = { country = USA flag = USA_to_BEL_5 }
+										AND = { country = GER flag = GER_to_FLA_5 }
+										AND = { country = HOL flag = HOL_to_FLA_5 }
+										AND = { country = ENG flag = ENG_to_FLA_5 }
+								} }
+								type = money value = -5 }
+
+		command = { trigger = { OR = {	war = { country = SOV }
+										war = { country = FRA }
+										war = { country = USA }
+										war = { country = GER }
+										war = { country = JAP }
+										war = { country = ENG }
+								} }
+								type = dissent value = 1.0 }
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_1 }
+										AND = { country = FRA flag = FRA_to_BEL_1 }
+										AND = { country = USA flag = USA_to_BEL_1 }
+										AND = { country = GER flag = GER_to_FLA_1 }
+										AND = { country = HOL flag = HOL_to_FLA_1 }
+										AND = { country = ENG flag = ENG_to_FLA_1 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_2 }
+										AND = { country = FRA flag = FRA_to_BEL_2 }
+										AND = { country = USA flag = USA_to_BEL_2 }
+										AND = { country = GER flag = GER_to_FLA_2 }
+										AND = { country = HOL flag = HOL_to_FLA_2 }
+										AND = { country = ENG flag = ENG_to_FLA_2 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_3 }
+										AND = { country = FRA flag = FRA_to_BEL_3 }
+										AND = { country = USA flag = USA_to_BEL_3 }
+										AND = { country = GER flag = GER_to_FLA_3 }
+										AND = { country = HOL flag = HOL_to_FLA_3 }
+										AND = { country = ENG flag = ENG_to_FLA_3 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_4 }
+										AND = { country = FRA flag = FRA_to_BEL_4 }
+										AND = { country = USA flag = USA_to_BEL_4 }
+										AND = { country = GER flag = GER_to_FLA_4 }
+										AND = { country = HOL flag = HOL_to_FLA_4 }
+										AND = { country = ENG flag = ENG_to_FLA_4 }
+								} }
+								type = dissent value = 0.1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_5 }
+										AND = { country = FRA flag = FRA_to_BEL_5 }
+										AND = { country = USA flag = USA_to_BEL_5 }
+										AND = { country = GER flag = GER_to_FLA_5 }
+										AND = { country = HOL flag = HOL_to_FLA_5 }
+										AND = { country = ENG flag = ENG_to_FLA_5 }
+								} }
+								type = dissent value = 0.1 }
+								
+								
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_1 }
+										AND = { country = FRA flag = FRA_to_BEL_1 }
+										AND = { country = USA flag = USA_to_BEL_1 }
+										AND = { country = GER flag = GER_to_FLA_1 }
+										AND = { country = HOL flag = HOL_to_FLA_1 }
+										AND = { country = ENG flag = ENG_to_FLA_1 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_2 }
+										AND = { country = FRA flag = FRA_to_BEL_2 }
+										AND = { country = USA flag = USA_to_BEL_2 }
+										AND = { country = GER flag = GER_to_FLA_2 }
+										AND = { country = HOL flag = HOL_to_FLA_2 }
+										AND = { country = ENG flag = ENG_to_FLA_2 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_3 }
+										AND = { country = FRA flag = FRA_to_BEL_3 }
+										AND = { country = USA flag = USA_to_BEL_3 }
+										AND = { country = GER flag = GER_to_FLA_3 }
+										AND = { country = HOL flag = HOL_to_FLA_3 }
+										AND = { country = ENG flag = ENG_to_FLA_3 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_4 }
+										AND = { country = FRA flag = FRA_to_BEL_4 }
+										AND = { country = USA flag = USA_to_BEL_4 }
+										AND = { country = GER flag = GER_to_FLA_4 }
+										AND = { country = HOL flag = HOL_to_FLA_4 }
+										AND = { country = ENG flag = ENG_to_FLA_4 }
+								} }
+								type = gain_tech which = -1 }
+		command = { trigger = { OR = {	AND = { country = SOV flag = SOV_to_BEL_5 }
+										AND = { country = FRA flag = FRA_to_BEL_5 }
+										AND = { country = USA flag = USA_to_BEL_5 }
+										AND = { country = GER flag = GER_to_FLA_5 }
+										AND = { country = HOL flag = HOL_to_FLA_5 }
+										AND = { country = ENG flag = ENG_to_FLA_5 }
+								} }
+								type = gain_tech which = -1 }
+
+
+		command = { type = event which = 3115250 where = -1 when = 180 }
+	}
+}

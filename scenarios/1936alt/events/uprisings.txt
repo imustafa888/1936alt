@@ -1,0 +1,2441 @@
+##############################################
+# Irish rebellion
+##############################################
+
+event = { 
+	id = 3131500
+	random = no
+	country = IRE
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_IRE value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_IRE value = 1 } }
+				war = { country = ENG }
+				OR = {
+					control = { province = 30 data = -2 }
+					control = { province = 31 data = -2 }
+					control = { province = 32 data = -2 }
+					control = { province = 33 data = -2 }
+					control = { province = 34 data = -2 }
+					control = { province = 35 data = -2 }
+				}
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_IRE value = 1 }
+				NOT = {
+					AND = {
+						war = { country = ENG }
+						OR = {
+							control = { province = 30 data = -2 }
+							control = { province = 31 data = -2 }
+							control = { province = 32 data = -2 }
+							control = { province = 33 data = -2 }
+							control = { province = 34 data = -2 }
+							control = { province = 35 data = -2 }
+						}
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_IRE value = 1 } }
+				war = { country = ENG }
+				OR = {
+					control = { province = 30 data = -2 }
+					control = { province = 31 data = -2 }
+					control = { province = 32 data = -2 }
+					control = { province = 33 data = -2 }
+					control = { province = 34 data = -2 }
+					control = { province = 35 data = -2 }
+				}
+				year = 1941
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_IRE value = 2 } }
+				war = { country = ENG }
+				OR = {
+					control = { province = 30 data = -2 }
+					control = { province = 31 data = -2 }
+					control = { province = 32 data = -2 }
+					control = { province = 33 data = -2 }
+					control = { province = 34 data = -2 }
+					control = { province = 35 data = -2 }
+				}
+				year = 1944
+			}
+		}
+	} 
+
+	name = "Funding partisans in Ireland"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_IRE value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					war = { country = ENG }
+					OR = {
+						control = { province = 30 data = -2 }
+						control = { province = 31 data = -2 }
+						control = { province = 32 data = -2 }
+						control = { province = 33 data = -2 }
+						control = { province = 34 data = -2 }
+						control = { province = 35 data = -2 }
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_IRE when = 1 value = 1 }
+		command = { type = free_supplies value = -4 }
+		command = { type = free_manpower value = -0.01 }
+		command = { type = trigger which = 3131501 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_IRE value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							war = { country = ENG }
+							OR = {
+								control = { province = 30 data = -2 }
+								control = { province = 31 data = -2 }
+								control = { province = 32 data = -2 }
+								control = { province = 33 data = -2 }
+								control = { province = 34 data = -2 }
+								control = { province = 35 data = -2 }
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_IRE when = 1 value = -1 }
+		command = { type = free_supplies value = 4 }
+		command = { type = free_manpower value = 0.01 }
+		command = { type = trigger which = 3131502 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131501
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Ireland increases support for partisans"
+	desc = "Our intelligence has received credible reports that Ireland increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in Ireland more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131502
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Ireland decreases support for partisans"
+	desc = "Our intelligence has received credible reports that Ireland decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in Ireland less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131503
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_IRE value = 1 }
+		NOT = { exists = IRE }
+	} 
+
+	name = "Irish support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the Irish state, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_IRE }
+	} 
+}
+
+event = { 
+	id = 3131505
+	random = no
+	country = ENG
+	persistent = yes
+
+	trigger = {
+		OR = {
+			control = { province = 30 data = -3 }
+			control = { province = 31 data = -3 }
+			control = { province = 32 data = -3 }
+			control = { province = 33 data = -3 }
+			control = { province = 34 data = -3 }
+			control = { province = 35 data = -3 }
+		}
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#1% per 10 days = 1% per month, 36% per year
+			random = 1
+			
+			AND = {
+				war = { country = ENG country = USA }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_IRE value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_IRE value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				OR = {
+					control = { province = 30 data = REB }
+					control = { province = 31 data = REB }
+					control = { province = 32 data = REB }
+					control = { province = 33 data = REB }
+					control = { province = 34 data = REB }
+					control = { province = 35 data = REB }
+				}
+				#6% per 10 days = 18% per month, 216% per year
+				random = 6
+			}
+		}
+	} 
+
+	name = "Irish uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the Irish resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	#Ruling out times until Ireland breaks puppet status, because otherwise Ireland will be eligible for revolts per -3.
+	date = { day = 1 month = june year = 1937 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		
+		command = { trigger = { control = { province = 30 data = -3 } } type = construct which = infrastructure where = 30 value = -1 }
+		command = { trigger = { control = { province = 30 data = -3 } } type = revolt which = 30 when = 1 }
+		command = { trigger = { control = { province = 30 data = -3 } war = { country = ENG country = USA } } type = revolt which = 30 when = 1 }
+		command = { trigger = { control = { province = 30 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 30 when = 1 }
+		command = { trigger = { control = { province = 30 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 30 when = 1 }
+		
+		command = { trigger = { control = { province = 31 data = -3 } } type = construct which = infrastructure where = 31 value = -1 }
+		command = { trigger = { control = { province = 31 data = -3 } } type = revolt which = 31 when = 1 }
+		command = { trigger = { control = { province = 31 data = -3 } } type = revolt which = 31 when = 1 } #5 VP
+		command = { trigger = { control = { province = 31 data = -3 } war = { country = ENG country = USA } } type = revolt which = 31 when = 1 }
+		command = { trigger = { control = { province = 31 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 31 when = 1 }
+		command = { trigger = { control = { province = 31 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 31 when = 1 }
+		
+		command = { trigger = { control = { province = 32 data = -3 } } type = construct which = infrastructure where = 32 value = -1 }
+		command = { trigger = { control = { province = 32 data = -3 } } type = revolt which = 32 when = 1 }
+		command = { trigger = { control = { province = 32 data = -3 } war = { country = ENG country = USA } } type = revolt which = 32 when = 1 }
+		command = { trigger = { control = { province = 32 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 32 when = 1 }
+		command = { trigger = { control = { province = 32 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 32 when = 1 }
+		
+		command = { trigger = { control = { province = 33 data = -3 } } type = construct which = infrastructure where = 33 value = -1 }
+		command = { trigger = { control = { province = 33 data = -3 } } type = revolt which = 33 when = 1 }
+		command = { trigger = { control = { province = 33 data = -3 } war = { country = ENG country = USA } } type = revolt which = 33 when = 1 }
+		command = { trigger = { control = { province = 33 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 33 when = 1 }
+		command = { trigger = { control = { province = 33 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 33 when = 1 }
+		
+		command = { trigger = { control = { province = 34 data = -3 } } type = construct which = infrastructure where = 34 value = -1 }
+		command = { trigger = { control = { province = 34 data = -3 } } type = revolt which = 34 when = 1 }
+		command = { trigger = { control = { province = 34 data = -3 } } type = revolt which = 34 when = 1 } #5 VP
+		command = { trigger = { control = { province = 34 data = -3 } war = { country = ENG country = USA } } type = revolt which = 34 when = 1 }
+		command = { trigger = { control = { province = 34 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 34 when = 1 }
+		command = { trigger = { control = { province = 34 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 34 when = 1 }
+		
+		command = { trigger = { control = { province = 35 data = -3 } } type = construct which = infrastructure where = 35 value = -1 }
+		command = { trigger = { control = { province = 35 data = -3 } } type = revolt which = 35 when = 1 }
+		command = { trigger = { control = { province = 35 data = -3 } war = { country = ENG country = USA } } type = revolt which = 35 when = 1 }
+		command = { trigger = { control = { province = 35 data = -3 } flag = { which = Resistance_IRE value = 1 } } type = revolt which = 35 when = 1 }
+		command = { trigger = { control = { province = 35 data = -3 } flag = { which = Resistance_IRE value = 2 } } type = revolt which = 35 when = 1 }
+	} 
+}
+
+
+
+
+
+##############################################
+# Ulster rebellion
+##############################################
+
+event = { 
+	id = 3131510
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_ENG value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_ENG value = 1 } }
+				war = { country = IRE }
+				control = { province = 36 data = -2 }
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_ENG value = 1 }
+				NOT = {
+					AND = {
+						war = { country = IRE }
+						control = { province = 36 data = -2 }
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_ENG value = 2 } }
+				war = { country = IRE }
+				control = { province = 36 data = -2 }
+			}
+		}
+	} 
+
+	name = "Funding partisans in Ulster"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_ENG value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					war = { country = IRE }
+					control = { province = 36 data = -2 }
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_ENG when = 1 value = 1 }
+		command = { type = free_supplies value = -4 }
+		command = { type = free_manpower value = -0.01 }
+		command = { type = trigger which = 3131511 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_ENG value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							war = { country = IRE }
+							control = { province = 36 data = -2 }
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_ENG when = 1 value = -1 }
+		command = { type = free_supplies value = 4 }
+		command = { type = free_manpower value = 0.01 }
+		command = { type = trigger which = 3131512 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131511
+	random = no
+	country = IRE
+	persistent = yes
+
+	name = "Britain increases support for partisans"
+	desc = "Our intelligence has received credible reports that Britain increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in Ulster more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131512
+	random = no
+	country = IRE
+	persistent = yes
+
+	name = "Britain decreases support for partisans"
+	desc = "Our intelligence has received credible reports that Britain decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in Ulster less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131513
+	random = no
+	country = IRE
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_ENG value = 1 }
+		NOT = { exists = ENG }
+	} 
+
+	name = "British support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the British state, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_ENG }
+	} 
+}
+
+event = { 
+	id = 3131515
+	random = no
+	country = IRE
+	persistent = yes
+
+	trigger = {
+		control = { province = 36 data = -3 }
+		NOT = { puppet = { country = IRE country = ENG } }
+		NOT = { alliance = { country = IRE country = ENG } }
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#1% per 10 days = 1% per month, 36% per year
+			random = 1
+			
+			AND = {
+				war = { country = IRE country = ENG }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_ENG value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_ENG value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				control = { province = 36 data = -3 }
+				#6% per 10 days = 18% per month, 216% per year
+				random = 6
+			}
+		}
+	} 
+
+	name = "British uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the British resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		
+		#Maximum 10 divs
+		command = { trigger = { control = { province = 36 data = -3 } } type = construct which = infrastructure where = 36 value = -1 }
+		command = { trigger = { control = { province = 36 data = -3 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } war = { country = IRE country = ENG } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } war = { country = IRE country = ENG } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 1 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 1 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 1 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 2 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 2 } } type = revolt which = 36 when = 1 }
+		command = { trigger = { control = { province = 36 data = -3 } flag = { which = Resistance_ENG value = 2 } } type = revolt which = 36 when = 1 }
+	} 
+}
+
+
+
+
+
+
+##############################################
+# Canadian rebellion
+##############################################
+
+event = { 
+	id = 3131520
+	random = no
+	country = USA
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_CAN value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_CAN value = 1 } }
+				war = { country = CAN country = ENG }
+				OR = {
+					control = { province = 2108 data = -2 }
+					control = { province = 2113 data = -2 }
+					control = { province = 2114 data = -2 }
+					control = { province = 2117 data = -2 }
+					control = { province = 2118 data = -2 }
+					control = { province = 2119 data = -2 }
+					control = { province = 2120 data = -2 }
+					control = { province = 2121 data = -2 }
+					control = { province = 2124 data = -2 }
+					control = { province = 2125 data = -2 }
+					control = { province = 2126 data = -2 }
+					control = { province = 2127 data = -2 }
+					control = { province = 2128 data = -2 }
+					control = { province = 2130 data = -2 }
+					control = { province = 2131 data = -2 }
+				
+					control = { province = 2108 data = ENG }
+					control = { province = 2113 data = ENG }
+					control = { province = 2114 data = ENG }
+					control = { province = 2117 data = ENG }
+					control = { province = 2118 data = ENG }
+					control = { province = 2119 data = ENG }
+					control = { province = 2120 data = ENG }
+					control = { province = 2121 data = ENG }
+					control = { province = 2124 data = ENG }
+					control = { province = 2125 data = ENG }
+					control = { province = 2126 data = ENG }
+					control = { province = 2127 data = ENG }
+					control = { province = 2128 data = ENG }
+					control = { province = 2130 data = ENG }
+					control = { province = 2131 data = ENG }
+				}
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_CAN value = 1 }
+				NOT = {
+					AND = {
+						war = { country = CAN country = ENG }
+						OR = {
+							control = { province = 2108 data = -2 }
+							control = { province = 2113 data = -2 }
+							control = { province = 2114 data = -2 }
+							control = { province = 2117 data = -2 }
+							control = { province = 2118 data = -2 }
+							control = { province = 2119 data = -2 }
+							control = { province = 2120 data = -2 }
+							control = { province = 2121 data = -2 }
+							control = { province = 2124 data = -2 }
+							control = { province = 2125 data = -2 }
+							control = { province = 2126 data = -2 }
+							control = { province = 2127 data = -2 }
+							control = { province = 2128 data = -2 }
+							control = { province = 2130 data = -2 }
+							control = { province = 2131 data = -2 }
+							
+							control = { province = 2108 data = ENG }
+							control = { province = 2113 data = ENG }
+							control = { province = 2114 data = ENG }
+							control = { province = 2117 data = ENG }
+							control = { province = 2118 data = ENG }
+							control = { province = 2119 data = ENG }
+							control = { province = 2120 data = ENG }
+							control = { province = 2121 data = ENG }
+							control = { province = 2124 data = ENG }
+							control = { province = 2125 data = ENG }
+							control = { province = 2126 data = ENG }
+							control = { province = 2127 data = ENG }
+							control = { province = 2128 data = ENG }
+							control = { province = 2130 data = ENG }
+							control = { province = 2131 data = ENG }
+						}
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_CAN value = 2 } }
+				war = { country = CAN country = ENG }
+				OR = {
+					control = { province = 2108 data = -2 }
+					control = { province = 2113 data = -2 }
+					control = { province = 2114 data = -2 }
+					control = { province = 2117 data = -2 }
+					control = { province = 2118 data = -2 }
+					control = { province = 2119 data = -2 }
+					control = { province = 2120 data = -2 }
+					control = { province = 2121 data = -2 }
+					control = { province = 2124 data = -2 }
+					control = { province = 2125 data = -2 }
+					control = { province = 2126 data = -2 }
+					control = { province = 2127 data = -2 }
+					control = { province = 2128 data = -2 }
+					control = { province = 2130 data = -2 }
+					control = { province = 2131 data = -2 }
+
+				
+					control = { province = 2108 data = ENG }
+					control = { province = 2113 data = ENG }
+					control = { province = 2114 data = ENG }
+					control = { province = 2117 data = ENG }
+					control = { province = 2118 data = ENG }
+					control = { province = 2119 data = ENG }
+					control = { province = 2120 data = ENG }
+					control = { province = 2121 data = ENG }
+					control = { province = 2124 data = ENG }
+					control = { province = 2125 data = ENG }
+					control = { province = 2126 data = ENG }
+					control = { province = 2127 data = ENG }
+					control = { province = 2128 data = ENG }
+					control = { province = 2130 data = ENG }
+					control = { province = 2131 data = ENG }
+				}
+			}
+		}
+	} 
+
+	name = "Funding partisans in Canada"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_CAN value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					war = { country = CAN country = ENG }
+					OR = {
+						control = { province = 2108 data = -2 }
+						control = { province = 2113 data = -2 }
+						control = { province = 2114 data = -2 }
+						control = { province = 2117 data = -2 }
+						control = { province = 2118 data = -2 }
+						control = { province = 2119 data = -2 }
+						control = { province = 2120 data = -2 }
+						control = { province = 2121 data = -2 }
+						control = { province = 2124 data = -2 }
+						control = { province = 2125 data = -2 }
+						control = { province = 2126 data = -2 }
+						control = { province = 2127 data = -2 }
+						control = { province = 2128 data = -2 }
+						control = { province = 2130 data = -2 }
+						control = { province = 2131 data = -2 }
+					
+						control = { province = 2108 data = ENG }
+						control = { province = 2113 data = ENG }
+						control = { province = 2114 data = ENG }
+						control = { province = 2117 data = ENG }
+						control = { province = 2118 data = ENG }
+						control = { province = 2119 data = ENG }
+						control = { province = 2120 data = ENG }
+						control = { province = 2121 data = ENG }
+						control = { province = 2124 data = ENG }
+						control = { province = 2125 data = ENG }
+						control = { province = 2126 data = ENG }
+						control = { province = 2127 data = ENG }
+						control = { province = 2128 data = ENG }
+						control = { province = 2130 data = ENG }
+						control = { province = 2131 data = ENG }
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_CAN when = 1 value = 1 }
+		command = { type = free_supplies value = -12 }
+		command = { type = free_manpower value = -0.03 }
+		command = { type = trigger which = 3131521 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_CAN value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							war = { country = CAN country = ENG }
+							OR = {
+								control = { province = 2108 data = -2 }
+								control = { province = 2113 data = -2 }
+								control = { province = 2114 data = -2 }
+								control = { province = 2117 data = -2 }
+								control = { province = 2118 data = -2 }
+								control = { province = 2119 data = -2 }
+								control = { province = 2120 data = -2 }
+								control = { province = 2121 data = -2 }
+								control = { province = 2124 data = -2 }
+								control = { province = 2125 data = -2 }
+								control = { province = 2126 data = -2 }
+								control = { province = 2127 data = -2 }
+								control = { province = 2128 data = -2 }
+								control = { province = 2130 data = -2 }
+								control = { province = 2131 data = -2 }
+							
+								control = { province = 2108 data = ENG }
+								control = { province = 2113 data = ENG }
+								control = { province = 2114 data = ENG }
+								control = { province = 2117 data = ENG }
+								control = { province = 2118 data = ENG }
+								control = { province = 2119 data = ENG }
+								control = { province = 2120 data = ENG }
+								control = { province = 2121 data = ENG }
+								control = { province = 2124 data = ENG }
+								control = { province = 2125 data = ENG }
+								control = { province = 2126 data = ENG }
+								control = { province = 2127 data = ENG }
+								control = { province = 2128 data = ENG }
+								control = { province = 2130 data = ENG }
+								control = { province = 2131 data = ENG }
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_CAN when = 1 value = -1 }
+		command = { type = free_supplies value = 12 }
+		command = { type = free_manpower value = 0.03 }
+		command = { type = trigger which = 3131522 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131521
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "United States increases support for partisans"
+	desc = "Our intelligence has received credible reports that United States increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in Canada more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131522
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "United States decreases support for partisans"
+	desc = "Our intelligence has received credible reports that United States decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in Canada less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131523
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_CAN value = 1 }
+		NOT = { exists = USA }
+	} 
+
+	name = "American support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the United States, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_CAN }
+	} 
+}
+
+event = { 
+	id = 3131524
+	random = no
+	country = USA
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_CAN value = 1 }
+		NOT = { 
+			control = { province = 1784 data = -3 }
+			control = { province = 1786 data = -3 }
+			control = { province = 1787 data = -3 }
+			control = { province = 1790 data = -3 }
+			control = { province = 1794 data = -3 }
+		}
+	} 
+
+	name = "Support for partisans strained"
+	desc = "With the British invasion of New England well underway, our ability to provide support to partisans in Canada becomes severely strained."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Curses!"
+		command = { trigger = { flag = { which = Resistance_CAN value = 2 } } type = free_supplies value = 12 }
+		command = { trigger = { flag = { which = Resistance_CAN value = 2 } } type = free_money value = 0.6 }
+		command = { trigger = { flag = { which = Resistance_CAN value = 2 } } type = free_manpower value = 0.03 }
+		command = { trigger = { flag = { which = Resistance_CAN value = 2 } } type = setflag which = Resistance_CAN when = 1 value = -1 }
+		
+		command = { type = free_supplies value = 12 }
+		command = { type = free_manpower value = 0.03 }
+		command = { type = setflag which = Resistance_CAN when = 1 value = -1 }
+		
+		command = { type = trigger which = 3131522 } #Let the enemy know
+	} 
+}
+
+event = { 
+	id = 3131525
+	random = no
+	country = ENG
+	persistent = yes
+
+	trigger = {
+		OR = {
+			control = { province = 2108 data = -3 }
+			control = { province = 2113 data = -3 }
+			control = { province = 2114 data = -3 }
+			control = { province = 2117 data = -3 }
+			control = { province = 2118 data = -3 }
+			control = { province = 2119 data = -3 }
+			control = { province = 2120 data = -3 }
+			control = { province = 2121 data = -3 }
+			control = { province = 2124 data = -3 }
+			control = { province = 2125 data = -3 }
+			control = { province = 2126 data = -3 }
+			control = { province = 2127 data = -3 }
+			control = { province = 2128 data = -3 }
+			control = { province = 2130 data = -3 }
+			control = { province = 2131 data = -3 }
+		}
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#2% per 10 days = 6% per month, 72% per year
+			random = 2
+		
+			AND = {
+				war = { country = USA country = ENG }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_CAN value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_CAN value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				OR = {
+					control = { province = 2108 data = REB }
+					control = { province = 2113 data = REB }
+					control = { province = 2114 data = REB }
+					control = { province = 2117 data = REB }
+					control = { province = 2118 data = REB }
+					control = { province = 2119 data = REB }
+					control = { province = 2120 data = REB }
+					control = { province = 2121 data = REB }
+					control = { province = 2124 data = REB }
+					control = { province = 2125 data = REB }
+					control = { province = 2126 data = REB }
+					control = { province = 2127 data = REB }
+					control = { province = 2128 data = REB }
+					control = { province = 2130 data = REB }
+					control = { province = 2131 data = REB }
+				}
+				#6% per 10 days = 18% per month, 216% per year
+				random = 6
+			}
+		}
+	} 
+
+	name = "Canadian uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the Canadian resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		
+		command = { trigger = { control = { province = 2108 data = -3 } } type = construct which = infrastructure where = 2108 value = -1 } 
+		command = { trigger = { control = { province = 2108 data = -3 } } type = revolt which = 2108 when = 1 } 
+		command = { trigger = { control = { province = 2108 data = -3 } } type = revolt which = 2108 when = 1 } 
+		command = { trigger = { control = { province = 2108 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2108 when = 1 } 
+		command = { trigger = { control = { province = 2108 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2108 when = 1 }
+
+		command = { trigger = { control = { province = 2113 data = -3 } } type = construct which = infrastructure where = 2113 value = -1 } 
+		command = { trigger = { control = { province = 2113 data = -3 } } type = revolt which = 2113 when = 1 } 
+		command = { trigger = { control = { province = 2113 data = -3 } } type = revolt which = 2113 when = 1 } 
+		command = { trigger = { control = { province = 2113 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2113 when = 1 } 
+		command = { trigger = { control = { province = 2113 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2113 when = 1 }
+
+		command = { trigger = { control = { province = 2114 data = -3 } } type = construct which = infrastructure where = 2114 value = -1 } 
+		command = { trigger = { control = { province = 2114 data = -3 } } type = revolt which = 2114 when = 1 } 
+		command = { trigger = { control = { province = 2114 data = -3 } } type = revolt which = 2114 when = 1 } 
+		command = { trigger = { control = { province = 2114 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2114 when = 1 } 
+		command = { trigger = { control = { province = 2114 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2114 when = 1 }
+
+		command = { trigger = { control = { province = 2117 data = -3 } } type = construct which = infrastructure where = 2117 value = -1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } } type = revolt which = 2117 when = 1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } } type = revolt which = 2117 when = 1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } } type = revolt which = 2117 when = 1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2117 when = 1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2117 when = 1 } 
+		command = { trigger = { control = { province = 2117 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2117 when = 1 }
+		command = { trigger = { control = { province = 2117 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2117 when = 1 }
+
+		command = { trigger = { control = { province = 2118 data = -3 } } type = construct which = infrastructure where = 2118 value = -1 } 
+		command = { trigger = { control = { province = 2118 data = -3 } } type = revolt which = 2118 when = 1 } 
+		command = { trigger = { control = { province = 2118 data = -3 } } type = revolt which = 2118 when = 1 } 
+		command = { trigger = { control = { province = 2118 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2118 when = 1 } 
+		command = { trigger = { control = { province = 2118 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2118 when = 1 }
+
+		command = { trigger = { control = { province = 2119 data = -3 } } type = construct which = infrastructure where = 2119 value = -1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } } type = revolt which = 2119 when = 1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } } type = revolt which = 2119 when = 1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } } type = revolt which = 2119 when = 1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2119 when = 1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2119 when = 1 } 
+		command = { trigger = { control = { province = 2119 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2119 when = 1 }
+		command = { trigger = { control = { province = 2119 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2119 when = 1 }
+
+		command = { trigger = { control = { province = 2120 data = -3 } } type = construct which = infrastructure where = 2120 value = -1 } 
+		command = { trigger = { control = { province = 2120 data = -3 } } type = revolt which = 2120 when = 1 } 
+		command = { trigger = { control = { province = 2120 data = -3 } } type = revolt which = 2120 when = 1 } 
+		command = { trigger = { control = { province = 2120 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2120 when = 1 } 
+		command = { trigger = { control = { province = 2120 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2120 when = 1 }
+
+		command = { trigger = { control = { province = 2121 data = -3 } } type = construct which = infrastructure where = 2121 value = -1 } 
+		command = { trigger = { control = { province = 2121 data = -3 } } type = revolt which = 2121 when = 1 } 
+		command = { trigger = { control = { province = 2121 data = -3 } } type = revolt which = 2121 when = 1 } 
+		command = { trigger = { control = { province = 2121 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2121 when = 1 } 
+		command = { trigger = { control = { province = 2121 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2121 when = 1 }
+
+		command = { trigger = { control = { province = 2124 data = -3 } } type = construct which = infrastructure where = 2124 value = -1 } 
+		command = { trigger = { control = { province = 2124 data = -3 } } type = revolt which = 2124 when = 1 } 
+		command = { trigger = { control = { province = 2124 data = -3 } } type = revolt which = 2124 when = 1 } 
+		command = { trigger = { control = { province = 2124 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2124 when = 1 } 
+		command = { trigger = { control = { province = 2124 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2124 when = 1 }
+
+		command = { trigger = { control = { province = 2125 data = -3 } } type = construct which = infrastructure where = 2125 value = -1 } 
+		command = { trigger = { control = { province = 2125 data = -3 } } type = revolt which = 2125 when = 1 } 
+		command = { trigger = { control = { province = 2125 data = -3 } } type = revolt which = 2125 when = 1 } 
+		command = { trigger = { control = { province = 2125 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2125 when = 1 } 
+		command = { trigger = { control = { province = 2125 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2125 when = 1 }
+
+		command = { trigger = { control = { province = 2126 data = -3 } } type = construct which = infrastructure where = 2126 value = -1 } 
+		command = { trigger = { control = { province = 2126 data = -3 } } type = revolt which = 2126 when = 1 } 
+		command = { trigger = { control = { province = 2126 data = -3 } } type = revolt which = 2126 when = 1 } 
+		command = { trigger = { control = { province = 2126 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2126 when = 1 } 
+		command = { trigger = { control = { province = 2126 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2126 when = 1 }
+
+		command = { trigger = { control = { province = 2127 data = -3 } } type = construct which = infrastructure where = 2127 value = -1 } 
+		command = { trigger = { control = { province = 2127 data = -3 } } type = revolt which = 2127 when = 1 } 
+		command = { trigger = { control = { province = 2127 data = -3 } } type = revolt which = 2127 when = 1 } 
+		command = { trigger = { control = { province = 2127 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2127 when = 1 } 
+		command = { trigger = { control = { province = 2127 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2127 when = 1 }
+
+		command = { trigger = { control = { province = 2128 data = -3 } } type = construct which = infrastructure where = 2128 value = -1 } 
+		command = { trigger = { control = { province = 2128 data = -3 } } type = revolt which = 2128 when = 1 } 
+		command = { trigger = { control = { province = 2128 data = -3 } } type = revolt which = 2128 when = 1 } 
+		command = { trigger = { control = { province = 2128 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2128 when = 1 } 
+		command = { trigger = { control = { province = 2128 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2128 when = 1 }
+
+		command = { trigger = { control = { province = 2130 data = -3 } } type = construct which = infrastructure where = 2130 value = -1 } 
+		command = { trigger = { control = { province = 2130 data = -3 } } type = revolt which = 2130 when = 1 } 
+		command = { trigger = { control = { province = 2130 data = -3 } } type = revolt which = 2130 when = 1 } 
+		command = { trigger = { control = { province = 2130 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2130 when = 1 } 
+		command = { trigger = { control = { province = 2130 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2130 when = 1 }
+
+		command = { trigger = { control = { province = 2131 data = -3 } } type = construct which = infrastructure where = 2131 value = -1 } 
+		command = { trigger = { control = { province = 2131 data = -3 } } type = revolt which = 2131 when = 1 } 
+		command = { trigger = { control = { province = 2131 data = -3 } } type = revolt which = 2131 when = 1 } 
+		command = { trigger = { control = { province = 2131 data = -3 } flag = { which = Resistance_CAN value = 1 } } type = revolt which = 2131 when = 1 } 
+		command = { trigger = { control = { province = 2131 data = -3 } flag = { which = Resistance_CAN value = 2 } } type = revolt which = 2131 when = 1 }
+	} 
+}
+
+
+
+##############################################
+# Arab rebellion
+##############################################
+
+event = { 
+	id = 3131530
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_PAL value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_PAL value = 1 } }
+				OR = {
+					war = { country = ENG }
+					war = { country = PAL country = ENG }
+					war = { country = EGY country = ENG }
+					war = { country = ARA country = ENG }
+				}
+				OR = {
+					control = { province = 1010 data = -2 }
+					control = { province = 1013 data = -2 }
+					control = { province = 1172 data = -2 }
+					control = { province = 1009 data = -2 }
+					control = { province = 1022 data = -2 }
+					control = { province = 1023 data = -2 }
+					control = { province = 1024 data = -2 }
+					control = { province = 1025 data = -2 }
+					control = { province = 1026 data = -2 }
+					
+					control = { province = 1010 data = ENG }
+					control = { province = 1013 data = ENG }
+					control = { province = 1172 data = ENG }
+					control = { province = 1009 data = ENG }
+					control = { province = 1022 data = ENG }
+					control = { province = 1023 data = ENG }
+					control = { province = 1024 data = ENG }
+					control = { province = 1025 data = ENG }
+					control = { province = 1026 data = ENG }
+				}
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_PAL value = 1 }
+				NOT = {
+					AND = {
+						OR = {
+							war = { country = ENG }
+							war = { country = PAL country = ENG }
+							war = { country = EGY country = ENG }
+							war = { country = ARA country = ENG }
+						}
+						OR = {
+							control = { province = 1010 data = -2 }
+							control = { province = 1013 data = -2 }
+							control = { province = 1172 data = -2 }
+							control = { province = 1009 data = -2 }
+							control = { province = 1022 data = -2 }
+							control = { province = 1023 data = -2 }
+							control = { province = 1024 data = -2 }
+							control = { province = 1025 data = -2 }
+							control = { province = 1026 data = -2 }
+							
+							control = { province = 1010 data = ENG }
+							control = { province = 1013 data = ENG }
+							control = { province = 1172 data = ENG }
+							control = { province = 1009 data = ENG }
+							control = { province = 1022 data = ENG }
+							control = { province = 1023 data = ENG }
+							control = { province = 1024 data = ENG }
+							control = { province = 1025 data = ENG }
+							control = { province = 1026 data = ENG }
+						}
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_PAL value = 2 } }
+				OR = {
+					war = { country = ENG }
+					war = { country = PAL country = ENG }
+					war = { country = EGY country = ENG }
+					war = { country = ARA country = ENG }
+				}
+				OR = {
+					control = { province = 1010 data = -2 }
+					control = { province = 1013 data = -2 }
+					control = { province = 1172 data = -2 }
+					control = { province = 1009 data = -2 }
+					control = { province = 1022 data = -2 }
+					control = { province = 1023 data = -2 }
+					control = { province = 1024 data = -2 }
+					control = { province = 1025 data = -2 }
+					control = { province = 1026 data = -2 }
+					
+					control = { province = 1010 data = ENG }
+					control = { province = 1013 data = ENG }
+					control = { province = 1172 data = ENG }
+					control = { province = 1009 data = ENG }
+					control = { province = 1022 data = ENG }
+					control = { province = 1023 data = ENG }
+					control = { province = 1024 data = ENG }
+					control = { province = 1025 data = ENG }
+					control = { province = 1026 data = ENG }
+				}
+			}
+		}
+	} 
+
+	name = "Funding partisans in Palestine"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_PAL value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					OR = {
+						war = { country = ENG }
+						war = { country = PAL country = ENG }
+						war = { country = EGY country = ENG }
+						war = { country = ARA country = ENG }
+					}
+					OR = {
+						control = { province = 1010 data = -2 }
+						control = { province = 1013 data = -2 }
+						control = { province = 1172 data = -2 }
+						control = { province = 1009 data = -2 }
+						control = { province = 1022 data = -2 }
+						control = { province = 1023 data = -2 }
+						control = { province = 1024 data = -2 }
+						control = { province = 1025 data = -2 }
+						control = { province = 1026 data = -2 }
+						
+						control = { province = 1010 data = ENG }
+						control = { province = 1013 data = ENG }
+						control = { province = 1172 data = ENG }
+						control = { province = 1009 data = ENG }
+						control = { province = 1022 data = ENG }
+						control = { province = 1023 data = ENG }
+						control = { province = 1024 data = ENG }
+						control = { province = 1025 data = ENG }
+						control = { province = 1026 data = ENG }
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_PAL when = 1 value = 1 }
+		command = { type = free_supplies value = -4 }
+		command = { type = free_manpower value = -0.015 }
+		command = { type = trigger which = 3131531 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_PAL value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							OR = {
+								war = { country = ENG }
+								war = { country = PAL country = ENG }
+								war = { country = EGY country = ENG }
+								war = { country = ARA country = ENG }
+							}
+							OR = {
+								control = { province = 1010 data = -2 }
+								control = { province = 1013 data = -2 }
+								control = { province = 1172 data = -2 }
+								control = { province = 1009 data = -2 }
+								control = { province = 1022 data = -2 }
+								control = { province = 1023 data = -2 }
+								control = { province = 1024 data = -2 }
+								control = { province = 1025 data = -2 }
+								control = { province = 1026 data = -2 }
+								
+								control = { province = 1010 data = ENG }
+								control = { province = 1013 data = ENG }
+								control = { province = 1172 data = ENG }
+								control = { province = 1009 data = ENG }
+								control = { province = 1022 data = ENG }
+								control = { province = 1023 data = ENG }
+								control = { province = 1024 data = ENG }
+								control = { province = 1025 data = ENG }
+								control = { province = 1026 data = ENG }
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_PAL when = 1 value = -1 }
+		command = { type = free_supplies value = 4 }
+		command = { type = free_manpower value = 0.015 }
+		command = { type = trigger which = 3131532 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131531
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Soviet Union increases support for partisans"
+	desc = "Our intelligence has received credible reports that Soviet Union increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in Palestine more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131532
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Soviet Union decreases support for partisans"
+	desc = "Our intelligence has received credible reports that Soviet Union decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in Palestine less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131533
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_PAL value = 1 }
+		NOT = { exists = SOV }
+	} 
+
+	name = "Soviet support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the Soviet state, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_PAL }
+	} 
+}
+
+event = { 
+	id = 3131535
+	random = no
+	country = ENG
+	persistent = yes
+
+	trigger = {
+		OR = {
+			control = { province = 1010 data = -3 }
+			control = { province = 1013 data = -3 }
+			control = { province = 1172 data = -3 }
+			control = { province = 1009 data = -3 }
+			control = { province = 1022 data = -3 }
+			control = { province = 1023 data = -3 }
+			control = { province = 1024 data = -3 }
+			control = { province = 1025 data = -3 }
+			control = { province = 1026 data = -3 }
+		}
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#1% per 10 days = 1% per month, 36% per year
+			random = 1
+			
+			AND = {
+				war = { country = ENG country = SOV }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_PAL value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_PAL value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				OR = {
+					control = { province = 1010 data = REB }
+					control = { province = 1013 data = REB }
+					control = { province = 1172 data = REB }
+					control = { province = 1009 data = REB }
+					control = { province = 1022 data = REB }
+					control = { province = 1023 data = REB }
+					control = { province = 1024 data = REB }
+					control = { province = 1025 data = REB }
+					control = { province = 1026 data = REB }
+				}
+				#6% per 10 days = 18% per month, 216% per year
+				random = 6
+			}
+		}
+	} 
+
+	name = "Arab uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the Arab resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		
+		command = { trigger = { control = { province = 1010 data = -3 } } type = construct which = infrastructure where = 1010 value = -1 } 
+		command = { trigger = { control = { province = 1010 data = -3 } } type = revolt which = 1010 when = 1 } 
+		command = { trigger = { control = { province = 1010 data = -3 } } type = revolt which = 1010 when = 1 } 
+		command = { trigger = { control = { province = 1010 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1010 when = 1 } 
+		command = { trigger = { control = { province = 1010 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1010 when = 1 }
+		
+		command = { trigger = { control = { province = 1013 data = -3 } } type = construct which = infrastructure where = 1013 value = -1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } } type = revolt which = 1013 when = 1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } } type = revolt which = 1013 when = 1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1013 when = 1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1013 when = 1 }
+
+		command = { trigger = { control = { province = 1172 data = -3 } } type = construct which = infrastructure where = 1172 value = -1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } } type = revolt which = 1172 when = 1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } } type = revolt which = 1172 when = 1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } } type = revolt which = 1172 when = 1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1172 when = 1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1172 when = 1 } 
+		command = { trigger = { control = { province = 1172 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1172 when = 1 }
+		command = { trigger = { control = { province = 1172 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1172 when = 1 }
+
+		command = { trigger = { control = { province = 1009 data = -3 } } type = construct which = infrastructure where = 1009 value = -1 } 
+		command = { trigger = { control = { province = 1009 data = -3 } } type = revolt which = 1009 when = 1 } 
+		command = { trigger = { control = { province = 1009 data = -3 } } type = revolt which = 1009 when = 1 } 
+		command = { trigger = { control = { province = 1009 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1009 when = 1 } 
+		command = { trigger = { control = { province = 1009 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1009 when = 1 }
+
+		command = { trigger = { control = { province = 1022 data = -3 } } type = construct which = infrastructure where = 1022 value = -1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } } type = revolt which = 1022 when = 1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } } type = revolt which = 1022 when = 1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } } type = revolt which = 1022 when = 1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1022 when = 1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1022 when = 1 } 
+		command = { trigger = { control = { province = 1022 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1022 when = 1 }
+		command = { trigger = { control = { province = 1022 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1022 when = 1 }
+
+		command = { trigger = { control = { province = 1023 data = -3 } } type = construct which = infrastructure where = 1023 value = -1 } 
+		command = { trigger = { control = { province = 1023 data = -3 } } type = revolt which = 1023 when = 1 } 
+		command = { trigger = { control = { province = 1023 data = -3 } } type = revolt which = 1023 when = 1 } 
+		command = { trigger = { control = { province = 1023 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1023 when = 1 } 
+		command = { trigger = { control = { province = 1023 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1023 when = 1 }
+
+		command = { trigger = { control = { province = 1024 data = -3 } } type = construct which = infrastructure where = 1024 value = -1 } 
+		command = { trigger = { control = { province = 1024 data = -3 } } type = revolt which = 1024 when = 1 } 
+		command = { trigger = { control = { province = 1024 data = -3 } } type = revolt which = 1024 when = 1 } 
+		command = { trigger = { control = { province = 1024 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1024 when = 1 } 
+		command = { trigger = { control = { province = 1024 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1024 when = 1 }
+
+		command = { trigger = { control = { province = 1025 data = -3 } } type = construct which = infrastructure where = 1025 value = -1 } 
+		command = { trigger = { control = { province = 1025 data = -3 } } type = revolt which = 1025 when = 1 } 
+		command = { trigger = { control = { province = 1025 data = -3 } } type = revolt which = 1025 when = 1 } 
+		command = { trigger = { control = { province = 1025 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1025 when = 1 } 
+		command = { trigger = { control = { province = 1025 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1025 when = 1 }
+
+		command = { trigger = { control = { province = 1026 data = -3 } } type = construct which = infrastructure where = 1026 value = -1 } 
+		command = { trigger = { control = { province = 1026 data = -3 } } type = revolt which = 1026 when = 1 } 
+		command = { trigger = { control = { province = 1026 data = -3 } } type = revolt which = 1026 when = 1 } 
+		command = { trigger = { control = { province = 1026 data = -3 } flag = { which = Resistance_PAL value = 1 } } type = revolt which = 1026 when = 1 } 
+		command = { trigger = { control = { province = 1026 data = -3 } flag = { which = Resistance_PAL value = 2 } } type = revolt which = 1026 when = 1 }
+	} 
+}
+
+##############################################
+# Jewish rebellion
+##############################################
+
+event = { 
+	id = 3131540
+	random = no
+	country = ENG
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_ISR value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_ISR value = 1 } }
+				OR = {
+					war = { country = SOV }
+					war = { country = ARA }
+				}
+				OR = {
+					control = { province = 1008 data = -2 }
+					control = { province = 1011 data = -2 }
+					control = { province = 1013 data = -2 }
+					
+					control = { province = 1008 data = ARA }
+					control = { province = 1011 data = ARA }
+					control = { province = 1013 data = ARA }
+				}
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_ISR value = 1 }
+				NOT = {
+					AND = {
+						OR = {
+							war = { country = SOV }
+							war = { country = ARA }
+						}
+						OR = {
+							control = { province = 1008 data = -2 }
+							control = { province = 1011 data = -2 }
+							control = { province = 1013 data = -2 }
+							
+							control = { province = 1008 data = ARA }
+							control = { province = 1011 data = ARA }
+							control = { province = 1013 data = ARA }
+						}
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_ISR value = 2 } }
+				OR = {
+					war = { country = SOV }
+					war = { country = ARA }
+				}
+				OR = {
+					control = { province = 1008 data = -2 }
+					control = { province = 1011 data = -2 }
+					control = { province = 1013 data = -2 }
+					
+					control = { province = 1008 data = ARA }
+					control = { province = 1011 data = ARA }
+					control = { province = 1013 data = ARA }
+				}
+			}
+		}
+	} 
+
+	name = "Funding partisans in Israel"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_ISR value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					OR = {
+						war = { country = SOV }
+						war = { country = ARA }
+					}
+					OR = {
+						control = { province = 1008 data = -2 }
+						control = { province = 1011 data = -2 }
+						control = { province = 1013 data = -2 }
+						
+						control = { province = 1008 data = ARA }
+						control = { province = 1011 data = ARA }
+						control = { province = 1013 data = ARA }
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_ISR when = 1 value = 1 }
+		command = { type = free_supplies value = -4 }
+		command = { type = free_manpower value = -0.015 }
+		command = { type = trigger which = 3131541 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_ISR value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							OR = {
+								war = { country = SOV }
+								war = { country = ARA }
+							}
+							OR = {
+								control = { province = 1008 data = -2 }
+								control = { province = 1011 data = -2 }
+								control = { province = 1013 data = -2 }
+								
+								control = { province = 1008 data = ARA }
+								control = { province = 1011 data = ARA }
+								control = { province = 1013 data = ARA }
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_ISR when = 1 value = -1 }
+		command = { type = free_supplies value = 4 }
+		command = { type = free_manpower value = 0.015 }
+		command = { type = trigger which = 3131542 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131541
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Britain increases support for partisans"
+	desc = "Our intelligence has received credible reports that the British increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in Israel more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131542
+	random = no
+	country = SOV
+	persistent = yes
+
+	name = "Britain decreases support for partisans"
+	desc = "Our intelligence has received credible reports that the British decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in Israel less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131543
+	random = no
+	country = SOV
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_ISR value = 1 }
+		NOT = { exists = ENG }
+	} 
+
+	name = "British support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the British state, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_ISR }
+	} 
+}
+
+event = { 
+	id = 3131545
+	random = no
+	country = SOV
+	persistent = yes
+
+	trigger = {
+		OR = {
+			control = { province = 1008 data = -3 }
+			control = { province = 1011 data = -3 }
+			control = { province = 1013 data = -3 }
+		}
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#1% per 10 days = 1% per month, 36% per year
+			random = 1
+			
+			AND = {
+				war = { country = SOV country = ENG }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_ISR value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_ISR value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				OR = {
+					control = { province = 1008 data = REB }
+					control = { province = 1011 data = REB }
+					control = { province = 1013 data = REB }
+				}
+				#6% per 10 days = 18% per month, 216% per year
+				random = 6
+			}
+		}
+	} 
+
+	name = "Jewish uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the Jewish resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		
+		command = { trigger = { control = { province = 1008 data = -3 } } type = construct which = infrastructure where = 1008 value = -1 } 
+		command = { trigger = { control = { province = 1008 data = -3 } } type = revolt which = 1008 when = 1 } 
+		command = { trigger = { control = { province = 1008 data = -3 } } type = revolt which = 1008 when = 1 } 
+		command = { trigger = { control = { province = 1008 data = -3 } flag = { which = Resistance_ISR value = 1 } } type = revolt which = 1008 when = 1 } 
+		command = { trigger = { control = { province = 1008 data = -3 } flag = { which = Resistance_ISR value = 1 } } type = revolt which = 1008 when = 1 } 
+		command = { trigger = { control = { province = 1008 data = -3 } flag = { which = Resistance_ISR value = 2 } } type = revolt which = 1008 when = 1 }
+		command = { trigger = { control = { province = 1008 data = -3 } flag = { which = Resistance_ISR value = 2 } } type = revolt which = 1008 when = 1 }
+		
+		command = { trigger = { control = { province = 1011 data = -3 } } type = construct which = infrastructure where = 1011 value = -1 } 
+		command = { trigger = { control = { province = 1011 data = -3 } } type = revolt which = 1011 when = 1 } 
+		command = { trigger = { control = { province = 1011 data = -3 } } type = revolt which = 1011 when = 1 } 
+		command = { trigger = { control = { province = 1011 data = -3 } flag = { which = Resistance_ISR value = 1 } } type = revolt which = 1011 when = 1 } 
+		command = { trigger = { control = { province = 1011 data = -3 } flag = { which = Resistance_ISR value = 1 } } type = revolt which = 1011 when = 1 }
+		command = { trigger = { control = { province = 1011 data = -3 } flag = { which = Resistance_ISR value = 2 } } type = revolt which = 1011 when = 1 }
+		command = { trigger = { control = { province = 1011 data = -3 } flag = { which = Resistance_ISR value = 2 } } type = revolt which = 1011 when = 1 }
+		
+		command = { trigger = { control = { province = 1013 data = -3 } } type = construct which = infrastructure where = 1013 value = -1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } } type = revolt which = 1013 when = 1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } flag = { which = Resistance_ISR value = 1 } } type = revolt which = 1011 when = 1 } 
+		command = { trigger = { control = { province = 1013 data = -3 } flag = { which = Resistance_ISR value = 2 } } type = revolt which = 1011 when = 1 }
+	} 
+}
+
+##############################################
+# Indian rebellion
+##############################################
+
+event = { 
+	id = 3131550
+	random = no
+	country = SOV
+	persistent = yes
+
+	decision = {
+		OR = {
+			flag = { which = Resistance_IND value = 1 }
+			AND = {
+				NOT = { flag = { which = Resistance_IND value = 1 } }
+				war = { country = ENG }
+				OR = {
+					control = { province = 1461 data = -2 }
+					control = { province = 1517 data = -2 }
+					control = { province = 1487 data = -2 }
+					control = { province = 1459 data = -2 }
+					control = { province = 1495 data = -2 }
+					control = { province = 1523 data = -2 }
+				}
+			}
+		}
+	}
+	decision_trigger = {
+	}
+	trigger = {
+		OR = {
+			AND = {
+				flag = { which = Resistance_IND value = 1 }
+				NOT = {
+					AND = {
+						war = { country = ENG }
+						OR = {
+							control = { province = 1461 data = -2 }
+							control = { province = 1517 data = -2 }
+							control = { province = 1487 data = -2 }
+							control = { province = 1459 data = -2 }
+							control = { province = 1495 data = -2 }
+							control = { province = 1523 data = -2 }
+						}
+					}
+				}
+			}
+			AND = { 
+				NOT = { flag = { which = Resistance_IND value = 2 } }
+				war = { country = ENG }
+				OR = {
+					control = { province = 1461 data = -2 }
+					control = { province = 1517 data = -2 }
+					control = { province = 1487 data = -2 }
+					control = { province = 1459 data = -2 }
+					control = { province = 1495 data = -2 }
+					control = { province = 1523 data = -2 }
+				}
+			}
+		}
+	} 
+
+	name = "Funding partisans in India"
+	desc = "We can allocate some funds and supplies to support our partisans working behind enemy lines. The more support we allocate, the higher the chances that a major uprising will break our, and when it does, the larger it will be."
+	style = 2
+
+	date = { day = 1 month = january year = 1939 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Increase support"
+		trigger = { 
+			NOT = { flag = { which = Resistance_IND value = 2 } }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					war = { country = ENG }
+					OR = {
+						control = { province = 1461 data = -2 }
+						control = { province = 1517 data = -2 }
+						control = { province = 1487 data = -2 }
+						control = { province = 1459 data = -2 }
+						control = { province = 1495 data = -2 }
+						control = { province = 1523 data = -2 }
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_IND when = 1 value = 1 }
+		command = { type = free_supplies value = -12 }
+		command = { type = free_manpower value = -0.015 }
+		command = { type = trigger which = 3131551 } #Let the enemy know
+	} 
+	action = { 
+		name = "Decrease support"
+		trigger = { 
+			flag = { which = Resistance_IND value = 1 }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					NOT = {
+						AND = {
+							war = { country = ENG }
+							OR = {
+								control = { province = 1461 data = -2 }
+								control = { province = 1517 data = -2 }
+								control = { province = 1487 data = -2 }
+								control = { province = 1459 data = -2 }
+								control = { province = 1495 data = -2 }
+								control = { province = 1523 data = -2 }
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_chance = 100
+		command = { type = setflag which = Resistance_IND when = 1 value = -1 }
+		command = { type = free_supplies value = 12 }
+		command = { type = free_manpower value = 0.015 }
+		command = { type = trigger which = 3131552 } #Let the enemy know
+	}
+}
+
+event = { 
+	id = 3131551
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Soviet Union increases support for partisans"
+	desc = "Our intelligence has received credible reports that the Soviets increased the amount of material support it is providing for partisans operating in our territory! Their support makes an uprising in India more likely, and when it happens, it will be larger."
+	style = 1
+
+	action = { 
+		name = "Curses!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131552
+	random = no
+	country = ENG
+	persistent = yes
+
+	name = "Soviet Union decreases support for partisans"
+	desc = "Our intelligence has received credible reports that the Soviets decreased the amount of material support it is providing for partisans operating in our territory. Decreased support makes an uprising in India less likely, and when it happens, it will be smaller."
+	style = 1
+
+	action = { 
+		name = "Great!"
+		command = { }
+	} 
+}
+
+event = { 
+	id = 3131553
+	random = no
+	country = ENG
+	persistent = yes
+	
+	trigger = {
+		flag = { which = Resistance_IND value = 1 }
+		NOT = { exists = SOV }
+	} 
+
+	name = "Soviet support for partisans ceases"
+	desc = "Having finally suppressed and demolished the last remains of the Soviets state, we can now breathe easier knowing that the support for partisans which it previously provided had now ceased."
+	style = 1
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Great!"
+		command = { type = dissent value = -1 }
+		command = { type = clrflag which = Resistance_IND }
+	} 
+}
+
+event = { 
+	id = 3131555
+	random = no
+	country = ENG
+	persistent = yes
+
+	trigger = {
+		OR = {
+			control = { province = 1461 data = -3 }
+			control = { province = 1517 data = -3 }
+			control = { province = 1487 data = -3 }
+			control = { province = 1459 data = -3 }
+			control = { province = 1495 data = -3 }
+			control = { province = 1523 data = -3 }
+		}
+		#Typical probability:
+		#4% per 10 days = 12% per month, 144% per year
+		#Probability when uprising is in progress:
+		#10% per 10 days = 30% per month, 360% per year. I.e. 30% probability that the uprising will double in size within a month
+		OR = {
+			#1% per 10 days = 1% per month, 36% per year
+			random = 1
+			
+			AND = {
+				war = { country = ENG country = IND }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				war = { country = ENG country = SOV }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 2
+			}
+			AND = {
+				flag = { which = Resistance_IND value = 1 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				flag = { which = Resistance_IND value = 2 }
+				#1% per 10 days = 3% per month, 36% per year
+				random = 1
+			}
+			AND = {
+				OR = {
+					control = { province = 1461 data = REB }
+					control = { province = 1517 data = REB }
+					control = { province = 1487 data = REB }
+					control = { province = 1459 data = REB }
+					control = { province = 1495 data = REB }
+					control = { province = 1523 data = REB }
+				}
+				#3% per 10 days = 9% per month, 108% per year
+				random = 3
+			}
+		}
+	} 
+
+	name = "Indian uprising!"
+	desc = "An unfortunate incident between our soldiers and the local civilians had been hijacked by the Indian resistance organizations to serve as a trigger for a general uprising against our rule!"
+	style = 2
+
+	date = { day = 1 month = january year = 1938 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1999 } 
+
+	action = { 
+		name = "Punish them!"
+		command = { type = dissent value = 0.05 }
+		command = { type = supplies value = -100 }
+		command = { trigger = { control = { province = 1459 data = -3 } } type = construct which = infrastructure where = 1459 value = -1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } } type = revolt which = 1459 when = 1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } } type = revolt which = 1459 when = 1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1459 when = 1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1459 when = 1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1459 when = 1 } 
+		command = { trigger = { control = { province = 1459 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1459 when = 1 } 
+
+		command = { trigger = { control = { province = 1522 data = -3 } } type = construct which = infrastructure where = 1522 value = -1 } 
+		command = { trigger = { control = { province = 1522 data = -3 } } type = revolt which = 1522 when = 1 } 
+		command = { trigger = { control = { province = 1522 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1522 when = 1 } 
+		command = { trigger = { control = { province = 1522 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1522 when = 1 } 
+
+		command = { trigger = { control = { province = 1518 data = -3 } } type = construct which = infrastructure where = 1518 value = -1 } 
+		command = { trigger = { control = { province = 1518 data = -3 } } type = revolt which = 1518 when = 1 } 
+		command = { trigger = { control = { province = 1518 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1518 when = 1 } 
+		command = { trigger = { control = { province = 1518 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1518 when = 1 } 
+
+		command = { trigger = { control = { province = 1525 data = -3 } } type = construct which = infrastructure where = 1525 value = -1 } 
+		command = { trigger = { control = { province = 1525 data = -3 } } type = revolt which = 1525 when = 1 } 
+		command = { trigger = { control = { province = 1525 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1525 when = 1 } 
+		command = { trigger = { control = { province = 1525 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1525 when = 1 } 
+
+		command = { trigger = { control = { province = 1531 data = -3 } } type = construct which = infrastructure where = 1531 value = -1 } 
+		command = { trigger = { control = { province = 1531 data = -3 } } type = revolt which = 1531 when = 1 } 
+		command = { trigger = { control = { province = 1531 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1531 when = 1 } 
+		command = { trigger = { control = { province = 1531 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1531 when = 1 } 
+
+		command = { trigger = { control = { province = 1527 data = -3 } } type = construct which = infrastructure where = 1527 value = -1 } 
+		command = { trigger = { control = { province = 1527 data = -3 } } type = revolt which = 1527 when = 1 } 
+		command = { trigger = { control = { province = 1527 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1527 when = 1 } 
+		command = { trigger = { control = { province = 1527 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1527 when = 1 } 
+
+		command = { trigger = { control = { province = 1463 data = -3 } } type = construct which = infrastructure where = 1463 value = -1 } 
+		command = { trigger = { control = { province = 1463 data = -3 } } type = revolt which = 1463 when = 1 } 
+		command = { trigger = { control = { province = 1463 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1463 when = 1 } 
+		command = { trigger = { control = { province = 1463 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1463 when = 1 } 
+
+		command = { trigger = { control = { province = 1460 data = -3 } } type = construct which = infrastructure where = 1460 value = -1 } 
+		command = { trigger = { control = { province = 1460 data = -3 } } type = revolt which = 1460 when = 1 } 
+		command = { trigger = { control = { province = 1460 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1460 when = 1 } 
+		command = { trigger = { control = { province = 1460 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1460 when = 1 } 
+
+		command = { trigger = { control = { province = 1461 data = -3 } } type = construct which = infrastructure where = 1461 value = -1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } } type = revolt which = 1461 when = 1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } } type = revolt which = 1461 when = 1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1461 when = 1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1461 when = 1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1461 when = 1 } 
+		command = { trigger = { control = { province = 1461 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1461 when = 1 } 
+
+		command = { trigger = { control = { province = 1462 data = -3 } } type = construct which = infrastructure where = 1462 value = -1 } 
+		command = { trigger = { control = { province = 1462 data = -3 } } type = revolt which = 1462 when = 1 } 
+		command = { trigger = { control = { province = 1462 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1462 when = 1 } 
+		command = { trigger = { control = { province = 1462 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1462 when = 1 } 
+
+		command = { trigger = { control = { province = 1446 data = -3 } } type = construct which = infrastructure where = 1446 value = -1 } 
+		command = { trigger = { control = { province = 1446 data = -3 } } type = revolt which = 1446 when = 1 } 
+		command = { trigger = { control = { province = 1446 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1446 when = 1 } 
+		command = { trigger = { control = { province = 1446 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1446 when = 1 } 
+
+		command = { trigger = { control = { province = 1524 data = -3 } } type = construct which = infrastructure where = 1524 value = -1 } 
+		command = { trigger = { control = { province = 1524 data = -3 } } type = revolt which = 1524 when = 1 } 
+		command = { trigger = { control = { province = 1524 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1524 when = 1 } 
+		command = { trigger = { control = { province = 1524 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1524 when = 1 } 
+
+		command = { trigger = { control = { province = 1523 data = -3 } } type = construct which = infrastructure where = 1523 value = -1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } } type = revolt which = 1523 when = 1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } } type = revolt which = 1523 when = 1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1523 when = 1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1523 when = 1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1523 when = 1 } 
+		command = { trigger = { control = { province = 1523 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1523 when = 1 } 
+
+		command = { trigger = { control = { province = 1521 data = -3 } } type = construct which = infrastructure where = 1521 value = -1 } 
+		command = { trigger = { control = { province = 1521 data = -3 } } type = revolt which = 1521 when = 1 } 
+		command = { trigger = { control = { province = 1521 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1521 when = 1 } 
+		command = { trigger = { control = { province = 1521 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1521 when = 1 } 
+
+		command = { trigger = { control = { province = 1484 data = -3 } } type = construct which = infrastructure where = 1484 value = -1 } 
+		command = { trigger = { control = { province = 1484 data = -3 } } type = revolt which = 1484 when = 1 } 
+		command = { trigger = { control = { province = 1484 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1484 when = 1 } 
+		command = { trigger = { control = { province = 1484 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1484 when = 1 } 
+
+		command = { trigger = { control = { province = 1483 data = -3 } } type = construct which = infrastructure where = 1483 value = -1 } 
+		command = { trigger = { control = { province = 1483 data = -3 } } type = revolt which = 1483 when = 1 } 
+		command = { trigger = { control = { province = 1483 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1483 when = 1 } 
+		command = { trigger = { control = { province = 1483 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1483 when = 1 } 
+
+		command = { trigger = { control = { province = 1476 data = -3 } } type = construct which = infrastructure where = 1476 value = -1 } 
+		command = { trigger = { control = { province = 1476 data = -3 } } type = revolt which = 1476 when = 1 } 
+		command = { trigger = { control = { province = 1476 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1476 when = 1 } 
+		command = { trigger = { control = { province = 1476 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1476 when = 1 } 
+
+		command = { trigger = { control = { province = 1471 data = -3 } } type = construct which = infrastructure where = 1471 value = -1 } 
+		command = { trigger = { control = { province = 1471 data = -3 } } type = revolt which = 1471 when = 1 } 
+		command = { trigger = { control = { province = 1471 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1471 when = 1 } 
+		command = { trigger = { control = { province = 1471 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1471 when = 1 } 
+
+		command = { trigger = { control = { province = 1477 data = -3 } } type = construct which = infrastructure where = 1477 value = -1 } 
+		command = { trigger = { control = { province = 1477 data = -3 } } type = revolt which = 1477 when = 1 } 
+		command = { trigger = { control = { province = 1477 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1477 when = 1 } 
+		command = { trigger = { control = { province = 1477 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1477 when = 1 } 
+
+		command = { trigger = { control = { province = 1493 data = -3 } } type = construct which = infrastructure where = 1493 value = -1 } 
+		command = { trigger = { control = { province = 1493 data = -3 } } type = revolt which = 1493 when = 1 } 
+		command = { trigger = { control = { province = 1493 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1493 when = 1 } 
+		command = { trigger = { control = { province = 1493 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1493 when = 1 } 
+
+		command = { trigger = { control = { province = 1482 data = -3 } } type = construct which = infrastructure where = 1482 value = -1 } 
+		command = { trigger = { control = { province = 1482 data = -3 } } type = revolt which = 1482 when = 1 } 
+		command = { trigger = { control = { province = 1482 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1482 when = 1 } 
+		command = { trigger = { control = { province = 1482 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1482 when = 1 } 
+
+		command = { trigger = { control = { province = 1517 data = -3 } } type = construct which = infrastructure where = 1517 value = -1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } } type = revolt which = 1517 when = 1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } } type = revolt which = 1517 when = 1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1517 when = 1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1517 when = 1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1517 when = 1 } 
+		command = { trigger = { control = { province = 1517 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1517 when = 1 } 
+		
+		command = { trigger = { control = { province = 1487	 data = -3 } } type = construct which = infrastructure where = 1487 value = -1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } } type = revolt which = 1487 when = 1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } } type = revolt which = 1487 when = 1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1487 when = 1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1487 when = 1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1487 when = 1 } 
+		command = { trigger = { control = { province = 1487 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1487 when = 1 } 
+
+		command = { trigger = { control = { province = 1512 data = -3 } } type = construct which = infrastructure where = 1512 value = -1 } 
+		command = { trigger = { control = { province = 1512 data = -3 } } type = revolt which = 1512 when = 1 } 
+		command = { trigger = { control = { province = 1512 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1512 when = 1 } 
+		command = { trigger = { control = { province = 1512 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1512 when = 1 } 
+
+		command = { trigger = { control = { province = 1494 data = -3 } } type = construct which = infrastructure where = 1494 value = -1 } 
+		command = { trigger = { control = { province = 1494 data = -3 } } type = revolt which = 1494 when = 1 } 
+		command = { trigger = { control = { province = 1494 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1494 when = 1 } 
+		command = { trigger = { control = { province = 1494 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1494 when = 1 } 
+
+		command = { trigger = { control = { province = 1501 data = -3 } } type = construct which = infrastructure where = 1501 value = -1 } 
+		command = { trigger = { control = { province = 1501 data = -3 } } type = revolt which = 1501 when = 1 } 
+		command = { trigger = { control = { province = 1501 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1501 when = 1 } 
+		command = { trigger = { control = { province = 1501 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1501 when = 1 } 
+
+		command = { trigger = { control = { province = 1502 data = -3 } } type = construct which = infrastructure where = 1502 value = -1 } 
+		command = { trigger = { control = { province = 1502 data = -3 } } type = revolt which = 1502 when = 1 } 
+		command = { trigger = { control = { province = 1502 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1502 when = 1 } 
+		command = { trigger = { control = { province = 1502 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1502 when = 1 } 
+
+		command = { trigger = { control = { province = 1513 data = -3 } } type = construct which = infrastructure where = 1513 value = -1 } 
+		command = { trigger = { control = { province = 1513 data = -3 } } type = revolt which = 1513 when = 1 } 
+		command = { trigger = { control = { province = 1513 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1513 when = 1 } 
+		command = { trigger = { control = { province = 1513 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1513 when = 1 } 
+
+		command = { trigger = { control = { province = 1503 data = -3 } } type = construct which = infrastructure where = 1503 value = -1 } 
+		command = { trigger = { control = { province = 1503 data = -3 } } type = revolt which = 1503 when = 1 } 
+		command = { trigger = { control = { province = 1503 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1503 when = 1 } 
+		command = { trigger = { control = { province = 1503 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1503 when = 1 } 
+
+		command = { trigger = { control = { province = 1495 data = -3 } } type = construct which = infrastructure where = 1495 value = -1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } } type = revolt which = 1495 when = 1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } } type = revolt which = 1495 when = 1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1495 when = 1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1495 when = 1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1495 when = 1 } 
+		command = { trigger = { control = { province = 1495 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1495 when = 1 } 
+
+		command = { trigger = { control = { province = 1504 data = -3 } } type = construct which = infrastructure where = 1504 value = -1 } 
+		command = { trigger = { control = { province = 1504 data = -3 } } type = revolt which = 1504 when = 1 } 
+		command = { trigger = { control = { province = 1504 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1504 when = 1 } 
+		command = { trigger = { control = { province = 1504 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1504 when = 1 } 
+
+		command = { trigger = { control = { province = 1451 data = -3 } } type = construct which = infrastructure where = 1451 value = -1 } 
+		command = { trigger = { control = { province = 1451 data = -3 } } type = revolt which = 1451 when = 1 } 
+		command = { trigger = { control = { province = 1451 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1451 when = 1 } 
+		command = { trigger = { control = { province = 1451 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1451 when = 1 } 
+
+		command = { trigger = { control = { province = 1443 data = -3 } } type = construct which = infrastructure where = 1443 value = -1 } 
+		command = { trigger = { control = { province = 1443 data = -3 } } type = revolt which = 1443 when = 1 } 
+		command = { trigger = { control = { province = 1443 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1443 when = 1 } 
+		command = { trigger = { control = { province = 1443 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1443 when = 1 } 
+
+		command = { trigger = { control = { province = 1455 data = -3 } } type = construct which = infrastructure where = 1455 value = -1 } 
+		command = { trigger = { control = { province = 1455 data = -3 } } type = revolt which = 1455 when = 1 } 
+		command = { trigger = { control = { province = 1455 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1455 when = 1 } 
+		command = { trigger = { control = { province = 1455 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1455 when = 1 } 
+
+		command = { trigger = { control = { province = 1464 data = -3 } } type = construct which = infrastructure where = 1464 value = -1 } 
+		command = { trigger = { control = { province = 1464 data = -3 } } type = revolt which = 1464 when = 1 } 
+		command = { trigger = { control = { province = 1464 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1464 when = 1 } 
+		command = { trigger = { control = { province = 1464 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1464 when = 1 } 
+
+		command = { trigger = { control = { province = 1468 data = -3 } } type = construct which = infrastructure where = 1468 value = -1 } 
+		command = { trigger = { control = { province = 1468 data = -3 } } type = revolt which = 1468 when = 1 } 
+		command = { trigger = { control = { province = 1468 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1468 when = 1 } 
+		command = { trigger = { control = { province = 1468 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1468 when = 1 } 
+
+		command = { trigger = { control = { province = 1454 data = -3 } } type = construct which = infrastructure where = 1454 value = -1 } 
+		command = { trigger = { control = { province = 1454 data = -3 } } type = revolt which = 1454 when = 1 } 
+		command = { trigger = { control = { province = 1454 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1454 when = 1 } 
+		command = { trigger = { control = { province = 1454 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1454 when = 1 } 
+
+		command = { trigger = { control = { province = 1453 data = -3 } } type = construct which = infrastructure where = 1453 value = -1 } 
+		command = { trigger = { control = { province = 1453 data = -3 } } type = revolt which = 1453 when = 1 } 
+		command = { trigger = { control = { province = 1453 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1453 when = 1 } 
+		command = { trigger = { control = { province = 1453 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1453 when = 1 } 
+
+		command = { trigger = { control = { province = 1480 data = -3 } } type = construct which = infrastructure where = 1480 value = -1 } 
+		command = { trigger = { control = { province = 1480 data = -3 } } type = revolt which = 1480 when = 1 } 
+		command = { trigger = { control = { province = 1480 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1480 when = 1 } 
+		command = { trigger = { control = { province = 1480 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1480 when = 1 } 
+
+		command = { trigger = { control = { province = 1479 data = -3 } } type = construct which = infrastructure where = 1479 value = -1 } 
+		command = { trigger = { control = { province = 1479 data = -3 } } type = revolt which = 1479 when = 1 } 
+		command = { trigger = { control = { province = 1479 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1479 when = 1 } 
+		command = { trigger = { control = { province = 1479 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1479 when = 1 } 
+
+		command = { trigger = { control = { province = 1505 data = -3 } } type = construct which = infrastructure where = 1505 value = -1 } 
+		command = { trigger = { control = { province = 1505 data = -3 } } type = revolt which = 1505 when = 1 } 
+		command = { trigger = { control = { province = 1505 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1505 when = 1 } 
+		command = { trigger = { control = { province = 1505 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1505 when = 1 } 
+
+		command = { trigger = { control = { province = 1506 data = -3 } } type = construct which = infrastructure where = 1506 value = -1 } 
+		command = { trigger = { control = { province = 1506 data = -3 } } type = revolt which = 1506 when = 1 } 
+		command = { trigger = { control = { province = 1506 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1506 when = 1 } 
+		command = { trigger = { control = { province = 1506 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1506 when = 1 } 
+
+		command = { trigger = { control = { province = 1507 data = -3 } } type = construct which = infrastructure where = 1507 value = -1 } 
+		command = { trigger = { control = { province = 1507 data = -3 } } type = revolt which = 1507 when = 1 } 
+		command = { trigger = { control = { province = 1507 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1507 when = 1 } 
+		command = { trigger = { control = { province = 1507 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1507 when = 1 } 
+
+		command = { trigger = { control = { province = 1485 data = -3 } } type = construct which = infrastructure where = 1485 value = -1 } 
+		command = { trigger = { control = { province = 1485 data = -3 } } type = revolt which = 1485 when = 1 } 
+		command = { trigger = { control = { province = 1485 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1485 when = 1 } 
+		command = { trigger = { control = { province = 1485 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1485 when = 1 } 
+
+		command = { trigger = { control = { province = 1511 data = -3 } } type = construct which = infrastructure where = 1511 value = -1 } 
+		command = { trigger = { control = { province = 1511 data = -3 } } type = revolt which = 1511 when = 1 } 
+		command = { trigger = { control = { province = 1511 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1511 when = 1 } 
+		command = { trigger = { control = { province = 1511 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1511 when = 1 } 
+
+		command = { trigger = { control = { province = 1516 data = -3 } } type = construct which = infrastructure where = 1516 value = -1 } 
+		command = { trigger = { control = { province = 1516 data = -3 } } type = revolt which = 1516 when = 1 } 
+		command = { trigger = { control = { province = 1516 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1516 when = 1 } 
+		command = { trigger = { control = { province = 1516 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1516 when = 1 } 
+
+		command = { trigger = { control = { province = 1519 data = -3 } } type = construct which = infrastructure where = 1519 value = -1 } 
+		command = { trigger = { control = { province = 1519 data = -3 } } type = revolt which = 1519 when = 1 } 
+		command = { trigger = { control = { province = 1519 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1519 when = 1 } 
+		command = { trigger = { control = { province = 1519 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1519 when = 1 } 
+
+		command = { trigger = { control = { province = 1497 data = -3 } } type = construct which = infrastructure where = 1497 value = -1 } 
+		command = { trigger = { control = { province = 1497 data = -3 } } type = revolt which = 1497 when = 1 } 
+		command = { trigger = { control = { province = 1497 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1497 when = 1 } 
+		command = { trigger = { control = { province = 1497 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1497 when = 1 } 
+
+		command = { trigger = { control = { province = 1515 data = -3 } } type = construct which = infrastructure where = 1515 value = -1 } 
+		command = { trigger = { control = { province = 1515 data = -3 } } type = revolt which = 1515 when = 1 } 
+		command = { trigger = { control = { province = 1515 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1515 when = 1 } 
+		command = { trigger = { control = { province = 1515 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1515 when = 1 } 
+
+		command = { trigger = { control = { province = 1499 data = -3 } } type = construct which = infrastructure where = 1499 value = -1 } 
+		command = { trigger = { control = { province = 1499 data = -3 } } type = revolt which = 1499 when = 1 } 
+		command = { trigger = { control = { province = 1499 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1499 when = 1 } 
+		command = { trigger = { control = { province = 1499 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1499 when = 1 } 
+
+		command = { trigger = { control = { province = 1500 data = -3 } } type = construct which = infrastructure where = 1500 value = -1 } 
+		command = { trigger = { control = { province = 1500 data = -3 } } type = revolt which = 1500 when = 1 } 
+		command = { trigger = { control = { province = 1500 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1500 when = 1 } 
+		command = { trigger = { control = { province = 1500 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1500 when = 1 } 
+
+		command = { trigger = { control = { province = 1496 data = -3 } } type = construct which = infrastructure where = 1496 value = -1 } 
+		command = { trigger = { control = { province = 1496 data = -3 } } type = revolt which = 1496 when = 1 } 
+		command = { trigger = { control = { province = 1496 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1496 when = 1 } 
+		command = { trigger = { control = { province = 1496 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1496 when = 1 } 
+
+		command = { trigger = { control = { province = 1498 data = -3 } } type = construct which = infrastructure where = 1498 value = -1 } 
+		command = { trigger = { control = { province = 1498 data = -3 } } type = revolt which = 1498 when = 1 } 
+		command = { trigger = { control = { province = 1498 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1498 when = 1 } 
+		command = { trigger = { control = { province = 1498 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1498 when = 1 } 
+
+		command = { trigger = { control = { province = 1475 data = -3 } } type = construct which = infrastructure where = 1475 value = -1 } 
+		command = { trigger = { control = { province = 1475 data = -3 } } type = revolt which = 1475 when = 1 } 
+		command = { trigger = { control = { province = 1475 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1475 when = 1 } 
+		command = { trigger = { control = { province = 1475 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1475 when = 1 } 
+
+		command = { trigger = { control = { province = 1474 data = -3 } } type = construct which = infrastructure where = 1474 value = -1 } 
+		command = { trigger = { control = { province = 1474 data = -3 } } type = revolt which = 1474 when = 1 } 
+		command = { trigger = { control = { province = 1474 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1474 when = 1 } 
+		command = { trigger = { control = { province = 1474 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1474 when = 1 } 
+
+		command = { trigger = { control = { province = 1470 data = -3 } } type = construct which = infrastructure where = 1470 value = -1 } 
+		command = { trigger = { control = { province = 1470 data = -3 } } type = revolt which = 1470 when = 1 } 
+		command = { trigger = { control = { province = 1470 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1470 when = 1 } 
+		command = { trigger = { control = { province = 1470 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1470 when = 1 } 
+
+		command = { trigger = { control = { province = 1473 data = -3 } } type = construct which = infrastructure where = 1473 value = -1 } 
+		command = { trigger = { control = { province = 1473 data = -3 } } type = revolt which = 1473 when = 1 } 
+		command = { trigger = { control = { province = 1473 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1473 when = 1 } 
+		command = { trigger = { control = { province = 1473 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1473 when = 1 } 
+
+		command = { trigger = { control = { province = 1472 data = -3 } } type = construct which = infrastructure where = 1472 value = -1 } 
+		command = { trigger = { control = { province = 1472 data = -3 } } type = revolt which = 1472 when = 1 } 
+		command = { trigger = { control = { province = 1472 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1472 when = 1 } 
+		command = { trigger = { control = { province = 1472 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1472 when = 1 } 
+
+		command = { trigger = { control = { province = 1469 data = -3 } } type = construct which = infrastructure where = 1469 value = -1 } 
+		command = { trigger = { control = { province = 1469 data = -3 } } type = revolt which = 1469 when = 1 } 
+		command = { trigger = { control = { province = 1469 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1469 when = 1 } 
+		command = { trigger = { control = { province = 1469 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1469 when = 1 } 
+
+		command = { trigger = { control = { province = 1466 data = -3 } } type = construct which = infrastructure where = 1466 value = -1 } 
+		command = { trigger = { control = { province = 1466 data = -3 } } type = revolt which = 1466 when = 1 } 
+		command = { trigger = { control = { province = 1466 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1466 when = 1 } 
+		command = { trigger = { control = { province = 1466 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1466 when = 1 } 
+
+		command = { trigger = { control = { province = 1465 data = -3 } } type = construct which = infrastructure where = 1465 value = -1 } 
+		command = { trigger = { control = { province = 1465 data = -3 } } type = revolt which = 1465 when = 1 } 
+		command = { trigger = { control = { province = 1465 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1465 when = 1 } 
+		command = { trigger = { control = { province = 1465 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1465 when = 1 } 
+
+		command = { trigger = { control = { province = 1467 data = -3 } } type = construct which = infrastructure where = 1467 value = -1 } 
+		command = { trigger = { control = { province = 1467 data = -3 } } type = revolt which = 1467 when = 1 } 
+		command = { trigger = { control = { province = 1467 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1467 when = 1 } 
+		command = { trigger = { control = { province = 1467 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1467 when = 1 } 
+
+		command = { trigger = { control = { province = 1452 data = -3 } } type = construct which = infrastructure where = 1452 value = -1 } 
+		command = { trigger = { control = { province = 1452 data = -3 } } type = revolt which = 1452 when = 1 } 
+		command = { trigger = { control = { province = 1452 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1452 when = 1 } 
+		command = { trigger = { control = { province = 1452 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1452 when = 1 } 
+
+		command = { trigger = { control = { province = 1526 data = -3 } } type = construct which = infrastructure where = 1526 value = -1 } 
+		command = { trigger = { control = { province = 1526 data = -3 } } type = revolt which = 1526 when = 1 } 
+		command = { trigger = { control = { province = 1526 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1526 when = 1 } 
+		command = { trigger = { control = { province = 1526 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1526 when = 1 } 
+
+		command = { trigger = { control = { province = 1528 data = -3 } } type = construct which = infrastructure where = 1528 value = -1 } 
+		command = { trigger = { control = { province = 1528 data = -3 } } type = revolt which = 1528 when = 1 } 
+		command = { trigger = { control = { province = 1528 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1528 when = 1 } 
+		command = { trigger = { control = { province = 1528 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1528 when = 1 } 
+
+		command = { trigger = { control = { province = 1481 data = -3 } } type = construct which = infrastructure where = 1481 value = -1 } 
+		command = { trigger = { control = { province = 1481 data = -3 } } type = revolt which = 1481 when = 1 } 
+		command = { trigger = { control = { province = 1481 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1481 when = 1 } 
+		command = { trigger = { control = { province = 1481 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1481 when = 1 } 
+
+		command = { trigger = { control = { province = 1478 data = -3 } } type = construct which = infrastructure where = 1478 value = -1 } 
+		command = { trigger = { control = { province = 1478 data = -3 } } type = revolt which = 1478 when = 1 } 
+		command = { trigger = { control = { province = 1478 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1478 when = 1 } 
+		command = { trigger = { control = { province = 1478 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1478 when = 1 } 
+
+		command = { trigger = { control = { province = 1514 data = -3 } } type = construct which = infrastructure where = 1514 value = -1 } 
+		command = { trigger = { control = { province = 1514 data = -3 } } type = revolt which = 1514 when = 1 } 
+		command = { trigger = { control = { province = 1514 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1514 when = 1 } 
+		command = { trigger = { control = { province = 1514 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1514 when = 1 } 
+
+		command = { trigger = { control = { province = 1520 data = -3 } } type = construct which = infrastructure where = 1520 value = -1 } 
+		command = { trigger = { control = { province = 1520 data = -3 } } type = revolt which = 1520 when = 1 } 
+		command = { trigger = { control = { province = 1520 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1520 when = 1 } 
+		command = { trigger = { control = { province = 1520 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1520 when = 1 } 
+
+		command = { trigger = { control = { province = 1510 data = -3 } } type = construct which = infrastructure where = 1510 value = -1 } 
+		command = { trigger = { control = { province = 1510 data = -3 } } type = revolt which = 1510 when = 1 } 
+		command = { trigger = { control = { province = 1510 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1510 when = 1 } 
+		command = { trigger = { control = { province = 1510 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1510 when = 1 } 
+
+		command = { trigger = { control = { province = 1508 data = -3 } } type = construct which = infrastructure where = 1508 value = -1 } 
+		command = { trigger = { control = { province = 1508 data = -3 } } type = revolt which = 1508 when = 1 } 
+		command = { trigger = { control = { province = 1508 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1508 when = 1 } 
+		command = { trigger = { control = { province = 1508 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1508 when = 1 } 
+
+		command = { trigger = { control = { province = 1421 data = -3 } } type = construct which = infrastructure where = 1421 value = -1 } 
+		command = { trigger = { control = { province = 1421 data = -3 } } type = revolt which = 1421 when = 1 } 
+		command = { trigger = { control = { province = 1421 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1421 when = 1 } 
+		command = { trigger = { control = { province = 1421 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1421 when = 1 } 
+
+		command = { trigger = { control = { province = 1448 data = -3 } } type = construct which = infrastructure where = 1448 value = -1 } 
+		command = { trigger = { control = { province = 1448 data = -3 } } type = revolt which = 1448 when = 1 } 
+		command = { trigger = { control = { province = 1448 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1448 when = 1 } 
+		command = { trigger = { control = { province = 1448 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1448 when = 1 } 
+
+		command = { trigger = { control = { province = 1509 data = -3 } } type = construct which = infrastructure where = 1509 value = -1 } 
+		command = { trigger = { control = { province = 1509 data = -3 } } type = revolt which = 1509 when = 1 } 
+		command = { trigger = { control = { province = 1509 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1509 when = 1 } 
+		command = { trigger = { control = { province = 1509 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1509 when = 1 } 
+
+		command = { trigger = { control = { province = 1612 data = -3 } } type = construct which = infrastructure where = 1612 value = -1 } 
+		command = { trigger = { control = { province = 1612 data = -3 } } type = revolt which = 1612 when = 1 } 
+		command = { trigger = { control = { province = 1612 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1612 when = 1 } 
+		command = { trigger = { control = { province = 1612 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1612 when = 1 } 
+
+		command = { trigger = { control = { province = 1441 data = -3 } } type = construct which = infrastructure where = 1441 value = -1 } 
+		command = { trigger = { control = { province = 1441 data = -3 } } type = revolt which = 1441 when = 1 } 
+		command = { trigger = { control = { province = 1441 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1441 when = 1 } 
+		command = { trigger = { control = { province = 1441 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1441 when = 1 } 
+
+		command = { trigger = { control = { province = 1458 data = -3 } } type = construct which = infrastructure where = 1458 value = -1 } 
+		command = { trigger = { control = { province = 1458 data = -3 } } type = revolt which = 1458 when = 1 } 
+		command = { trigger = { control = { province = 1458 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1458 when = 1 } 
+		command = { trigger = { control = { province = 1458 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1458 when = 1 } 
+
+		command = { trigger = { control = { province = 1278 data = -3 } } type = construct which = infrastructure where = 1278 value = -1 } 
+		command = { trigger = { control = { province = 1278 data = -3 } } type = revolt which = 1278 when = 1 } 
+		command = { trigger = { control = { province = 1278 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1278 when = 1 } 
+		command = { trigger = { control = { province = 1278 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1278 when = 1 } 
+
+		command = { trigger = { control = { province = 1447 data = -3 } } type = construct which = infrastructure where = 1447 value = -1 } 
+		command = { trigger = { control = { province = 1447 data = -3 } } type = revolt which = 1447 when = 1 } 
+		command = { trigger = { control = { province = 1447 data = -3 } flag = { which = Resistance_IND value = 1 } } type = revolt which = 1447 when = 1 } 
+		command = { trigger = { control = { province = 1447 data = -3 } flag = { which = Resistance_IND value = 2 } } type = revolt which = 1447 when = 1 } 
+	} 
+}

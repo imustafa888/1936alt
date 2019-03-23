@@ -1,0 +1,465 @@
+### 2011006  JAP  The 2-26 Incident
+### 2011022  JAP  Marco Polo Bridge incident
+### 2011007  JAP  The Nanjing Massacre
+### 2011008  JAP  Automedon Incident
+### 2011009  JAP  Japan puts pressure on Thailand
+### 2059001  SIA  Japan puts Pressure on Thailand
+### 2059002  SIA  The Siamese surrender
+### 2011010  JAP  Thailand aligns with Japan
+### 2186003  U03  Thailand aligns with Japan
+### 2011011  SIA  Thailand Resists Japanese Pressure
+### 2011012  JAP  The Chinese question - first peace proposal
+### 2012017  CHI  The Chinese question - first peace proposal
+### 2011013  JAP  The Chinese refuse to surrender
+### 2011014  JAP  The Chinese have accepted our peace proposal
+### 2011015  JAP  The Chinese question - final peace proposal
+### 2012018  CHI  The Chinese question - final peace proposal
+### 2011016  JAP  The Chinese refuse to surrender
+### 2011017  JAP  The Chinese have accepted our peace proposal
+### 2011018  JAP  The Fading Sun
+### 2011019  JAP  China defeats Japan and Korea is freed
+### 2048001  MAN  The Manchurian Transfer of Xilinhot
+### 2011020  JAP  Japan organises Inner Mongolia
+### 2141001  MEN  Mengjiang takes shape
+### 2011021  JAP  Seek German recognition of Manchukuo
+### 2003072  GER  The Recognition of Manchukuo
+### 2003073  GER  No Pact is Necessary
+### 2011023  JAP  Nomonhan Incident
+### 2007009  SOV  Battle of Khalkin Ghol
+### 2011024  JAP  Changfukeng Lake Incident
+### 2007010  SOV  Chasan Lake Incident
+### 2011025  JAP  Pearl Harbor
+### 2149002  USA  Pearl Harbor
+### 2011026  JAP  The Attack on Pearl Harbor is a success!
+### 2011027  JAP  The Attack on Pearl Harbor is a failure!
+### 2011028  JAP  Japanese surrender negotiations
+### 2007011  SOV  Japan surrenders
+### 2049003  USA  Japan surrenders
+### 2011037  JAP  Japan surrenders
+### 2011039  HOL  Japan surrenders
+### 2011040  ENG  Japan surrenders
+### 2011041  USA  Japan surrenders
+###
+
+#########################################################################
+#  The 2-2-6 incident (Japan)
+#########################################################################
+event = {
+	id = 2011006
+	random = no
+	country = JAP
+
+	name = EVT_1_NAME
+	desc = EVT_1_DESC
+	style = 2
+  	picture = "news_paper"
+	trigger = {
+		atwar = no
+		NOT = {
+			ispuppet = JAP
+		}
+	}
+
+        date = { day = 25 month = february year = 1936 }
+
+	action_a = {
+		ai_chance = 99
+		name = EVT_1_ACTA
+		command = { type = dissent value = 1 }
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = domestic which = freedom value = -1 }
+	}
+	action_b = {
+		ai_chance = 1
+		name = EVT_1_ACTB
+		command = { type = dissent value = 3 }
+		command = { type = domestic which = interventionism value = 2 }  #  NOTE: The B choice effects are stronger than A by design
+		command = { type = domestic which = democratic value = -3 }      #  This represent a greater shift towards the military and
+		command = { type = domestic which = political_left value = -3 }  #  right wing control.
+		command = { type = domestic which = freedom value = -3 }
+		command = { type = domestic which = defense_lobby value = 1 }
+		command = { type = headofstate which = 50001 }
+		command = { type = headofgovernment which = 50013 }
+		command = { type = foreignminister which = 50039 }
+		command = { type = armamentminister which = 50062 }
+		command = { type = ministerofsecurity which = 50086 }
+		command = { type = ministerofintelligence which = 50114 }
+		command = { type = chiefofstaff which = 50007 }
+		command = { type = chiefofarmy which = 50008 }
+		command = { type = chiefofnavy which = 50148 }
+		command = { type = chiefofair which = 50154 }
+		command = { type = relation which = SOV value = -10 }
+		command = { type = relation which = CHI value = -10 }
+	}
+}
+
+#########################################################################
+#  The Nanking Massacre
+#########################################################################
+event = { 
+	id = 2011007
+	random = no
+	country = JAP
+	
+	trigger = {
+		war = { country = JAP country = CHC }
+		control = { province = 1337 data = -1 } # We control Nanjing
+	}
+	
+	name = "EVT_3802_NAME"
+	desc = "EVT_3802_DESC"
+	style = 2
+ 	picture = "news_paper"
+	date = { day = 2 month = january year = 1936 }
+	offset = 7
+	deathdate = { day = 29 month = december year = 1963 }
+	
+	action_a = {
+		name = "ACTIONNAME3802A" # That will hurt us more than them!
+		command = { type = relation which = CHI value = -50 }
+		command = { type = relation which = USA value = -20 }
+		command = { type = relation which = CGX value = -30 }
+		command = { type = belligerence which = JAP value = 10 }	
+		command = { type = trigger which = 2012001 } # CHI
+		command = { type = trigger which = 2049022 } # USA
+	}
+}
+#########################################################################
+# Japan puts Pressure on Siam
+#########################################################################
+event = { 
+	id = 2011009
+	random = no
+	country = JAP
+	
+	decision = {
+		exists = SIA
+		NOT = {
+			event = 2011028 #JAP Japanese surrender negotiations
+			ispuppet = SIA
+		}
+	}
+	decision_trigger = { 
+		alliance = { country = ENG country = JAP } 
+		NOT = { war = { country = JAP country = SIA } } 
+	}
+	trigger = {
+		random = 30
+		exists = SIA
+		alliance = { country = ENG country = JAP } 
+		NOT = {
+			event = 2011028 #JAP Japanese surrender negotiations
+			ispuppet = SIA
+			war = { country = JAP country = SIA }
+		}
+	}
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1963 }
+	
+	name = "EVT_3806_NAME"
+	desc = "EVT_3806_DESC"
+	style = 2
+ 	picture = "news_paper"
+	action = {
+		name = "ACTIONNAME3806A" # Lean on Siam
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = trigger which = 2059001 } # Siam/Thailand
+	}
+}
+event = { 
+	id = 2059001
+	random = no
+	country = SIA
+	
+	# Triggered by JAP 2011009
+	
+	name = "EVT_4500_NAME"
+	desc = "EVT_4500_DESC"
+	style = 2
+ 	picture = "news_paper"
+	action_a = {
+		name = "ACTION_NAME_ACCEPT" # Accept
+		ai_chance = 100
+		command = { type = trigger which = 2011010 } # Japan
+		command = { type = relation which = JAP value = 20 }
+		command = { type = relation which = GER value = 10 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = set_domestic which = democratic value = 3 }
+		command = { type = set_domestic which = political_left value = 3 }
+		command = { type = headofstate which = 290001 }
+		command = { type = headofgovernment which = 290014 }
+		command = { type = foreignminister which = 290022 }
+		command = { type = armamentminister which = 290037 }
+		command = { type = ministerofsecurity which = 290050 }
+		command = { type = ministerofintelligence which = 290061 }
+		command = { type = chiefofstaff which = 290066 }
+		command = { type = chiefofarmy which = 290072 }
+		command = { type = chiefofnavy which = 290077 }
+		command = { type = chiefofair which = 290082 }
+	}
+	action = {
+		name = "ACTIONNAME4500B" # Decline
+		ai_chance = 0
+		command = { type = relation which = JAP value = -15 }
+		command = { type = relation which = GER value = -10 }
+		command = { type = relation which = ENG value = 15 }
+		command = { type = relation which = FRA value = 15 }
+		command = { type = relation which = USA value = 10 }
+		command = { type = domestic which = democratic value = 1 }
+		command = { type = trigger which = 2011011 } # Japan
+	}
+}
+#########################################################################
+# Siam Accepts
+#########################################################################
+event = { 
+	id = 2011010
+	random = no
+	country = JAP
+	
+	# Triggered by SIA 2059001
+
+	trigger = {
+		NOT = { ispuppet = JAP }
+		alliance = { country = JAP country = SIA }
+		OR = {
+			NOT = { ispuppet = SIA }
+			puppet= { country = SIA country = JAP }
+		}
+	}
+
+	date = { day = 1 month = january year = 1936 }
+	offset = 2
+	deathdate = { day = 29 month = december year = 1963 }
+	
+	name = "EVT_3808_NAME"
+	desc = "EVT_3808_DESC"
+	style = 2
+ 	picture = "news_paper"
+	action_a = {
+		name = ACTION_NAME_OK # Excellent!
+		command = { type = make_puppet which = SIA }
+		command = { type = sleepevent which = 2011009 }
+  	}
+}
+#########################################################################
+# Siam Refuses
+#########################################################################
+event = { 
+	id = 2011011
+	random = no
+	country = JAP
+	
+	# Triggered by SIA 2059001 or 2186003
+	
+	name = "EVT_3809_NAME"
+	desc = "EVT_3809_DESC"
+	style = 2
+ 	picture = "news_paper"
+	action_a = {
+		name = "ACTIONNAME3809A" # Declare War!
+		ai_chance = 100
+		command = { type = domestic which = interventionism value = 1 }
+		command = { type = war which = SIA }
+	}
+	action_b = {
+		name = "ACTIONNAME3809B" # Their Loss!
+		ai_chance = 0
+		command = { type = relation which = SIA value = 10 }
+	}
+}
+#########################################################################
+#  Pearl Harbour
+#########################################################################
+event = {
+	id = 2011025
+	random = no 
+	country = JAP
+	
+	decision = {
+		war = { country = JAP country = USA }
+	}
+	decision_trigger = {
+
+	}
+	trigger = {
+		war = { country = JAP country = USA }
+	}
+
+	name = EVT_17_NAME
+	desc = EVT_17_DESC
+	style = 2
+	picture = "Pearl_harbor"
+	
+	date = { day = 1 month = january year = 1936 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1963 }
+
+	action = {
+		name = EVT_17_ACTA
+		ai_chance = 100
+		command = { trigger = { NOT = { puppet = { country = PHI country = USA } } } type = war which = PHI }
+		command = { type = trigger which = 2149002 }
+	}
+	
+}
+event = {
+	id = 2149002
+	random = no
+	country = USA
+    one_action = yes
+
+	name = EVT_17_NAME
+	desc = EVT_17_DESC
+	style = 2
+	picture = "Pearl_harbor"
+
+	action = {
+		name = "4063a"	# Nightmare!  All 8 BBs of Battleship Row, plus both nearby CV TFs.
+        ai_chance = 5
+		command = { type = remove_division which = 14800 value = 29 } # USS Arizona
+		command = { type = remove_division which = 14800 value = 33 } # USS Oklahoma
+		command = { type = remove_division which = 14800 value = 35 } # USS California
+		command = { type = remove_division which = 14800 value = 38 } # USS West Virginia
+		command = { type = remove_division which = 14800 value = 28 } # USS Nevada
+		command = { type = remove_division which = 14800 value = 30 } # USS Pennsylvania
+		command = { type = remove_division which = 14800 value = 34 } # USS Tennessee
+		command = { type = remove_division which = 14800 value = 39 } # USS Maryland
+		command = { type = remove_division which = 14800 value = 27 } # USS Lexington
+		command = { type = remove_division which = 14800 value = 501 } # USS Enterprise
+		command = { type = remove_division which = 14800 value = 60 } # USS San Francisco
+		command = { type = remove_division which = 14800 value = 52 } # USS Northampton
+		command = { type = remove_division which = 14800 value = 48 } # USS Salt Lake City
+		command = { type = remove_division which = 14800 value = 57 } # USS New Orleans
+		command = { type = remove_division which = 14800 value = 44 } # USS Raleigh
+		command = { type = remove_division which = 14800 value = 2296 } # DD Division
+		command = { type = remove_division which = 14800 value = 62 } # DD Division		
+		command = { type = damage_division which = 14800 value = 510 where = 95 } # USS Honolulu
+		command = { type = damage_division which = 14800 value = 2291 where = 70 } # DD Division
+		command = { type = damage_division which = 14800 value = 2298 where = 70 } # DD Division
+		command = { type = dissent value = 3 }
+		command = { type = manpowerpool value = -20 }
+        command = { type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { policy = { type = defense_lobby value = 8 } } } type = domestic which = defense_lobby value = 8 }
+		command = { type = trigger which = 2011026 }
+    } 
+	action = {
+		name = "4063b"   # Pretty Bad!  (6 BBs lost, 2 near-lost/refloated)
+		ai_chance = 10
+		command = { type = remove_division which = 14800 value = 29 } # USS Arizona
+		command = { type = remove_division which = 14800 value = 33 } # USS Oklahoma
+		command = { type = remove_division which = 14800 value = 35 } # USS California
+		command = { type = remove_division which = 14800 value = 38 } # USS West Virginia
+		command = { type = remove_division which = 14800 value = 28 } # USS Nevada
+		command = { type = remove_division which = 14800 value = 30 } # USS Pennsylvania
+		command = { type = remove_division which = 14800 value = 57 } # USS New Orleans
+		command = { type = remove_division which = 14800 value = 44 } # USS Raleigh
+		command = { type = remove_division which = 14800 value = 2296 } # DD Division
+		command = { type = damage_division which = 14800 value = 34 where = 95 } # USS Tennessee
+		command = { type = damage_division which = 14800 value = 39 where = 90 } # USS Maryland
+		command = { type = damage_division which = 14800 value = 510 where = 95 } # USS Honolulu
+		command = { type = damage_division which = 14800 value = 2291 where = 70 } # DD Division
+		command = { type = damage_division which = 14800 value = 2298 where = 70 } # DD Division
+		command = { type = dissent value = 2 }
+		command = { type = manpowerpool value = -15 }
+		command = { type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { policy = { type = defense_lobby value = 8 } } } type = domestic which = defense_lobby value = 8 }
+		command = { type = trigger which = 2011026 }
+	}
+	action = {
+		name = "4063c"   # Worse than historic  (4 BBs lost, 3 near-lost/refloated)
+        ai_chance = 15
+		command = { type = remove_division which = 14800 value = 29 } # USS Arizona
+		command = { type = remove_division which = 14800 value = 33 } # USS Oklahoma
+		command = { type = remove_division which = 14800 value = 35 } # USS California
+		command = { type = remove_division which = 14800 value = 38 } # USS West Virginia
+		command = { type = remove_division which = 14800 value = 44 } # USS Raleigh
+		command = { type = remove_division which = 14800 value = 2296 } # DD Division
+		command = { type = damage_division which = 14800 value = 28 where = 95 } # USS Nevada
+		command = { type = damage_division which = 14800 value = 30 where = 95 } # USS Pennsylvania
+		command = { type = damage_division which = 14800 value = 34 where = 90 } # USS Tennessee
+		command = { type = damage_division which = 14800 value = 39 where = 25 } # USS Maryland
+		command = { type = damage_division which = 14800 value = 57 where = 90 } # USS New Orleans
+		command = { type = damage_division which = 14800 value = 510 where = 90 } # USS Honolulu
+		command = { type = damage_division which = 14800 value = 2291 where = 60 } # DD Division
+		command = { type = damage_division which = 14800 value = 2298 where = 60 } # DD Division
+		command = { type = dissent value = 1 }
+		command = { type = manpowerpool value = -10 }
+        command = { type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { policy = { type = defense_lobby value = 8 } } } type = domestic which = defense_lobby value = 8 }
+		command = { type = trigger which = 2011026 }
+	}
+	action = {
+		name = "4063d"   # Historic losses (2 BBs lost, 3 sunk but refloated)
+        ai_chance = 60
+		command = { type = remove_division which = 14800 value = 29 } # USS Arizona
+		command = { type = remove_division which = 14800 value = 33 } # USS Oklahoma
+		command = { type = remove_division which = 14800 value = 2296 } # DD Division
+		command = { type = damage_division which = 14800 value = 35 where = 95 } # USS California, sunk but refloated
+		command = { type = damage_division which = 14800 value = 38 where = 95 } # USS West Virginia, sunk but refloated
+		command = { type = damage_division which = 14800 value = 28 where = 75 } # USS Nevada, beached but refloated
+		command = { type = damage_division which = 14800 value = 30 where = 25 } # USS Pennsylvania
+		command = { type = damage_division which = 14800 value = 34 where = 15 } # USS Tennessee
+		command = { type = damage_division which = 14800 value = 39 where = 20 } # USS Maryland
+		command = { type = damage_division which = 14800 value = 57 where = 5 } # USS New Orleans
+		command = { type = damage_division which = 14800 value = 44 where = 40 } # USS Raleigh
+		command = { type = damage_division which = 14800 value = 510 where = 5 } # USS Honolulu
+		command = { type = damage_division which = 14800 value = 2291 where = 50 } # DD Division
+		command = { type = damage_division which = 14800 value = 2298 where = 50 } # DD Division
+#		command = { type = damage_division which = 14800 value =  where = 40 } # USS Helena, can't do this.  :-(
+		command = { type = manpowerpool value = -10 }
+        command = { type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { policy = { type = defense_lobby value = 8 } } } type = domestic which = defense_lobby value = 8 }
+		command = { type = trigger which = 2011026 }
+	}
+	action = {
+		name = "4063e"   # Less than historic losses (1 BB lost, 1 sunk but refloated)
+		ai_chance = 10
+		command = { type = remove_division which = 14800 value = 29 } # USS Arizona
+		command = { type = damage_division which = 14800 value = 33 where = 95 } # USS Oklahoma
+		command = { type = damage_division which = 14800 value = 35 where = 50 } # USS California
+		command = { type = damage_division which = 14800 value = 38 where = 40 } # USS West Virginia 
+		command = { type = damage_division which = 14800 value = 44 where = 40 } # USS Raleigh
+		command = { type = damage_division which = 14800 value = 510 where = 10 } # USS Honolulu		
+		command = { type = damage_division which = 14800 value = 2291 where = 50 } # DD Division		
+		command = { type = dissent value = -1 }
+        command = { type = domestic which = interventionism value = 2 }
+		command = { trigger = { NOT = { policy = { type = defense_lobby value = 8 } } } type = domestic which = defense_lobby value = 8 }
+		command = { type = trigger which = 2011027 }
+	} 
+}
+event = {
+	id = 2011026
+	random = no
+	country = JAP
+	style = 2
+	picture = "Pearl_harbor"
+
+	name = 18name
+	desc = EVT_19_DESC
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = dissent value = -10 }
+                                 } 
+}
+event = {
+	id = 2011027
+	random = no
+	country = JAP
+	style = 2
+	picture = "Pearl_harbor"
+
+	name = 19name
+	desc = EVT_19_DESC
+
+	action = {
+		name = ACTION_NAME_OK
+		command = { type = dissent value = 1 }
+		command = { type = manpowerpool value = -10 }
+                                 } 
+}

@@ -35,7 +35,7 @@ event = {
 	action = { 
 		name = "Ok" 
 		command = { }
-		command = { type = switch_allegiance which = 14500 value = 74	where = ITA }
+		command = { type = switch_allegiance which = 14500 value = 74 where = ITA }
 	}
 }
 
